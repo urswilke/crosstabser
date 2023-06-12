@@ -30,20 +30,39 @@ process_qsheet <- function(mapping) {
       SelVal = split_cell(SelVal) |> purrr::map(as.numeric),
       RemoveEmpty = stringr::str_trim(RemoveEmpty) == "EXCLUDE"
     ) |>
-    unnest_qsheet_rows()
+    add_options_column(mapping) |>
+    unnest_qsheet_rows(mapping)
 
   # |>
   #   tidyr::unnest(SelVal, keep_empty = TRUE)
 }
 
-unnest_qsheet_rows <- function(df_qsheet) {
-  split(df_qsheet, seq_len(nrow(df_qsheet))) |>
-    purrr::map_dfr(unnest_mw_rowvar)
+add_options_column <- function(qsheet, mapping) {
+  qsheet$options <- rep(list(mapping$options$l_macro_scenario), nrow(qsheet))
+  qsheet
 }
-unnest_mw_rowvar <- function(df_row) {
+
+unnest_qsheet_rows <- function(df_qsheet, mapping) {
+  split(df_qsheet, seq_len(nrow(df_qsheet))) |>
+    purrr::map_dfr(~unnest_mw_rowvar(.x, mapping))
+}
+unnest_mw_rowvar <- function(df_row, mapping) {
+  if (df_row$Type != "mw") {
+    return(df_row)
+  }
+  mw_label <- dplyr::coalesce(df_row$MWLabel, mapping$options$l_lexikon[["cTabMeanOV"]])
+  df_row$Title[[1]][2] <- mw_label
+  if (df_row$Freq %in% "0") {
+    return(df_row)
+  }
   n_rowvar <- length(df_row$RowVars[[1]])
   res <- df_row[rep(1, n_rowvar + 1),]
   res$Type <- list("mw") |> append(as.list(rep("cat", n_rowvar)))
   res$RowVars <- df_row$RowVars |> append(as.list(unlist(df_row$RowVars)))
+  res$Title[-1] <- purrr::map2(
+    res$Title[-1],
+    res$RowVars[-1],
+    ~{.x[2] <- attr(mapping$dat_mod[[.y]], "label", exact = TRUE); .x}
+  )
   res
 }
