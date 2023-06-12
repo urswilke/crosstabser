@@ -44,9 +44,9 @@ add_options_column <- function(qsheet, mapping) {
 
 unnest_qsheet_rows <- function(df_qsheet, mapping) {
   split(df_qsheet, seq_len(nrow(df_qsheet))) |>
-    purrr::map_dfr(~unnest_mw_rowvar(.x, mapping))
+    purrr::map_dfr(~unnest_mw_rows(.x, mapping))
 }
-unnest_mw_rowvar <- function(df_row, mapping) {
+unnest_mw_rows <- function(df_row, mapping) {
   if (df_row$Type != "mw") {
     return(df_row)
   }
