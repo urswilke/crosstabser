@@ -24,7 +24,7 @@ process_qsheet <- function(mapping) {
       Title = as.list(Title),
       RowVars = RowVars |> split_cell(" "),
       Invalid = split_cell(Invalid),
-      Invalid = purrr::map_if(Invalid, Type %in% c("cat", "mcg", "mw"), ~as.numeric(.x), .else = ~.x),
+      Invalid = purrr::map_if(Invalid, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
       Type = as.list(Type),
       SelVar = split_cell(SelVar),
       SelVal = split_cell(SelVal) |> purrr::map(as.numeric),
@@ -44,7 +44,7 @@ add_options_column <- function(qsheet, mapping) {
 
 unnest_qsheet_rows <- function(df_qsheet, mapping) {
   split(df_qsheet, seq_len(nrow(df_qsheet))) |>
-    purrr::map_dfr(~unnest_mw_rows(.x, mapping))
+    purrr::map_dfr(\(row) unnest_mw_rows(row, mapping))
 }
 unnest_mw_rows <- function(df_row, mapping) {
   if (df_row$Type != "mw") {
@@ -62,7 +62,10 @@ unnest_mw_rows <- function(df_row, mapping) {
   res$Title[-1] <- purrr::map2(
     res$Title[-1],
     res$RowVars[-1],
-    ~{.x[2] <- attr(mapping$dat_mod[[.y]], "label", exact = TRUE); .x}
+    \(title, rowvar){
+      title[2] <- attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE);
+      title
+    }
   )
   res
 }
