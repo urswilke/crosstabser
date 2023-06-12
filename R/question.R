@@ -26,6 +26,7 @@ process_qsheet <- function(mapping) {
       Invalid = split_cell(Invalid),
       Invalid = purrr::map_if(Invalid, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
       Type = as.list(Type),
+      Filter = split_cell(Filter) |> purrr::map(\(x) x[!is.na(x)]),
       SelVar = split_cell(SelVar),
       SelVal = split_cell(SelVal) |> purrr::map(as.numeric),
       RemoveEmpty = stringr::str_trim(RemoveEmpty) == "EXCLUDE"
@@ -43,7 +44,10 @@ add_options_column <- function(qsheet, mapping) {
 }
 
 unnest_qsheet_rows <- function(df_qsheet, mapping) {
-  split(df_qsheet, seq_len(nrow(df_qsheet))) |>
+  df_qsheet |>
+    row_split() |>
+    purrr::map_dfr(\(row) unnest_selvar(row, mapping)) |>
+    row_split() |>
     purrr::map_dfr(\(row) unnest_mw_rows(row, mapping))
 }
 unnest_mw_rows <- function(df_row, mapping) {
@@ -66,6 +70,20 @@ unnest_mw_rows <- function(df_row, mapping) {
       title[2] <- attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE);
       title
     }
+  )
+  res
+}
+unnest_selvar <- function(df_row, mapping) {
+  if (is.na(df_row$SelVar[[1]])) {
+    return(df_row)
+  }
+  n_selval <- length(df_row$SelVal[[1]])
+  res <- df_row[rep(1, n_selval),]
+  # TODO: generalise for selval expressions like "1-3:new_label"
+  res$Filter <- purrr::map2(
+    res$Filter,
+    df_row$SelVal[[1]],
+    \(filt, selval) append(filt, paste0(df_row$SelVar, " == ", selval))
   )
   res
 }

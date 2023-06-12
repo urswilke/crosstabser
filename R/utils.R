@@ -5,3 +5,14 @@ split_cell <- function(x, sep = "[,; ]+") {
   # |>
   #   purrr::map(~.x[!is.na(.x)])
 }
+
+strip_attributes <- function(x) {
+  attributes(x) <- NULL
+  x
+}
+
+row_split <- function(df) {
+  df |>
+    dplyr::rowwise() |>
+    dplyr::group_split()
+}
