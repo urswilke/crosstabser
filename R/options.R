@@ -21,6 +21,14 @@ setOptions <- function(mapping_file) {
 
   l_macro_scenario <- extract_scenario_options(df_macro_raw, v_scenario)
 
+  df_lexikon_raw <- read.delim(
+    # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
+    system.file("extdata", "lexikon.csv", package = "questabber"),
+    header = FALSE,
+    sep = ";"
+  )
+  l_lexikon <- df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()
+
   colvar <- df_macro_raw[5, 4 + v_scenario][[1]] |> stringr::str_split_1("[ ,;]+")
 
   return(tibble::lst(
@@ -28,6 +36,7 @@ setOptions <- function(mapping_file) {
     V_Language,
     df_macro_raw,
     l_macro_scenario,
+    l_lexikon,
     colvar
   ))
 }
