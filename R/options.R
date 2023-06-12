@@ -18,12 +18,30 @@ setOptions <- function(mapping_file) {
     suppressMessages()
 
   names(df_macro_raw) <- paste0("X", seq_len(ncol(df_macro_raw)))
+
+  l_macro_scenario <- extract_scenario_options(df_macro_raw, v_scenario)
+
   colvar <- df_macro_raw[5, 4 + v_scenario][[1]] |> stringr::str_split_1("[ ,;]+")
 
   return(tibble::lst(
     v_scenario,
     V_Language,
     df_macro_raw,
+    l_macro_scenario,
     colvar
   ))
+}
+
+
+extract_scenario_options <- function(df_macro_raw, v_scenario) {
+  param_list <- df_macro_raw[c(1, 4 + v_scenario)] |> tibble::deframe()
+
+  res <- list()
+  res$ColVar <- param_list[["ColPl"]] |> stringr::str_split_1("[ \t]+")
+  res$Invalid <- param_list[c("Miss1", "Miss2", "Miss3")] |> as.numeric()
+  res$Weight <- param_list[["Weight"]]
+  res$scenario_name <- param_list[[4]]
+  res
+
+
 }
