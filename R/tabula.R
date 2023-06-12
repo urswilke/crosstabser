@@ -61,6 +61,10 @@ Tabula <- R6::R6Class("Tabula",
       super$modify_data()
       self$options <- setOptions(mapping_file)
       read_qsheet(self)
+    },
+    tabulate_qsheet_rows = function() {
+      tabulate_row(self)
+      invisible(self)
     }
   )
 )
