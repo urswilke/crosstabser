@@ -1,10 +1,6 @@
-read_qsheet <- function(mapping_file) {
-  qsheet_raw <- read_qsheet_raw(mapping_file)
-  df <- process_qsheet(qsheet_raw)
-  tibble::lst(
-    qsheet_raw,
-    df
-  )
+read_qsheet <- function(mapping) {
+  mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file)
+  mapping$qsheet$df <- process_qsheet(mapping)
 }
 
 read_qsheet_raw <- function(mapping_file, sheet = "Questions") {
@@ -21,8 +17,8 @@ read_qsheet_raw <- function(mapping_file, sheet = "Questions") {
   #   make_clean_names()
 }
 
-process_qsheet <- function(qsheet_raw) {
-  qsheet_raw |>
+process_qsheet <- function(mapping) {
+  mapping$qsheet$qsheet_raw |>
     tidyr::drop_na(Type) |>
     dplyr::mutate(
       Title = as.list(Title),
