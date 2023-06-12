@@ -33,7 +33,21 @@ process_qsheet <- function(qsheet_raw) {
       SelVar = split_cell(SelVar),
       SelVal = split_cell(SelVal) |> purrr::map(as.numeric),
       RemoveEmpty = stringr::str_trim(RemoveEmpty) == "EXCLUDE"
-    )
+    ) |>
+    unnest_qsheet_rows()
+
   # |>
   #   tidyr::unnest(SelVal, keep_empty = TRUE)
+}
+
+unnest_qsheet_rows <- function(df_qsheet) {
+  split(df_qsheet, seq_len(nrow(df_qsheet))) |>
+    purrr::map_dfr(unnest_mw_rowvar)
+}
+unnest_mw_rowvar <- function(df_row) {
+  n_rowvar <- length(df_row$RowVars[[1]])
+  res <- df_row[rep(1, n_rowvar + 1),]
+  res$Type <- list("mw") |> append(as.list(rep("cat", n_rowvar)))
+  res$RowVars <- df_row$RowVars |> append(as.list(unlist(df_row$RowVars)))
+  res
 }
