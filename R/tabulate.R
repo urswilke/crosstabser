@@ -2,12 +2,12 @@ tabulate_row <- function(mapping) {
   types <- mapping$qsheet$df$Type
   l <- mapping$qsheet$df |>
     dplyr::rowwise() |>
-    dplyr::group_split()
-  mapping$qsheet$df$tab_data <- purrr::map2(
-    l,
-    types,
-    \(row, type) new_tab_row(row, type)
-  ) |>
+    dplyr::group_split() |>
+    purrr::map2(
+      types,
+      \(row, type) new_tab_row(row, type)
+    )
+  mapping$qsheet$df$tab_data <- l |>
     purrr::map(\(row) pivot_table_data(row, mapping))
 }
 
