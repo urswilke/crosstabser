@@ -1,6 +1,6 @@
 read_qsheet <- function(mapping) {
   mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file)
-  mapping$qsheet$df <- process_qsheet(mapping)
+  mapping$qsheet$qsheet_processed <- process_qsheet(mapping)
 }
 
 read_qsheet_raw <- function(mapping_file, sheet = "Questions") {

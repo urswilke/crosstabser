@@ -1,14 +1,20 @@
 tabulate_row <- function(mapping) {
-  types <- mapping$qsheet$df$Type
-  l <- mapping$qsheet$df |>
+  types <- mapping$qsheet$qsheet_processed$Type
+  l <- mapping$qsheet$qsheet_processed |>
     dplyr::rowwise() |>
     dplyr::group_split() |>
     purrr::map2(
       types,
       \(row, type) new_tab_row(row, type)
     )
-  mapping$qsheet$df$tab_data <- l |>
+  mapping$qsheet$tables <- mapping$qsheet$qsheet_processed[c("row", "Type")] |> tidyr::unnest(Type)
+  mapping$qsheet$tables$object <- l
+  mapping$qsheet$tables$long_data <- l |>
     purrr::map(\(row) pivot_table_data(row, mapping))
+  mapping$qsheet$tables$counts <- purrr::map2(
+    mapping$qsheet$tables$object,
+    mapping$qsheet$tables$long_data,
+    \(row, long_data) crosstab(row, long_data, mapping))
 }
 
 new_tab_row <- function(df_row, subclass) {
