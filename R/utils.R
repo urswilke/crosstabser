@@ -16,3 +16,7 @@ row_split <- function(df) {
     dplyr::rowwise() |>
     dplyr::group_split()
 }
+
+all_true <- function (l) {
+  Reduce("&", l)
+}

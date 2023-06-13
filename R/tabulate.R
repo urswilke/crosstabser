@@ -35,22 +35,39 @@ pivot_table_data.tab_type_cat <- function(row, mapping) {
     colvars |> purrr::set_names(paste0("colvar_", colvars)),
     weightvar |> purrr::set_names(paste0("weight_", weightvar))
   )
-  mapping$dat_mod |>
-    dplyr::filter(!!!rlang::parse_exprs(row$Filter[[1]])) |>
-    dplyr::select(!!!long_cols) |>
+  prep_data <- function() {
+    # same as:
+    # mapping$dat_mod |>
+    #   dplyr::filter(!!!rlang::parse_exprs(row$Filter[[1]])) |>
+    #   dplyr::select(!!!long_cols) |>
+    #   dplyr::mutate(across(everything(), strip_attributes))
+    # ... but with base R (for better performance)
+    if (length(row$Filter[[1]]) == 0) {
+      row_lgl <- TRUE
+    } else {
+      filter_exprs <- rlang::parse_exprs(row$Filter[[1]])
+      row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, mapping$dat_mod))
+      row_lgl <- all_true(row_lgls)
+    }
+    dat <- mapping$dat_mod[row_lgl, long_cols]
+    names(dat) <- names(long_cols)
+    for (col in seq_len(ncol(dat))) {
+      attributes(dat[[col]]) <- NULL
+    }
+    dat
+  }
+  prep_data() |>
     tidyr::pivot_longer(
       matches("^rowvar_"),
       names_pattern = "rowvar_(.*)",
       names_to = "rowvar",
-      values_to = "rowval",
-      values_transform = strip_attributes
+      values_to = "rowval"
     ) |>
     tidyr::pivot_longer(
       matches("^colvar_"),
       names_pattern = "colvar_(.*)",
       names_to = "colvar",
-      values_to = "colval",
-      values_transform = strip_attributes
+      values_to = "colval"
     )
 }
 pivot_table_data.tab_type_mw <- pivot_table_data.tab_type_cat
