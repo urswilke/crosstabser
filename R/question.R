@@ -31,16 +31,7 @@ process_qsheet <- function(mapping) {
       SelVal = split_cell(SelVal) |> purrr::map(as.numeric),
       RemoveEmpty = stringr::str_trim(RemoveEmpty) == "EXCLUDE"
     ) |>
-    add_options_column(mapping) |>
     unnest_qsheet_rows(mapping)
-
-  # |>
-  #   tidyr::unnest(SelVal, keep_empty = TRUE)
-}
-
-add_options_column <- function(qsheet, mapping) {
-  qsheet$options <- rep(list(mapping$options$l_macro_scenario), nrow(qsheet))
-  qsheet
 }
 
 unnest_qsheet_rows <- function(df_qsheet, mapping) {
