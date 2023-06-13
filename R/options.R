@@ -23,7 +23,7 @@ setOptions <- function(mapping_file) {
 
   df_lexikon_raw <- read.delim(
     # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
-    system.file("extdata", "lexikon.csv", package = "questabber"),
+    system.file("extdata", "lexikon.csv", package = "crosstabser"),
     header = FALSE,
     sep = ";"
   )

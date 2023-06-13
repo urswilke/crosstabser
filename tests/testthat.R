@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(questabber)
+library(crosstabser)
 
-test_check("questabber")
+test_check("crosstabser")
