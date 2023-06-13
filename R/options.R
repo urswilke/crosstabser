@@ -49,7 +49,9 @@ extract_scenario_options <- function(df_macro_raw, v_scenario) {
   res$ColVar <- param_list[["ColPl"]] |> stringr::str_split_1("[ \t]+")
   res$Unguelt <- param_list[c("Miss1", "Miss2", "Miss3")] |> as.numeric()
   res$Weight <- param_list[["Weight"]]
-  res$Filter <- param_list[["Filter"]]
+  res$Filter <- param_list[["Filter"]] |>
+    # hopefully, won't be needed one day:
+    spss_to_r()
   res$scenario_name <- param_list[[4]]
   res
 
