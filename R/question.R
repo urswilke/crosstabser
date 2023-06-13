@@ -13,8 +13,6 @@ read_qsheet_raw <- function(mapping_file, sheet = "Questions") {
     dplyr::mutate(row = dplyr::row_number(), .before = 1) |>
     # https://stackoverflow.com/a/66136167
     dplyr::filter(dplyr::if_any(-row, ~ !is.na(.x)))
-  # |>
-  #   make_clean_names()
 }
 
 process_qsheet <- function(mapping) {
