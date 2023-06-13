@@ -33,7 +33,7 @@ pivot_table_data.tab_type_cat <- function(row, mapping) {
   long_cols <- c(
     rowvars |> purrr::set_names(paste0("rowvar_", rowvars)),
     colvars |> purrr::set_names(paste0("colvar_", colvars)),
-    weightvar |> purrr::set_names(paste0("weight_", weightvar))
+    weightvar |> purrr::set_names("weight")
   )
   prep_data <- function() {
     # same as:
