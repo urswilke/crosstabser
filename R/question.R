@@ -26,7 +26,9 @@ process_qsheet <- function(mapping) {
       Invalid = split_cell(Invalid),
       Invalid = purrr::map_if(Invalid, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
       Type = as.list(Type),
-      Filter = split_cell(Filter) |> purrr::map(\(x) x[!is.na(x)]),
+      Filter = split_cell(Filter) |>
+        purrr::map(\(x) x |> append(mapping$options$l_macro_scenario$Filter)) |>
+        purrr::map(\(x) x[!is.na(x)]),
       SelVar = split_cell(SelVar),
       SelVal = split_cell(SelVal) |> purrr::map(as.numeric),
       RemoveEmpty = stringr::str_trim(RemoveEmpty) == "EXCLUDE"
