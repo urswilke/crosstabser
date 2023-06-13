@@ -27,7 +27,8 @@ Imports:
     tidyr,
     stringr,
     purrr,
-    rlang
+    rlang,
+    matrixStats
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
     testthat (>= 3.0.0)
