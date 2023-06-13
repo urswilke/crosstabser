@@ -86,7 +86,7 @@ crosstab <- function(row, long_data, mapping) {
 }
 crosstab.tab_type_cat <- function(row, long_data, mapping) {
   weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, row$Weight)
-  stat_fun <- row$MWStat
+  stat_fun <- row$ZsfgMW
   long_data |>
     dplyr::group_by(dplyr::across(-matches("weight"))) |>
     new_sum_stat(weight, stat_fun) |>

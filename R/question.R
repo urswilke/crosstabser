@@ -21,15 +21,15 @@ process_qsheet <- function(mapping) {
     dplyr::mutate(
       Title = as.list(Title),
       RowVar = RowVar |> split_cell(" "),
-      Invalid = split_cell(Invalid),
-      Invalid = purrr::map_if(Invalid, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
+      Unguelt = split_cell(Unguelt),
+      Unguelt = purrr::map_if(Unguelt, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
       Type = as.list(Type),
       Filter = split_cell(Filter) |>
         purrr::map(\(x) x |> append(mapping$options$l_macro_scenario$Filter)) |>
         purrr::map(\(x) x[!is.na(x)]),
       SelVar = split_cell(SelVar),
       SelVal = split_cell(SelVal) |> purrr::map(as.numeric),
-      RemoveEmpty = stringr::str_trim(RemoveEmpty) == "EXCLUDE"
+      RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE"
     ) |>
     unnest_qsheet_rows(mapping)
 }
@@ -45,7 +45,7 @@ unnest_mw_rows <- function(df_row, mapping) {
   if (df_row$Type != "mw") {
     return(df_row)
   }
-  mw_label <- dplyr::coalesce(df_row$MWLabel, mapping$options$l_lexikon[["cTabMeanOV"]])
+  mw_label <- dplyr::coalesce(df_row$MeanOverviewLabel, mapping$options$l_lexikon[["cTabMeanOV"]])
   df_row$Title[[1]][2] <- mw_label
   if (df_row$Freq %in% "0") {
     return(df_row)
