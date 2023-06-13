@@ -3,6 +3,8 @@ tabulate_row <- function(mapping) {
   l <- mapping$qsheet$qsheet_processed |>
     dplyr::rowwise() |>
     dplyr::group_split() |>
+    # to reduce the row dataframes to non-empty columns, uncomment:
+    # purrr::map(\(x) x[!is.na(as.list(x))]) |>
     purrr::map2(
       types,
       \(row, type) new_tab_row(row, type)
