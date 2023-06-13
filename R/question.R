@@ -20,7 +20,7 @@ process_qsheet <- function(mapping) {
     tidyr::drop_na(Type) |>
     dplyr::mutate(
       Title = as.list(Title),
-      RowVars = RowVars |> split_cell(" "),
+      RowVar = RowVar |> split_cell(" "),
       Invalid = split_cell(Invalid),
       Invalid = purrr::map_if(Invalid, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
       Type = as.list(Type),
@@ -50,13 +50,13 @@ unnest_mw_rows <- function(df_row, mapping) {
   if (df_row$Freq %in% "0") {
     return(df_row)
   }
-  n_rowvar <- length(df_row$RowVars[[1]])
+  n_rowvar <- length(df_row$RowVar[[1]])
   res <- df_row[rep(1, n_rowvar + 1),]
   res$Type <- list("mw") |> append(as.list(rep("cat", n_rowvar)))
-  res$RowVars <- df_row$RowVars |> append(as.list(unlist(df_row$RowVars)))
+  res$RowVar <- df_row$RowVar |> append(as.list(unlist(df_row$RowVar)))
   res$Title[-1] <- purrr::map2(
     res$Title[-1],
-    res$RowVars[-1],
+    res$RowVar[-1],
     \(title, rowvar){
       title[2] <- attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE);
       title

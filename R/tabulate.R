@@ -29,8 +29,8 @@ pivot_table_data.default <- function(row, mapping) {
   tibble::tibble()
 }
 pivot_table_data.tab_type_cat <- function(row, mapping) {
-  rowvars <- row$RowVars[[1]]
-  colvars <- dplyr::coalesce(row$ColVars, mapping$options$l_macro_scenario$ColVar)
+  rowvars <- row$RowVar[[1]]
+  colvars <- dplyr::coalesce(row$ColVar, mapping$options$l_macro_scenario$ColVar)
   weightvar <- dplyr::coalesce(row$Weight, mapping$options$l_macro_scenario$Weight)
   if (is.na(weightvar)) {
     weightvar = character()
