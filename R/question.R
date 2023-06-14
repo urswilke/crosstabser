@@ -50,7 +50,7 @@ unnest_mw_rows <- function(df_row, mapping) {
     return(df_row)
   }
   mw_label <- dplyr::coalesce(df_row$MeanOverviewLabel, mapping$options$l_lexikon[["cTabMeanOV"]])
-  df_row$Title[[1]][2] <- mw_label
+  df_row$Title[[1]] <- df_row$Title[[1]] |> append(mw_label)
   if (df_row$Freq %in% "0") {
     return(df_row)
   }
@@ -62,8 +62,7 @@ unnest_mw_rows <- function(df_row, mapping) {
     res$Title[-1],
     res$RowVar[-1],
     \(title, rowvar){
-      title[2] <- attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE);
-      title
+      title[-length(title)] |> append(attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE))
     }
   )
   res
@@ -105,7 +104,7 @@ unnest_selval <- function(df_row, mapping) {
     selval_relabels,
     selvar_vallabs[match(selvals, selvar_vallabs)] |> names()
   )
-  res$Title |> purrr::map2(
+  res$Title <- res$Title |> purrr::map2(
     subtitles,
     \(title, subtitle) title |> append(subtitle))
 
