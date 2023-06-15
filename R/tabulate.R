@@ -16,7 +16,13 @@ tabulate_row <- function(mapping) {
   mapping$qsheet$tables$counts <- purrr::map2(
     mapping$qsheet$tables$object,
     mapping$qsheet$tables$long_data,
-    \(row, long_data) crosstab(row, long_data, mapping))
+    \(row, long_data) crosstab(row, long_data, mapping)
+  )
+  mapping$qsheet$tables$val <- purrr::map2(
+    mapping$qsheet$tables$object,
+    mapping$qsheet$tables$counts,
+    \(row, counts) gen_val_table(row, counts, mapping)
+  )
 }
 
 new_tab_row <- function(df_row, subclass) {
@@ -107,3 +113,35 @@ crosstab.tab_type_mw <- crosstab.tab_type_cat
 crosstab.tab_type_mcg <- crosstab.tab_type_cat
 crosstab.tab_type_mdg <- crosstab.tab_type_cat
 
+gen_val_table <- function(row, counts, mapping) {
+  UseMethod("gen_val_table")
+}
+gen_val_table.tab_type_cat <- function(row, counts, mapping) {
+  invalid_vals <- row$Unguelt[[1]]
+  if (is.na(invalid_vals)) {
+    invalid_vals <- mapping$options$l_macro_scenario$Unguelt
+  }
+  rowval_levels <- mapping$dat_mod[[row$RowVar[[1]]]] |>
+    strip_attributes() |>
+    unique() |>
+    sort() |>
+    c(invalid_vals)
+  colvars <- dplyr::coalesce(
+    row$ColPl,
+    mapping$options$l_macro_scenario$ColPl
+  )
+  # The following is equivalent to:
+  # counts |>
+  #   dplyr::transmute(
+  #     RowNo = factor(rowval, rowval_levels) |> as.numeric(),
+  #     ColNo = factor(colvar, colvars) |> as.numeric(),
+  #     Value = value
+  #   ) |>
+  #   dplyr::arrange(RowNo, ColNo)
+
+  # but faster, with base R...:
+  res <- counts["value"]
+  res$RowNo <- factor(counts$rowval, rowval_levels) |> as.numeric()
+  res$ColNo <- factor(counts$colvar, colvars) |> as.numeric()
+  res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
+}
