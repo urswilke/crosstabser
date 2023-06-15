@@ -79,7 +79,18 @@ pivot_table_data.tab_type_cat <- function(row, mapping) {
     )
 }
 pivot_table_data.tab_type_mw <- pivot_table_data.tab_type_cat
-
+pivot_table_data.tab_type_mdg <- function(row, mapping) {
+  df_long <- pivot_table_data.tab_type_cat(row, mapping)
+  mdg_val <- coalesce(row$MdgVal |> as.numeric(), 1)
+  df_long[df_long$rowval == mdg_val,]
+}
+pivot_table_data.tab_type_mcg <- function(row, mapping) {
+  df_long <- pivot_table_data.tab_type_cat(row, mapping)
+  rowvars <- unique(df_long$rowvar) |> paste(collapse = ", ")
+  res <- df_long[df_long$rowvar == df_long$rowvar[1] | !df_long$rowval %in% mapping$options$l_macro_scenario$Unguelt,]
+  res$rowvar <- rowvars
+  res
+}
 
 crosstab <- function(row, long_data, mapping) {
   UseMethod("crosstab")
@@ -93,3 +104,6 @@ crosstab.tab_type_cat <- function(row, long_data, mapping) {
     apply_sum_stat()
 }
 crosstab.tab_type_mw <- crosstab.tab_type_cat
+crosstab.tab_type_mcg <- crosstab.tab_type_cat
+crosstab.tab_type_mdg <- crosstab.tab_type_cat
+
