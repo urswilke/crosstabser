@@ -32,7 +32,7 @@ pivot_table_data.default <- function(row, mapping) {
 }
 pivot_table_data.tab_type_cat <- function(row, mapping) {
   rowvars <- row$RowVar[[1]]
-  colvars <- dplyr::coalesce(row$ColVar, mapping$options$l_macro_scenario$ColVar)
+  colvars <- dplyr::coalesce(row$ColPl, mapping$options$l_macro_scenario$ColPl)
   weightvar <- dplyr::coalesce(row$Weight, mapping$options$l_macro_scenario$Weight)
   if (is.na(weightvar)) {
     weightvar = character()
