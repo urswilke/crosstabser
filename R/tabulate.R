@@ -18,14 +18,17 @@ tabulate_row <- function(mapping) {
     mapping$qsheet$tables$long_data,
     \(row, long_data) crosstab(row, long_data, mapping)
   )
-  mapping$qsheet$tables$row <- purrr::map(
+  mapping$qsheet$tables$row_table <- purrr::map(
     mapping$qsheet$tables$object,
     \(row, counts) gen_row_table(row, mapping)
   )
-  mapping$qsheet$tables$val <- purrr::map2(
-    mapping$qsheet$tables$object,
-    mapping$qsheet$tables$counts,
-    \(row, counts) gen_val_table(row, counts, mapping)
+  mapping$qsheet$tables$val <- purrr::pmap(
+    list(
+      row = mapping$qsheet$tables$object,
+      counts = mapping$qsheet$tables$counts,
+      row_table = mapping$qsheet$tables$row_table
+    ),
+    \(row, counts, row_table) gen_val_table(row, counts, row_table, mapping)
   )
 }
 
@@ -117,19 +120,12 @@ crosstab.tab_type_mw <- crosstab.tab_type_cat
 crosstab.tab_type_mcg <- crosstab.tab_type_cat
 crosstab.tab_type_mdg <- crosstab.tab_type_cat
 
-gen_val_table <- function(row, counts, mapping) {
+gen_val_table <- function(row, counts, row_table, mapping) {
   UseMethod("gen_val_table")
 }
-gen_val_table.tab_type_cat <- function(row, counts, mapping) {
-  invalid_vals <- row$Unguelt[[1]]
-  if (is.na(invalid_vals)) {
-    invalid_vals <- mapping$options$l_macro_scenario$Unguelt
-  }
-  rowval_levels <- mapping$dat_mod[[row$RowVar[[1]]]] |>
-    strip_attributes() |>
-    unique() |>
-    sort() |>
-    c(invalid_vals)
+gen_val_table.tab_type_cat <- function(row, counts, row_table, mapping) {
+  rowval_levels <- row_table$RowValue[!is.na(row_table$RowValue)] |>
+    unique()
   colvars <- dplyr::coalesce(
     row$ColPl,
     mapping$options$l_macro_scenario$ColPl
