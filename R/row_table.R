@@ -261,10 +261,14 @@ row_table_invalid_vals.tab_type_mcg <- row_table_invalid_vals.tab_type_cat <- fu
   if (is.na(invalid_vals[1])) {
     invalid_vals <- mapping$options$l_macro_scenario$Unguelt
   }
+  if (all(!occuring_vals %in% invalid_vals)) {
+    return(NULL)
+  }
   vallabs <- attr(mapping$dat_mod[[row$RowVar[[1]][1]]], "labels")
 
-  all_invalid_vals <- c(vallabs, occuring_vals)
-  all_invalid_vals <- all_invalid_vals[!duplicated(all_invalid_vals) & all_invalid_vals %in% invalid_vals]
+  occuring_invalid_vals <- intersect(invalid_vals, occuring_vals)
+  all_invalid_vals <- c(vallabs, occuring_invalid_vals)
+  all_invalid_vals <- all_invalid_vals[!duplicated(all_invalid_vals) & all_invalid_vals %in% occuring_invalid_vals]
 
   vallab_table <- all_invalid_vals |>
     tibble::enframe("vallab", "val")
