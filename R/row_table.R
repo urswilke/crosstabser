@@ -251,7 +251,94 @@ row_table_stats <- function(row, mapping) {
   #TODO
   NULL
 }
+# TODO: source out common functionality with row_table_body!
 row_table_invalid_vals <- function(row, mapping) {
+  UseMethod("row_table_invalid_vals")
+}
+row_table_invalid_vals.tab_type_mcg <- row_table_invalid_vals.tab_type_cat <- function(row, mapping) {
+  occuring_vals <- mapping$dat_mod[row$RowVar[[1]]] |> unlist(use.names = FALSE) |> unique()
+  invalid_vals <- row$Unguelt[[1]]
+  if (is.na(invalid_vals[1])) {
+    invalid_vals <- mapping$options$l_macro_scenario$Unguelt
+  }
+  vallabs <- attr(mapping$dat_mod[[row$RowVar[[1]][1]]], "labels")
+
+  all_invalid_vals <- c(vallabs, occuring_vals)
+  all_invalid_vals <- all_invalid_vals[!duplicated(all_invalid_vals) & all_invalid_vals %in% invalid_vals]
+
+  vallab_table <- all_invalid_vals |>
+    tibble::enframe("vallab", "val")
+  n_vals <- nrow(vallab_table)
+
+  vallab_table <- vallab_table[rep(seq_len(n_vals), each = 2),]
+
+  row_table <- empty_row_table()
+  row_table[seq_len(n_vals * 2),]$RowValue <- vallab_table$val
+  row_table$RowTitle1 <- vallab_table$vallab
+  row_table$RowTitle2 <- vallab_table$vallab
+  row_table$RowTitle3 <- c(
+    mapping$options$l_lexikon["cTabAbs"],
+    mapping$options$l_lexikon["cTabProz"]
+  ) |> rep(n_vals)
+  row_table$RowTypeS <- c(
+    "Valid|Abs",
+    "Valid|Percent"
+  ) |> rep(n_vals)
+  row_table$RowDecimals <- c(
+    0L,
+    1L
+  ) |> rep(n_vals)
+  row_table$RowValue <- strip_attributes(vallab_table$val)
+  row_table$RowVariable <- row$RowVar[[1]] |> paste(collapse = ", ")
+  row_table
+}
+row_table_invalid_vals.tab_type_mdg <- function(row, mapping) {
+  l_varlabs <- mapping$dat_mod[row$Unguelt[[1]]] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  invalids_present <- mapping$dat_mod[names(l_varlabs)] |>
+    purrr::map_lgl(\(x) dplyr::coalesce(row$MdgVal |> as.numeric(), 1) %in% x)
+  if (sum(invalids_present) == 0) {
+    return(NULL)
+  }
+  l_varlabs <- l_varlabs[invalids_present]
+  no_varlab_idx <- l_varlabs |> sapply(is.null)
+  if (sum(no_varlab_idx) > 0) {
+    l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
+    warning(
+      "There is no variable label for these mdg variable(s): ",
+      no_varlab_idx[no_varlab_idx] |> names() |> paste(collapse = ", ")
+    )
+  }
+  label_table <- data.frame(
+    var = names(l_varlabs),
+    label = unlist(l_varlabs, use.names = FALSE)
+  )
+  n_vals <- nrow(label_table)
+
+  label_table <- label_table[rep(seq_len(n_vals), each = 2),]
+
+  row_table <- empty_row_table()
+  row_table[seq_len(n_vals * 2),]$RowValue <- dplyr::coalesce(
+    row$MdgVal |> as.numeric(),
+    1
+  )
+  row_table$RowTitle1 <- label_table$label
+  row_table$RowTitle2 <- label_table$label
+  row_table$RowTitle3 <- c(
+    mapping$options$l_lexikon["cTabAbs"],
+    mapping$options$l_lexikon["cTabProz"]
+  ) |> rep(n_vals)
+  row_table$RowTypeS <- c(
+    "Detail|Abs",
+    "Detail|Percent"
+  ) |> rep(n_vals)
+  row_table$RowDecimals <- c(
+    0L,
+    1L
+  ) |> rep(n_vals)
+  row_table$RowVariable <- label_table$var
+  row_table
+}
+row_table_invalid_vals.tab_type_mw <- function(row, mapping) {
   #TODO
   NULL
 }
