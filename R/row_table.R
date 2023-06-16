@@ -96,13 +96,13 @@ row_table_valid_answers_line.tab_type_cat <- row_table_valid_answers_line.tab_ty
 row_table_body <- function(row, mapping) {
   UseMethod("row_table_body")
 }
-row_table_body.tab_type_cat <- function(row, mapping) {
-  occuring_vals <- mapping$dat_mod[[row$RowVar[[1]]]] |> unique()
+row_table_body.tab_type_mcg <- row_table_body.tab_type_cat <- function(row, mapping) {
+  occuring_vals <- mapping$dat_mod[row$RowVar[[1]]] |> unlist(use.names = FALSE) |> unique()
   invalid_vals <- row$Unguelt[[1]]
   if (is.na(invalid_vals[1])) {
     invalid_vals <- mapping$options$l_macro_scenario$Unguelt
   }
-  vallabs <- attr(occuring_vals, "labels")
+  vallabs <- attr(mapping$dat_mod[[row$RowVar[[1]][1]]], "labels")
 
   # the following is equivalent to (but faster with base R):
   # vallab_table <- vallabs |>
@@ -141,10 +141,9 @@ row_table_body.tab_type_cat <- function(row, mapping) {
     1L
   ) |> rep(n_vals)
   row_table$RowValue <- strip_attributes(vallab_table$val)
+  row_table$RowVariable <- row$RowVar[[1]] |> paste(collapse = ", ")
   row_table
 }
-#TODO: correct mcg!!!
-row_table_body.tab_type_mcg <- row_table_body.tab_type_cat
 
 row_table_body.tab_type_mdg <- function(row, mapping) {
   l_varlabs <- mapping$dat_mod[row$RowVar[[1]]] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
