@@ -1,4 +1,4 @@
-gen_row_table <- function(row, counts, mapping) {
+gen_row_table <- function(row, mapping) {
   row_table <- rbind(
     row_table_title_lines(row),
     row_table_total_line(row, mapping),

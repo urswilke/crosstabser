@@ -18,10 +18,9 @@ tabulate_row <- function(mapping) {
     mapping$qsheet$tables$long_data,
     \(row, long_data) crosstab(row, long_data, mapping)
   )
-  mapping$qsheet$tables$row <- purrr::map2(
+  mapping$qsheet$tables$row <- purrr::map(
     mapping$qsheet$tables$object,
-    mapping$qsheet$tables$counts,
-    \(row, counts) gen_row_table(row, counts, mapping)
+    \(row, counts) gen_row_table(row, mapping)
   )
   mapping$qsheet$tables$val <- purrr::map2(
     mapping$qsheet$tables$object,
