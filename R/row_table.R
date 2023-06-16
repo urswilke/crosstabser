@@ -257,5 +257,6 @@ row_table_invalid_vals <- function(row, mapping) {
 }
 row_table_empty_row <- function() {
   row_table <- empty_row_table()
-  row_table$RowTypeS <- "Empty"
+  row_table[1,]$RowTypeS <- "Empty"
+  row_table
 }
