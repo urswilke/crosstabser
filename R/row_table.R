@@ -18,17 +18,17 @@ gen_row_table <- function(row, mapping) {
   row_table
 }
 empty_row_table <- function() {
+  c("RowNo", "RowContent", "RowAbsPercent", "RowWeighted", "TabNo", "RowTitle1", "RowTitle2", "RowTitle3", "RowFormat", "RowDecimals", "RowVariable", "RowValue")
+
+
   tibble::tibble(
     RowNo = integer(),
-    RowTypeS = character(),
-    RowType = integer(),
     RowContent = character(),
-    RowContentDetail = character(),
     RowAbsPercent = character(),
     RowWeighted = character(),
     TabNo = integer(),
-    RowMerge1 = integer(),
-    RowMerge2 = integer(),
+    # RowMerge1 = integer(),
+    # RowMerge2 = integer(),
     RowTitle1 = character(),
     RowTitle2 = character(),
     RowTitle3 = character(),
@@ -41,9 +41,9 @@ empty_row_table <- function() {
 row_table_title_lines <- function(row) {
   row_table <- empty_row_table()
 
-  row_table[1, c("RowTypeS", "RowTitle1")] <- list("Title", paste(row$Title[[1]], collapse = "\n"))
-  row_table[2, c("RowTypeS")] <- list("Header|HeaderSummary")
-  row_table[3, c("RowTypeS")] <- list("Header|HeaderBase")
+  row_table[1, c("RowContent", "RowTitle1")] <- list("Title", paste(row$Title[[1]], collapse = "\n"))
+  row_table[2, c("RowContent")] <- list("Header")
+  row_table[3, c("RowContent")] <- list("Header")
   row_table
 }
 row_table_total_line <- function(row, mapping) {
@@ -54,7 +54,7 @@ row_table_total_line.default <- function(row, mapping) {
   row_table <- empty_row_table()
   total_row_text <- mapping$options$l_lexikon["cTabGesamt"]
   abs_text <- mapping$options$l_lexikon["cTabAbs"]
-  row_table[1, c("RowTypeS", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Total|Abs", total_row_text, total_row_text, abs_text, 0L)
+  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Total", "Abs", total_row_text, total_row_text, abs_text, 0L)
   row_table
 }
 row_table_total_line.tab_type_mw <- function(row, mapping) {
@@ -72,7 +72,7 @@ row_table_valid_mw.tab_type_mw <- function(row, mapping) {
   row_table <- empty_row_table()
   valid_mw_text <- mapping$options$l_lexikon["cTabGesamtMW"]
   abs_text <- mapping$options$l_lexikon["cTabAbs"]
-  row_table[1, c("RowTypeS", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Valid|Abs", valid_mw_text, valid_mw_text, abs_text, 0L)
+  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Valid", "Abs", valid_mw_text, valid_mw_text, abs_text, 0L)
   row_table
 }
 
@@ -85,7 +85,7 @@ row_table_valid_answers_line.tab_type_mdg <- function(row, mapping) {
   row_table <- empty_row_table()
   valid_answers_row_text <- mapping$options$l_lexikon["cTabGesamtMFA"]
   abs_text <- mapping$options$l_lexikon["cTabAbs"]
-  row_table[1, c("RowTypeS", "RowTitle1", "RowTitle2", "RowTitle3")] <- list("Total|Abs", valid_answers_row_text, valid_answers_row_text, abs_text)
+  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3")] <- list("Total", "Abs", valid_answers_row_text, valid_answers_row_text, abs_text)
   row_table
 }
 row_table_valid_answers_line.tab_type_mcg <- row_table_valid_answers_line.tab_type_mdg
@@ -133,16 +133,14 @@ row_table_body.tab_type_mcg <- row_table_body.tab_type_cat <- function(row, mapp
     mapping$options$l_lexikon["cTabAbs"],
     mapping$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
-  row_table$RowTypeS <- c(
-    "Detail|Abs",
-    "Detail|Percent"
-  ) |> rep(n_vals)
+  row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(
     0L,
     1L
   ) |> rep(n_vals)
   row_table$RowValue <- strip_attributes(vallab_table$val)
   row_table$RowVariable <- row$RowVar[[1]] |> paste(collapse = ", ")
+  row_table$RowContent <- "Detail"
   row_table
 }
 
@@ -175,14 +173,12 @@ row_table_body.tab_type_mdg <- function(row, mapping) {
     mapping$options$l_lexikon["cTabAbs"],
     mapping$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
-  row_table$RowTypeS <- c(
-    "Detail|Abs",
-    "Detail|Percent"
-  ) |> rep(n_vals)
+  row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(
     0L,
     1L
   ) |> rep(n_vals)
+  row_table$RowContent <- "Detail"
   row_table$RowVariable <- label_table$var
   row_table
 }
@@ -213,7 +209,7 @@ row_table_body.tab_type_mw <- function(row, mapping) {
     mapping$options$l_lexikon["cTabMean"],
     mapping$options$l_lexikon["cTabGueltig"]
   ) |> rep(n_vals)
-  row_table$RowTypeS <- c(
+  row_table$RowContent <- c(
     "MStatistics",
     "MValid"
   ) |> rep(n_vals)
@@ -235,8 +231,8 @@ row_table_valid_cases.default <- function(row, mapping) {
   valid_cases_text <- mapping$options$l_lexikon["cTabGueltig"]
   abs_text <- mapping$options$l_lexikon["cTabAbs"]
   percent_text <- mapping$options$l_lexikon["cTabProz"]
-  row_table[1, c("RowTypeS", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Valid|Abs", valid_cases_text, valid_cases_text, abs_text, 0)
-  row_table[2, c("RowTypeS", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Valid|Percent", valid_cases_text, valid_cases_text, percent_text, 1)
+  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Valid", "Abs", valid_cases_text, valid_cases_text, abs_text, 0)
+  row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Valid", "Percent", valid_cases_text, valid_cases_text, percent_text, 1)
   row_table
 }
 row_table_valid_cases.tab_type_mw <- function(row, mapping) {
@@ -284,16 +280,12 @@ row_table_invalid_vals.tab_type_mcg <- row_table_invalid_vals.tab_type_cat <- fu
     mapping$options$l_lexikon["cTabAbs"],
     mapping$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
-  row_table$RowTypeS <- c(
-    "Valid|Abs",
-    "Valid|Percent"
-  ) |> rep(n_vals)
-  row_table$RowDecimals <- c(
-    0L,
-    1L
-  ) |> rep(n_vals)
+  row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
+  row_table$RowDecimals <- c(0L, 1L) |> rep(n_vals)
   row_table$RowValue <- strip_attributes(vallab_table$val)
   row_table$RowVariable <- row$RowVar[[1]] |> paste(collapse = ", ")
+  row_table$RowContent <- "Valid"
+
   row_table
 }
 row_table_invalid_vals.tab_type_mdg <- function(row, mapping) {
@@ -331,15 +323,13 @@ row_table_invalid_vals.tab_type_mdg <- function(row, mapping) {
     mapping$options$l_lexikon["cTabAbs"],
     mapping$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
-  row_table$RowTypeS <- c(
-    "Detail|Abs",
-    "Detail|Percent"
-  ) |> rep(n_vals)
+  row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(
     0L,
     1L
   ) |> rep(n_vals)
   row_table$RowVariable <- label_table$var
+  row_table$RowContent <- "Detail"
   row_table
 }
 row_table_invalid_vals.tab_type_mw <- function(row, mapping) {
@@ -348,6 +338,6 @@ row_table_invalid_vals.tab_type_mw <- function(row, mapping) {
 }
 row_table_empty_row <- function() {
   row_table <- empty_row_table()
-  row_table[1,]$RowTypeS <- "Empty"
+  row_table[1,]$RowContent <- "Empty"
   row_table
 }
