@@ -57,7 +57,7 @@ Tabula <- R6::R6Class("Tabula",
     initialize = function(dat,
                           mapping_file,
                           ...) {
-      super$initialize(dat, mapping_file)
+      super$initialize(dat, mapping_file, ...)
       super$modify_data()
       self$options <- setOptions(mapping_file)
       read_qsheet(self)
