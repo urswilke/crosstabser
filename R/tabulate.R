@@ -11,6 +11,9 @@ tabulate_row <- function(mapping) {
     )
   mapping$qsheet$tables <- mapping$qsheet$qsheet_processed[c("row", "Type")] |> tidyr::unnest(Type)
   mapping$qsheet$tables$object <- l
+  mapping$qsheet$tab_table <- gen_tab_table(mapping$qsheet$tables)
+  mapping$qsheet$head_table <- gen_head_table(mapping)
+  mapping$qsheet$col_table <- gen_col_table(mapping)
   mapping$qsheet$tables$long_data <- l |>
     purrr::map(\(row) pivot_table_data(row, mapping))
   mapping$qsheet$tables$counts <- purrr::map2(
