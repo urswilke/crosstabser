@@ -46,7 +46,7 @@ extract_scenario_options <- function(df_macro_raw, v_scenario) {
   param_list <- df_macro_raw[c(1, 4 + v_scenario)] |> tibble::deframe()
 
   res <- list()
-  res$ColPl <- param_list[["ColPl"]] |> stringr::str_split_1("[ \t]+")
+  res$ColVar <- param_list[["ColVar"]] |> stringr::str_split_1("[ \t]+")
   res$Unguelt <- param_list[c("Miss1", "Miss2", "Miss3")] |> as.numeric()
   res$Weight <- param_list[["Weight"]]
   res$Filter <- param_list[["Filter"]] |>
