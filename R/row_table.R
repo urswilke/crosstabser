@@ -117,6 +117,7 @@ row_table_body.tab_type_mcg <- row_table_body.tab_type_cat <- function(df_row, m
   # but keeping the names (setdiff removes the names)
   all_valid_vals <- c(vallabs, occuring_vals)
   all_valid_vals <- all_valid_vals[!duplicated(all_valid_vals) & !all_valid_vals %in% invalid_vals] |>
+    # TODO: Wolf fragen was es alles gibt:
     sort(decreasing = df_row$Sort %in% "ORDER=D")
 
   vallab_table <- all_valid_vals |>
