@@ -111,11 +111,40 @@ crosstab <- function(df_row, long_data, mapping) {
 crosstab.tab_type_cat <- function(df_row, long_data, mapping) {
   weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, df_row$Weight)
   stat_fun <- df_row$ZsfgMW
+  if (!is.na(df_row$CatRec)) {
+    long_data_catrec <- gen_catrec_long_data(df_row, long_data, mapping)
+    long_data <- dplyr::bind_rows(long_data, long_data_catrec)
+  }
   long_data |>
     dplyr::group_by(dplyr::across(-matches("weight"))) |>
     new_sum_stat(weight, stat_fun) |>
     apply_sum_stat()
 }
+gen_catrec_long_data <- function(df_row, long_data, mapping) {
+  cat_rec_string <- df_row$CatRec
+  cat_lab_string <- df_row$CatLab
+  cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
+  cat_lab_splits <- split_cat_lab_string(cat_lab_string)
+  cat_rec_quos <- lapply(cat_rec_interval_splits$interval_strings, gen_cat_rec_fun)
+  cat_rec_exprs <- stringr::str_extract_all(cat_rec_string, "(?<=\\().*?(?=\\))")[[1]]
+  cat_rec_vals <- stringr::str_extract(cat_rec_exprs, "(?<=\\=) *\\d+$") |> as.numeric()
+  vec <- long_data$rowval
+  l_cat_rec <- purrr::map2(
+    cat_rec_quos,
+    cat_rec_vals,
+    \(f, x) rlang::quo(!!f(vec) ~ !!x)
+  )
+  invalid_vals <- dplyr::coalesce(df_row$Unguelt[[1]], mapping$options$l_macro_scenario$Unguelt)
+
+  long_data_catrec <- long_data |>
+    dplyr::mutate(
+      rowvar = paste0(rowvar, "__summary"),
+      rowval = dplyr::case_when(!!!l_cat_rec)
+    )
+  # TODO: fix for `RowVal`s not covered by CatRec:
+  long_data_catrec[!long_data_catrec$rowval %in% invalid_vals & !is.na(long_data_catrec$rowval),]
+}
+
 crosstab.tab_type_mw <- function(df_row, long_data, mapping) {
   weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, df_row$Weight)
   stat_fun <- dplyr::coalesce(df_row$ZsfgMW, "mean")
@@ -136,8 +165,12 @@ gen_val_table <- function(df_row, counts, row_table, mapping) {
   UseMethod("gen_val_table")
 }
 gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(df_row, counts, row_table, mapping) {
-  row_levels <- row_table$RowValue[!is.na(row_table$RowValue)] |>
-    unique()
+  df_unique_rowvar_val <- row_table[!is.na(row_table$RowValue),c("RowVariable", "RowValue")] |>
+    dplyr::distinct()
+
+  row_levels <- paste(df_unique_rowvar_val$RowVariable, df_unique_rowvar_val$RowValue)
+  # row_levels <- row_table$RowValue[!is.na(row_table$RowValue)] |>
+  #   unique()
 
   # TODO: calculate before to prevent repeated calculation for every table...:
   col_table <- mapping$qsheet$col_table[-c(1:3),]
@@ -153,7 +186,8 @@ gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(df_row, cou
 
   # but faster, with base R...:
   res <- counts["value"]
-  res$RowNo <- factor(counts$rowval, row_levels) |> as.numeric()
+  # res$RowNo <- factor(counts$rowval, row_levels) |> as.numeric()
+  res$RowNo <- factor(paste(counts$rowvar, counts$rowval), row_levels) |> as.numeric()
   res$ColNo <- as.numeric(factor(paste(counts$colvar, counts$colval), col_levels)) + 3
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }
