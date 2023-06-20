@@ -28,7 +28,8 @@ Imports:
     stringr,
     purrr,
     rlang,
-    matrixStats
+    matrixStats,
+    xml2
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
     testthat (>= 3.0.0)

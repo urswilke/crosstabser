@@ -65,6 +65,10 @@ Tabula <- R6::R6Class("Tabula",
     tabulate_qsheet_rows = function() {
       tabulate_row(self)
       invisible(self)
+    },
+    write_xmls = function() {
+      write_xml_tables(self)
+      invisible(self)
     }
   )
 )
