@@ -39,11 +39,11 @@ process_qsheet <- function(mapping) {
 unnest_qsheet_rows <- function(df_qsheet, mapping) {
   df_qsheet |>
     row_split() |>
-    purrr::map_dfr(\(row) unnest_selvar(row, mapping)) |>
+    purrr::map_dfr(\(df_row) unnest_selvar(df_row, mapping)) |>
     row_split() |>
-    purrr::map_dfr(\(row) unnest_selval(row, mapping)) |>
+    purrr::map_dfr(\(df_row) unnest_selval(df_row, mapping)) |>
     row_split() |>
-    purrr::map_dfr(\(row) unnest_mw_rows(row, mapping))
+    purrr::map_dfr(\(df_row) unnest_mw_rows(df_row, mapping))
 }
 unnest_mw_rows <- function(df_row, mapping) {
   if (df_row$Type != "mw") {

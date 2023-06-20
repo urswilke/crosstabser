@@ -3,11 +3,11 @@ tabulate_row <- function(mapping) {
   l <- mapping$qsheet$qsheet_processed |>
     dplyr::rowwise() |>
     dplyr::group_split() |>
-    # to reduce the row dataframes to non-empty columns, uncomment:
+    # to reduce the df_row dataframes to non-empty columns, uncomment:
     # purrr::map(\(x) x[!is.na(as.list(x))]) |>
     purrr::map2(
       types,
-      \(row, type) new_tab_row(row, type)
+      \(df_row, type) new_tab_row(df_row, type)
     )
   mapping$qsheet$tables <- mapping$qsheet$qsheet_processed[c("row", "Type")] |> tidyr::unnest(Type)
   mapping$qsheet$tables$object <- l
@@ -15,23 +15,23 @@ tabulate_row <- function(mapping) {
   mapping$qsheet$head_table <- gen_head_table(mapping)
   mapping$qsheet$col_table <- gen_col_table(mapping)
   mapping$qsheet$tables$long_data <- l |>
-    purrr::map(\(row) pivot_table_data(row, mapping))
+    purrr::map(\(df_row) pivot_table_data(df_row, mapping))
   mapping$qsheet$tables$counts <- purrr::map2(
     mapping$qsheet$tables$object,
     mapping$qsheet$tables$long_data,
-    \(row, long_data) crosstab(row, long_data, mapping)
+    \(df_row, long_data) crosstab(df_row, long_data, mapping)
   )
   mapping$qsheet$tables$row_table <- purrr::map(
     mapping$qsheet$tables$object,
-    \(row, counts) gen_row_table(row, mapping)
+    \(df_row, counts) gen_row_table(df_row, mapping)
   )
   mapping$qsheet$tables$val <- purrr::pmap(
     list(
-      row = mapping$qsheet$tables$object,
+      df_row = mapping$qsheet$tables$object,
       counts = mapping$qsheet$tables$counts,
       row_table = mapping$qsheet$tables$row_table
     ),
-    \(row, counts, row_table) gen_val_table(row, counts, row_table, mapping)
+    \(df_row, counts, row_table) gen_val_table(df_row, counts, row_table, mapping)
   )
 }
 
@@ -40,16 +40,13 @@ new_tab_row <- function(df_row, subclass) {
   df_row
 }
 
-pivot_table_data <- function(row, mapping) {
+pivot_table_data <- function(df_row, mapping) {
   UseMethod("pivot_table_data")
 }
-pivot_table_data.default <- function(row, mapping) {
-  tibble::tibble()
-}
-pivot_table_data.tab_type_cat <- function(row, mapping) {
-  rowvars <- row$RowVar[[1]]
-  colvars <- dplyr::coalesce(row$ColPl, mapping$options$l_macro_scenario$ColPl)
-  weightvar <- dplyr::coalesce(row$Weight, mapping$options$l_macro_scenario$Weight)
+pivot_table_data.tab_type_cat <- function(df_row, mapping) {
+  rowvars <- df_row$RowVar[[1]]
+  colvars <- dplyr::coalesce(df_row$ColPl, mapping$options$l_macro_scenario$ColPl)
+  weightvar <- dplyr::coalesce(df_row$Weight, mapping$options$l_macro_scenario$Weight)
   if (is.na(weightvar)) {
     weightvar = character()
   }
@@ -62,14 +59,14 @@ pivot_table_data.tab_type_cat <- function(row, mapping) {
   prep_data <- function() {
     # same as:
     # mapping$dat_mod |>
-    #   dplyr::filter(!!!rlang::parse_exprs(row$Filter[[1]])) |>
+    #   dplyr::filter(!!!rlang::parse_exprs(df_row$Filter[[1]])) |>
     #   dplyr::select(!!!long_cols) |>
     #   dplyr::mutate(across(everything(), strip_attributes))
     # ... but with base R (for better performance)
-    if (length(row$Filter[[1]]) == 0) {
+    if (length(df_row$Filter[[1]]) == 0) {
       row_lgl <- TRUE
     } else {
-      filter_exprs <- rlang::parse_exprs(row$Filter[[1]])
+      filter_exprs <- rlang::parse_exprs(df_row$Filter[[1]])
       row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, mapping$dat_mod))
       row_lgl <- all_true(row_lgls)
     }
@@ -95,34 +92,34 @@ pivot_table_data.tab_type_cat <- function(row, mapping) {
     )
 }
 pivot_table_data.tab_type_mw <- pivot_table_data.tab_type_cat
-pivot_table_data.tab_type_mdg <- function(row, mapping) {
-  df_long <- pivot_table_data.tab_type_cat(row, mapping)
-  mdg_val <- dplyr::coalesce(row$MdgVal |> as.numeric(), 1)
+pivot_table_data.tab_type_mdg <- function(df_row, mapping) {
+  df_long <- pivot_table_data.tab_type_cat(df_row, mapping)
+  mdg_val <- dplyr::coalesce(df_row$MdgVal |> as.numeric(), 1)
   df_long[df_long$rowval == mdg_val,]
 }
-pivot_table_data.tab_type_mcg <- function(row, mapping) {
-  df_long <- pivot_table_data.tab_type_cat(row, mapping)
+pivot_table_data.tab_type_mcg <- function(df_row, mapping) {
+  df_long <- pivot_table_data.tab_type_cat(df_row, mapping)
   rowvars <- unique(df_long$rowvar) |> paste(collapse = ", ")
   res <- df_long[df_long$rowvar == df_long$rowvar[1] | !df_long$rowval %in% mapping$options$l_macro_scenario$Unguelt,]
   res$rowvar <- rowvars
   res
 }
 
-crosstab <- function(row, long_data, mapping) {
+crosstab <- function(df_row, long_data, mapping) {
   UseMethod("crosstab")
 }
-crosstab.tab_type_cat <- function(row, long_data, mapping) {
-  weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, row$Weight)
-  stat_fun <- row$ZsfgMW
+crosstab.tab_type_cat <- function(df_row, long_data, mapping) {
+  weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, df_row$Weight)
+  stat_fun <- df_row$ZsfgMW
   long_data |>
     dplyr::group_by(dplyr::across(-matches("weight"))) |>
     new_sum_stat(weight, stat_fun) |>
     apply_sum_stat()
 }
-crosstab.tab_type_mw <- function(row, long_data, mapping) {
-  weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, row$Weight)
-  stat_fun <- dplyr::coalesce(row$ZsfgMW, "mean")
-  invalid_vals <- row$Unguelt[[1]]
+crosstab.tab_type_mw <- function(df_row, long_data, mapping) {
+  weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, df_row$Weight)
+  stat_fun <- dplyr::coalesce(df_row$ZsfgMW, "mean")
+  invalid_vals <- df_row$Unguelt[[1]]
   if (is.na(invalid_vals[1])) {
     invalid_vals <- mapping$options$l_macro_scenario$Unguelt
   }
@@ -135,10 +132,10 @@ crosstab.tab_type_mw <- function(row, long_data, mapping) {
 crosstab.tab_type_mcg <- crosstab.tab_type_cat
 crosstab.tab_type_mdg <- crosstab.tab_type_cat
 
-gen_val_table <- function(row, counts, row_table, mapping) {
+gen_val_table <- function(df_row, counts, row_table, mapping) {
   UseMethod("gen_val_table")
 }
-gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(row, counts, row_table, mapping) {
+gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(df_row, counts, row_table, mapping) {
   row_levels <- row_table$RowValue[!is.na(row_table$RowValue)] |>
     unique()
 
@@ -161,7 +158,7 @@ gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(row, counts
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }
 
-gen_val_table.tab_type_mw <- gen_val_table.tab_type_mdg <- function(row, counts, row_table, mapping) {
+gen_val_table.tab_type_mw <- gen_val_table.tab_type_mdg <- function(df_row, counts, row_table, mapping) {
   row_levels <- row_table$RowVariable[!is.na(row_table$RowVariable)] |>
     unique()
 

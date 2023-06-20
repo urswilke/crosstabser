@@ -21,7 +21,7 @@ gen_tab_table <- function(tabs) {
 
 gen_head_table <- function(mapping) {
   # TODO: Wolf fragen ob ColPl auch gesondert für einzelne Zeilen im qsheet definierbar sein muss!...
-  # header_vars <- dplyr::coalesce(row$ColPl, mapping$options$l_macro_scenario$ColPl)
+  # header_vars <- dplyr::coalesce(df_row$ColPl, mapping$options$l_macro_scenario$ColPl)
   header_vars <- mapping$options$l_macro_scenario$ColPl
   header_varlabs <- lapply(header_vars, \(x) attr(mapping$dat_mod[[x]], "label", exact = TRUE))
   no_varlab_idx <- header_varlabs |> sapply(is.null)
