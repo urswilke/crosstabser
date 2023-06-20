@@ -97,7 +97,7 @@ pivot_table_data.tab_type_cat <- function(row, mapping) {
 pivot_table_data.tab_type_mw <- pivot_table_data.tab_type_cat
 pivot_table_data.tab_type_mdg <- function(row, mapping) {
   df_long <- pivot_table_data.tab_type_cat(row, mapping)
-  mdg_val <- coalesce(row$MdgVal |> as.numeric(), 1)
+  mdg_val <- dplyr::coalesce(row$MdgVal |> as.numeric(), 1)
   df_long[df_long$rowval == mdg_val,]
 }
 pivot_table_data.tab_type_mcg <- function(row, mapping) {
