@@ -29,6 +29,9 @@ process_qsheet <- function(mapping) {
       Filter = as.list(Filter) |>
         purrr::map(\(x) x |> append(mapping$options$l_macro_scenario$Filter)) |>
         purrr::map(\(x) x[!is.na(x)]),
+      # TODO: Wolf fragen ob das wirklich sein muss:
+      CatRec = stringr::str_remove(CatRec, "\\|.*"),
+      CatLab = stringr::str_remove(CatLab, "\\|.*"),
       SelVar = split_cell(SelVar),
       SelVal = split_cell(SelVal),
       RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE"

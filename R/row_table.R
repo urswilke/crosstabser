@@ -241,9 +241,49 @@ row_table_valid_cases.tab_type_mw <- function(df_row, mapping) {
 }
 
 row_table_summary <- function(df_row, mapping) {
-  #TODO
+  UseMethod("row_table_summary")
+}
+row_table_summary.default <- function(df_row, mapping) {
   NULL
 }
+row_table_summary.tab_type_cat <- function(df_row, mapping) {
+  cat_rec_string <- df_row$CatRec
+  if (is.na(cat_rec_string)) {
+    return(NULL)
+  }
+  # TODO: implement NPS...:
+  # cat_rec_string <- cat_rec_string |> stringr::str_remove("\\{.*\\}")
+  cat_lab_string <- df_row$CatLab
+  cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
+  cat_lab_splits <- split_cat_lab_string(cat_lab_string)
+  cat_rec_quos <- lapply(cat_rec_interval_splits$interval_strings, gen_cat_rec_fun)
+  vec <- mapping$dat_mod[[df_row$RowVar[[1]]]]
+  unique_vals <- unique(vec) |> strip_attributes()
+  vals_in_cat_rec <- purrr::map(
+    cat_rec_quos,
+    \(f, x) f(unique_vals)
+  ) |>
+    any_true()
+  invalid_vals <- dplyr::coalesce(df_row$Unguelt[[1]], mapping$options$l_macro_scenario$Unguelt)
+  vals_not_in_cat_rec <- unique_vals[!vals_in_cat_rec] |> setdiff(invalid_vals)
+  all_catrec_labs <- c(cat_lab_splits, vals_not_in_cat_rec |> purrr::set_names())
+  row_table <- empty_row_table()
+  n_vals <- length(all_catrec_labs)
+  row_table[seq_len(n_vals * 2),]$RowValue <- unname(all_catrec_labs) |> rep(each = 2)
+  row_table$RowContent <- "Summary"
+  row_table$RowWeighted <- "Unweighted"
+  row_table$RowTitle1 <- mapping$options$l_lexikon[["cTabZsfg"]]
+  row_table$RowTitle2 <- names(all_catrec_labs) |> rep(each = 2)
+  row_table$RowTitle3 <- c(
+    mapping$options$l_lexikon["cTabAbs"],
+    mapping$options$l_lexikon["cTabProz"]
+  ) |> rep(n_vals)
+  row_table$RowDecimals <- c(0L, 1L) |> rep(n_vals)
+  row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
+  row_table$RowVariable <- paste0(df_row$RowVar[[1]], "__summary")
+  row_table
+}
+
 row_table_stats <- function(df_row, mapping) {
   #TODO
   NULL

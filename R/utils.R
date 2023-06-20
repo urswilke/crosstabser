@@ -20,6 +20,9 @@ row_split <- function(df) {
 all_true <- function (l) {
   Reduce("&", l)
 }
+any_true <- function (l) {
+  Reduce("|", l)
+}
 
 spss_to_r <- function(ex) {
   ex |>
