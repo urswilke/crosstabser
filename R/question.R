@@ -106,7 +106,7 @@ unnest_selval <- function(df_row, mapping) {
   )
   res$Title <- res$Title |> purrr::map2(
     subtitles,
-    \(title, subtitle) title |> append(subtitle))
+    \(title, subtitle) add_selval_title(title, subtitle))
 
   selval_intervals <- df_row$SelVal[[1]] |> stringr::str_remove(paste0(":?", subtitles))
   res$Filter <- purrr::map2(
@@ -115,6 +115,13 @@ unnest_selval <- function(df_row, mapping) {
     \(filt, selval) append(filt, write_selval_filter_string(df_row$SelVar, selval))
   )
   res
+}
+
+add_selval_title <- function(title, subtitle) {
+  if (any(stringr::str_detect(title, "DC#SELVALLAB"))) {
+    return(stringr::str_replace(title, "DC#SELVALLAB", subtitle))
+  }
+  title |> append(subtitle)
 }
 
 write_selval_filter_string <- function(selvar, selval) {
