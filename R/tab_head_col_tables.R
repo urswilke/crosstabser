@@ -1,6 +1,6 @@
 gen_tab_table <- function(tabs) {
   # TODO: don't nest rows before to prevent unnesting here:
-  tabs <- tabs |> select(object) |> tidyr::unnest(object)
+  tabs <- tabs["object"] |> tidyr::unnest(object)
   tabs |>
     dplyr::mutate(
       Type = toupper(Type),
