@@ -11,7 +11,7 @@ gen_tab_table <- function(tabs) {
       TabName = paste0(Type, "#", Abbreviation, "@", dplyr::row_number()),
       TabType = Type,
       QuestNo = row,
-      TabTitle = paste(Title, collapse = "\r\n"),
+      TabTitle = Title |> purrr::map_chr(\(x) paste(x, collapse = "\n")),
       TabCaption = Fussnote,
       .by = c(row, Type),
       .keep = "none"
