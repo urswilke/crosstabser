@@ -19,7 +19,7 @@ process_qsheet <- function(mapping) {
   mapping$qsheet$qsheet_raw |>
     tidyr::drop_na(Type) |>
     dplyr::mutate(
-      Title = as.list(Title),
+      Title = Title |> strsplit("' '"),
       RowVar = RowVar |> split_cell(" "),
       Unguelt = split_cell(Unguelt),
       Unguelt = purrr::map_if(Unguelt, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
