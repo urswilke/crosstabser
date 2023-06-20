@@ -119,33 +119,68 @@ crosstab.tab_type_cat <- function(row, long_data, mapping) {
     new_sum_stat(weight, stat_fun) |>
     apply_sum_stat()
 }
-crosstab.tab_type_mw <- crosstab.tab_type_cat
+crosstab.tab_type_mw <- function(row, long_data, mapping) {
+  weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, row$Weight)
+  stat_fun <- dplyr::coalesce(row$ZsfgMW, "mean")
+  invalid_vals <- row$Unguelt[[1]]
+  if (is.na(invalid_vals[1])) {
+    invalid_vals <- mapping$options$l_macro_scenario$Unguelt
+  }
+
+  long_data[!long_data$rowval %in% invalid_vals,] |>
+    dplyr::group_by(dplyr::across(-matches("weight|rowval"))) |>
+    new_sum_stat(weight, stat_fun) |>
+    apply_sum_stat()
+}
 crosstab.tab_type_mcg <- crosstab.tab_type_cat
 crosstab.tab_type_mdg <- crosstab.tab_type_cat
 
 gen_val_table <- function(row, counts, row_table, mapping) {
   UseMethod("gen_val_table")
 }
-gen_val_table.tab_type_cat <- function(row, counts, row_table, mapping) {
-  rowval_levels <- row_table$RowValue[!is.na(row_table$RowValue)] |>
+gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(row, counts, row_table, mapping) {
+  row_levels <- row_table$RowValue[!is.na(row_table$RowValue)] |>
     unique()
-  colvars <- dplyr::coalesce(
-    row$ColPl,
-    mapping$options$l_macro_scenario$ColPl
-  )
+
+  # TODO: calculate before to prevent repeated calculation for every table...:
+  col_table <- mapping$qsheet$col_table[-c(1:3),]
+  col_levels <- paste(col_table$ColVariable, col_table$ColValue)
   # The following is equivalent to:
   # counts |>
   #   dplyr::transmute(
-  #     RowNo = factor(rowval, rowval_levels) |> as.numeric(),
-  #     ColNo = factor(colvar, colvars) |> as.numeric(),
+  #     RowNo = factor(rowval, row_levels) |> as.numeric(),
+  #     ColNo = as.numeric(factor(paste(colvar, colval), col_levels)) + 3,
   #     Value = value
   #   ) |>
   #   dplyr::arrange(RowNo, ColNo)
 
   # but faster, with base R...:
   res <- counts["value"]
-  res$RowNo <- factor(counts$rowval, rowval_levels) |> as.numeric()
-  res$ColNo <- factor(counts$colvar, colvars) |> as.numeric()
+  res$RowNo <- factor(counts$rowval, row_levels) |> as.numeric()
+  res$ColNo <- as.numeric(factor(paste(counts$colvar, counts$colval), col_levels)) + 3
+  res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
+}
+
+gen_val_table.tab_type_mw <- gen_val_table.tab_type_mdg <- function(row, counts, row_table, mapping) {
+  row_levels <- row_table$RowVariable[!is.na(row_table$RowVariable)] |>
+    unique()
+
+  # TODO: calculate before to prevent repeated calculation for every table...:
+  col_table <- mapping$qsheet$col_table[-c(1:3),]
+  col_levels <- paste(col_table$ColVariable, col_table$ColValue)
+  # The following is equivalent to:
+  # counts |>
+  #   dplyr::transmute(
+  #     RowNo = factor(rowval, row_levels) |> as.numeric(),
+  #     ColNo = as.numeric(factor(paste(colvar, colval), col_levels)) + 3,
+  #     Value = value
+  #   ) |>
+  #   dplyr::arrange(RowNo, ColNo)
+
+  # but faster, with base R...:
+  res <- counts["value"]
+  res$RowNo <- factor(counts$rowvar, row_levels) |> as.numeric()
+  res$ColNo <- as.numeric(factor(paste(counts$colvar, counts$colval), col_levels)) + 3
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }
 
