@@ -12,6 +12,7 @@ gen_tab_table <- function(tabs) {
       TabType = Type,
       QuestNo = row,
       TabTitle = paste(Title, collapse = "\r\n"),
+      TabCaption = Fussnote,
       .by = c(row, Type),
       .keep = "none"
     )
