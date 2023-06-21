@@ -90,6 +90,9 @@ pivot_table_data <- function(df_row, raw_data, mapping) {
   UseMethod("pivot_table_data")
 }
 pivot_table_data.tab_type_cat <- function(df_row, raw_data, mapping) {
+  # for TOTAL column:
+  raw_data$"colvar_DC#STICHPROBE" <- 1
+
   raw_data |>
     tidyr::pivot_longer(
       matches("^rowvar_"),
