@@ -14,8 +14,15 @@ tabulate_row <- function(mapping) {
   mapping$qsheet$tab_table <- gen_tab_table(mapping$qsheet$tables)
   mapping$qsheet$head_table <- gen_head_table(mapping)
   mapping$qsheet$col_table <- gen_col_table(mapping)
-  mapping$qsheet$tables$long_data <- l |>
-    purrr::map(\(df_row) pivot_table_data(df_row, mapping))
+  mapping$qsheet$tables$raw_data <- l |>
+    purrr::map(\(df_row) get_raw_data(df_row, mapping))
+  # mapping$qsheet$tables$long_data <- l |>
+  #   purrr::map(\(df_row) pivot_table_data(df_row, mapping))
+  mapping$qsheet$tables$long_data <- purrr::map2(
+    mapping$qsheet$tables$object,
+    mapping$qsheet$tables$raw_data,
+    \(df_row, raw_data) pivot_table_data(df_row, raw_data, mapping)
+  )
   mapping$qsheet$tables$counts <- purrr::map2(
     mapping$qsheet$tables$object,
     mapping$qsheet$tables$long_data,
@@ -40,10 +47,10 @@ new_tab_row <- function(df_row, subclass) {
   df_row
 }
 
-pivot_table_data <- function(df_row, mapping) {
-  UseMethod("pivot_table_data")
+get_raw_data <- function(df_row, mapping) {
+  UseMethod("get_raw_data")
 }
-pivot_table_data.tab_type_cat <- function(df_row, mapping) {
+get_raw_data.default <- function(df_row, mapping) {
   rowvars <- df_row$RowVar[[1]]
   colvars <- mapping$options$l_macro_scenario$ColVar
   weightvar <- dplyr::coalesce(df_row$Weight, mapping$options$l_macro_scenario$Weight)
@@ -77,7 +84,13 @@ pivot_table_data.tab_type_cat <- function(df_row, mapping) {
     }
     dat
   }
-  prep_data() |>
+  prep_data()
+}
+pivot_table_data <- function(df_row, raw_data, mapping) {
+  UseMethod("pivot_table_data")
+}
+pivot_table_data.tab_type_cat <- function(df_row, raw_data, mapping) {
+  raw_data |>
     tidyr::pivot_longer(
       matches("^rowvar_"),
       names_pattern = "rowvar_(.*)",
@@ -92,13 +105,13 @@ pivot_table_data.tab_type_cat <- function(df_row, mapping) {
     )
 }
 pivot_table_data.tab_type_mw <- pivot_table_data.tab_type_cat
-pivot_table_data.tab_type_mdg <- function(df_row, mapping) {
-  df_long <- pivot_table_data.tab_type_cat(df_row, mapping)
+pivot_table_data.tab_type_mdg <- function(df_row, raw_data, mapping) {
+  df_long <- pivot_table_data.tab_type_cat(df_row, raw_data, mapping)
   mdg_val <- dplyr::coalesce(df_row$MdgVal |> as.numeric(), 1)
   df_long[df_long$rowval == mdg_val,]
 }
-pivot_table_data.tab_type_mcg <- function(df_row, mapping) {
-  df_long <- pivot_table_data.tab_type_cat(df_row, mapping)
+pivot_table_data.tab_type_mcg <- function(df_row, raw_data, mapping) {
+  df_long <- pivot_table_data.tab_type_cat(df_row, raw_data, mapping)
   rowvars <- unique(df_long$rowvar) |> paste(collapse = ", ")
   res <- df_long[df_long$rowvar == df_long$rowvar[1] | !df_long$rowval %in% mapping$options$l_macro_scenario$Unguelt,]
   res$rowvar <- rowvars
