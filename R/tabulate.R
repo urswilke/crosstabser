@@ -129,22 +129,30 @@ gen_catrec_long_data <- function(df_row, long_data, mapping) {
   cat_rec_exprs <- stringr::str_extract_all(cat_rec_string, "(?<=\\().*?(?=\\))")[[1]]
   cat_rec_vals <- stringr::str_extract(cat_rec_exprs, "(?<=\\=) *\\d+$") |> as.numeric()
 
+  invalid_vals <- dplyr::coalesce(df_row$Unguelt[[1]], mapping$options$l_macro_scenario$Unguelt)
+
+  long_data_catrec <- long_data[!long_data$rowval %in% invalid_vals,]
   # TODO: find cleander solution where `vec` doesn't need to be calculated in advance!
-  vec <- long_data$rowval
+  vec <- long_data_catrec$rowval
   l_cat_rec <- purrr::map2(
     cat_rec_quos,
     cat_rec_vals,
     \(f, x) rlang::quo(!!f(vec) ~ !!x)
   )
-  invalid_vals <- dplyr::coalesce(df_row$Unguelt[[1]], mapping$options$l_macro_scenario$Unguelt)
-
-  long_data_catrec <- long_data |>
-    dplyr::mutate(
-      rowvar = paste0(rowvar, "__summary"),
-      rowval = dplyr::case_when(!!!l_cat_rec)
+  long_data_catrec$rowvar <- paste0(long_data_catrec$rowvar, "__summary")
+  long_data_catrec$rowval <- dplyr::case_when(!!!l_cat_rec)
+  # TODO: also tabulate non-recoded (not covered by CatRec) valid `RowVal`s:
+  non_recoded_idx <- is.na(long_data_catrec$rowval)
+  if (any(non_recoded_idx)) {
+    warning(
+      "\nIn table in row ", df_row$row, ":\n",
+      "These valid values are not recoded by CatRec: ",
+      vec[non_recoded_idx] |> unique(),
+      "\nTabulation not implemented yet!!!"
     )
-  # TODO: fix for `RowVal`s not covered by CatRec:
-  long_data_catrec[!long_data_catrec$rowval %in% invalid_vals & !is.na(long_data_catrec$rowval),]
+    long_data_catrec <- long_data_catrec[!non_recoded_idx,]
+  }
+  long_data_catrec
 }
 
 crosstab.tab_type_mw <- function(df_row, long_data, mapping) {
