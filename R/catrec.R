@@ -6,7 +6,7 @@ split_cat_rec_string <- function(cat_rec_string) {
   cat_rec_vals <- stringr::str_extract(cat_rec_exprs, "(?<=\\=) *\\d+$") |> as.numeric()
   cat_rec_intervals <- stringr::str_extract(cat_rec_exprs, "^.*(?=\\=)")
   cat_rec_interval_splits <- strsplit(cat_rec_intervals, ", *")
-  list(vals = catrec_vals, interval_strings = cat_rec_interval_splits)
+  list(vals = cat_rec_vals, interval_strings = cat_rec_interval_splits)
 }
 
 split_cat_lab_string <- function(cat_lab_string) {
