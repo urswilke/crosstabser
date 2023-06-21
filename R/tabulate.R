@@ -127,14 +127,24 @@ crosstab <- function(df_row, long_data, mapping) {
 crosstab.tab_type_cat <- function(df_row, long_data, mapping) {
   weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, df_row$Weight)
   stat_fun <- df_row$ZsfgMW
+  total_row_data <- long_data |>
+    dplyr::group_by(dplyr::across(-matches("weight|rowva[rl]"))) |>
+    new_sum_stat(weight, NA) |>
+    apply_sum_stat()
+  total_row_data$rowvar <- paste0(long_data$rowvar[1], "_TC")
+  total_row_data$rowval <- 1
   if (!is.na(df_row$CatRec)) {
     long_data_catrec <- gen_catrec_long_data(df_row, long_data, mapping)
     long_data <- dplyr::bind_rows(long_data, long_data_catrec)
   }
-  long_data |>
+  all_counts <- long_data |>
     dplyr::group_by(dplyr::across(-matches("weight"))) |>
     new_sum_stat(weight, stat_fun) |>
     apply_sum_stat()
+  rbind(
+    total_row_data,
+    all_counts
+  )
 }
 gen_catrec_long_data <- function(df_row, long_data, mapping) {
   cat_rec_string <- df_row$CatRec
