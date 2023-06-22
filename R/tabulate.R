@@ -94,17 +94,25 @@ pivot_table_data.tab_type_cat <- function(df_row, raw_data, mapping) {
   raw_data$"colvar_DC#STICHPROBE" <- 1
 
   raw_data |>
-    tidyr::pivot_longer(
-      matches("^rowvar_"),
-      names_pattern = "rowvar_(.*)",
-      names_to = "rowvar",
-      values_to = "rowval"
-    ) |>
+    pivot_rows() |>
+    pivot_cols()
+}
+pivot_cols <- function(df) {
+  df |>
     tidyr::pivot_longer(
       matches("^colvar_"),
       names_pattern = "colvar_(.*)",
       names_to = "colvar",
       values_to = "colval"
+    )
+}
+pivot_rows <- function(df) {
+  df |>
+    tidyr::pivot_longer(
+      matches("^rowvar_"),
+      names_pattern = "rowvar_(.*)",
+      names_to = "rowvar",
+      values_to = "rowval"
     )
 }
 pivot_table_data.tab_type_mw <- pivot_table_data.tab_type_cat
