@@ -86,6 +86,8 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
+\item \href{#method-Tabula-tabulate_qsheet_rows}{\code{Tabula$tabulate_qsheet_rows()}}
+\item \href{#method-Tabula-write_xmls}{\code{Tabula$write_xmls()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
 }
@@ -105,6 +107,24 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 Initialize a Tabula object
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$new(dat, mapping_file, ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-tabulate_qsheet_rows"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-tabulate_qsheet_rows}{}}}
+\subsection{Method \code{tabulate_qsheet_rows()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$tabulate_qsheet_rows()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-write_xmls"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-write_xmls}{}}}
+\subsection{Method \code{write_xmls()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$write_xmls()}\if{html}{\out{</div>}}
 }
 
 }
