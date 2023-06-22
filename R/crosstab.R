@@ -4,25 +4,34 @@ crosstab <- function(df_row, long_data, mapping) {
 crosstab.tab_type_cat <- function(df_row, long_data, mapping) {
   weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, df_row$Weight)
   stat_fun <- df_row$ZsfgMW
-  total_row_data <- long_data |>
-    dplyr::group_by(dplyr::across(-matches("weight|rowva[rl]"))) |>
-    new_sum_stat(weight, NA) |>
-    apply_sum_stat()
+  total_row_data <- gen_total_counts(long_data, weight)
   total_row_data$rowvar <- paste0(long_data$rowvar[1], "_TC")
   total_row_data$rowval <- 1
   if (!is.na(df_row$CatRec)) {
     long_data_catrec <- gen_catrec_long_data(df_row, long_data, mapping)
     long_data <- dplyr::bind_rows(long_data, long_data_catrec)
   }
-  all_counts <- long_data |>
-    dplyr::group_by(dplyr::across(-matches("weight"))) |>
-    new_sum_stat(weight, stat_fun) |>
-    apply_sum_stat()
+  all_counts <- gen_all_counts(long_data, weight, stat_fun)
   rbind(
     total_row_data,
     all_counts
   )
 }
+
+gen_total_counts <- function(long_data, weight) {
+  long_data |>
+    dplyr::group_by(dplyr::across(-matches("weight|rowva[rl]"))) |>
+    new_sum_stat(weight, NA) |>
+    apply_sum_stat()
+}
+
+gen_all_counts <- function(long_data, weight, stat_fun) {
+  long_data |>
+    dplyr::group_by(dplyr::across(-matches("weight"))) |>
+    new_sum_stat(weight, stat_fun) |>
+    apply_sum_stat()
+}
+
 gen_catrec_long_data <- function(df_row, long_data, mapping) {
   cat_rec_string <- df_row$CatRec
   cat_lab_string <- df_row$CatLab
