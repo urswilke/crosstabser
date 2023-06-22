@@ -19,7 +19,6 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
-    datenanpassr,
     openxlsx,
     R6,
     tibble,
@@ -29,7 +28,8 @@ Imports:
     purrr,
     rlang,
     matrixStats,
-    xml2
+    xml2,
+    haven
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
     testthat (>= 3.0.0)

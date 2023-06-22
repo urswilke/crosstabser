@@ -48,8 +48,9 @@
 #' # or with haven (used under the hood by `save()`):
 #' # haven::write_sav(mapping$dat_mod, "path/to/your/file.sav")
 Tabula <- R6::R6Class("Tabula",
-  inherit = datenanpassr::Mapping,
   public = list(
+    mapping_file = NULL,
+    dat_mod = NULL,
     options = NULL,
     qsheet = list(),
     #' @description Initialize a Tabula object
@@ -57,8 +58,8 @@ Tabula <- R6::R6Class("Tabula",
     initialize = function(dat,
                           mapping_file,
                           ...) {
-      super$initialize(dat, mapping_file, ...)
-      super$modify_data()
+      self$mapping_file <- mapping_file
+      self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
       read_qsheet(self)
     },
@@ -72,3 +73,12 @@ Tabula <- R6::R6Class("Tabula",
     }
   )
 )
+read_data <- function(dat) {
+  UseMethod("read_data")
+}
+read_data.data.frame <- function(dat) {
+  dat
+}
+read_data.character <- function(dat) {
+  haven::read_sav(dat)
+}
