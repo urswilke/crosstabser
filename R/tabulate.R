@@ -122,9 +122,33 @@ pivot_table_data.tab_type_mdg <- function(df_row, raw_data, mapping) {
   df_long[df_long$rowval == mdg_val,]
 }
 pivot_table_data.tab_type_mcg <- function(df_row, raw_data, mapping) {
-  df_long <- pivot_table_data.tab_type_cat(df_row, raw_data, mapping)
+  #TODO: calculate before!...:
+  invalid_vals <- df_row$Unguelt[[1]]
+  if (is.na(invalid_vals[1])) {
+    invalid_vals <- mapping$options$l_macro_scenario$Unguelt
+  }
+  # for TOTAL column:
+  raw_data$"colvar_DC#STICHPROBE" <- 1
+
+  row_var_data <- raw_data[stringr::str_subset(names(raw_data), "^rowvar_")]
+  any_in_row_filled <- rowSums(!is.na(row_var_data)) > 0
+
+  n_valids_in_row <- apply(row_var_data, 1, \(r) sum(!unique(r) %in% invalid_vals))
+
+
+  raw_data$any_in_row_filled <- any_in_row_filled
+  raw_data$n_valids_in_row <- n_valids_in_row
+
+
+  col_long_data <- raw_data |>
+    pivot_cols()
+
+  #TODO:
+  col_long_data |> select(-matches("rowvar")) |> group_by(colvar, colval) |> summarise(sum(n_valids_in_row))
+  col_long_data |> select(-matches("rowvar"), -n_valids_in_row) |> gen_total_counts(NA)
+  df_long <- col_long_data |> pivot_rows()
   rowvars <- unique(df_long$rowvar) |> paste(collapse = ", ")
-  res <- df_long[df_long$rowvar == df_long$rowvar[1] | !df_long$rowval %in% mapping$options$l_macro_scenario$Unguelt,]
+  res <- df_long
   res$rowvar <- rowvars
   res
 }

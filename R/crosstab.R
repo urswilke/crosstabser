@@ -80,7 +80,20 @@ crosstab.tab_type_mw <- function(df_row, long_data, mapping) {
     new_sum_stat(weight, stat_fun) |>
     apply_sum_stat()
 }
-crosstab.tab_type_mcg <- crosstab.tab_type_cat
+crosstab.tab_type_mcg <- function(df_row, long_data, mapping) {
+  #TODO...:
+  weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, df_row$Weight)
+  stat_fun <- df_row$ZsfgMW
+  filled_data <- long_data[long_data$any_in_row_filled, stringr::str_subset(names(long_data), "any_", negate = TRUE)]
+  total_row_data <- gen_total_counts(filled_data, weight)
+  total_row_data$rowvar <- paste0(long_data$rowvar[1], "_TC")
+  total_row_data$rowval <- 1
+  all_counts <- gen_all_counts(long_data, weight, stat_fun)
+  rbind(
+    total_row_data,
+    all_counts
+  )
+}
 crosstab.tab_type_mdg <- crosstab.tab_type_cat
 
 
