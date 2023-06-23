@@ -86,21 +86,22 @@ get_raw_data.default <- function(tab) {
   }
   prep_data()
 }
-pivot_table_data <- function(df_row, raw_data, mapping) {
+pivot_table_data <- function(tab) {
   UseMethod("pivot_table_data")
 }
-pivot_table_data.tab_type_cat <- function(df_row, raw_data, mapping) {
+pivot_table_data.tab_type_cat <- function(tab) {
   # for TOTAL column:
-  raw_data$"colvar_DC#STICHPROBE" <- 1
+  df <- tab$d$raw_data
+  df$"colvar_DC#STICHPROBE" <- 1
 
-  raw_data |>
+  df |>
     pivot_rows() |>
     pivot_cols()
 }
 pivot_cols <- function(df) {
   df |>
     tidyr::pivot_longer(
-      matches("^colvar_"),
+      dplyr::matches("^colvar_"),
       names_pattern = "colvar_(.*)",
       names_to = "colvar",
       values_to = "colval"
@@ -109,43 +110,44 @@ pivot_cols <- function(df) {
 pivot_rows <- function(df) {
   df |>
     tidyr::pivot_longer(
-      matches("^rowvar_"),
+      dplyr::matches("^rowvar_"),
       names_pattern = "rowvar_(.*)",
       names_to = "rowvar",
       values_to = "rowval"
     )
 }
 pivot_table_data.tab_type_mw <- pivot_table_data.tab_type_cat
-pivot_table_data.tab_type_mdg <- function(df_row, raw_data, mapping) {
-  df_long <- pivot_table_data.tab_type_cat(df_row, raw_data, mapping)
-  mdg_val <- dplyr::coalesce(df_row$MdgVal |> as.numeric(), 1)
+pivot_table_data.tab_type_mdg <- function(tab) {
+  df_long <- pivot_table_data.tab_type_cat(tab)
+  mdg_val <- tab$p$MdgVal |> as.numeric()
+  if (length(mdg_val) == 0) {
+    mdg_val <- 1
+  }
   df_long[df_long$rowval == mdg_val,]
 }
-pivot_table_data.tab_type_mcg <- function(df_row, raw_data, mapping) {
+pivot_table_data.tab_type_mcg <- function(tab) {
   #TODO: calculate before!...:
-  invalid_vals <- df_row$Unguelt[[1]]
-  if (is.na(invalid_vals[1])) {
-    invalid_vals <- mapping$options$l_macro_scenario$Unguelt
-  }
+  invalid_vals <- tab$p$Unguelt
   # for TOTAL column:
-  raw_data$"colvar_DC#STICHPROBE" <- 1
+  df <- tab$d$raw_data
+  df$"colvar_DC#STICHPROBE" <- 1
 
-  row_var_data <- raw_data[stringr::str_subset(names(raw_data), "^rowvar_")]
+  row_var_data <- df[stringr::str_subset(names(df), "^rowvar_")]
   any_in_row_filled <- rowSums(!is.na(row_var_data)) > 0
 
   n_valids_in_row <- apply(row_var_data, 1, \(r) sum(!unique(r) %in% invalid_vals))
 
 
-  raw_data$any_in_row_filled <- any_in_row_filled
-  raw_data$n_valids_in_row <- n_valids_in_row
+  df$any_in_row_filled <- any_in_row_filled
+  df$n_valids_in_row <- n_valids_in_row
 
 
-  col_long_data <- raw_data |>
+  col_long_data <- df |>
     pivot_cols()
 
   #TODO:
-  col_long_data |> select(-matches("rowvar")) |> group_by(colvar, colval) |> summarise(sum(n_valids_in_row))
-  col_long_data |> select(-matches("rowvar"), -n_valids_in_row) |> gen_total_counts(NA)
+  col_long_data |> dplyr::select(-dplyr::matches("rowvar")) |> dplyr::group_by(colvar, colval) |> dplyr::summarise(sum(n_valids_in_row))
+  col_long_data |> dplyr::select(-dplyr::matches("rowvar"), -n_valids_in_row) |> gen_total_counts(NA)
   df_long <- col_long_data |> pivot_rows()
   rowvars <- unique(df_long$rowvar) |> paste(collapse = ", ")
   res <- df_long

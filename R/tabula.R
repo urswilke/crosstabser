@@ -69,6 +69,10 @@ Tabula <- R6::R6Class("Tabula",
       tabulate_row(self)
       invisible(self)
     },
+    add_tab_data = function() {
+      self$tabs |> purrr::walk(\(x) x$add_tab_data())
+      invisible(self)
+    },
     write_xmls = function() {
       write_xml_tables(self)
       invisible(self)

@@ -27,10 +27,16 @@ Tabs <- R6::R6Class("Tabs",
                           ...) {
       self$p <- params
       self$d$dat_mod = dat_mod
-      self$d$raw_data = get_raw_data(self)
+    },
+    add_tab_data = function() {
+      add_tab_data(self)
     }
   )
 )
+add_tab_data <- function(tab) {
+  tab$d$raw_data = get_raw_data(tab)
+  tab$d$long_data = pivot_table_data(tab)
+}
 add_global_options <- function(params, global_options) {
   res <- params
   res$Filter <- append(res$Filter, global_options$Filter[!is.na(global_options$Filter)])
