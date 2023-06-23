@@ -5,8 +5,6 @@ gen_tab_params <- function(mapping) {
     purrr::transpose() |>
     purrr::map(\(x) x[!is.na(x)]) |>
     purrr::map(\(x) add_global_options(x, global_options))
-  # |>
-  #   purrr::map(\(x) new_tabs_obj(x))
   tabs <- params |>
     # purrr::map(\(params) list(params = params)) |>
     purrr::map(new_tabs_subclass)
@@ -32,7 +30,6 @@ Tabs <- R6::R6Class("Tabs",
   )
 )
 add_global_options <- function(params, global_options) {
-  # global_options <- global_options[!is.na(global_options)]
   res <- params
   res$Filter <- append(res$Filter, global_options$Filter[!is.na(global_options$Filter)])
   res$Weight <- dplyr::coalesce(res$Weight, global_options$Weight)
