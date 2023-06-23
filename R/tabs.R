@@ -6,16 +6,15 @@ gen_tab_params <- function(mapping) {
     purrr::map(\(x) x[!is.na(x)]) |>
     purrr::map(\(x) add_global_options(x, global_options))
   tabs <- params |>
-    # purrr::map(\(params) list(params = params)) |>
-    purrr::map(new_tabs_subclass)
+    purrr::map(\(x) new_tabs_subclass(x, mapping$dat_mod))
 
 
   class(tabs) <- c("crosstabser_tabs", class(tabs))
   mapping$tabs <- tabs
 }
 
-new_tabs_subclass <- function(params) {
-  res <- Tabs$new(params)
+new_tabs_subclass <- function(params, dat_mod) {
+  res <- Tabs$new(params, dat_mod)
   class(res) <- c(paste0("tab_type_", params$Type), class(res))
   res
 }
@@ -24,8 +23,10 @@ Tabs <- R6::R6Class("Tabs",
     p = list(),
     d = list(),
     initialize = function(params,
+                          dat_mod,
                           ...) {
       self$p <- params
+      self$d$dat_mod = dat_mod
     }
   )
 )
