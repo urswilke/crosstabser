@@ -1,50 +1,8 @@
-tabulate_row <- function(mapping) {
-  types <- mapping$qsheet$qsheet_processed$Type
-  l <- mapping$qsheet$qsheet_processed |>
-    dplyr::rowwise() |>
-    dplyr::group_split() |>
-    # to reduce the df_row dataframes to non-empty columns, uncomment:
-    # purrr::map(\(x) x[!is.na(as.list(x))]) |>
-    purrr::map2(
-      types,
-      \(df_row, type) new_tab_row(df_row, type)
-    )
+gen_tab_and_col_tables <- function(mapping) {
   mapping$qsheet$tables <- mapping$qsheet$qsheet_processed[c("row", "Type")] |> tidyr::unnest(Type)
-  mapping$qsheet$tables$object <- l
-  mapping$qsheet$tab_table <- gen_tab_table(mapping$qsheet$tables)
+  mapping$qsheet$tab_table <- gen_tab_table(mapping)
   mapping$qsheet$head_table <- gen_head_table(mapping)
   mapping$qsheet$col_table <- gen_col_table(mapping)
-  mapping$qsheet$tables$raw_data <- l |>
-    purrr::map(\(df_row) get_raw_data(df_row, mapping))
-  # mapping$qsheet$tables$long_data <- l |>
-  #   purrr::map(\(df_row) pivot_table_data(df_row, mapping))
-  mapping$qsheet$tables$long_data <- purrr::map2(
-    mapping$qsheet$tables$object,
-    mapping$qsheet$tables$raw_data,
-    \(df_row, raw_data) pivot_table_data(df_row, raw_data, mapping)
-  )
-  mapping$qsheet$tables$counts <- purrr::map2(
-    mapping$qsheet$tables$object,
-    mapping$qsheet$tables$long_data,
-    \(df_row, long_data) crosstab(df_row, long_data, mapping)
-  )
-  mapping$qsheet$tables$row_table <- purrr::map(
-    mapping$qsheet$tables$object,
-    \(df_row, counts) gen_row_table(df_row, mapping)
-  )
-  mapping$qsheet$tables$val <- purrr::pmap(
-    list(
-      df_row = mapping$qsheet$tables$object,
-      counts = mapping$qsheet$tables$counts,
-      row_table = mapping$qsheet$tables$row_table
-    ),
-    \(df_row, counts, row_table) gen_val_table(df_row, counts, row_table, mapping)
-  )
-}
-
-new_tab_row <- function(df_row, subclass) {
-  class(df_row) <- c(paste0("tab_type_", subclass), class(df_row))
-  df_row
 }
 
 get_raw_data <- function(tab) {

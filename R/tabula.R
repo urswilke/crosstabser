@@ -65,11 +65,8 @@ Tabula <- R6::R6Class("Tabula",
       read_qsheet(self)
       gen_tab_params(self)
     },
-    tabulate_qsheet_rows = function() {
-      tabulate_row(self)
-      invisible(self)
-    },
     add_tab_data = function() {
+      gen_tab_and_col_tables(self)
       self$tabs |> purrr::walk(\(x) x$add_tab_data())
       invisible(self)
     },
