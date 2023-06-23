@@ -94,7 +94,7 @@ pivot_table_data.tab_type_cat <- function(tab) {
   df <- tab$d$raw_data
   df$"colvar_DC#STICHPROBE" <- 1
 
-  df |>
+  tab$d$long_data <- df |>
     pivot_rows() |>
     pivot_cols()
 }
@@ -123,7 +123,7 @@ pivot_table_data.tab_type_mdg <- function(tab) {
   if (length(mdg_val) == 0) {
     mdg_val <- 1
   }
-  df_long[df_long$rowval == mdg_val,]
+  tab$d$long_data <- df_long[df_long$rowval == mdg_val,]
 }
 pivot_table_data.tab_type_mcg <- function(tab) {
   #TODO: calculate before!...:
@@ -145,14 +145,31 @@ pivot_table_data.tab_type_mcg <- function(tab) {
   col_long_data <- df |>
     pivot_cols()
 
-  #TODO:
-  col_long_data |> dplyr::select(-dplyr::matches("rowvar")) |> dplyr::group_by(colvar, colval) |> dplyr::summarise(sum(n_valids_in_row))
-  col_long_data |> dplyr::select(-dplyr::matches("rowvar"), -n_valids_in_row) |> gen_total_counts(NA)
-  df_long <- col_long_data |> pivot_rows()
+  # this already does counting, but on the data where only the colvar are
+  # pivoted to long. Thus it's done here:
+  weight <- tab$p$Weight
+
+  cols <- stringr::str_subset(names(col_long_data), "^(colva[rl]|weight)$")
+  tab$d$total_row_counts <-
+    col_long_data[col_long_data$any_in_row_filled, cols] |>
+    gen_total_counts(weight)
+  tab$d$sum_of_valid_counts <-
+    col_long_data[col_long_data$any_in_row_filled, c(cols, "n_valids_in_row")] |>
+    # dplyr::group_by(dplyr::across(-matches("^(weight|n_valids_in_row)$"))) |>
+    dplyr::summarise(
+      value = sum(n_valids_in_row * dplyr::coalesce(weight |> as.numeric(), 1)),
+      .by = -matches("^(weight|n_valids_in_row)$")
+    )
+
+  cols <- stringr::str_subset(
+    names(col_long_data),
+    "^(any_in_row_filled|n_valids_in_row)$",
+    negate = TRUE
+  )
+  df_long <- col_long_data[cols] |> pivot_rows()
   rowvars <- unique(df_long$rowvar) |> paste(collapse = ", ")
-  res <- df_long
-  res$rowvar <- rowvars
-  res
+  df_long$rowvar <- rowvars
+  tab$d$long_data <- df_long
 }
 
 

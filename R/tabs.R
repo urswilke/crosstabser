@@ -35,7 +35,8 @@ Tabs <- R6::R6Class("Tabs",
 )
 add_tab_data <- function(tab) {
   tab$d$raw_data = get_raw_data(tab)
-  tab$d$long_data = pivot_table_data(tab)
+  pivot_table_data(tab)
+  tab$d$counts = crosstab(tab)
 }
 add_global_options <- function(params, global_options) {
   res <- params
