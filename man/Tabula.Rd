@@ -41,9 +41,6 @@ mapping$dat_mod
 # or with haven (used under the hood by `save()`):
 # haven::write_sav(mapping$dat_mod, "path/to/your/file.sav")
 }
-\section{Super class}{
-\code{\link[datenanpassr:Mapping]{datenanpassr::Mapping}} -> \code{Tabula}
-}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
@@ -69,14 +66,10 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 \item{\code{dat}}{(filepath to pass to \code{haven::read_sav()} to read in the)
 labelled dataframe to apply the mapping on.}
 
-\item{\code{mapping_file}}{filepath of the Excel mapping file}
-
 \item{\code{cmd_tbl}}{Dataframe with the command block information}
 
 \item{\code{cmd}}{R list structure containing the processed command block
 information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
-
-\item{\code{dat_mod}}{modified dataframe}
 
 \item{\code{params}}{Parameter list object}
 }
@@ -87,19 +80,11 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 \itemize{
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
 \item \href{#method-Tabula-tabulate_qsheet_rows}{\code{Tabula$tabulate_qsheet_rows()}}
+\item \href{#method-Tabula-gen_tab_params}{\code{Tabula$gen_tab_params()}}
 \item \href{#method-Tabula-write_xmls}{\code{Tabula$write_xmls()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
 }
-\if{html}{\out{
-<details open><summary>Inherited methods</summary>
-<ul>
-<li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="modify_data"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-modify_data'><code>datenanpassr::Mapping$modify_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="prep_cmd_tbl"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-prep_cmd_tbl'><code>datenanpassr::Mapping$prep_cmd_tbl()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="save"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-save'><code>datenanpassr::Mapping$save()</code></a></span></li>
-</ul>
-</details>
-}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-new"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-new}{}}}
@@ -116,6 +101,15 @@ Initialize a Tabula object
 \subsection{Method \code{tabulate_qsheet_rows()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$tabulate_qsheet_rows()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-gen_tab_params"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-gen_tab_params}{}}}
+\subsection{Method \code{gen_tab_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$gen_tab_params()}\if{html}{\out{</div>}}
 }
 
 }
