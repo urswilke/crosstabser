@@ -53,6 +53,7 @@ Tabula <- R6::R6Class("Tabula",
     dat_mod = NULL,
     options = NULL,
     qsheet = list(),
+    tabs = tibble::tibble(),
     #' @description Initialize a Tabula object
     #'
     initialize = function(dat,
@@ -62,6 +63,7 @@ Tabula <- R6::R6Class("Tabula",
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
       read_qsheet(self)
+      gen_tab_params(self)
     },
     tabulate_qsheet_rows = function() {
       tabulate_row(self)
