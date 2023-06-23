@@ -27,6 +27,7 @@ Tabs <- R6::R6Class("Tabs",
                           ...) {
       self$p <- params
       self$d$dat_mod = dat_mod
+      self$d$raw_data = get_raw_data(self)
     }
   )
 )

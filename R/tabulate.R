@@ -47,13 +47,13 @@ new_tab_row <- function(df_row, subclass) {
   df_row
 }
 
-get_raw_data <- function(df_row, mapping) {
+get_raw_data <- function(tab) {
   UseMethod("get_raw_data")
 }
-get_raw_data.default <- function(df_row, mapping) {
-  rowvars <- df_row$RowVar[[1]]
-  colvars <- mapping$options$l_macro_scenario$ColVar
-  weightvar <- dplyr::coalesce(df_row$Weight, mapping$options$l_macro_scenario$Weight)
+get_raw_data.default <- function(tab) {
+  rowvars <- tab$p$RowVar
+  colvars <- tab$p$ColVar
+  weightvar <- tab$p$Weight
   if (is.na(weightvar)) {
     weightvar = character()
   }
@@ -70,14 +70,14 @@ get_raw_data.default <- function(df_row, mapping) {
     #   dplyr::select(!!!long_cols) |>
     #   dplyr::mutate(across(everything(), strip_attributes))
     # ... but with base R (for better performance)
-    if (length(df_row$Filter[[1]]) == 0) {
+    if (length(tab$p$Filter) == 0) {
       row_lgl <- TRUE
     } else {
-      filter_exprs <- rlang::parse_exprs(df_row$Filter[[1]])
-      row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, mapping$dat_mod))
+      filter_exprs <- rlang::parse_exprs(tab$p$Filter)
+      row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, tab$d$dat_mod))
       row_lgl <- all_true(row_lgls)
     }
-    dat <- mapping$dat_mod[row_lgl, long_cols]
+    dat <- tab$d$dat_mod[row_lgl, long_cols]
     names(dat) <- names(long_cols)
     for (col in seq_len(ncol(dat))) {
       attributes(dat[[col]]) <- NULL
