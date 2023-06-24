@@ -113,7 +113,6 @@ pivot_table_data.tab_type_mcg <- function(tab) {
     gen_total_counts(weight)
   tab$d$sum_of_valid_counts <-
     col_long_data[col_long_data$any_in_row_filled, c(cols, "n_valids_in_row")] |>
-    # dplyr::group_by(dplyr::across(-matches("^(weight|n_valids_in_row)$"))) |>
     dplyr::summarise(
       value = sum(n_valids_in_row * dplyr::coalesce(weight |> as.numeric(), 1)),
       .by = -matches("^(weight|n_valids_in_row)$")
@@ -131,10 +130,11 @@ pivot_table_data.tab_type_mcg <- function(tab) {
 }
 
 
-gen_val_table <- function(df_row, counts, row_table, mapping) {
+gen_val_table <- function(tab) {
   UseMethod("gen_val_table")
 }
-gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(df_row, counts, row_table, mapping) {
+gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(tab) {
+  row_table <- tab$d$row_table
   df_unique_rowvar_val <- row_table[!is.na(row_table$RowValue),c("RowVariable", "RowValue")] |>
     dplyr::distinct()
 
@@ -143,8 +143,9 @@ gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(df_row, cou
   #   unique()
 
   # TODO: calculate before to prevent repeated calculation for every table...:
-  col_table <- mapping$qsheet$col_table[-c(1:3),]
+  col_table <- tab$d$col_table[-c(1:3),]
   col_levels <- paste(col_table$ColVariable, col_table$ColValue)
+  counts <- tab$d$counts
   # The following is equivalent to:
   # counts |>
   #   dplyr::transmute(
@@ -162,23 +163,16 @@ gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(df_row, cou
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }
 
-gen_val_table.tab_type_mw <- gen_val_table.tab_type_mdg <- function(df_row, counts, row_table, mapping) {
+gen_val_table.tab_type_mw <- gen_val_table.tab_type_mdg <- function(tab) {
+  row_table <- tab$d$row_table
+  col_table <- tab$d$col_table[-c(1:3),]
   row_levels <- row_table$RowVariable[!is.na(row_table$RowVariable)] |>
     unique()
 
-  # TODO: calculate before to prevent repeated calculation for every table...:
-  col_table <- mapping$qsheet$col_table[-c(1:3),]
+  col_table <- tab$d$col_table[-c(1:3),]
   col_levels <- paste(col_table$ColVariable, col_table$ColValue)
-  # The following is equivalent to:
-  # counts |>
-  #   dplyr::transmute(
-  #     RowNo = factor(rowval, row_levels) |> as.numeric(),
-  #     ColNo = as.numeric(factor(paste(colvar, colval), col_levels)) + 3,
-  #     Value = value
-  #   ) |>
-  #   dplyr::arrange(RowNo, ColNo)
+  counts <- tab$d$counts
 
-  # but faster, with base R...:
   res <- counts["value"]
   res$RowNo <- factor(counts$rowvar, row_levels) |> as.numeric()
   res$ColNo <- as.numeric(factor(paste(counts$colvar, counts$colval), col_levels)) + 3

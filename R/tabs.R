@@ -6,15 +6,15 @@ gen_tab_params <- function(mapping) {
     purrr::map(\(x) x[!is.na(x)]) |>
     purrr::map(\(x) add_global_options(x, global_options))
   tabs <- params |>
-    purrr::map(\(x) new_tabs_subclass(x, mapping$dat_mod, mapping$options$l_lexikon))
+    purrr::map(\(x) new_tabs_subclass(x, mapping))
 
 
   class(tabs) <- c("crosstabser_tabs", class(tabs))
   mapping$tabs <- tabs
 }
 
-new_tabs_subclass <- function(params, dat_mod, l_lexikon) {
-  res <- Tabs$new(params, dat_mod, l_lexikon)
+new_tabs_subclass <- function(params, mapping) {
+  res <- Tabs$new(params, mapping)
   class(res) <- c(paste0("tab_type_", params$Type), class(res))
   res
 }
@@ -23,12 +23,14 @@ Tabs <- R6::R6Class("Tabs",
     p = list(),
     d = list(),
     initialize = function(params,
-                          dat_mod,
-                          l_lexikon,
+                          mapping,
                           ...) {
       self$p <- params
-      self$p$l_lexikon <- l_lexikon
-      self$d$dat_mod = dat_mod
+      self$p$l_lexikon <- mapping$options$l_lexikon
+      self$d$dat_mod  <- mapping$dat_mod
+      self$d$tab_table <- mapping$qsheet$tab_table
+      self$d$head_table <- mapping$qsheet$head_table
+      self$d$col_table <- mapping$qsheet$col_table
     },
     add_tab_data = function() {
       add_tab_data(self)
@@ -40,6 +42,7 @@ add_tab_data <- function(tab) {
   pivot_table_data(tab)
   tab$d$counts = crosstab(tab)
   tab$d$row_table <- gen_row_table(tab)
+  tab$d$val_table <- gen_val_table(tab)
 }
 add_global_options <- function(params, global_options) {
   res <- params

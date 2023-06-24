@@ -63,10 +63,10 @@ Tabula <- R6::R6Class("Tabula",
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
       read_qsheet(self)
+      gen_tab_and_col_tables(self)
       gen_tab_params(self)
     },
     add_tab_data = function() {
-      gen_tab_and_col_tables(self)
       self$tabs |> purrr::walk(\(x) x$add_tab_data())
       invisible(self)
     },

@@ -1,13 +1,5 @@
 gen_tab_table <- function(mapping) {
-  # TODO: find cleaner way (these columns are removed before):
-  df <- dplyr::tibble(a = mapping$tabs |> purrr::map("p")) |> tidyr::unnest_wider(a)
-  if (!"Fussnote" %in% names(df)) {
-    df$Fussnote <- NA_character_
-  }
-  if (!"Abbreviation" %in% names(df)) {
-    df$Abbreviation <- NA_character_
-  }
-  df |>
+  mapping$qsheet$qsheet_processed |>
     dplyr::mutate(
       Type = toupper(Type),
       Abbreviation <- ifelse(is.na(Abbreviation), "", Abbreviation),
