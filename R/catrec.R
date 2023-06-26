@@ -36,7 +36,7 @@ gen_cat_rec_funs <- function(cat_rec_interval_splits) {
   stop("Couldn't read CatRec string", cat_rec_interval_splits)
 }
 gen_cat_rec_fun <- function(cat_rec_interval_split) {
-  l <- cat_rec_interval_split |> map(gen_cat_rec_funs)
+  l <- cat_rec_interval_split |> purrr::map(gen_cat_rec_funs)
   function(x) {
     Reduce("|", lapply(l, \(f) f(x)))
   }

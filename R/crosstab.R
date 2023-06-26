@@ -1,14 +1,18 @@
-crosstab <- function(df_row, long_data, mapping) {
+crosstab <- function(tab) {
   UseMethod("crosstab")
 }
-crosstab.tab_type_cat <- function(df_row, long_data, mapping) {
-  weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, df_row$Weight)
-  stat_fun <- df_row$ZsfgMW
+crosstab.tab_type_cat <- function(tab) {
+  weight <- tab$p$Weight
+  stat_fun <- tab$p$ZsfgMW
+  if (length(stat_fun) == 0) {
+    stat_fun = NA
+  }
+  long_data <- tab$d$long_data
   total_row_data <- gen_total_counts(long_data, weight)
   total_row_data$rowvar <- paste0(long_data$rowvar[1], "_TC")
   total_row_data$rowval <- 1
-  if (!is.na(df_row$CatRec)) {
-    long_data_catrec <- gen_catrec_long_data(df_row, long_data, mapping)
+  if (!is.null(tab$p$CatRec)) {
+    long_data_catrec <- gen_catrec_long_data(tab)
     long_data <- dplyr::bind_rows(long_data, long_data_catrec)
   }
   all_counts <- gen_all_counts(long_data, weight, stat_fun)
@@ -32,18 +36,18 @@ gen_all_counts <- function(long_data, weight, stat_fun) {
     apply_sum_stat()
 }
 
-gen_catrec_long_data <- function(df_row, long_data, mapping) {
-  cat_rec_string <- df_row$CatRec
-  cat_lab_string <- df_row$CatLab
+gen_catrec_long_data <- function(tab) {
+  cat_rec_string <- tab$p$CatRec
+  cat_lab_string <- tab$p$CatLab
   cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
   cat_lab_splits <- split_cat_lab_string(cat_lab_string)
   cat_rec_quos <- lapply(cat_rec_interval_splits$interval_strings, gen_cat_rec_fun)
   cat_rec_exprs <- stringr::str_extract_all(cat_rec_string, "(?<=\\().*?(?=\\))")[[1]]
   cat_rec_vals <- stringr::str_extract(cat_rec_exprs, "(?<=\\=) *\\d+$") |> as.numeric()
 
-  invalid_vals <- dplyr::coalesce(df_row$Unguelt[[1]], mapping$options$l_macro_scenario$Unguelt)
+  invalid_vals <- tab$p$Unguelt
 
-  long_data_catrec <- long_data[!long_data$rowval %in% invalid_vals,]
+  long_data_catrec <- tab$d$long_data[!tab$d$long_data$rowval %in% invalid_vals,]
   # TODO: find cleander solution where `vec` doesn't need to be calculated in advance!
   vec <- long_data_catrec$rowval
   l_cat_rec <- purrr::map2(
@@ -67,30 +71,31 @@ gen_catrec_long_data <- function(df_row, long_data, mapping) {
   long_data_catrec
 }
 
-crosstab.tab_type_mw <- function(df_row, long_data, mapping) {
-  weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, df_row$Weight)
-  stat_fun <- dplyr::coalesce(df_row$ZsfgMW, "mean")
-  invalid_vals <- df_row$Unguelt[[1]]
-  if (is.na(invalid_vals[1])) {
-    invalid_vals <- mapping$options$l_macro_scenario$Unguelt
-  }
+crosstab.tab_type_mw <- function(tab) {
+  weight <- tab$p$Weight
+  stat_fun <- tab$p$ZsfgMW
+  invalid_vals <- tab$p$Unguelt
 
-  long_data[!long_data$rowval %in% invalid_vals,] |>
+  tab$d$long_data[!tab$d$long_data$rowval %in% invalid_vals,] |>
     dplyr::group_by(dplyr::across(-matches("weight|rowval"))) |>
     new_sum_stat(weight, stat_fun) |>
     apply_sum_stat()
 }
-crosstab.tab_type_mcg <- function(df_row, long_data, mapping) {
+crosstab.tab_type_mcg <- function(tab) {
   #TODO...:
-  weight <- dplyr::coalesce(mapping$options$l_macro_scenario$Weight, df_row$Weight)
-  stat_fun <- df_row$ZsfgMW
-  filled_data <- long_data[long_data$any_in_row_filled, stringr::str_subset(names(long_data), "any_", negate = TRUE)]
-  total_row_data <- gen_total_counts(filled_data, weight)
+  weight <- tab$p$Weight
+  stat_fun <- tab$p$ZsfgMW
+  long_data <- tab$d$long_data
+  sum_of_valid_row_data <- tab$d$sum_of_valid_counts
+  sum_of_valid_row_data$rowvar <- paste0(long_data$rowvar[1], "_VC")
+  sum_of_valid_row_data$rowval <- 1
+  total_row_data <- tab$d$total_row_counts
   total_row_data$rowvar <- paste0(long_data$rowvar[1], "_TC")
   total_row_data$rowval <- 1
   all_counts <- gen_all_counts(long_data, weight, stat_fun)
   rbind(
     total_row_data,
+    sum_of_valid_row_data,
     all_counts
   )
 }

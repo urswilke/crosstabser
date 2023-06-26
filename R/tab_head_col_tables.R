@@ -1,13 +1,12 @@
-gen_tab_table <- function(tabs) {
-  # TODO: don't nest rows before to prevent unnesting here:
-  tabs <- tabs["object"] |> tidyr::unnest(object)
-  tabs |>
+gen_tab_table <- function(mapping) {
+  mapping$qsheet$qsheet_processed |>
     dplyr::mutate(
       Type = toupper(Type),
-      Abbreviation <- ifelse(is.na(Abbreviation), "", Abbreviation)
+      Abbreviation <- ifelse(is.na(Abbreviation), "", Abbreviation),
+      TabNo = dplyr::row_number(),
     ) |>
     dplyr::mutate(
-      TabNo = dplyr::row_number(),
+      TabNo = TabNo,
       TabName = paste0(Type, "#", Abbreviation, "@", dplyr::row_number()),
       TabType = Type,
       QuestNo = row,
