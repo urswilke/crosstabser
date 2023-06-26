@@ -53,7 +53,7 @@ Tabula <- R6::R6Class("Tabula",
     dat_mod = NULL,
     options = NULL,
     qsheet = list(),
-    tabs = tibble::tibble(),
+    qtabs = tibble::tibble(),
     #' @description Initialize a Tabula object
     #'
     initialize = function(dat,
@@ -67,7 +67,7 @@ Tabula <- R6::R6Class("Tabula",
       gen_tab_params(self)
     },
     add_tab_data = function() {
-      self$tabs |> purrr::walk(\(x) x$add_tab_data())
+      self$qtabs |> purrr::walk(\(x) x$add_tab_data())
       invisible(self)
     },
     write_xmls = function() {

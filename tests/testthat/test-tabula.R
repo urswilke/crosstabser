@@ -4,7 +4,7 @@ mapping_file <- "K:/Projects/UW git/crosstabser/tests/testthat/excel/mapping.xls
 mapping_file <- "excel/mapping.xlsx"
 tt <- Tabula$new(spss_file, mapping_file)$add_tab_data()
 
-df_crosstab_cat <- tt$tabs[[1]]$d$counts |>
+df_crosstab_cat <- tt$qtabs[[1]]$d$counts |>
   dplyr::arrange(colvar, colval) |>
   tidyr::pivot_wider(
     names_from = c(colvar, colval),

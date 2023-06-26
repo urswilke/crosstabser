@@ -5,13 +5,13 @@ gen_tab_and_col_tables <- function(mapping) {
   mapping$qsheet$col_table <- gen_col_table(mapping)
 }
 
-get_raw_data <- function(tab) {
+get_raw_data <- function(qtab) {
   UseMethod("get_raw_data")
 }
-get_raw_data.default <- function(tab) {
-  rowvars <- tab$p$RowVar
-  colvars <- tab$p$ColVar
-  weightvar <- tab$p$Weight
+get_raw_data.default <- function(qtab) {
+  rowvars <- qtab$p$RowVar
+  colvars <- qtab$p$ColVar
+  weightvar <- qtab$p$Weight
   if (is.na(weightvar)) {
     weightvar = character()
   }
@@ -28,14 +28,14 @@ get_raw_data.default <- function(tab) {
     #   dplyr::select(!!!long_cols) |>
     #   dplyr::mutate(across(everything(), strip_attributes))
     # ... but with base R (for better performance)
-    if (length(tab$p$Filter) == 0) {
+    if (length(qtab$p$Filter) == 0) {
       row_lgl <- TRUE
     } else {
-      filter_exprs <- rlang::parse_exprs(tab$p$Filter)
-      row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, tab$d$dat_mod))
+      filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
+      row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$d$dat_mod))
       row_lgl <- all_true(row_lgls)
     }
-    dat <- tab$d$dat_mod[row_lgl, long_cols]
+    dat <- qtab$d$dat_mod[row_lgl, long_cols]
     names(dat) <- names(long_cols)
     for (col in seq_len(ncol(dat))) {
       attributes(dat[[col]]) <- NULL
@@ -44,15 +44,15 @@ get_raw_data.default <- function(tab) {
   }
   prep_data()
 }
-pivot_table_data <- function(tab) {
+pivot_table_data <- function(qtab) {
   UseMethod("pivot_table_data")
 }
-pivot_table_data.tab_type_cat <- function(tab) {
+pivot_table_data.qtab_type_cat <- function(qtab) {
   # for TOTAL column:
-  df <- tab$d$raw_data
+  df <- qtab$d$raw_data
   df$"colvar_DC#STICHPROBE" <- 1
 
-  tab$d$long_data <- df |>
+  qtab$d$long_data <- df |>
     pivot_rows() |>
     pivot_cols()
 }
@@ -74,20 +74,20 @@ pivot_rows <- function(df) {
       values_to = "rowval"
     )
 }
-pivot_table_data.tab_type_mw <- pivot_table_data.tab_type_cat
-pivot_table_data.tab_type_mdg <- function(tab) {
-  df_long <- pivot_table_data.tab_type_cat(tab)
-  mdg_val <- tab$p$MdgVal |> as.numeric()
+pivot_table_data.qtab_type_mw <- pivot_table_data.qtab_type_cat
+pivot_table_data.qtab_type_mdg <- function(qtab) {
+  df_long <- pivot_table_data.qtab_type_cat(qtab)
+  mdg_val <- qtab$p$MdgVal |> as.numeric()
   if (length(mdg_val) == 0) {
     mdg_val <- 1
   }
-  tab$d$long_data <- df_long[df_long$rowval == mdg_val,]
+  qtab$d$long_data <- df_long[df_long$rowval == mdg_val,]
 }
-pivot_table_data.tab_type_mcg <- function(tab) {
+pivot_table_data.qtab_type_mcg <- function(qtab) {
   #TODO: calculate before!...:
-  invalid_vals <- tab$p$Unguelt
+  invalid_vals <- qtab$p$Unguelt
   # for TOTAL column:
-  df <- tab$d$raw_data
+  df <- qtab$d$raw_data
   df$"colvar_DC#STICHPROBE" <- 1
 
   row_var_data <- df[stringr::str_subset(names(df), "^rowvar_")]
@@ -105,13 +105,13 @@ pivot_table_data.tab_type_mcg <- function(tab) {
 
   # this already does counting, but on the data where only the colvar are
   # pivoted to long. Thus it's done here:
-  weight <- tab$p$Weight
+  weight <- qtab$p$Weight
 
   cols <- stringr::str_subset(names(col_long_data), "^(colva[rl]|weight)$")
-  tab$d$total_row_counts <-
+  qtab$d$total_row_counts <-
     col_long_data[col_long_data$any_in_row_filled, cols] |>
     gen_total_counts(weight)
-  tab$d$sum_of_valid_counts <-
+  qtab$d$sum_of_valid_counts <-
     col_long_data[col_long_data$any_in_row_filled, c(cols, "n_valids_in_row")] |>
     dplyr::summarise(
       value = sum(n_valids_in_row * dplyr::coalesce(weight |> as.numeric(), 1)),
@@ -126,15 +126,15 @@ pivot_table_data.tab_type_mcg <- function(tab) {
   df_long <- col_long_data[cols] |> pivot_rows()
   rowvars <- unique(df_long$rowvar) |> paste(collapse = ", ")
   df_long$rowvar <- rowvars
-  tab$d$long_data <- df_long
+  qtab$d$long_data <- df_long
 }
 
 
-gen_val_table <- function(tab) {
+gen_val_table <- function(qtab) {
   UseMethod("gen_val_table")
 }
-gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(tab) {
-  row_table <- tab$d$row_table
+gen_val_table.qtab_type_cat <- gen_val_table.qtab_type_mcg <- function(qtab) {
+  row_table <- qtab$d$row_table
   df_unique_rowvar_val <- row_table[!is.na(row_table$RowValue),c("RowVariable", "RowValue")] |>
     dplyr::distinct()
 
@@ -143,9 +143,9 @@ gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(tab) {
   #   unique()
 
   # TODO: calculate before to prevent repeated calculation for every table...:
-  col_table <- tab$d$col_table[-c(1:3),]
+  col_table <- qtab$d$col_table[-c(1:3),]
   col_levels <- paste(col_table$ColVariable, col_table$ColValue)
-  counts <- tab$d$counts
+  counts <- qtab$d$counts
   # The following is equivalent to:
   # counts |>
   #   dplyr::transmute(
@@ -163,15 +163,15 @@ gen_val_table.tab_type_cat <- gen_val_table.tab_type_mcg <- function(tab) {
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }
 
-gen_val_table.tab_type_mw <- gen_val_table.tab_type_mdg <- function(tab) {
-  row_table <- tab$d$row_table
-  col_table <- tab$d$col_table[-c(1:3),]
+gen_val_table.qtab_type_mw <- gen_val_table.qtab_type_mdg <- function(qtab) {
+  row_table <- qtab$d$row_table
+  col_table <- qtab$d$col_table[-c(1:3),]
   row_levels <- row_table$RowVariable[!is.na(row_table$RowVariable)] |>
     unique()
 
-  col_table <- tab$d$col_table[-c(1:3),]
+  col_table <- qtab$d$col_table[-c(1:3),]
   col_levels <- paste(col_table$ColVariable, col_table$ColValue)
-  counts <- tab$d$counts
+  counts <- qtab$d$counts
 
   res <- counts["value"]
   res$RowNo <- factor(counts$rowvar, row_levels) |> as.numeric()

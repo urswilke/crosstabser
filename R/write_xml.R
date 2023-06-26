@@ -4,7 +4,7 @@ write_xml_tables <- function(mapping) {
     mapping$qsheet$tab_table$row
   )
   l_row_tabs <- qsheet_row_idx |>
-    lapply(\(row) lapply(row, \(i_tab) mapping$tabs[[i_tab]] |> gen_5_tables()))
+    lapply(\(row) lapply(row, \(i_tab) mapping$qtabs[[i_tab]] |> gen_5_tables()))
 
   file_names <- paste0("dev/xml/tab", stringr::str_pad(names(qsheet_row_idx), 4, pad = "0"), ".xml")
   purrr::map2(
@@ -14,13 +14,13 @@ write_xml_tables <- function(mapping) {
   )
 }
 
-gen_5_tables <- function(tab) {
+gen_5_tables <- function(qtab) {
   tabs_ex <- list(
-    Row = tab$d$row_table,
-    Tab = tab$d$tab_table,
-    Head = tab$d$head_table,
-    Col = tab$d$col_table,
-    Val = tab$d$val_table
+    Row = qtab$d$row_table,
+    Tab = qtab$d$tab_table,
+    Head = qtab$d$head_table,
+    Col = qtab$d$col_table,
+    Val = qtab$d$val_table
   )
 
 }
