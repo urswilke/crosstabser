@@ -62,9 +62,7 @@ Tabula <- R6::R6Class("Tabula",
       self$mapping_file <- mapping_file
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
-      read_qsheet(self)
-      gen_tab_and_col_tables(self)
-      init_qtabs(self)
+      process_excel(self)
     },
     calc_qtabs = function() {
       self$qtabs |> purrr::walk(\(x) x$calc_qtab())
@@ -76,6 +74,14 @@ Tabula <- R6::R6Class("Tabula",
     }
   )
 )
+
+process_excel <- function(self) {
+  read_qsheet(self)
+  gen_tab_and_col_tables(self)
+  init_qtabs(self)
+
+}
+
 read_data <- function(dat) {
   UseMethod("read_data")
 }
