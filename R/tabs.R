@@ -32,12 +32,12 @@ Qtab <- R6::R6Class("Qtab",
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
     },
-    add_tab_data = function() {
-      add_tab_data(self)
+    add_qtab_data = function() {
+      add_qtab_data(self)
     }
   )
 )
-add_tab_data <- function(qtab) {
+add_qtab_data <- function(qtab) {
   qtab$d$raw_data = get_raw_data(qtab)
   pivot_table_data(qtab)
   qtab$d$counts = crosstab(qtab)

@@ -79,7 +79,7 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
-\item \href{#method-Tabula-add_tab_data}{\code{Tabula$add_tab_data()}}
+\item \href{#method-Tabula-add_qtab_data}{\code{Tabula$add_qtab_data()}}
 \item \href{#method-Tabula-write_xmls}{\code{Tabula$write_xmls()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
@@ -95,11 +95,11 @@ Initialize a Tabula object
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-add_tab_data"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-add_tab_data}{}}}
-\subsection{Method \code{add_tab_data()}}{
+\if{html}{\out{<a id="method-Tabula-add_qtab_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-add_qtab_data}{}}}
+\subsection{Method \code{add_qtab_data()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$add_tab_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$add_qtab_data()}\if{html}{\out{</div>}}
 }
 
 }

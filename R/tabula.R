@@ -66,8 +66,8 @@ Tabula <- R6::R6Class("Tabula",
       gen_tab_and_col_tables(self)
       gen_tab_params(self)
     },
-    add_tab_data = function() {
-      self$qtabs |> purrr::walk(\(x) x$add_tab_data())
+    add_qtab_data = function() {
+      self$qtabs |> purrr::walk(\(x) x$add_qtab_data())
       invisible(self)
     },
     write_xmls = function() {
