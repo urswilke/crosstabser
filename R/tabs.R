@@ -1,4 +1,4 @@
-gen_tab_params <- function(mapping) {
+init_qtabs <- function(mapping) {
   global_options <- mapping$options$l_macro_scenario
 
   params <- mapping$qsheet$qsheet_processed |>
@@ -32,12 +32,12 @@ Qtab <- R6::R6Class("Qtab",
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
     },
-    add_qtab_data = function() {
-      add_qtab_data(self)
+    calc_qtab = function() {
+      calc_qtab(self)
     }
   )
 )
-add_qtab_data <- function(qtab) {
+calc_qtab <- function(qtab) {
   qtab$d$raw_data = get_raw_data(qtab)
   pivot_table_data(qtab)
   qtab$d$counts = crosstab(qtab)

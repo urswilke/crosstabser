@@ -64,10 +64,10 @@ Tabula <- R6::R6Class("Tabula",
       self$options <- setOptions(mapping_file)
       read_qsheet(self)
       gen_tab_and_col_tables(self)
-      gen_tab_params(self)
+      init_qtabs(self)
     },
-    add_qtab_data = function() {
-      self$qtabs |> purrr::walk(\(x) x$add_qtab_data())
+    calc_qtabs = function() {
+      self$qtabs |> purrr::walk(\(x) x$calc_qtab())
       invisible(self)
     },
     write_xmls = function() {
