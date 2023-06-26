@@ -54,6 +54,7 @@ Tabula <- R6::R6Class("Tabula",
     options = NULL,
     qsheet = list(),
     qtabs = list(),
+    qrows = list(),
     #' @description Initialize a Tabula object
     #'
     initialize = function(dat,
@@ -63,13 +64,26 @@ Tabula <- R6::R6Class("Tabula",
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
       process_excel(self)
+      init_qrows(self)
     },
     calc_qtabs = function() {
       self$qtabs |> purrr::walk(\(x) x$calc_qtab())
       invisible(self)
     },
+    qtabs_to_qrows = function() {
+      # probably won't work, if the qtab table indices change in question sheet...:
+      # TODO: similar to:
+      # process_excel(self)
+      # but with updating...
+      self$qrows$qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
+      invisible(self)
+    },
     write_xmls = function() {
       write_xml_tables(self)
+      invisible(self)
+    },
+    write_xmls_from_qrows = function() {
+      write_xml_tables_from_qrows(self)
       invisible(self)
     }
   )
