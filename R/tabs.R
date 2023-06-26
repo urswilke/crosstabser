@@ -44,16 +44,6 @@ calc_qtab <- function(qtab) {
   qtab$d$row_table <- gen_row_table(qtab)
   qtab$d$val_table <- gen_val_table(qtab)
 }
-add_global_options <- function(params, global_options) {
-  res <- params
-  res$Filter <- append(res$Filter, global_options$Filter[!is.na(global_options$Filter)])
-  res$Weight <- dplyr::coalesce(res$Weight, global_options$Weight)
-  if (length(res$Unguelt) == 0) {
-    res$Unguelt <- global_options$Unguelt
-  }
-  res$ColVar <- global_options$ColVar
-  res
-}
 
 #' @export
 print.crosstabser_tabs <- function(x,
