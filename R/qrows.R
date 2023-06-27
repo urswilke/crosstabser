@@ -3,11 +3,12 @@ init_qrows <- function(mapping) {
     dplyr::select(-dplyr::matches("^Col[A-Z]$")) |>
     tidyr::nest(p = c(Unguelt:Exclusive))
 
-  qrows$qsheet_row_idx <- split(
-    mapping$qsheet$tab_table$TabNo,
-    mapping$qsheet$tab_table$row
-  )
-  qrows$qtabs <- purrr::map(qrows$qsheet_row_idx, \(x) mapping$qtabs[x] |> new_qrows(mapping))
+  qsheet_processed <- mapping$qsheet$qsheet_processed
+  qrows$qrow_processed <- qsheet_processed |> split(qsheet_processed$row)
+
+  l_qtabs <- purrr::map(qrows$qrow_processed, \(x) new_qtabs(x, mapping))
+  qrows$qtabs <- lapply(l_qtabs, \(x) new_qrows(x, mapping))
+
   mapping$qrows <- qrows
 }
 
@@ -26,6 +27,7 @@ Qrow <- R6::R6Class("Qrow",
                       },
                       calc_qrow_qtabs = function() {
                         calc_qrow_qtabs(self)
+                        invisible(self)
                       },
                       write_xml = function() {
 

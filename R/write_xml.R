@@ -1,24 +1,7 @@
-write_xml_tables <- function(mapping) {
-  qsheet_row_idx <- split(
-    mapping$qsheet$tab_table$TabNo,
-    mapping$qsheet$tab_table$row
-  )
-  l_row_tabs <- qsheet_row_idx |>
-    lapply(\(row) lapply(row, \(i_tab) mapping$qtabs[[i_tab]] |> gen_5_tables()))
-
-  file_names <- paste0("dev/xml/tab", stringr::str_pad(names(qsheet_row_idx), 4, pad = "0"), ".xml")
-  purrr::map2(
-    l_row_tabs,
-    file_names,
-    \(l_row, filename) write_xml_file(l_row, filename)
-  )
-}
-# TODO: use the same functionality as write_xml_tables():
 write_xml_tables_from_qrows <- function(mapping) {
-  l_row_tabs <- mapping$qrows$qsheet_row_idx |>
-    lapply(\(row) lapply(row, \(i_tab) mapping$qtabs[[i_tab]] |> gen_5_tables()))
+  l_row_tabs <- mapping$qrows$qtabs |> purrr::map("qtabs") |> purrr::map(\(x) purrr::map(x, gen_5_tables))
 
-  file_names <- paste0("dev/xml/tab", stringr::str_pad(names(mapping$qrows$qsheet_row_idx), 4, pad = "0"), ".xml")
+  file_names <- paste0("dev/xml/tab", stringr::str_pad(mapping$qrows$row, 4, pad = "0"), ".xml")
   purrr::map2(
     l_row_tabs,
     file_names,

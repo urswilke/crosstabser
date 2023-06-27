@@ -64,24 +64,17 @@ Tabula <- R6::R6Class("Tabula",
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
       process_excel(self)
-      init_qtabs(self)
       init_qrows(self)
     },
-    calc_qtabs = function() {
-      self$qtabs |> purrr::walk(\(x) x$calc_qtab())
-      invisible(self)
-    },
-    qtabs_to_qrows = function() {
-      # probably won't work, if the qtab table indices change in question sheet...:
-      # TODO: similar to:
-      # process_excel(self)
-      # but with updating...
-      # also update tab_table...
-      self$qrows$qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
-      invisible(self)
-    },
-    write_xmls = function() {
-      write_xml_tables(self)
+    calc_qtabs = function(row = NULL) {
+      process_excel(self)
+      # filter row indices specified, otherwise all:
+      if (is.null(row)) {
+        row <- self$qrows$row
+      }
+      qtabs <- self$qrows[self$qrows$row %in% row,]$qtabs
+
+      qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
       invisible(self)
     },
     write_xmls_from_qrows = function() {
