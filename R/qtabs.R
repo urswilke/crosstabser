@@ -6,14 +6,14 @@ init_qtabs <- function(mapping) {
     purrr::map(\(x) x[!is.na(x)]) |>
     purrr::map(\(x) add_global_options(x, global_options))
   qtabs <- params |>
-    purrr::map(\(x) new_qtabs(x, mapping))
+    purrr::map(\(x) new_qtab(x, mapping))
 
 
   class(qtabs) <- c("crosstabser_tabs", class(qtabs))
   mapping$qtabs <- qtabs
 }
 
-new_qtabs <- function(params, mapping) {
+new_qtab <- function(params, mapping) {
   res <- Qtab$new(params, mapping)
   class(res) <- c(paste0("qtab_type_", params$Type), class(res))
   res
