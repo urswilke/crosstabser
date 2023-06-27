@@ -7,7 +7,7 @@ write_xml_tables_from_qrows <- function(row = NULL, mapping) {
 
   l_row_tabs <- qrows$qtabs |> purrr::map("qtabs") |> purrr::map(\(x) purrr::map(x, gen_5_tables))
 
-  file_names <- paste0("dev/xml/tab", stringr::str_pad(qrows$row, 4, pad = "0"), ".xml")
+  file_names <- paste0(mapping$options$V_XMLName, stringr::str_pad(qrows$row, 4, pad = "0"), ".xml")
   purrr::walk2(
     l_row_tabs,
     file_names,
