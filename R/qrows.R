@@ -1,13 +1,13 @@
 init_qrows <- function(mapping) {
   qrows <- mapping$qsheet$qsheet_raw |>
-    select(-matches("^Col[A-Z]$")) |>
-    nest(p = c(Unguelt:Exclusive))
+    dplyr::select(-dplyr::matches("^Col[A-Z]$")) |>
+    tidyr::nest(p = c(Unguelt:Exclusive))
 
   qrows$qsheet_row_idx <- split(
     mapping$qsheet$tab_table$TabNo,
     mapping$qsheet$tab_table$row
   )
-  qrows$qtabs <- map(qrows$qsheet_row_idx, \(x) mapping$qtabs[x] |> new_qrows(mapping))
+  qrows$qtabs <- purrr::map(qrows$qsheet_row_idx, \(x) mapping$qtabs[x] |> new_qrows(mapping))
   mapping$qrows <- qrows
 }
 
