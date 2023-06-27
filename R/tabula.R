@@ -64,6 +64,7 @@ Tabula <- R6::R6Class("Tabula",
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
       process_excel(self)
+      init_qtabs(self)
       init_qrows(self)
     },
     calc_qtabs = function() {
@@ -93,8 +94,6 @@ Tabula <- R6::R6Class("Tabula",
 process_excel <- function(self) {
   read_qsheet(self)
   gen_tab_and_col_tables(self)
-  init_qtabs(self)
-
 }
 
 read_data <- function(dat) {
