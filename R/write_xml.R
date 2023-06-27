@@ -37,28 +37,6 @@ gen_5_tables <- function(qtab) {
 
 }
 
-write_xml_table <- function(el_5_tabs, filename) {
-  doc <- xml2::xml_new_root("Root")
-  xml2::xml_add_child(doc, "Table")
-  all_xml <- xml2::xml_find_all(doc, "//Table")
-
-  for (i in 1:length(el_5_tabs)) {
-    tab_name <- names(el_5_tabs)[i]
-    xml2::xml_add_child(all_xml, tab_name)
-    el_xml <- xml2::xml_find_all(doc, paste0("//", tab_name))
-    seq_len(nrow(el_5_tabs[[i]])) |> purrr::walk(\(x) xml2::xml_add_child(el_xml, "Line"))
-    line_xml <- xml2::xml_find_all(doc, paste0("//", tab_name, "/Line"))
-
-    for(i_tab_el in names(el_5_tabs[[i]])) {
-      col_vec <- el_5_tabs[[i]][[i_tab_el]]
-      na_cells <- is.na(col_vec)
-      xml2::xml_add_child(line_xml[na_cells], i_tab_el)
-      xml2::xml_add_child(line_xml[!na_cells], i_tab_el, col_vec[!na_cells])
-    }
-  }
-  xml2::write_xml(doc, filename)
-}
-
 write_xml_file <- function(l_row, filename) {
   names(l_row) <- rep("Table", length(l_row))
   l_xml <- table_as_xml_list(l_row)
