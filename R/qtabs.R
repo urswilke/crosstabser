@@ -1,6 +1,9 @@
 init_qtabs <- function(mapping) {
-  global_options <- mapping$options$l_macro_scenario
+  mapping$qtabs <- new_qtabs(mapping$qsheet$qsheet_processed, mapping)
+}
 
+new_qtabs <- function(qsheet_processed, mapping) {
+  global_options <- mapping$options$l_macro_scenario
   params <- mapping$qsheet$qsheet_processed |>
     purrr::transpose() |>
     purrr::map(\(x) x[!is.na(x)]) |>
@@ -10,7 +13,8 @@ init_qtabs <- function(mapping) {
 
 
   class(qtabs) <- c("crosstabser_tabs", class(qtabs))
-  mapping$qtabs <- qtabs
+  qtabs
+
 }
 
 new_qtab <- function(params, mapping) {
