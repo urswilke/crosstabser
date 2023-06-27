@@ -77,8 +77,9 @@ Tabula <- R6::R6Class("Tabula",
       qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
       invisible(self)
     },
-    write_xmls_from_qrows = function() {
-      write_xml_tables_from_qrows(self)
+    xml = function(row = NULL) {
+      self$calc_qtabs(row)
+      write_xml_tables_from_qrows(row, self)
       invisible(self)
     }
   )
