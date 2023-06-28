@@ -82,7 +82,6 @@ crosstab.qtab_type_mw <- function(qtab) {
     apply_sum_stat()
 }
 crosstab.qtab_type_mcg <- function(qtab) {
-  #TODO...:
   weight <- qtab$p$Weight
   stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data

@@ -302,9 +302,6 @@ row_table_invalid_vals <- function(qtab) {
 row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- function(qtab) {
   occuring_vals <- qtab$d$dat_mod[qtab$p$RowVar] |> unlist(use.names = FALSE) |> unique()
   invalid_vals <- qtab$p$Unguelt
-  if (is.na(invalid_vals[1])) {
-    invalid_vals <- mapping$options$l_macro_scenario$Unguelt
-  }
   if (all(!occuring_vals %in% invalid_vals)) {
     return(NULL)
   }

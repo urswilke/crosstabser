@@ -37,6 +37,8 @@ get_raw_data.default <- function(qtab) {
     }
     dat <- qtab$d$dat_mod[row_lgl, long_cols]
     names(dat) <- names(long_cols)
+
+    # remove label information:
     for (col in seq_len(ncol(dat))) {
       attributes(dat[[col]]) <- NULL
     }
@@ -47,7 +49,7 @@ get_raw_data.default <- function(qtab) {
 pivot_table_data <- function(qtab) {
   UseMethod("pivot_table_data")
 }
-pivot_table_data.qtab_type_cat <- function(qtab) {
+pivot_table_data.qtab_type_mw <- pivot_table_data.qtab_type_cat <- function(qtab) {
   # for TOTAL column:
   df <- qtab$d$raw_data
   df$"colvar_DC#STICHPROBE" <- 1
@@ -74,7 +76,6 @@ pivot_rows <- function(df) {
       values_to = "rowval"
     )
 }
-pivot_table_data.qtab_type_mw <- pivot_table_data.qtab_type_cat
 pivot_table_data.qtab_type_mdg <- function(qtab) {
   df_long <- pivot_table_data.qtab_type_cat(qtab)
   mdg_val <- qtab$p$MdgVal |> as.numeric()
@@ -84,7 +85,6 @@ pivot_table_data.qtab_type_mdg <- function(qtab) {
   qtab$d$long_data <- df_long[df_long$rowval == mdg_val,]
 }
 pivot_table_data.qtab_type_mcg <- function(qtab) {
-  #TODO: calculate before!...:
   invalid_vals <- qtab$p$Unguelt
   # for TOTAL column:
   df <- qtab$d$raw_data

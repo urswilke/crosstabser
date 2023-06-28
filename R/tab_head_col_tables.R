@@ -2,7 +2,7 @@ gen_tab_table <- function(mapping) {
   mapping$qsheet$qsheet_processed |>
     dplyr::mutate(
       Type = toupper(Type),
-      Abbreviation <- ifelse(is.na(Abbreviation), "", Abbreviation),
+      Abbreviation = ifelse(is.na(Abbreviation), "", Abbreviation),
       TabNo = dplyr::row_number(),
     ) |>
     dplyr::mutate(
