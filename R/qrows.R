@@ -28,9 +28,6 @@ Qrow <- R6::R6Class("Qrow",
                       calc_qrow_qtabs = function() {
                         calc_qrow_qtabs(self)
                         invisible(self)
-                      },
-                      write_xml = function() {
-
                       }
                     )
 )
