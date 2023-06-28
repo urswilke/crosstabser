@@ -1,18 +1,18 @@
-crosstab <- function(tab) {
+crosstab <- function(qtab) {
   UseMethod("crosstab")
 }
-crosstab.tab_type_cat <- function(tab) {
-  weight <- tab$p$Weight
-  stat_fun <- tab$p$ZsfgMW
+crosstab.qtab_type_cat <- function(qtab) {
+  weight <- qtab$p$Weight
+  stat_fun <- qtab$p$ZsfgMW
   if (length(stat_fun) == 0) {
     stat_fun = NA
   }
-  long_data <- tab$d$long_data
+  long_data <- qtab$d$long_data
   total_row_data <- gen_total_counts(long_data, weight)
   total_row_data$rowvar <- paste0(long_data$rowvar[1], "_TC")
   total_row_data$rowval <- 1
-  if (!is.null(tab$p$CatRec)) {
-    long_data_catrec <- gen_catrec_long_data(tab)
+  if (!is.null(qtab$p$CatRec)) {
+    long_data_catrec <- gen_catrec_long_data(qtab)
     long_data <- dplyr::bind_rows(long_data, long_data_catrec)
   }
   all_counts <- gen_all_counts(long_data, weight, stat_fun)
@@ -36,18 +36,18 @@ gen_all_counts <- function(long_data, weight, stat_fun) {
     apply_sum_stat()
 }
 
-gen_catrec_long_data <- function(tab) {
-  cat_rec_string <- tab$p$CatRec
-  cat_lab_string <- tab$p$CatLab
+gen_catrec_long_data <- function(qtab) {
+  cat_rec_string <- qtab$p$CatRec
+  cat_lab_string <- qtab$p$CatLab
   cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
   cat_lab_splits <- split_cat_lab_string(cat_lab_string)
   cat_rec_quos <- lapply(cat_rec_interval_splits$interval_strings, gen_cat_rec_fun)
   cat_rec_exprs <- stringr::str_extract_all(cat_rec_string, "(?<=\\().*?(?=\\))")[[1]]
   cat_rec_vals <- stringr::str_extract(cat_rec_exprs, "(?<=\\=) *\\d+$") |> as.numeric()
 
-  invalid_vals <- tab$p$Unguelt
+  invalid_vals <- qtab$p$Unguelt
 
-  long_data_catrec <- tab$d$long_data[!tab$d$long_data$rowval %in% invalid_vals,]
+  long_data_catrec <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
   # TODO: find cleander solution where `vec` doesn't need to be calculated in advance!
   vec <- long_data_catrec$rowval
   l_cat_rec <- purrr::map2(
@@ -71,25 +71,25 @@ gen_catrec_long_data <- function(tab) {
   long_data_catrec
 }
 
-crosstab.tab_type_mw <- function(tab) {
-  weight <- tab$p$Weight
-  stat_fun <- tab$p$ZsfgMW
-  invalid_vals <- tab$p$Unguelt
+crosstab.qtab_type_mw <- function(qtab) {
+  weight <- qtab$p$Weight
+  stat_fun <- qtab$p$ZsfgMW
+  invalid_vals <- qtab$p$Unguelt
 
-  tab$d$long_data[!tab$d$long_data$rowval %in% invalid_vals,] |>
+  qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
     dplyr::group_by(dplyr::across(-matches("weight|rowval"))) |>
     new_sum_stat(weight, stat_fun) |>
     apply_sum_stat()
 }
-crosstab.tab_type_mcg <- function(tab) {
+crosstab.qtab_type_mcg <- function(qtab) {
   #TODO...:
-  weight <- tab$p$Weight
-  stat_fun <- tab$p$ZsfgMW
-  long_data <- tab$d$long_data
-  sum_of_valid_row_data <- tab$d$sum_of_valid_counts
+  weight <- qtab$p$Weight
+  stat_fun <- qtab$p$ZsfgMW
+  long_data <- qtab$d$long_data
+  sum_of_valid_row_data <- qtab$d$sum_of_valid_counts
   sum_of_valid_row_data$rowvar <- paste0(long_data$rowvar[1], "_VC")
   sum_of_valid_row_data$rowval <- 1
-  total_row_data <- tab$d$total_row_counts
+  total_row_data <- qtab$d$total_row_counts
   total_row_data$rowvar <- paste0(long_data$rowvar[1], "_TC")
   total_row_data$rowval <- 1
   all_counts <- gen_all_counts(long_data, weight, stat_fun)
@@ -99,7 +99,7 @@ crosstab.tab_type_mcg <- function(tab) {
     all_counts
   )
 }
-crosstab.tab_type_mdg <- crosstab.tab_type_cat
+crosstab.qtab_type_mdg <- crosstab.qtab_type_cat
 
 
 # hack to do double dispatch on is.na(weight) & stat_fun:

@@ -79,8 +79,7 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
-\item \href{#method-Tabula-tabulate_qsheet_rows}{\code{Tabula$tabulate_qsheet_rows()}}
-\item \href{#method-Tabula-gen_tab_params}{\code{Tabula$gen_tab_params()}}
+\item \href{#method-Tabula-add_qtab_data}{\code{Tabula$add_qtab_data()}}
 \item \href{#method-Tabula-write_xmls}{\code{Tabula$write_xmls()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
@@ -96,20 +95,11 @@ Initialize a Tabula object
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-tabulate_qsheet_rows"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-tabulate_qsheet_rows}{}}}
-\subsection{Method \code{tabulate_qsheet_rows()}}{
+\if{html}{\out{<a id="method-Tabula-add_qtab_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-add_qtab_data}{}}}
+\subsection{Method \code{add_qtab_data()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$tabulate_qsheet_rows()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-gen_tab_params"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-gen_tab_params}{}}}
-\subsection{Method \code{gen_tab_params()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$gen_tab_params()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$add_qtab_data()}\if{html}{\out{</div>}}
 }
 
 }
