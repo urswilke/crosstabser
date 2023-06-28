@@ -53,7 +53,8 @@ Tabula <- R6::R6Class("Tabula",
     dat_mod = NULL,
     options = NULL,
     qsheet = list(),
-    tabs = tibble::tibble(),
+    qtabs = list(),
+    qrows = list(),
     #' @description Initialize a Tabula object
     #'
     initialize = function(dat,
@@ -62,20 +63,33 @@ Tabula <- R6::R6Class("Tabula",
       self$mapping_file <- mapping_file
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
-      read_qsheet(self)
-      gen_tab_and_col_tables(self)
-      gen_tab_params(self)
+      process_excel(self)
+      init_qrows(self)
     },
-    add_tab_data = function() {
-      self$tabs |> purrr::walk(\(x) x$add_tab_data())
+    calc_qtabs = function(row = NULL) {
+      process_excel(self)
+      # filter row indices specified, otherwise all:
+      if (is.null(row)) {
+        row <- self$qrows$row
+      }
+      qtabs <- self$qrows[self$qrows$row %in% row,]$qtabs
+
+      qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
       invisible(self)
     },
-    write_xmls = function() {
-      write_xml_tables(self)
+    xml = function(row = NULL) {
+      self$calc_qtabs(row)
+      write_xml_tables_from_qrows(row, self)
       invisible(self)
     }
   )
 )
+
+process_excel <- function(self) {
+  read_qsheet(self)
+  gen_tab_and_col_tables(self)
+}
+
 read_data <- function(dat) {
   UseMethod("read_data")
 }

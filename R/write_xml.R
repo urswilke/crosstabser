@@ -1,50 +1,29 @@
-write_xml_tables <- function(mapping) {
-  qsheet_row_idx <- split(
-    mapping$qsheet$tab_table$TabNo,
-    mapping$qsheet$tab_table$row
-  )
-  l_row_tabs <- qsheet_row_idx |>
-    lapply(\(row) lapply(row, \(i_tab) mapping$tabs[[i_tab]] |> gen_5_tables()))
+write_xml_tables_from_qrows <- function(row = NULL, mapping) {
+  # filter row indices specified, otherwise all:
+  if (is.null(row)) {
+    row <- mapping$qrows$row
+  }
+  qrows <- mapping$qrows[mapping$qrows$row %in% row,]
 
-  file_names <- paste0("dev/xml/tab", stringr::str_pad(names(qsheet_row_idx), 4, pad = "0"), ".xml")
-  purrr::map2(
+  l_row_tabs <- qrows$qtabs |> purrr::map("qtabs") |> purrr::map(\(x) purrr::map(x, gen_5_tables))
+
+  file_names <- paste0(mapping$options$V_XMLName, stringr::str_pad(qrows$row, 4, pad = "0"), ".xml")
+  purrr::walk2(
     l_row_tabs,
     file_names,
     \(l_row, filename) write_xml_file(l_row, filename)
   )
 }
 
-gen_5_tables <- function(tab) {
+gen_5_tables <- function(qtab) {
   tabs_ex <- list(
-    Row = tab$d$row_table,
-    Tab = tab$d$tab_table,
-    Head = tab$d$head_table,
-    Col = tab$d$col_table,
-    Val = tab$d$val_table
+    Row = qtab$d$row_table,
+    Tab = qtab$d$tab_table,
+    Head = qtab$d$head_table,
+    Col = qtab$d$col_table,
+    Val = qtab$d$val_table
   )
 
-}
-
-write_xml_table <- function(el_5_tabs, filename) {
-  doc <- xml2::xml_new_root("Root")
-  xml2::xml_add_child(doc, "Table")
-  all_xml <- xml2::xml_find_all(doc, "//Table")
-
-  for (i in 1:length(el_5_tabs)) {
-    tab_name <- names(el_5_tabs)[i]
-    xml2::xml_add_child(all_xml, tab_name)
-    el_xml <- xml2::xml_find_all(doc, paste0("//", tab_name))
-    seq_len(nrow(el_5_tabs[[i]])) |> purrr::walk(\(x) xml2::xml_add_child(el_xml, "Line"))
-    line_xml <- xml2::xml_find_all(doc, paste0("//", tab_name, "/Line"))
-
-    for(i_tab_el in names(el_5_tabs[[i]])) {
-      col_vec <- el_5_tabs[[i]][[i_tab_el]]
-      na_cells <- is.na(col_vec)
-      xml2::xml_add_child(line_xml[na_cells], i_tab_el)
-      xml2::xml_add_child(line_xml[!na_cells], i_tab_el, col_vec[!na_cells])
-    }
-  }
-  xml2::write_xml(doc, filename)
 }
 
 write_xml_file <- function(l_row, filename) {

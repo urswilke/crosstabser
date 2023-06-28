@@ -1,4 +1,6 @@
 setOptions <- function(mapping_file) {
+  # TODO: check if faster bulk-wise or preloading a workbook object with
+  # openxlsx, but rather together with Mapping class in datenanpassr...:
   v_scenario <- openxlsx::read.xlsx(
     mapping_file,
     namedRegion = "V_Scenario",
@@ -7,6 +9,11 @@ setOptions <- function(mapping_file) {
   V_Language <- openxlsx::read.xlsx(
     mapping_file,
     namedRegion = "V_Language",
+    colNames = FALSE
+  )[[1]]
+  V_XMLName <- openxlsx::read.xlsx(
+    mapping_file,
+    namedRegion = "V_XMLName",
     colNames = FALSE
   )[[1]]
   df_macro_raw <- readxl::read_excel(
@@ -34,6 +41,7 @@ setOptions <- function(mapping_file) {
   return(tibble::lst(
     v_scenario,
     V_Language,
+    V_XMLName,
     df_macro_raw,
     l_macro_scenario,
     l_lexikon,
@@ -57,3 +65,15 @@ extract_scenario_options <- function(df_macro_raw, v_scenario) {
 
 
 }
+
+add_global_options <- function(params, global_options) {
+  res <- params
+  res$Filter <- append(res$Filter, global_options$Filter[!is.na(global_options$Filter)])
+  res$Weight <- dplyr::coalesce(res$Weight, global_options$Weight)
+  if (length(res$Unguelt) == 0) {
+    res$Unguelt <- global_options$Unguelt
+  }
+  res$ColVar <- global_options$ColVar
+  res
+}
+
