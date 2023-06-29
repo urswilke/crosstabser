@@ -166,10 +166,7 @@ row_table_body.qtab_type_mdg <- function(qtab) {
   label_table <- label_table[rep(seq_len(n_vals), each = 2),]
 
   row_table <- empty_row_table()
-  mdg_val <- qtab$p$MdgVal |> as.numeric()
-  if (length(mdg_val) == 0) {
-    mdg_val <- 1
-  }
+  mdg_val <- qtab$p$MdgVal
   row_table[seq_len(n_vals * 2),]$RowValue <- mdg_val
   row_table$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
@@ -336,10 +333,7 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
 }
 row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
   l_varlabs <- qtab$d$dat_mod[qtab$p$Unguelt] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
-  mdg_val <- qtab$p$MdgVal |> as.numeric()
-  if (length(mdg_val) == 0) {
-    mdg_val <- 1
-  }
+  mdg_val <- qtab$p$MdgVal
   invalids_present <- qtab$d$dat_mod[names(l_varlabs)] |>
     purrr::map_lgl(\(x) mdg_val %in% x)
   if (sum(invalids_present) == 0) {

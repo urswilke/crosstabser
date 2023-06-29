@@ -24,6 +24,8 @@ any_true <- function (l) {
   Reduce("|", l)
 }
 
+`%||%` <- rlang::`%||%`
+
 spss_to_r <- function(ex) {
   ex |>
     # replace equal sign not preceeded by !, <, > OR = AND not succeeded by = :

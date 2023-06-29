@@ -6,6 +6,8 @@ new_qtabs <- function(qsheet_processed, mapping) {
     purrr::map(\(x) add_global_options(x, global_options))
   qtabs <- params |>
     purrr::map(\(x) new_qtab(x, mapping))
+  qtabs |>
+    purrr::walk(\(x) add_type_specific_params(x))
 
 
   class(qtabs) <- c("crosstabser_tabs", class(qtabs))
@@ -18,6 +20,18 @@ new_qtab <- function(params, mapping) {
   class(res) <- c(paste0("qtab_type_", params$Type), class(res))
   res
 }
+
+add_type_specific_params <- function(qtab) {
+  UseMethod("add_type_specific_params")
+}
+
+add_type_specific_params.default <- function(qtab) {
+  NULL
+}
+add_type_specific_params.qtab_type_mdg <- function(qtab) {
+  qtab$p$MdgVal <- as.numeric(qtab$p$MdgVal) %||% 1
+}
+
 Qtab <- R6::R6Class("Qtab",
   public = list(
     p = list(),
