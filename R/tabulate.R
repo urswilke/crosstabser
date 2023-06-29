@@ -64,7 +64,8 @@ pivot_cols <- function(df) {
       dplyr::matches("^colvar_"),
       names_pattern = "colvar_(.*)",
       names_to = "colvar",
-      values_to = "colval"
+      values_to = "colval",
+      values_drop_na = TRUE
     )
 }
 pivot_rows <- function(df) {
@@ -73,7 +74,8 @@ pivot_rows <- function(df) {
       dplyr::matches("^rowvar_"),
       names_pattern = "rowvar_(.*)",
       names_to = "rowvar",
-      values_to = "rowval"
+      values_to = "rowval",
+      values_drop_na = TRUE
     )
 }
 pivot_table_data.qtab_type_mdg <- function(qtab) {
