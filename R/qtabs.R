@@ -38,7 +38,7 @@ Qtab <- R6::R6Class("Qtab",
   )
 )
 calc_qtab <- function(qtab) {
-  qtab$d$raw_data = get_raw_data(qtab)
+  qtab$d$raw_data <- get_raw_data(qtab)
   pivot_table_data(qtab)
   qtab$d$counts = crosstab(qtab)
   qtab$d$row_table <- gen_row_table(qtab)
