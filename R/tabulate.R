@@ -10,6 +10,9 @@ get_raw_data <- function(qtab) {
 }
 get_raw_data.default <- function(qtab) {
   rowvars <- qtab$p$RowVar
+  if (qtab$p$Type == "mdg") {
+    rowvars <- c(rowvars, qtab$p$Unguelt)
+  }
   colvars <- qtab$p$ColVar
   weightvar <- qtab$p$Weight
   if (is.na(weightvar)) {
