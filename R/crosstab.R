@@ -10,7 +10,7 @@ crosstab.qtab_type_mdg <- crosstab.qtab_type_cat <- function(qtab) {
   long_data <- qtab$d$long_data
 
   total_row_data <- gen_total_counts(long_data, weight)
-  total_row_data$rowvar <- paste0(long_data$rowvar[1], "_TC")
+  total_row_data$rowvar <- paste0(paste(qtab$p$RowVar, collapse = ", "), "_TC")
   total_row_data$rowval <- 1
 
   # TODO: move to class definitions...:
