@@ -83,6 +83,7 @@ pivot_rows <- function(df) {
 }
 pivot_table_data.qtab_type_mdg <- function(qtab) {
   df_long <- pivot_table_data.qtab_type_cat(qtab)
+  # TODO: move to qtab param initalization..:
   mdg_val <- qtab$p$MdgVal |> as.numeric()
   if (length(mdg_val) == 0) {
     mdg_val <- 1
