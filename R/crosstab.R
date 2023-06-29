@@ -1,7 +1,7 @@
 crosstab <- function(qtab) {
   UseMethod("crosstab")
 }
-crosstab.qtab_type_cat <- function(qtab) {
+crosstab.qtab_type_mdg <- crosstab.qtab_type_cat <- function(qtab) {
   weight <- qtab$p$Weight
   stat_fun <- qtab$p$ZsfgMW
   if (length(stat_fun) == 0) {
@@ -98,8 +98,6 @@ crosstab.qtab_type_mcg <- function(qtab) {
     all_counts
   )
 }
-crosstab.qtab_type_mdg <- crosstab.qtab_type_cat
-
 
 # hack to do double dispatch on is.na(weight) & stat_fun:
 new_sum_stat <- function(df_long, weight, stat_fun) {
