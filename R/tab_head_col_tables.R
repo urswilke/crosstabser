@@ -53,7 +53,7 @@ gen_col_table <- function(mapping) {
     ColValue = integer(),
   )
   res[1:3, "HeadNo"] <- 1L
-  res[4, c("HeadNo", "ColTitle1", "ColVariable")] <- list(2L, mapping$options$l_lexikon["cTabGesamt"], "DC#STICHPROBE")
+  res[4, c("HeadNo", "ColTitle1", "ColVariable", "ColValue")] <- list(2L, mapping$options$l_lexikon["cTabGesamt"], "DC#STICHPROBE", 1L)
 
   head_table <- mapping$qsheet$head_table
   if (nrow(head_table) == 2) {
