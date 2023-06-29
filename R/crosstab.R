@@ -8,17 +8,27 @@ crosstab.qtab_type_mdg <- crosstab.qtab_type_cat <- function(qtab) {
     stat_fun = NA
   }
   long_data <- qtab$d$long_data
+
   total_row_data <- gen_total_counts(long_data, weight)
   total_row_data$rowvar <- paste0(long_data$rowvar[1], "_TC")
   total_row_data$rowval <- 1
+
+  # TODO: move to class definitions...:
+  row_id_name <- ifelse(qtab$p$Type == "mdg", "rowvar", "rowval")
+  valid_row_data <- long_data[!long_data[[row_id_name]] %in% qtab$p$Unguelt,] |> gen_total_counts(weight)
+  valid_row_data$rowvar <- paste0(paste(qtab$p$RowVar, collapse = ", "), "_VC")
+  valid_row_data$rowval <- 1
+
   if (!is.null(qtab$p$CatRec)) {
     long_data_catrec <- gen_catrec_long_data(qtab)
     long_data <- dplyr::bind_rows(long_data, long_data_catrec)
   }
   all_counts <- gen_all_counts(long_data, weight, stat_fun)
+
   rbind(
     total_row_data,
-    all_counts
+    all_counts,
+    valid_row_data
   )
 }
 
