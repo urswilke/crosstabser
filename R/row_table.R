@@ -87,6 +87,7 @@ row_table_valid_answers_line.qtab_type_mdg <- function(qtab) {
   valid_answers_row_text <- qtab$p$l_lexikon["cTabGesamtMFA"]
   abs_text <- qtab$p$l_lexikon["cTabAbs"]
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3")] <- list("Total", "Abs", valid_answers_row_text, valid_answers_row_text, abs_text)
+  row_table$RowVariable <- qtab$p$RowVar |> paste(collapse = ", ")
   row_table
 }
 row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_type_mdg
@@ -234,6 +235,7 @@ row_table_valid_cases.default <- function(qtab) {
   percent_text <- qtab$p$l_lexikon["cTabProz"]
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Valid", "Abs", valid_cases_text, valid_cases_text, abs_text, 0)
   row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Valid", "Percent", valid_cases_text, valid_cases_text, percent_text, 1)
+  row_table$RowVariable <- qtab$p$RowVar |> paste(collapse = ", ")
   row_table
 }
 row_table_valid_cases.qtab_type_mw <- function(qtab) {
