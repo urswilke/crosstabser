@@ -82,7 +82,7 @@ row_table_valid_answers_line <- function(qtab) {
   UseMethod("row_table_valid_answers_line")
 }
 
-row_table_valid_answers_line.qtab_type_mdg <- function(qtab) {
+row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_type_mdg <- function(qtab) {
   row_table <- empty_row_table()
   valid_answers_row_text <- qtab$p$l_lexikon["cTabGesamtMFA"]
   abs_text <- qtab$p$l_lexikon["cTabAbs"]
@@ -90,11 +90,9 @@ row_table_valid_answers_line.qtab_type_mdg <- function(qtab) {
   row_table$RowVariable <- qtab$p$RowVar |> paste(collapse = ", ")
   row_table
 }
-row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_type_mdg
-row_table_valid_answers_line.qtab_type_mw <- function(qtab) {
+row_table_valid_answers_line.qtab_type_cat <- row_table_valid_answers_line.qtab_type_mw <- function(qtab) {
   NULL
 }
-row_table_valid_answers_line.qtab_type_cat <- row_table_valid_answers_line.qtab_type_mw
 
 row_table_body <- function(qtab) {
   UseMethod("row_table_body")
