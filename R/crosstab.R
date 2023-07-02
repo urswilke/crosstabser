@@ -148,9 +148,9 @@ apply_sum_stat.median_unweighted <- function(df_long, ...) {
   df_long |>
     dplyr::summarize(value = stats::median(rowval, na.rm = TRUE), .groups = "drop")
 }
-apply_sum_stat.sum_unweighted <- function(df_long, ...) {
+apply_sum_stat.sum_unweighted <- function(df_long, value_col = "rowval", ...) {
   df_long |>
-    dplyr::summarize(value = sum(rowval, na.rm = TRUE), .groups = "drop")
+    dplyr::summarize(value = sum(!!rlang::sym(value_col), na.rm = TRUE), .groups = "drop")
 }
 apply_sum_stat.mean_weighted <- function(df_long, ...) {
   df_long |>

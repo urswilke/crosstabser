@@ -82,10 +82,58 @@ pivot_rows <- function(df) {
     )
 }
 pivot_table_data.qtab_type_mdg <- function(qtab) {
+  calc_mc_row_stats(qtab)
   df_long <- pivot_table_data.qtab_type_cat(qtab)
   mdg_val <- qtab$p$MdgVal
   qtab$d$long_data <- df_long[df_long$rowval == mdg_val,]
 }
+
+calc_mc_row_stats <- function(qtab) {
+  df <- qtab$d$raw_data
+  # for TOTAL column:
+  df$"colvar_DC#STICHPROBE" <- 1
+
+  mdg_val <- qtab$p$MdgVal
+
+  df_cols <- df[paste0("colvar_", qtab$p$ColVar)]
+
+  sum_of_valid <- rowSums(df[paste0("rowvar_", qtab$p$RowVar)] == mdg_val, na.rm = TRUE)
+  df_cols$sum_of_valid <- sum_of_valid
+  df_cols$n_valid <- sum_of_valid >= 1
+  df_cols$invalid_cts <- rowSums(df[paste0("rowvar_", qtab$p$Unguelt)] == mdg_val, na.rm = TRUE) != 0
+  df_cols$no_entry <- as.numeric(sum_of_valid + df_cols$invalid_cts == 0)
+  df_cols_long <- df_cols |>
+    pivot_cols()
+
+  if (!is.na(qtab$p$Weight)) {
+    #TODO: check if that works and is good..:
+    purrr::walk(c("sum_of_valid", "n_valid", "no_entry"), \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
+  }
+  l <- aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> as_tibble()
+  qtab$d$mc_stats <- l
+
+  # row_summary_var <- c("sum_of_valid", "n_valid", "no_entry")
+  # stat_funs <- c("sum", NA, NA)
+  # # grouping_var_regex <- paste0("^", row_summary_var, "$", "|", "^colva[rl]$")
+  # grouping_var_regex <- paste0("^colva[rl]$")
+  # l <- purrr::pmap(
+  #   list(
+  #     purrr::set_names(row_summary_var),
+  #     stat_funs,
+  #     row_summary_var
+  #   ),
+  #   \(x, y, z) df_cols_long |>
+  #     group_by(across(matches(x))) |>
+  #     new_sum_stat(qtab$p$Weight, y) |>
+  #     apply_sum_stat(z)
+  # )
+  # l$no_entry$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
+  # l$no_entry$rowval <- 1
+  #
+  # l$no_entry <- l$no_entry[l$no_entry$no_entry == 1, c("colvar", "colval", "rowvar", "rowval", "value")]
+  # l
+}
+
 pivot_table_data.qtab_type_mcg <- function(qtab) {
   invalid_vals <- qtab$p$Unguelt
   # for TOTAL column:
@@ -137,7 +185,7 @@ gen_val_table <- function(qtab) {
 }
 gen_val_table.qtab_type_cat <- gen_val_table.qtab_type_mcg <- function(qtab) {
   row_table <- qtab$d$row_table
-  df_unique_rowvar_val <- row_table[!is.na(row_table$RowValue),c("RowVariable", "RowValue")] |>
+  df_unique_rowvar_val <- row_table[!is.na(row_table$RowValue), c("RowVariable", "RowValue")] |>
     dplyr::distinct()
 
   row_levels <- paste(df_unique_rowvar_val$RowVariable, df_unique_rowvar_val$RowValue)
