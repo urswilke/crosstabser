@@ -109,7 +109,7 @@ calc_mc_row_stats <- function(qtab) {
     #TODO: check if that works and is good..:
     purrr::walk(c("sum_of_valid", "n_valid", "no_entry"), \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
   }
-  l <- aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> as_tibble()
+  l <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
   qtab$d$mc_stats <- l
 
   # row_summary_var <- c("sum_of_valid", "n_valid", "no_entry")
@@ -165,7 +165,7 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
     col_long_data[col_long_data$any_in_row_filled, c(cols, "n_valids_in_row")] |>
     dplyr::summarise(
       value = sum(n_valids_in_row * dplyr::coalesce(weight |> as.numeric(), 1)),
-      .by = -matches("^(weight|n_valids_in_row)$")
+      .by = -dplyr::matches("^(weight|n_valids_in_row)$")
     )
 
   cols <- stringr::str_subset(

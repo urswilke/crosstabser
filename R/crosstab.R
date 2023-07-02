@@ -34,14 +34,14 @@ crosstab.qtab_type_mdg <- crosstab.qtab_type_cat <- function(qtab) {
 
 gen_total_counts <- function(long_data, weight) {
   long_data |>
-    dplyr::group_by(dplyr::across(-matches("weight|rowva[rl]"))) |>
+    dplyr::group_by(dplyr::across(-dplyr::matches("weight|rowva[rl]"))) |>
     new_sum_stat(weight, NA) |>
     apply_sum_stat()
 }
 
 gen_all_counts <- function(long_data, weight, stat_fun) {
   long_data |>
-    dplyr::group_by(dplyr::across(-matches("weight"))) |>
+    dplyr::group_by(dplyr::across(-dplyr::matches("weight"))) |>
     new_sum_stat(weight, stat_fun) |>
     apply_sum_stat()
 }
@@ -87,7 +87,7 @@ crosstab.qtab_type_mw <- function(qtab) {
   invalid_vals <- qtab$p$Unguelt
 
   qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
-    dplyr::group_by(dplyr::across(-matches("weight|rowval"))) |>
+    dplyr::group_by(dplyr::across(-dplyr::matches("weight|rowval"))) |>
     new_sum_stat(weight, stat_fun) |>
     apply_sum_stat()
 }
