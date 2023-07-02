@@ -109,8 +109,8 @@ calc_mc_row_stats <- function(qtab) {
     #TODO: check if that works and is good..:
     purrr::walk(c("sum_of_valid", "n_valid", "no_entry"), \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
   }
-  l <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
-  qtab$d$mc_stats <- l
+  mc_stats <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
+  qtab$d$mc_stats <- mc_stats
 
   # row_summary_var <- c("sum_of_valid", "n_valid", "no_entry")
   # stat_funs <- c("sum", NA, NA)
