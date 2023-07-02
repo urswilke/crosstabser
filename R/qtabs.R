@@ -29,7 +29,8 @@ add_type_specific_params.default <- function(qtab) {
   NULL
 }
 add_type_specific_params.qtab_type_mdg <- function(qtab) {
-  qtab$p$MdgVal <- as.numeric(qtab$p$MdgVal) %||% 1
+  mdg_val <- qtab$p$MdgVal %||% 1
+  qtab$p$MdgVal <- as.numeric(mdg_val)
 }
 
 Qtab <- R6::R6Class("Qtab",
