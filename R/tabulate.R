@@ -111,27 +111,6 @@ calc_mc_row_stats <- function(qtab) {
   }
   mc_stats <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
   qtab$d$mc_stats <- mc_stats
-
-  # row_summary_var <- c("sum_of_valid", "n_valid", "no_entry")
-  # stat_funs <- c("sum", NA, NA)
-  # # grouping_var_regex <- paste0("^", row_summary_var, "$", "|", "^colva[rl]$")
-  # grouping_var_regex <- paste0("^colva[rl]$")
-  # l <- purrr::pmap(
-  #   list(
-  #     purrr::set_names(row_summary_var),
-  #     stat_funs,
-  #     row_summary_var
-  #   ),
-  #   \(x, y, z) df_cols_long |>
-  #     group_by(across(matches(x))) |>
-  #     new_sum_stat(qtab$p$Weight, y) |>
-  #     apply_sum_stat(z)
-  # )
-  # l$no_entry$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
-  # l$no_entry$rowval <- 1
-  #
-  # l$no_entry <- l$no_entry[l$no_entry$no_entry == 1, c("colvar", "colval", "rowvar", "rowval", "value")]
-  # l
 }
 
 pivot_table_data.qtab_type_mcg <- function(qtab) {
