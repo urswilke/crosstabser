@@ -1,7 +1,7 @@
 crosstab <- function(qtab) {
   UseMethod("crosstab")
 }
-crosstab.qtab_type_mdg <- crosstab.qtab_type_cat <- function(qtab) {
+crosstab.qtab_type_cat <- function(qtab) {
   weight <- qtab$p$Weight
   stat_fun <- qtab$p$ZsfgMW
   if (length(stat_fun) == 0) {
@@ -30,6 +30,34 @@ crosstab.qtab_type_mdg <- crosstab.qtab_type_cat <- function(qtab) {
     all_counts,
     valid_row_data
   )
+}
+crosstab.qtab_type_mdg <- function(qtab) {
+  calc_mc_row_stats(qtab)
+  crosstab.qtab_type_cat(qtab)
+}
+calc_mc_row_stats <- function(qtab) {
+  df <- qtab$d$raw_data
+  # for TOTAL column:
+  df$"colvar_DC#STICHPROBE" <- 1
+
+  mdg_val <- qtab$p$MdgVal
+
+  df_cols <- df[paste0("colvar_", qtab$p$ColVar)]
+
+  sum_of_valid <- rowSums(df[paste0("rowvar_", qtab$p$RowVar)] == mdg_val, na.rm = TRUE)
+  df_cols$sum_of_valid <- sum_of_valid
+  df_cols$n_valid <- sum_of_valid >= 1
+  df_cols$invalid_cts <- rowSums(df[paste0("rowvar_", qtab$p$Unguelt)] == mdg_val, na.rm = TRUE) != 0
+  df_cols$no_entry <- as.numeric(sum_of_valid + df_cols$invalid_cts == 0)
+  df_cols_long <- df_cols |>
+    pivot_cols()
+
+  if (!is.na(qtab$p$Weight)) {
+    #TODO: check if that works and is good..:
+    purrr::walk(c("sum_of_valid", "n_valid", "no_entry"), \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
+  }
+  mc_stats <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
+  qtab$d$mc_stats <- mc_stats
 }
 
 gen_total_counts <- function(long_data, weight) {
