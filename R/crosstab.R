@@ -9,16 +9,7 @@ crosstab.qtab_type_cat <- function(qtab) {
   }
   long_data <- qtab$d$long_data
 
-  total_row_data <- gen_total_counts(long_data, weight)
-  total_row_data$rowvar <- paste0(paste(qtab$p$RowVar, collapse = ", "), "_TC")
-  total_row_data$rowval <- 1
-
-  # TODO: move to class definitions...:
-  row_id_name <- ifelse(qtab$p$Type == "mdg", "rowvar", "rowval")
-  valid_row_data <- long_data[!long_data[[row_id_name]] %in% qtab$p$Unguelt,] |> gen_total_counts(weight)
-  valid_row_data$rowvar <- paste0(paste(qtab$p$RowVar, collapse = ", "), "_VC")
-  valid_row_data$rowval <- 1
-
+  # TODO: better use separate methods for cat & mdg..?
   if (!is.null(qtab$p$CatRec)) {
     long_data_catrec <- gen_catrec_long_data(qtab)
     long_data <- dplyr::bind_rows(long_data, long_data_catrec)
@@ -26,25 +17,52 @@ crosstab.qtab_type_cat <- function(qtab) {
   all_counts <- gen_all_counts(long_data, weight, stat_fun)
 
   rbind(
-    total_row_data,
+    qtab$d$stats_rows$total,
+    qtab$d$stats_rows$sum_of_valid,
     all_counts,
-    valid_row_data
+    qtab$d$stats_rows$n_valid,
+    qtab$d$stats_rows$no_entry
   )
 }
+
+calc_stats_rows <- function(qtab) {
+  UseMethod("calc_stats_rows")
+}
+calc_stats_rows.default <- function(qtab) {
+  NULL
+}
+calc_stats_rows.qtab_type_cat <- function(qtab) {
+  long_data <- qtab$d$long_data
+  weight <- qtab$p$Weight
+
+  total_row_data <- gen_total_counts(long_data, weight)
+  total_row_data$rowvar <- paste0(paste(qtab$p$RowVar, collapse = ", "), "_TC")
+  total_row_data$rowval <- 1
+
+  valid_row_data <- long_data[!long_data$rowval %in% qtab$p$Unguelt,] |> gen_total_counts(weight)
+  valid_row_data$rowvar <- paste0(paste(qtab$p$RowVar, collapse = ", "), "_VC")
+  valid_row_data$rowval <- 1
+  qtab$d$stats_rows <- list()
+  qtab$d$stats_rows$n_valid <- valid_row_data
+  qtab$d$stats_rows$total <- total_row_data
+
+}
+
 crosstab.qtab_type_mdg <- function(qtab) {
-  calc_mc_row_stats(qtab)
   crosstab.qtab_type_cat(qtab)
 }
-calc_mc_row_stats <- function(qtab) {
+calc_stats_rows.qtab_type_mdg <- function(qtab) {
   df <- qtab$d$raw_data
   # for TOTAL column:
   df$"colvar_DC#STICHPROBE" <- 1
 
   mdg_val <- qtab$p$MdgVal
 
-  df_cols <- df[paste0("colvar_", qtab$p$ColVar)]
+  df_cols <- df[paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))]
+  df_rows <- df[paste0("rowvar_", qtab$p$RowVar)]
 
-  sum_of_valid <- rowSums(df[paste0("rowvar_", qtab$p$RowVar)] == mdg_val, na.rm = TRUE)
+  df_cols$total <- rowSums(is.na(df[paste0("rowvar_", qtab$p$RowVar)])) < ncol(df_rows)
+  sum_of_valid <- rowSums(df_rows == mdg_val, na.rm = TRUE)
   df_cols$sum_of_valid <- sum_of_valid
   df_cols$n_valid <- sum_of_valid >= 1
   df_cols$invalid_cts <- rowSums(df[paste0("rowvar_", qtab$p$Unguelt)] == mdg_val, na.rm = TRUE) != 0
@@ -52,14 +70,41 @@ calc_mc_row_stats <- function(qtab) {
   df_cols_long <- df_cols |>
     pivot_cols()
 
+  row_types <- c("total", "sum_of_valid", "n_valid", "no_entry")
   if (!is.na(qtab$p$Weight)) {
     #TODO: check if that works and is good..:
-    purrr::walk(c("sum_of_valid", "n_valid", "no_entry"), \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
+    purrr::walk(row_types, \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
   }
-  mc_stats <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
-  qtab$d$mc_stats <- mc_stats
+  df_stats_rows <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
+  l_row_types <- row_types |>
+    purrr::set_names() |>
+    lapply(\(x) {
+      res <- df_stats_rows[c("colvar", "colval", x)]
+      names(res)[3] <- "value"
+      res$rowval <- 1
+      res$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
+      res
+    })
+  l_row_types$total$rowvar <- paste0(l_row_types$total$rowvar, "_TC")
+  l_row_types$sum_of_valid$rowvar <- paste0(l_row_types$sum_of_valid$rowvar, "_SVC")
+  l_row_types$no_entry$rowvar <- paste0(l_row_types$no_entry$rowvar, "_NE")
+  l_row_types$no_entry <- l_row_types$no_entry[l_row_types$no_entry$value > 0,]
+  # if (sum(l_row_types$no_entry$value) == 0 ) {
+  #   l_row_types$no_entry$value <- NULL
+  # }
+  l_row_types$n_valid$rowvar <- paste0(l_row_types$n_valid$rowvar, "_VC")
+
+  # stats_rows <- df_stats_rows |>
+  #   tidyr::pivot_longer(
+  #     -c(colvar, colval),
+  #     names_to = "rowvar"
+  #   )
+  # stats_rows$rowval <- 1
+
+  qtab$d$stats_rows <- l_row_types
 }
 
+# TODO: remove or use instead of new method..: (?)
 gen_total_counts <- function(long_data, weight) {
   long_data |>
     dplyr::group_by(dplyr::across(-dplyr::matches("weight|rowva[rl]"))) |>
