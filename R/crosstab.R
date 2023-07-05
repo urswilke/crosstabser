@@ -241,3 +241,23 @@ apply_sum_stat.sum_weighted <- function(df_long, ...) {
   df_long |>
     dplyr::summarize(value = sum(rowval * weight, na.rm = TRUE), .groups = "drop")
 }
+
+
+calc_freqs <- function(qtab) {
+  UseMethod("calc_freqs")
+}
+# TODO:
+calc_freqs.qtab_type_mcg <- calc_freqs.qtab_type_mw <- function(qtab) {
+  NULL
+}
+calc_freqs.default <- function(qtab) {
+  # TODO: store counts ("Detail") in separate field..:
+  cts <- qtab$d$counts |> dplyr::filter(!stringr::str_detect(rowvar, "_.?.?C$"))
+  freqs <- cts
+  freqs$value <- as.numeric(freqs$value)
+  vc <- qtab$d$stats_rows$n_valid
+  # correspomding indices of freqs values in vc:
+  idx <- match(paste(freqs$colvar, freqs$colval), paste(vc$colvar, vc$colval))
+  freqs$value <- freqs$value / vc$value[idx]
+  qtab$d$freqs <- freqs
+}
