@@ -262,21 +262,21 @@ apply_sum_stat.sum_weighted <- function(df_long, ...) {
 }
 
 
-calc_freqs <- function(qtab) {
-  UseMethod("calc_freqs")
+calc_percentages <- function(qtab) {
+  UseMethod("calc_percentages")
 }
 # TODO:
-calc_freqs.qtab_type_mcg <- calc_freqs.qtab_type_mw <- function(qtab) {
+calc_percentages.qtab_type_mcg <- calc_percentages.qtab_type_mw <- function(qtab) {
   NULL
 }
-calc_freqs.default <- function(qtab) {
+calc_percentages.default <- function(qtab) {
   # TODO: store counts ("Detail") in separate field..:
   cts <- cts <- qtab$d$counts[qtab$d$counts$RowContent == "Detail",]
-  freqs <- cts
-  freqs$value <- as.numeric(freqs$value)
+  percentages <- cts
+  percentages$value <- as.numeric(percentages$value)
   vc <- qtab$d$stats_rows$n_valid
-  # correspomding indices of freqs values in vc:
-  idx <- match(paste(freqs$colvar, freqs$colval), paste(vc$colvar, vc$colval))
-  freqs$value <- freqs$value / vc$value[idx]
-  qtab$d$freqs <- freqs
+  # correspomding indices of percentages values in vc:
+  idx <- match(paste(percentages$colvar, percentages$colval), paste(vc$colvar, vc$colval))
+  percentages$value <- percentages$value / vc$value[idx]
+  qtab$d$percentages <- percentages
 }
