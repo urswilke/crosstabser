@@ -136,7 +136,7 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
 gen_val_table <- function(qtab) {
   UseMethod("gen_val_table")
 }
-gen_val_table.qtab_type_cat <- gen_val_table.qtab_type_mcg <- function(qtab) {
+gen_val_table.qtab_type_mcg <- gen_val_table.qtab_type_cat <- function(qtab) {
   row_table <- qtab$d$row_table
   df_unique_rowvar_val <- row_table[!is.na(row_table$RowValue), c("RowVariable", "RowValue")] |>
     dplyr::distinct()
@@ -167,17 +167,18 @@ gen_val_table.qtab_type_cat <- gen_val_table.qtab_type_mcg <- function(qtab) {
 }
 
 gen_val_table.qtab_type_mw <- gen_val_table.qtab_type_mdg <- function(qtab) {
-  row_table <- qtab$d$row_table
+  # TODO: remove filtering together with unneeded rows in row_table!...:
+  row_table <- qtab$d$row_table[!is.na(qtab$d$row_table$RowVariable),]
   col_table <- qtab$d$col_table[-c(1:3),]
-  row_levels <- row_table$RowVariable[!is.na(row_table$RowVariable)] |>
-    unique()
+
+  row_levels <- paste(row_table$RowContent, row_table$RowAbsPercent, row_table$RowVariable, row_table$RowValue)
 
   col_table <- qtab$d$col_table[-c(1:3),]
   col_levels <- paste(col_table$ColVariable, col_table$ColValue)
   counts <- qtab$d$counts
 
   res <- counts["value"]
-  res$RowNo <- factor(counts$rowvar, row_levels) |> as.numeric()
+  res$RowNo <- factor(paste(counts$RowContent, counts$RowAbsPercent, counts$rowvar, counts$rowval), row_levels) |> as.numeric()
   res$ColNo <- as.numeric(factor(paste(counts$colvar, counts$colval), col_levels)) + 3
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }

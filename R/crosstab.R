@@ -15,6 +15,8 @@ crosstab.qtab_type_cat <- function(qtab) {
     long_data <- dplyr::bind_rows(long_data, long_data_catrec)
   }
   all_counts <- gen_all_counts(long_data, weight, stat_fun)
+  all_counts$RowContent <- "Detail"
+  all_counts$RowAbsPercent <- "Abs"
 
   rbind(
     qtab$d$stats_rows$total,
@@ -36,12 +38,18 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
   weight <- qtab$p$Weight
 
   total_row_data <- gen_total_counts(long_data, weight)
-  total_row_data$rowvar <- paste0(paste(qtab$p$RowVar, collapse = ", "), "_TC")
+  total_row_data$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
   total_row_data$rowval <- 1
+  total_row_data$RowContent <- "Total"
+  total_row_data$RowAbsPercent <- "Abs"
+
 
   valid_row_data <- long_data[!long_data$rowval %in% qtab$p$Unguelt,] |> gen_total_counts(weight)
-  valid_row_data$rowvar <- paste0(paste(qtab$p$RowVar, collapse = ", "), "_VC")
+  valid_row_data$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
   valid_row_data$rowval <- 1
+  valid_row_data$RowContent <- "Valid"
+  valid_row_data$RowAbsPercent <- "Abs"
+
   qtab$d$stats_rows <- list()
   qtab$d$stats_rows$n_valid <- valid_row_data
   qtab$d$stats_rows$total <- total_row_data
@@ -85,14 +93,18 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
       res$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
       res
     })
-  l_row_types$total$rowvar <- paste0(l_row_types$total$rowvar, "_TC")
-  l_row_types$sum_of_valid$rowvar <- paste0(l_row_types$sum_of_valid$rowvar, "_SVC")
-  l_row_types$no_entry$rowvar <- paste0(l_row_types$no_entry$rowvar, "_NE")
+  l_row_types$total$RowContent <- "Total"
+  l_row_types$sum_of_valid$RowContent <- "SumOfValid"
+  l_row_types$no_entry$RowContent <- "Missing"
+  l_row_types$total$RowAbsPercent <- "Abs"
+  l_row_types$sum_of_valid$RowAbsPercent <- "Abs"
+  l_row_types$no_entry$RowAbsPercent <- "Abs"
   l_row_types$no_entry <- l_row_types$no_entry[l_row_types$no_entry$value > 0,]
   # if (sum(l_row_types$no_entry$value) == 0 ) {
   #   l_row_types$no_entry$value <- NULL
   # }
-  l_row_types$n_valid$rowvar <- paste0(l_row_types$n_valid$rowvar, "_VC")
+  l_row_types$n_valid$RowContent <- "Valid"
+  l_row_types$n_valid$RowAbsPercent <- "Abs"
 
   # stats_rows <- df_stats_rows |>
   #   tidyr::pivot_longer(
@@ -159,20 +171,27 @@ crosstab.qtab_type_mw <- function(qtab) {
   stat_fun <- qtab$p$ZsfgMW
   invalid_vals <- qtab$p$Unguelt
 
-  qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
+  res <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
     dplyr::group_by(dplyr::across(-dplyr::matches("weight|rowval"))) |>
     new_sum_stat(weight, stat_fun) |>
     apply_sum_stat()
+
+  # to prevent warning when calling `gen_val_table()`...:
+  # TODO: remove when refactoring gen_val_table()...!
+  res$rowval <- NA_real_
+  res$RowContent <- "MStatistics"
+  res$RowAbsPercent <- "Percent"
+  res
 }
 crosstab.qtab_type_mcg <- function(qtab) {
   weight <- qtab$p$Weight
   stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data
   sum_of_valid_row_data <- qtab$d$sum_of_valid_counts
-  sum_of_valid_row_data$rowvar <- paste0(long_data$rowvar[1], "_VC")
+  sum_of_valid_row_data$rowvar <- long_data$rowvar[1]
   sum_of_valid_row_data$rowval <- 1
   total_row_data <- qtab$d$total_row_counts
-  total_row_data$rowvar <- paste0(long_data$rowvar[1], "_TC")
+  total_row_data$rowvar <- long_data$rowvar[1]
   total_row_data$rowval <- 1
   all_counts <- gen_all_counts(long_data, weight, stat_fun)
   rbind(
@@ -252,7 +271,7 @@ calc_freqs.qtab_type_mcg <- calc_freqs.qtab_type_mw <- function(qtab) {
 }
 calc_freqs.default <- function(qtab) {
   # TODO: store counts ("Detail") in separate field..:
-  cts <- qtab$d$counts |> dplyr::filter(!stringr::str_detect(rowvar, "_.?.?C$"))
+  cts <- cts <- qtab$d$counts[qtab$d$counts$RowContent == "Detail",]
   freqs <- cts
   freqs$value <- as.numeric(freqs$value)
   vc <- qtab$d$stats_rows$n_valid

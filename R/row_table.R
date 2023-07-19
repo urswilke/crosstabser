@@ -54,7 +54,7 @@ row_table_total_line.default <- function(qtab) {
   row_table <- empty_row_table()
   total_row_text <- qtab$p$l_lexikon["cTabGesamt"]
   abs_text <- qtab$p$l_lexikon["cTabAbs"]
-  row_variable <- qtab$p$RowVar |> paste(collapse = ", ") |> paste0("_TC")
+  row_variable <- qtab$p$RowVar |> paste(collapse = ", ")
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Total", "Abs", total_row_text, total_row_text, abs_text, 0L, row_variable, 1)
   row_table
 }
