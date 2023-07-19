@@ -1,3 +1,14 @@
+merge_table_parts <- function(qtab) {
+  rbind(
+    qtab$d$stats_rows$total,
+    qtab$d$stats_rows$sum_of_valid,
+    qtab$d$detail_freqs,
+    qtab$d$stats_rows$n_valid,
+    qtab$d$stats_rows$no_entry
+  )
+}
+
+
 calc_detail_freqs <- function(qtab) {
   UseMethod("calc_detail_freqs")
 }
@@ -18,13 +29,7 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
   all_counts$RowContent <- "Detail"
   all_counts$RowAbsPercent <- "Abs"
 
-  rbind(
-    qtab$d$stats_rows$total,
-    qtab$d$stats_rows$sum_of_valid,
-    all_counts,
-    qtab$d$stats_rows$n_valid,
-    qtab$d$stats_rows$no_entry
-  )
+  all_counts
 }
 
 calc_stats_rows <- function(qtab) {
@@ -194,6 +199,7 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   total_row_data$rowvar <- long_data$rowvar[1]
   total_row_data$rowval <- 1
   all_counts <- gen_all_counts(long_data, weight, stat_fun)
+  # TODO: fix to only return all_counts and move rest to calc_stats_rows method!
   rbind(
     total_row_data,
     sum_of_valid_row_data,
@@ -270,13 +276,13 @@ calc_percentages.qtab_type_mcg <- calc_percentages.qtab_type_mw <- function(qtab
   NULL
 }
 calc_percentages.default <- function(qtab) {
-  # TODO: store counts ("Detail") in separate field..:
-  cts <- qtab$d$detail_freqs[qtab$d$detail_freqs$RowContent == "Detail",]
+  cts <- qtab$d$detail_freqs
   percentages <- cts
   percentages$value <- as.numeric(percentages$value)
   vc <- qtab$d$stats_rows$n_valid
   # correspomding indices of percentages values in vc:
   idx <- match(paste(percentages$colvar, percentages$colval), paste(vc$colvar, vc$colval))
   percentages$value <- percentages$value / vc$value[idx]
+  percentages$RowContent <- "Percent"
   qtab$d$percentages <- percentages
 }

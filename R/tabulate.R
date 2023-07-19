@@ -148,9 +148,9 @@ gen_val_table.qtab_type_mcg <- gen_val_table.qtab_type_cat <- function(qtab) {
   # TODO: calculate before to prevent repeated calculation for every table...:
   col_table <- qtab$d$col_table[-c(1:3),]
   col_levels <- paste(col_table$ColVariable, col_table$ColValue)
-  counts <- qtab$d$detail_freqs
+  tab_values <- qtab$d$tab_values
   # The following is equivalent to:
-  # counts |>
+  # tab_values |>
   #   dplyr::transmute(
   #     RowNo = factor(rowval, row_levels) |> as.numeric(),
   #     ColNo = as.numeric(factor(paste(colvar, colval), col_levels)) + 3,
@@ -159,10 +159,10 @@ gen_val_table.qtab_type_mcg <- gen_val_table.qtab_type_cat <- function(qtab) {
   #   dplyr::arrange(RowNo, ColNo)
 
   # but faster, with base R...:
-  res <- counts["value"]
-  # res$RowNo <- factor(counts$rowval, row_levels) |> as.numeric()
-  res$RowNo <- factor(paste(counts$rowvar, counts$rowval), row_levels) |> as.numeric()
-  res$ColNo <- as.numeric(factor(paste(counts$colvar, counts$colval), col_levels)) + 3
+  res <- tab_values["value"]
+  # res$RowNo <- factor(tab_values$rowval, row_levels) |> as.numeric()
+  res$RowNo <- factor(paste(tab_values$rowvar, tab_values$rowval), row_levels) |> as.numeric()
+  res$ColNo <- as.numeric(factor(paste(tab_values$colvar, tab_values$colval), col_levels)) + 3
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }
 
@@ -175,11 +175,11 @@ gen_val_table.qtab_type_mw <- gen_val_table.qtab_type_mdg <- function(qtab) {
 
   col_table <- qtab$d$col_table[-c(1:3),]
   col_levels <- paste(col_table$ColVariable, col_table$ColValue)
-  counts <- qtab$d$detail_freqs
+  tab_values <- qtab$d$tab_values
 
-  res <- counts["value"]
-  res$RowNo <- factor(paste(counts$RowContent, counts$RowAbsPercent, counts$rowvar, counts$rowval), row_levels) |> as.numeric()
-  res$ColNo <- as.numeric(factor(paste(counts$colvar, counts$colval), col_levels)) + 3
+  res <- tab_values["value"]
+  res$RowNo <- factor(paste(tab_values$RowContent, tab_values$RowAbsPercent, tab_values$rowvar, tab_values$rowval), row_levels) |> as.numeric()
+  res$ColNo <- as.numeric(factor(paste(tab_values$colvar, tab_values$colval), col_levels)) + 3
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }
 
