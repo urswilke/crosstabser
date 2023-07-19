@@ -148,7 +148,7 @@ gen_val_table.qtab_type_mcg <- gen_val_table.qtab_type_cat <- function(qtab) {
   # TODO: calculate before to prevent repeated calculation for every table...:
   col_table <- qtab$d$col_table[-c(1:3),]
   col_levels <- paste(col_table$ColVariable, col_table$ColValue)
-  counts <- qtab$d$counts
+  counts <- qtab$d$detail_freqs
   # The following is equivalent to:
   # counts |>
   #   dplyr::transmute(
@@ -175,7 +175,7 @@ gen_val_table.qtab_type_mw <- gen_val_table.qtab_type_mdg <- function(qtab) {
 
   col_table <- qtab$d$col_table[-c(1:3),]
   col_levels <- paste(col_table$ColVariable, col_table$ColValue)
-  counts <- qtab$d$counts
+  counts <- qtab$d$detail_freqs
 
   res <- counts["value"]
   res$RowNo <- factor(paste(counts$RowContent, counts$RowAbsPercent, counts$rowvar, counts$rowval), row_levels) |> as.numeric()

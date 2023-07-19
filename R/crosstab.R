@@ -1,7 +1,7 @@
-crosstab <- function(qtab) {
-  UseMethod("crosstab")
+calc_detail_freqs <- function(qtab) {
+  UseMethod("calc_detail_freqs")
 }
-crosstab.qtab_type_cat <- function(qtab) {
+calc_detail_freqs.qtab_type_cat <- function(qtab) {
   weight <- qtab$p$Weight
   stat_fun <- qtab$p$ZsfgMW
   if (length(stat_fun) == 0) {
@@ -56,8 +56,8 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
 
 }
 
-crosstab.qtab_type_mdg <- function(qtab) {
-  crosstab.qtab_type_cat(qtab)
+calc_detail_freqs.qtab_type_mdg <- function(qtab) {
+  calc_detail_freqs.qtab_type_cat(qtab)
 }
 calc_stats_rows.qtab_type_mdg <- function(qtab) {
   df <- qtab$d$raw_data
@@ -166,7 +166,7 @@ gen_catrec_long_data <- function(qtab) {
   long_data_catrec
 }
 
-crosstab.qtab_type_mw <- function(qtab) {
+calc_detail_freqs.qtab_type_mw <- function(qtab) {
   weight <- qtab$p$Weight
   stat_fun <- qtab$p$ZsfgMW
   invalid_vals <- qtab$p$Unguelt
@@ -183,7 +183,7 @@ crosstab.qtab_type_mw <- function(qtab) {
   res$RowAbsPercent <- "Percent"
   res
 }
-crosstab.qtab_type_mcg <- function(qtab) {
+calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   weight <- qtab$p$Weight
   stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data
@@ -204,8 +204,8 @@ crosstab.qtab_type_mcg <- function(qtab) {
 # hack to do double dispatch on is.na(weight) & stat_fun:
 new_sum_stat <- function(df_long, weight, stat_fun) {
   subclass_str <- dplyr::case_when(
-    is.na(weight)  & is.na(stat_fun)    ~ "counts_unweighted",
-    !is.na(weight) & is.na(stat_fun)    ~ "counts_weighted",
+    is.na(weight)  & is.na(stat_fun)      ~ "counts_unweighted",
+    !is.na(weight) & is.na(stat_fun)      ~ "counts_weighted",
     is.na(weight)  & stat_fun == "mean"   ~ "mean_unweighted",
     is.na(weight)  & stat_fun == "median" ~ "median_unweighted",
     is.na(weight)  & stat_fun == "sum"    ~ "sum_unweighted",
@@ -271,7 +271,7 @@ calc_percentages.qtab_type_mcg <- calc_percentages.qtab_type_mw <- function(qtab
 }
 calc_percentages.default <- function(qtab) {
   # TODO: store counts ("Detail") in separate field..:
-  cts <- cts <- qtab$d$counts[qtab$d$counts$RowContent == "Detail",]
+  cts <- qtab$d$detail_freqs[qtab$d$detail_freqs$RowContent == "Detail",]
   percentages <- cts
   percentages$value <- as.numeric(percentages$value)
   vc <- qtab$d$stats_rows$n_valid

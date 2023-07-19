@@ -56,8 +56,8 @@ calc_qtab <- function(qtab) {
   qtab$d$raw_data <- get_raw_data(qtab)
   pivot_table_data(qtab)
   calc_stats_rows(qtab)
-  qtab$d$counts = crosstab(qtab)
-  calc_freqs(qtab)
+  qtab$d$detail_freqs <- calc_detail_freqs(qtab)
+  calc_percentages(qtab)
   qtab$d$row_table <- gen_row_table(qtab)
   qtab$d$val_table <- gen_val_table(qtab)
 }
