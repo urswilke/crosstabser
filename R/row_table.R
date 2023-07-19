@@ -86,7 +86,13 @@ row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_
   row_table <- empty_row_table()
   valid_answers_row_text <- qtab$p$l_lexikon["cTabGesamtMFA"]
   abs_text <- qtab$p$l_lexikon["cTabAbs"]
-  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3")] <- list("Total", "Abs", valid_answers_row_text, valid_answers_row_text, abs_text)
+  row_table[
+    1,
+    c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3")
+  ] <- list(
+    # TODO: Wolf sagen dass geaendert zu "SumOfValid"...:
+    "SumOfValid", "Abs", valid_answers_row_text, valid_answers_row_text, abs_text
+  )
   row_table$RowVariable <- qtab$p$RowVar |> paste(collapse = ", ")
   row_table
 }
