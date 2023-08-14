@@ -3,6 +3,7 @@ merge_table_parts <- function(qtab) {
     qtab$d$stats_rows$total,
     qtab$d$stats_rows$sum_of_valid,
     qtab$d$detail_freqs,
+    qtab$d$percentages,
     qtab$d$stats_rows$n_valid,
     qtab$d$stats_rows$no_entry
   )
@@ -283,6 +284,6 @@ calc_percentages.default <- function(qtab) {
   # correspomding indices of percentages values in vc:
   idx <- match(paste(percentages$colvar, percentages$colval), paste(vc$colvar, vc$colval))
   percentages$value <- percentages$value / vc$value[idx]
-  percentages$RowContent <- "Percent"
+  percentages$RowAbsPercent <- "Percent"
   qtab$d$percentages <- percentages
 }

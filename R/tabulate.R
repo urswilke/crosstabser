@@ -137,11 +137,11 @@ gen_val_table <- function(qtab) {
   UseMethod("gen_val_table")
 }
 gen_val_table.qtab_type_mcg <- gen_val_table.qtab_type_cat <- function(qtab) {
-  row_table <- qtab$d$row_table
+  row_table <- qtab$d$row_table[!is.na(qtab$d$row_table$RowVariable),]
   df_unique_rowvar_val <- row_table[!is.na(row_table$RowValue), c("RowVariable", "RowValue")] |>
     dplyr::distinct()
 
-  row_levels <- paste(df_unique_rowvar_val$RowVariable, df_unique_rowvar_val$RowValue)
+  row_levels <- paste(row_table$RowContent, row_table$RowAbsPercent, row_table$RowVariable, row_table$RowValue)
   # row_levels <- row_table$RowValue[!is.na(row_table$RowValue)] |>
   #   unique()
 
@@ -161,7 +161,7 @@ gen_val_table.qtab_type_mcg <- gen_val_table.qtab_type_cat <- function(qtab) {
   # but faster, with base R...:
   res <- tab_values["value"]
   # res$RowNo <- factor(tab_values$rowval, row_levels) |> as.numeric()
-  res$RowNo <- factor(paste(tab_values$rowvar, tab_values$rowval), row_levels) |> as.numeric()
+  res$RowNo <- factor(paste(tab_values$RowContent, tab_values$RowAbsPercent, tab_values$rowvar, tab_values$rowval), row_levels) |> as.numeric()
   res$ColNo <- as.numeric(factor(paste(tab_values$colvar, tab_values$colval), col_levels)) + 3
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }
