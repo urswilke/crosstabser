@@ -3,7 +3,11 @@ gen_tab_table <- function(mapping) {
     dplyr::mutate(
       Type = toupper(Type),
       Abbreviation = ifelse(is.na(Abbreviation), "", Abbreviation),
+    # TODO: Wolf fragen ob so  nicht besser nummeriert... (?):
+    # ) |>
+    # dplyr::mutate(
       TabNo = dplyr::row_number(),
+      # .by = row
     ) |>
     dplyr::mutate(
       TabNo = TabNo,
