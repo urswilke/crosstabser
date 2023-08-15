@@ -17,8 +17,7 @@ write_xml_tables_from_qrows <- function(row = NULL, mapping) {
 
 gen_5_tables <- function(qtab) {
   tabs_ex <- list(
-    # filter line equal to row:
-    Tab = qtab$d$tab_table[qtab$d$tab_table$row == qtab$p$row,],
+    Tab = qtab$d$tab_table,
     Row = qtab$d$row_table,
     Head = qtab$d$head_table,
     Col = qtab$d$col_table,

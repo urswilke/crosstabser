@@ -43,7 +43,9 @@ Qtab <- R6::R6Class("Qtab",
       self$p <- params
       self$p$l_lexikon <- mapping$options$l_lexikon
       self$d$dat_mod  <- mapping$dat_mod
-      self$d$tab_table <- mapping$qsheet$tab_table
+      self$d$tab_table <- mapping$qsheet$tab_table[
+        mapping$qsheet$tab_table$TabNo == self$p$TabNo,
+      ]
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
     },
