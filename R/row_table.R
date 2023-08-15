@@ -12,8 +12,7 @@ gen_row_table <- function(qtab) {
     row_table_empty_row()
   )
 
-  #TODO: Wolf fragen wie nummerieren?? :
-  row_table$TabNo <- qtab$row
+  row_table$TabNo <- qtab$p$TabNo
   row_table$RowNo <- seq_len(nrow(row_table))
   row_table
 }

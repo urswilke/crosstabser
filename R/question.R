@@ -37,7 +37,8 @@ process_qsheet <- function(mapping) {
       SelVal = split_cell(SelVal),
       RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE"
     ) |>
-    unnest_qsheet_rows(mapping)
+    unnest_qsheet_rows(mapping) |>
+    dplyr::mutate(TabNo = dplyr::row_number(), .before = 1)
 }
 
 unnest_qsheet_rows <- function(df_qsheet, mapping) {
