@@ -304,8 +304,7 @@ apply_sum_stat.sum_weighted <- function(df_long, ...) {
 calc_percentages <- function(qtab) {
   UseMethod("calc_percentages")
 }
-# TODO:
-calc_percentages.qtab_type_mcg <- calc_percentages.qtab_type_mw <- function(qtab) {
+calc_percentages.qtab_type_mw <- function(qtab) {
   NULL
 }
 calc_percentages.default <- function(qtab) {
@@ -325,8 +324,7 @@ calc_percentages.default <- function(qtab) {
 calc_valid_counts_percentages <- function(qtab) {
   UseMethod("calc_valid_counts_percentages")
 }
-# TODO:
-calc_valid_counts_percentages.qtab_type_mcg <- calc_valid_counts_percentages.qtab_type_mw <- function(qtab) {
+calc_valid_counts_percentages.qtab_type_mw <- function(qtab) {
   NULL
 }
 calc_valid_counts_percentages.default <- function(qtab) {
