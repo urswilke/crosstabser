@@ -134,12 +134,9 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
 
 
 gen_val_table <- function(qtab) {
-  UseMethod("gen_val_table")
-}
-gen_val_table.qtab_type_mcg <- gen_val_table.qtab_type_cat <- function(qtab) {
   row_table <- qtab$d$row_table[!is.na(qtab$d$row_table$RowVariable),]
 
-  col_table <- qtab$d$col_table[-c(1:3),]
+  col_table <- qtab$d$col_table
 
   tab_values <- qtab$d$tab_values
   res <- tab_values |>
@@ -148,21 +145,3 @@ gen_val_table.qtab_type_mcg <- gen_val_table.qtab_type_cat <- function(qtab) {
     dplyr::as_tibble()
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }
-
-gen_val_table.qtab_type_mw <- gen_val_table.qtab_type_mdg <- function(qtab) {
-  # TODO: remove filtering together with unneeded rows in row_table!...:
-  row_table <- qtab$d$row_table[!is.na(qtab$d$row_table$RowVariable),]
-  col_table <- qtab$d$col_table[-c(1:3),]
-
-  row_levels <- paste(row_table$RowContent, row_table$RowAbsPercent, row_table$RowVariable, row_table$RowValue)
-
-  col_table <- qtab$d$col_table[-c(1:3),]
-  col_levels <- paste(col_table$ColVariable, col_table$ColValue)
-  tab_values <- qtab$d$tab_values
-
-  res <- tab_values["value"]
-  res$RowNo <- factor(paste(tab_values$RowContent, tab_values$RowAbsPercent, tab_values$rowvar, tab_values$rowval), row_levels) |> as.numeric()
-  res$ColNo <- as.numeric(factor(paste(tab_values$colvar, tab_values$colval), col_levels)) + 3
-  res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
-}
-

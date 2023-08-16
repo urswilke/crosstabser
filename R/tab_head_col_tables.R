@@ -56,8 +56,7 @@ gen_col_table <- function(mapping) {
     ColVariable = character(),
     ColValue = integer(),
   )
-  res[1:3, "HeadNo"] <- 1L
-  res[4, c("HeadNo", "ColTitle1", "ColVariable", "ColValue")] <- list(2L, mapping$options$l_lexikon["cTabGesamt"], "DC#STICHPROBE", 1L)
+  res[1, c("HeadNo", "ColTitle1", "ColVariable", "ColValue")] <- list(2L, mapping$options$l_lexikon["cTabGesamt"], "DC#STICHPROBE", 1L)
 
   head_table <- mapping$qsheet$head_table
   if (nrow(head_table) == 2) {
@@ -70,6 +69,6 @@ gen_col_table <- function(mapping) {
   colvar_headers$ColValue <- lapply(colvar_headers$ColVariable, \(x) attr(mapping$dat_mod[[x]], "labels"))
   colvar_headers$ColTitle2 <- lapply(colvar_headers$ColValue, \(x) names(x))
   res <- res |> dplyr::bind_rows(colvar_headers |> tidyr::unnest(c(ColValue, ColTitle2)))
-  res$ColNo <- 1:nrow(res)
+  res$ColNo <- 1:nrow(res) + 3
   res
 }
