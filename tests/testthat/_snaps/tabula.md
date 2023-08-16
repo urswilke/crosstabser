@@ -15,7 +15,7 @@
       7     99 q2     Detail     Percent                   0.456    NA    NA    NA
       8      1 q2     Valid      Abs                      68        28    36     0
 
-# wide_tab repoduced for cat
+# wide_tab is repoduced for cat
 
     Code
       wide_tab

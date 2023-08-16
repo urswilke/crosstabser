@@ -21,6 +21,6 @@ wide_tab <- tt$qrows$qtabs[[1]]$qtabs[[1]]$wide_tab()$d$wide_tab
 # test_that("long_tab repoduced for cat", {
 #   testthat::expect_snapshot(long_tab)
 # })
-test_that("wide_tab repoduced for cat", {
+test_that("wide_tab is repoduced for cat", {
   testthat::expect_snapshot(wide_tab)
 })
