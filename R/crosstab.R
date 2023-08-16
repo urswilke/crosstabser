@@ -4,6 +4,7 @@ merge_table_parts <- function(qtab) {
     qtab$d$stats_rows$sum_of_valid,
     qtab$d$detail_freqs,
     qtab$d$percentages,
+    qtab$d$vc_percentages,
     qtab$d$stats_rows$n_valid,
     qtab$d$stats_rows$no_entry
   )
@@ -301,4 +302,21 @@ calc_percentages.default <- function(qtab) {
   percentages$value <- percentages$value / vc$value[idx]
   percentages$RowAbsPercent <- "Percent"
   qtab$d$percentages <- percentages
+}
+
+calc_valid_counts_percentages <- function(qtab) {
+  UseMethod("calc_valid_counts_percentages")
+}
+# TODO:
+calc_valid_counts_percentages.qtab_type_mcg <- calc_valid_counts_percentages.qtab_type_mw <- function(qtab) {
+  NULL
+}
+calc_valid_counts_percentages.default <- function(qtab) {
+  total_cts <- qtab$d$stats_rows$total
+  valid_cts <- qtab$d$stats_rows$n_valid
+
+  valid_cts$value <- valid_cts$value / total_cts$value
+  valid_cts$RowAbsPercent <- "Percent"
+
+  qtab$d$vc_percentages <- valid_cts
 }

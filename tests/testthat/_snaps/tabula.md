@@ -3,7 +3,7 @@
     Code
       df_crosstab_cat
     Output
-      # A tibble: 8 x 8
+      # A tibble: 9 x 8
         rowval rowvar RowContent RowAbsPercent `DC#STICHPROBE_1`  q2_1  q2_2 q2_99
          <dbl> <chr>  <chr>      <chr>                     <dbl> <dbl> <dbl> <dbl>
       1      1 q2     Total      Abs                      95        28    36    31
@@ -13,14 +13,15 @@
       5      1 q2     Detail     Percent                   0.412     1    NA    NA
       6      2 q2     Detail     Percent                   0.529    NA     1    NA
       7     99 q2     Detail     Percent                   0.456    NA    NA    NA
-      8      1 q2     Valid      Abs                      68        28    36     0
+      8      1 q2     Valid      Percent                   0.716     1     1     0
+      9      1 q2     Valid      Abs                      68        28    36     0
 
 # wide_tab is repoduced for cat
 
     Code
       wide_tab
     Output
-      # A tibble: 6 x 5
+      # A tibble: 7 x 5
         RowNo    `4`   `5`   `6`   `7`
         <dbl>  <dbl> <dbl> <dbl> <dbl>
       1     4 95        28    36    31
@@ -29,6 +30,7 @@
       4     7 36        NA    36    NA
       5     8  0.529    NA     1    NA
       6     9 68        28    36     0
+      7    10  0.716     1     1     0
 
 # wide_tab is repoduced with new mapping
 
@@ -36,7 +38,7 @@
       wide_tabs
     Output
       [[1]]
-      # A tibble: 8 x 6
+      # A tibble: 9 x 6
         RowNo     `4`    `5`    `6`     `7`    `8`
         <dbl>   <dbl>  <dbl>  <dbl>   <dbl>  <dbl>
       1     4 151     19     75     43      14    
@@ -47,9 +49,10 @@
       6    11  39      8     25      3       3    
       7    12   0.258  0.421  0.333  0.0698  0.214
       8    15 151     19     75     43      14    
+      9    16   1      1      1      1       1    
       
       [[2]]
-      # A tibble: 17 x 6
+      # A tibble: 18 x 6
          RowNo      `4`     `5`      `6`     `7`     `8`
          <dbl>    <dbl>   <dbl>    <dbl>   <dbl>   <dbl>
        1     4 151      19       75      43      14     
@@ -69,6 +72,7 @@
       15    18   5       1        1       2       1     
       16    19   0.0331  0.0526   0.0133  0.0465  0.0714
       17    20 151      19       75      43      14     
+      18    21   1       1        1       1       1     
       
       [[3]]
       # A tibble: 0 x 1
