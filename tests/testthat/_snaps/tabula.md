@@ -12,7 +12,7 @@
       4     99 q2     Detail     Abs                      31        NA    NA    31
       5      1 q2     Detail     Percent                   0.412     1    NA    NA
       6      2 q2     Detail     Percent                   0.529    NA     1    NA
-      7     99 q2     Detail     Percent                   0.456    NA    NA   Inf
+      7     99 q2     Detail     Percent                   0.456    NA    NA    NA
       8      1 q2     Valid      Abs                      68        28    36     0
 
 # wide_tab repoduced for cat

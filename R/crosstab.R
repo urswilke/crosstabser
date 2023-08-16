@@ -294,6 +294,8 @@ calc_percentages.default <- function(qtab) {
   percentages <- cts
   percentages$value <- as.numeric(percentages$value)
   vc <- qtab$d$stats_rows$n_valid
+  # avoid to divide by zero:
+  vc$value[vc$value == 0] <- NA_integer_
   # correspomding indices of percentages values in vc:
   idx <- match(paste(percentages$colvar, percentages$colval), paste(vc$colvar, vc$colval))
   percentages$value <- percentages$value / vc$value[idx]
