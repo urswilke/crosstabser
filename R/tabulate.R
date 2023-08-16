@@ -88,48 +88,26 @@ pivot_table_data.qtab_type_mdg <- function(qtab) {
 }
 
 pivot_table_data.qtab_type_mcg <- function(qtab) {
-  invalid_vals <- qtab$p$Unguelt
   # for TOTAL column:
   df <- qtab$d$raw_data
   df$"colvar_DC#STICHPROBE" <- 1
 
-  row_var_data <- df[stringr::str_subset(names(df), "^rowvar_")]
-  any_in_row_filled <- rowSums(!is.na(row_var_data)) > 0
+  df$i <- seq_len(nrow(df))
 
-  n_valids_in_row <- apply(row_var_data, 1, \(r) sum(!unique(r) %in% invalid_vals))
-
-
-  df$any_in_row_filled <- any_in_row_filled
-  df$n_valids_in_row <- n_valids_in_row
-
-
-  col_long_data <- df |>
+  df_long <- df |>
+    pivot_rows() |>
     pivot_cols()
 
-  # this already does counting, but on the data where only the colvar are
-  # pivoted to long. Thus it's done here:
-  weight <- qtab$p$Weight
-
-  cols <- stringr::str_subset(names(col_long_data), "^(colva[rl]|weight)$")
-  qtab$d$total_row_counts <-
-    col_long_data[col_long_data$any_in_row_filled, cols] |>
-    gen_total_counts(weight)
-  qtab$d$sum_of_valid_counts <-
-    col_long_data[col_long_data$any_in_row_filled, c(cols, "n_valids_in_row")] |>
-    dplyr::summarise(
-      value = sum(n_valids_in_row * dplyr::coalesce(weight |> as.numeric(), 1)),
-      .by = -dplyr::matches("^(weight|n_valids_in_row)$")
-    )
-
-  cols <- stringr::str_subset(
-    names(col_long_data),
-    "^(any_in_row_filled|n_valids_in_row)$",
-    negate = TRUE
-  )
-  df_long <- col_long_data[cols] |> pivot_rows()
+  # invalid_vals <- qtab$p$Unguelt
+  # res <- df_long[!df_long$rowval %in% invalid_vals,] |>
+  res <- df_long |>
+    # remove duplicated choices:
+    dplyr::distinct(dplyr::across(dplyr::all_of(
+      c("i", "rowval", "colvar", "colval")
+    )))
   rowvars <- unique(df_long$rowvar) |> paste(collapse = ", ")
-  df_long$rowvar <- rowvars
-  qtab$d$long_data <- df_long
+  res$rowvar <- rowvars
+  qtab$d$long_data <- res
 }
 
 

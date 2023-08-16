@@ -79,28 +79,17 @@
       # i 1 variable: RowNo <dbl>
       
       [[4]]
-      # A tibble: 20 x 6
-         RowNo `4`       `5`       `6`       `7`       `8`      
-         <dbl> <list>    <list>    <list>    <list>    <list>   
-       1     4 <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]>
-       2     5 <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]>
-       3     6 <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]>
-       4     7 <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]>
-       5     8 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-       6     9 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-       7    10 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-       8    11 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-       9    12 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-      10    13 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-      11    14 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-      12    15 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-      13    16 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-      14    17 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-      15    18 <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]>
-      16    19 <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]> <dbl [3]>
-      17    20 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-      18    21 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-      19    22 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
-      20    23 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
+      # A tibble: 9 x 6
+        RowNo   `4`   `5`   `6`   `7`   `8`
+        <dbl> <int> <int> <int> <int> <int>
+      1     4   151    19    75    43    14
+      2     5   140    18    70    36    16
+      3     6    10     2     5     2     1
+      4     8    38     4    20    10     4
+      5    10    17     4     6     4     3
+      6    12    21     2    11     5     3
+      7    14    42     4    24    10     4
+      8    16    12     2     4     5     1
+      9    18    82    12    41    22     7
       
 

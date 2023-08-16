@@ -136,6 +136,40 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   qtab$d$stats_rows <- l_row_types
 }
 
+calc_stats_rows.qtab_type_mcg <- function(qtab) {
+  invalid_vals <- qtab$p$Unguelt
+
+  df_long <- qtab$d$long_data
+  df_long_valid <- df_long[!df_long$rowval %in% invalid_vals,]
+  # TODO: also treat weighted cross-tabs!...:
+  total <- df_long |> dplyr::summarise(value = dplyr::n_distinct(i), .by = c(colvar, colval))
+  sum_of_valid <- df_long_valid |> dplyr::count(colvar, colval, name = "value")
+  n_valid <- df_long_valid |>
+    dplyr::distinct(i, colvar, colval) |>
+    dplyr::count(colvar, colval, name = "value")
+
+
+  total$RowContent <- "Total"
+  total$RowAbsPercent <- "Abs"
+  total$rowvar <- df_long$rowvar[1]
+  total$rowval <- 1
+  sum_of_valid$RowContent <- "SumOfValid"
+  sum_of_valid$RowAbsPercent <- "Abs"
+  sum_of_valid$rowvar <- df_long$rowvar[1]
+  sum_of_valid$rowval <- 1
+  n_valid$RowContent <- "Valid"
+  n_valid$RowAbsPercent <- "Abs"
+  n_valid$rowvar <- df_long$rowvar[1]
+  n_valid$rowval <- 1
+
+
+  qtab$d$stats_rows <- list(
+    total = total,
+    sum_of_valid = sum_of_valid,
+    n_valid = n_valid
+  )
+}
+
 gen_all_counts <- function(long_data, weight, stat_fun) {
   long_data |>
     dplyr::group_by(dplyr::across(-dplyr::matches("weight"))) |>
@@ -199,19 +233,11 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   weight <- qtab$p$Weight
   stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data
-  sum_of_valid_row_data <- qtab$d$sum_of_valid_counts
-  sum_of_valid_row_data$rowvar <- long_data$rowvar[1]
-  sum_of_valid_row_data$rowval <- 1
-  total_row_data <- qtab$d$total_row_counts
-  total_row_data$rowvar <- long_data$rowvar[1]
-  total_row_data$rowval <- 1
-  all_counts <- gen_all_counts(long_data, weight, stat_fun)
-  # TODO: fix to only return all_counts and move rest to calc_stats_rows method!
-  rbind(
-    total_row_data,
-    sum_of_valid_row_data,
-    all_counts
-  )
+  long_data[["i"]] <- NULL
+  res <- gen_all_counts(long_data, weight, stat_fun)
+  res$RowContent <- "Detail"
+  res$RowAbsPercent <- "Abs"
+  res
 }
 
 # hack to do double dispatch on is.na(weight) & stat_fun:
