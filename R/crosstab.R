@@ -136,14 +136,6 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   qtab$d$stats_rows <- l_row_types
 }
 
-# TODO: remove or use instead of new method..: (?)
-gen_total_counts <- function(long_data, weight) {
-  long_data |>
-    dplyr::group_by(dplyr::across(-dplyr::matches("weight|rowva[rl]"))) |>
-    new_sum_stat(weight, NA) |>
-    apply_sum_stat()
-}
-
 gen_all_counts <- function(long_data, weight, stat_fun) {
   long_data |>
     dplyr::group_by(dplyr::across(-dplyr::matches("weight"))) |>
