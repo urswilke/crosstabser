@@ -1,6 +1,5 @@
 gen_row_table <- function(qtab) {
   row_table <- rbind(
-    row_table_title_lines(qtab),
     row_table_total_line(qtab),
     row_table_valid_mw(qtab),
     row_table_valid_answers_line(qtab),
@@ -8,8 +7,7 @@ gen_row_table <- function(qtab) {
     row_table_summary(qtab),
     row_table_stats(qtab),
     row_table_valid_cases(qtab),
-    row_table_invalid_vals(qtab),
-    row_table_empty_row()
+    row_table_invalid_vals(qtab)
   )
 
   row_table$TabNo <- qtab$p$TabNo
@@ -36,14 +34,6 @@ empty_row_table <- function() {
     RowVariable = character(),
     RowValue = double()
   )
-}
-row_table_title_lines <- function(qtab) {
-  row_table <- empty_row_table()
-
-  row_table[1, c("RowContent", "RowTitle1")] <- list("Title", paste(qtab$p$Title, collapse = "\n"))
-  row_table[2, c("RowContent")] <- list("Header")
-  row_table[3, c("RowContent")] <- list("Header")
-  row_table
 }
 row_table_total_line <- function(qtab) {
   UseMethod("row_table_total_line")
@@ -381,9 +371,4 @@ row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
 row_table_invalid_vals.qtab_type_mw <- function(qtab) {
   #TODO
   NULL
-}
-row_table_empty_row <- function() {
-  row_table <- empty_row_table()
-  row_table[1,]$RowContent <- "Empty"
-  row_table
 }
