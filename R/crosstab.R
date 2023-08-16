@@ -40,32 +40,39 @@ calc_stats_rows.default <- function(qtab) {
   NULL
 }
 calc_stats_rows.qtab_type_cat <- function(qtab) {
-  long_data <- qtab$d$long_data
-  weight <- qtab$p$Weight
+  df <- qtab$d$raw_data
+  # for TOTAL column:
+  df$"colvar_DC#STICHPROBE" <- 1
 
-  total_row_data <- gen_total_counts(long_data, weight)
-  total_row_data$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
-  total_row_data$rowval <- 1
-  total_row_data$RowContent <- "Total"
-  total_row_data$RowAbsPercent <- "Abs"
+  df_cols <- df[paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))]
 
-  # TODO: HACK to not remove empty combinations of colvar & colval
-  # ...probably better to use same method as for mdg!:
-  valid_row_data <- long_data |>
-    tidyr::unite(temp, colvar, colval, sep = "_[]_") |>
-    dplyr::mutate(temp = factor(temp)) |>
-    dplyr::filter(!rowval %in% qtab$p$Unguelt) |>
-    gen_total_counts(weight) |>
-    tidyr::separate_wider_delim(temp, "_[]_", names = c("colvar", "colval"))
-  valid_row_data$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
-  valid_row_data$rowval <- 1
-  valid_row_data$RowContent <- "Valid"
-  valid_row_data$RowAbsPercent <- "Abs"
+  df_cols$n_valid <- !df[[paste0("rowvar_", qtab$p$RowVar)]] %in% qtab$p$Unguelt
+  df_cols$total <- !is.na(df[[paste0("rowvar_", qtab$p$RowVar)]])
 
-  qtab$d$stats_rows <- list()
-  qtab$d$stats_rows$n_valid <- valid_row_data
-  qtab$d$stats_rows$total <- total_row_data
+  # TODO: find better organisation (redundant code with calc_stats_rows.qtab_type_mdg):
+  df_cols_long <- df_cols |>
+    pivot_cols()
 
+  row_types <- c("total", "n_valid")
+  if (!is.na(qtab$p$Weight)) {
+    purrr::walk(row_types, \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
+  }
+  df_stats_rows <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
+  l_row_types <- row_types |>
+    purrr::set_names() |>
+    lapply(\(x) {
+      res <- df_stats_rows[c("colvar", "colval", x)]
+      names(res)[3] <- "value"
+      res$rowval <- 1
+      res$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
+      res
+    })
+  l_row_types$total$RowContent <- "Total"
+  l_row_types$total$RowAbsPercent <- "Abs"
+  l_row_types$n_valid$RowContent <- "Valid"
+  l_row_types$n_valid$RowAbsPercent <- "Abs"
+
+  qtab$d$stats_rows <- l_row_types
 }
 
 calc_detail_freqs.qtab_type_mdg <- function(qtab) {
