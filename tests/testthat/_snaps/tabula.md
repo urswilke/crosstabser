@@ -15,3 +15,18 @@
       7 q2         99 Detail     Percent                   0.484    NA    NA    NA
       8 q2          1 Valid      Abs                      64        28    36    NA
 
+# wide_tab repoduced for cat
+
+    Code
+      wide_tab
+    Output
+      # A tibble: 6 x 5
+        RowNo    `4`   `5`   `6`   `7`
+        <dbl>  <dbl> <dbl> <dbl> <dbl>
+      1     1 95        28    36    31
+      2     2 28        28    NA    NA
+      3     3  0.438     1    NA    NA
+      4     4 36        NA    36    NA
+      5     5  0.562    NA     1    NA
+      6     6 64        28    36    NA
+
