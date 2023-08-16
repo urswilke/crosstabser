@@ -51,6 +51,34 @@ Qtab <- R6::R6Class("Qtab",
     },
     calc_qtab = function() {
       calc_qtab(self)
+    },
+    long_tab = function() {
+      self$d$long_tab <- self$d[
+        c("val_table", "row_table", "col_table", "head_table", "tab_table")
+      ] |>
+        purrr::reduce(merge) |>
+        tibble::as_tibble()
+      invisible(self)
+    },
+    wide_tab = function() {
+      if (is.null(self$d$long_tab)) {
+        self$long_tab()
+      }
+      cols_for_wide_tab <- c(
+        "RowNo", "ColNo", "value"#,
+        # "RowWeighted", "RowTitle1", "RowTitle2", "RowTitle3",
+        # "RowVariable", "RowValue"#,
+        # "ColTitle1", "ColTitle2", "ColVariable", "ColValue"
+      )
+      self$d$wide_tab <- self$d$long_tab |>
+        dplyr::select(dplyr::all_of(cols_for_wide_tab)) |>
+        tidyr::drop_na(value) |>
+        tidyr::pivot_wider(
+          names_from = dplyr::matches("Col"),
+          values_from = value
+        ) |>
+        dplyr::arrange(RowNo)
+      invisible(self)
     }
   )
 )
