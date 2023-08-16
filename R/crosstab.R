@@ -49,8 +49,14 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
   total_row_data$RowContent <- "Total"
   total_row_data$RowAbsPercent <- "Abs"
 
-
-  valid_row_data <- long_data[!long_data$rowval %in% qtab$p$Unguelt,] |> gen_total_counts(weight)
+  # TODO: HACK to not remove empty combinations of colvar & colval
+  # ...probably better to use same method as for mdg!:
+  valid_row_data <- long_data |>
+    tidyr::unite(temp, colvar, colval, sep = "_[]_") |>
+    dplyr::mutate(temp = factor(temp)) |>
+    dplyr::filter(!rowval %in% qtab$p$Unguelt) |>
+    gen_total_counts(weight) |>
+    tidyr::separate_wider_delim(temp, "_[]_", names = c("colvar", "colval"))
   valid_row_data$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
   valid_row_data$rowval <- 1
   valid_row_data$RowContent <- "Valid"
