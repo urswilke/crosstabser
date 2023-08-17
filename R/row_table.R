@@ -204,6 +204,7 @@ row_table_body.qtab_type_mw <- function(qtab) {
     qtab$p$l_lexikon["cTabMean"],
     qtab$p$l_lexikon["cTabGueltig"]
   ) |> rep(n_vals)
+  row_table$RowAbsPercent <- c("Percent", "Abs") |> rep(n_vals)
   row_table$RowContent <- c(
     "MStatistics",
     "MValid"

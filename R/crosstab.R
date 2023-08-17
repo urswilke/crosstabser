@@ -225,8 +225,8 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
   # to prevent warning when calling `gen_val_table()`...:
   # TODO: remove when refactoring gen_val_table()...!
   res$rowval <- NA_real_
-  res$RowContent <- "MStatistics"
-  res$RowAbsPercent <- "Percent"
+  res$RowContent <- "MValid"
+  res$RowAbsPercent <- "Abs"
   res
 }
 calc_detail_freqs.qtab_type_mcg <- function(qtab) {
