@@ -32,6 +32,32 @@ add_type_specific_params.qtab_type_mdg <- function(qtab) {
   mdg_val <- qtab$p$MdgVal %||% 1
   qtab$p$MdgVal <- as.numeric(mdg_val)
 }
+add_type_specific_params.qtab_type_mw <- function(qtab) {
+  stat_fun <- qtab$p$ZsfgMW
+  if (length(stat_fun) == 0) {
+    stat_fun = "mean"
+  }
+
+  qtab$p$stat_fun <- stat_fun
+}
+add_type_specific_params.qtab_type_cat <- function(qtab) {
+  if (!is.null(qtab$p$MetrMac)) {
+    qtab$p$l_stat_funs <- process_metr_mac(qtab$p$MetrMac)
+  }
+}
+
+process_metr_mac <- function(string) {
+  l_stat_funs <- stringr::str_extract_all(string, "[A-Z]\\d+")[[1]] |>
+    stringr::str_split("(?=\\d)")
+
+  replace_shortcut <- function(x) {
+    shortcut = c("E", "M", "S", "P", "I", "A")
+    fun = c("stderr", "median", "mean", "quantile", "min", "max")
+    fun[match(x, shortcut)]
+  }
+  lapply(l_stat_funs, \(x) {x[1] <- replace_shortcut(x[1]); x})
+
+}
 
 Qtab <- R6::R6Class("Qtab",
   public = list(
