@@ -16,10 +16,8 @@ calc_detail_freqs <- function(qtab) {
 }
 calc_detail_freqs.qtab_type_cat <- function(qtab) {
   weight <- qtab$p$Weight
-  stat_fun <- qtab$p$ZsfgMW
-  if (length(stat_fun) == 0) {
-    stat_fun = NA
-  }
+  stat_fun = NA
+
   long_data <- qtab$d$long_data
 
   # TODO: better use separate methods for cat & mdg..?
@@ -239,12 +237,11 @@ gen_catrec_long_data <- function(qtab) {
 
 calc_detail_freqs.qtab_type_mw <- function(qtab) {
   weight <- qtab$p$Weight
-  stat_fun <- qtab$p$ZsfgMW
   invalid_vals <- qtab$p$Unguelt
 
   res <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
     dplyr::group_by(dplyr::across(-dplyr::matches("weight|rowval"))) |>
-    new_sum_stat(weight, stat_fun) |>
+    new_sum_stat(weight, NA) |>
     apply_sum_stat()
 
   # to prevent warning when calling `gen_val_table()`...:
