@@ -15,9 +15,6 @@ get_raw_data.default <- function(qtab) {
   }
   colvars <- qtab$p$ColVar
   weightvar <- qtab$p$Weight
-  if (is.na(weightvar)) {
-    weightvar = character()
-  }
 
   long_cols <- c(
     rowvars |> purrr::set_names(paste0("rowvar_", rowvars)),

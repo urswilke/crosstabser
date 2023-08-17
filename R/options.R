@@ -70,6 +70,9 @@ add_global_options <- function(params, global_options) {
   res <- params
   res$Filter <- append(res$Filter, global_options$Filter[!is.na(global_options$Filter)])
   res$Weight <- dplyr::coalesce(res$Weight, global_options$Weight)
+  if (is.na(res$Weight)) {
+    res$Weight <- character()
+  }
   if (length(res$Unguelt) == 0) {
     res$Unguelt <- global_options$Unguelt
   }

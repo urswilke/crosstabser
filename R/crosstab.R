@@ -55,7 +55,7 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
     pivot_cols()
 
   row_types <- c("total", "n_valid")
-  if (!is.na(qtab$p$Weight)) {
+  if (length(qtab$p$Weight) > 0) {
     purrr::walk(row_types, \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
   }
   df_stats_rows <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
@@ -99,7 +99,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
     pivot_cols()
 
   row_types <- c("total", "sum_of_valid", "n_valid", "no_entry")
-  if (!is.na(qtab$p$Weight)) {
+  if (length(qtab$p$Weight) > 0) {
     #TODO: check if that works and is good..:
     purrr::walk(row_types, \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
   }
@@ -152,7 +152,7 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
     pivot_cols()
 
   row_types <- c("n_valid")
-  if (!is.na(qtab$p$Weight)) {
+  if (length(qtab$p$Weight) > 0) {
     #TODO: check if that works and is good..:
     purrr::walk(row_types, \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
   }
