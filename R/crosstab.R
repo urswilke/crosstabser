@@ -136,6 +136,42 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   qtab$d$stats_rows <- l_row_types
 }
 
+calc_stats_rows.qtab_type_mw <- function(qtab) {
+  invalid_vals <- qtab$p$Unguelt
+  df <- qtab$d$raw_data
+  # for TOTAL column:
+  df$"colvar_DC#STICHPROBE" <- 1
+
+  mdg_val <- qtab$p$MdgVal
+
+  df_cols <- df[paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))]
+  df_rows <- df[paste0("rowvar_", qtab$p$RowVar)]
+
+  df_cols$n_valid <- rowSums(sapply(df_rows, Negate(`%in%`), invalid_vals)) >= 1
+  df_cols_long <- df_cols |>
+    pivot_cols()
+
+  row_types <- c("n_valid")
+  if (!is.na(qtab$p$Weight)) {
+    #TODO: check if that works and is good..:
+    purrr::walk(row_types, \(x) df_cols_long[[x]] <- df_cols_long[[x]] * df_cols_long[[qtab$p$Weight]])
+  }
+  df_stats_rows <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
+  l_row_types <- row_types |>
+    purrr::set_names() |>
+    lapply(\(x) {
+      res <- df_stats_rows[c("colvar", "colval", x)]
+      names(res)[3] <- "value"
+      res$rowval <- 1
+      res$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
+      res
+    })
+  l_row_types$n_valid$RowContent <- "Valid"
+  l_row_types$n_valid$RowAbsPercent <- "Abs"
+
+  qtab$d$stats_rows <- l_row_types
+}
+
 calc_stats_rows.qtab_type_mcg <- function(qtab) {
   invalid_vals <- qtab$p$Unguelt
 

@@ -62,7 +62,8 @@ row_table_valid_mw.qtab_type_mw <- function(qtab) {
   row_table <- empty_row_table()
   valid_mw_text <- qtab$p$l_lexikon["cTabGesamtMW"]
   abs_text <- qtab$p$l_lexikon["cTabAbs"]
-  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals")] <- list("Valid", "Abs", valid_mw_text, valid_mw_text, abs_text, 0L)
+  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Abs", valid_mw_text, valid_mw_text, abs_text, 0L, 1)
+  row_table$RowVariable <- qtab$p$RowVar |> paste(collapse = ", ")
   row_table
 }
 
