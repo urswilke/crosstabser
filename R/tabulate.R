@@ -19,7 +19,7 @@ get_raw_data.default <- function(qtab) {
   long_cols <- c(
     rowvars |> purrr::set_names(paste0("rowvar_", rowvars)),
     colvars |> purrr::set_names(paste0("colvar_", colvars)),
-    weightvar |> purrr::set_names("weight")
+    weightvar
   )
   prep_data <- function() {
     # same as:

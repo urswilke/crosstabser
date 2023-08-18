@@ -7,11 +7,11 @@
         rowval rowvar RowContent RowAbsPercent `DC#STICHPROBE_1`  q2_1  q2_2 q2_99
          <dbl> <chr>  <chr>      <chr>                     <dbl> <dbl> <dbl> <dbl>
       1      1 q2     Total      Abs                      95        28    36    31
-      2      1 q2     Detail     Abs                      28        28    NA    NA
-      3      2 q2     Detail     Abs                      36        NA    36    NA
+      2      2 q2     Detail     Abs                      36        NA    36    NA
+      3      1 q2     Detail     Abs                      28        28    NA    NA
       4     99 q2     Detail     Abs                      31        NA    NA    31
-      5      1 q2     Detail     Percent                   0.412     1    NA    NA
-      6      2 q2     Detail     Percent                   0.529    NA     1    NA
+      5      2 q2     Detail     Percent                   0.529    NA     1    NA
+      6      1 q2     Detail     Percent                   0.412     1    NA    NA
       7     99 q2     Detail     Percent                   0.456    NA    NA    NA
       8      1 q2     Valid      Percent                   0.716     1     1     0
       9      1 q2     Valid      Abs                      68        28    36     0

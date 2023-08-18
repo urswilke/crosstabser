@@ -25,7 +25,10 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
     long_data_catrec <- gen_catrec_long_data(qtab)
     long_data <- dplyr::bind_rows(long_data, long_data_catrec)
   }
-  all_counts <- gen_all_counts(long_data, weight, stat_fun)
+  all_counts <- long_data |> dplyr::summarise(
+    value = apply_stat(rowval, weight),
+    .by = -dplyr::matches("weight")
+  )
   all_counts$RowContent <- "Detail"
   all_counts$RowAbsPercent <- "Abs"
 
@@ -193,13 +196,6 @@ calc_stats_rows.qtab_type_mcg <- function(qtab) {
   )
 }
 
-gen_all_counts <- function(long_data, weight, stat_fun) {
-  long_data |>
-    dplyr::group_by(dplyr::across(-dplyr::matches("weight"))) |>
-    new_sum_stat(weight, stat_fun) |>
-    apply_sum_stat()
-}
-
 gen_catrec_long_data <- function(qtab) {
   cat_rec_string <- qtab$p$CatRec
   cat_lab_string <- qtab$p$CatLab
@@ -240,9 +236,10 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
   invalid_vals <- qtab$p$Unguelt
 
   res <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
-    dplyr::group_by(dplyr::across(-dplyr::matches("weight|rowval"))) |>
-    new_sum_stat(weight, NA) |>
-    apply_sum_stat()
+    dplyr::summarise(
+      value = apply_stat(rowval, weight),
+      .by = -dplyr::matches("weight|rowval")
+    )
 
   # to prevent warning when calling `gen_val_table()`...:
   # TODO: remove when refactoring gen_val_table()...!
@@ -256,72 +253,14 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data
   long_data[["i"]] <- NULL
-  res <- gen_all_counts(long_data, weight, stat_fun)
+  res <- long_data |> dplyr::summarise(
+    value = apply_stat(rowval, weight),
+    .by = -dplyr::matches("weight")
+  )
   res$RowContent <- "Detail"
   res$RowAbsPercent <- "Abs"
   res
 }
-
-# hack to do double dispatch on is.na(weight) & stat_fun:
-new_sum_stat <- function(df_long, weight, stat_fun) {
-  subclass_str <- dplyr::case_when(
-    is.na(weight)  & is.na(stat_fun)      ~ "counts_unweighted",
-    !is.na(weight) & is.na(stat_fun)      ~ "counts_weighted",
-    is.na(weight)  & stat_fun == "mean"   ~ "mean_unweighted",
-    is.na(weight)  & stat_fun == "median" ~ "median_unweighted",
-    is.na(weight)  & stat_fun == "sum"    ~ "sum_unweighted",
-    !is.na(weight) & stat_fun == "mean"   ~ "mean_weighted",
-    !is.na(weight) & stat_fun == "median" ~ "median_weighted",
-    !is.na(weight) & stat_fun == "sum"    ~ "sum_weighted"
-  )
-  if (length(subclass_str) == 0) {
-    subclass_str <- "counts_unweighted"
-  }
-  structure(df_long, class = c(subclass_str, class(df_long)))
-}
-apply_sum_stat <- function(df_long, ...) {
-  UseMethod("apply_sum_stat")
-}
-apply_sum_stat.counts_unweighted <- function(df_long, ...) {
-  df_long |>
-    dplyr::summarize(
-      value = dplyr::n(),
-      .groups = "drop"
-    )
-}
-apply_sum_stat.counts_weighted <- function(df_long, ...) {
-  df_long |>
-    dplyr::summarize(value = sum(weight, na.rm = TRUE), .groups = "drop")
-}
-apply_sum_stat.mean_unweighted <- function(df_long, ...) {
-  df_long |>
-    dplyr::summarize(value = mean(rowval, na.rm = TRUE), .groups = "drop")
-}
-apply_sum_stat.median_unweighted <- function(df_long, ...) {
-  df_long |>
-    dplyr::summarize(value = stats::median(rowval, na.rm = TRUE), .groups = "drop")
-}
-apply_sum_stat.sum_unweighted <- function(df_long, value_col = "rowval", ...) {
-  df_long |>
-    dplyr::summarize(value = sum(!!rlang::sym(value_col), na.rm = TRUE), .groups = "drop")
-}
-apply_sum_stat.mean_weighted <- function(df_long, ...) {
-  df_long |>
-    tidyr::drop_na(weight) |>
-    dplyr::summarize(value = stats::weighted.mean(rowval, weight, na.rm = TRUE), .groups = "drop")
-}
-apply_sum_stat.median_weighted <- function(df_long, ...) {
-  df_long |>
-    dplyr::summarize(
-      value = matrixStats::weightedMedian(rowval, weight, na.rm = TRUE, ties = "mean"),
-      .groups = "drop"
-    )
-}
-apply_sum_stat.sum_weighted <- function(df_long, ...) {
-  df_long |>
-    dplyr::summarize(value = sum(rowval * weight, na.rm = TRUE), .groups = "drop")
-}
-
 
 calc_percentages <- function(qtab) {
   UseMethod("calc_percentages")
