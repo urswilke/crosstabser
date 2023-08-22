@@ -112,6 +112,7 @@ calc_qtab <- function(qtab) {
   qtab$d$raw_data <- get_raw_data(qtab)
   pivot_table_data(qtab)
   calc_stats_rows(qtab)
+  calc_mw_stat_fun(qtab)
   qtab$d$detail_freqs <- calc_detail_freqs(qtab)
   calc_percentages(qtab)
   calc_valid_counts_percentages(qtab)

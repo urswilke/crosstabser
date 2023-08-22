@@ -2,6 +2,7 @@ merge_table_parts <- function(qtab) {
   rbind(
     qtab$d$stats_rows$total,
     qtab$d$stats_rows$sum_of_valid,
+    qtab$d$mw_fun_stats,
     qtab$d$detail_freqs,
     qtab$d$percentages,
     qtab$d$vc_percentages,
@@ -10,6 +11,29 @@ merge_table_parts <- function(qtab) {
   )
 }
 
+calc_mw_stat_fun <- function(qtab) {
+  UseMethod("calc_mw_stat_fun")
+}
+calc_mw_stat_fun.default <- function(qtab) {
+  NULL
+}
+# TODO: add tests for stat_fun = median, sum, ...:
+calc_mw_stat_fun.qtab_type_mw <- function(qtab) {
+  long_data <- qtab$d$long_data
+  res <- long_data |>
+    dplyr::summarise(
+      value = apply_stat(
+        .data$rowval,
+        wt = qtab$p$Weight[[1]],
+        stat_fun = qtab$p$stat_fun
+      ),
+      .by = c("rowvar", "colvar", "colval")
+    )
+  res$RowContent <- "MStatistics"
+  res$RowAbsPercent <- "Percent"
+  res$rowval <- NA_real_
+  qtab$d$mw_fun_stats <- res
+}
 
 calc_detail_freqs <- function(qtab) {
   UseMethod("calc_detail_freqs")
