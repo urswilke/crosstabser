@@ -56,7 +56,17 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
     pivot_cols()
 
   row_types <- c("total", "n_valid")
-  df_stats_rows <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
+  df_stats_rows <- df_cols_long |>
+    dplyr::summarise(
+      across(
+        dplyr::all_of(row_types),
+        \(x) apply_stat(x, wt = qtab$p$Weight[[1]], stat_fun = "sum")
+      ),
+      .by = c("colvar", "colval")
+    )
+  # faster, but Weighting cannot be treated (as FUN in aggregate() only allows
+  # one-argument functions...):
+  # df_stats_rows <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
   l_row_types <- row_types |>
     purrr::set_names() |>
     lapply(\(x) {
@@ -97,7 +107,15 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
     pivot_cols()
 
   row_types <- c("total", "sum_of_valid", "n_valid", "no_entry")
-  df_stats_rows <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
+  df_stats_rows <- df_cols_long |>
+    dplyr::summarise(
+      across(
+        dplyr::all_of(row_types),
+        \(x) apply_stat(x, wt = qtab$p$Weight[[1]], stat_fun = "sum")
+      ),
+      .by = c("colvar", "colval")
+    )
+
   l_row_types <- row_types |>
     purrr::set_names() |>
     lapply(\(x) {
@@ -146,7 +164,15 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
     pivot_cols()
 
   row_types <- c("n_valid")
-  df_stats_rows <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
+  df_stats_rows <- df_cols_long |>
+    dplyr::summarise(
+      across(
+        dplyr::all_of(row_types),
+        \(x) apply_stat(x, wt = qtab$p$Weight[[1]], stat_fun = "sum")
+      ),
+      .by = c("colvar", "colval")
+    )
+
   l_row_types <- row_types |>
     purrr::set_names() |>
     lapply(\(x) {
