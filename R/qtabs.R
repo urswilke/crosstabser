@@ -55,7 +55,22 @@ process_metr_mac <- function(string) {
     fun = c("stderr", "median", "mean", "quantile", "min", "max")
     fun[match(x, shortcut)]
   }
-  lapply(l_stat_funs, \(x) {x[1] <- replace_shortcut(x[1]); x})
+  transform_numbers <- function(l) {
+    l <- as.list(l)
+    l[[2]] <- as.integer(l[[2]])
+    if (l[[1]] == "quantile") {
+      l <- list(
+        l[[1]],
+        # also put number of decimals to second position:
+        l[[4]],
+        # put 2 digits after "P" in third position (divide them by 100):
+        as.integer(paste(c(l[[2]], l[[3]]), collapse = "")) / 100
+      )
+    }
+    l
+  }
+  lapply(l_stat_funs, \(x) {x[1] <- replace_shortcut(x[1]); x}) |>
+    lapply(transform_numbers)
 
 }
 
