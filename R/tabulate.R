@@ -14,7 +14,7 @@ get_raw_data.default <- function(qtab) {
     rowvars <- c(rowvars, qtab$p$Unguelt)
   }
   colvars <- qtab$p$ColVar
-  weightvar <- qtab$p$Weight
+  weightvar <- qtab$p$Weight[[1]]
 
   long_cols <- c(
     rowvars |> purrr::set_names(paste0("rowvar_", rowvars)),

@@ -15,7 +15,7 @@ calc_detail_freqs <- function(qtab) {
   UseMethod("calc_detail_freqs")
 }
 calc_detail_freqs.qtab_type_cat <- function(qtab) {
-  weight <- qtab$p$Weight
+  weight <- qtab$p$Weight[[1]]
   stat_fun = NA
 
   long_data <- qtab$d$long_data
@@ -232,7 +232,7 @@ gen_catrec_long_data <- function(qtab) {
 }
 
 calc_detail_freqs.qtab_type_mw <- function(qtab) {
-  weight <- qtab$p$Weight
+  weight <- qtab$p$Weight[[1]]
   invalid_vals <- qtab$p$Unguelt
 
   res <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
@@ -249,7 +249,7 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
   res
 }
 calc_detail_freqs.qtab_type_mcg <- function(qtab) {
-  weight <- qtab$p$Weight
+  weight <- qtab$p$Weight[[1]]
   stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data
   long_data[["i"]] <- NULL
