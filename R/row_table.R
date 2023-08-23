@@ -96,6 +96,11 @@ row_table_body <- function(qtab) {
   UseMethod("row_table_body")
 }
 row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
+  # TODO: Wolf fragen ob das so passen würde...:
+  # calc_detail_freqs.qtab_type_cat() & calc_percentages.default() könnte man dann auch lassen...:
+  # if (!is.null(qtab$p$Einzelauspraegung)) {
+  #   return(NULL)
+  # }
   occuring_vals <- qtab$d$dat_mod[qtab$p$RowVar] |> unlist(use.names = FALSE) |> unique()
   invalid_vals <- qtab$p$Unguelt
   vallabs <- attr(qtab$d$dat_mod[[qtab$p$RowVar[1]]], "labels")
