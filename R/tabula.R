@@ -72,7 +72,7 @@ Tabula <- R6::R6Class("Tabula",
       if (is.null(row)) {
         row <- self$qrows$row
       }
-      qtabs <- self$qrows[self$qrows$row %in% row,]$qtabs
+      qtabs <- self$qrows[self$qrows$row %in% row,]$qrow
 
       qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
       invisible(self)

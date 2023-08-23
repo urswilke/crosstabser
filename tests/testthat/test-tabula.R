@@ -4,7 +4,7 @@ mapping_file <- "K:/Projects/UW git/crosstabser/tests/testthat/excel/mapping.xls
 mapping_file <- "excel/mapping.xlsx"
 tt <- Tabula$new(spss_file, mapping_file)$calc_qtabs(row = 5)
 
-df_crosstab_cat <- tt$qrows$qtabs[[1]]$qtabs[[1]]$d$tab_values |>
+df_crosstab_cat <- tt$qrows$qrow[[1]]$qtabs[[1]]$d$tab_values |>
   dplyr::arrange(colvar, colval) |>
   tidyr::pivot_wider(
     names_from = c(colvar, colval),
@@ -15,8 +15,8 @@ test_that("cross-tabulation works for cat", {
   testthat::expect_snapshot(df_crosstab_cat)
 })
 
-# long_tab <- tt$qrows$qtabs[[1]]$qtabs[[1]]$long_tab()$d$long_tab
-wide_tab <- tt$qrows$qtabs[[1]]$qtabs[[1]]$wide_tab()$d$wide_tab
+# long_tab <- tt$qrows$qrow[[1]]$qtabs[[1]]$long_tab()$d$long_tab
+wide_tab <- tt$qrows$qrow[[1]]$qtabs[[1]]$wide_tab()$d$wide_tab
 
 # test_that("long_tab repoduced for cat", {
 #   testthat::expect_snapshot(long_tab)
@@ -31,7 +31,7 @@ mapping_file <- "K:/Projects/UW git/crosstabser/tests/testthat/excel/mapping_neu
 mapping_file <- "excel/mapping_neu_reduced.xlsx"
 tt <- Tabula$new(spss_file, mapping_file)$calc_qtabs()
 
-wide_tabs <- 1:4 |> lapply(\(i) tt$qrows$qtabs[[i]]$qtabs[[1]]$wide_tab()$d$wide_tab)
+wide_tabs <- 1:4 |> lapply(\(i) tt$qrows$qrow[[i]]$qtabs[[1]]$wide_tab()$d$wide_tab)
 
 # test_that("long_tab repoduced for cat", {
 #   testthat::expect_snapshot(long_tab)
