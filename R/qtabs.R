@@ -42,36 +42,38 @@ add_type_specific_params.qtab_type_mw <- function(qtab) {
 }
 add_type_specific_params.qtab_type_cat <- function(qtab) {
   if (!is.null(qtab$p$MetrMac)) {
-    qtab$p$l_stat_funs <- process_metr_mac(qtab$p$MetrMac)
+    qtab$p$df_stat_funs <- process_metr_mac(qtab)
   }
 }
 
-process_metr_mac <- function(string) {
-  l_stat_funs <- stringr::str_extract_all(string, "[A-Z]\\d+")[[1]] |>
+df_metr_mac <- data.frame(
+  shortcut = c("E", "M", "S", "P", "I", "A"),
+  fun = c("stderr", "median", "mean", "quantile", "min", "max"),
+  # TODO: Wolf fragen wo das steht???
+  ctab_entry = c("cTabStdErr", "cTabMedian", "cTabMean", "wo_steht???", "wo_steht2???", "wo_steht3???")
+)
+
+process_metr_mac <- function(qtab) {
+  l <- stringr::str_extract_all(qtab$p$MetrMac, "[A-Z]\\d+")[[1]] |>
     stringr::str_split("(?=\\d)")
 
-  replace_shortcut <- function(x) {
-    shortcut = c("E", "M", "S", "P", "I", "A")
-    fun = c("stderr", "median", "mean", "quantile", "min", "max")
-    fun[match(x, shortcut)]
-  }
-  transform_numbers <- function(l) {
-    l <- as.list(l)
-    l[[2]] <- as.integer(l[[2]])
-    if (l[[1]] == "quantile") {
-      l <- list(
-        l[[1]],
-        # also put number of decimals to second position:
-        l[[4]],
-        # put 2 digits after "P" in third position (divide them by 100):
-        as.integer(paste(c(l[[2]], l[[3]]), collapse = "")) / 100
-      )
-    }
-    l
-  }
-  lapply(l_stat_funs, \(x) {x[1] <- replace_shortcut(x[1]); x}) |>
-    lapply(transform_numbers)
-
+  df_stat_funs <- data.frame(shortcut = l |> purrr::map_chr(1)) |>
+    dplyr::mutate(
+      fun = df_metr_mac$fun[match(shortcut, df_metr_mac$shortcut)],
+      decimals = as.numeric(l |> purrr::map_chr(\(x) x[length(x)])),
+      row_title = qtab$m$options$l_lexikon[
+        df_metr_mac$ctab_entry[match(shortcut, df_metr_mac$shortcut)]
+      ] |> unname()
+    )
+  df_stat_funs$quantile_val <- vector("list", length(l))
+  df_stat_funs[df_stat_funs$shortcut == "P",]$quantile_val <-
+    as.numeric(
+      l[df_stat_funs$shortcut == "P"] |>
+        purrr::map_chr(
+          \(x) x[2:3] |>
+            paste(collapse = ""))
+    ) / 100
+  df_stat_funs
 }
 
 Qtab <- R6::R6Class("Qtab",
