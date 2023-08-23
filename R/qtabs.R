@@ -96,6 +96,7 @@ Qtab <- R6::R6Class("Qtab",
     },
     calc_qtab = function() {
       calc_qtab(self)
+      invisible(self)
     },
     long_tab = function() {
       self$d$long_tab <- self$d[
@@ -109,20 +110,7 @@ Qtab <- R6::R6Class("Qtab",
       if (is.null(self$d$long_tab)) {
         self$long_tab()
       }
-      cols_for_wide_tab <- c(
-        "RowNo", "ColNo", "value"#,
-        # "RowWeighted", "RowTitle1", "RowTitle2", "RowTitle3",
-        # "RowVariable", "RowValue"#,
-        # "ColTitle1", "ColTitle2", "ColVariable", "ColValue"
-      )
-      self$d$wide_tab <- self$d$long_tab |>
-        dplyr::select(dplyr::all_of(cols_for_wide_tab)) |>
-        tidyr::drop_na(value) |>
-        tidyr::pivot_wider(
-          names_from = dplyr::matches("Col"),
-          values_from = value
-        ) |>
-        dplyr::arrange(RowNo)
+      wide_tab(self)
       invisible(self)
     }
   )
@@ -139,7 +127,22 @@ calc_qtab <- function(qtab) {
   qtab$d$row_table <- gen_row_table(qtab)
   qtab$d$val_table <- gen_val_table(qtab)
 }
-
+wide_tab <- function(qtab) {
+  cols_for_wide_tab <- c(
+    "RowNo", "ColNo", "value"#,
+    # "RowWeighted", "RowTitle1", "RowTitle2", "RowTitle3",
+    # "RowVariable", "RowValue"#,
+    # "ColTitle1", "ColTitle2", "ColVariable", "ColValue"
+  )
+  qtab$d$wide_tab <- qtab$d$long_tab |>
+    dplyr::select(dplyr::all_of(cols_for_wide_tab)) |>
+    tidyr::drop_na(value) |>
+    tidyr::pivot_wider(
+      names_from = dplyr::matches("Col"),
+      values_from = value
+    ) |>
+    dplyr::arrange(RowNo)
+}
 #' @export
 print.crosstabser_tabs <- function(x,
                                    # unnest fields:
