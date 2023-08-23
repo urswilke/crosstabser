@@ -45,13 +45,16 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
   long_data <- qtab$d$long_data
   res <- qtab$p$df_stat_funs$fun |>
     purrr::set_names() |>
-    purrr::map_dfr(
-      \(f) long_data |>
+    purrr::map2_dfr(
+      # TODO: find cleaner way to pass the quantile probs...:
+      qtab$p$df_stat_funs$quantile_val,
+      \(f, p) long_data |>
         dplyr::summarise(
           value = apply_stat(
             .data$rowval,
             wt = qtab$p$Weight[[1]],
-            stat_fun = f
+            stat_fun = f,
+            probs = p
           ),
           .by = c("rowvar", "colvar", "colval")
         ),

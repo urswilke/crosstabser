@@ -48,7 +48,7 @@ add_type_specific_params.qtab_type_cat <- function(qtab) {
 
 df_metr_mac <- data.frame(
   shortcut = c("E", "M", "S", "P", "I", "A"),
-  fun = c("se", "median", "mean", "quantile", "min", "max"),
+  fun = c("se", "median", "mean", "percentile", "min", "max"),
   # TODO: Wolf fragen wo das steht???
   ctab_entry = c("cTabStdErr", "cTabMedian", "cTabMean", "wo_steht???", "wo_steht2???", "wo_steht3???")
 )
