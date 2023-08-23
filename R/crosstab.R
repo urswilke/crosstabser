@@ -1,8 +1,10 @@
 merge_table_parts <- function(qtab) {
-  rbind(
+  # TODO: replaced rbind -> check if the dataframe parts can by simplified (e.g.
+  # setting a column to NA shouldn't be necessary anymore...):
+  dplyr::bind_rows(
     qtab$d$stats_rows$total,
     qtab$d$stats_rows$sum_of_valid,
-    qtab$d$mw_fun_stats,
+    qtab$d$fun_stats,
     qtab$d$detail_freqs,
     qtab$d$percentages,
     qtab$d$vc_percentages,
@@ -11,14 +13,15 @@ merge_table_parts <- function(qtab) {
   )
 }
 
-calc_mw_stat_fun <- function(qtab) {
-  UseMethod("calc_mw_stat_fun")
+# TODO: think whether cat and mw can/should be treated with the same function:
+calc_stat_fun <- function(qtab) {
+  UseMethod("calc_stat_fun")
 }
-calc_mw_stat_fun.default <- function(qtab) {
+calc_stat_fun.default <- function(qtab) {
   NULL
 }
 # TODO: add tests for stat_fun = median, sum, ...:
-calc_mw_stat_fun.qtab_type_mw <- function(qtab) {
+calc_stat_fun.qtab_type_mw <- function(qtab) {
   long_data <- qtab$d$long_data
   res <- long_data |>
     dplyr::summarise(
@@ -30,9 +33,34 @@ calc_mw_stat_fun.qtab_type_mw <- function(qtab) {
       .by = c("rowvar", "colvar", "colval")
     )
   res$RowContent <- "MStatistics"
-  res$RowAbsPercent <- "Percent"
   res$rowval <- NA_real_
-  qtab$d$mw_fun_stats <- res
+  res$RowAbsPercent <- "Percent"
+  qtab$d$fun_stats <- res
+}
+# TODO: add test for S1M0...!:
+calc_stat_fun.qtab_type_cat <- function(qtab) {
+  if (is.null(qtab$p$MetrMac)) {
+    return(NULL)
+  }
+  long_data <- qtab$d$long_data
+  res <- qtab$p$df_stat_funs$fun |>
+    purrr::set_names() |>
+    purrr::map_dfr(
+      \(f) long_data |>
+        dplyr::summarise(
+          value = apply_stat(
+            .data$rowval,
+            wt = qtab$p$Weight[[1]],
+            stat_fun = f
+          ),
+          .by = c("rowvar", "colvar", "colval")
+        ),
+      .id = "RowStatFun"
+    )
+  res$RowContent <- "Statistics"
+  res$rowval <- 100
+  res$RowAbsPercent <- "Percent"
+  qtab$d$fun_stats <- res
 }
 
 calc_detail_freqs <- function(qtab) {

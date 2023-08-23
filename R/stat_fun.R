@@ -50,6 +50,12 @@ stat_fun_uw.median <- function(x, na.rm = TRUE) {
 stat_fun_uw.sum <- function(x, na.rm = TRUE, ...) {
   sum(x$vec, na.rm = na.rm)
 }
+stat_fun_uw.se <- function(x, na.rm = TRUE, ...) {
+  if (na.rm) {
+    x$vec <- x$vec[!is.na(x$vec)]
+  }
+  sd(x$vec) / sqrt(length(x$vec))
+}
 stat_fun_wt <- function(x, ...) {
   UseMethod("stat_fun_wt")
 }
@@ -64,4 +70,15 @@ stat_fun_wt.median <- function(x, na.rm = TRUE, ties = "mean", ...) {
 }
 stat_fun_wt.sum <- function(x, na.rm = TRUE, ...) {
   sum(x$vec * x$wt, na.rm = na.rm)
+}
+# TODO: check if this leads to the same results as with SPSS:
+stat_fun_wt.se <- function(x, na.rm = TRUE, ...) {
+  # see here: https://stackoverflow.com/a/60235611
+  if (na.rm) {
+    obs <- !is.na(x$vec) & !is.na(x$wt)
+    x$vec <- x$vec[obs]
+    x$wt <- x$wt[obs]
+  }
+  mu <- stats::weighted.mean(x, w)
+  sqrt(sum(x$wt * ((x$vec - mu) ^ 2)) / (sum(x$wt) - 1))
 }

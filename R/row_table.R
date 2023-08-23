@@ -1,5 +1,7 @@
 gen_row_table <- function(qtab) {
-  row_table <- rbind(
+  # TODO: replaced rbind -> check if the dataframe parts can by simplified (e.g.
+  # setting a column to NA shouldn't be necessary anymore...):
+  row_table <- dplyr::bind_rows(
     row_table_total_line(qtab),
     row_table_valid_mw(qtab),
     row_table_valid_answers_line(qtab),
@@ -287,9 +289,33 @@ row_table_summary.qtab_type_cat <- function(qtab) {
 }
 
 row_table_stats <- function(qtab) {
-  #TODO
+  UseMethod("row_table_stats")
+}
+row_table_stats.default <- function(qtab) {
   NULL
 }
+row_table_stats.qtab_type_cat <- function(qtab) {
+  if (is.null(qtab$p$MetrMac)) {
+    return(NULL)
+  }
+
+  df_stat_funs <- qtab$p$df_stat_funs
+
+  row_table <- empty_row_table()
+  row_table[seq_along(df_stat_funs$shortcut), c("RowTitle1", "RowTitle2", "RowTitle3")] <-
+    list(df_stat_funs$row_title) |> rep(3)
+  # TODO: Wolf: why? - but look at these cases together with all other types...!:
+  row_table$RowValue <- 100
+  row_table$RowAbsPercent <- "Percent"
+
+  row_table$RowContent <- "Statistics"
+  row_table$RowDecimals <- df_stat_funs$decimals
+  row_table$RowVariable <- qtab$p$RowVar
+  # TODO: tell Wolf that I needed this to
+  row_table$RowStatFun <- df_stat_funs$fun
+  row_table
+}
+
 # TODO: source out common functionality with row_table_body!
 row_table_invalid_vals <- function(qtab) {
   UseMethod("row_table_invalid_vals")
@@ -371,6 +397,5 @@ row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
   row_table
 }
 row_table_invalid_vals.qtab_type_mw <- function(qtab) {
-  #TODO
   NULL
 }
