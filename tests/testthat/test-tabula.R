@@ -39,3 +39,8 @@ wide_tabs <- 1:4 |> lapply(\(i) tt$qrows$qrow[[i]]$qtabs[[1]]$wide_tab()$d$wide_
 test_that("wide_tab is repoduced with new mapping", {
   testthat::expect_snapshot(wide_tabs)
 })
+
+wide_tab <- tt$qrows$qrow[[3]]$qtabs[[2]]$wide_tab()$d$wide_tab
+test_that("wide_tab is repoduced for cat", {
+  testthat::expect_snapshot(print(wide_tab, n = Inf))
+})

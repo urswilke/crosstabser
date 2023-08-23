@@ -58,10 +58,13 @@ stat_fun_uw.se <- function(x, na.rm = TRUE, ...) {
   sd(x$vec) / sqrt(length(x$vec))
 }
 stat_fun_uw.percentile <- function(x, na.rm = TRUE, ...) {
-  # if (na.rm) {
-  #   x$vec <- x$vec[!is.na(x$vec)]
-  # }
   quantile(x$vec, probs = x$probs, na.rm = na.rm)
+}
+stat_fun_uw.min <- stat_fun_wt.min <- function(x, na.rm = TRUE, ...) {
+  min(x$vec, na.rm = na.rm)
+}
+stat_fun_uw.max <- stat_fun_wt.max <- function(x, na.rm = TRUE, ...) {
+  max(x$vec, na.rm = na.rm)
 }
 stat_fun_wt <- function(x, ...) {
   UseMethod("stat_fun_wt")
@@ -89,4 +92,3 @@ stat_fun_wt.se <- function(x, na.rm = TRUE, ...) {
   mu <- stats::weighted.mean(x, w)
   sqrt(sum(x$wt * ((x$vec - mu) ^ 2)) / (sum(x$wt) - 1))
 }
-# TODO: min, max, percentile
