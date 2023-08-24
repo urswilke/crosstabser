@@ -37,7 +37,6 @@ calc_stat_fun.qtab_type_mw <- function(qtab) {
   res$RowAbsPercent <- "Percent"
   qtab$d$fun_stats <- res
 }
-# TODO: add test for S1M0...!:
 calc_stat_fun.qtab_type_cat <- function(qtab) {
   if (is.null(qtab$p$MetrMac)) {
     return(NULL)
