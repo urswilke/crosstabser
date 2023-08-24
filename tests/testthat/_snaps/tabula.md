@@ -1,38 +1,4 @@
-# cross-tabulation works for cat
-
-    Code
-      df_crosstab_cat
-    Output
-      # A tibble: 9 x 8
-        rowval rowvar RowContent RowAbsPercent `DC#STICHPROBE_1`  q2_1  q2_2 q2_99
-         <dbl> <chr>  <chr>      <chr>                     <dbl> <dbl> <dbl> <dbl>
-      1      1 q2     Total      Abs                      95        28    36    31
-      2      2 q2     Detail     Abs                      36        NA    36    NA
-      3      1 q2     Detail     Abs                      28        28    NA    NA
-      4     99 q2     Detail     Abs                      31        NA    NA    31
-      5      2 q2     Detail     Percent                   0.529    NA     1    NA
-      6      1 q2     Detail     Percent                   0.412     1    NA    NA
-      7     99 q2     Detail     Percent                   0.456    NA    NA    NA
-      8      1 q2     Valid      Percent                   0.716     1     1     0
-      9      1 q2     Valid      Abs                      68        28    36     0
-
-# wide_tab is repoduced for cat
-
-    Code
-      wide_tab
-    Output
-      # A tibble: 7 x 5
-        RowNo    `4`   `5`   `6`   `7`
-        <dbl>  <dbl> <dbl> <dbl> <dbl>
-      1     4 95        28    36    31
-      2     5 28        28    NA    NA
-      3     6  0.412     1    NA    NA
-      4     7 36        NA    36    NA
-      5     8  0.529    NA     1    NA
-      6     9 68        28    36     0
-      7    10  0.716     1     1     0
-
----
+# wide_tab is repoduced for MetrMac cat
 
     Code
       print(wide_tab, n = Inf)
