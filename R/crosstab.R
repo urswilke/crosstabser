@@ -55,7 +55,7 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
             .data$rowval,
             wt = qtab$p$Weight[[1]],
             stat_fun = x$fun,
-            probs = x$quantile_val[[1]]
+            probs = x$quantile_val
           ),
           .by = c("rowvar", "colvar", "colval")
         ),
