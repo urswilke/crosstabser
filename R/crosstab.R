@@ -82,7 +82,7 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
   }
   all_counts <- long_data |> dplyr::summarise(
     value = apply_stat(rowval, weight),
-    .by = -dplyr::matches("weight")
+    .by = c("rowvar", "rowval", "colvar", "colval")
   )
   all_counts$RowContent <- "Detail"
   all_counts$RowAbsPercent <- "Abs"
