@@ -18,7 +18,7 @@ read_qsheet_raw <- function(mapping_file, sheet = "Questions") {
 
 process_qsheet <- function(mapping) {
   mapping$qsheet$qsheet_raw |>
-    tidyr::drop_na(Type) |>
+    tidyr::drop_na("Type") |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
       RowVar = RowVar |> split_cell(" "),
