@@ -1,4 +1,4 @@
-merge_table_parts <- function(qtab) {
+rbind_table_numbers <- function(qtab) {
   # TODO: replaced rbind -> check if the dataframe parts can by simplified (e.g.
   # setting a column to NA shouldn't be necessary anymore...):
   dplyr::bind_rows(
