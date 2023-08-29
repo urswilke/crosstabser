@@ -227,12 +227,17 @@ calc_stats_rows.qtab_type_mcg <- function(qtab) {
 
   df_long <- qtab$d$long_data
   df_long_valid <- df_long[!df_long$rowval %in% invalid_vals,]
-  # TODO: also treat weighted cross-tabs!...:
-  total <- df_long |> dplyr::summarise(value = dplyr::n_distinct(i), .by = c("colvar", "colval"))
-  sum_of_valid <- df_long_valid |> dplyr::count(colvar, colval, name = "value")
+  group_variables <- c("colvar", "colval")
+  # the next is equivalent to (for unweighted):
+  # total <- df_long |> dplyr::summarise(value = dplyr::n_distinct(i), .by = c("colvar", "colval"))
+  total <- df_long |>
+    dplyr::distinct(dplyr::across(dplyr::all_of(c("i", group_variables)))) |>
+    summarize_stats(NULL, qtab$p$Weight[[1]], .by = group_variables)
+  sum_of_valid <- df_long_valid |>
+    summarize_stats(NULL, qtab$p$Weight[[1]], .by = group_variables)
   n_valid <- df_long_valid |>
-    dplyr::distinct(i, colvar, colval) |>
-    dplyr::count(colvar, colval, name = "value")
+    dplyr::distinct(dplyr::across(dplyr::all_of(c("i", group_variables)))) |>
+    summarize_stats(NULL, qtab$p$Weight[[1]], .by = group_variables)
 
 
   total$RowContent <- "Total"
