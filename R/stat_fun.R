@@ -1,4 +1,15 @@
 summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
+  if (is.null(wt)) {
+    return(summarize_stats_unweighted(
+      df = df,
+      x = x,
+      stat_fun = stat_fun,
+      ...,
+      .by = .by))
+  }
+}
+
+summarize_stats_unweighted <- function(df, x, stat_fun = "length", ..., .by) {
   # df |>
   #   dplyr::summarise(
   #     value = apply_stat(
