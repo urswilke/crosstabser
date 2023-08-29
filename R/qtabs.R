@@ -204,6 +204,8 @@ order_by_counts.default <- function(qtab) {
   warning("Not yet implemented for this qtab type")
 }
 order_by_counts.qtab_type_mcg <- function(qtab) {
+  # TODO: Wolf fragen ob bei SPSS ORDER=A nicht funzt ???
+  # TODO: gucken ob das auch für andere qtab types funktioniert!...:
   val_table_counts <- qtab$d$detail_freqs[
     qtab$d$detail_freqs$colvar == "DC#STICHPROBE" &
     !qtab$d$detail_freqs$rowval %in% qtab$p$Unguelt
