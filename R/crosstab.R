@@ -249,7 +249,7 @@ calc_stats_rows.qtab_type_mcg <- function(qtab) {
   df_long <- qtab$d$long_data
   df_long_valid <- df_long[!df_long$rowval %in% invalid_vals,]
   # TODO: also treat weighted cross-tabs!...:
-  total <- df_long |> dplyr::summarise(value = dplyr::n_distinct(i), .by = c(colvar, colval))
+  total <- df_long |> dplyr::summarise(value = dplyr::n_distinct(i), .by = c("colvar", "colval"))
   sum_of_valid <- df_long_valid |> dplyr::count(colvar, colval, name = "value")
   n_valid <- df_long_valid |>
     dplyr::distinct(i, colvar, colval) |>
