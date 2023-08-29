@@ -24,12 +24,10 @@ calc_stat_fun.default <- function(qtab) {
 calc_stat_fun.qtab_type_mw <- function(qtab) {
   long_data <- qtab$d$long_data
   res <- long_data |>
-    dplyr::summarise(
-      value = apply_stat(
-        .data$rowval,
-        wt = qtab$p$Weight[[1]],
-        stat_fun = qtab$p$stat_fun
-      ),
+    summarize_stats(
+      "rowval",
+      wt = qtab$p$Weight[[1]],
+      stat_fun = qtab$p$stat_fun,
       .by = c("rowvar", "colvar", "colval")
     )
   res$RowContent <- "MStatistics"
@@ -49,13 +47,11 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
   res <- l |>
     purrr::map_dfr(
       \(x) long_data |>
-        dplyr::summarise(
-          value = apply_stat(
-            .data$rowval,
-            wt = qtab$p$Weight[[1]],
-            stat_fun = x$fun,
-            probs = x$quantile_val
-          ),
+        summarize_stats(
+          "rowval",
+          wt = qtab$p$Weight[[1]],
+          stat_fun = x$fun,
+          probs = x$quantile_val[[1]],
           .by = c("rowvar", "colvar", "colval")
         ),
       .id = "RowStatFun"
@@ -80,10 +76,13 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
     long_data_catrec <- gen_catrec_long_data(qtab)
     long_data <- dplyr::bind_rows(long_data, long_data_catrec)
   }
-  all_counts <- long_data |> dplyr::summarise(
-    value = apply_stat(rowval, weight),
-    .by = c("rowvar", "rowval", "colvar", "colval")
-  )
+  all_counts <- long_data |>
+    summarize_stats(
+      NULL,
+      wt = qtab$p$Weight[[1]],
+      .by = c("rowvar", "rowval", "colvar", "colval")
+    )
+
   all_counts$RowContent <- "Detail"
   all_counts$RowAbsPercent <- "Abs"
 
@@ -101,10 +100,10 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
   # for TOTAL column:
   df$"colvar_DC#STICHPROBE" <- 1
 
-  df_cols <- df[paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))]
+  df_cols <- df[c(qtab$p$long_colvars, qtab$p$long_weight)]
 
-  df_cols$n_valid <- !df[[paste0("rowvar_", qtab$p$RowVar)]] %in% qtab$p$Unguelt
-  df_cols$total <- !is.na(df[[paste0("rowvar_", qtab$p$RowVar)]])
+  df_cols$n_valid <- !df[[qtab$p$long_rowvars]] %in% qtab$p$Unguelt
+  df_cols$total <- !is.na(df[[qtab$p$long_rowvars]])
 
   # TODO: find better organisation (redundant code with calc_stats_rows.qtab_type_mdg):
   df_cols_long <- df_cols |>
@@ -112,11 +111,10 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
 
   row_types <- c("total", "n_valid")
   df_stats_rows <- df_cols_long |>
-    dplyr::summarise(
-      across(
-        dplyr::all_of(row_types),
-        \(x) apply_stat(x, wt = qtab$p$Weight[[1]], stat_fun = "sum")
-      ),
+    summarize_stats(
+      row_types,
+      wt = qtab$p$Weight[[1]],
+      stat_fun = "sum",
       .by = c("colvar", "colval")
     )
   # faster, but Weighting cannot be treated (as FUN in aggregate() only allows
@@ -149,10 +147,10 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
 
   mdg_val <- qtab$p$MdgVal
 
-  df_cols <- df[paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))]
-  df_rows <- df[paste0("rowvar_", qtab$p$RowVar)]
+  df_cols <- df[c(qtab$p$long_colvars, qtab$p$long_weight)]
+  df_rows <- df[qtab$p$long_rowvars]
 
-  df_cols$total <- rowSums(is.na(df[paste0("rowvar_", qtab$p$RowVar)])) < ncol(df_rows)
+  df_cols$total <- rowSums(is.na(df[qtab$p$long_rowvars])) < ncol(df_rows)
   sum_of_valid <- rowSums(df_rows == mdg_val, na.rm = TRUE)
   df_cols$sum_of_valid <- sum_of_valid
   df_cols$n_valid <- sum_of_valid >= 1
@@ -163,11 +161,10 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
 
   row_types <- c("total", "sum_of_valid", "n_valid", "no_entry")
   df_stats_rows <- df_cols_long |>
-    dplyr::summarise(
-      across(
-        dplyr::all_of(row_types),
-        \(x) apply_stat(x, wt = qtab$p$Weight[[1]], stat_fun = "sum")
-      ),
+    summarize_stats(
+      row_types,
+      wt = qtab$p$Weight[[1]],
+      stat_fun = "sum",
       .by = c("colvar", "colval")
     )
 
@@ -211,8 +208,8 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
 
   mdg_val <- qtab$p$MdgVal
 
-  df_cols <- df[paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))]
-  df_rows <- df[paste0("rowvar_", qtab$p$RowVar)]
+  df_cols <- df[c(qtab$p$long_colvars, qtab$p$long_weight)]
+  df_rows <- df[qtab$p$long_rowvars]
 
   df_cols$n_valid <- rowSums(sapply(df_rows, Negate(`%in%`), invalid_vals)) >= 1
   df_cols_long <- df_cols |>
@@ -220,27 +217,20 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
 
   row_types <- c("n_valid")
   df_stats_rows <- df_cols_long |>
-    dplyr::summarise(
-      across(
-        dplyr::all_of(row_types),
-        \(x) apply_stat(x, wt = qtab$p$Weight[[1]], stat_fun = "sum")
-      ),
+    summarize_stats(
+      row_types,
+      wt = qtab$p$Weight[[1]],
+      stat_fun = "sum",
       .by = c("colvar", "colval")
     )
 
-  l_row_types <- row_types |>
-    purrr::set_names() |>
-    lapply(\(x) {
-      res <- df_stats_rows[c("colvar", "colval", x)]
-      names(res)[3] <- "value"
-      res$rowval <- 1
-      res$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
-      res
-    })
-  l_row_types$n_valid$RowContent <- "Valid"
-  l_row_types$n_valid$RowAbsPercent <- "Abs"
+  df_stats_rows$rowval <- 1
+  df_stats_rows$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
 
-  qtab$d$stats_rows <- l_row_types
+  df_stats_rows$RowContent <- "Valid"
+  df_stats_rows$RowAbsPercent <- "Abs"
+
+  qtab$d$stats_rows <- list(n_valid = df_stats_rows)
 }
 
 calc_stats_rows.qtab_type_mcg <- function(qtab) {
@@ -317,8 +307,9 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
   invalid_vals <- qtab$p$Unguelt
 
   res <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
-    dplyr::summarise(
-      value = apply_stat(rowval, weight),
+    summarize_stats(
+      "rowval",
+      wt = qtab$p$Weight[[1]],
       .by = c("rowvar", "colvar", "colval")
     )
 
@@ -334,10 +325,12 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data
   long_data[["i"]] <- NULL
-  res <- long_data |> dplyr::summarise(
-    value = apply_stat(rowval, weight),
-    .by = c("rowvar", "rowval", "colvar", "colval")
-  )
+  res <- long_data |>
+    summarize_stats(
+      NULL,
+      wt = qtab$p$Weight[[1]],
+      .by = c("rowvar", "rowval", "colvar", "colval")
+    )
   res$RowContent <- "Detail"
   res$RowAbsPercent <- "Abs"
   res
