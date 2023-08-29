@@ -1,4 +1,4 @@
-# wide_tab is repoduced for MetrMac cat
+# wide_tab is reproduced for MetrMac cat
 
     Code
       print(wide_tab, n = Inf)
@@ -45,7 +45,7 @@
       37    40   151         19        75        43       14     
       38    41     1          1         1         1        1     
 
-# wide_tab is repoduced for weighted MetrMac cat
+# wide_tab is reproduced for weighted MetrMac cat
 
     Code
       print(wide_tab, n = Inf)
@@ -92,7 +92,7 @@
       37    40   151        15        71.5       47.5     17     
       38    41     1         1         1          1        1     
 
-# wide_tab is repoduced with new mapping
+# wide_tab is reproduced with new mapping
 
     Code
       wide_tabs

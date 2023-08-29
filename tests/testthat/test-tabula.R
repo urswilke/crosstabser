@@ -7,14 +7,14 @@ tt <- Tabula$new(spss_file, mapping_file)$calc_qtabs()
 wide_tabs <- 1:6 |> lapply(\(i) tt$qrows$qrow[[i]]$qtabs[[1]]$wide_tab()$d$wide_tab)
 
 wide_tab <- tt$qrows$qrow[[3]]$qtabs[[2]]$wide_tab()$d$wide_tab
-test_that("wide_tab is repoduced for MetrMac cat", {
+test_that("wide_tab is reproduced for MetrMac cat", {
   testthat::expect_snapshot(print(wide_tab, n = Inf))
 })
 wide_tab <- tt$qrows$qrow[[5]]$qtabs[[2]]$wide_tab()$d$wide_tab
-test_that("wide_tab is repoduced for weighted MetrMac cat", {
+test_that("wide_tab is reproduced for weighted MetrMac cat", {
   testthat::expect_snapshot(print(wide_tab, n = Inf))
 })
-test_that("wide_tab is repoduced with new mapping", {
+test_that("wide_tab is reproduced with new mapping", {
   testthat::expect_snapshot(wide_tabs)
 })
 
