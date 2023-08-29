@@ -113,6 +113,6 @@ stat_fun_wt.se <- function(x, na.rm = TRUE, ...) {
     x$vec <- x$vec[obs]
     x$wt <- x$wt[obs]
   }
-  mu <- stats::weighted.mean(x, w)
+  mu <- stats::weighted.mean(x$vec, x$wt)
   sqrt(sum(x$wt * ((x$vec - mu) ^ 2)) / (sum(x$wt) - 1))
 }
