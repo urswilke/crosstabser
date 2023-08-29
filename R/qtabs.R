@@ -32,6 +32,21 @@ add_type_specific_params.default <- function(qtab) {
   } else {
     qtab$p$long_weight <- "weight"
   }
+
+  if (!is.null(qtab$p$Sort)) {
+     sort_list <- stringr::str_extract_all(
+      qtab$p$Sort,
+      "\\w+ *= *\\w+"
+    )[[1]] |>
+      stringr::str_split(" *= *")
+    # TODO: find a cleaner way to treat this...(?):
+    order_d <- any(sort_list |> purrr::map_lgl(\(x) all(x == c("ORDER", "D"))))
+    key_count <- any(sort_list |> purrr::map_lgl(\(x) all(x == c("KEY", "COUNT"))))
+    qtab$p$sort_params <- tibble::lst(
+      order_d,
+      key_count
+    )
+  }
 }
 add_type_specific_params.qtab_type_mdg <- function(qtab) {
   mdg_val <- qtab$p$MdgVal %||% 1
@@ -134,6 +149,7 @@ calc_qtab <- function(qtab) {
   calc_valid_counts_percentages(qtab)
   qtab$d$tab_values <- rbind_table_numbers(qtab)
   qtab$d$row_table <- gen_row_table(qtab)
+  post_process(qtab)
   qtab$d$val_table <- gen_val_table(qtab)
 }
 wide_tab <- function(qtab) {
@@ -174,4 +190,32 @@ get_r6_fields <- function(r6_obj) {
   r6_list <- as.list(r6_obj)
   r6_list[r6_list |> purrr::map_lgl(\(x) !is.environment(x) && !is.function(x))]
 
+}
+
+post_process <- function(qtab) {
+  if (!is.null(qtab$p$sort_params) && qtab$p$sort_params$key_count) {
+    order_by_counts(qtab)
+  }
+}
+order_by_counts <- function(qtab) {
+  UseMethod("order_by_counts")
+}
+order_by_counts.default <- function(qtab) {
+  warning("Not yet implemented for this qtab type")
+}
+order_by_counts.qtab_type_mcg <- function(qtab) {
+  val_table_counts <- qtab$d$detail_freqs[
+    qtab$d$detail_freqs$colvar == "DC#STICHPROBE" &
+    !qtab$d$detail_freqs$rowval %in% qtab$p$Unguelt
+  ,][c("value", "rowval")]
+
+  row_table <- qtab$d$row_table
+  row_table_detail_lgl <- row_table$RowContent == "Detail"
+  row_table_detail_sorted <- row_table[row_table_detail_lgl,] |>
+    dplyr::full_join(val_table_counts, by = c(RowValue = "rowval")) |>
+    dplyr::arrange(value * (-1) ^ qtab$p$sort_params$order_d)
+  row_table_detail_sorted$RowNo <- min(row_table_detail_sorted$RowNo):max(row_table_detail_sorted$RowNo)
+  row_table_detail_sorted$value <- NULL
+
+  qtab$d$row_table[row_table_detail_lgl,] <- row_table_detail_sorted
 }

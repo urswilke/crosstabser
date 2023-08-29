@@ -114,6 +114,7 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   # the following is the same as:
   # all_valid_vals <- vallabs |> c(occuring_vals) |> dplyr::setdiff(invalid_vals)
   # but keeping the names (setdiff removes the names)
+  # TODO: move to post_process()!
   all_valid_vals <- c(vallabs, occuring_vals)
   do_sort <- qtab$p$Sort %in% "ORDER=D"
   if (length(do_sort) == 0) {
