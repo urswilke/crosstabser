@@ -76,7 +76,7 @@ stat_fun_wt.mean <- function(x, ...) {
   stats::weighted.mean(x$vec, x$wt)
 }
 stat_fun_wt.median <- function(x, na.rm = TRUE, ties = "mean", ...) {
-  matrixStats::weightedMedian(rowval, weight, na.rm = na.rm, ties = ties)
+  matrixStats::weightedMedian(x$vec, x$wt, na.rm = na.rm, ties = ties)
 }
 stat_fun_wt.sum <- function(x, na.rm = TRUE, ...) {
   sum(x$vec * x$wt, na.rm = na.rm)
