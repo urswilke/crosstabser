@@ -129,6 +129,7 @@ calc_qtab <- function(qtab) {
   calc_stats_rows(qtab)
   calc_stat_fun(qtab)
   qtab$d$detail_freqs <- calc_detail_freqs(qtab)
+  qtab$d$catrec_freqs <- calc_catrec_freqs(qtab)
   calc_percentages(qtab)
   calc_valid_counts_percentages(qtab)
   qtab$d$tab_values <- merge_table_parts(qtab)

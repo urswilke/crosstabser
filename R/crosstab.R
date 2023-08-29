@@ -6,6 +6,7 @@ merge_table_parts <- function(qtab) {
     qtab$d$stats_rows$sum_of_valid,
     qtab$d$fun_stats,
     qtab$d$detail_freqs,
+    qtab$d$catrec_freqs,
     qtab$d$percentages,
     qtab$d$vc_percentages,
     qtab$d$stats_rows$n_valid,
@@ -66,16 +67,8 @@ calc_detail_freqs <- function(qtab) {
   UseMethod("calc_detail_freqs")
 }
 calc_detail_freqs.qtab_type_cat <- function(qtab) {
-  weight <- qtab$p$Weight[[1]]
-  stat_fun = NA
-
   long_data <- qtab$d$long_data
 
-  # TODO: better use separate methods for cat & mdg..?
-  if (!is.null(qtab$p$CatRec)) {
-    long_data_catrec <- gen_catrec_long_data(qtab)
-    long_data <- dplyr::bind_rows(long_data, long_data_catrec)
-  }
   all_counts <- long_data |>
     summarize_stats(
       NULL,
@@ -261,7 +254,17 @@ calc_stats_rows.qtab_type_mcg <- function(qtab) {
   )
 }
 
-gen_catrec_long_data <- function(qtab) {
+calc_catrec_freqs <- function(qtab) {
+  UseMethod("calc_catrec_freqs")
+}
+calc_catrec_freqs.default <- function(qtab) {
+  NULL
+}
+
+calc_catrec_freqs.qtab_type_cat <- function(qtab) {
+  if (is.null(qtab$p$CatRec)) {
+    return(NULL)
+  }
   cat_rec_string <- qtab$p$CatRec
   cat_lab_string <- qtab$p$CatLab
   cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
@@ -293,7 +296,16 @@ gen_catrec_long_data <- function(qtab) {
     )
     long_data_catrec <- long_data_catrec[!non_recoded_idx,]
   }
-  long_data_catrec
+  all_counts <- long_data_catrec |>
+    summarize_stats(
+      NULL,
+      wt = qtab$p$Weight[[1]],
+      .by = c("rowvar", "rowval", "colvar", "colval")
+    )
+
+  all_counts$RowContent <- "Summary"
+  all_counts$RowAbsPercent <- "Abs"
+  all_counts
 }
 
 calc_detail_freqs.qtab_type_mw <- function(qtab) {
@@ -337,7 +349,7 @@ calc_percentages.qtab_type_mw <- function(qtab) {
   NULL
 }
 calc_percentages.default <- function(qtab) {
-  cts <- qtab$d$detail_freqs
+  cts <- rbind(qtab$d$detail_freqs, qtab$d$catrec_freqs)
   percentages <- cts
   percentages$value <- as.numeric(percentages$value)
   vc <- qtab$d$stats_rows$n_valid

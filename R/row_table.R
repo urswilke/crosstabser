@@ -278,7 +278,7 @@ row_table_summary.qtab_type_cat <- function(qtab) {
   # row_table[seq_len(n_vals * 2),]$RowValue <- unname(all_catrec_labs) |> rep(each = 2)
   row_table[seq_len(n_vals * 2),]$RowValue <- unname(cat_lab_splits) |> rep(each = 2)
   row_table$RowContent <- "Summary"
-  row_table$RowWeighted <- "Unweighted"
+  # row_table$RowWeighted <- "Unweighted"
   row_table$RowTitle1 <- qtab$p$l_lexikon[["cTabZsfg"]]
   # row_table$RowTitle2 <- names(all_catrec_labs) |> rep(each = 2)
   row_table$RowTitle2 <- names(cat_lab_splits) |> rep(each = 2)

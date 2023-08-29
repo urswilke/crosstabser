@@ -4,7 +4,7 @@ mapping_file <- "K:/Projects/UW git/crosstabser/tests/testthat/excel/mapping_neu
 mapping_file <- "excel/mapping_neu_reduced.xlsx"
 tt <- Tabula$new(spss_file, mapping_file)$calc_qtabs()
 
-wide_tabs <- 1:6 |> lapply(\(i) tt$qrows$qrow[[i]]$qtabs[[1]]$wide_tab()$d$wide_tab)
+wide_tabs <- 1:7 |> lapply(\(i) tt$qrows$qrow[[i]]$qtabs[[1]]$wide_tab()$d$wide_tab)
 
 wide_tab <- tt$qrows$qrow[[3]]$qtabs[[2]]$wide_tab()$d$wide_tab
 test_that("wide_tab is reproduced for MetrMac cat", {
