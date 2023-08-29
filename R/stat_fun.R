@@ -116,6 +116,12 @@ stat_fun_wt.se <- function(x, na.rm = TRUE, ...) {
   mu <- stats::weighted.mean(x$vec, x$wt)
   sqrt(sum(x$wt * ((x$vec - mu) ^ 2)) / (sum(x$wt) - 1))
 }
+stat_fun_wt.min <- function(x, na.rm = TRUE, ...) {
+  min(x$vec, na.rm = na.rm, ...)
+}
+stat_fun_wt.max <- function(x, na.rm = TRUE, ...) {
+  max(x$vec, na.rm = na.rm, ...)
+}
 stat_fun_wt.percentile <- function(x, na.rm = TRUE, ...) {
   Hmisc::wtd.quantile(x$vec, x$wt, probs = x$probs)
 }
