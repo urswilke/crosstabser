@@ -319,7 +319,7 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
   res <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
     dplyr::summarise(
       value = apply_stat(rowval, weight),
-      .by = -dplyr::matches("weight|rowval")
+      .by = c("rowvar", "colvar", "colval")
     )
 
   # to prevent warning when calling `gen_val_table()`...:
@@ -336,7 +336,7 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   long_data[["i"]] <- NULL
   res <- long_data |> dplyr::summarise(
     value = apply_stat(rowval, weight),
-    .by = -dplyr::matches("weight")
+    .by = c("rowvar", "rowval", "colvar", "colval")
   )
   res$RowContent <- "Detail"
   res$RowAbsPercent <- "Abs"
