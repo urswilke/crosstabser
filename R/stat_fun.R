@@ -7,20 +7,16 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
       ...,
       .by = .by))
   }
+  summarize_stats_weighted(
+    df = df,
+    x = x,
+    wt = wt,
+    stat_fun = stat_fun,
+    ...,
+    .by = .by)
 }
 
 summarize_stats_unweighted <- function(df, x, stat_fun = "length", ..., .by) {
-  # df |>
-  #   dplyr::summarise(
-  #     value = apply_stat(
-  #       x = .data[[x]],
-  #       wt = wt,
-  #       stat_fun = stat_fun,
-  #       ...
-  #     ),
-  #     .by = dplyr::all_of(.by)
-  #   )
-
   if (length(x) < 2) {
     # HACK to return the results in a column named "value":
     names(df)[names(df) %in% x] <- "value"
@@ -37,6 +33,19 @@ summarize_stats_unweighted <- function(df, x, stat_fun = "length", ..., .by) {
   ) |> dplyr::as_tibble()
 
 }
+summarize_stats_weighted <- function(df, x, wt, stat_fun = "length", ..., .by) {
+  df |>
+    dplyr::summarise(
+      value = apply_stat(
+        x = .data[[x]],
+        wt = .data[["weight"]],
+        stat_fun = stat_fun,
+        ...
+      ),
+      .by = dplyr::all_of(.by)
+    )
+}
+
 # HACK to allow to compute multiple columns with aggregate():
 aggregate_fml_lhs <- function(x) {
   if (length(x) == 1) {
@@ -52,7 +61,7 @@ apply_stat <- function(x, wt = NULL, stat_fun = "length", ...) {
     stat_fun = stat_fun,
     ...
   ) |>
-    stat_fun()
+    stat_fun_wt()
 }
 
 new_stat_vec <- function(x, wt = NULL, stat_fun = "length", ...) {
@@ -70,14 +79,6 @@ new_stat_vec <- function(x, wt = NULL, stat_fun = "length", ...) {
     class(res) <- c("unweighted", class(res))
   }
   res
-}
-stat_fun <- function(x, ...) {
-  UseMethod("stat_fun")
-}
-
-
-stat_fun.weighted <- function(x, ...) {
-  stat_fun_wt(x, ...)
 }
 
 se <- function(x, na.rm = TRUE, ...) {
