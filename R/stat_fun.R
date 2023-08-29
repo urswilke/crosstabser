@@ -34,16 +34,25 @@ summarize_stats_unweighted <- function(df, x, stat_fun = "length", ..., .by) {
 
 }
 summarize_stats_weighted <- function(df, x, wt, stat_fun = "length", ..., .by) {
-  df |>
-    dplyr::summarise(
-      value = apply_stat(
-        x = .data[[x]],
+  if (is.null(x)) {
+    x <- "value"
+    df[[x]] <- NA_real_
+  }
+
+  res <- df |>
+    dplyr::summarise(dplyr::across(dplyr::all_of(x),
+      \(vec) apply_stat(
+        x = vec,
         wt = .data[["weight"]],
         stat_fun = stat_fun,
         ...
-      ),
+      )),
       .by = dplyr::all_of(.by)
     )
+  if (length(x) == 1) {
+    names(res)[names(res) == x] <- "value"
+  }
+  res
 }
 
 # HACK to allow to compute multiple columns with aggregate():
