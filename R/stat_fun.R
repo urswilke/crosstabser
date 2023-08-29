@@ -10,19 +10,28 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "counts", ..., .by) {
   #     .by = dplyr::all_of(.by)
   #   )
 
-  # HACK to return the results in a column named "value":
-  names(df)[names(df) %in% x] <- "value"
-  if (is.null(x)) {
-    df$value <- 1
+  if (length(x) < 2) {
+    # HACK to return the results in a column named "value":
+    names(df)[names(df) %in% x] <- "value"
+    if (is.null(x)) {
+      df$value <- 1
+    }
+    x <- "value"
   }
-  x <- "value"
 
   stats::aggregate(
-    reformulate(.by, x),
+    reformulate(.by, aggregate_fml_lhs(x)),
     data = df,
     apply_stat, stat_fun = stat_fun, ...
   ) |> dplyr::as_tibble()
 
+}
+# HACK to allow to compute multiple columns with aggregate():
+aggregate_fml_lhs <- function(x) {
+  if (length(x) == 1) {
+    return(x)
+  }
+  paste0("cbind(", paste(x, collapse = ", "), ")")
 }
 
 apply_stat <- function(x, wt = NULL, stat_fun = "counts", ...) {

@@ -111,11 +111,10 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
 
   row_types <- c("total", "n_valid")
   df_stats_rows <- df_cols_long |>
-    dplyr::summarise(
-      across(
-        dplyr::all_of(row_types),
-        \(x) apply_stat(x, wt = qtab$p$Weight[[1]], stat_fun = "sum")
-      ),
+    summarize_stats(
+      row_types,
+      wt = qtab$p$Weight[[1]],
+      stat_fun = "sum",
       .by = c("colvar", "colval")
     )
   # faster, but Weighting cannot be treated (as FUN in aggregate() only allows
@@ -162,11 +161,10 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
 
   row_types <- c("total", "sum_of_valid", "n_valid", "no_entry")
   df_stats_rows <- df_cols_long |>
-    dplyr::summarise(
-      across(
-        dplyr::all_of(row_types),
-        \(x) apply_stat(x, wt = qtab$p$Weight[[1]], stat_fun = "sum")
-      ),
+    summarize_stats(
+      row_types,
+      wt = qtab$p$Weight[[1]],
+      stat_fun = "sum",
       .by = c("colvar", "colval")
     )
 
@@ -219,27 +217,20 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
 
   row_types <- c("n_valid")
   df_stats_rows <- df_cols_long |>
-    dplyr::summarise(
-      across(
-        dplyr::all_of(row_types),
-        \(x) apply_stat(x, wt = qtab$p$Weight[[1]], stat_fun = "sum")
-      ),
+    summarize_stats(
+      row_types,
+      wt = qtab$p$Weight[[1]],
+      stat_fun = "sum",
       .by = c("colvar", "colval")
     )
 
-  l_row_types <- row_types |>
-    purrr::set_names() |>
-    lapply(\(x) {
-      res <- df_stats_rows[c("colvar", "colval", x)]
-      names(res)[3] <- "value"
-      res$rowval <- 1
-      res$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
-      res
-    })
-  l_row_types$n_valid$RowContent <- "Valid"
-  l_row_types$n_valid$RowAbsPercent <- "Abs"
+  df_stats_rows$rowval <- 1
+  df_stats_rows$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
 
-  qtab$d$stats_rows <- l_row_types
+  df_stats_rows$RowContent <- "Valid"
+  df_stats_rows$RowAbsPercent <- "Abs"
+
+  qtab$d$stats_rows <- list(n_valid = df_stats_rows)
 }
 
 calc_stats_rows.qtab_type_mcg <- function(qtab) {
