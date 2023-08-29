@@ -117,9 +117,7 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
       stat_fun = "sum",
       .by = c("colvar", "colval")
     )
-  # faster, but Weighting cannot be treated (as FUN in aggregate() only allows
-  # one-argument functions...):
-  # df_stats_rows <- stats::aggregate(. ~ colvar + colval, data = df_cols_long, sum) |> dplyr::as_tibble()
+
   l_row_types <- row_types |>
     purrr::set_names() |>
     lapply(\(x) {
@@ -184,18 +182,9 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   l_row_types$sum_of_valid$RowAbsPercent <- "Abs"
   l_row_types$no_entry$RowAbsPercent <- "Abs"
   l_row_types$no_entry <- l_row_types$no_entry[l_row_types$no_entry$value > 0,]
-  # if (sum(l_row_types$no_entry$value) == 0 ) {
-  #   l_row_types$no_entry$value <- NULL
-  # }
+
   l_row_types$n_valid$RowContent <- "Valid"
   l_row_types$n_valid$RowAbsPercent <- "Abs"
-
-  # stats_rows <- df_stats_rows |>
-  #   tidyr::pivot_longer(
-  #     -c(colvar, colval),
-  #     names_to = "rowvar"
-  #   )
-  # stats_rows$rowval <- 1
 
   qtab$d$stats_rows <- l_row_types
 }
