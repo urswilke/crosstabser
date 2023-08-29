@@ -10,6 +10,10 @@ wide_tab <- tt$qrows$qrow[[3]]$qtabs[[2]]$wide_tab()$d$wide_tab
 test_that("wide_tab is repoduced for MetrMac cat", {
   testthat::expect_snapshot(print(wide_tab, n = Inf))
 })
+wide_tab <- tt$qrows$qrow[[5]]$qtabs[[2]]$wide_tab()$d$wide_tab
+test_that("wide_tab is repoduced for weighted MetrMac cat", {
+  testthat::expect_snapshot(print(wide_tab, n = Inf))
+})
 test_that("wide_tab is repoduced with new mapping", {
   testthat::expect_snapshot(wide_tabs)
 })
