@@ -9,7 +9,6 @@ new_qtabs <- function(qsheet_processed, mapping) {
   qtabs |>
     purrr::walk(\(x) add_type_specific_params(x))
 
-
   class(qtabs) <- c("crosstabser_tabs", class(qtabs))
   qtabs
 
@@ -26,11 +25,18 @@ add_type_specific_params <- function(qtab) {
 }
 
 add_type_specific_params.default <- function(qtab) {
-  NULL
+  qtab$p$long_rowvars <- paste0("rowvar_", qtab$p$RowVar)
+  qtab$p$long_colvars <- paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))
+  if (is.null(qtab$p$Weight[[1]])) {
+    qtab$p$long_weight <- character()
+  } else {
+    qtab$p$long_weight <- "weight"
+  }
 }
 add_type_specific_params.qtab_type_mdg <- function(qtab) {
   mdg_val <- qtab$p$MdgVal %||% 1
   qtab$p$MdgVal <- as.numeric(mdg_val)
+  NextMethod()
 }
 add_type_specific_params.qtab_type_mw <- function(qtab) {
   stat_fun <- qtab$p$ZsfgMW
@@ -39,11 +45,13 @@ add_type_specific_params.qtab_type_mw <- function(qtab) {
   }
 
   qtab$p$stat_fun <- stat_fun
+  NextMethod()
 }
 add_type_specific_params.qtab_type_cat <- function(qtab) {
   if (!is.null(qtab$p$MetrMac)) {
     qtab$p$df_stat_funs <- process_metr_mac(qtab)
   }
+  NextMethod()
 }
 
 df_metr_mac <- data.frame(

@@ -100,10 +100,10 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
   # for TOTAL column:
   df$"colvar_DC#STICHPROBE" <- 1
 
-  df_cols <- df[paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))]
+  df_cols <- df[c(qtab$p$long_colvars, qtab$p$long_weight)]
 
-  df_cols$n_valid <- !df[[paste0("rowvar_", qtab$p$RowVar)]] %in% qtab$p$Unguelt
-  df_cols$total <- !is.na(df[[paste0("rowvar_", qtab$p$RowVar)]])
+  df_cols$n_valid <- !df[[qtab$p$long_rowvars]] %in% qtab$p$Unguelt
+  df_cols$total <- !is.na(df[[qtab$p$long_rowvars]])
 
   # TODO: find better organisation (redundant code with calc_stats_rows.qtab_type_mdg):
   df_cols_long <- df_cols |>
@@ -147,10 +147,10 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
 
   mdg_val <- qtab$p$MdgVal
 
-  df_cols <- df[paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))]
-  df_rows <- df[paste0("rowvar_", qtab$p$RowVar)]
+  df_cols <- df[c(qtab$p$long_colvars, qtab$p$long_weight)]
+  df_rows <- df[qtab$p$long_rowvars]
 
-  df_cols$total <- rowSums(is.na(df[paste0("rowvar_", qtab$p$RowVar)])) < ncol(df_rows)
+  df_cols$total <- rowSums(is.na(df[qtab$p$long_rowvars])) < ncol(df_rows)
   sum_of_valid <- rowSums(df_rows == mdg_val, na.rm = TRUE)
   df_cols$sum_of_valid <- sum_of_valid
   df_cols$n_valid <- sum_of_valid >= 1
@@ -208,8 +208,8 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
 
   mdg_val <- qtab$p$MdgVal
 
-  df_cols <- df[paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))]
-  df_rows <- df[paste0("rowvar_", qtab$p$RowVar)]
+  df_cols <- df[c(qtab$p$long_colvars, qtab$p$long_weight)]
+  df_rows <- df[qtab$p$long_rowvars]
 
   df_cols$n_valid <- rowSums(sapply(df_rows, Negate(`%in%`), invalid_vals)) >= 1
   df_cols_long <- df_cols |>
