@@ -1,3 +1,30 @@
+summarize_stats <- function(df, x, wt = NULL, stat_fun = "counts", ..., .by) {
+  # df |>
+  #   dplyr::summarise(
+  #     value = apply_stat(
+  #       x = .data[[x]],
+  #       wt = wt,
+  #       stat_fun = stat_fun,
+  #       ...
+  #     ),
+  #     .by = dplyr::all_of(.by)
+  #   )
+
+  # HACK to return the results in a column named "value":
+  names(df)[names(df) %in% x] <- "value"
+  if (is.null(x)) {
+    df$value <- 1
+  }
+  x <- "value"
+
+  stats::aggregate(
+    reformulate(.by, x),
+    data = df,
+    apply_stat, stat_fun = stat_fun, ...
+  ) |> dplyr::as_tibble()
+
+}
+
 apply_stat <- function(x, wt = NULL, stat_fun = "counts", ...) {
   new_stat_vec(
     x = x,

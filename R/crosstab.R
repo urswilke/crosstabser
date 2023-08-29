@@ -24,12 +24,10 @@ calc_stat_fun.default <- function(qtab) {
 calc_stat_fun.qtab_type_mw <- function(qtab) {
   long_data <- qtab$d$long_data
   res <- long_data |>
-    dplyr::summarise(
-      value = apply_stat(
-        .data$rowval,
-        wt = qtab$p$Weight[[1]],
-        stat_fun = qtab$p$stat_fun
-      ),
+    summarize_stats(
+      "rowval",
+      wt = qtab$p$Weight[[1]],
+      stat_fun = qtab$p$stat_fun,
       .by = c("rowvar", "colvar", "colval")
     )
   res$RowContent <- "MStatistics"
@@ -49,13 +47,11 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
   res <- l |>
     purrr::map_dfr(
       \(x) long_data |>
-        dplyr::summarise(
-          value = apply_stat(
-            .data$rowval,
-            wt = qtab$p$Weight[[1]],
-            stat_fun = x$fun,
-            probs = x$quantile_val
-          ),
+        summarize_stats(
+          "rowval",
+          wt = qtab$p$Weight[[1]],
+          stat_fun = x$fun,
+          probs = x$quantile_val,
           .by = c("rowvar", "colvar", "colval")
         ),
       .id = "RowStatFun"
@@ -80,10 +76,13 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
     long_data_catrec <- gen_catrec_long_data(qtab)
     long_data <- dplyr::bind_rows(long_data, long_data_catrec)
   }
-  all_counts <- long_data |> dplyr::summarise(
-    value = apply_stat(rowval, weight),
-    .by = c("rowvar", "rowval", "colvar", "colval")
-  )
+  all_counts <- long_data |>
+    summarize_stats(
+      NULL,
+      wt = qtab$p$Weight[[1]],
+      .by = c("rowvar", "rowval", "colvar", "colval")
+    )
+
   all_counts$RowContent <- "Detail"
   all_counts$RowAbsPercent <- "Abs"
 
@@ -317,8 +316,9 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
   invalid_vals <- qtab$p$Unguelt
 
   res <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
-    dplyr::summarise(
-      value = apply_stat(rowval, weight),
+    summarize_stats(
+      "rowval",
+      wt = qtab$p$Weight[[1]],
       .by = c("rowvar", "colvar", "colval")
     )
 
@@ -334,10 +334,12 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data
   long_data[["i"]] <- NULL
-  res <- long_data |> dplyr::summarise(
-    value = apply_stat(rowval, weight),
-    .by = c("rowvar", "rowval", "colvar", "colval")
-  )
+  res <- long_data |>
+    summarize_stats(
+      NULL,
+      wt = qtab$p$Weight[[1]],
+      .by = c("rowvar", "rowval", "colvar", "colval")
+    )
   res$RowContent <- "Detail"
   res$RowAbsPercent <- "Abs"
   res
