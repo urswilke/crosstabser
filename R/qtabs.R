@@ -65,7 +65,7 @@ process_metr_mac <- function(qtab) {
         df_metr_mac$ctab_entry[match(shortcut, df_metr_mac$shortcut)]
       ] |> unname()
     )
-  df_stat_funs$quantile_val <- NA_real_
+  df_stat_funs$quantile_val <- vector("list", length(l))
   df_stat_funs[df_stat_funs$shortcut == "P",]$quantile_val <-
     as.numeric(
       l[df_stat_funs$shortcut == "P"] |>

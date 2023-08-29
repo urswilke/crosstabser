@@ -1,4 +1,4 @@
-summarize_stats <- function(df, x, wt = NULL, stat_fun = "counts", ..., .by) {
+summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
   # df |>
   #   dplyr::summarise(
   #     value = apply_stat(
@@ -22,7 +22,7 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "counts", ..., .by) {
   stats::aggregate(
     reformulate(.by, aggregate_fml_lhs(x)),
     data = df,
-    apply_stat, stat_fun = stat_fun, ...
+    stat_fun, ...
   ) |> dplyr::as_tibble()
 
 }
@@ -34,7 +34,7 @@ aggregate_fml_lhs <- function(x) {
   paste0("cbind(", paste(x, collapse = ", "), ")")
 }
 
-apply_stat <- function(x, wt = NULL, stat_fun = "counts", ...) {
+apply_stat <- function(x, wt = NULL, stat_fun = "length", ...) {
   new_stat_vec(
     x = x,
     wt = wt,
@@ -44,7 +44,7 @@ apply_stat <- function(x, wt = NULL, stat_fun = "counts", ...) {
     stat_fun()
 }
 
-new_stat_vec <- function(x, wt = NULL, stat_fun = "counts", ...) {
+new_stat_vec <- function(x, wt = NULL, stat_fun = "length", ...) {
   res <- structure(
     list(
       vec = x,
@@ -65,47 +65,23 @@ stat_fun <- function(x, ...) {
 }
 
 
-stat_fun.unweighted <- function(x, ...) {
-  stat_fun_uw(x, ...)
-}
 stat_fun.weighted <- function(x, ...) {
   stat_fun_wt(x, ...)
 }
 
-stat_fun_uw <- function(x, ...) {
-  UseMethod("stat_fun_uw")
-}
-stat_fun_uw.counts <- function(x, ...) {
-  length(x$vec)
-}
-stat_fun_uw.mean <- function(x, ...) {
-  mean(x$vec)
-}
-stat_fun_uw.median <- function(x, na.rm = TRUE) {
-  stats::median(x$vec, na.rm = na.rm)
-}
-stat_fun_uw.sum <- function(x, na.rm = TRUE, ...) {
-  sum(x$vec, na.rm = na.rm)
-}
-stat_fun_uw.se <- function(x, na.rm = TRUE, ...) {
+se <- function(x, na.rm = TRUE, ...) {
   if (na.rm) {
-    x$vec <- x$vec[!is.na(x$vec)]
+    x <- x[!is.na(x)]
   }
-  sd(x$vec) / sqrt(length(x$vec))
+  sd(x) / sqrt(length(x))
 }
-stat_fun_uw.percentile <- function(x, na.rm = TRUE, ...) {
-  quantile(x$vec, probs = x$probs, na.rm = na.rm)
-}
-stat_fun_uw.min <- stat_fun_wt.min <- function(x, na.rm = TRUE, ...) {
-  min(x$vec, na.rm = na.rm)
-}
-stat_fun_uw.max <- stat_fun_wt.max <- function(x, na.rm = TRUE, ...) {
-  max(x$vec, na.rm = na.rm)
+percentile <- function(x, na.rm = TRUE, ...) {
+  quantile(x, na.rm = na.rm, ...)
 }
 stat_fun_wt <- function(x, ...) {
   UseMethod("stat_fun_wt")
 }
-stat_fun_wt.counts <- function(x, na.rm = TRUE, ...) {
+stat_fun_wt.length <- function(x, na.rm = TRUE, ...) {
   sum(x$wt, na.rm = na.rm)
 }
 stat_fun_wt.mean <- function(x, ...) {
