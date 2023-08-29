@@ -29,7 +29,8 @@ Imports:
     rlang,
     matrixStats,
     xml2,
-    haven
+    haven,
+    Hmisc
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
     testthat (>= 3.0.0)
