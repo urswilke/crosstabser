@@ -82,7 +82,7 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
   all_counts$RowContent <- "Detail"
   all_counts$RowAbsPercent <- "Abs"
 
-  all_counts
+  qtab$d$detail_freqs <- all_counts
 }
 
 calc_stats_rows <- function(qtab) {
@@ -327,7 +327,7 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
   res$rowval <- NA_real_
   res$RowContent <- "MValid"
   res$RowAbsPercent <- "Abs"
-  res
+  qtab$d$detail_freqs <- res
 }
 calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   weight <- qtab$p$Weight[[1]]
@@ -342,7 +342,7 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
     )
   res$RowContent <- "Detail"
   res$RowAbsPercent <- "Abs"
-  res
+  qtab$d$detail_freqs <- res
 }
 
 calc_percentages <- function(qtab) {
