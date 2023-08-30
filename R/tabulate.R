@@ -110,7 +110,7 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
     dplyr::mutate(
       temp = order(factor(rowval, levels = qtab$p$Unguelt)),
       # calculate boolean that's TRUE if:
-      valid_invalid =
+      val_to_count =
         # for each case, only take count one invalid value (the one that occurs
         # first in the list of invalid values):
         temp == 1 &
@@ -120,9 +120,32 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
       temp = NULL,
     .by = "i")
 
+  df_rows_long_valids <- df_rows_long[!df_rows_long$rowval %in% qtab$p$Unguelt,]
+  exclusives <- qtab$p$Exclusive
+  if (!is.null(exclusives)) {
+    df_rows_long_valids <- df_rows_long_valids |>
+      dplyr::mutate(
+        none_exclusive = !any(rowval %in% exclusives),
+        temp = order(factor(rowval, levels = exclusives)),
+        # order doesn't deal correctly with levels not occuring in the factors.
+        # Therefore we set these values to Inf to not select values not in the
+        # set of exclusives here...
+        # TODO: find a cleaner way for Exclusive!...:
+        temp = ifelse(!rowval %in% exclusives, Inf, temp),
+        first_exclusive = temp %in% min(temp, na.rm = TRUE),
+        val_to_count = first_exclusive | none_exclusive,
+        temp = NULL,
+        first_exclusive = NULL,
+        none_exclusive = NULL,
+        .by = "i")
+  } else {
+    df_rows_long_valids$val_to_count <- TRUE
+  }
+
+
   df_long <- dplyr::bind_rows(
     # TODO: remove rows of cases with multiple values in column "Ëxclusive"...:
-    df_rows_long[!df_rows_long$rowval %in% qtab$p$Unguelt,],
+    df_rows_long_valids,
     df_rows_long_invalids
   ) |>
     pivot_cols()

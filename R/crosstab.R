@@ -356,7 +356,7 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data
   long_data[["i"]] <- NULL
-  all_counts <- long_data[is.na(long_data$valid_invalid) | long_data$valid_invalid %in% TRUE,] |>
+  all_counts <- long_data[long_data$val_to_count,] |>
     summarize_stats(
       NULL,
       wt = qtab$p$Weight[[1]],

@@ -35,7 +35,8 @@ process_qsheet <- function(mapping) {
       CatLab = stringr::str_remove(CatLab, "\\|.*"),
       SelVar = split_cell(SelVar),
       SelVal = split_cell(SelVal),
-      RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE"
+      RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE",
+      Exclusive = split_cell(Exclusive),
     ) |>
     unnest_qsheet_rows(mapping) |>
     dplyr::mutate(TabNo = dplyr::row_number(), .before = 1)
