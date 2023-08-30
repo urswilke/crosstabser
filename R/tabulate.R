@@ -94,22 +94,38 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
 
   df$i <- seq_len(nrow(df))
 
-  df_long <- df |>
+  df_rows_long <- df |>
     pivot_rows() |>
+    # remove duplicated choices:
+    dplyr::distinct(dplyr::across(dplyr::all_of(
+      c("i", "rowval")
+    )), .keep_all = TRUE)
+
+  # TODO: add test to check if this works correctly!...:
+  df_rows_long_invalids <- df_rows_long[df_rows_long$rowval %in% qtab$p$Unguelt,] |>
+    dplyr::mutate(
+      temp = order(factor(rowval, levels = qtab$p$Unguelt)),
+      # calculate boolean that's TRUE if:
+      valid_invalid =
+        # for each case, only take count one invalid value (the one that occurs
+        # first in the list of invalid values):
+        temp == 1 &
+        # values not equal to the value defined in the cell of the named region
+        # "R_miss_rec_val" in the mapping file:
+        !rowval %in% qtab$m$options$mapping_r_params$miss_rec_val,
+      temp = NULL,
+    .by = "i")
+
+  df_long <- dplyr::bind_rows(
+    # TODO: remove rows of cases with multiple values in column "Ëxclusive"...:
+    df_rows_long[!df_rows_long$rowval %in% qtab$p$Unguelt,],
+    df_rows_long_invalids
+  ) |>
     pivot_cols()
 
-  # invalid_vals <- qtab$p$Unguelt
-  # res <- df_long[!df_long$rowval %in% invalid_vals,] |>
-  res <- df_long |>
-    # remove duplicated choices:
-    # TODO: remove rows of cases with multiple invalid values / values in column
-    # "Ëxclusive"...:
-    dplyr::distinct(dplyr::across(dplyr::all_of(
-      c("i", "rowval", "colvar", "colval")
-    )))
-  rowvars <- unique(df_long$rowvar) |> paste(collapse = ", ")
-  res$rowvar <- rowvars
-  qtab$d$long_data <- res
+  rowvars <- qtab$p$RowVar |> paste(collapse = ", ")
+  df_long$rowvar <- rowvars
+  qtab$d$long_data <- df_long
 }
 
 
