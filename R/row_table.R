@@ -336,8 +336,9 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   occuring_invalid_vals <- intersect(invalid_vals, occuring_vals)
   all_invalid_vals <- c(vallabs, occuring_invalid_vals)
   all_invalid_vals <- all_invalid_vals[!duplicated(all_invalid_vals) & all_invalid_vals %in% occuring_invalid_vals]
+  sorted_invalid_vals <- all_invalid_vals[order(match(all_invalid_vals, invalid_vals))]
 
-  vallab_table <- all_invalid_vals |>
+  vallab_table <- sorted_invalid_vals |>
     tibble::enframe("vallab", "val")
   n_vals <- nrow(vallab_table)
 
