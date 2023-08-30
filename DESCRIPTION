@@ -30,7 +30,8 @@ Imports:
     matrixStats,
     xml2,
     haven,
-    Hmisc
+    Hmisc,
+    datenanpassr
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
     testthat (>= 3.0.0)

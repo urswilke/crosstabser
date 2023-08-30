@@ -38,6 +38,9 @@ setOptions <- function(mapping_file) {
 
   colvar <- df_macro_raw[5, 4 + v_scenario][[1]] |> stringr::str_split_1("[ ,;]+")
 
+  # TODO: find cleaner way to do this!...:
+  mapping_r_params <- datenanpassr:::extract_named_region_params.excel(mapping_file)
+
   return(tibble::lst(
     v_scenario,
     V_Language,
@@ -45,7 +48,8 @@ setOptions <- function(mapping_file) {
     df_macro_raw,
     l_macro_scenario,
     l_lexikon,
-    colvar
+    colvar,
+    mapping_r_params
   ))
 }
 
