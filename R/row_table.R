@@ -163,7 +163,8 @@ row_table_body.qtab_type_mdg <- function(qtab) {
   label_table <- data.frame(
     var = names(l_varlabs),
     label = unlist(l_varlabs, use.names = FALSE)
-  )
+  ) |>
+    dplyr::mutate(label = dplyr::coalesce(label, var))
   n_vals <- nrow(label_table)
 
   label_table <- label_table[rep(seq_len(n_vals), each = 2),]
@@ -193,14 +194,15 @@ row_table_body.qtab_type_mw <- function(qtab) {
   if (sum(no_varlab_idx) > 0) {
     l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
     warning(
-      "There is no variable label for these mdg variable(s): ",
+      "There is no variable label for these mw variable(s): ",
       no_varlab_idx[no_varlab_idx] |> names() |> paste(collapse = ", ")
     )
   }
   label_table <- data.frame(
     var = names(l_varlabs),
     label = unlist(l_varlabs, use.names = FALSE)
-  )
+  ) |>
+    dplyr::mutate(label = dplyr::coalesce(label, var))
   n_vals <- nrow(label_table)
 
   label_table <- label_table[rep(seq_len(n_vals), each = 2),]
