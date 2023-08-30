@@ -125,7 +125,8 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
     sort(decreasing = do_sort)
 
   vallab_table <- all_valid_vals |>
-    tibble::enframe("vallab", "val")
+    tibble::enframe("vallab", "val") |>
+    dplyr::mutate(vallab = dplyr::coalesce(vallab, as.character(val)))
   n_vals <- nrow(vallab_table)
 
   vallab_table <- vallab_table[rep(seq_len(n_vals), each = 2),]
@@ -339,7 +340,8 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   sorted_invalid_vals <- all_invalid_vals[order(match(all_invalid_vals, invalid_vals))]
 
   vallab_table <- sorted_invalid_vals |>
-    tibble::enframe("vallab", "val")
+    tibble::enframe("vallab", "val") |>
+    dplyr::mutate(vallab = dplyr::coalesce(vallab, as.character(val)))
   n_vals <- nrow(vallab_table)
 
   vallab_table <- vallab_table[rep(seq_len(n_vals), each = 2),]
