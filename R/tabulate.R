@@ -102,6 +102,10 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
     )), .keep_all = TRUE)
 
   # TODO: add test to check if this works correctly!...:
+  invalids_to_filter <- intersect(
+    qtab$m$options$mapping_r_params$miss_rec_val,
+    qtab$p$Unguelt
+  )
   df_rows_long_invalids <- df_rows_long[df_rows_long$rowval %in% qtab$p$Unguelt,] |>
     dplyr::mutate(
       temp = order(factor(rowval, levels = qtab$p$Unguelt)),
@@ -112,7 +116,7 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
         temp == 1 &
         # values not equal to the value defined in the cell of the named region
         # "R_miss_rec_val" in the mapping file:
-        !rowval %in% qtab$m$options$mapping_r_params$miss_rec_val,
+        !rowval %in% invalids_to_filter,
       temp = NULL,
     .by = "i")
 
