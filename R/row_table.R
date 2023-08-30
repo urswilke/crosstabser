@@ -355,7 +355,7 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   row_table$RowDecimals <- c(0L, 1L) |> rep(n_vals)
   row_table$RowValue <- strip_attributes(vallab_table$val)
   row_table$RowVariable <- qtab$p$RowVar |> paste(collapse = ", ")
-  row_table$RowContent <- "Valid"
+  row_table$RowContent <- "Missing"
 
   row_table
 }
