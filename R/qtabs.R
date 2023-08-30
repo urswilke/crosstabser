@@ -146,6 +146,7 @@ calc_qtab <- function(qtab) {
   calc_detail_freqs(qtab)
   qtab$d$catrec_freqs <- calc_catrec_freqs(qtab)
   calc_percentages(qtab)
+  calc_invalid_percentages(qtab)
   calc_valid_counts_percentages(qtab)
   qtab$d$tab_values <- rbind_table_numbers(qtab)
   qtab$d$row_table <- gen_row_table(qtab)
@@ -208,8 +209,7 @@ order_by_counts.qtab_type_mcg <- function(qtab) {
   # TODO: Wolf sagen dass es nur für gültige Werte geschieht...
   # TODO: gucken ob das auch für andere qtab types funktioniert!...:
   val_table_counts <- qtab$d$detail_freqs[
-    qtab$d$detail_freqs$colvar == "DC#STICHPROBE" &
-    !qtab$d$detail_freqs$rowval %in% qtab$p$Unguelt
+    qtab$d$detail_freqs$colvar == "DC#STICHPROBE"
   ,][c("value", "rowval")]
 
   row_table <- qtab$d$row_table

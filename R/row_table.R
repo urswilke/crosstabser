@@ -329,7 +329,7 @@ row_table_invalid_vals <- function(qtab) {
   UseMethod("row_table_invalid_vals")
 }
 row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- function(qtab) {
-  occuring_vals <- qtab$d$dat_mod[qtab$p$RowVar] |> unlist(use.names = FALSE) |> unique()
+  occuring_vals <- qtab$d$tab_values$rowval |> unique()
   invalid_vals <- qtab$p$Unguelt
   if (all(!occuring_vals %in% invalid_vals)) {
     return(NULL)

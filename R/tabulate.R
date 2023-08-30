@@ -102,6 +102,8 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
   # res <- df_long[!df_long$rowval %in% invalid_vals,] |>
   res <- df_long |>
     # remove duplicated choices:
+    # TODO: remove rows of cases with multiple invalid values / values in column
+    # "Ëxclusive"...:
     dplyr::distinct(dplyr::across(dplyr::all_of(
       c("i", "rowval", "colvar", "colval")
     )))

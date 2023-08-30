@@ -10,6 +10,8 @@ rbind_table_numbers <- function(qtab) {
     qtab$d$percentages,
     qtab$d$vc_percentages,
     qtab$d$stats_rows$n_valid,
+    qtab$d$invalid_freqs,
+    qtab$d$invalid_percentages,
     qtab$d$stats_rows$no_entry
   )
 }
@@ -70,19 +72,23 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
   if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung == "0") {
     return(NULL)
   }
-  long_data <- qtab$d$long_data
-
-  all_counts <- long_data |>
+  all_counts <- qtab$d$long_data |>
     summarize_stats(
       NULL,
       wt = qtab$p$Weight[[1]],
       .by = c("rowvar", "rowval", "colvar", "colval")
     )
 
-  all_counts$RowContent <- "Detail"
   all_counts$RowAbsPercent <- "Abs"
 
-  qtab$d$detail_freqs <- all_counts
+  detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p$Unguelt,]
+  detail_freqs$RowContent <- "Detail"
+
+  invalid_freqs <- all_counts[all_counts$rowval %in% qtab$p$Unguelt,]
+  invalid_freqs$RowContent <- "Missing"
+
+  qtab$d$detail_freqs <- detail_freqs
+  qtab$d$invalid_freqs <- invalid_freqs
 }
 
 calc_stats_rows <- function(qtab) {
@@ -132,7 +138,23 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
 }
 
 calc_detail_freqs.qtab_type_mdg <- function(qtab) {
-  calc_detail_freqs.qtab_type_cat(qtab)
+  all_counts <- qtab$d$long_data |>
+    summarize_stats(
+      NULL,
+      wt = qtab$p$Weight[[1]],
+      .by = c("rowvar", "rowval", "colvar", "colval")
+    )
+
+  all_counts$RowAbsPercent <- "Abs"
+
+  detail_freqs <- all_counts[!all_counts$rowvar %in% qtab$p$Unguelt,]
+  detail_freqs$RowContent <- "Detail"
+
+  invalid_freqs <- all_counts[all_counts$rowvar %in% qtab$p$Unguelt,]
+  invalid_freqs$RowContent <- "Missing"
+
+  qtab$d$detail_freqs <- detail_freqs
+  qtab$d$invalid_freqs <- invalid_freqs
 }
 calc_stats_rows.qtab_type_mdg <- function(qtab) {
   df <- qtab$d$raw_data
@@ -334,15 +356,23 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data
   long_data[["i"]] <- NULL
-  res <- long_data |>
+  all_counts <- long_data |>
     summarize_stats(
       NULL,
       wt = qtab$p$Weight[[1]],
       .by = c("rowvar", "rowval", "colvar", "colval")
     )
-  res$RowContent <- "Detail"
-  res$RowAbsPercent <- "Abs"
-  qtab$d$detail_freqs <- res
+
+  all_counts$RowAbsPercent <- "Abs"
+
+  detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p$Unguelt,]
+  detail_freqs$RowContent <- "Detail"
+
+  invalid_freqs <- all_counts[all_counts$rowval %in% qtab$p$Unguelt,]
+  invalid_freqs$RowContent <- "Missing"
+
+  qtab$d$detail_freqs <- detail_freqs
+  qtab$d$invalid_freqs <- invalid_freqs
 }
 
 calc_percentages <- function(qtab) {
@@ -353,18 +383,34 @@ calc_percentages.qtab_type_mw <- function(qtab) {
 }
 calc_percentages.default <- function(qtab) {
   cts <- rbind(qtab$d$detail_freqs, qtab$d$catrec_freqs)
+  vc <- qtab$d$stats_rows$n_valid
+  qtab$d$percentages <- calc_percentage_helper(cts, vc)
+}
+calc_invalid_percentages <- function(qtab) {
+  UseMethod("calc_invalid_percentages")
+}
+calc_invalid_percentages.qtab_type_mw <- function(qtab) {
+  NULL
+}
+calc_invalid_percentages.default <- function(qtab) {
+  cts <- qtab$d$invalid_freqs
+  tc <- qtab$d$stats_rows$total
+  qtab$d$invalid_percentages <- calc_percentage_helper(cts, tc)
+}
+calc_percentage_helper <- function(cts, divider_cts) {
   percentages <- cts
   percentages$value <- as.numeric(percentages$value)
-  vc <- qtab$d$stats_rows$n_valid
   # avoid to divide by zero:
-  vc$value[vc$value == 0] <- NA_integer_
-  # correspomding indices of percentages values in vc:
-  idx <- match(paste(percentages$colvar, percentages$colval), paste(vc$colvar, vc$colval))
-  percentages$value <- percentages$value / vc$value[idx]
+  divider_cts$value[divider_cts$value == 0] <- NA_integer_
+  # corresponding indices of percentages values in divider_cts:
+  idx <- match(
+    paste(percentages$colvar, percentages$colval),
+    paste(divider_cts$colvar, divider_cts$colval)
+  )
+  percentages$value <- percentages$value / divider_cts$value[idx]
   percentages$RowAbsPercent <- "Percent"
-  qtab$d$percentages <- percentages
+  percentages
 }
-
 calc_valid_counts_percentages <- function(qtab) {
   UseMethod("calc_valid_counts_percentages")
 }
