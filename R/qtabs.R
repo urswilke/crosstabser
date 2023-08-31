@@ -135,6 +135,13 @@ Qtab <- R6::R6Class("Qtab",
       }
       wide_tab(self)
       invisible(self)
+    },
+    print = function(...) {
+      if (is.null(self$d$wide_tab)) {
+        self$wide_tab()
+      }
+      self |> table_print_parts()
+      invisible(self)
     }
   )
 )
@@ -169,23 +176,26 @@ wide_tab <- function(qtab) {
     ) |>
     dplyr::arrange(RowNo)
 }
-#' @export
-print.crosstabser_tabs <- function(x,
-                                   # unnest fields:
-                                   uf = c("d"),
-                                   n = 30,
-                                   ...) {
-  field_list <- x |> purrr::map(get_r6_fields)
-  df <- tibble::tibble(x = field_list) |>
-    tidyr::unnest_wider(x)
-  if (length(uf) > 0) {
-    df <- df |>
-      tidyr::unnest_wider(uf)
-    # |>
-    #   dplyr::select(-matches("^Col[A-Z]$"))
-  }
-  print(df, n = n, ...)
-}
+
+# the output seems to non-sense (now (?)), but kept here to remind me of the
+# idea to print all the parameters in a wide tibble...: (...Sorry... :)
+#' #' @export
+#' print.crosstabser_tabs <- function(x,
+#'                                    # unnest fields:
+#'                                    uf = c("d"),
+#'                                    n = 30,
+#'                                    ...) {
+#'   field_list <- x |> purrr::map(get_r6_fields)
+#'   df <- tibble::tibble(x = field_list) |>
+#'     tidyr::unnest_wider(x)
+#'   if (length(uf) > 0) {
+#'     df <- df |>
+#'       tidyr::unnest_wider(uf)
+#'     # |>
+#'     #   dplyr::select(-matches("^Col[A-Z]$"))
+#'   }
+#'   print(df, n = n, ...)
+#' }
 
 get_r6_fields <- function(r6_obj) {
   r6_list <- as.list(r6_obj)
