@@ -137,6 +137,16 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
         temp = NULL,
         first_exclusive = NULL,
         none_exclusive = NULL,
+        # same result but slower:
+        # val_to_count = dplyr::case_when(
+        #   !any(rowval %in% exclusives) ~ TRUE,
+        #   !rowval %in% exclusives ~ FALSE,
+        #   .default = {
+        #     temp <- order(factor(rowval, levels = exclusives))
+        #     temp[!rowval %in% exclusives] <- Inf
+        #     temp == min(temp)
+        #   }
+        # ),
         .by = "i")
   } else {
     df_rows_long_valids$val_to_count <- TRUE
