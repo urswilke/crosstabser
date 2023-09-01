@@ -81,6 +81,17 @@ Tabula <- R6::R6Class("Tabula",
       self$calc_qtabs(row)
       write_xml_tables_from_qrows(row, self)
       invisible(self)
+    },
+    # TODO: ask Wolf:
+    # add more information to the print output, e.g.:
+    #  - the row number in the Question sheet
+    #  - the qtab type
+    #  - the index of the qtab type
+    #  - the parameters of the qtab object,
+    #  - ... (?)
+    print = function(...) {
+      seq_len(nrow(self$qrows)) |> lapply(\(i) self$qrows$qrow[[i]]$qtabs) |> print()
+      invisible(self)
     }
   )
 )

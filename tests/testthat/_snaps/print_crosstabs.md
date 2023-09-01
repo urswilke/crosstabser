@@ -1,7 +1,7 @@
 # crosstab prints are reproduced
 
     Code
-      qtab_objects
+      tabsi
     Output
       [[1]]
       [[1]][[1]]

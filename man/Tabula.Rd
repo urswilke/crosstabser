@@ -81,6 +81,7 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
 \item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
 \item \href{#method-Tabula-xml}{\code{Tabula$xml()}}
+\item \href{#method-Tabula-print}{\code{Tabula$print()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
 }
@@ -109,6 +110,15 @@ Initialize a Tabula object
 \subsection{Method \code{xml()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$xml(row = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$print(...)}\if{html}{\out{</div>}}
 }
 
 }
