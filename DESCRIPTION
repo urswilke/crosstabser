@@ -31,6 +31,7 @@ Imports:
     xml2,
     haven,
     Hmisc,
+    tibble,
     datenanpassr
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
