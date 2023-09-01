@@ -140,7 +140,7 @@ Qtab <- R6::R6Class("Qtab",
       if (is.null(self$d$wide_tab)) {
         self$wide_tab()
       }
-      self |> table_print_parts()
+      self |> print_crosstab(...)
       invisible(self)
     }
   )

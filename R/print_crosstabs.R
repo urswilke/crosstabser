@@ -1,4 +1,4 @@
-table_print_parts <- function(qtab) {
+print_crosstab <- function(qtab, ...) {
   res <- qtab$d$wide_tab
   col_table <- qtab$d$col_table
   col_table$ColTitle1[col_table$ColTitle1 == dplyr::lag(col_table$ColTitle1)] <- ""
