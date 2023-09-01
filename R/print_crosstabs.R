@@ -26,6 +26,8 @@ str_trunc_pad <- function(string, width = 5) {
     stringr::str_pad(width, "right")
 }
 
+#' @importFrom pillar ctl_new_rowid_pillar
+#' @export
 ctl_new_rowid_pillar.pillar_wide_tab <- function(controller, x, width, rowlab_wid1 = 19, rowlab_wid2 = 5, rowlab_wid3 = 5, ...) {
   out <- NextMethod()
   tables <- attr(controller, "d")
@@ -66,6 +68,8 @@ ctl_new_rowid_pillar.pillar_wide_tab <- function(controller, x, width, rowlab_wi
 #   setup$body[-c(1:2)]
 # }
 
+#' @importFrom pillar ctl_new_pillar
+#' @export
 ctl_new_pillar.pillar_wide_tab <- function(controller, x, width, ..., title = NULL) {
   tables <- attr(controller, "d")
   out <- NextMethod()
@@ -95,6 +99,8 @@ ctl_new_pillar.pillar_wide_tab <- function(controller, x, width, ..., title = NU
 }
 
 
+#' @importFrom pillar tbl_sum
+#' @export
 tbl_sum.pillar_wide_tab <- function(x, ...) {
   tables <- attr(x, "d")
   c(tables$tab_table$TabTitle)
