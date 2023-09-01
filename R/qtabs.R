@@ -98,11 +98,21 @@ process_metr_mac <- function(qtab) {
   df_stat_funs
 }
 
+#' Qtab
+#' @description Qtab
+#' @field p parameters
+#' @field d data
+#' @field m parent mapping
+#'
+#' @examples
+#' "hello"
+#' @export
 Qtab <- R6::R6Class("Qtab",
   public = list(
     p = list(),
     d = list(),
     m = list(),
+    #' @description todo
     initialize = function(params,
                           mapping,
                           ...) {
@@ -116,10 +126,13 @@ Qtab <- R6::R6Class("Qtab",
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
     },
+    #' @description todo
     calc_qtab = function() {
       calc_qtab(self)
+      self$wide_tab()
       invisible(self)
     },
+    #' @description todo
     long_tab = function() {
       self$d$long_tab <- self$d[
         c("val_table", "row_table", "col_table", "head_table", "tab_table")
@@ -128,6 +141,7 @@ Qtab <- R6::R6Class("Qtab",
         tibble::as_tibble()
       invisible(self)
     },
+    #' @description todo
     wide_tab = function() {
       if (is.null(self$d$long_tab)) {
         self$long_tab()
@@ -135,11 +149,9 @@ Qtab <- R6::R6Class("Qtab",
       wide_tab(self)
       invisible(self)
     },
+    #' @description print
     print = function(...) {
-      if (is.null(self$d$wide_tab)) {
-        self$wide_tab()
-      }
-      self |> print_crosstab(...)
+      self |> print()
       invisible(self)
     }
   )

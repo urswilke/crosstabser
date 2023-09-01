@@ -2,7 +2,10 @@
 
 S3method(ctl_new_pillar,pillar_wide_tab)
 S3method(ctl_new_rowid_pillar,pillar_wide_tab)
+S3method(format,Qtab)
+S3method(print,Qtab)
 S3method(tbl_sum,pillar_wide_tab)
+export(Qtab)
 export(Tabula)
 export(percentile)
 export(se)

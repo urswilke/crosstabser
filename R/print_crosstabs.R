@@ -1,4 +1,8 @@
-print_crosstab <- function(qtab, ...) {
+#' @export
+print.Qtab = function(x, ...) print(format(x), ...)
+
+#' @export
+format.Qtab <- function(qtab, ...) {
   res <- qtab$d$wide_tab
   col_table <- qtab$d$col_table
   col_table$ColTitle1[col_table$ColTitle1 == dplyr::lag(col_table$ColTitle1)] <- ""
@@ -18,7 +22,7 @@ print_crosstab <- function(qtab, ...) {
 
   attr(res, "d") <- qtab$d[c("tab_table", "head_table", "col_table", "row_table")]
   class(res) <- c("pillar_wide_tab", class(res))
-  res |> print()
+  res
 }
 
 str_trunc_pad <- function(string, width = 5) {
