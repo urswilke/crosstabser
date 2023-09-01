@@ -1,3 +1,8 @@
+#' #' @@@@export
+#'   print.Qtab <- function(x, ...) {
+#'   NextMethod()
+#' }
+
 print_crosstab <- function(qtab, ...) {
   res <- qtab$d$wide_tab
   col_table <- qtab$d$col_table
@@ -18,15 +23,16 @@ print_crosstab <- function(qtab, ...) {
 
   attr(res, "d") <- qtab$d[c("tab_table", "head_table", "col_table", "row_table")]
   class(res) <- c("pillar_wide_tab", class(res))
-  res |> print(...)
-  invisible(qtab)
+  res
 }
 
+#' @export
 str_trunc_pad <- function(string, width = 5) {
   stringr::str_trunc(string, width, ellipsis = "…") |>
     stringr::str_pad(width, "right")
 }
 
+#' @export
 ctl_new_rowid_pillar.pillar_wide_tab <- function(controller, x, width, rowlab_wid1 = 19, rowlab_wid2 = 5, rowlab_wid3 = 5, ...) {
   out <- NextMethod()
   tables <- attr(controller, "d")
@@ -67,6 +73,8 @@ ctl_new_rowid_pillar.pillar_wide_tab <- function(controller, x, width, rowlab_wi
 #   setup$body[-c(1:2)]
 # }
 
+#' @importFrom pillar pillar_shaft
+#' @export
 ctl_new_pillar.pillar_wide_tab <- function(controller, x, width, ..., title = NULL) {
   tables <- attr(controller, "d")
   out <- NextMethod()
@@ -96,6 +104,7 @@ ctl_new_pillar.pillar_wide_tab <- function(controller, x, width, ..., title = NU
 }
 
 
+#' @export
 tbl_sum.pillar_wide_tab <- function(x, ...) {
   tables <- attr(x, "d")
   c(tables$tab_table$TabTitle)

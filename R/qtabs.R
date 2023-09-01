@@ -9,7 +9,7 @@ new_qtabs <- function(qsheet_processed, mapping) {
   qtabs |>
     purrr::walk(\(x) add_type_specific_params(x))
 
-  class(qtabs) <- c("crosstabser_tabs", class(qtabs))
+  # class(qtabs) <- c("crosstabser_tabs", class(qtabs))
   qtabs
 
 }
@@ -99,6 +99,7 @@ process_metr_mac <- function(qtab) {
   df_stat_funs
 }
 
+#' @export
 Qtab <- R6::R6Class("Qtab",
   public = list(
     p = list(),
@@ -140,7 +141,7 @@ Qtab <- R6::R6Class("Qtab",
       if (is.null(self$d$wide_tab)) {
         self$wide_tab()
       }
-      self |> print_crosstab(...)
+      self |> print_crosstab(...) |> print()
       invisible(self)
     }
   )
@@ -177,25 +178,6 @@ wide_tab <- function(qtab) {
     dplyr::arrange(RowNo)
 }
 
-# the output seems to non-sense (now (?)), but kept here to remind me of the
-# idea to print all the parameters in a wide tibble...: (...Sorry... :)
-#' #' @export
-#' print.crosstabser_tabs <- function(x,
-#'                                    # unnest fields:
-#'                                    uf = c("d"),
-#'                                    n = 30,
-#'                                    ...) {
-#'   field_list <- x |> purrr::map(get_r6_fields)
-#'   df <- tibble::tibble(x = field_list) |>
-#'     tidyr::unnest_wider(x)
-#'   if (length(uf) > 0) {
-#'     df <- df |>
-#'       tidyr::unnest_wider(uf)
-#'     # |>
-#'     #   dplyr::select(-matches("^Col[A-Z]$"))
-#'   }
-#'   print(df, n = n, ...)
-#' }
 
 get_r6_fields <- function(r6_obj) {
   r6_list <- as.list(r6_obj)

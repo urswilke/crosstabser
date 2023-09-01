@@ -31,7 +31,9 @@ Imports:
     xml2,
     haven,
     Hmisc,
-    datenanpassr
+    pillar,
+    datenanpassr,
+    vctrs
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
     testthat (>= 3.0.0)
