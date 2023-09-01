@@ -9,18 +9,18 @@
                             NULL ----- GESAMT  Region ------ ------- ------
                             NULL -----         Asien  Europa Nordam… Pazif…
       GESAMT               abs       4 151     19     75     43      14    
-      1 Beschäftigter      abs       7  49      5     20     19       5    
+      1 Beschäftigter      abs       5  NA     NA     NA     NA      NA    
+                           in %      6  NA     NA     NA     NA      NA    
+      2 - 4 Beschäftigte   abs       7  49      5     20     19       5    
                            in %      8   0.325  0.263  0.267  0.442   0.357
-      2 - 4 Beschäftigte   abs       9  63      6     30     21       6    
+      5 - 9 Beschäftigte   abs       9  63      6     30     21       6    
                            in %     10   0.417  0.316  0.4    0.488   0.429
-      5 - 9 Beschäftigte   abs      11  39      8     25      3       3    
+      10 - 19 Beschäftig…  abs      11  39      8     25      3       3    
                            in %     12   0.258  0.421  0.333  0.0698  0.214
-      10 - 19 Beschäftig…  abs      15 151     19     75     43      14    
+      20 Beschäftigte un…  abs      13  NA     NA     NA     NA      NA    
+                           in %     14  NA     NA     NA     NA      NA    
+      GÜLTIGE FÄLLE        abs      15 151     19     75     43      14    
                            in %     16   1      1      1      1       1    
-      20 Beschäftigte un…  abs   ----- GESAMT  Region ------ ------- ------
-                           in %  -----         Asien  Europa Nordam… Pazif…
-      GÜLTIGE FÄLLE        abs       4 151     19     75     43      14    
-                           in %      7  49      5     20     19       5    
       
       
       [[2]]

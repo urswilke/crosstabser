@@ -67,8 +67,7 @@ pivot_cols <- function(df) {
       dplyr::matches("^colvar_"),
       names_pattern = "colvar_(.*)",
       names_to = "colvar",
-      values_to = "colval",
-      values_drop_na = TRUE
+      values_to = "colval"
     )
 }
 pivot_rows <- function(df) {
@@ -77,8 +76,7 @@ pivot_rows <- function(df) {
       dplyr::matches("^rowvar_"),
       names_pattern = "rowvar_(.*)",
       names_to = "rowvar",
-      values_to = "rowval",
-      values_drop_na = TRUE
+      values_to = "rowval"
     )
 }
 pivot_table_data.qtab_type_mdg <- function(qtab) {
@@ -167,7 +165,7 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
 
 
 gen_val_table <- function(qtab) {
-  row_table <- qtab$d$row_table[!is.na(qtab$d$row_table$RowVariable),]
+  row_table <- qtab$d$row_table
 
   col_table <- qtab$d$col_table
 

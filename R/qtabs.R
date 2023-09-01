@@ -135,9 +135,9 @@ Qtab <- R6::R6Class("Qtab",
     #' @description todo
     long_tab = function() {
       self$d$long_tab <- self$d[
-        c("val_table", "row_table", "col_table", "head_table", "tab_table")
+        c("val_table", "col_table", "row_table", "head_table", "tab_table")
       ] |>
-        purrr::reduce(merge) |>
+        purrr::reduce(merge, all = TRUE) |>
         tibble::as_tibble()
       invisible(self)
     },
@@ -180,11 +180,16 @@ wide_tab <- function(qtab) {
   )
   qtab$d$wide_tab <- qtab$d$long_tab |>
     dplyr::select(dplyr::all_of(cols_for_wide_tab)) |>
-    tidyr::drop_na(value) |>
+    # correct ordering in result:
+    # TODO: find cleaner way!...
+    dplyr::arrange(ColNo) |>
+    # tidyr::drop_na(value) |>
     tidyr::pivot_wider(
       names_from = dplyr::matches("Col"),
       values_from = value
     ) |>
+    # TODO: find cleaner way!...
+    janitor::remove_empty(which = c("rows", "cols")) |>
     dplyr::arrange(RowNo)
 }
 
