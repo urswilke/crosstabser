@@ -9,7 +9,6 @@ new_qtabs <- function(qsheet_processed, mapping) {
   qtabs |>
     purrr::walk(\(x) add_type_specific_params(x))
 
-  class(qtabs) <- c("crosstabser_tabs", class(qtabs))
   qtabs
 
 }
