@@ -384,7 +384,7 @@ calc_percentages.qtab_type_mw <- function(qtab) {
 calc_percentages.default <- function(qtab) {
   cts <- rbind(qtab$d$detail_freqs, qtab$d$catrec_freqs)
   vc <- qtab$d$stats_rows$n_valid
-  qtab$d$percentages <- calc_percentage_helper(cts, vc)
+  calc_percentage_helper(cts, vc)
 }
 calc_invalid_percentages <- function(qtab) {
   UseMethod("calc_invalid_percentages")
@@ -395,7 +395,7 @@ calc_invalid_percentages.qtab_type_mw <- function(qtab) {
 calc_invalid_percentages.default <- function(qtab) {
   cts <- qtab$d$invalid_freqs
   tc <- qtab$d$stats_rows$total
-  qtab$d$invalid_percentages <- calc_percentage_helper(cts, tc)
+  calc_percentage_helper(cts, tc)
 }
 calc_percentage_helper <- function(cts, divider_cts) {
   percentages <- cts
@@ -424,5 +424,5 @@ calc_valid_counts_percentages.default <- function(qtab) {
   valid_cts$value <- valid_cts$value / total_cts$value
   valid_cts$RowAbsPercent <- "Percent"
 
-  qtab$d$vc_percentages <- valid_cts
+  valid_cts
 }
