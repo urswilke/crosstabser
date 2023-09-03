@@ -407,7 +407,7 @@ calc_percentage_helper <- function(cts, divider_cts) {
     paste(percentages$colvar, percentages$colval),
     paste(divider_cts$colvar, divider_cts$colval)
   )
-  percentages$value <- percentages$value / divider_cts$value[idx]
+  percentages$value <- 100 *percentages$value / divider_cts$value[idx]
   percentages$RowAbsPercent <- "Percent"
   percentages
 }
@@ -421,7 +421,7 @@ calc_valid_counts_percentages.default <- function(qtab) {
   total_cts <- qtab$d$stats_rows$total
   valid_cts <- qtab$d$stats_rows$n_valid
 
-  valid_cts$value <- valid_cts$value / total_cts$value
+  valid_cts$value <- 100 * valid_cts$value / total_cts$value
   valid_cts$RowAbsPercent <- "Percent"
 
   valid_cts
