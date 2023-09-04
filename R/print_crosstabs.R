@@ -1,5 +1,5 @@
 #' @export
-print.Qtab = function(x, ...) print(format(x), ...)
+print.Qtab = function(x, ...) print(format(x), n = Inf, ...)
 
 #' @export
 format.Qtab <- function(qtab, ...) {
