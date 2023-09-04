@@ -49,14 +49,19 @@ get_raw_data.default <- function(qtab) {
     dat
   }
   res <- prep_data()
-  if (qtab$p$Type == "mdg" && is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
-    res <- as.data.frame(res)
-    res[names(rowvars_named)] <- catrec(
-      res[names(rowvars_named)] |>
-        unlist(use.names = FALSE),
-      paste0("(", qtab$p$MdgVal, " = 1)")
-    )
-    qtab$p$MdgVal = 1
+  # TODO: move this somewhere where it only concerns mdg!...:
+  if (qtab$p$Type == "mdg") {
+    if (is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
+      res <- as.data.frame(res)
+      res[names(rowvars_named)] <- catrec(
+        res[names(rowvars_named)] |>
+          unlist(use.names = FALSE),
+        paste0("(", qtab$p$MdgVal, " = 1)")
+      )
+      qtab$p$MdgVal = 1
+    } else {
+      qtab$p$MdgVal = as.numeric(qtab$p$MdgVal)
+    }
   }
 
   res
