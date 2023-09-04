@@ -10,7 +10,7 @@ catrec <- function(vec, cat_rec_string) {
     cat_rec_vals,
     \(f, x) rlang::quo(!!f(vec) ~ !!x)
   )
-  dplyr::case_when(!!!l_cat_rec)
+  dplyr::case_when(!!!l_cat_rec, .default = vec)
 }
 
 split_cat_rec_string <- function(cat_rec_string) {
