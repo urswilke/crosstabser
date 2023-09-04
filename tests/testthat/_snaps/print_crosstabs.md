@@ -264,4 +264,44 @@
                            GÜLT…    20 90     11    41    29     9  
       
       
+      [[13]]
+      [[13]][[1]]
+      # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
+      #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
+      #   ein.
+                                 NULL ----- GESAMT  Regi… ----- ----- -----
+                                 NULL -----         Asien Euro… Nord… Pazi…
+      GESAMT                    abs       4 151     19    75    43     14  
+                                abs       5   1     NA    NA     1     NA  
+                                in %      6   1.12  NA    NA     3.57  NA  
+                                abs       7  10      1     4     3      2  
+                                in %      8  11.2    9.09  9.76 10.7   22.2
+                                abs       9  29      5    12     9      3  
+                                in %     10  32.6   45.5  29.3  32.1   33.3
+                                abs      11  49      5    25    15      4  
+                                in %     12  55.1   45.5  61.0  53.6   44.4
+      ZUSAMMENFASSUNG     1 un… abs      13   1     NA    NA     1     NA  
+                          1 un… in %     14   1.12  NA    NA     3.57  NA  
+                          3     abs      15  10      1     4     3      2  
+                          3     in %     16  11.2    9.09  9.76 10.7   22.2
+                          4 un… abs      17  78     10    37    24      7  
+                          4 un… in %     18  87.6   90.9  90.2  85.7   77.8
+      ZUSAMMENFASSUNG 2   1 un… abs      19   1     NA    NA     1     NA  
+                          1 un… in %     20   1.12  NA    NA     3.57  NA  
+                          3     abs      21  10      1     4     3      2  
+                          3     in %     22  11.2    9.09  9.76 10.7   22.2
+                          4     abs      23  29      5    12     9      3  
+                          4     in %     24  32.6   45.5  29.3  32.1   33.3
+                          5     abs      25  49      5    25    15      4  
+                          5     in %     26  55.1   45.5  61.0  53.6   44.4
+      GÜLTIGE FÄLLE             abs      27  89     11    41    28      9  
+                                in %     28  58.9   57.9  54.7  65.1   64.3
+      weiß nicht                abs      29   1     NA    NA     1     NA  
+                                in %     30   0.662 NA    NA     2.33  NA  
+      keine Angabe              abs      31   1     NA     1    NA     NA  
+                                in %     32   0.662 NA     1.33 NA     NA  
+      FILTER                    abs      33  60      8    33    14      5  
+                                in %     34  39.7   42.1  44    32.6   35.7
+      
+      
 

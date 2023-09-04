@@ -302,7 +302,10 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   df_long <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
 
   catrec_string <- strsplit(qtab$p$CatRec, "\\|")[[1]]
-  all_counts <- summarise_catrec(df_long, catrec_string, qtab$p$Weight[[1]])
+  all_counts <- catrec_string |>
+    lapply(\(x) summarise_catrec(df_long, x, qtab$p$Weight[[1]])) |>
+    # TODO: tell Wolf about new parameter "i_catrec"!...:
+    dplyr::bind_rows(.id = "i_catrec")
   all_counts$RowContent <- "Summary"
   all_counts$RowAbsPercent <- "Abs"
   all_counts
@@ -381,7 +384,7 @@ calc_percentages.qtab_type_mw <- function(qtab) {
   NULL
 }
 calc_percentages.default <- function(qtab) {
-  cts <- rbind(qtab$d$detail_freqs, qtab$d$catrec_freqs)
+  cts <- dplyr::bind_rows(qtab$d$detail_freqs, qtab$d$catrec_freqs)
   vc <- qtab$d$stats_rows$n_valid
   calc_percentage_helper(cts, vc)
 }
@@ -397,6 +400,9 @@ calc_invalid_percentages.default <- function(qtab) {
   calc_percentage_helper(cts, tc)
 }
 calc_percentage_helper <- function(cts, divider_cts) {
+  if (length(cts) == 0) {
+    return(NULL)
+  }
   percentages <- cts
   percentages$value <- as.numeric(percentages$value)
   # avoid to divide by zero:
