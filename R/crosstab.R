@@ -25,7 +25,8 @@ calc_stat_fun.default <- function(qtab) {
 }
 # TODO: add tests for stat_fun = median, sum, ...:
 calc_stat_fun.qtab_type_mw <- function(qtab) {
-  long_data <- qtab$d$long_data
+  long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% qtab$p$Unguelt,]
+
   res <- long_data |>
     summarize_stats(
       "rowval",
