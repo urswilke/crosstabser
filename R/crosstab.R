@@ -290,27 +290,12 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   if (is.null(qtab$p$CatRec)) {
     return(NULL)
   }
-  cat_rec_string <- qtab$p$CatRec
-  cat_lab_string <- qtab$p$CatLab
-  cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
-  cat_lab_splits <- split_cat_lab_string(cat_lab_string)
-  cat_rec_quos <- lapply(cat_rec_interval_splits$interval_strings, gen_cat_rec_fun)
-  cat_rec_exprs <- stringr::str_extract_all(cat_rec_string, "(?<=\\().*?(?=\\))")[[1]]
-  cat_rec_vals <- stringr::str_extract(cat_rec_exprs, "(?<=\\=) *\\d+$") |> as.numeric()
-
   invalid_vals <- qtab$p$Unguelt
 
   long_data_catrec <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
-  # TODO: find cleander solution where `vec` doesn't need to be calculated in advance!
-  vec <- long_data_catrec$rowval
-  l_cat_rec <- purrr::map2(
-    cat_rec_quos,
-    cat_rec_vals,
-    \(f, x) rlang::quo(!!f(vec) ~ !!x)
-  )
+
+  long_data_catrec$rowval <- catrec(long_data_catrec$rowval, qtab$p$CatRec)
   long_data_catrec$rowvar <- paste0(long_data_catrec$rowvar, "__summary")
-  long_data_catrec$rowval <- dplyr::case_when(!!!l_cat_rec)
-  # TODO: also tabulate non-recoded (not covered by CatRec) valid `RowVal`s:
   non_recoded_idx <- is.na(long_data_catrec$rowval)
   if (any(non_recoded_idx)) {
     warning(
