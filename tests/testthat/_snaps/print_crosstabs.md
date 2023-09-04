@@ -92,6 +92,18 @@
       [[5]]
       [[5]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
+                            NULL ----- GESAMT Region ------ ------ ------
+                            NULL -----        Asien  Europa Norda… Pazif…
+      GESAMT               abs       4 151     19     75     43     14   
+      Mittelwert                     5  95.5   95.4   94.2   97.4   95.7 
+      Standardfehler                 6   1.03   3.32   1.65   1.38   2.97
+      GÜLTIGE FÄLLE        abs       7 151     19     75     43     14   
+                           in %      8 100    100    100    100    100   
+      
+      
+      [[6]]
+      [[6]][[1]]
+      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Summary of Medians
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
@@ -102,8 +114,8 @@
                            GÜLT…     8   151    19    75    43    14
       
       
-      [[6]]
-      [[6]][[1]]
+      [[7]]
+      [[7]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Mittelwertüberblick
                             NULL ----- GESA… Regi… ----- ----- -----
@@ -115,8 +127,8 @@
                            GÜLT…     8 151    15    71.5  47.5  17  
       
       
-      [[7]]
-      [[7]][[1]]
+      [[8]]
+      [[8]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
                             NULL ----- GESAMT  Regi… ------ ------ -----
                             NULL -----         Asien Europa Norda… Pazi…
@@ -132,8 +144,8 @@
                            in %     13   100   100    100    100   100  
       
       
-      [[8]]
-      [[8]][[1]]
+      [[9]]
+      [[9]][[1]]
       # 4. Wie häufig haben Sie einen Tabellenband in den letzten 12 Monaten
       #   erstellen lassen?
                                  NULL ----- GESAMT  Regi… ------ ----- ------
@@ -152,8 +164,8 @@
                                 in %     15  94.7   94.7  94.7   93.0  100   
       
       
-      [[9]]
-      [[9]][[1]]
+      [[10]]
+      [[10]][[1]]
       # 5. Was lief besonders gut in den Projekten?
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
@@ -177,8 +189,8 @@
                            in %     21  45.7  36.8  45.3  48.8 50   
       
       
-      [[10]]
-      [[10]][[1]]
+      [[11]]
+      [[11]][[1]]
       # 5. Was lief besonders gut in den Projekten?
                             NULL ----- GESAMT Regi… ----- ----- -----
                             NULL -----        Asien Euro… Nord… Pazi…
@@ -202,8 +214,8 @@
                            in %     21  45.7  36.8  45.3  48.8   50  
       
       
-      [[11]]
-      [[11]][[1]]
+      [[12]]
+      [[12]][[1]]
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein. TOP2-Übersicht
@@ -227,7 +239,7 @@
       Einhaltung von Zus…  TOP2     19  86.7 100    87.8  79.3  88.9
                            GÜLT…    20  90    11    41    29     9  
       
-      [[11]][[2]]
+      [[12]][[2]]
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein. TOP1-Übersicht

@@ -47,6 +47,11 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
     return(NULL)
   }
   long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% qtab$p$Unguelt,]
+  # TODO: check if  TOTAL, VALID CASES etc. are correct, when using MWRec:
+  if (!is.null(qtab$p$MWRec)) {
+    long_data$rowval <- catrec(long_data$rowval, qtab$p$MWRec)
+  }
+
   df_stat_funs <- qtab$p$df_stat_funs
   l <- df_stat_funs |>
     split(seq_len(nrow(df_stat_funs))) |>
