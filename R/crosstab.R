@@ -299,11 +299,11 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   }
   invalid_vals <- qtab$p$Unguelt
 
-  long_data_catrec <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
+  df_long <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
 
-  long_data_catrec$rowval <- catrec(long_data_catrec$rowval, qtab$p$CatRec)
-  long_data_catrec$rowvar <- paste0(long_data_catrec$rowvar, "__summary")
-  non_recoded_idx <- is.na(long_data_catrec$rowval)
+  df_long$rowval <- catrec(df_long$rowval, qtab$p$CatRec)
+  df_long$rowvar <- paste0(df_long$rowvar, "__summary")
+  non_recoded_idx <- is.na(df_long$rowval)
   if (any(non_recoded_idx)) {
     # TODO: not sure if this still holds true
     # (because the .default option was added to dplyr::case_when() in catrec()):
@@ -313,9 +313,9 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
       vec[non_recoded_idx] |> unique(),
       "\nTabulation not implemented yet!!!"
     )
-    long_data_catrec <- long_data_catrec[!non_recoded_idx,]
+    df_long <- df_long[!non_recoded_idx,]
   }
-  all_counts <- long_data_catrec |>
+  all_counts <- df_long |>
     summarize_stats(
       NULL,
       wt = qtab$p$Weight[[1]],
