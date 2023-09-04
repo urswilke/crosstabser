@@ -301,7 +301,8 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
 
   df_long <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
 
-  all_counts <- summarise_catrec(df_long, qtab$p$CatRec, qtab$p$Weight[[1]])
+  catrec_string <- strsplit(qtab$p$CatRec, "\\|")[[1]]
+  all_counts <- summarise_catrec(df_long, catrec_string, qtab$p$Weight[[1]])
   all_counts$RowContent <- "Summary"
   all_counts$RowAbsPercent <- "Abs"
   all_counts
