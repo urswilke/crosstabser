@@ -222,8 +222,6 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
   # for TOTAL column:
   df$"colvar_DC#STICHPROBE" <- 1
 
-  mdg_val <- qtab$p$MdgVal
-
   df_cols <- df[c(qtab$p$long_colvars, qtab$p$long_weight)]
   df_rows <- df[qtab$p$long_rowvars]
 
