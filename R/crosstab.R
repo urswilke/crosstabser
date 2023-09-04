@@ -305,6 +305,8 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   long_data_catrec$rowvar <- paste0(long_data_catrec$rowvar, "__summary")
   non_recoded_idx <- is.na(long_data_catrec$rowval)
   if (any(non_recoded_idx)) {
+    # TODO: not sure if this still holds true
+    # (because the .default option was added to dplyr::case_when() in catrec()):
     warning(
       "\nIn table in row ", df_row$row, ":\n",
       "These valid values are not recoded by CatRec: ",

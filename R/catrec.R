@@ -10,6 +10,7 @@ catrec <- function(vec, cat_rec_string) {
     cat_rec_vals,
     \(f, x) rlang::quo(!!f(vec) ~ !!x)
   )
+  # TODO: tell Wolf that all "ELSE" values are kept (.default = vec)!...:
   dplyr::case_when(!!!l_cat_rec, .default = vec)
 }
 
