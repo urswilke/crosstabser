@@ -39,10 +39,9 @@ gen_head_table <- function(mapping) {
     HeadName = character(),
     HeadTitle = character()
   )
-  res[1,]$HeadName <- "DC#ROWHEADER"
-  res[2,c("HeadName", "HeadTitle")] <- list("DC#STICHPROBE", mapping$options$l_lexikon["cTabGesamt"])
-  res[seq_len(length(header_vars)) + 2,]$HeadName <- header_vars
-  res[seq_len(length(header_vars)) + 2,]$HeadTitle <- header_varlabs
+  res[1,c("HeadName", "HeadTitle")] <- list("DC#STICHPROBE", mapping$options$l_lexikon["cTabGesamt"])
+  res[seq_len(length(header_vars)) + 1,]$HeadName <- header_vars
+  res[seq_len(length(header_vars)) + 1,]$HeadTitle <- header_varlabs
   res$HeadNo <- seq_len(nrow(res))
   res
 }
@@ -56,14 +55,17 @@ gen_col_table <- function(mapping) {
     ColVariable = character(),
     ColValue = integer(),
   )
-  res[1, c("HeadNo", "ColTitle1", "ColVariable", "ColValue")] <- list(2L, mapping$options$l_lexikon["cTabGesamt"], "DC#STICHPROBE", 1L)
+  res[1, c("ColNo", "HeadNo", "ColTitle1", "ColVariable", "ColValue")] <- list(1L, 2L, mapping$options$l_lexikon["cTabGesamt"], "DC#STICHPROBE", 1L)
 
   head_table <- mapping$qsheet$head_table
-  if (nrow(head_table) == 2) {
+  if (nrow(head_table) == 1) {
     return(res)
   }
 
-  colvar_headers <- head_table[3:nrow(head_table),]
+  # TODO: get from paramter in mapping...!
+  colvar_headers <- head_table[1:nrow(head_table),]
+
+  # TODO: clean up this mess: ...!
   names(colvar_headers)[names(colvar_headers) == "HeadTitle"] <- "ColTitle1"
   names(colvar_headers)[names(colvar_headers) == "HeadName"] <- "ColVariable"
   colvar_headers$ColValue <- lapply(colvar_headers$ColVariable, \(x) attr(mapping$dat_mod[[x]], "labels"))

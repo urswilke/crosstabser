@@ -90,12 +90,14 @@ new_stat_vec <- function(x, wt = NULL, stat_fun = "length", ...) {
   res
 }
 
+#' @export
 se <- function(x, na.rm = TRUE, ...) {
   if (na.rm) {
     x <- x[!is.na(x)]
   }
   sd(x) / sqrt(length(x))
 }
+#' @export
 percentile <- function(x, na.rm = TRUE, ...) {
   quantile(x, na.rm = na.rm, ...)
 }

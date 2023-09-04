@@ -9,7 +9,6 @@ new_qtabs <- function(qsheet_processed, mapping) {
   qtabs |>
     purrr::walk(\(x) add_type_specific_params(x))
 
-  class(qtabs) <- c("crosstabser_tabs", class(qtabs))
   qtabs
 
 }
@@ -99,11 +98,21 @@ process_metr_mac <- function(qtab) {
   df_stat_funs
 }
 
+#' Qtab
+#' @description Qtab
+#' @field p parameters
+#' @field d data
+#' @field m parent mapping
+#'
+#' @examples
+#' "hello"
+#' @export
 Qtab <- R6::R6Class("Qtab",
   public = list(
     p = list(),
     d = list(),
     m = list(),
+    #' @description todo
     initialize = function(params,
                           mapping,
                           ...) {
@@ -117,23 +126,32 @@ Qtab <- R6::R6Class("Qtab",
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
     },
+    #' @description todo
     calc_qtab = function() {
       calc_qtab(self)
+      self$wide_tab()
       invisible(self)
     },
+    #' @description todo
     long_tab = function() {
       self$d$long_tab <- self$d[
-        c("val_table", "row_table", "col_table", "head_table", "tab_table")
+        c("val_table", "col_table", "row_table", "head_table", "tab_table")
       ] |>
-        purrr::reduce(merge) |>
+        purrr::reduce(merge, all = TRUE) |>
         tibble::as_tibble()
       invisible(self)
     },
+    #' @description todo
     wide_tab = function() {
       if (is.null(self$d$long_tab)) {
         self$long_tab()
       }
       wide_tab(self)
+      invisible(self)
+    },
+    #' @description print
+    print = function(...) {
+      self |> print()
       invisible(self)
     }
   )
@@ -145,9 +163,9 @@ calc_qtab <- function(qtab) {
   calc_stat_fun(qtab)
   calc_detail_freqs(qtab)
   qtab$d$catrec_freqs <- calc_catrec_freqs(qtab)
-  calc_percentages(qtab)
-  calc_invalid_percentages(qtab)
-  calc_valid_counts_percentages(qtab)
+  qtab$d$percentages <- calc_percentages(qtab)
+  qtab$d$invalid_percentages <- calc_invalid_percentages(qtab)
+  qtab$d$vc_percentages <- calc_valid_counts_percentages(qtab)
   qtab$d$tab_values <- rbind_table_numbers(qtab)
   qtab$d$row_table <- gen_row_table(qtab)
   post_process(qtab)
@@ -162,30 +180,38 @@ wide_tab <- function(qtab) {
   )
   qtab$d$wide_tab <- qtab$d$long_tab |>
     dplyr::select(dplyr::all_of(cols_for_wide_tab)) |>
-    tidyr::drop_na(value) |>
+    # correct ordering in result:
+    # TODO: find cleaner way!...
+    dplyr::arrange(ColNo) |>
+    # tidyr::drop_na(value) |>
     tidyr::pivot_wider(
       names_from = dplyr::matches("Col"),
       values_from = value
     ) |>
+    # TODO: find cleaner way!...
+    janitor::remove_empty(which = c("rows", "cols")) |>
     dplyr::arrange(RowNo)
 }
-#' @export
-print.crosstabser_tabs <- function(x,
-                                   # unnest fields:
-                                   uf = c("d"),
-                                   n = 30,
-                                   ...) {
-  field_list <- x |> purrr::map(get_r6_fields)
-  df <- tibble::tibble(x = field_list) |>
-    tidyr::unnest_wider(x)
-  if (length(uf) > 0) {
-    df <- df |>
-      tidyr::unnest_wider(uf)
-    # |>
-    #   dplyr::select(-matches("^Col[A-Z]$"))
-  }
-  print(df, n = n, ...)
-}
+
+# the output seems to non-sense (now (?)), but kept here to remind me of the
+# idea to print all the parameters in a wide tibble...: (...Sorry... :)
+#' #' @export
+#' print.crosstabser_tabs <- function(x,
+#'                                    # unnest fields:
+#'                                    uf = c("d"),
+#'                                    n = 30,
+#'                                    ...) {
+#'   field_list <- x |> purrr::map(get_r6_fields)
+#'   df <- tibble::tibble(x = field_list) |>
+#'     tidyr::unnest_wider(x)
+#'   if (length(uf) > 0) {
+#'     df <- df |>
+#'       tidyr::unnest_wider(uf)
+#'     # |>
+#'     #   dplyr::select(-matches("^Col[A-Z]$"))
+#'   }
+#'   print(df, n = n, ...)
+#' }
 
 get_r6_fields <- function(r6_obj) {
   r6_list <- as.list(r6_obj)
