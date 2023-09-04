@@ -71,9 +71,10 @@
       Weitere              Mitt…    17   2.05   0.526  1.2    3.72   3.57 
                            GÜLT…    18 151     19     75     43     14    
       
-      [[3]][[2]]
+      
+      [[4]]
+      [[4]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-      #   Kundenzufriedenheit
                             NULL ----- GESAMT   Region ------- ------- -----
                             NULL -----          Asien  Europa  Nordam… Pazi…
       GESAMT               abs       4   151      19     75      43     14  
@@ -87,105 +88,9 @@
       GÜLTIGE FÄLLE        abs      12   151      19     75      43     14  
                            in %     13   100     100    100     100    100  
       
-      [[3]][[3]]
-      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-      #   Marktvolumen
-                            NULL ----- GESAMT  Region ------- ------ -----
-                            NULL -----         Asien  Europa  Norda… Pazi…
-      GESAMT               abs       4  151     19      75     43     14  
-      Mittelwert                     5   17.5   21.8    18.7   10.9   25.7
-      Standardfehler                 6    2.73   9.03    3.96   4.15  10.4
-      Median                         7    0      0       0      0      0  
-                                     8    0      0       0      0      0  
-                                     9 2646    415    1401    470    360  
-                                    10    0      0       0      0      0  
-                                    11  100    100     100    100    100  
-      GÜLTIGE FÄLLE        abs      12  151     19      75     43     14  
-                           in %     13  100    100     100    100    100  
       
-      [[3]][[4]]
-      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-      #   Onlineauftritte
-                            NULL ----- GESAMT  Region ------ ------- -------
-                            NULL -----         Asien  Europa Nordam… Pazifik
-      GESAMT               abs       4 151      19     75     43      14    
-      Mittelwert                     5   2.32    4.21   2.81   1.16    0.714
-      Standardfehler                 6   0.659   2.46   1.10   0.662   0.714
-      Median                         7   0       0      0      0       0    
-                                     8   0       0      0      0       0    
-                                     9 351      80    211     50      10    
-                                    10   0       0      0      0       0    
-                                    11  50      40     50     25      10    
-      GÜLTIGE FÄLLE        abs      12 151      19     75     43      14    
-                           in %     13 100     100    100    100     100    
-      
-      [[3]][[5]]
-      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-      #   Branchenbarometer
-                            NULL ----- GESAMT  Region ------ ------ ------
-                            NULL -----         Asien  Europa Norda… Pazif…
-      GESAMT               abs       4 151      19     75     43     14   
-      Mittelwert                     5   3.21    5      2.13   2.79   7.86
-      Standardfehler                 6   0.963   3.77   1.10   1.67   4.71
-      Median                         7   0       0      0      0      0   
-                                     8   0       0      0      0      0   
-                                     9 485      95    160    120    110   
-                                    10   0       0      0      0      0   
-                                    11  70      70     50     65     60   
-      GÜLTIGE FÄLLE        abs      12 151      19     75     43     14   
-                           in %     13 100     100    100    100    100   
-      
-      [[3]][[6]]
-      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-      #   Strukturanalyse
-                            NULL ----- GESAMT  Region ------- ------- ------
-                            NULL -----         Asien  Europa  Nordam… Pazif…
-      GESAMT               abs       4 151      19     75      43      14   
-      Mittelwert                     5   1.59    1.58   1.2     1.40    4.29
-      Standardfehler                 6   0.530   1.33   0.536   0.975   3.59
-      Median                         7   0       0      0       0       0   
-                                     8   0       0      0       0       0   
-                                     9 240      30     90      60      60   
-                                    10   0       0      0       0       0   
-                                    11  50      25     30      30      50   
-      GÜLTIGE FÄLLE        abs      12 151      19     75      43      14   
-                           in %     13 100     100    100     100     100   
-      
-      [[3]][[7]]
-      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-      #   Werbewirkungsmessung
-                            NULL ----- GESAMT  Regi… ------- ------- -------
-                            NULL -----         Asien Europa  Nordam… Pazifik
-      GESAMT               abs       4 151        19  75      43      14    
-      Mittelwert                     5   0.530     0   0.667   0.465   0.714
-      Standardfehler                 6   0.361     0   0.667   0.465   0.714
-      Median                         7   0         0   0       0       0    
-                                     8   0         0   0       0       0    
-                                     9  80         0  50      20      10    
-                                    10   0         0   0       0       0    
-                                    11  50         0  50      20      10    
-      GÜLTIGE FÄLLE        abs      12 151        19  75      43      14    
-                           in %     13 100       100 100     100     100    
-      
-      [[3]][[8]]
-      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-      #   Weitere
-                            NULL ----- GESAMT Region  ----- ------ ------
-                            NULL -----        Asien   Euro… Norda… Pazif…
-      GESAMT               abs       4 151     19      75    43     14   
-      Mittelwert                     5   2.05   0.526   1.2   3.72   3.57
-      Standardfehler                 6   1.01   0.526   1.2   2.62   3.57
-      Median                         7   0      0       0     0      0   
-                                     8   0      0       0     0      0   
-                                     9 310     10      90   160     50   
-                                    10   0      0       0     0      0   
-                                    11  90     10      90    90     50   
-      GÜLTIGE FÄLLE        abs      12 151     19      75    43     14   
-                           in %     13 100    100     100   100    100   
-      
-      
-      [[4]]
-      [[4]][[1]]
+      [[5]]
+      [[5]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Summary of Medians
                             NULL ----- GESA… Regi… ----- ----- -----
@@ -197,8 +102,8 @@
                            GÜLT…     8   151    19    75    43    14
       
       
-      [[5]]
-      [[5]][[1]]
+      [[6]]
+      [[6]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Mittelwertüberblick
                             NULL ----- GESA… Regi… ----- ----- -----
@@ -209,9 +114,10 @@
       Marktvolumen         Mitt…     7  22.2  30.3  23.4  14.7  31.2
                            GÜLT…     8 151    15    71.5  47.5  17  
       
-      [[5]][[2]]
+      
+      [[7]]
+      [[7]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-      #   Kundenzufriedenheit
                             NULL ----- GESAMT  Regi… ------ ------ -----
                             NULL -----         Asien Europa Norda… Pazi…
       GESAMT               abs       4   151    15     71.5   47.5  17  
@@ -225,25 +131,9 @@
       GÜLTIGE FÄLLE        abs      12   151    15     71.5   47.5  17  
                            in %     13   100   100    100    100   100  
       
-      [[5]][[3]]
-      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-      #   Marktvolumen
-                            NULL ----- GESAMT Regi… ------ ----- -----
-                            NULL -----        Asien Europa Nord… Pazi…
-      GESAMT               abs       4  151    15     71.5  47.5  17  
-      Mittelwert                     5   22.2  30.3   23.4  14.7  31.2
-      Standardfehler                 6   37.6  44.7   38.3  32.0  41.9
-      Median                         7    0     0      0     0     0  
-                                     8    0     0      0     0     0  
-                                     9 3358   455   1676.  698.  530  
-                                    10    0     0      0     0     0  
-                                    11  100   100    100   100   100  
-      GÜLTIGE FÄLLE        abs      12  151    15     71.5  47.5  17  
-                           in %     13  100   100    100   100   100  
       
-      
-      [[6]]
-      [[6]][[1]]
+      [[8]]
+      [[8]][[1]]
       # 4. Wie häufig haben Sie einen Tabellenband in den letzten 12 Monaten
       #   erstellen lassen?
                                  NULL ----- GESAMT  Regi… ------ ----- ------
@@ -262,8 +152,8 @@
                                 in %     15  94.7   94.7  94.7   93.0  100   
       
       
-      [[7]]
-      [[7]][[1]]
+      [[9]]
+      [[9]][[1]]
       # 5. Was lief besonders gut in den Projekten?
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
@@ -287,8 +177,8 @@
                            in %     21  45.7  36.8  45.3  48.8 50   
       
       
-      [[8]]
-      [[8]][[1]]
+      [[10]]
+      [[10]][[1]]
       # 5. Was lief besonders gut in den Projekten?
                             NULL ----- GESAMT Regi… ----- ----- -----
                             NULL -----        Asien Euro… Nord… Pazi…
