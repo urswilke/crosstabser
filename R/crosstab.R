@@ -27,6 +27,9 @@ calc_stat_fun.default <- function(qtab) {
 calc_stat_fun.qtab_type_mw <- function(qtab) {
   long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% qtab$p$Unguelt,]
 
+  if (!is.null(qtab$p$MWRec)) {
+    long_data$rowval <- catrec(long_data$rowval, qtab$p$MWRec)
+  }
   res <- long_data |>
     summarize_stats(
       "rowval",
