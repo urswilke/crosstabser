@@ -97,7 +97,7 @@ row_table_body <- function(qtab) {
 }
 row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   # TODO: calc_detail_freqs.qtab_type_cat() & calc_percentages.default() könnte man dann auch lassen...:
-  if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung == "0") {
+  if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
     return(NULL)
   }
   occuring_vals <- qtab$d$dat_mod[qtab$p$RowVar] |> unlist(use.names = FALSE) |> unique()

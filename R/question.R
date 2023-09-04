@@ -59,7 +59,7 @@ unnest_mw_rows <- function(df_row, mapping) {
   }
   mw_label <- dplyr::coalesce(df_row$MeanOverviewLabel, mapping$options$l_lexikon[["cTabMeanOV"]])
   df_row$Title[[1]] <- df_row$Title[[1]] |> append(mw_label)
-  if (df_row$Freq %in% "0") {
+  if (df_row$Freq %in% c("0", "FALSE")) {
     return(df_row)
   }
   n_rowvar <- length(df_row$RowVar[[1]])
@@ -94,7 +94,7 @@ unnest_repov_rows <- function(df_row, mapping) {
   ))
 
   n_repov <- length(repov_strings)
-  if (df_row$MW %in% "0") {
+  if (df_row$MW %in% c("0", "FALSE")) {
     df_mw <- NULL
   } else {
     df_mw <- df_row

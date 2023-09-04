@@ -78,7 +78,7 @@ calc_detail_freqs <- function(qtab) {
   UseMethod("calc_detail_freqs")
 }
 calc_detail_freqs.qtab_type_cat <- function(qtab) {
-  if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung == "0") {
+  if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
     return(NULL)
   }
   all_counts <- qtab$d$long_data |>
