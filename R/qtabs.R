@@ -48,8 +48,7 @@ add_type_specific_params.default <- function(qtab) {
   }
 }
 add_type_specific_params.qtab_type_mdg <- function(qtab) {
-  mdg_val <- qtab$p$MdgVal %||% 1
-  qtab$p$MdgVal <- as.numeric(mdg_val)
+  qtab$p$MdgVal <- qtab$p$MdgVal %||% "1"
   NextMethod()
 }
 add_type_specific_params.qtab_type_mw <- function(qtab) {

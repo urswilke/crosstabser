@@ -19,8 +19,9 @@ get_raw_data.default <- function(qtab) {
     weightvar <- weightvar |> purrr::set_names("weight")
   }
 
+  rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
   long_cols <- c(
-    rowvars |> purrr::set_names(paste0("rowvar_", rowvars)),
+    rowvars_named,
     colvars |> purrr::set_names(paste0("colvar_", colvars)),
     weightvar
   )
@@ -47,7 +48,18 @@ get_raw_data.default <- function(qtab) {
     }
     dat
   }
-  prep_data()
+  res <- prep_data()
+  if (qtab$p$Type == "mdg" && is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
+    res <- as.data.frame(res)
+    res[names(rowvars_named)] <- catrec(
+      res[names(rowvars_named)] |>
+        unlist(use.names = FALSE),
+      paste0("(", qtab$p$MdgVal, " = 1)")
+    )
+    qtab$p$MdgVal = 1
+  }
+
+  res
 }
 pivot_table_data <- function(qtab) {
   UseMethod("pivot_table_data")
