@@ -301,7 +301,13 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
 
   df_long <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
 
-  df_long$rowval <- catrec(df_long$rowval, qtab$p$CatRec)
+  all_counts <- summarise_catrec(df_long, qtab$p$CatRec, qtab$p$Weight[[1]])
+  all_counts$RowContent <- "Summary"
+  all_counts$RowAbsPercent <- "Abs"
+  all_counts
+}
+summarise_catrec <- function(df_long, catrec, wt) {
+  df_long$rowval <- catrec(df_long$rowval, catrec)
   df_long$rowvar <- paste0(df_long$rowvar, "__summary")
   non_recoded_idx <- is.na(df_long$rowval)
   if (any(non_recoded_idx)) {
@@ -315,17 +321,15 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
     )
     df_long <- df_long[!non_recoded_idx,]
   }
-  all_counts <- df_long |>
+  df_long |>
     summarize_stats(
       NULL,
-      wt = qtab$p$Weight[[1]],
+      wt = wt,
       .by = c("rowvar", "rowval", "colvar", "colval")
     )
 
-  all_counts$RowContent <- "Summary"
-  all_counts$RowAbsPercent <- "Abs"
-  all_counts
 }
+
 
 calc_detail_freqs.qtab_type_mw <- function(qtab) {
   weight <- qtab$p$Weight[[1]]
