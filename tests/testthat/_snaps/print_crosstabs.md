@@ -210,21 +210,21 @@
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs       4  91    11    42    29     9  
-      Schnelle Umsetzung   Mitt…     5  87.6  90.9  90.2  85.7  77.8
+      Schnelle Umsetzung   TOP2      5  87.6  90.9  90.2  85.7  77.8
                            GÜLT…     6  89    11    41    28     9  
-      Kurzfristige Anpas…  Mitt…     7  44.0  72.7  40.5  37.9  44.4
+      Kurzfristige Anpas…  TOP2      7  44.0  72.7  40.5  37.9  44.4
                            GÜLT…     8  91    11    42    29     9  
-      Korrektheit der Da…  Mitt…     9  79.1 100    73.8  82.8  66.7
+      Korrektheit der Da…  TOP2      9  79.1 100    73.8  82.8  66.7
                            GÜLT…    10  91    11    42    29     9  
-      Freundlichkeit der…  Mitt…    11  33.0  36.4  33.3  34.5  22.2
+      Freundlichkeit der…  TOP2     11  33.0  36.4  33.3  34.5  22.2
                            GÜLT…    12  91    11    42    29     9  
-      Langfristige Zusam…  Mitt…    13  23.1   0    31.0  24.1  11.1
+      Langfristige Zusam…  TOP2     13  23.1   0    31.0  24.1  11.1
                            GÜLT…    14  91    11    42    29     9  
-      Gute telefonische …  Mitt…    15  58.9  81.8  57.1  50    66.7
+      Gute telefonische …  TOP2     15  58.9  81.8  57.1  50    66.7
                            GÜLT…    16  90    11    42    28     9  
-      Wochenenderreichba…  Mitt…    17  84.4  90.9  80.5  89.7  77.8
+      Wochenenderreichba…  TOP2     17  84.4  90.9  80.5  89.7  77.8
                            GÜLT…    18  90    11    41    29     9  
-      Einhaltung von Zus…  Mitt…    19  86.7 100    87.8  79.3  88.9
+      Einhaltung von Zus…  TOP2     19  86.7 100    87.8  79.3  88.9
                            GÜLT…    20  90    11    41    29     9  
       
       [[11]][[2]]
@@ -234,21 +234,21 @@
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs       4 91     11    42    29     9  
-      Schnelle Umsetzung   Mitt…     5 55.1   45.5  61.0  53.6  44.4
+      Schnelle Umsetzung   TOP1      5 55.1   45.5  61.0  53.6  44.4
                            GÜLT…     6 89     11    41    28     9  
-      Kurzfristige Anpas…  Mitt…     7 25.3   45.5  28.6  13.8  22.2
+      Kurzfristige Anpas…  TOP1      7 25.3   45.5  28.6  13.8  22.2
                            GÜLT…     8 91     11    42    29     9  
-      Korrektheit der Da…  Mitt…     9 48.4   45.5  47.6  55.2  33.3
+      Korrektheit der Da…  TOP1      9 48.4   45.5  47.6  55.2  33.3
                            GÜLT…    10 91     11    42    29     9  
-      Freundlichkeit der…  Mitt…    11 15.4   18.2  16.7  13.8  11.1
+      Freundlichkeit der…  TOP1     11 15.4   18.2  16.7  13.8  11.1
                            GÜLT…    12 91     11    42    29     9  
-      Langfristige Zusam…  Mitt…    13  9.89   0    11.9  10.3  11.1
+      Langfristige Zusam…  TOP1     13  9.89   0    11.9  10.3  11.1
                            GÜLT…    14 91     11    42    29     9  
-      Gute telefonische …  Mitt…    15 26.7   27.3  28.6  21.4  33.3
+      Gute telefonische …  TOP1     15 26.7   27.3  28.6  21.4  33.3
                            GÜLT…    16 90     11    42    28     9  
-      Wochenenderreichba…  Mitt…    17 47.8   36.4  36.6  62.1  66.7
+      Wochenenderreichba…  TOP1     17 47.8   36.4  36.6  62.1  66.7
                            GÜLT…    18 90     11    41    29     9  
-      Einhaltung von Zus…  Mitt…    19 63.3   54.5  73.2  48.3  77.8
+      Einhaltung von Zus…  TOP1     19 63.3   54.5  73.2  48.3  77.8
                            GÜLT…    20 90     11    41    29     9  
       
       

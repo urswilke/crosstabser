@@ -210,9 +210,14 @@ row_table_body.qtab_type_mw <- function(qtab) {
   row_table <- empty_row_table()
   row_table[seq_len(n_vals * 2),]$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
+
+  row_title3 <- qtab$p$l_lexikon["cTabMean"]
+  if (!is.null(qtab$p$repov_names)) {
+    row_title3 <- qtab$p$repov_names
+  }
   row_table$RowTitle3 <- c(
     # TODO: generalize for media std err etc.:
-    qtab$p$l_lexikon["cTabMean"],
+    row_title3,
     qtab$p$l_lexikon["cTabGueltig"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Percent", "Abs") |> rep(n_vals)
