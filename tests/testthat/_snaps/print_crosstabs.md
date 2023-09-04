@@ -202,4 +202,54 @@
                            in %     21  45.7  36.8  45.3  48.8   50  
       
       
+      [[11]]
+      [[11]][[1]]
+      # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
+      #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
+      #   ein. TOP2-Übersicht
+                            NULL ----- GESAMT Region ------ ----- -----
+                            NULL -----        Asien  Europa Nord… Pazi…
+      GÜLTIGE FÄLLE (min…  abs       4 91     11     42     29    9    
+      Schnelle Umsetzung   Mitt…     5  3.11   1.68   2.91   4.47 2    
+                           GÜLT…     6 89     11     41     28    9    
+      Kurzfristige Anpas…  Mitt…     7  1.34   1.53   1.11   1.63 1.43 
+                           GÜLT…     8 91     11     42     29    9    
+      Korrektheit der Da…  Mitt…     9  1.72   1.74   1.37   2.26 1.86 
+                           GÜLT…    10 91     11     42     29    9    
+      Freundlichkeit der…  Mitt…    11  1.11   1.16   0.84   1.56 1.07 
+                           GÜLT…    12 91     11     42     29    9    
+      Langfristige Zusam…  Mitt…    13  0.795  0.684  0.693  1.09 0.571
+                           GÜLT…    14 91     11     42     29    9    
+      Gute telefonische …  Mitt…    15  2.03   1.47   1.2    3.86 1.64 
+                           GÜLT…    16 90     11     42     28    9    
+      Wochenenderreichba…  Mitt…    17  2.38   1.53   2.65   2.37 2.07 
+                           GÜLT…    18 90     11     41     29    9    
+      Einhaltung von Zus…  Mitt…    19  2.54   1.79   2.96   2.23 2.29 
+                           GÜLT…    20 90     11     41     29    9    
+      
+      [[11]][[2]]
+      # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
+      #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
+      #   ein. TOP1-Übersicht
+                            NULL ----- GESAMT Region ------ ----- -----
+                            NULL -----        Asien  Europa Nord… Pazi…
+      GÜLTIGE FÄLLE (min…  abs       4 91     11     42     29    9    
+      Schnelle Umsetzung   Mitt…     5  3.11   1.68   2.91   4.47 2    
+                           GÜLT…     6 89     11     41     28    9    
+      Kurzfristige Anpas…  Mitt…     7  1.34   1.53   1.11   1.63 1.43 
+                           GÜLT…     8 91     11     42     29    9    
+      Korrektheit der Da…  Mitt…     9  1.72   1.74   1.37   2.26 1.86 
+                           GÜLT…    10 91     11     42     29    9    
+      Freundlichkeit der…  Mitt…    11  1.11   1.16   0.84   1.56 1.07 
+                           GÜLT…    12 91     11     42     29    9    
+      Langfristige Zusam…  Mitt…    13  0.795  0.684  0.693  1.09 0.571
+                           GÜLT…    14 91     11     42     29    9    
+      Gute telefonische …  Mitt…    15  2.03   1.47   1.2    3.86 1.64 
+                           GÜLT…    16 90     11     42     28    9    
+      Wochenenderreichba…  Mitt…    17  2.38   1.53   2.65   2.37 2.07 
+                           GÜLT…    18 90     11     41     29    9    
+      Einhaltung von Zus…  Mitt…    19  2.54   1.79   2.96   2.23 2.29 
+                           GÜLT…    20 90     11     41     29    9    
+      
+      
 

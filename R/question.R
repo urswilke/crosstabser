@@ -49,7 +49,9 @@ unnest_qsheet_rows <- function(df_qsheet, mapping) {
     row_split() |>
     purrr::map_dfr(\(df_row) unnest_selval(df_row, mapping)) |>
     row_split() |>
-    purrr::map_dfr(\(df_row) unnest_mw_rows(df_row, mapping))
+    purrr::map_dfr(\(df_row) unnest_mw_rows(df_row, mapping)) |>
+    row_split() |>
+    purrr::map_dfr(\(df_row) unnest_repov_rows(df_row, mapping))
 }
 unnest_mw_rows <- function(df_row, mapping) {
   if (df_row$Type != "mw") {
@@ -72,6 +74,36 @@ unnest_mw_rows <- function(df_row, mapping) {
     }
   )
   res
+}
+unnest_repov_rows <- function(df_row, mapping) {
+  if (df_row$Type != "mw" || is.na(df_row$RepOV)) {
+    return(df_row)
+  }
+  repov_strings <- strsplit(df_row$RepOV, "\\|")[[1]]
+  repov_names <- repov_strings |> stringr::str_extract("^.*(?=:)")
+  mw_rec_strings <- repov_strings |> stringr::str_remove("^.*:")
+
+  mw_title_string <- df_row$Title[[1]]
+  repov_title_appendices <- paste0(
+    repov_names,
+    mapping$options$l_lexikon[["cTabOverview"]]
+  )
+  repov_titles <- repov_title_appendices |> lapply(\(x) c(
+    mw_title_string[-length(mw_title_string)],
+    x
+  ))
+
+  n_repov <- length(repov_strings)
+  if (df_row$MW %in% "0") {
+    df_mw <- NULL
+  } else {
+    df_mw <- df_row
+  }
+  df_repov <- df_row[rep(1, n_repov),]
+  df_repov$Title <- repov_titles
+  df_repov$MWRec <- mw_rec_strings
+  df_repov$repov_names <- repov_names
+  rbind(df_mw, df_repov)
 }
 unnest_selvar <- function(df_row, mapping) {
   selvars <- df_row$SelVar[[1]]
