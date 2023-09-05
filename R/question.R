@@ -44,8 +44,6 @@ unnest_qsheet_rows <- function(df_qsheet, mapping) {
     row_split() |>
     purrr::map_dfr(\(df_row) unnest_selvar(df_row, mapping)) |>
     row_split() |>
-    purrr::map_dfr(\(df_row) unnest_selval(df_row, mapping)) |>
-    row_split() |>
     purrr::map_dfr(\(df_row) unnest_mw_rows(df_row, mapping)) |>
     row_split() |>
     purrr::map_dfr(\(df_row) unnest_repov_rows(df_row, mapping))
@@ -102,36 +100,33 @@ unnest_repov_rows <- function(df_row, mapping) {
   df_repov$repov_names <- repov_names
   rbind(df_mw, df_repov)
 }
+
+# TODO: clean up this mess!...:
 unnest_selvar <- function(df_row, mapping) {
-  selvars <- df_row$SelVar[[1]]
-  if (is.na(selvars[1])) {
+  selvar <- df_row$SelVar[[1]]
+  if (is.na(selvar[1])) {
     return(df_row)
   }
   rowvars <- df_row$RowVar[[1]]
-  n_selvar <- length(selvars)
-  res <- df_row[rep(1, n_selvar),]
-  res$SelVar <- selvars |> as.list()
+  n_selvar <- length(selvar)
+  df_multi_selvar <- tibble::tibble(selvar, rowvar = vector("list", n_selvar))
   for (i_row in seq_len(n_selvar)) {
-    res[i_row,]$RowVar <- rowvars[seq(
-      i_row,
-      length(rowvars),
-      n_selvar
-    )] |>
-      list()
+    df_multi_selvar[i_row,]$rowvar <-
+      rowvars[seq(
+        i_row,
+        length(rowvars),
+        n_selvar
+      )] |>
+        list()
   }
+  df_row$df_multi_selvar <- list(df_multi_selvar)
+  df_row$RowVar <- df_multi_selvar$rowvar[1]
 
-  res
-}
-unnest_selval <- function(df_row, mapping) {
-  if (is.na(df_row$SelVar[[1]][1])) {
-    return(df_row)
-  }
   n_selval <- length(df_row$SelVal[[1]])
   res <- df_row[rep(1, n_selval),]
-  selvar_vallabs <- attr(mapping$dat_mod[[df_row$SelVar[[1]]]], "labels")
+  selvar_vallabs <- attr(mapping$dat_mod[[df_row$SelVar[[1]][1]]], "labels")
   selval_relabels <- df_row$SelVal[[1]] |> stringr::str_extract("(?<=:)[^ ]+") |> stringr::str_replace_all("_", " ")
   selvals <- df_row$SelVal[[1]] |>
-    # stringr::str_extract("^\\d+") |>
     as.numeric() |>
     suppressWarnings()
 
@@ -142,13 +137,9 @@ unnest_selval <- function(df_row, mapping) {
   res$Title <- res$Title |> purrr::map2(
     subtitles,
     \(title, subtitle) add_selval_title(title, subtitle))
+  res$SelVal <- res$SelVal[[1]] |> as.list()
 
   selval_intervals <- df_row$SelVal[[1]] |> stringr::str_remove(paste0(":?", subtitles))
-  res$Filter <- purrr::map2(
-    res$Filter,
-    selval_intervals,
-    \(filt, selval) append(filt, write_selval_filter_string(df_row$SelVar, selval))
-  )
   res
 }
 
@@ -157,12 +148,4 @@ add_selval_title <- function(title, subtitle) {
     return(stringr::str_replace(title, "DC#SELVALLAB", subtitle))
   }
   title |> append(subtitle)
-}
-
-write_selval_filter_string <- function(selvar, selval) {
-  if (!is.na(as.numeric(selval) |> suppressWarnings())) {
-    return(paste0(selvar, " == ", selval))
-  }
-  selval_interval <- stringr::str_split_1(selval, "-")
-  paste0(selvar, " >= ", selval_interval[1], " & ", selvar, " <= ", selval_interval[2])
 }

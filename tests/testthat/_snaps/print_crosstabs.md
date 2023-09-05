@@ -346,17 +346,6 @@
                                 in %     38   2.65   5.26  4     NA     NA   
       
       [[14]][[2]]
-      No data
-      
-      [[14]][[3]]
-      No data
-      
-      
-      [[15]]
-      [[15]][[1]]
-      No data
-      
-      [[15]][[2]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Marktvolumen
                                  NULL ----- GESA… Regi… ----- ------ -----
                                  NULL -----       Asien Euro… Norda… Pazi…
@@ -396,7 +385,7 @@
       keine Angabe              abs      37  1     NA    1     NA       NA
                                 in %     38  1.37  NA    2.63  NA       NA
       
-      [[15]][[3]]
+      [[14]][[3]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Sonstige
                                  NULL ----- GESA… Regi… ----- ----- -----
                                  NULL -----       Asien Euro… Nord… Pazi…

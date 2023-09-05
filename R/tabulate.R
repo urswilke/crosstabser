@@ -39,12 +39,37 @@ get_raw_data.default <- function(qtab) {
       row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$d$dat_mod))
       row_lgl <- all_true(row_lgls)
     }
-    dat <- qtab$d$dat_mod[row_lgl, long_cols]
-    names(dat) <- names(long_cols)
+    if (is.null(qtab$p$SelVar)) {
+      dat <- qtab$d$dat_mod[row_lgl, long_cols]
+      names(dat) <- names(long_cols)
+      # remove label information:
+      for (col in seq_len(ncol(dat))) {
+        attributes(dat[[col]]) <- NULL
+      }
+    } else {
+      # TODO: clean up this mess!...:
+      dfsel <- qtab$p$df_multi_selvar
+      dm <- qtab$m$dat_mod
 
-    # remove label information:
-    for (col in seq_len(ncol(dat))) {
-      attributes(dat[[col]]) <- NULL
+      dat <- seq_len(nrow(dfsel)) |> lapply(\(i) {
+        dfsel_i <- qtab$p$df_multi_selvar[i,]
+        long_cols <- c(
+          dfsel_i$rowvar[[1]] |> purrr::set_names(qtab$p$long_rowvars),
+          colvars |> purrr::set_names(paste0("colvar_", colvars)),
+          weightvar
+        )
+        dat <- dm[
+          row_lgl & selval_eq_selval(dm[[dfsel_i$selvar]], qtab$p$SelVal),
+          long_cols
+        ]
+        names(dat) <- names(long_cols)
+        # remove label information:
+        for (col in seq_len(ncol(dat))) {
+          attributes(dat[[col]]) <- NULL
+        }
+        dat
+      }) |>
+        dplyr::bind_rows()
     }
     dat
   }
@@ -66,6 +91,14 @@ get_raw_data.default <- function(qtab) {
 
   res
 }
+selval_eq_selval <- function(selvar, selval) {
+  if (!is.na(as.numeric(selval) |> suppressWarnings())) {
+    return(selvar == as.numeric(selval))
+  }
+  selval_interval <- selval |> stringr::str_remove(":.*") |> stringr::str_split_1("-") |> as.numeric()
+  selvar >=  selval_interval[1] & selvar <= selval_interval[2]
+}
+
 pivot_table_data <- function(qtab) {
   UseMethod("pivot_table_data")
 }
