@@ -454,8 +454,12 @@ calc_valid_counts_percentages.default <- function(qtab) {
   total_cts <- qtab$d$stats_rows$total
   valid_cts <- qtab$d$stats_rows$n_valid
 
-  valid_cts$value <- 100 * valid_cts$value / total_cts$value
-  valid_cts$RowAbsPercent <- "Percent"
+  # valid_cts$value <- 100 * valid_cts$value / total_cts$value
+  # this doesn't work if the number of valid counts is not equal to the number of total counts...
+  res <- total_cts |> dplyr::select(-RowContent, value_tot = value) |> merge(valid_cts, all.x = TRUE)
+  res$value <- 100 * res$value / res$value_tot
+  res$value_tot <- NULL
+  res$RowAbsPercent <- "Percent"
 
-  valid_cts
+  res
 }
