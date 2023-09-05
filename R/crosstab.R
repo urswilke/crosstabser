@@ -179,7 +179,10 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   sum_of_valid <- rowSums(df_rows == mdg_val, na.rm = TRUE)
   df_cols$sum_of_valid <- sum_of_valid
   df_cols$n_valid <- sum_of_valid >= 1
-  df_cols$invalid_cts <- rowSums(df[paste0("rowvar_", qtab$p$Unguelt)] == mdg_val, na.rm = TRUE) != 0
+  # base R way to do:
+  # df_cols$invalid_cts <- rowSums((df |> select(any_of(paste0("rowvar_", qtab$p$Unguelt)))) == mdg_val, na.rm = TRUE) != 0
+  invalid_colnames <- paste0("rowvar_", qtab$p$Unguelt) |> intersect(names(df))
+  df_cols$invalid_cts <- rowSums(df[invalid_colnames] == mdg_val, na.rm = TRUE) != 0
   df_cols$no_entry <- as.numeric(sum_of_valid + df_cols$invalid_cts == 0)
   df_cols_long <- df_cols |>
     pivot_cols()
