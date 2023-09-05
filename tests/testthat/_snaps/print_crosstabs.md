@@ -304,4 +304,44 @@
                                 in %     34  39.7   42.1  44    32.6   35.7
       
       
+      [[14]]
+      [[14]][[1]]
+      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? DC#SELVALLAB
+                                 NULL ----- GESAMT  Regi… ----- ------ ------
+                                 NULL -----         Asien Euro… Norda… Pazif…
+      GESAMT                    abs       4 151     19    75     43     14   
+      0 - auf keinen Fall       abs       5  NA     NA    NA     NA     NA   
+                                in %      6  NA     NA    NA     NA     NA   
+      1                         abs       7  NA     NA    NA     NA     NA   
+                                in %      8  NA     NA    NA     NA     NA   
+      2                         abs       9   1      1    NA     NA     NA   
+                                in %     10   0.680  5.56 NA     NA     NA   
+      3                         abs      11  NA     NA    NA     NA     NA   
+                                in %     12  NA     NA    NA     NA     NA   
+      4                         abs      13  NA     NA    NA     NA     NA   
+                                in %     14  NA     NA    NA     NA     NA   
+      5                         abs      15   2      1     1     NA     NA   
+                                in %     16   1.36   5.56  1.39  NA     NA   
+      6                         abs      17   2     NA    NA      2     NA   
+                                in %     18   1.36  NA    NA      4.65  NA   
+      7                         abs      19   7      1     4      2     NA   
+                                in %     20   4.76   5.56  5.56   4.65  NA   
+      8                         abs      21  24      1    14      7      2   
+                                in %     22  16.3    5.56 19.4   16.3   14.3 
+      9                         abs      23  22      6    10      5      1   
+                                in %     24  15.0   33.3  13.9   11.6    7.14
+      10 - auf jeden Fall       abs      25  89      8    43     27     11   
+                                in %     26  60.5   44.4  59.7   62.8   78.6 
+      ZUSAMMENFASSUNG     Prom… abs      27 111     14    53     32     12   
+                          Prom… in %     28  75.5   77.8  73.6   74.4   85.7 
+                          Indi… abs      29  31      2    18      9      2   
+                          Indi… in %     30  21.1   11.1  25     20.9   14.3 
+                          Detr… abs      31   5      2     1      2     NA   
+                          Detr… in %     32   3.40  11.1   1.39   4.65  NA   
+      GÜLTIGE FÄLLE             abs      33 147     18    72     43     14   
+                                in %     34  97.4   94.7  96    100    100   
+      keine Angabe              abs      35   4      1     3     NA     NA   
+                                in %     36   2.65   5.26  4     NA     NA   
+      
+      
 
