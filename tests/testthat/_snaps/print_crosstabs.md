@@ -426,4 +426,121 @@
                                 in %     38  9.30  14.3 11.1   7.69    NA
       
       
+      [[15]]
+      [[15]][[1]]
+      # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
+      #   durch? Kundenzufriedenheit
+                            NULL ----- GESAMT Regi… ----- ----- -----
+                            NULL -----        Asien Euro… Nord… Pazi…
+      GESAMT               abs       4 151     19   75     43   14   
+      Summe der gültigen…  abs       5 162     20   82     46   14   
+      Kundenzufriedenheit  abs       6 132     15   66     40   11   
+                           in %      7  97.8   93.8 98.5  100   91.7 
+      Onlineauftritte      abs       8  18      3   10      4    1   
+                           in %      9  13.3   18.8 14.9   10    8.33
+      Strukturanalyse      abs      10  12      2    6      2    2   
+                           in %     11   8.89  12.5  8.96   5   16.7 
+      GÜLTIGE FÄLLE        abs      12 135     16   67     40   12   
+                           in %     13  89.4   84.2 89.3   93.0 85.7 
+      
+      [[15]][[2]]
+      # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
+      #   durch? Marktvolumen
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GESAMT               abs       4  73     7    38    23       5
+      Summe der gültigen…  abs       5  27     5    13     6       3
+      Kundenzufriedenheit  abs       6  18     4     9     3       2
+                           in %      7  78.3 100    75    60     100
+      Onlineauftritte      abs       8   9     1     4     3       1
+                           in %      9  39.1  25    33.3  60      50
+      Strukturanalyse      abs      10  NA    NA    NA    NA      NA
+                           in %     11  NA    NA    NA    NA      NA
+      GÜLTIGE FÄLLE        abs      12  23     4    12     5       2
+                           in %     13  31.5  57.1  31.6  21.7    40
+      
+      [[15]][[3]]
+      # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
+      #   durch? Sonstige
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GESAMT               abs       4  43     7    18    13       5
+      Summe der gültigen…  abs       5  17     2     8     5       2
+      Kundenzufriedenheit  abs       6  12     1     7     3       1
+                           in %      7  80   100    87.5  75      50
+      Onlineauftritte      abs       8   2     1    NA     1      NA
+                           in %      9  13.3 100    NA    25      NA
+      Strukturanalyse      abs      10   3    NA     1     1       1
+                           in %     11  20    NA    12.5  25      50
+      GÜLTIGE FÄLLE        abs      12  15     1     8     4       2
+                           in %     13  34.9  14.3  44.4  30.8    40
+      
+      
+      [[16]]
+      [[16]][[1]]
+      # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Kundenzufriedenheit
+                            NULL ----- GESAMT Regi… ----- ----- -----
+                            NULL -----        Asien Euro… Nord… Pazi…
+      GESAMT               abs       4 151     19    75   43     14  
+      Summe der gültigen…  abs       5  42      7    19   11      5  
+      Darstellung der Da…  abs       6  13     NA     8    3      2  
+                           in %      7  35.1   NA    47.1 30     50  
+      Sonstiges            abs       8  12      2     4    5      1  
+                           in %      9  32.4   33.3  23.5 50     25  
+      Schnelligkeit der …  abs      10  11      3     3    3      2  
+                           in %     11  29.7   50    17.6 30     50  
+      Freundlichkeit des…  abs      12   6      2     4   NA     NA  
+                           in %     13  16.2   33.3  23.5 NA     NA  
+      GÜLTIGE FÄLLE        abs      14  37      6    17   10      4  
+                           in %     15  24.5   31.6  22.7 23.3   28.6
+      einfache Weiterver…  abs      16  37      3    22    8      4  
+                           in %     17  24.5   15.8  29.3 18.6   28.6
+      Kompetenz            abs      18  13      3     6    4     NA  
+                           in %     19   8.61  15.8   8    9.30  NA  
+      Keine Angabe         abs      20  69      7    34   21      7  
+                           in %     21  45.7   36.8  45.3 48.8   50  
+      
+      [[16]][[2]]
+      # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Marktvolumen
+                            NULL ----- GESA… Regi… ----- ------ -----
+                            NULL -----       Asien Euro… Norda… Pazi…
+      GESAMT               abs       4 73      7    38    23        5
+      Summe der gültigen…  abs       5  8      1     4     2        1
+      Schnelligkeit der …  abs       6  4     NA     3    NA        1
+                           in %      7 50     NA    75    NA      100
+      Freundlichkeit des…  abs       8  2     NA    NA     2       NA
+                           in %      9 25     NA    NA   100       NA
+      Darstellung der Da…  abs      10  2      1     1    NA       NA
+                           in %     11 25    100    25    NA       NA
+      Sonstiges            abs      12 NA     NA    NA    NA       NA
+                           in %     13 NA     NA    NA    NA       NA
+      GÜLTIGE FÄLLE        abs      14  8      1     4     2        1
+                           in %     15 11.0   14.3  10.5   8.70    20
+      einfache Weiterver…  abs      16  1     NA    NA     1       NA
+                           in %     17  1.37  NA    NA     4.35    NA
+      Kompetenz            abs      18 14      1    10     2        1
+                           in %     19 19.2   14.3  26.3   8.70    20
+      
+      [[16]][[3]]
+      # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
+                            NULL ----- GESA… Regi… ------ ----- -----
+                            NULL -----       Asien Europa Nord… Pazi…
+      GESAMT               abs       4 43      7    18    13        5
+      Summe der gültigen…  abs       5  6      1     1     3        1
+      Darstellung der Da…  abs       6  3      1    NA     2       NA
+                           in %      7 50    100    NA    66.7     NA
+      Freundlichkeit des…  abs       8  2     NA     1    NA        1
+                           in %      9 33.3   NA   100    NA      100
+      Schnelligkeit der …  abs      10  1     NA    NA     1       NA
+                           in %     11 16.7   NA    NA    33.3     NA
+      Sonstiges            abs      12 NA     NA    NA    NA       NA
+                           in %     13 NA     NA    NA    NA       NA
+      GÜLTIGE FÄLLE        abs      14  6      1     1     3        1
+                           in %     15 14.0   14.3   5.56 23.1     20
+      einfache Weiterver…  abs      16  4      2     1     1       NA
+                           in %     17  9.30  28.6   5.56  7.69    NA
+      Kompetenz            abs      18  5     NA     2     2        1
+                           in %     19 11.6   NA    11.1  15.4     20
+      
+      
 
