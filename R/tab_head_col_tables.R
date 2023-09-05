@@ -42,7 +42,7 @@ gen_head_table <- function(mapping) {
   res[1,c("HeadName", "HeadTitle")] <- list("DC#STICHPROBE", mapping$options$l_lexikon["cTabGesamt"])
   res[seq_len(length(header_vars)) + 1,]$HeadName <- header_vars
   res[seq_len(length(header_vars)) + 1,]$HeadTitle <- header_varlabs
-  res$HeadNo <- seq_len(nrow(res))
+  res$HeadNo <- seq_len(nrow(res)) + 1
   res
 }
 
