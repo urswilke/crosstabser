@@ -156,7 +156,12 @@ Qtab <- R6::R6Class("Qtab",
   )
 )
 calc_qtab <- function(qtab) {
-  qtab$d$raw_data <- get_raw_data(qtab)
+  df <- get_raw_data(qtab)
+  if (nrow(df) == 0) {
+    return(NULL)
+  }
+  qtab$d$raw_data <- df
+
   pivot_table_data(qtab)
   calc_stats_rows(qtab)
   calc_stat_fun(qtab)
@@ -177,7 +182,12 @@ wide_tab <- function(qtab) {
     # "RowVariable", "RowValue"#,
     # "ColTitle1", "ColTitle2", "ColVariable", "ColValue"
   )
-  qtab$d$wide_tab <- qtab$d$long_tab |>
+  long_tab <- qtab$d$long_tab
+  if (nrow(long_tab) == 0) {
+    return(NULL)
+  }
+
+  qtab$d$wide_tab <- long_tab |>
     dplyr::select(dplyr::all_of(cols_for_wide_tab)) |>
     # correct ordering in result:
     # TODO: find cleaner way!...

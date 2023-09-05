@@ -1,9 +1,19 @@
 #' @export
-print.Qtab = function(x, ...) print(format(x), n = Inf, ...)
+print.Qtab = function(x, ...) {
+  x_formatted <- format(x)
+  if (is.null(x_formatted)) {
+    cat("No data\n")
+    return(NULL)
+  }
+  print(x_formatted, n = Inf, ...)
+}
 
 #' @export
 format.Qtab <- function(qtab, ...) {
   res <- qtab$d$wide_tab
+  if (is.null(res)) {
+    return(NULL)
+  }
   col_table <- qtab$d$col_table
   col_table$ColTitle1[col_table$ColTitle1 == dplyr::lag(col_table$ColTitle1)] <- ""
   col_table$ColTitle2[is.na(col_table$ColTitle2)] <- ""
