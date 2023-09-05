@@ -1,5 +1,4 @@
 catrec <- function(vec, cat_rec_string) {
-  # TODO: also tabulate non-recoded (not covered by CatRec) valid `RowVal`s:
   cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
   cat_rec_quos <- lapply(cat_rec_interval_splits$interval_strings, gen_cat_rec_fun)
   cat_rec_exprs <- stringr::str_extract_all(cat_rec_string, "(?<=\\().*?(?=\\))")[[1]]
