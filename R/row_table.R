@@ -273,6 +273,7 @@ row_table_summary.qtab_type_cat <- function(qtab) {
 
   # cat_rec_string <- cat_rec_string |> stringr::str_remove("\\{.*\\}")
   cat_lab_string <- strsplit(qtab$p$CatLab, "\\|")[[1]]
+  cat_rec_string <- strsplit(qtab$p$CatRec, "\\|")[[1]]
   # cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
   # cat_rec_quos <- lapply(cat_rec_interval_splits$interval_strings, gen_cat_rec_fun)
   # vec <- qtab$d$dat_mod[[qtab$p$RowVar]]
@@ -285,8 +286,11 @@ row_table_summary.qtab_type_cat <- function(qtab) {
   # invalid_vals <- dplyr::coalesce(qtab$p$Unguelt, mapping$options$l_macro_scenario$Unguelt)
   # vals_not_in_cat_rec <- unique_vals[!vals_in_cat_rec] |> setdiff(invalid_vals)
   # all_catrec_labs <- c(cat_lab_splits, vals_not_in_cat_rec |> purrr::set_names())
-  row_table <- cat_lab_string |>
-    lapply(catlab_helper) |>
+  row_table <- purrr::map2(
+    cat_lab_string,
+    cat_rec_string,
+    catlab_helper
+  ) |>
     dplyr::bind_rows(.id = "i_catrec")
   # n_vals <- length(all_catrec_labs)
   n_vals <- nrow(row_table) / 2
@@ -305,8 +309,16 @@ row_table_summary.qtab_type_cat <- function(qtab) {
   row_table$RowVariable <- paste0(qtab$p$RowVar, "__summary")
   row_table
 }
-catlab_helper <- function(cat_lab_string) {
+catlab_helper <- function(cat_lab_string, catrec_string) {
   cat_lab_splits <- split_cat_lab_string(cat_lab_string)
+  catrec_sum_string <- catrec_string |> stringr::str_extract("(?<=\\{).*(?=\\})")
+  if (!is.na(catrec_sum_string)) {
+    catrec_sum_label <- catrec_sum_string |>
+      stringr::str_remove(".*=") |>
+      stringr::str_squish() |>
+      stringr::str_remove_all("^'|'$")
+    cat_lab_splits <- c(cat_lab_splits, (max(cat_lab_splits) + 1) |> purrr::set_names(catrec_sum_label))
+  }
   row_table <- empty_row_table()
   n_vals <- length(cat_lab_splits)
   row_table[seq_len(n_vals * 2),]$RowValue <- unname(cat_lab_splits) |> rep(each = 2)

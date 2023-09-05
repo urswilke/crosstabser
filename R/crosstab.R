@@ -311,6 +311,7 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   all_counts
 }
 summarise_catrec <- function(df_long, catrec_string, wt) {
+  catrec_sum_string <- catrec_string |> stringr::str_extract("(?<=\\{).*(?=\\})")
   df_long$rowval <- catrec(df_long$rowval, catrec_string)
   df_long$rowvar <- paste0(df_long$rowvar, "__summary")
   non_recoded_idx <- is.na(df_long$rowval)
@@ -325,15 +326,39 @@ summarise_catrec <- function(df_long, catrec_string, wt) {
     )
     df_long <- df_long[!non_recoded_idx,]
   }
-  df_long |>
+  res <- df_long |>
     summarize_stats(
       NULL,
       wt = wt,
       .by = c("rowvar", "rowval", "colvar", "colval")
     )
 
+  if (is.na(catrec_sum_string)) {
+    return(res)
+  }
+  df_user_expr <- parse_catrec_sum_expr(res, catrec_sum_string)
+  rbind(res, df_user_expr)
 }
-
+parse_catrec_sum_expr <- function(df_summary, catrec_sum_string) {
+  expr_string <- catrec_sum_string |> stringr::str_remove("=.*")
+  translate_user_expression <- function(expr_string) {
+    expr_translated <- expr_string |>
+      stringr::str_replace_all("(\\[)(\\d+)(\\])", "value[rowval == \\2]")
+    rlang::parse_expr(expr_translated)
+  }
+  df_user_expr <- df_summary |>
+    tidyr::complete(
+      rowvar, rowval,
+      tidyr::nesting(colvar, colval),
+      fill = list(value = 0)
+    ) |>
+    dplyr::summarise(
+      value = !!translate_user_expression(expr_string),
+      .by = c("rowvar", "colvar", "colval")
+    )
+  df_user_expr$rowval <- max(df_summary$rowval) + 1
+  df_user_expr
+}
 
 calc_detail_freqs.qtab_type_mw <- function(qtab) {
   weight <- qtab$p$Weight[[1]]

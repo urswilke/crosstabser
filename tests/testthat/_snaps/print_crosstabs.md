@@ -338,10 +338,12 @@
                           Indi… in %     30  21.1   11.1  25     20.9   14.3 
                           Detr… abs      31   5      2     1      2     NA   
                           Detr… in %     32   3.40  11.1   1.39   4.65  NA   
-      GÜLTIGE FÄLLE             abs      33 147     18    72     43     14   
-                                in %     34  97.4   94.7  96    100    100   
-      keine Angabe              abs      35   4      1     3     NA     NA   
-                                in %     36   2.65   5.26  4     NA     NA   
+                          NPS   abs      33 106     12    52     30     12   
+                          NPS   in %     34  72.1   66.7  72.2   69.8   85.7 
+      GÜLTIGE FÄLLE             abs      35 147     18    72     43     14   
+                                in %     36  97.4   94.7  96    100    100   
+      keine Angabe              abs      37   4      1     3     NA     NA   
+                                in %     38   2.65   5.26  4     NA     NA   
       
       
 
