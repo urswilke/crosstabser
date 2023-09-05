@@ -301,8 +301,8 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
 
   df_long <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
 
-  catrec_string <- strsplit(qtab$p$CatRec, "\\|")[[1]]
-  all_counts <- catrec_string |>
+  catrec_strings <- strsplit(qtab$p$CatRec, "\\|")[[1]]
+  all_counts <- catrec_strings |>
     lapply(\(x) summarise_catrec(df_long, x, qtab$p$Weight[[1]])) |>
     # TODO: tell Wolf about new parameter "i_catrec"!...:
     dplyr::bind_rows(.id = "i_catrec")
@@ -310,8 +310,8 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   all_counts$RowAbsPercent <- "Abs"
   all_counts
 }
-summarise_catrec <- function(df_long, catrec, wt) {
-  df_long$rowval <- catrec(df_long$rowval, catrec)
+summarise_catrec <- function(df_long, catrec_string, wt) {
+  df_long$rowval <- catrec(df_long$rowval, catrec_string)
   df_long$rowvar <- paste0(df_long$rowvar, "__summary")
   non_recoded_idx <- is.na(df_long$rowval)
   if (any(non_recoded_idx)) {
