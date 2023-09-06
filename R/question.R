@@ -48,6 +48,55 @@ unnest_qsheet_rows <- function(df_qsheet, mapping) {
     row_split() |>
     purrr::map_dfr(\(df_row) unnest_repov_rows(df_row, mapping))
 }
+
+# TODO: clean up this mess!...:
+unnest_selvar <- function(df_row, mapping) {
+  selvar <- df_row$SelVar[[1]]
+  if (is.na(selvar[1])) {
+    return(df_row)
+  }
+  rowvars <- df_row$RowVar[[1]]
+  n_selvar <- length(selvar)
+  df_multi_selvar <- tibble::tibble(selvar, rowvar = vector("list", n_selvar))
+  for (i_row in seq_len(n_selvar)) {
+    df_multi_selvar[i_row,]$rowvar <-
+      rowvars[seq(
+        i_row,
+        length(rowvars),
+        n_selvar
+      )] |>
+      list()
+  }
+  df_row$df_multi_selvar <- list(df_multi_selvar)
+  df_row$RowVar <- df_multi_selvar$rowvar[1]
+
+  n_selval <- length(df_row$SelVal[[1]])
+  res <- df_row[rep(1, n_selval),]
+  selvar_vallabs <- attr(mapping$dat_mod[[df_row$SelVar[[1]][1]]], "labels")
+  selval_relabels <- df_row$SelVal[[1]] |> stringr::str_extract("(?<=:)[^ ]+") |> stringr::str_replace_all("_", " ")
+  selvals <- df_row$SelVal[[1]] |>
+    as.numeric() |>
+    suppressWarnings()
+
+  subtitles <- dplyr::coalesce(
+    selval_relabels,
+    selvar_vallabs[match(selvals, selvar_vallabs)] |> names()
+  )
+  res$Title <- res$Title |> purrr::map2(
+    subtitles,
+    \(title, subtitle) add_selval_title(title, subtitle))
+  res$SelVal <- res$SelVal[[1]] |> as.list()
+
+  selval_intervals <- df_row$SelVal[[1]] |> stringr::str_remove(paste0(":?", subtitles))
+  res
+}
+add_selval_title <- function(title, subtitle) {
+  if (any(stringr::str_detect(title, "DC#SELVALLAB"))) {
+    return(stringr::str_replace(title, "DC#SELVALLAB", subtitle))
+  }
+  title |> append(subtitle)
+}
+
 unnest_mw_rows <- function(df_row, mapping) {
   if (df_row$Type != "mw") {
     return(df_row)
@@ -99,53 +148,4 @@ unnest_repov_rows <- function(df_row, mapping) {
   df_repov$MWRec <- mw_rec_strings
   df_repov$repov_names <- repov_names
   dplyr::bind_rows(df_mw, df_repov)
-}
-
-# TODO: clean up this mess!...:
-unnest_selvar <- function(df_row, mapping) {
-  selvar <- df_row$SelVar[[1]]
-  if (is.na(selvar[1])) {
-    return(df_row)
-  }
-  rowvars <- df_row$RowVar[[1]]
-  n_selvar <- length(selvar)
-  df_multi_selvar <- tibble::tibble(selvar, rowvar = vector("list", n_selvar))
-  for (i_row in seq_len(n_selvar)) {
-    df_multi_selvar[i_row,]$rowvar <-
-      rowvars[seq(
-        i_row,
-        length(rowvars),
-        n_selvar
-      )] |>
-        list()
-  }
-  df_row$df_multi_selvar <- list(df_multi_selvar)
-  df_row$RowVar <- df_multi_selvar$rowvar[1]
-
-  n_selval <- length(df_row$SelVal[[1]])
-  res <- df_row[rep(1, n_selval),]
-  selvar_vallabs <- attr(mapping$dat_mod[[df_row$SelVar[[1]][1]]], "labels")
-  selval_relabels <- df_row$SelVal[[1]] |> stringr::str_extract("(?<=:)[^ ]+") |> stringr::str_replace_all("_", " ")
-  selvals <- df_row$SelVal[[1]] |>
-    as.numeric() |>
-    suppressWarnings()
-
-  subtitles <- dplyr::coalesce(
-    selval_relabels,
-    selvar_vallabs[match(selvals, selvar_vallabs)] |> names()
-  )
-  res$Title <- res$Title |> purrr::map2(
-    subtitles,
-    \(title, subtitle) add_selval_title(title, subtitle))
-  res$SelVal <- res$SelVal[[1]] |> as.list()
-
-  selval_intervals <- df_row$SelVal[[1]] |> stringr::str_remove(paste0(":?", subtitles))
-  res
-}
-
-add_selval_title <- function(title, subtitle) {
-  if (any(stringr::str_detect(title, "DC#SELVALLAB"))) {
-    return(stringr::str_replace(title, "DC#SELVALLAB", subtitle))
-  }
-  title |> append(subtitle)
 }
