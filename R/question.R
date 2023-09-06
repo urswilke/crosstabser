@@ -129,8 +129,6 @@ unnest_mw_rows <- function(df_row, mapping) {
       title[-length(title)] |> append(attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE))
     }
   )
-  # TODO: tell Wolf that the last two cat tables in the example TB are changed in order
-  # w.r.t. RowVar ("Gute telefonische Erreichbarkeit" <-> "Einhaltung von Zusagen")
 
   res
 }
