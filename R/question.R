@@ -162,5 +162,5 @@ unnest_repov_rows <- function(df_row, mapping) {
   df_repov$Title <- repov_titles
   df_repov$MWRec <- mw_rec_strings
   df_repov$repov_names <- repov_names
-  dplyr::bind_rows(df_mw, df_repov)
+  dplyr::bind_rows(df_repov, df_mw)
 }
