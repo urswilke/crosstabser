@@ -454,6 +454,8 @@ calc_valid_counts_percentages.default <- function(qtab) {
   total_cts <- qtab$d$stats_rows$total
   valid_cts <- qtab$d$stats_rows$n_valid
 
+  # TODO: check if this can be changed to include implicit missing values in the
+  # raw_data or rather the counts (make them explicit...)
   # valid_cts$value <- 100 * valid_cts$value / total_cts$value
   # this doesn't work if the number of valid counts is not equal to the number of total counts...
   res <- total_cts |> dplyr::select(-RowContent, value_tot = value) |> merge(valid_cts, all.x = TRUE)
