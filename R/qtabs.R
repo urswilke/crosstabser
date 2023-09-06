@@ -38,7 +38,8 @@ add_type_specific_params.default <- function(qtab) {
       "\\w+ *= *\\w+"
     )[[1]] |>
       stringr::str_split(" *= *")
-    # TODO: find a cleaner way to treat this...(?):
+    # TODO: find a cleaner way to treat this and discuss with Wolf which sorting
+    # options should be implemented:
     order_d <- any(sort_list |> purrr::map_lgl(\(x) all(x == c("ORDER", "D"))))
     key_count <- any(sort_list |> purrr::map_lgl(\(x) all(x == c("KEY", "COUNT"))))
     qtab$p$sort_params <- tibble::lst(
