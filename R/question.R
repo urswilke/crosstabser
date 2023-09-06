@@ -106,10 +106,22 @@ unnest_mw_rows <- function(df_row, mapping) {
   if (df_row$Freq %in% c("0", "FALSE")) {
     return(df_row)
   }
-  n_rowvar <- length(df_row$RowVar[[1]])
-  res <- df_row[rep(1, n_rowvar + 1),]
+  if (length(df_row$SelVar[[1]]) > 1) {
+    dfsel <- df_row$df_multi_selvar[[1]]
+    n_rowvar <- dfsel$rowvar[[1]] |> length()
+    cat_rowvars <- dfsel$rowvar |> purrr::transpose() |> lapply(unlist)
+    res <- df_row[rep(1, n_rowvar + 1),]
+    # seq_along(cat_rowvars) |> purrr::walk(\(i) res[i,]$df_multi_selvar[[1]]$rowvar |> print())
+    res$df_multi_selvar[-1] <- seq_along(cat_rowvars) |> purrr::map(\(i) {res[i + 1,]$df_multi_selvar[[1]][["rowvar"]] <- cat_rowvars[[i]] |> as.list(); res[i + 1,]$df_multi_selvar[[1]]})
+    cat_rowvars <- cat_rowvars |> lapply(\(x) x[1])
+  } else {
+    n_rowvar <- length(df_row$RowVar[[1]])
+    cat_rowvars <- as.list(unlist(df_row$RowVar))
+    res <- df_row[rep(1, n_rowvar + 1),]
+  }
+
   res$Type <- list("mw") |> append(as.list(rep("cat", n_rowvar)))
-  res$RowVar <- df_row$RowVar |> append(as.list(unlist(df_row$RowVar)))
+  res$RowVar <- df_row$RowVar |> append(cat_rowvars)
   res$Title[-1] <- purrr::map2(
     res$Title[-1],
     res$RowVar[-1],
@@ -117,6 +129,9 @@ unnest_mw_rows <- function(df_row, mapping) {
       title[-length(title)] |> append(attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE))
     }
   )
+  # TODO: tell Wolf that the last two cat tables in the example TB are changed in order
+  # w.r.t. RowVar ("Gute telefonische Erreichbarkeit" <-> "Einhaltung von Zusagen")
+
   res
 }
 unnest_repov_rows <- function(df_row, mapping) {
