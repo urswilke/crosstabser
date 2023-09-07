@@ -89,7 +89,6 @@ unnest_selvar <- function(df_row, mapping) {
     \(title, subtitle) add_selval_title(title, subtitle))
   res$SelVal <- res$SelVal[[1]] |> as.list()
 
-  selval_intervals <- df_row$SelVal[[1]] |> stringr::str_remove(paste0(":?", subtitles))
   res
 }
 add_selval_title <- function(title, subtitle) {

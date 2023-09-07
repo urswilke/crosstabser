@@ -59,7 +59,7 @@ get_raw_data.default <- function(qtab) {
           weightvar
         )
         dat <- dm[
-          row_lgl & selval_eq_selval(dm[[dfsel_i$selvar]], qtab$p$SelVal),
+          row_lgl & selvar_eq_selval(dm[[dfsel_i$selvar]], qtab$p$SelVal),
           long_cols
         ]
         names(dat) <- names(long_cols)
@@ -91,7 +91,7 @@ get_raw_data.default <- function(qtab) {
 
   res
 }
-selval_eq_selval <- function(selvar, selval) {
+selvar_eq_selval <- function(selvar, selval) {
   if (!is.na(as.numeric(selval) |> suppressWarnings())) {
     return(selvar == as.numeric(selval))
   }
