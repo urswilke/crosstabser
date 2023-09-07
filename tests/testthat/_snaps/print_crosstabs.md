@@ -92,6 +92,7 @@
       [[5]]
       [[5]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
+      #   Kundenzufriedenheit
                             NULL ----- GESAMT Region ------ ------ ------
                             NULL -----        Asien  Europa Norda… Pazif…
       GESAMT               abs       4 151     19     75     43     14   
@@ -99,6 +100,17 @@
       Standardfehler                 6   1.03   3.32   1.65   1.38   2.97
       GÜLTIGE FÄLLE        abs       7 151     19     75     43     14   
                            in %      8 100    100    100    100    100   
+      
+      [[5]][[2]]
+      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
+      #   Marktvolumen
+                            NULL ----- GESAMT Regi… ------ ----- ------
+                            NULL -----        Asien Europa Nord… Pazif…
+      GESAMT               abs       4 151       19  75       43  14   
+      Mittelwert                     5  94.8     95  93.6    100  93.3 
+      Standardfehler                 6   2.35     5   3.88     0   6.67
+      GÜLTIGE FÄLLE        abs       7 151       19  75       43  14   
+                           in %      8 100      100 100      100 100   
       
       
       [[6]]
