@@ -1,5 +1,7 @@
 #' Tabulation class
 #'
+#' This is copied from datenanpassr and will just serve as a template when the
+#' code will be documented...
 #'
 #' @description The class \code{Mapping} can be used to apply the changes
 #'   specified in the command blocks of an Excel mapping file to a (labelled)
