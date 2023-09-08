@@ -263,45 +263,23 @@ row_table_summary.qtab_type_cat <- function(qtab) {
   if (is.null(cat_rec_string)) {
     return(NULL)
   }
-  # TODO: implement NPS...:
-  # uncomment/replace stuff to tabulate non-recoded (not covered by CatRec) valid `RowVal`s:
-
-  # TODO: add non-recoded values with sth like this!...:
-  # qtab$d$catrec_freqs$rowval |> unique()
-
-
-
-  # cat_rec_string <- cat_rec_string |> stringr::str_remove("\\{.*\\}")
   cat_lab_string <- strsplit(qtab$p$CatLab, "\\|")[[1]]
   cat_rec_string <- strsplit(qtab$p$CatRec, "\\|")[[1]]
-  # cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
-  # cat_rec_quos <- lapply(cat_rec_interval_splits$interval_strings, gen_cat_rec_fun)
-  # vec <- qtab$d$dat_mod[[qtab$p$RowVar]]
-  # unique_vals <- unique(vec) |> strip_attributes()
-  # vals_in_cat_rec <- purrr::map(
-  #   cat_rec_quos,
-  #   \(f, x) f(unique_vals)
-  # ) |>
-  #   any_true()
-  # invalid_vals <- dplyr::coalesce(qtab$p$Unguelt, mapping$options$l_macro_scenario$Unguelt)
-  # vals_not_in_cat_rec <- unique_vals[!vals_in_cat_rec] |> setdiff(invalid_vals)
-  # all_catrec_labs <- c(cat_lab_splits, vals_not_in_cat_rec |> purrr::set_names())
   row_table <- purrr::map2(
     cat_lab_string,
     cat_rec_string,
     catlab_helper
   ) |>
     dplyr::bind_rows(.id = "i_catrec")
-  # n_vals <- length(all_catrec_labs)
+
   n_vals <- nrow(row_table) / 2
-  # row_table[seq_len(n_vals * 2),]$RowValue <- unname(all_catrec_labs) |> rep(each = 2)
-  # row_table$RowWeighted <- "Unweighted"
+
   row_table$RowTitle1 <- qtab$p$l_lexikon[["cTabZsfg"]]
   row_table[row_table$i_catrec > 1,]$RowTitle1 <- paste(
     row_table[row_table$i_catrec > 1,]$RowTitle1,
     row_table[row_table$i_catrec > 1,]$i_catrec
   )
-  # row_table$RowTitle2 <- names(all_catrec_labs) |> rep(each = 2)
+
   row_table$RowTitle3 <- c(
     qtab$p$l_lexikon["cTabAbs"],
     qtab$p$l_lexikon["cTabProz"]
@@ -353,7 +331,8 @@ row_table_stats.qtab_type_cat <- function(qtab) {
   row_table$RowContent <- "Statistics"
   row_table$RowDecimals <- df_stat_funs$decimals
   row_table$RowVariable <- qtab$p$RowVar
-  # TODO: tell Wolf that I needed this to
+  # TODO: tell Wolf that I needed this to properly merge to tab_values when
+  # there multiple rows with MStatistics:
   row_table$RowStatFun <- df_stat_funs$fun
   row_table
 }
