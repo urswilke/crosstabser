@@ -1,8 +1,3 @@
-read_qsheet <- function(mapping) {
-  mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file)
-  mapping$qsheet$qsheet_processed <- process_qsheet(mapping)
-}
-
 read_qsheet_raw <- function(mapping_file, sheet = "Questions") {
   # TODO: only use English column names
   df_questions <- readxl::read_excel(

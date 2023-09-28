@@ -65,11 +65,11 @@ Tabula <- R6::R6Class("Tabula",
       self$mapping_file <- mapping_file
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
-      process_excel(self)
+      parse_qsheet(self)
       init_qrows(self)
     },
     calc_qtabs = function(row = NULL) {
-      process_excel(self)
+      parse_qsheet(self)
       # filter row indices specified, otherwise all:
       if (is.null(row)) {
         row <- self$qrows$row
@@ -98,9 +98,10 @@ Tabula <- R6::R6Class("Tabula",
   )
 )
 
-process_excel <- function(self) {
-  read_qsheet(self)
-  gen_tab_and_col_tables(self)
+parse_qsheet <- function(mapping) {
+  mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file)
+  mapping$qsheet$qsheet_processed <- process_qsheet(mapping)
+  gen_tab_and_col_tables(mapping)
 }
 
 read_data <- function(dat) {
