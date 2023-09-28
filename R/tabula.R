@@ -66,6 +66,7 @@ Tabula <- R6::R6Class("Tabula",
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
       parse_qsheet(self)
+      gen_tab_and_col_tables(self)
       init_qrows(self)
     },
     calc_qtabs = function(row = NULL) {
@@ -101,7 +102,6 @@ Tabula <- R6::R6Class("Tabula",
 parse_qsheet <- function(mapping) {
   mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file)
   mapping$qsheet$qsheet_processed <- process_qsheet(mapping)
-  gen_tab_and_col_tables(mapping)
 }
 
 read_data <- function(dat) {
