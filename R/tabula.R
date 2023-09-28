@@ -67,6 +67,7 @@ Tabula <- R6::R6Class("Tabula",
       self$options <- setOptions(mapping_file)
 
       gen_col_tables(self)
+      self$calc_qtabs()
     },
     calc_qtabs = function(row = NULL) {
       # TODO: think if this should also be reduced to only doing it on the
@@ -74,10 +75,6 @@ Tabula <- R6::R6Class("Tabula",
       # In the example mapping now, it only takes < 0.3 seconds,
       # but for big mappings this probably takes more than a second easily.
       parse_qsheet(self)
-      # filter row indices specified, otherwise all:
-      if (is.null(row)) {
-        row <- self$qrows$row
-      }
       update_qtabs(self, row)
       invisible(self)
     },
@@ -108,7 +105,12 @@ parse_qsheet <- function(mapping) {
   mapping$qrows <- gen_qrows(mapping)
 }
 update_qtabs <- function(mapping, row) {
+  # filter row indices specified, otherwise all:
+  if (is.null(row)) {
+    row <- mapping$qrows$row
+  }
   qtabs <- mapping$qrows[mapping$qrows$row %in% row,]$qrow
+
   qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
 }
 
