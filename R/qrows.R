@@ -8,13 +8,9 @@ gen_qrows <- function(mapping) {
   qrow_processed <- qsheet_processed |> split(qsheet_processed$row)
 
   l_qtabs <- purrr::map(qrow_processed, \(x) new_qtabs(x, mapping))
-  qrows$qrow <- lapply(l_qtabs, \(x) new_qrow(x, mapping))
+  qrows$qrow <- lapply(l_qtabs, \(x) Qrow$new(x, mapping))
 
   qrows
-}
-
-new_qrow <- function(qtabs, mapping) {
-  Qrow$new(qtabs, mapping)
 }
 Qrow <- R6::R6Class("Qrow",
                     public = list(
