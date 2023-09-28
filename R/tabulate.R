@@ -1,6 +1,4 @@
-gen_tab_and_col_tables <- function(mapping) {
-  mapping$qsheet$tables <- mapping$qsheet$qsheet_processed[c("row", "Type")] |> tidyr::unnest(Type)
-  mapping$qsheet$tab_table <- gen_tab_table(mapping)
+gen_col_tables <- function(mapping) {
   mapping$qsheet$head_table <- gen_head_table(mapping)
   mapping$qsheet$col_table <- gen_col_table(mapping)
 }
