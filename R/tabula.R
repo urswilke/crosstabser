@@ -70,6 +70,10 @@ Tabula <- R6::R6Class("Tabula",
       init_qrows(self)
     },
     calc_qtabs = function(row = NULL) {
+      # TODO: think if this should also be reduced to only doing it on the
+      # selected `row` argument!
+      # In the example mapping now, it only takes < 0.2 seconds,
+      # but for big mappings this probably takes more than a second easily.
       parse_qsheet(self)
       # filter row indices specified, otherwise all:
       if (is.null(row)) {
