@@ -108,7 +108,7 @@ parse_qsheet <- function(mapping) {
   mapping$qsheet$tables <- mapping$qsheet$qsheet_processed[c("row", "Type")] |>
     tidyr::unnest(Type)
   mapping$qsheet$tab_table <- gen_tab_table(mapping)
-  init_qrows(mapping)
+  mapping$qrows <- gen_qrows(mapping)
 }
 
 read_data <- function(dat) {

@@ -1,4 +1,4 @@
-init_qrows <- function(mapping) {
+gen_qrows <- function(mapping) {
   qrows <- mapping$qsheet$qsheet_raw |>
     tidyr::drop_na("Type") |>
     dplyr::select(-dplyr::matches("^Col[A-Z]$")) |>
@@ -10,7 +10,7 @@ init_qrows <- function(mapping) {
   l_qtabs <- purrr::map(qrow_processed, \(x) new_qtabs(x, mapping))
   qrows$qrow <- lapply(l_qtabs, \(x) new_qrows(x, mapping))
 
-  mapping$qrows <- qrows
+  qrows
 }
 
 new_qrows <- function(qtabs, mapping) {
