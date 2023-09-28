@@ -78,9 +78,7 @@ Tabula <- R6::R6Class("Tabula",
       if (is.null(row)) {
         row <- self$qrows$row
       }
-      qtabs <- self$qrows[self$qrows$row %in% row,]$qrow
-
-      qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
+      update_qtabs(self, row)
       invisible(self)
     },
     xml = function(row = NULL) {
@@ -101,7 +99,6 @@ Tabula <- R6::R6Class("Tabula",
     }
   )
 )
-
 parse_qsheet <- function(mapping) {
   mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file)
   mapping$qsheet$qsheet_processed <- process_qsheet(mapping)
@@ -109,6 +106,10 @@ parse_qsheet <- function(mapping) {
     tidyr::unnest(Type)
   mapping$qsheet$tab_table <- gen_tab_table(mapping)
   mapping$qrows <- gen_qrows(mapping)
+}
+update_qtabs <- function(mapping, row) {
+  qtabs <- mapping$qrows[mapping$qrows$row %in% row,]$qrow
+  qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
 }
 
 read_data <- function(dat) {
