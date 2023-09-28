@@ -5,9 +5,9 @@ init_qrows <- function(mapping) {
     tidyr::nest(p = c(Unguelt:Exclusive))
 
   qsheet_processed <- mapping$qsheet$qsheet_processed
-  qrows$qrow_processed <- qsheet_processed |> split(qsheet_processed$row)
+  qrow_processed <- qsheet_processed |> split(qsheet_processed$row)
 
-  l_qtabs <- purrr::map(qrows$qrow_processed, \(x) new_qtabs(x, mapping))
+  l_qtabs <- purrr::map(qrow_processed, \(x) new_qtabs(x, mapping))
   qrows$qrow <- lapply(l_qtabs, \(x) new_qrows(x, mapping))
 
   mapping$qrows <- qrows
