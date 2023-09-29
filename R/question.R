@@ -7,13 +7,12 @@ read_qsheet_raw <- function(mapping_file, sheet = "Questions") {
   df_questions |>
     # first row column names... (=> " + 1"):
     dplyr::mutate(row = dplyr::row_number() + 1, .before = 1) |>
-    # https://stackoverflow.com/a/66136167
-    dplyr::filter(dplyr::if_any(-row, ~ !is.na(.x)))
+    tidyr::drop_na("Type") |>
+    dplyr::select(-dplyr::matches("^Col[A-Z]$"))
 }
 
 process_qsheet <- function(mapping) {
   mapping$qsheet$qsheet_raw |>
-    tidyr::drop_na("Type") |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
       RowVar = RowVar |> split_cell(" "),

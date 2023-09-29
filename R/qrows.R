@@ -1,7 +1,5 @@
 gen_qrows <- function(mapping) {
   qrows <- mapping$qsheet$qsheet_raw |>
-    tidyr::drop_na("Type") |>
-    dplyr::select(-dplyr::matches("^Col[A-Z]$")) |>
     tidyr::nest(p = c(Unguelt:Exclusive))
 
   qsheet_processed <- mapping$qsheet$qsheet_processed
