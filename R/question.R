@@ -72,9 +72,9 @@ unnest_qsheet_rows <- function(df_qsheet, mapping) {
 }
 process_qrow_params <- function(qrow_param_list, mapping) {
   qrow_param_list |>
-    process_selvar(mapping)
-  # |>
-  #   lapply(\(qrow_params) process_mw_rows(qrow_params, mapping)) |>
+    process_selvar(mapping) |> unlist(recursive = FALSE) |>
+    process_mw_rows(mapping) |> unlist(recursive = FALSE)
+# |>
   #   lapply(\(qrow_params) process_cat_rows(qrow_params, mapping)) |>
   #   lapply(\(qrow_params) process_repov_rows(qrow_params, mapping))
 
@@ -122,7 +122,14 @@ process_selvar <- function(qrow_params, mapping) {
       x
     }
   )
-  res$SelVal <- res$SelVal[[1]] |> as.list()
+  res <- purrr::map2(
+    res,
+    qrow_params$SelVal,
+    \(x, y) {
+      x$SelVal <- y
+      x
+    }
+  )
 
   res
 }
@@ -134,18 +141,19 @@ add_selval_title <- function(title, subtitle) {
 }
 
 process_mw_rows <- function(qrow_params, mapping) {
+  res <- list(qrow_params)
   if (qrow_params$Type != "mw") {
-    return(qrow_params)
+    return(res)
   }
-  mw_label <- dplyr::coalesce(qrow_params$MeanOverviewLabel, mapping$options$l_lexikon[["cTabMeanOV"]])
-  title <- qrow_params$Title[[1]]
-  qrow_params$Title[[1]] <- title |> append(mw_label)
-  if (qrow_params$Freq %in% c("0", "FALSE")) {
-    return(qrow_params)
+  mw_label <- qrow_params$MeanOverviewLabel %||% mapping$options$l_lexikon[["cTabMeanOV"]]
+  title <- qrow_params$Title
+  res[[1]]$Title <- title |> append(mw_label)
+  if (!is.null(qrow_params$Freq) && qrow_params$Freq %in% c("0", "FALSE")) {
+    return(res)
   }
-  res <- qrow_params[c(1, 1),]
-  res$Title[[2]] <- title
-  res$Type[[2]] <- "cat"
+  res <- res[c(1, 1)]
+  res[[2]]$Title <- title
+  res[[2]]$Type <- "cat"
   res
 }
 
