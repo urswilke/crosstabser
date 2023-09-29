@@ -99,8 +99,6 @@ Tabula <- R6::R6Class("Tabula",
 parse_qsheet <- function(mapping) {
   mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file)
   mapping$qsheet$qsheet_processed <- process_qsheet(mapping)
-  mapping$qsheet$tables <- mapping$qsheet$qsheet_processed[c("row", "Type")] |>
-    tidyr::unnest(Type)
   mapping$qsheet$tab_table <- gen_tab_table(mapping)
   mapping$qrows <- gen_qrows(mapping)
 }
