@@ -11,7 +11,7 @@ read_qsheet_raw <- function(mapping_file, sheet = "Questions") {
     dplyr::select(-dplyr::matches("^Col[A-Z]$"))
 }
 
-process_qsheet <- function(mapping) {
+process_qsheet_df <- function(mapping) {
   mapping$qsheet$qsheet_raw |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
@@ -28,7 +28,10 @@ process_qsheet <- function(mapping) {
       SelVal = split_cell(SelVal),
       RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE",
       Exclusive = split_cell(Exclusive),
-    ) |>
+    )
+}
+gen_qrows_df_intermediate <- function(df, mapping) {
+  df |>
     unnest_qsheet_rows(mapping) |>
     dplyr::mutate(TabNo = dplyr::row_number(), .before = 1)
 }
