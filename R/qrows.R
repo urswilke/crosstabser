@@ -1,3 +1,4 @@
+# to be removed:
 gen_qrows <- function(mapping) {
   qrows <- mapping$qsheet$qsheet_raw |>
     tidyr::nest(p = c(Unguelt:Exclusive))
@@ -10,6 +11,7 @@ gen_qrows <- function(mapping) {
 
   qrows
 }
+# to be removed:
 Qrow <- R6::R6Class("Qrow",
                     public = list(
                       qtabs = list(),
@@ -19,6 +21,28 @@ Qrow <- R6::R6Class("Qrow",
                                             ...) {
                         self$qtabs <- qtabs
                         self$m <- mapping
+                      },
+                      calc_qrow_qtabs = function() {
+                        calc_qrow_qtabs(self)
+                        invisible(self)
+                      },
+                      wide_tabs = function() {
+                        wide_tabs(self)
+                        invisible(self)
+                      }
+                    )
+)
+Qrow2 <- R6::R6Class("Qrow",
+                    public = list(
+                      p = list(),
+                      m = list(),
+                      qtabs = list(),
+                      initialize = function(p,
+                                            mapping,
+                                            ...) {
+                        self$p <- p
+                        self$m <- mapping
+                        self$qtabs <- process_qrow_params(self$p, self$m)
                       },
                       calc_qrow_qtabs = function() {
                         calc_qrow_qtabs(self)

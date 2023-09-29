@@ -56,7 +56,9 @@ Tabula <- R6::R6Class("Tabula",
     options = NULL,
     qsheet = list(),
     qtabs = list(),
+    # to be removed
     qrows = list(),
+    qrows2 = list(),
     #' @description Initialize a Tabula object
     #'
     initialize = function(dat,
@@ -103,7 +105,11 @@ parse_qsheet <- function(mapping) {
     gen_qrows_df_intermediate(mapping)
   mapping$qsheet$qrow_param_list <- extract_qrow_param_list(mapping)
   mapping$qsheet$tab_table <- gen_tab_table(mapping)
+  # to be removed:
   mapping$qrows <- gen_qrows(mapping)
+
+  mapping$qrows2 <- mapping$qsheet$qrow_param_list |>
+    lapply(\(p) Qrow2$new(p, mapping))
 }
 update_qtabs <- function(mapping, row) {
   # filter row indices specified, otherwise all:

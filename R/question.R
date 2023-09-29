@@ -58,6 +58,7 @@ gen_qrows_df_intermediate <- function(df, mapping) {
     dplyr::mutate(TabNo = dplyr::row_number(), .before = 1)
 }
 
+# to be removed:
 unnest_qsheet_rows <- function(df_qsheet, mapping) {
   df_qsheet |>
     row_split() |>
@@ -69,6 +70,160 @@ unnest_qsheet_rows <- function(df_qsheet, mapping) {
     row_split() |>
     purrr::map_dfr(\(df_row) unnest_repov_rows(df_row, mapping))
 }
+process_qrow_params <- function(qrow_param_list, mapping) {
+  qrow_param_list |>
+    process_selvar(mapping)
+  # |>
+  #   lapply(\(qrow_params) process_mw_rows(qrow_params, mapping)) |>
+  #   lapply(\(qrow_params) process_cat_rows(qrow_params, mapping)) |>
+  #   lapply(\(qrow_params) process_repov_rows(qrow_params, mapping))
+
+}
+
+process_selvar <- function(qrow_params, mapping) {
+  selvar <- qrow_params$SelVar[[1]]
+  if (is.null(selvar[1])) {
+    return(list(qrow_params))
+  }
+  rowvars <- qrow_params$RowVar[[1]]
+  n_selvar <- length(selvar)
+  df_multi_selvar <- tibble::tibble(selvar, rowvar = vector("list", n_selvar))
+  for (i_row in seq_len(n_selvar)) {
+    df_multi_selvar[i_row,]$rowvar <-
+      rowvars[seq(
+        i_row,
+        length(rowvars),
+        n_selvar
+      )] |>
+      list()
+  }
+  qrow_params$df_multi_selvar <- list(df_multi_selvar)
+  qrow_params$RowVar <- df_multi_selvar$rowvar[1]
+
+  n_selval <- length(qrow_params$SelVal)
+  res <- rep(list(qrow_params), each = n_selval)
+  selvar_vallabs <- attr(mapping$dat_mod[[qrow_params$SelVar[[1]][1]]], "labels")
+  selval_relabels <- qrow_params$SelVal |>
+    stringr::str_extract("(?<=:)[^ ]+") |>
+    stringr::str_replace_all("_", " ")
+  selvals <- qrow_params$SelVal |>
+    as.numeric() |>
+    suppressWarnings()
+
+  subtitles <- dplyr::coalesce(
+    selval_relabels,
+    selvar_vallabs[match(selvals, selvar_vallabs)] |> names()
+  )
+  res <- purrr::map2(
+    res,
+    subtitles,
+    \(x, y) {
+      x$Title <- add_selval_title(x$Title, y)
+      x
+    }
+  )
+  res$SelVal <- res$SelVal[[1]] |> as.list()
+
+  res
+}
+add_selval_title <- function(title, subtitle) {
+  if (any(stringr::str_detect(title, "DC#SELVALLAB"))) {
+    return(stringr::str_replace(title, "DC#SELVALLAB", subtitle))
+  }
+  title |> append(subtitle)
+}
+
+process_mw_rows <- function(qrow_params, mapping) {
+  if (qrow_params$Type != "mw") {
+    return(qrow_params)
+  }
+  mw_label <- dplyr::coalesce(qrow_params$MeanOverviewLabel, mapping$options$l_lexikon[["cTabMeanOV"]])
+  title <- qrow_params$Title[[1]]
+  qrow_params$Title[[1]] <- title |> append(mw_label)
+  if (qrow_params$Freq %in% c("0", "FALSE")) {
+    return(qrow_params)
+  }
+  res <- qrow_params[c(1, 1),]
+  res$Title[[2]] <- title
+  res$Type[[2]] <- "cat"
+  res
+}
+
+process_cat_rows <- function(qrow_params, mapping) {
+  if (qrow_params$Type != "cat") {
+    return(qrow_params)
+  }
+  n_selvar <- ifelse(is.na(qrow_params$SelVar[[1]][1]), 0, length(qrow_params$SelVar[[1]]))
+  if (n_selvar > 1) {
+    dfsel <- qrow_params$df_multi_selvar[[1]]
+    n_rowvar <- dfsel$rowvar[[1]] |> length()
+    cat_rowvars <- dfsel$rowvar |> purrr::transpose() |> lapply(unlist)
+    res <- qrow_params[rep(1, n_rowvar),]
+    res$df_multi_selvar <- seq_along(cat_rowvars) |> purrr::map(\(i) {res[i,]$df_multi_selvar[[1]][["rowvar"]] <- cat_rowvars[[i]] |> as.list(); res[i,]$df_multi_selvar[[1]]})
+    cat_rowvars <- cat_rowvars |> lapply(\(x) x[1])
+  } else {
+    n_rowvar <- length(qrow_params$RowVar[[1]])
+    if (n_rowvar == 1) {
+      return(qrow_params)
+    }
+    cat_rowvars <- as.list(unlist(qrow_params$RowVar))
+    res <- qrow_params[rep(1, n_rowvar),]
+  }
+
+  res$RowVar <- cat_rowvars
+  if (n_rowvar > 1) {
+    res$Title <- purrr::map2(
+      res$Title,
+      res$RowVar,
+      \(title, rowvar){
+        varlab <- attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE)
+        title |> append(varlab)
+      }
+    )
+  }
+
+  res
+}
+process_repov_rows <- function(qrow_params, mapping) {
+  if (qrow_params$Type != "mw" || is.na(qrow_params$RepOV)) {
+    return(qrow_params)
+  }
+  repov_strings <- strsplit(qrow_params$RepOV, "\\|")[[1]]
+  repov_names <- repov_strings |> stringr::str_extract("^.*(?=:)")
+  mw_rec_strings <- repov_strings |> stringr::str_remove("^.*:")
+
+  mw_title_string <- qrow_params$Title[[1]]
+  repov_title_appendices <- paste0(
+    repov_names,
+    mapping$options$l_lexikon[["cTabOverview"]]
+  )
+  repov_titles <- repov_title_appendices |> lapply(\(x) c(
+    mw_title_string[-length(mw_title_string)],
+    x
+  ))
+
+  n_repov <- length(repov_strings)
+  if (qrow_params$MW %in% c("0", "FALSE")) {
+    df_mw <- NULL
+  } else {
+    df_mw <- qrow_params
+  }
+  df_repov <- qrow_params[rep(1, n_repov),]
+  df_repov$Title <- repov_titles
+  df_repov$MWRec <- mw_rec_strings
+  df_repov$repov_names <- repov_names
+  dplyr::bind_rows(df_repov, df_mw)
+}
+
+
+
+
+
+
+
+
+
+# to be removed:
 
 # TODO: clean up this mess!...:
 unnest_selvar <- function(df_row, mapping) {
