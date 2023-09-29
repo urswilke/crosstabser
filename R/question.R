@@ -11,6 +11,7 @@ read_qsheet_raw <- function(mapping_file, sheet = "Questions") {
     dplyr::select(-dplyr::matches("^Col[A-Z]$"))
 }
 
+# to be removed:
 process_qsheet_df <- function(mapping) {
   mapping$qsheet$qsheet_raw |>
     dplyr::mutate(
@@ -29,6 +30,27 @@ process_qsheet_df <- function(mapping) {
       RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE",
       Exclusive = split_cell(Exclusive),
     )
+}
+extract_qrow_param_list <- function(mapping) {
+  mapping$qsheet$qsheet_raw |>
+    dplyr::mutate(
+      Title = Title |> strsplit("' '"),
+      RowVar = RowVar |> split_cell(" "),
+      Unguelt = split_cell(Unguelt),
+      Unguelt = purrr::map_if(Unguelt, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
+      Type = as.list(Type),
+      # hopefully, won't be needed one day:
+      Filter = spss_to_r(Filter),
+      Filter = as.list(Filter) |>
+        purrr::map(\(x) x |> append(mapping$options$l_macro_scenario$Filter)) |>
+        purrr::map(\(x) x[!is.na(x)]),
+      SelVar = split_cell(SelVar),
+      SelVal = split_cell(SelVal),
+      RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE",
+      Exclusive = split_cell(Exclusive),
+    ) |>
+    purrr::transpose() |>
+    purrr::map(\(x) x[!is.na(x)])
 }
 gen_qrows_df_intermediate <- function(df, mapping) {
   df |>
