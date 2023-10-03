@@ -72,10 +72,11 @@ unnest_qsheet_rows <- function(df_qsheet, mapping) {
 }
 process_qrow_params <- function(qrow_param_list, mapping) {
   qrow_param_list |>
-    process_selvar(mapping) |> unlist(recursive = FALSE) |>
-    process_mw_rows(mapping) |> unlist(recursive = FALSE) |>
-    process_cat_rows(mapping) |> unlist(recursive = FALSE) |>
-    process_repov_rows(mapping)
+    process_selvar(mapping) |>
+    lapply(\(qrow_params) process_mw_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
+    lapply(\(qrow_params) process_cat_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
+    lapply(\(qrow_params) process_repov_rows(qrow_params, mapping)) |> unlist(recursive = FALSE)
+
 }
 
 process_selvar <- function(qrow_params, mapping) {
