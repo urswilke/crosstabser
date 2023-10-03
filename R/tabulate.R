@@ -124,21 +124,16 @@ get_raw_data2.default <- function(qtab) {
     colvars_named,
     weightvar
   )
+
+  row_filter_lgl <- get_row_filter_lgl(qtab)
   # same as:
   # mapping$dat_mod |>
   #   dplyr::filter(!!!rlang::parse_exprs(df_row$Filter[[1]])) |>
   #   dplyr::select(!!!long_cols) |>
   #   dplyr::mutate(across(everything(), strip_attributes))
   # ... but with base R (for better performance)
-  if (length(qtab$p$Filter) == 0) {
-    row_lgl <- TRUE
-  } else {
-    filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
-    row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$d$dat_mod))
-    row_lgl <- all_true(row_lgls)
-  }
   if (is.null(qtab$p$SelVar)) {
-    dat <- qtab$d$dat_mod[row_lgl, long_cols]
+    dat <- qtab$d$dat_mod[row_filter_lgl, long_cols]
     names(dat) <- names(long_cols)
     # remove label information:
     for (col in seq_len(ncol(dat))) {
@@ -158,7 +153,7 @@ get_raw_data2.default <- function(qtab) {
         weightvar
       )
       dat <- dm[
-        row_lgl & selvar_eq_selval(dm[[dfsel_i$selvar]], qtab$p$SelVal),
+        row_filter_lgl & selvar_eq_selval(dm[[dfsel_i$selvar]], qtab$p$SelVal),
         long_cols
       ]
       names(dat) <- names(long_cols)
@@ -173,7 +168,14 @@ get_raw_data2.default <- function(qtab) {
   dat
 
 }
-
+get_row_filter_lgl <- function(qtab) {
+  if (length(qtab$p$Filter) == 0) {
+    return(TRUE)
+  }
+  filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
+  row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$d$dat_mod))
+  all_true(row_lgls)
+}
 selvar_eq_selval <- function(selvar, selval) {
   if (!is.na(as.numeric(selval) |> suppressWarnings())) {
     return(selvar == as.numeric(selval))
