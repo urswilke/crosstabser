@@ -111,16 +111,17 @@ get_raw_data2.default <- function(qtab) {
   # TODO: better generate this derived parameter `rowvars_mdg` for all qtab types,
   # not just mdg... (?):
   rowvars <- qtab$p$rowvars_mdg %||% qtab$p$RowVar
+  rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
   colvars <- qtab$p$ColVar
+  colvars_named <- colvars |> purrr::set_names(paste0("colvar_", colvars))
   weightvar <- qtab$p$Weight[[1]]
   if (!is.null(weightvar)) {
     weightvar <- weightvar |> purrr::set_names("weight")
   }
 
-  rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
   long_cols <- c(
     rowvars_named,
-    colvars |> purrr::set_names(paste0("colvar_", colvars)),
+    colvars_named,
     weightvar
   )
   # same as:
