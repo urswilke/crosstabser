@@ -200,7 +200,7 @@ Qtab2 <- R6::R6Class("Qtab",
     },
     #' @description todo
     calc_qtab = function() {
-      calc_qtab(self)
+      calc_qtab2(self)
       self$wide_tab()
       invisible(self)
     },
@@ -228,8 +228,29 @@ Qtab2 <- R6::R6Class("Qtab",
     }
   )
 )
+# to be removed:
 calc_qtab <- function(qtab) {
   df <- get_raw_data(qtab)
+  if (nrow(df) == 0) {
+    return(NULL)
+  }
+  qtab$d$raw_data <- df
+
+  pivot_table_data(qtab)
+  calc_stats_rows(qtab)
+  calc_stat_fun(qtab)
+  calc_detail_freqs(qtab)
+  qtab$d$catrec_freqs <- calc_catrec_freqs(qtab)
+  qtab$d$percentages <- calc_percentages(qtab)
+  qtab$d$invalid_percentages <- calc_invalid_percentages(qtab)
+  qtab$d$vc_percentages <- calc_valid_counts_percentages(qtab)
+  qtab$d$tab_values <- rbind_table_numbers(qtab)
+  qtab$d$row_table <- gen_row_table(qtab)
+  post_process(qtab)
+  qtab$d$val_table <- gen_val_table(qtab)
+}
+calc_qtab2 <- function(qtab) {
+  df <- get_raw_data2(qtab)
   if (nrow(df) == 0) {
     return(NULL)
   }
