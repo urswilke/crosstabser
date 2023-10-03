@@ -123,58 +123,54 @@ get_raw_data2.default <- function(qtab) {
     colvars |> purrr::set_names(paste0("colvar_", colvars)),
     weightvar
   )
-  prep_data <- function() {
-    # same as:
-    # mapping$dat_mod |>
-    #   dplyr::filter(!!!rlang::parse_exprs(df_row$Filter[[1]])) |>
-    #   dplyr::select(!!!long_cols) |>
-    #   dplyr::mutate(across(everything(), strip_attributes))
-    # ... but with base R (for better performance)
-    if (length(qtab$p$Filter) == 0) {
-      row_lgl <- TRUE
-    } else {
-      filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
-      row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$d$dat_mod))
-      row_lgl <- all_true(row_lgls)
+  # same as:
+  # mapping$dat_mod |>
+  #   dplyr::filter(!!!rlang::parse_exprs(df_row$Filter[[1]])) |>
+  #   dplyr::select(!!!long_cols) |>
+  #   dplyr::mutate(across(everything(), strip_attributes))
+  # ... but with base R (for better performance)
+  if (length(qtab$p$Filter) == 0) {
+    row_lgl <- TRUE
+  } else {
+    filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
+    row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$d$dat_mod))
+    row_lgl <- all_true(row_lgls)
+  }
+  if (is.null(qtab$p$SelVar)) {
+    dat <- qtab$d$dat_mod[row_lgl, long_cols]
+    names(dat) <- names(long_cols)
+    # remove label information:
+    for (col in seq_len(ncol(dat))) {
+      attributes(dat[[col]]) <- NULL
     }
-    if (is.null(qtab$p$SelVar)) {
-      dat <- qtab$d$dat_mod[row_lgl, long_cols]
+  } else {
+    # TODO: ask Wolf how to deal with Unguelt mdg vars together with multiple selvars...!
+    # TODO: clean up this mess!...:
+    dfsel <- qtab$p$df_multi_selvar
+    dm <- qtab$m$dat_mod
+
+    dat <- seq_len(nrow(dfsel)) |> lapply(\(i) {
+      dfsel_i <- qtab$p$df_multi_selvar[i,]
+      long_cols <- c(
+        dfsel_i$rowvar[[1]] |> purrr::set_names(qtab$p$long_rowvars),
+        colvars |> purrr::set_names(paste0("colvar_", colvars)),
+        weightvar
+      )
+      dat <- dm[
+        row_lgl & selvar_eq_selval(dm[[dfsel_i$selvar]], qtab$p$SelVal),
+        long_cols
+      ]
       names(dat) <- names(long_cols)
       # remove label information:
       for (col in seq_len(ncol(dat))) {
         attributes(dat[[col]]) <- NULL
       }
-    } else {
-      # TODO: ask Wolf how to deal with Unguelt mdg vars together with multiple selvars...!
-      # TODO: clean up this mess!...:
-      dfsel <- qtab$p$df_multi_selvar
-      dm <- qtab$m$dat_mod
-
-      dat <- seq_len(nrow(dfsel)) |> lapply(\(i) {
-        dfsel_i <- qtab$p$df_multi_selvar[i,]
-        long_cols <- c(
-          dfsel_i$rowvar[[1]] |> purrr::set_names(qtab$p$long_rowvars),
-          colvars |> purrr::set_names(paste0("colvar_", colvars)),
-          weightvar
-        )
-        dat <- dm[
-          row_lgl & selvar_eq_selval(dm[[dfsel_i$selvar]], qtab$p$SelVal),
-          long_cols
-        ]
-        names(dat) <- names(long_cols)
-        # remove label information:
-        for (col in seq_len(ncol(dat))) {
-          attributes(dat[[col]]) <- NULL
-        }
-        dat
-      }) |>
-        dplyr::bind_rows()
-    }
-    dat
+      dat
+    }) |>
+      dplyr::bind_rows()
   }
-  res <- prep_data()
+  dat
 
-  res
 }
 
 selvar_eq_selval <- function(selvar, selval) {
