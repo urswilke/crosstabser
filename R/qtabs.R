@@ -1,8 +1,21 @@
+# to be removed:
 new_qtabs <- function(qsheet_processed, mapping) {
   global_options <- mapping$options$l_macro_scenario
   params <- qsheet_processed |>
     purrr::transpose() |>
     purrr::map(\(x) x[!is.na(x)]) |>
+    purrr::map(\(x) add_global_options(x, global_options))
+  qtabs <- params |>
+    purrr::map(\(x) new_qtab(x, mapping))
+  qtabs |>
+    purrr::walk(\(x) add_type_specific_params(x))
+
+  qtabs
+
+}
+new_qtabs2 <- function(qrow_params, mapping) {
+  global_options <- mapping$options$l_macro_scenario
+  params <- qrow_params |>
     purrr::map(\(x) add_global_options(x, global_options))
   qtabs <- params |>
     purrr::map(\(x) new_qtab(x, mapping))

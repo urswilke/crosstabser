@@ -36,16 +36,19 @@ Qrow2 <- R6::R6Class("Qrow",
                     public = list(
                       p = list(),
                       m = list(),
-                      qtabs = list(),
+                      qtabs = tibble::tibble(),
                       initialize = function(p,
                                             mapping,
                                             ...) {
                         self$p <- p
                         self$m <- mapping
-                        self$qtabs <- process_qrow_params(self$p, self$m)
+                        self$qtabs <- tibble::tibble(params = process_qrow_params(self$p, self$m))
+                        self$qtabs$obj <- new_qtabs2(self$qtabs$params, mapping)
+
+                        self$calc_qrow_qtabs2()
                       },
                       calc_qrow_qtabs = function() {
-                        calc_qrow_qtabs(self)
+                        calc_qrow_qtabs2(self)
                         invisible(self)
                       },
                       wide_tabs = function() {
@@ -54,8 +57,12 @@ Qrow2 <- R6::R6Class("Qrow",
                       }
                     )
 )
+# to be removed:
 calc_qrow_qtabs <- function(qrow) {
-  qrow$qtabs |> lapply(\(x) x$calc_qtab())
+  qrow$qtabs$obj |> lapply(\(x) x$calc_qtab())
+}
+calc_qrow_qtabs2 <- function(qrow) {
+  qrow$qtabs$params |> lapply(\(x) x$calc_qtab())
 }
 wide_tabs <- function(qrow) {
   qrow$qtabs |> lapply(\(x) x$wide_tab())
