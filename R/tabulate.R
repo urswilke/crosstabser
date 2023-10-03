@@ -9,9 +9,6 @@ get_raw_data <- function(qtab) {
 }
 get_raw_data.default <- function(qtab) {
   rowvars <- qtab$p$RowVar
-  if (qtab$p$Type == "mdg") {
-    rowvars <- c(rowvars, qtab$p$Unguelt)
-  }
   colvars <- qtab$p$ColVar
   weightvar <- qtab$p$Weight[[1]]
   if (!is.null(weightvar)) {
@@ -91,10 +88,29 @@ get_raw_data.default <- function(qtab) {
   res
 }
 get_raw_data2 <- function(qtab) {
-  rowvars <- qtab$p$RowVar
-  if (qtab$p$Type == "mdg") {
-    rowvars <- c(rowvars, qtab$p$Unguelt)
+  UseMethod("get_raw_data2")
+}
+get_raw_data2.qtab_type_mdg <- function(qtab) {
+  res <- get_raw_data2.default(qtab)
+  if (is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
+    rowvars <- qtab$p$rowvars_mdg
+    rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
+    res <- as.data.frame(res)
+    res[names(rowvars_named)] <- catrec(
+      res[names(rowvars_named)] |>
+        unlist(use.names = FALSE),
+      paste0("(", qtab$p$MdgVal, " = 1)")
+    )
+    qtab$p$MdgVal = 1
+  } else {
+    qtab$p$MdgVal = as.numeric(qtab$p$MdgVal)
   }
+  res
+}
+get_raw_data2.default <- function(qtab) {
+  # TODO: better generate this derived parameter `rowvars_mdg` for all qtab types,
+  # not just mdg... (?):
+  rowvars <- qtab$p$rowvars_mdg %||% qtab$p$RowVar
   colvars <- qtab$p$ColVar
   weightvar <- qtab$p$Weight[[1]]
   if (!is.null(weightvar)) {
@@ -156,20 +172,6 @@ get_raw_data2 <- function(qtab) {
     dat
   }
   res <- prep_data()
-  # TODO: move this somewhere where it only concerns mdg!...:
-  if (qtab$p$Type == "mdg") {
-    if (is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
-      res <- as.data.frame(res)
-      res[names(rowvars_named)] <- catrec(
-        res[names(rowvars_named)] |>
-          unlist(use.names = FALSE),
-        paste0("(", qtab$p$MdgVal, " = 1)")
-      )
-      qtab$p$MdgVal = 1
-    } else {
-      qtab$p$MdgVal = as.numeric(qtab$p$MdgVal)
-    }
-  }
 
   res
 }

@@ -69,6 +69,7 @@ add_type_specific_params.default <- function(qtab) {
 }
 add_type_specific_params.qtab_type_mdg <- function(qtab) {
   qtab$p$MdgVal <- qtab$p$MdgVal %||% "1"
+  qtab$p$rowvars_mdg <- c(qtab$p$RowVar, qtab$p$Unguelt)
   # HACK to remove the numeric values that were wrongly added from the Macro sheet:
   if (is.numeric(qtab$p$Unguelt)) {
     qtab$p$Unguelt <- NULL
