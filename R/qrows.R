@@ -54,7 +54,7 @@ Qrow2 <- R6::R6Class("Qrow",
                         self$calc_qrow_qtabs()
                       },
                       calc_qrow_qtabs = function() {
-                        calc_qrow_qtabs2(self)
+                        calc_qrow_qtabs(self)
                         invisible(self)
                       },
                       wide_tabs = function() {
@@ -63,11 +63,7 @@ Qrow2 <- R6::R6Class("Qrow",
                       }
                     )
 )
-# to be removed:
 calc_qrow_qtabs <- function(qrow) {
-  qrow$qtabs$obj |> lapply(\(x) x$calc_qtab())
-}
-calc_qrow_qtabs2 <- function(qrow) {
   qrow$qtabs$obj |> lapply(\(x) x$calc_qtab())
 }
 wide_tabs <- function(qrow) {
