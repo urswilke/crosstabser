@@ -63,20 +63,27 @@ Tabula <- R6::R6Class("Tabula",
     #'
     initialize = function(dat,
                           mapping_file,
+                          row = NULL,
                           ...) {
       self$mapping_file <- mapping_file
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
 
       gen_col_tables(self)
-      self$calc_qtabs()
+      self$calc_qtabs(row)
     },
     calc_qtabs = function(row = NULL) {
       # TODO: think if this should also be reduced to only doing it on the
       # selected `row` argument!
       # In the example mapping now, it only takes < 0.3 seconds,
       # but for big mappings this probably takes more than a second easily.
-      parse_qsheet(self)
+      # --> Done now! - but perhaps better (cleaner!) to remove again
+      self$qsheet$qsheet_raw <- read_qsheet_raw(self$mapping_file)
+      # filter row indices specified, otherwise all:
+      if (is.null(row)) {
+        row <- self$qsheet$qsheet_raw$row
+      }
+      parse_qsheet(self, row)
       update_qtabs(self, row)
       invisible(self)
     },
@@ -98,8 +105,7 @@ Tabula <- R6::R6Class("Tabula",
     }
   )
 )
-parse_qsheet <- function(mapping) {
-  mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file)
+parse_qsheet <- function(mapping, row) {
   # to be removed:
   mapping$qsheet$qsheet_processed <- process_qsheet_df(mapping) |>
     gen_qrows_df_intermediate(mapping)
@@ -108,14 +114,11 @@ parse_qsheet <- function(mapping) {
   # to be removed:
   mapping$qrows <- gen_qrows(mapping)
 
-  mapping$qrows2 <- mapping$qsheet$qrow_param_list |>
+  calc_row_lgl <- purrr::map_int(mapping$qsheet$qrow_param_list, "row") %in% row
+  mapping$qrows2 <- mapping$qsheet$qrow_param_list[calc_row_lgl] |>
     lapply(\(p) Qrow2$new(p, mapping))
 }
 update_qtabs <- function(mapping, row) {
-  # filter row indices specified, otherwise all:
-  if (is.null(row)) {
-    row <- mapping$qrows$row
-  }
   qtabs <- mapping$qrows[mapping$qrows$row %in% row,]$qrow
 
   qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
