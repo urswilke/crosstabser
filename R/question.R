@@ -73,19 +73,18 @@ unnest_qsheet_rows <- function(df_qsheet, mapping) {
 process_qrow_params <- function(qrow_param_list, mapping) {
   qrow_param_list |>
     process_selvar(mapping) |> unlist(recursive = FALSE) |>
-    process_mw_rows(mapping) |> unlist(recursive = FALSE)
-# |>
-  #   lapply(\(qrow_params) process_cat_rows(qrow_params, mapping)) |>
-  #   lapply(\(qrow_params) process_repov_rows(qrow_params, mapping))
-
+    process_mw_rows(mapping) |> unlist(recursive = FALSE) |>
+    process_cat_rows(mapping) |> unlist(recursive = FALSE) |>
+    process_repov_rows(mapping)
 }
 
 process_selvar <- function(qrow_params, mapping) {
-  selvar <- qrow_params$SelVar[[1]]
+  qrow_params$n_selvar <- ifelse(is.null(qrow_params$SelVar), 0, length(qrow_params$SelVar))
+  selvar <- qrow_params$SelVar
   if (is.null(selvar[1])) {
     return(list(qrow_params))
   }
-  rowvars <- qrow_params$RowVar[[1]]
+  rowvars <- qrow_params$RowVar
   n_selvar <- length(selvar)
   df_multi_selvar <- tibble::tibble(selvar, rowvar = vector("list", n_selvar))
   for (i_row in seq_len(n_selvar)) {
@@ -98,10 +97,12 @@ process_selvar <- function(qrow_params, mapping) {
       list()
   }
   qrow_params$df_multi_selvar <- list(df_multi_selvar)
+  # TODO: make new variable...:
   qrow_params$RowVar <- df_multi_selvar$rowvar[1]
 
   n_selval <- length(qrow_params$SelVal)
-  res <- rep(list(qrow_params), each = n_selval)
+  res0 <- rep(list(qrow_params), each = n_selval)
+
   selvar_vallabs <- attr(mapping$dat_mod[[qrow_params$SelVar[[1]][1]]], "labels")
   selval_relabels <- qrow_params$SelVal |>
     stringr::str_extract("(?<=:)[^ ]+") |>
@@ -114,24 +115,20 @@ process_selvar <- function(qrow_params, mapping) {
     selval_relabels,
     selvar_vallabs[match(selvals, selvar_vallabs)] |> names()
   )
-  res <- purrr::map2(
-    res,
-    subtitles,
-    \(x, y) {
-      x$Title <- add_selval_title(x$Title, y)
-      x
-    }
-  )
-  res <- purrr::map2(
-    res,
-    qrow_params$SelVal,
-    \(x, y) {
-      x$SelVal <- y
-      x
-    }
-  )
 
-  res
+  purrr::pmap(
+    list(
+      res0,
+      subtitles,
+      qrow_params$SelVal
+    ),
+    edit_selval_info
+  )
+}
+edit_selval_info <- function(x, subtitle, selval) {
+  x$Title <- add_selval_title(x$Title, subtitle)
+  x$SelVal <- selval
+  x
 }
 add_selval_title <- function(title, subtitle) {
   if (any(stringr::str_detect(title, "DC#SELVALLAB"))) {
@@ -159,30 +156,34 @@ process_mw_rows <- function(qrow_params, mapping) {
 
 process_cat_rows <- function(qrow_params, mapping) {
   if (qrow_params$Type != "cat") {
-    return(qrow_params)
+    return(list(qrow_params))
   }
-  n_selvar <- ifelse(is.na(qrow_params$SelVar[[1]][1]), 0, length(qrow_params$SelVar[[1]]))
-  if (n_selvar > 1) {
-    dfsel <- qrow_params$df_multi_selvar[[1]]
-    n_rowvar <- dfsel$rowvar[[1]] |> length()
-    cat_rowvars <- dfsel$rowvar |> purrr::transpose() |> lapply(unlist)
-    res <- qrow_params[rep(1, n_rowvar),]
-    res$df_multi_selvar <- seq_along(cat_rowvars) |> purrr::map(\(i) {res[i,]$df_multi_selvar[[1]][["rowvar"]] <- cat_rowvars[[i]] |> as.list(); res[i,]$df_multi_selvar[[1]]})
+  dfsel <- qrow_params$df_multi_selvar[[1]]
+  n_rowvar <- dfsel$rowvar |> length()
+  res <- rep(list(qrow_params), each = n_rowvar)
+  if (qrow_params$n_selvar > 1) {
+    cat_rowvars <- dfsel$rowvar |> lapply(unlist)
+    res$df_multi_selvar <- seq_along(cat_rowvars) |>
+      purrr::map(
+        \(i) {
+          res[[i]]$df_multi_selvar[[1]][["rowvar"]] <- cat_rowvars[[i]] |>
+            as.list()
+          res[[i]]$df_multi_selvar[[1]]
+        }
+      )
     cat_rowvars <- cat_rowvars |> lapply(\(x) x[1])
   } else {
-    n_rowvar <- length(qrow_params$RowVar[[1]])
     if (n_rowvar == 1) {
-      return(qrow_params)
+      return(list(qrow_params))
     }
     cat_rowvars <- as.list(unlist(qrow_params$RowVar))
-    res <- qrow_params[rep(1, n_rowvar),]
   }
 
   res$RowVar <- cat_rowvars
   if (n_rowvar > 1) {
     res$Title <- purrr::map2(
-      res$Title,
-      res$RowVar,
+      res[[1]]$Title,
+      res[[1]]$RowVar,
       \(title, rowvar){
         varlab <- attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE)
         title |> append(varlab)
@@ -193,8 +194,8 @@ process_cat_rows <- function(qrow_params, mapping) {
   res
 }
 process_repov_rows <- function(qrow_params, mapping) {
-  if (qrow_params$Type != "mw" || is.na(qrow_params$RepOV)) {
-    return(qrow_params)
+  if (qrow_params$Type != "mw" || is.null(qrow_params$RepOV)) {
+    return(list(qrow_params))
   }
   repov_strings <- strsplit(qrow_params$RepOV, "\\|")[[1]]
   repov_names <- repov_strings |> stringr::str_extract("^.*(?=:)")
@@ -211,16 +212,28 @@ process_repov_rows <- function(qrow_params, mapping) {
   ))
 
   n_repov <- length(repov_strings)
-  if (qrow_params$MW %in% c("0", "FALSE")) {
-    df_mw <- NULL
+  if (!is.null(qrow_params$MW) && qrow_params$MW %in% c("0", "FALSE")) {
+    l_mw <- NULL
   } else {
-    df_mw <- qrow_params
+    l_mw <- list(qrow_params)
   }
-  df_repov <- qrow_params[rep(1, n_repov),]
-  df_repov$Title <- repov_titles
-  df_repov$MWRec <- mw_rec_strings
-  df_repov$repov_names <- repov_names
-  dplyr::bind_rows(df_repov, df_mw)
+  l_repov <- list(qrow_params)[rep(1, n_repov)]
+  l_repov <- purrr::pmap(
+    list(
+      l_repov,
+      repov_titles,
+      mw_rec_strings,
+      repov_names
+    ),
+    edit_repov_lists
+  )
+  append(l_repov, l_mw)
+}
+edit_repov_lists <- function(x, title, mw_rec_string, repov_name) {
+  x$Title <- title
+  x$MWRec <- mw_rec_string
+  x$repov_names <- repov_name
+  x
 }
 
 
