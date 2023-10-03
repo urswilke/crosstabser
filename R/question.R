@@ -98,8 +98,8 @@ process_selvar <- function(qrow_params, mapping) {
       list()
   }
   qrow_params$df_multi_selvar <- list(df_multi_selvar)
-  # TODO: make new variable...:
-  qrow_params$RowVar <- df_multi_selvar$rowvar[1]
+  # TODO: deal with that later (probably to name the variables in get_raw_data())
+  # qrow_params$RowVar <- df_multi_selvar$rowvar[1]
 
   n_selval <- length(qrow_params$SelVal)
   res0 <- rep(list(qrow_params), each = n_selval)
