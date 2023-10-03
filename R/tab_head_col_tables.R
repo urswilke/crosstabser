@@ -1,3 +1,4 @@
+# to be removed:
 gen_tab_table <- function(mapping) {
   mapping$qsheet$qsheet_processed |>
     dplyr::mutate(
@@ -19,6 +20,20 @@ gen_tab_table <- function(mapping) {
       .by = c(row, Type),
       .keep = "none"
     )
+}
+gen_tab_table2 <- function(params) {
+  # TODO: use correct numbers instead of placeholder 9999...:
+  # (this needs information from the mapping, not only params)
+  tibble::tibble(
+    TabNo = 9999,
+    row = params$row,
+    Type = params$Type |> toupper(),
+    TabName = paste0(params$Type, "#", params$Abbreviation  %||% "", "@", 9999),
+    TabType = params$Type |> toupper(),
+    QuestNo = 9999,
+    TabTitle = params$Title |> paste(collapse = "\n"),
+    TabCaption = params$Fussnote %||% NA_character_
+  )
 }
 
 

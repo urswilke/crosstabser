@@ -18,7 +18,7 @@ new_qtabs2 <- function(qrow_params, mapping) {
   params <- qrow_params |>
     purrr::map(\(x) add_global_options(x, global_options))
   qtabs <- params |>
-    purrr::map(\(x) new_qtab(x, mapping))
+    purrr::map(\(x) new_qtab2(x, mapping))
   qtabs |>
     purrr::walk(\(x) add_type_specific_params(x))
 
@@ -26,8 +26,14 @@ new_qtabs2 <- function(qrow_params, mapping) {
 
 }
 
+# to be removed:
 new_qtab <- function(params, mapping) {
   res <- Qtab$new(params, mapping)
+  class(res) <- c(paste0("qtab_type_", params$Type), class(res))
+  res
+}
+new_qtab2 <- function(params, mapping) {
+  res <- Qtab2$new(params, mapping)
   class(res) <- c(paste0("qtab_type_", params$Type), class(res))
   res
 }
@@ -124,6 +130,7 @@ process_metr_mac <- function(qtab) {
 #' @examples
 #' "hello"
 #' @export
+# to be removed:
 Qtab <- R6::R6Class("Qtab",
   public = list(
     p = list(),
@@ -140,6 +147,54 @@ Qtab <- R6::R6Class("Qtab",
       self$d$tab_table <- mapping$qsheet$tab_table[
         mapping$qsheet$tab_table$TabNo == self$p$TabNo,
       ]
+      self$d$head_table <- mapping$qsheet$head_table
+      self$d$col_table <- mapping$qsheet$col_table
+    },
+    #' @description todo
+    calc_qtab = function() {
+      calc_qtab(self)
+      self$wide_tab()
+      invisible(self)
+    },
+    #' @description todo
+    long_tab = function() {
+      self$d$long_tab <- self$d[
+        c("row_table", "col_table", "val_table", "head_table", "tab_table")
+      ] |>
+        purrr::reduce(merge, all.x = TRUE) |>
+        tibble::as_tibble()
+      invisible(self)
+    },
+    #' @description todo
+    wide_tab = function() {
+      if (is.null(self$d$long_tab)) {
+        self$long_tab()
+      }
+      wide_tab(self)
+      invisible(self)
+    },
+    #' @description print
+    print = function(...) {
+      self |> print()
+      invisible(self)
+    }
+  )
+)
+Qtab2 <- R6::R6Class("Qtab",
+  public = list(
+    p = list(),
+    d = list(),
+    m = list(),
+    #' @description todo
+    initialize = function(params,
+                          mapping,
+                          ...) {
+      self$p <- params
+      self$m <- mapping
+      self$p$l_lexikon <- mapping$options$l_lexikon
+      self$d$dat_mod  <- mapping$dat_mod
+      self$d$tab_table <- params$tab_table
+      mapping$qsheet$tab_table <- gen_tab_table2(params)
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
     },
