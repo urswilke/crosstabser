@@ -145,6 +145,7 @@ get_raw_data2.default <- function(qtab) {
         attributes(dat[[col]]) <- NULL
       }
     } else {
+      # TODO: ask Wolf how to deal with Unguelt mdg vars together with multiple selvars...!
       # TODO: clean up this mess!...:
       dfsel <- qtab$p$df_multi_selvar
       dm <- qtab$m$dat_mod
