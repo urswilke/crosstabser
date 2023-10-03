@@ -159,40 +159,41 @@ process_cat_rows <- function(qrow_params, mapping) {
   if (qrow_params$Type != "cat") {
     return(list(qrow_params))
   }
-  dfsel <- qrow_params$df_multi_selvar[[1]]
-  n_rowvar <- dfsel$rowvar |> length()
-  res <- rep(list(qrow_params), each = n_rowvar)
-  if (qrow_params$n_selvar > 1) {
-    cat_rowvars <- dfsel$rowvar |> lapply(unlist)
-    res$df_multi_selvar <- seq_along(cat_rowvars) |>
-      purrr::map(
-        \(i) {
-          res[[i]]$df_multi_selvar[[1]][["rowvar"]] <- cat_rowvars[[i]] |>
-            as.list()
-          res[[i]]$df_multi_selvar[[1]]
-        }
-      )
-    cat_rowvars <- cat_rowvars |> lapply(\(x) x[1])
-  } else {
-    if (n_rowvar == 1) {
-      return(list(qrow_params))
-    }
-    cat_rowvars <- as.list(unlist(qrow_params$RowVar))
+  if (length(qrow_params$RowVar) == 1) {
+    return(list(qrow_params))
   }
-
-  res$RowVar <- cat_rowvars
-  if (n_rowvar > 1) {
-    res$Title <- purrr::map2(
-      res[[1]]$Title,
-      res[[1]]$RowVar,
-      \(title, rowvar){
-        varlab <- attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE)
-        title |> append(varlab)
-      }
+  dfsel <- qrow_params$df_multi_selvar[[1]]
+  if (is.null(dfsel)) {
+    n_rowvar <- qrow_params$RowVar |> length()
+    res <- rep(list(qrow_params), each = n_rowvar)
+    return(purrr::map2(
+      res,
+      qrow_params$RowVar,
+      \(x, y) {x$RowVar <- y; x}
+    ))
+  }
+  n_cats <- length(qrow_params$RowVar) / qrow_params$n_selvar
+  res <- rep(list(qrow_params), each = n_cats)
+  if (n_cats > 1) {
+    cat_rowvars <- dfsel$rowvar |> lapply(unlist)
+    varlabs <- lapply(cat_rowvars[[1]], \(rowvar) attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE))
+    res <- purrr::pmap(
+      list(
+        res,
+        cat_rowvars,
+        varlabs
+      ),
+      edit_multi_selvar
     )
   }
 
   res
+}
+edit_multi_selvar <- function(qrow_params, cat_rowvars, varlabs) {
+  qrow_params$df_multi_selvar[[1]][["rowvar"]] <- cat_rowvars |>
+    as.list()
+  qrow_params$Title <- qrow_params$Title |> append(varlabs)
+  qrow_params
 }
 process_repov_rows <- function(qrow_params, mapping) {
   if (qrow_params$Type != "mw" || is.null(qrow_params$RepOV)) {
