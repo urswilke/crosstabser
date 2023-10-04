@@ -56,9 +56,7 @@ Tabula <- R6::R6Class("Tabula",
     options = NULL,
     qsheet = list(),
     qtabs = list(),
-    # to be removed
     qrows = list(),
-    qrows2 = list(),
     #' @description Initialize a Tabula object
     #'
     initialize = function(dat,
@@ -108,9 +106,9 @@ parse_qsheet <- function(mapping, row) {
   mapping$qsheet$qrow_param_list <- extract_qrow_param_list(mapping)
   calc_row_lgl <- purrr::map_int(mapping$qsheet$qrow_param_list, "row") %in% row
 
-  mapping$qrows2 <- lapply(
+  mapping$qrows <- lapply(
     mapping$qsheet$qrow_param_list[calc_row_lgl],
-    \(p) Qrow2$new(p, mapping)
+    \(p) Qrow$new(p, mapping)
   )
 }
 

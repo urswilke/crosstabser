@@ -1,38 +1,4 @@
-# to be removed:
-gen_qrows <- function(mapping) {
-  qrows <- mapping$qsheet$qsheet_raw |>
-    tidyr::nest(p = c(Unguelt:Exclusive))
-
-  qsheet_processed <- mapping$qsheet$qsheet_processed
-  qrow_processed <- qsheet_processed |> split(qsheet_processed$row)
-
-  l_qtabs <- purrr::map(qrow_processed, \(x) new_qtabs(x, mapping))
-  qrows$qrow <- lapply(l_qtabs, \(x) Qrow$new(x, mapping))
-
-  qrows
-}
-# to be removed:
 Qrow <- R6::R6Class("Qrow",
-                    public = list(
-                      qtabs = list(),
-                      m = list(),
-                      initialize = function(qtabs,
-                                            mapping,
-                                            ...) {
-                        self$qtabs <- qtabs
-                        self$m <- mapping
-                      },
-                      calc_qrow_qtabs = function() {
-                        calc_qrow_qtabs(self)
-                        invisible(self)
-                      },
-                      wide_tabs = function() {
-                        wide_tabs(self)
-                        invisible(self)
-                      }
-                    )
-)
-Qrow2 <- R6::R6Class("Qrow",
                     public = list(
                       p = list(),
                       m = list(),
@@ -43,7 +9,7 @@ Qrow2 <- R6::R6Class("Qrow",
                         self$p <- p
                         self$m <- mapping
                         self$qtabs <- tibble::tibble(params = process_qrow_params(self$p, self$m))
-                        self$qtabs$obj <- new_qtabs2(self$qtabs$params, mapping)
+                        self$qtabs$obj <- new_qtabs(self$qtabs$params, mapping)
 
                         self$calc_qrow_qtabs()
                       },

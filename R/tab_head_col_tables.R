@@ -1,28 +1,6 @@
-# to be removed:
-gen_tab_table <- function(mapping) {
-  mapping$qsheet$qsheet_processed |>
-    dplyr::mutate(
-      Type = toupper(Type),
-      Abbreviation = ifelse(is.na(Abbreviation), "", Abbreviation),
-    # TODO: Wolf fragen ob so  nicht besser nummeriert... (?):
-    # ) |>
-    # dplyr::mutate(
-      TabNo = dplyr::row_number(),
-      # .by = row
-    ) |>
-    dplyr::mutate(
-      TabNo = TabNo,
-      TabName = paste0(Type, "#", Abbreviation, "@", dplyr::row_number()),
-      TabType = Type,
-      QuestNo = row,
-      TabTitle = Title |> purrr::map_chr(\(x) paste(x, collapse = "\n")),
-      TabCaption = Fussnote,
-      .by = c(row, Type),
-      .keep = "none"
-    )
-}
-gen_tab_table2 <- function(params) {
+gen_tab_table <- function(params) {
   # TODO: use correct numbers instead of placeholder 9999...:
+  # discuss with Wolf how
   # (this needs information from the mapping, not only params)
   tibble::tibble(
     TabNo = 9999,

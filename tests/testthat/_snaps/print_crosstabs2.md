@@ -1,7 +1,7 @@
 # crosstab prints are reproduced
 
     Code
-      lapply(tabsi$qrows2, function(x) x$qtabs$obj)
+      lapply(tabsi$qrows, function(x) x$qtabs$obj)
     Output
       [[1]]
       [[1]][[1]]

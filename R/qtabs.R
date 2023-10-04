@@ -1,9 +1,6 @@
-# to be removed:
-new_qtabs <- function(qsheet_processed, mapping) {
+new_qtabs <- function(qrow_params, mapping) {
   global_options <- mapping$options$l_macro_scenario
-  params <- qsheet_processed |>
-    purrr::transpose() |>
-    purrr::map(\(x) x[!is.na(x)]) |>
+  params <- qrow_params |>
     purrr::map(\(x) add_global_options(x, global_options))
   qtabs <- params |>
     purrr::map(\(x) new_qtab(x, mapping))
@@ -13,27 +10,9 @@ new_qtabs <- function(qsheet_processed, mapping) {
   qtabs
 
 }
-new_qtabs2 <- function(qrow_params, mapping) {
-  global_options <- mapping$options$l_macro_scenario
-  params <- qrow_params |>
-    purrr::map(\(x) add_global_options(x, global_options))
-  qtabs <- params |>
-    purrr::map(\(x) new_qtab2(x, mapping))
-  qtabs |>
-    purrr::walk(\(x) add_type_specific_params(x))
 
-  qtabs
-
-}
-
-# to be removed:
 new_qtab <- function(params, mapping) {
   res <- Qtab$new(params, mapping)
-  class(res) <- c(paste0("qtab_type_", params$Type), class(res))
-  res
-}
-new_qtab2 <- function(params, mapping) {
-  res <- Qtab2$new(params, mapping)
   class(res) <- c(paste0("qtab_type_", params$Type), class(res))
   res
 }
@@ -131,7 +110,6 @@ process_metr_mac <- function(qtab) {
 #' @examples
 #' "hello"
 #' @export
-# to be removed:
 Qtab <- R6::R6Class("Qtab",
   public = list(
     p = list(),
@@ -145,11 +123,9 @@ Qtab <- R6::R6Class("Qtab",
       self$m <- mapping
       self$p$l_lexikon <- mapping$options$l_lexikon
       self$d$dat_mod  <- mapping$dat_mod
-      self$d$tab_table <- mapping$qsheet$tab_table[
-        mapping$qsheet$tab_table$TabNo == self$p$TabNo,
-      ]
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
+      self$d$tab_table <- gen_tab_table(self$p)
     },
     #' @description todo
     calc_qtab = function() {
@@ -181,76 +157,8 @@ Qtab <- R6::R6Class("Qtab",
     }
   )
 )
-Qtab2 <- R6::R6Class("Qtab",
-  public = list(
-    p = list(),
-    d = list(),
-    m = list(),
-    #' @description todo
-    initialize = function(params,
-                          mapping,
-                          ...) {
-      self$p <- params
-      self$m <- mapping
-      self$p$l_lexikon <- mapping$options$l_lexikon
-      self$d$dat_mod  <- mapping$dat_mod
-      self$d$head_table <- mapping$qsheet$head_table
-      self$d$col_table <- mapping$qsheet$col_table
-      self$d$tab_table <- gen_tab_table2(self$p)
-    },
-    #' @description todo
-    calc_qtab = function() {
-      calc_qtab2(self)
-      self$wide_tab()
-      invisible(self)
-    },
-    #' @description todo
-    long_tab = function() {
-      self$d$long_tab <- self$d[
-        c("row_table", "col_table", "val_table", "head_table", "tab_table")
-      ] |>
-        purrr::reduce(merge, all.x = TRUE) |>
-        tibble::as_tibble()
-      invisible(self)
-    },
-    #' @description todo
-    wide_tab = function() {
-      if (is.null(self$d$long_tab)) {
-        self$long_tab()
-      }
-      wide_tab(self)
-      invisible(self)
-    },
-    #' @description print
-    print = function(...) {
-      self |> print()
-      invisible(self)
-    }
-  )
-)
-# to be removed:
 calc_qtab <- function(qtab) {
   df <- get_raw_data(qtab)
-  if (nrow(df) == 0) {
-    return(NULL)
-  }
-  qtab$d$raw_data <- df
-
-  pivot_table_data(qtab)
-  calc_stats_rows(qtab)
-  calc_stat_fun(qtab)
-  calc_detail_freqs(qtab)
-  qtab$d$catrec_freqs <- calc_catrec_freqs(qtab)
-  qtab$d$percentages <- calc_percentages(qtab)
-  qtab$d$invalid_percentages <- calc_invalid_percentages(qtab)
-  qtab$d$vc_percentages <- calc_valid_counts_percentages(qtab)
-  qtab$d$tab_values <- rbind_table_numbers(qtab)
-  qtab$d$row_table <- gen_row_table(qtab)
-  post_process(qtab)
-  qtab$d$val_table <- gen_val_table(qtab)
-}
-calc_qtab2 <- function(qtab) {
-  df <- get_raw_data2(qtab)
   if (nrow(df) == 0) {
     return(NULL)
   }

@@ -3,95 +3,11 @@ gen_col_tables <- function(mapping) {
   mapping$qsheet$col_table <- gen_col_table(mapping)
 }
 
-# to be removed:
 get_raw_data <- function(qtab) {
   UseMethod("get_raw_data")
 }
-get_raw_data.default <- function(qtab) {
-  rowvars <- qtab$p$RowVar
-  colvars <- qtab$p$ColVar
-  weightvar <- qtab$p$Weight[[1]]
-  if (!is.null(weightvar)) {
-    weightvar <- weightvar |> purrr::set_names("weight")
-  }
-
-  rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
-  long_cols <- c(
-    rowvars_named,
-    colvars |> purrr::set_names(paste0("colvar_", colvars)),
-    weightvar
-  )
-  prep_data <- function() {
-    # same as:
-    # mapping$dat_mod |>
-    #   dplyr::filter(!!!rlang::parse_exprs(df_row$Filter[[1]])) |>
-    #   dplyr::select(!!!long_cols) |>
-    #   dplyr::mutate(across(everything(), strip_attributes))
-    # ... but with base R (for better performance)
-    if (length(qtab$p$Filter) == 0) {
-      row_lgl <- TRUE
-    } else {
-      filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
-      row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$d$dat_mod))
-      row_lgl <- all_true(row_lgls)
-    }
-    if (is.null(qtab$p$SelVar)) {
-      dat <- qtab$d$dat_mod[row_lgl, long_cols]
-      names(dat) <- names(long_cols)
-      # remove label information:
-      for (col in seq_len(ncol(dat))) {
-        attributes(dat[[col]]) <- NULL
-      }
-    } else {
-      # TODO: clean up this mess!...:
-      dfsel <- qtab$p$df_multi_selvar
-      dm <- qtab$m$dat_mod
-
-      dat <- seq_len(nrow(dfsel)) |> lapply(\(i) {
-        dfsel_i <- qtab$p$df_multi_selvar[i,]
-        long_cols <- c(
-          dfsel_i$rowvar[[1]] |> purrr::set_names(qtab$p$long_rowvars),
-          colvars |> purrr::set_names(paste0("colvar_", colvars)),
-          weightvar
-        )
-        dat <- dm[
-          row_lgl & selvar_eq_selval(dm[[dfsel_i$selvar]], qtab$p$SelVal),
-          long_cols
-        ]
-        names(dat) <- names(long_cols)
-        # remove label information:
-        for (col in seq_len(ncol(dat))) {
-          attributes(dat[[col]]) <- NULL
-        }
-        dat
-      }) |>
-        dplyr::bind_rows()
-    }
-    dat
-  }
-  res <- prep_data()
-  # TODO: move this somewhere where it only concerns mdg!...:
-  if (qtab$p$Type == "mdg") {
-    if (is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
-      res <- as.data.frame(res)
-      res[names(rowvars_named)] <- catrec(
-        res[names(rowvars_named)] |>
-          unlist(use.names = FALSE),
-        paste0("(", qtab$p$MdgVal, " = 1)")
-      )
-      qtab$p$MdgVal = 1
-    } else {
-      qtab$p$MdgVal = as.numeric(qtab$p$MdgVal)
-    }
-  }
-
-  res
-}
-get_raw_data2 <- function(qtab) {
-  UseMethod("get_raw_data2")
-}
-get_raw_data2.qtab_type_mdg <- function(qtab) {
-  res <- get_raw_data2.default(qtab)
+get_raw_data.qtab_type_mdg <- function(qtab) {
+  res <- get_raw_data.default(qtab)
   if (is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
     rowvars <- qtab$p$rowvars_mdg
     rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
@@ -107,7 +23,7 @@ get_raw_data2.qtab_type_mdg <- function(qtab) {
   }
   res
 }
-get_raw_data2.default <- function(qtab) {
+get_raw_data.default <- function(qtab) {
   # TODO: better generate this derived parameter `rowvars_mdg` for all qtab types,
   # not just mdg... (?):
   rowvars <- qtab$p$rowvars_mdg %||% qtab$p$RowVar
