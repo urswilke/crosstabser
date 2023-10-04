@@ -166,10 +166,19 @@ process_cat_rows <- function(qrow_params, mapping) {
   if (is.null(dfsel)) {
     n_rowvar <- qrow_params$RowVar |> length()
     res <- rep(list(qrow_params), each = n_rowvar)
-    return(purrr::map2(
-      res,
-      qrow_params$RowVar,
-      \(x, y) {x$RowVar <- y; x}
+    cat_rowvars <-  qrow_params$RowVar |> lapply(unlist)
+    varlabs <- lapply(cat_rowvars, \(rowvar) attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE))
+    return(purrr::pmap(
+      list(
+        res,
+        qrow_params$RowVar,
+        varlabs
+      ),
+      \(x, rowvar, varlab) {
+        x$RowVar <- rowvar
+        x$Title <- x$Title |> append(varlab)
+        x
+      }
     ))
   }
   n_cats <- length(qrow_params$RowVar) / qrow_params$n_selvar
@@ -203,7 +212,7 @@ process_repov_rows <- function(qrow_params, mapping) {
   repov_names <- repov_strings |> stringr::str_extract("^.*(?=:)")
   mw_rec_strings <- repov_strings |> stringr::str_remove("^.*:")
 
-  mw_title_string <- qrow_params$Title[[1]]
+  mw_title_string <- qrow_params$Title
   repov_title_appendices <- paste0(
     repov_names,
     mapping$options$l_lexikon[["cTabOverview"]]

@@ -84,7 +84,6 @@ Tabula <- R6::R6Class("Tabula",
         row <- self$qsheet$qsheet_raw$row
       }
       parse_qsheet(self, row)
-      update_qtabs(self, row)
       invisible(self)
     },
     xml = function(row = NULL) {
@@ -106,31 +105,13 @@ Tabula <- R6::R6Class("Tabula",
   )
 )
 parse_qsheet <- function(mapping, row) {
-  # to be removed:
-  mapping$qsheet$qsheet_processed <- process_qsheet_df(mapping) |>
-    gen_qrows_df_intermediate(mapping)
   mapping$qsheet$qrow_param_list <- extract_qrow_param_list(mapping)
-  # to be removed:
-  mapping$qsheet$tab_table <- gen_tab_table(mapping)
-  # to be removed:
-  mapping$qrows <- gen_qrows(mapping)
-
   calc_row_lgl <- purrr::map_int(mapping$qsheet$qrow_param_list, "row") %in% row
 
-  # TODO: find cleaner way...:
-  l_tab_table <- split(mapping$qsheet$tab_table, mapping$qsheet$tab_table$row)[calc_row_lgl]
-  mapping$qrows2 <- purrr::map2(
+  mapping$qrows2 <- lapply(
     mapping$qsheet$qrow_param_list[calc_row_lgl],
-    l_tab_table,
-    \(p, tab_table) Qrow2$new(p, tab_table, mapping))
-
-  # mapping$qrows2 <- mapping$qsheet$qrow_param_list[calc_row_lgl] |>
-  #   lapply(\(p) Qrow2$new(p, mapping))
-}
-update_qtabs <- function(mapping, row) {
-  qtabs <- mapping$qrows[mapping$qrows$row %in% row,]$qrow
-
-  qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
+    \(p) Qrow2$new(p, mapping)
+  )
 }
 
 read_data <- function(dat) {

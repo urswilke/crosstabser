@@ -38,17 +38,11 @@ Qrow2 <- R6::R6Class("Qrow",
                       m = list(),
                       qtabs = tibble::tibble(),
                       initialize = function(p,
-                                            tab_table,
                                             mapping,
                                             ...) {
                         self$p <- p
                         self$m <- mapping
-                        params_with_tab_table <- purrr::map2(
-                          process_qrow_params(self$p, self$m),
-                          tab_table |> split(seq_along(tab_table$row)),
-                          \(x, y) {x$tab_table <- y; x}
-                        )
-                        self$qtabs <- tibble::tibble(params = params_with_tab_table)
+                        self$qtabs <- tibble::tibble(params = process_qrow_params(self$p, self$m))
                         self$qtabs$obj <- new_qtabs2(self$qtabs$params, mapping)
 
                         self$calc_qrow_qtabs()

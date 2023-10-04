@@ -194,10 +194,9 @@ Qtab2 <- R6::R6Class("Qtab",
       self$m <- mapping
       self$p$l_lexikon <- mapping$options$l_lexikon
       self$d$dat_mod  <- mapping$dat_mod
-      self$d$tab_table <- params$tab_table
-      mapping$qsheet$tab_table <- gen_tab_table2(params)
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
+      self$d$tab_table <- gen_tab_table2(self$p)
     },
     #' @description todo
     calc_qtab = function() {
