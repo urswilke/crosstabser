@@ -113,31 +113,8 @@ wide_tab <- function(qtab) {
     dplyr::arrange(RowNo)
 }
 
-# the output seems to non-sense (now (?)), but kept here to remind me of the
-# idea to print all the parameters in a wide tibble...: (...Sorry... :)
-#' #' @export
-#' print.crosstabser_tabs <- function(x,
-#'                                    # unnest fields:
-#'                                    uf = c("d"),
-#'                                    n = 30,
-#'                                    ...) {
-#'   field_list <- x |> purrr::map(get_r6_fields)
-#'   df <- tibble::tibble(x = field_list) |>
-#'     tidyr::unnest_wider(x)
-#'   if (length(uf) > 0) {
-#'     df <- df |>
-#'       tidyr::unnest_wider(uf)
-#'     # |>
-#'     #   dplyr::select(-matches("^Col[A-Z]$"))
-#'   }
-#'   print(df, n = n, ...)
-#' }
-
-get_r6_fields <- function(r6_obj) {
-  r6_list <- as.list(r6_obj)
-  r6_list[r6_list |> purrr::map_lgl(\(x) !is.environment(x) && !is.function(x))]
-
-}
+# TODO: keep in mind me the
+# idea to print all the parameters in a wide tibble...
 
 post_process <- function(qtab) {
   if (!is.null(qtab$p$sort_params) && qtab$p$sort_params$key_count) {
