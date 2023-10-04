@@ -3,7 +3,7 @@ new_qtabs <- function(qrow_params, mapping) {
     purrr::map(\(x) new_qtab_type(x, mapping))
 }
 
-# Generate Qtab S3 subclasses qtab_type_... (cat, mw, mcg or mdg):
+# S3 Subclass (qtab_type_... cat, mw, mcg or mdg) of Qtab R6 Class:
 new_qtab_type <- function(params, mapping) {
   res <- params |>
     add_global_options(mapping) |>
