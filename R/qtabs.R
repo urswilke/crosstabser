@@ -1,19 +1,14 @@
 new_qtabs <- function(qrow_params, mapping) {
-  global_options <- mapping$options$l_macro_scenario
-  params <- qrow_params |>
-    purrr::map(\(x) add_global_options(x, global_options))
-  qtabs <- params |>
+  qrow_params |>
     purrr::map(\(x) new_qtab(x, mapping))
-  qtabs |>
-    purrr::walk(\(x) add_type_specific_params(x))
-
-  qtabs
-
 }
 
 new_qtab <- function(params, mapping) {
-  res <- Qtab$new(params, mapping)
+  res <- params |>
+    add_global_options(mapping) |>
+    Qtab$new(mapping)
   class(res) <- c(paste0("qtab_type_", params$Type), class(res))
+  add_type_specific_params(res)
   res
 }
 

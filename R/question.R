@@ -47,10 +47,13 @@ process_qrow_params <- function(qrow_param_list, mapping) {
     process_selvar(mapping) |>
     lapply(\(qrow_params) process_mw_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
     lapply(\(qrow_params) process_cat_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
-    lapply(\(qrow_params) process_repov_rows(qrow_params, mapping)) |> unlist(recursive = FALSE)
-
+    lapply(\(qrow_params) process_repov_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
+    lapply(new_qtab_params)
 }
-
+new_qtab_params <- function(x) {
+  class(x) <- c(paste0("qtab_params_", x$Type), class(x))
+  x
+}
 process_selvar <- function(qrow_params, mapping) {
   qrow_params$n_selvar <- ifelse(is.null(qrow_params$SelVar), 0, length(qrow_params$SelVar))
   selvar <- qrow_params$SelVar
