@@ -34,7 +34,7 @@ extract_qrow_param_list <- function(mapping) {
       Exclusive = split_cell(Exclusive),
     ) |>
     purrr::transpose() |>
-    purrr::map(\(x) x[!is.na(x)])
+    lapply(\(x) x[!is.na(x)])
 }
 gen_qrows_df_intermediate <- function(df, mapping) {
   df |>
