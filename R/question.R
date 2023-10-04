@@ -1,4 +1,4 @@
-read_qsheet_raw <- function(mapping_file, sheet = "Questions") {
+read_qsheet_raw <- function(mapping_file, row, sheet = "Questions") {
   # TODO: only use English column names
   df_questions <- readxl::read_excel(
     mapping_file, sheet = sheet,
@@ -8,7 +8,11 @@ read_qsheet_raw <- function(mapping_file, sheet = "Questions") {
     # first row column names... (=> " + 1"):
     dplyr::mutate(row = dplyr::row_number() + 1, .before = 1) |>
     tidyr::drop_na("Type") |>
-    dplyr::select(-dplyr::matches("^Col[A-Z]$"))
+    dplyr::select(-dplyr::matches("^Col[A-Z]$")) |>
+    # TODO: think if this should also be reduced to only reading the specified `row`s (e.g. with openxlsx)!
+    # In the example mapping now, it only takes < 0.3 seconds,
+    # but for big mappings this probably takes more than a second easily.
+    dplyr::filter(.data$row %in% .env$row)
 }
 
 extract_qrow_param_list <- function(mapping) {
