@@ -5,6 +5,6 @@ mapping_file <- "excel/mapping_neu_reduced.xlsx"
 tabsi <- Tabula$new(spss_file, mapping_file, c(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))
 
 test_that("crosstab prints are reproduced", {
-  testthat::expect_snapshot(tabsi$qrows |> lapply(\(x) x$qtabs$obj))
+  testthat::expect_snapshot(tabsi)
 })
 

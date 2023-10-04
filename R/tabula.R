@@ -87,7 +87,7 @@ Tabula <- R6::R6Class("Tabula",
     #  - the parameters of the qtab object,
     #  - ... (?)
     print = function(...) {
-      seq_len(nrow(self$qrows)) |> lapply(\(i) self$qrows$qrow[[i]]$qtabs) |> print()
+      self$qrows |> lapply(\(x) x$qtabs$obj) |> print()
       invisible(self)
     }
   )
