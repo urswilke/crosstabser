@@ -71,16 +71,6 @@ Tabula <- R6::R6Class("Tabula",
       self$calc_qtabs(row)
     },
     calc_qtabs = function(row = NULL) {
-      # TODO: think if this should also be reduced to only doing it on the
-      # selected `row` argument!
-      # In the example mapping now, it only takes < 0.3 seconds,
-      # but for big mappings this probably takes more than a second easily.
-      # --> Done now! - but perhaps better (cleaner!) to remove again
-      self$qsheet$qsheet_raw <- read_qsheet_raw(self$mapping_file)
-      # filter row indices specified, otherwise all:
-      if (is.null(row)) {
-        row <- self$qsheet$qsheet_raw$row
-      }
       parse_qsheet(self, row)
       invisible(self)
     },
@@ -103,6 +93,16 @@ Tabula <- R6::R6Class("Tabula",
   )
 )
 parse_qsheet <- function(mapping, row) {
+  # TODO: think if this should also be reduced to only doing it on the
+  # selected `row` argument!
+  # In the example mapping now, it only takes < 0.3 seconds,
+  # but for big mappings this probably takes more than a second easily.
+  # --> Done now! - but perhaps better (cleaner!) to remove again
+  mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file)
+  # filter row indices specified, otherwise all:
+  if (is.null(row)) {
+    row <- mapping$qsheet$qsheet_raw$row
+  }
   mapping$qsheet$qrow_param_list <- extract_qrow_param_list(mapping)
   calc_row_lgl <- purrr::map_int(mapping$qsheet$qrow_param_list, "row") %in% row
 
