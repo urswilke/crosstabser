@@ -151,7 +151,7 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
 }
 
 row_table_body.qtab_type_mdg <- function(qtab) {
-  l_varlabs <- qtab$d$dat_mod[qtab$p$RowVar] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  l_varlabs <- qtab$d$dat_mod[qtab$p$rowvars_valid_qtab] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
     l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
