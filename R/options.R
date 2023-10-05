@@ -96,7 +96,7 @@ add_type_specific_params.default <- function(qtab) {
     # for multi selvar:
     qtab$p$multi_selvar_rowvars_qtab
   )
-  qtab$p$rowvars_string <- paste(qtab$p$rowvars_qtab, collapse = ", ")
+  qtab$p$rowvars_string <- paste(qtab$p$multi_selvar_rowvars_qtab, collapse = ", ")
   qtab$p$raw_data_colvars <- paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))
   if (is.null(qtab$p$Weight[[1]])) {
     qtab$p$long_weight <- character()
