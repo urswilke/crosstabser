@@ -151,7 +151,7 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
 }
 
 row_table_body.qtab_type_mdg <- function(qtab) {
-  l_varlabs <- qtab$d$dat_mod[qtab$p$rowvars_valid_qtab] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  l_varlabs <- qtab$d$dat_mod[qtab$p$df_multi_selvar[[1]]$rowvar[[1]] %||% qtab$p$rowvars_valid_qtab] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
     l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
@@ -161,7 +161,7 @@ row_table_body.qtab_type_mdg <- function(qtab) {
     )
   }
   label_table <- data.frame(
-    var = names(l_varlabs),
+    var = qtab$p$rowvars_valid_qtab,
     label = unlist(l_varlabs, use.names = FALSE)
   ) |>
     dplyr::mutate(label = dplyr::coalesce(label, var))

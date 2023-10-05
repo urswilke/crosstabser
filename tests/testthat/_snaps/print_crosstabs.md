@@ -438,4 +438,72 @@
                                 in %     38  9.30  14.3 11.1   7.69    NA
       
       
+      [[15]]
+      [[15]][[1]]
+      # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
+      #   durch? Kundenzufriedenheit
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GESAMT               abs       4 151    19    75    43    14  
+      Summe der gültigen…  abs       5 162    20    82    46    14  
+      Kundenzufriedenheit  abs       6  NA    NA    NA    NA    NA  
+                           in %      7  NA    NA    NA    NA    NA  
+      Onlineauftritte      abs       8  NA    NA    NA    NA    NA  
+                           in %      9  NA    NA    NA    NA    NA  
+      Strukturanalyse      abs      10  NA    NA    NA    NA    NA  
+                           in %     11  NA    NA    NA    NA    NA  
+      Kundenzufriedenheit  abs      12  NA    NA    NA    NA    NA  
+                           in %     13  NA    NA    NA    NA    NA  
+      Onlineauftritte      abs      14  NA    NA    NA    NA    NA  
+                           in %     15  NA    NA    NA    NA    NA  
+      Strukturanalyse      abs      16  NA    NA    NA    NA    NA  
+                           in %     17  NA    NA    NA    NA    NA  
+      GÜLTIGE FÄLLE        abs      18 135    16    67    40    12  
+                           in %     19  89.4  84.2  89.3  93.0  85.7
+      
+      [[15]][[2]]
+      # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
+      #   durch? Marktvolumen
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GESAMT               abs       4  73     7    38    23       5
+      Summe der gültigen…  abs       5  27     5    13     6       3
+      Kundenzufriedenheit  abs       6  NA    NA    NA    NA      NA
+                           in %      7  NA    NA    NA    NA      NA
+      Onlineauftritte      abs       8  NA    NA    NA    NA      NA
+                           in %      9  NA    NA    NA    NA      NA
+      Strukturanalyse      abs      10  NA    NA    NA    NA      NA
+                           in %     11  NA    NA    NA    NA      NA
+      Kundenzufriedenheit  abs      12  NA    NA    NA    NA      NA
+                           in %     13  NA    NA    NA    NA      NA
+      Onlineauftritte      abs      14  NA    NA    NA    NA      NA
+                           in %     15  NA    NA    NA    NA      NA
+      Strukturanalyse      abs      16  NA    NA    NA    NA      NA
+                           in %     17  NA    NA    NA    NA      NA
+      GÜLTIGE FÄLLE        abs      18  23     4    12     5       2
+                           in %     19  31.5  57.1  31.6  21.7    40
+      
+      [[15]][[3]]
+      # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
+      #   durch? Sonstige
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GESAMT               abs       4  43     7    18    13       5
+      Summe der gültigen…  abs       5  17     2     8     5       2
+      Kundenzufriedenheit  abs       6  NA    NA    NA    NA      NA
+                           in %      7  NA    NA    NA    NA      NA
+      Onlineauftritte      abs       8  NA    NA    NA    NA      NA
+                           in %      9  NA    NA    NA    NA      NA
+      Strukturanalyse      abs      10  NA    NA    NA    NA      NA
+                           in %     11  NA    NA    NA    NA      NA
+      Kundenzufriedenheit  abs      12  NA    NA    NA    NA      NA
+                           in %     13  NA    NA    NA    NA      NA
+      Onlineauftritte      abs      14  NA    NA    NA    NA      NA
+                           in %     15  NA    NA    NA    NA      NA
+      Strukturanalyse      abs      16  NA    NA    NA    NA      NA
+                           in %     17  NA    NA    NA    NA      NA
+      GÜLTIGE FÄLLE        abs      18  15     1     8     4       2
+                           in %     19  34.9  14.3  44.4  30.8    40
+      
+      
 

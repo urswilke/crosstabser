@@ -123,18 +123,38 @@ add_type_specific_params.default <- function(qtab) {
 add_type_specific_params.qtab_type_mdg <- function(qtab) {
   qtab$p$MdgVal <- qtab$p$MdgVal %||% "1"
   qtab$p$rowvars_valid_qtab <- qtab$p$RowVar
-  qtab$p$rowvars_qtab <- c(qtab$p$RowVar, qtab$p$Unguelt)
-  qtab$p$multi_selvar_rowvars_qtab <- qtab$p$rowvars_qtab
+  # TODO: find cleaner way...!
+  qtab$p$rowvars_qtab <- qtab$p$RowVar
+  if (is.character(qtab$p$Unguelt)) {
+    qtab$p$rowvars_qtab <- c(qtab$p$rowvars_qtab, qtab$p$Unguelt)
+  }
+  qtab$p$multi_selvar_rowvars_qtab <- concat_multi_selvar_rowvars(qtab)
   # HACK to remove the numeric values that were wrongly added from the Macro sheet:
   if (is.numeric(qtab$p$Unguelt)) {
     qtab$p$Unguelt <- NULL
   }
   NextMethod()
 }
+concat_multi_selvar_rowvars <- function(qtab) {
+  if (is.null(qtab$p$SelVar)) {
+    return(qtab$p$rowvars_qtab)
+  }
+  selvar_rowvars <- qtab$p$df_multi_selvar[[1]]$rowvar
+  selvar_rowvars[[1]] |>
+    seq_along() |>
+    lapply(
+      \(i) selvar_rowvars |>
+        lapply(\(x) x[i]) |>
+        unlist() |>
+        paste(collapse = "/")
+    ) |>
+    unlist()
+}
+
 add_type_specific_params.qtab_type_mw <- function(qtab) {
   stat_fun <- qtab$p$ZsfgMW
   qtab$p$rowvars_qtab <- qtab$p$RowVar
-  qtab$p$multi_selvar_rowvars_qtab <- qtab$p$rowvars_qtab
+  qtab$p$multi_selvar_rowvars_qtab <- concat_multi_selvar_rowvars(qtab)
   if (length(stat_fun) == 0) {
     stat_fun = "mean"
   }
@@ -154,7 +174,7 @@ add_type_specific_params.qtab_type_cat <- function(qtab) {
 }
 add_type_specific_params.qtab_type_mcg <- function(qtab) {
   qtab$p$rowvars_qtab <- qtab$p$RowVar
-  qtab$p$multi_selvar_rowvars_qtab <- qtab$p$rowvars_qtab
+  qtab$p$multi_selvar_rowvars_qtab <- concat_multi_selvar_rowvars(qtab)
   NextMethod()
 }
 
