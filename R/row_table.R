@@ -284,7 +284,7 @@ row_table_summary.qtab_type_cat <- function(qtab) {
     qtab$p$l_lexikon["cTabAbs"],
     qtab$p$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
-  row_table$RowVariable <- paste0(qtab$p$rowvars_qtab, "__summary")
+  row_table$RowVariable <- paste0(qtab$p$multi_selvar_rowvars_qtab, "__summary")
   row_table
 }
 catlab_helper <- function(cat_lab_string, catrec_string) {

@@ -66,7 +66,7 @@ get_raw_data.default <- function(qtab) {
     dfsel_i <- dfsel[i,]
 
     long_cols <- c(
-      dfsel_i$rowvar[[1]] |> purrr::set_names(qtab$p$raw_data_rowvars[1]),
+      dfsel_i$rowvar[[1]] |> purrr::set_names(qtab$p$raw_data_rowvars),
       colvars |> purrr::set_names(paste0("colvar_", colvars)),
       weightvar
     )

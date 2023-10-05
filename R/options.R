@@ -91,7 +91,11 @@ add_type_specific_params <- function(qtab) {
 }
 
 add_type_specific_params.default <- function(qtab) {
-  qtab$p$raw_data_rowvars <- paste0("rowvar_", qtab$p$rowvars_qtab)
+  qtab$p$raw_data_rowvars <- paste0(
+    "rowvar_",
+    # for multi selvar:
+    qtab$p$multi_selvar_rowvars_qtab
+  )
   qtab$p$rowvars_string <- paste(qtab$p$rowvars_qtab, collapse = ", ")
   qtab$p$raw_data_colvars <- paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))
   if (is.null(qtab$p$Weight[[1]])) {
@@ -120,6 +124,7 @@ add_type_specific_params.qtab_type_mdg <- function(qtab) {
   qtab$p$MdgVal <- qtab$p$MdgVal %||% "1"
   qtab$p$rowvars_valid_qtab <- qtab$p$RowVar
   qtab$p$rowvars_qtab <- c(qtab$p$RowVar, qtab$p$Unguelt)
+  qtab$p$multi_selvar_rowvars_qtab <- qtab$p$rowvars_qtab
   # HACK to remove the numeric values that were wrongly added from the Macro sheet:
   if (is.numeric(qtab$p$Unguelt)) {
     qtab$p$Unguelt <- NULL
@@ -129,6 +134,7 @@ add_type_specific_params.qtab_type_mdg <- function(qtab) {
 add_type_specific_params.qtab_type_mw <- function(qtab) {
   stat_fun <- qtab$p$ZsfgMW
   qtab$p$rowvars_qtab <- qtab$p$RowVar
+  qtab$p$multi_selvar_rowvars_qtab <- qtab$p$rowvars_qtab
   if (length(stat_fun) == 0) {
     stat_fun = "mean"
   }
@@ -138,6 +144,9 @@ add_type_specific_params.qtab_type_mw <- function(qtab) {
 }
 add_type_specific_params.qtab_type_cat <- function(qtab) {
   qtab$p$rowvars_qtab <- qtab$p$RowVar
+  # for multiple selvar:
+  qtab$p$multi_selvar_rowvars_qtab <- qtab$p$rowvars_qtab |>
+    paste(collapse = "/")
   if (!is.null(qtab$p$MetrMac)) {
     qtab$p$df_stat_funs <- process_metr_mac(qtab)
   }
@@ -145,6 +154,7 @@ add_type_specific_params.qtab_type_cat <- function(qtab) {
 }
 add_type_specific_params.qtab_type_mcg <- function(qtab) {
   qtab$p$rowvars_qtab <- qtab$p$RowVar
+  qtab$p$multi_selvar_rowvars_qtab <- qtab$p$rowvars_qtab
   NextMethod()
 }
 

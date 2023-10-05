@@ -316,4 +316,126 @@
                                 in %     34  39.7   42.1  44    32.6   35.7
       
       
+      [[14]]
+      [[14]][[1]]
+      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Kundenzufriedenheit
+                                 NULL ----- GESAMT Regi… ----- ------ -----
+                                 NULL -----        Asien Euro… Norda… Pazi…
+      GESAMT                    abs       4 151     19   75     43     14  
+      0 - auf keinen Fall       abs       5  NA     NA   NA     NA     NA  
+                                in %      6  NA     NA   NA     NA     NA  
+      1                         abs       7  NA     NA   NA     NA     NA  
+                                in %      8  NA     NA   NA     NA     NA  
+      2                         abs       9  NA     NA   NA     NA     NA  
+                                in %     10  NA     NA   NA     NA     NA  
+      3                         abs      11  NA     NA   NA     NA     NA  
+                                in %     12  NA     NA   NA     NA     NA  
+      4                         abs      13  NA     NA   NA     NA     NA  
+                                in %     14  NA     NA   NA     NA     NA  
+      5                         abs      15  NA     NA   NA     NA     NA  
+                                in %     16  NA     NA   NA     NA     NA  
+      6                         abs      17  NA     NA   NA     NA     NA  
+                                in %     18  NA     NA   NA     NA     NA  
+      7                         abs      19  NA     NA   NA     NA     NA  
+                                in %     20  NA     NA   NA     NA     NA  
+      8                         abs      21  NA     NA   NA     NA     NA  
+                                in %     22  NA     NA   NA     NA     NA  
+      9                         abs      23  NA     NA   NA     NA     NA  
+                                in %     24  NA     NA   NA     NA     NA  
+      10 - auf jeden Fall       abs      25  NA     NA   NA     NA     NA  
+                                in %     26  NA     NA   NA     NA     NA  
+      ZUSAMMENFASSUNG     Prom… abs      27 111     14   53     32     12  
+                          Prom… in %     28  75.5   77.8 73.6   74.4   85.7
+                          Indi… abs      29  31      2   18      9      2  
+                          Indi… in %     30  21.1   11.1 25     20.9   14.3
+                          Detr… abs      31   5      2    1      2     NA  
+                          Detr… in %     32   3.40  11.1  1.39   4.65  NA  
+                          NPS   abs      33 106     12   52     30     12  
+                          NPS   in %     34  72.1   66.7 72.2   69.8   85.7
+      GÜLTIGE FÄLLE             abs      35 147     18   72     43     14  
+                                in %     36  97.4   94.7 96    100    100  
+      keine Angabe              abs      37  NA     NA   NA     NA     NA  
+                                in %     38  NA     NA   NA     NA     NA  
+      
+      [[14]][[2]]
+      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Marktvolumen
+                                 NULL ----- GESA… Regi… ----- ------ -----
+                                 NULL -----       Asien Euro… Norda… Pazi…
+      GESAMT                    abs       4 73      7   38     23        5
+      0 - auf keinen Fall       abs       5 NA     NA   NA     NA       NA
+                                in %      6 NA     NA   NA     NA       NA
+      1                         abs       7 NA     NA   NA     NA       NA
+                                in %      8 NA     NA   NA     NA       NA
+      2                         abs       9 NA     NA   NA     NA       NA
+                                in %     10 NA     NA   NA     NA       NA
+      3                         abs      11 NA     NA   NA     NA       NA
+                                in %     12 NA     NA   NA     NA       NA
+      4                         abs      13 NA     NA   NA     NA       NA
+                                in %     14 NA     NA   NA     NA       NA
+      5                         abs      15 NA     NA   NA     NA       NA
+                                in %     16 NA     NA   NA     NA       NA
+      6                         abs      17 NA     NA   NA     NA       NA
+                                in %     18 NA     NA   NA     NA       NA
+      7                         abs      19 NA     NA   NA     NA       NA
+                                in %     20 NA     NA   NA     NA       NA
+      8                         abs      21 NA     NA   NA     NA       NA
+                                in %     22 NA     NA   NA     NA       NA
+      9                         abs      23 NA     NA   NA     NA       NA
+                                in %     24 NA     NA   NA     NA       NA
+      10 - auf jeden Fall       abs      25 NA     NA   NA     NA       NA
+                                in %     26 NA     NA   NA     NA       NA
+      ZUSAMMENFASSUNG     Prom… abs      27 52      4   29     15        4
+                          Prom… in %     28 72.2   57.1 78.4   65.2     80
+                          Indi… abs      29 17      3    6      7        1
+                          Indi… in %     30 23.6   42.9 16.2   30.4     20
+                          Detr… abs      31  3     NA    2      1       NA
+                          Detr… in %     32  4.17  NA    5.41   4.35    NA
+                          NPS   abs      33 49      4   27     14        4
+                          NPS   in %     34 68.1   57.1 73.0   60.9     80
+      GÜLTIGE FÄLLE             abs      35 72      7   37     23        5
+                                in %     36 98.6  100   97.4  100      100
+      keine Angabe              abs      37 NA     NA   NA     NA       NA
+                                in %     38 NA     NA   NA     NA       NA
+      
+      [[14]][[3]]
+      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Sonstige
+                                 NULL ----- GESA… Regi… ----- ----- -----
+                                 NULL -----       Asien Euro… Nord… Pazi…
+      GESAMT                    abs       4 43      7   18    13        5
+      0 - auf keinen Fall       abs       5 NA     NA   NA    NA       NA
+                                in %      6 NA     NA   NA    NA       NA
+      1                         abs       7 NA     NA   NA    NA       NA
+                                in %      8 NA     NA   NA    NA       NA
+      2                         abs       9 NA     NA   NA    NA       NA
+                                in %     10 NA     NA   NA    NA       NA
+      3                         abs      11 NA     NA   NA    NA       NA
+                                in %     12 NA     NA   NA    NA       NA
+      4                         abs      13 NA     NA   NA    NA       NA
+                                in %     14 NA     NA   NA    NA       NA
+      5                         abs      15 NA     NA   NA    NA       NA
+                                in %     16 NA     NA   NA    NA       NA
+      6                         abs      17 NA     NA   NA    NA       NA
+                                in %     18 NA     NA   NA    NA       NA
+      7                         abs      19 NA     NA   NA    NA       NA
+                                in %     20 NA     NA   NA    NA       NA
+      8                         abs      21 NA     NA   NA    NA       NA
+                                in %     22 NA     NA   NA    NA       NA
+      9                         abs      23 NA     NA   NA    NA       NA
+                                in %     24 NA     NA   NA    NA       NA
+      10 - auf jeden Fall       abs      25 NA     NA   NA    NA       NA
+                                in %     26 NA     NA   NA    NA       NA
+      ZUSAMMENFASSUNG     Prom… abs      27 27      4    9    10        4
+                          Prom… in %     28 69.2   66.7 56.2  83.3     80
+                          Indi… abs      29  9      1    6     1        1
+                          Indi… in %     30 23.1   16.7 37.5   8.33    20
+                          Detr… abs      31  3      1    1     1       NA
+                          Detr… in %     32  7.69  16.7  6.25  8.33    NA
+                          NPS   abs      33 24      3    8     9        4
+                          NPS   in %     34 61.5   50   50    75       80
+      GÜLTIGE FÄLLE             abs      35 39      6   16    12        5
+                                in %     36 90.7   85.7 88.9  92.3    100
+      keine Angabe              abs      37 NA     NA   NA    NA       NA
+                                in %     38 NA     NA   NA    NA       NA
+      
+      
 
