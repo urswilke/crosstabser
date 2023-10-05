@@ -135,7 +135,7 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
       res <- df_stats_rows[c("colvar", "colval", x)]
       names(res)[3] <- "value"
       res$rowval <- 1
-      res$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
+      res$rowvar <- qtab$p$rowvars_string
       res
     })
   l_row_types$total$RowContent <- "Total"
@@ -202,7 +202,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
       res <- df_stats_rows[c("colvar", "colval", x)]
       names(res)[3] <- "value"
       res$rowval <- 1
-      res$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
+      res$rowvar <- qtab$p$rowvars_string
       res
     })
   l_row_types$total$RowContent <- "Total"
@@ -242,7 +242,7 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
     )
 
   df_stats_rows$rowval <- 1
-  df_stats_rows$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
+  df_stats_rows$rowvar <- qtab$p$rowvars_string
 
   df_stats_rows$RowContent <- "Valid"
   df_stats_rows$RowAbsPercent <- "Abs"

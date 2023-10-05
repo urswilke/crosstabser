@@ -212,7 +212,7 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
   ) |>
     pivot_cols()
 
-  rowvars <- qtab$p$RowVar |> paste(collapse = ", ")
+  rowvars <- qtab$p$rowvars_string
   df_long$rowvar <- rowvars
   qtab$d$long_data <- df_long
 }

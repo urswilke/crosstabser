@@ -92,6 +92,7 @@ add_type_specific_params <- function(qtab) {
 
 add_type_specific_params.default <- function(qtab) {
   qtab$p$raw_data_rowvars <- paste0("rowvar_", qtab$p$RowVar)
+  qtab$p$rowvars_string <- paste(qtab$p$RowVar, collapse = ", ")
   qtab$p$raw_data_colvars <- paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))
   if (is.null(qtab$p$Weight[[1]])) {
     qtab$p$long_weight <- character()
