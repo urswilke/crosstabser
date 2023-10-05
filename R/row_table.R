@@ -100,9 +100,9 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
     return(NULL)
   }
-  occuring_vals <- qtab$d$dat_mod[qtab$p$RowVar] |> unlist(use.names = FALSE) |> unique()
+  occuring_vals <- qtab$d$dat_mod[qtab$p$rowvars_qtab] |> unlist(use.names = FALSE) |> unique()
   invalid_vals <- qtab$p$Unguelt
-  vallabs <- attr(qtab$d$dat_mod[[qtab$p$RowVar[1]]], "labels")
+  vallabs <- attr(qtab$d$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
 
   # the following is equivalent to (but faster with base R):
   # vallab_table <- vallabs |>
@@ -189,7 +189,7 @@ row_table_body.qtab_type_mdg <- function(qtab) {
 }
 
 row_table_body.qtab_type_mw <- function(qtab) {
-  l_varlabs <- qtab$d$dat_mod[qtab$p$RowVar] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  l_varlabs <- qtab$d$dat_mod[qtab$p$rowvars_qtab] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
     l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
@@ -284,7 +284,7 @@ row_table_summary.qtab_type_cat <- function(qtab) {
     qtab$p$l_lexikon["cTabAbs"],
     qtab$p$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
-  row_table$RowVariable <- paste0(qtab$p$RowVar, "__summary")
+  row_table$RowVariable <- paste0(qtab$p$rowvars_qtab, "__summary")
   row_table
 }
 catlab_helper <- function(cat_lab_string, catrec_string) {
@@ -330,7 +330,7 @@ row_table_stats.qtab_type_cat <- function(qtab) {
 
   row_table$RowContent <- "Statistics"
   row_table$RowDecimals <- df_stat_funs$decimals
-  row_table$RowVariable <- qtab$p$RowVar
+  row_table$RowVariable <- qtab$p$rowvars_qtab
   # TODO: tell Wolf that I needed this to properly merge to tab_values when
   # there multiple rows with MStatistics:
   row_table$RowStatFun <- df_stat_funs$fun
@@ -347,7 +347,7 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   if (all(!occuring_vals %in% invalid_vals)) {
     return(NULL)
   }
-  vallabs <- attr(qtab$d$dat_mod[[qtab$p$RowVar[1]]], "labels")
+  vallabs <- attr(qtab$d$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
 
   occuring_invalid_vals <- intersect(invalid_vals, occuring_vals)
   all_invalid_vals <- c(vallabs, occuring_invalid_vals)
