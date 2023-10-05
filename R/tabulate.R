@@ -9,7 +9,7 @@ get_raw_data <- function(qtab) {
 get_raw_data.qtab_type_mdg <- function(qtab) {
   res <- get_raw_data.default(qtab)
   if (is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
-    rowvars <- qtab$p$rowvars_mdg
+    rowvars <- qtab$p$rowvars_qtab
     rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
     res <- as.data.frame(res)
     res[names(rowvars_named)] <- catrec(
@@ -24,9 +24,7 @@ get_raw_data.qtab_type_mdg <- function(qtab) {
   res
 }
 get_raw_data.default <- function(qtab) {
-  # TODO: better generate this derived parameter `rowvars_mdg` for all qtab types,
-  # not just mdg... (?):
-  rowvars <- qtab$p$rowvars_mdg %||% qtab$p$RowVar
+  rowvars <- qtab$p$rowvars_qtab
   rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
   colvars <- qtab$p$ColVar
   colvars_named <- colvars |> purrr::set_names(paste0("colvar_", colvars))
