@@ -4,15 +4,19 @@ read_qsheet_raw <- function(mapping_file, row, sheet = "Questions") {
     mapping_file, sheet = sheet,
     col_types = "text"
   )
-  df_questions |>
+  res <- df_questions |>
     # first row column names... (=> " + 1"):
     dplyr::mutate(row = dplyr::row_number() + 1, .before = 1) |>
     tidyr::drop_na("Type") |>
-    dplyr::select(-dplyr::matches("^Col[A-Z]$")) |>
-    # TODO: think if this should also be reduced to only reading the specified `row`s (e.g. with openxlsx)!
-    # In the example mapping now, it only takes < 0.3 seconds,
-    # but for big mappings this probably takes more than a second easily.
-    dplyr::filter(.data$row %in% .env$row)
+    dplyr::select(-dplyr::matches("^Col[A-Z]$"))
+  # filter row indices specified, otherwise all:
+  if (is.null(row)) {
+    return(res)
+  }
+  # TODO: think if this should also be reduced to only reading the specified `row`s (e.g. with openxlsx)!
+  # In the example mapping now, it only takes < 0.3 seconds,
+  # but for big mappings this probably takes more than a second easily.
+  res[res$row %in% row,]
 }
 
 extract_qrow_param_list <- function(mapping) {
