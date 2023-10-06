@@ -92,7 +92,7 @@ prep_data <- function(qtab, rowvars, new_rowvars, colvars_named, weightvar, row_
   dat <- qtab$d$dat_mod[row_in_filter, long_cols]
   names(dat) <- names(long_cols)
   # remove label information:
-  for (col in seq_len(ncol(dat))) {
+  for (col in names(dat)) {
     attributes(dat[[col]]) <- NULL
   }
   dat
