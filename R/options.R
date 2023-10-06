@@ -167,7 +167,7 @@ add_type_specific_params.qtab_type_mw <- function(qtab) {
   NextMethod()
 }
 add_type_specific_params.qtab_type_cat <- function(qtab) {
-  qtab$p$rowvars_qtab <- qtab$p$RowVar
+  qtab$p$rowvars_qtab <- unlist(qtab$p$df_multi_selvar[[1]]$rowvar) %||% qtab$p$RowVar
   # for multiple selvar:
   qtab$p$multi_selvar_rowvars_qtab <- qtab$p$rowvars_qtab |>
     paste(collapse = "/")
