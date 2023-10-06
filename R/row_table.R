@@ -151,7 +151,8 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
 }
 
 row_table_body.qtab_type_mdg <- function(qtab) {
-  l_varlabs <- qtab$d$dat_mod[qtab$p$rowvars_valid_qtab] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  rowvars <- qtab$p$df_selvar$rowvar[[1]] %||% qtab$p$rowvars_valid_qtab
+  l_varlabs <- qtab$d$dat_mod[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
     l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
@@ -161,7 +162,7 @@ row_table_body.qtab_type_mdg <- function(qtab) {
     )
   }
   label_table <- data.frame(
-    var = names(l_varlabs),
+    var = rowvars,
     label = unlist(l_varlabs, use.names = FALSE)
   ) |>
     dplyr::mutate(label = dplyr::coalesce(label, var))
@@ -184,12 +185,13 @@ row_table_body.qtab_type_mdg <- function(qtab) {
     1L
   ) |> rep(n_vals)
   row_table$RowContent <- "Detail"
-  row_table$RowVariable <- label_table$var
+  row_table$RowVariable <- qtab$p$selvar_rowvars_qtab |> rep(each = 2)
   row_table
 }
 
 row_table_body.qtab_type_mw <- function(qtab) {
-  l_varlabs <- qtab$d$dat_mod[qtab$p$rowvars_qtab] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  rowvars <- qtab$p$df_selvar$rowvar[[1]] %||% qtab$p$rowvars_qtab
+  l_varlabs <- qtab$d$dat_mod[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
     l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
@@ -199,7 +201,7 @@ row_table_body.qtab_type_mw <- function(qtab) {
     )
   }
   label_table <- data.frame(
-    var = names(l_varlabs),
+    var = rowvars,
     label = unlist(l_varlabs, use.names = FALSE)
   ) |>
     dplyr::mutate(label = dplyr::coalesce(label, var))
@@ -229,7 +231,7 @@ row_table_body.qtab_type_mw <- function(qtab) {
     1L,
     0L
   ) |> rep(n_vals)
-  row_table$RowVariable <- label_table$var
+  row_table$RowVariable <- qtab$p$selvar_rowvars_qtab |> rep(each = 2)
   row_table
 }
 
@@ -284,7 +286,7 @@ row_table_summary.qtab_type_cat <- function(qtab) {
     qtab$p$l_lexikon["cTabAbs"],
     qtab$p$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
-  row_table$RowVariable <- paste0(qtab$p$rowvars_qtab, "__summary")
+  row_table$RowVariable <- paste0(qtab$p$selvar_rowvars_qtab, "__summary")
   row_table
 }
 catlab_helper <- function(cat_lab_string, catrec_string) {
@@ -330,7 +332,7 @@ row_table_stats.qtab_type_cat <- function(qtab) {
 
   row_table$RowContent <- "Statistics"
   row_table$RowDecimals <- df_stat_funs$decimals
-  row_table$RowVariable <- qtab$p$rowvars_qtab
+  row_table$RowVariable <- qtab$p$selvar_rowvars_qtab
   # TODO: tell Wolf that I needed this to properly merge to tab_values when
   # there multiple rows with MStatistics:
   row_table$RowStatFun <- df_stat_funs$fun

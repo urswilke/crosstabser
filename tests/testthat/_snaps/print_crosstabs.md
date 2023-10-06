@@ -316,4 +316,453 @@
                                 in %     34  39.7   42.1  44    32.6   35.7
       
       
+      [[14]]
+      [[14]][[1]]
+      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Kundenzufriedenheit
+                                 NULL ----- GESAMT  Regi… ----- ------ ------
+                                 NULL -----         Asien Euro… Norda… Pazif…
+      GESAMT                    abs       4 151     19    75     43     14   
+      0 - auf keinen Fall       abs       5  NA     NA    NA     NA     NA   
+                                in %      6  NA     NA    NA     NA     NA   
+      1                         abs       7  NA     NA    NA     NA     NA   
+                                in %      8  NA     NA    NA     NA     NA   
+      2                         abs       9   1      1    NA     NA     NA   
+                                in %     10   0.680  5.56 NA     NA     NA   
+      3                         abs      11  NA     NA    NA     NA     NA   
+                                in %     12  NA     NA    NA     NA     NA   
+      4                         abs      13  NA     NA    NA     NA     NA   
+                                in %     14  NA     NA    NA     NA     NA   
+      5                         abs      15   2      1     1     NA     NA   
+                                in %     16   1.36   5.56  1.39  NA     NA   
+      6                         abs      17   2     NA    NA      2     NA   
+                                in %     18   1.36  NA    NA      4.65  NA   
+      7                         abs      19   7      1     4      2     NA   
+                                in %     20   4.76   5.56  5.56   4.65  NA   
+      8                         abs      21  24      1    14      7      2   
+                                in %     22  16.3    5.56 19.4   16.3   14.3 
+      9                         abs      23  22      6    10      5      1   
+                                in %     24  15.0   33.3  13.9   11.6    7.14
+      10 - auf jeden Fall       abs      25  89      8    43     27     11   
+                                in %     26  60.5   44.4  59.7   62.8   78.6 
+      ZUSAMMENFASSUNG     Prom… abs      27 111     14    53     32     12   
+                          Prom… in %     28  75.5   77.8  73.6   74.4   85.7 
+                          Indi… abs      29  31      2    18      9      2   
+                          Indi… in %     30  21.1   11.1  25     20.9   14.3 
+                          Detr… abs      31   5      2     1      2     NA   
+                          Detr… in %     32   3.40  11.1   1.39   4.65  NA   
+                          NPS   abs      33 106     12    52     30     12   
+                          NPS   in %     34  72.1   66.7  72.2   69.8   85.7 
+      GÜLTIGE FÄLLE             abs      35 147     18    72     43     14   
+                                in %     36  97.4   94.7  96    100    100   
+      keine Angabe              abs      37   4      1     3     NA     NA   
+                                in %     38   2.65   5.26  4     NA     NA   
+      
+      [[14]][[2]]
+      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Marktvolumen
+                                 NULL ----- GESA… Regi… ----- ------ -----
+                                 NULL -----       Asien Euro… Norda… Pazi…
+      GESAMT                    abs       4 73      7   38     23        5
+      0 - auf keinen Fall       abs       5 NA     NA   NA     NA       NA
+                                in %      6 NA     NA   NA     NA       NA
+      1                         abs       7 NA     NA   NA     NA       NA
+                                in %      8 NA     NA   NA     NA       NA
+      2                         abs       9  1     NA    1     NA       NA
+                                in %     10  1.39  NA    2.70  NA       NA
+      3                         abs      11 NA     NA   NA     NA       NA
+                                in %     12 NA     NA   NA     NA       NA
+      4                         abs      13 NA     NA   NA     NA       NA
+                                in %     14 NA     NA   NA     NA       NA
+      5                         abs      15  1     NA    1     NA       NA
+                                in %     16  1.39  NA    2.70  NA       NA
+      6                         abs      17  1     NA   NA      1       NA
+                                in %     18  1.39  NA   NA      4.35    NA
+      7                         abs      19  4      1    2      1       NA
+                                in %     20  5.56  14.3  5.41   4.35    NA
+      8                         abs      21 13      2    4      6        1
+                                in %     22 18.1   28.6 10.8   26.1     20
+      9                         abs      23 11     NA    8      2        1
+                                in %     24 15.3   NA   21.6    8.70    20
+      10 - auf jeden Fall       abs      25 41      4   21     13        3
+                                in %     26 56.9   57.1 56.8   56.5     60
+      ZUSAMMENFASSUNG     Prom… abs      27 52      4   29     15        4
+                          Prom… in %     28 72.2   57.1 78.4   65.2     80
+                          Indi… abs      29 17      3    6      7        1
+                          Indi… in %     30 23.6   42.9 16.2   30.4     20
+                          Detr… abs      31  3     NA    2      1       NA
+                          Detr… in %     32  4.17  NA    5.41   4.35    NA
+                          NPS   abs      33 49      4   27     14        4
+                          NPS   in %     34 68.1   57.1 73.0   60.9     80
+      GÜLTIGE FÄLLE             abs      35 72      7   37     23        5
+                                in %     36 98.6  100   97.4  100      100
+      keine Angabe              abs      37  1     NA    1     NA       NA
+                                in %     38  1.37  NA    2.63  NA       NA
+      
+      [[14]][[3]]
+      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Sonstige
+                                 NULL ----- GESA… Regi… ----- ----- -----
+                                 NULL -----       Asien Euro… Nord… Pazi…
+      GESAMT                    abs       4 43      7   18    13        5
+      0 - auf keinen Fall       abs       5 NA     NA   NA    NA       NA
+                                in %      6 NA     NA   NA    NA       NA
+      1                         abs       7 NA     NA   NA    NA       NA
+                                in %      8 NA     NA   NA    NA       NA
+      2                         abs       9 NA     NA   NA    NA       NA
+                                in %     10 NA     NA   NA    NA       NA
+      3                         abs      11 NA     NA   NA    NA       NA
+                                in %     12 NA     NA   NA    NA       NA
+      4                         abs      13 NA     NA   NA    NA       NA
+                                in %     14 NA     NA   NA    NA       NA
+      5                         abs      15  2      1    1    NA       NA
+                                in %     16  5.13  16.7  6.25 NA       NA
+      6                         abs      17  1     NA   NA     1       NA
+                                in %     18  2.56  NA   NA     8.33    NA
+      7                         abs      19  3      1    2    NA       NA
+                                in %     20  7.69  16.7 12.5  NA       NA
+      8                         abs      21  6     NA    4     1        1
+                                in %     22 15.4   NA   25     8.33    20
+      9                         abs      23  6      2    2     2       NA
+                                in %     24 15.4   33.3 12.5  16.7     NA
+      10 - auf jeden Fall       abs      25 21      2    7     8        4
+                                in %     26 53.8   33.3 43.8  66.7     80
+      ZUSAMMENFASSUNG     Prom… abs      27 27      4    9    10        4
+                          Prom… in %     28 69.2   66.7 56.2  83.3     80
+                          Indi… abs      29  9      1    6     1        1
+                          Indi… in %     30 23.1   16.7 37.5   8.33    20
+                          Detr… abs      31  3      1    1     1       NA
+                          Detr… in %     32  7.69  16.7  6.25  8.33    NA
+                          NPS   abs      33 24      3    8     9        4
+                          NPS   in %     34 61.5   50   50    75       80
+      GÜLTIGE FÄLLE             abs      35 39      6   16    12        5
+                                in %     36 90.7   85.7 88.9  92.3    100
+      keine Angabe              abs      37  4      1    2     1       NA
+                                in %     38  9.30  14.3 11.1   7.69    NA
+      
+      
+      [[15]]
+      [[15]][[1]]
+      # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
+      #   durch? Kundenzufriedenheit
+                            NULL ----- GESAMT Regi… ----- ----- -----
+                            NULL -----        Asien Euro… Nord… Pazi…
+      GESAMT               abs       4 151     19   75     43   14   
+      Summe der gültigen…  abs       5 162     20   82     46   14   
+      Kundenzufriedenheit  abs       6 132     15   66     40   11   
+                           in %      7  97.8   93.8 98.5  100   91.7 
+      Onlineauftritte      abs       8  18      3   10      4    1   
+                           in %      9  13.3   18.8 14.9   10    8.33
+      Strukturanalyse      abs      10  12      2    6      2    2   
+                           in %     11   8.89  12.5  8.96   5   16.7 
+      GÜLTIGE FÄLLE        abs      12 135     16   67     40   12   
+                           in %     13  89.4   84.2 89.3   93.0 85.7 
+      
+      [[15]][[2]]
+      # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
+      #   durch? Marktvolumen
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GESAMT               abs       4  73     7    38    23       5
+      Summe der gültigen…  abs       5  27     5    13     6       3
+      Kundenzufriedenheit  abs       6  18     4     9     3       2
+                           in %      7  78.3 100    75    60     100
+      Onlineauftritte      abs       8   9     1     4     3       1
+                           in %      9  39.1  25    33.3  60      50
+      Strukturanalyse      abs      10  NA    NA    NA    NA      NA
+                           in %     11  NA    NA    NA    NA      NA
+      GÜLTIGE FÄLLE        abs      12  23     4    12     5       2
+                           in %     13  31.5  57.1  31.6  21.7    40
+      
+      [[15]][[3]]
+      # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
+      #   durch? Sonstige
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GESAMT               abs       4  43     7    18    13       5
+      Summe der gültigen…  abs       5  17     2     8     5       2
+      Kundenzufriedenheit  abs       6  12     1     7     3       1
+                           in %      7  80   100    87.5  75      50
+      Onlineauftritte      abs       8   2     1    NA     1      NA
+                           in %      9  13.3 100    NA    25      NA
+      Strukturanalyse      abs      10   3    NA     1     1       1
+                           in %     11  20    NA    12.5  25      50
+      GÜLTIGE FÄLLE        abs      12  15     1     8     4       2
+                           in %     13  34.9  14.3  44.4  30.8    40
+      
+      
+      [[16]]
+      [[16]][[1]]
+      # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Kundenzufriedenheit
+                            NULL ----- GESAMT Regi… ----- ----- -----
+                            NULL -----        Asien Euro… Nord… Pazi…
+      GESAMT               abs       4 151     19    75   43     14  
+      Summe der gültigen…  abs       5  42      7    19   11      5  
+      Darstellung der Da…  abs       6  13     NA     8    3      2  
+                           in %      7  35.1   NA    47.1 30     50  
+      Sonstiges            abs       8  12      2     4    5      1  
+                           in %      9  32.4   33.3  23.5 50     25  
+      Schnelligkeit der …  abs      10  11      3     3    3      2  
+                           in %     11  29.7   50    17.6 30     50  
+      Freundlichkeit des…  abs      12   6      2     4   NA     NA  
+                           in %     13  16.2   33.3  23.5 NA     NA  
+      GÜLTIGE FÄLLE        abs      14  37      6    17   10      4  
+                           in %     15  24.5   31.6  22.7 23.3   28.6
+      einfache Weiterver…  abs      16  37      3    22    8      4  
+                           in %     17  24.5   15.8  29.3 18.6   28.6
+      Kompetenz            abs      18  13      3     6    4     NA  
+                           in %     19   8.61  15.8   8    9.30  NA  
+      Keine Angabe         abs      20  69      7    34   21      7  
+                           in %     21  45.7   36.8  45.3 48.8   50  
+      
+      [[16]][[2]]
+      # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Marktvolumen
+                            NULL ----- GESA… Regi… ----- ------ -----
+                            NULL -----       Asien Euro… Norda… Pazi…
+      GESAMT               abs       4 73      7    38    23        5
+      Summe der gültigen…  abs       5  8      1     4     2        1
+      Schnelligkeit der …  abs       6  4     NA     3    NA        1
+                           in %      7 50     NA    75    NA      100
+      Freundlichkeit des…  abs       8  2     NA    NA     2       NA
+                           in %      9 25     NA    NA   100       NA
+      Darstellung der Da…  abs      10  2      1     1    NA       NA
+                           in %     11 25    100    25    NA       NA
+      Sonstiges            abs      12 NA     NA    NA    NA       NA
+                           in %     13 NA     NA    NA    NA       NA
+      GÜLTIGE FÄLLE        abs      14  8      1     4     2        1
+                           in %     15 11.0   14.3  10.5   8.70    20
+      einfache Weiterver…  abs      16  1     NA    NA     1       NA
+                           in %     17  1.37  NA    NA     4.35    NA
+      Kompetenz            abs      18 14      1    10     2        1
+                           in %     19 19.2   14.3  26.3   8.70    20
+      
+      [[16]][[3]]
+      # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
+                            NULL ----- GESA… Regi… ------ ----- -----
+                            NULL -----       Asien Europa Nord… Pazi…
+      GESAMT               abs       4 43      7    18    13        5
+      Summe der gültigen…  abs       5  6      1     1     3        1
+      Darstellung der Da…  abs       6  3      1    NA     2       NA
+                           in %      7 50    100    NA    66.7     NA
+      Freundlichkeit des…  abs       8  2     NA     1    NA        1
+                           in %      9 33.3   NA   100    NA      100
+      Schnelligkeit der …  abs      10  1     NA    NA     1       NA
+                           in %     11 16.7   NA    NA    33.3     NA
+      Sonstiges            abs      12 NA     NA    NA    NA       NA
+                           in %     13 NA     NA    NA    NA       NA
+      GÜLTIGE FÄLLE        abs      14  6      1     1     3        1
+                           in %     15 14.0   14.3   5.56 23.1     20
+      einfache Weiterver…  abs      16  4      2     1     1       NA
+                           in %     17  9.30  28.6   5.56  7.69    NA
+      Kompetenz            abs      18  5     NA     2     2        1
+                           in %     19 11.6   NA    11.1  15.4     20
+      
+      
+      [[17]]
+      [[17]][[1]]
+      # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
+      #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
+      #   TOP3-Übersicht
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GÜLTIGE FÄLLE (min…  abs       4  71     7    38    22       4
+      Schnelle Umsetzung   TOP3      5  64.7  42.9  74.3  59.1    50
+                           GÜLT…     6  68     7    35    22       4
+      Kurzfristige Anpas…  TOP3      7  71.2  66.7  71.4  71.4    75
+                           GÜLT…     8  66     6    35    21       4
+      
+      [[17]][[2]]
+      # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
+      #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
+      #   Mittelwertüberblick
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GÜLTIGE FÄLLE (min…  abs       4 71     7    38    22      4  
+      Schnelle Umsetzung   Mitt…     5  7.49  7.43  7.6   7.5    6.5
+                           GÜLT…     6 68     7    35    22      4  
+      Kurzfristige Anpas…  Mitt…     7  8.02  8.67  8.09  7.62   8.5
+                           GÜLT…     8 66     6    35    21      4  
+      
+      [[17]][[3]]
+      # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
+      #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
+      #   Schnelle Umsetzung
+                                 NULL ----- GESAMT Region ------ ------ -----
+                                 NULL -----        Asien  Europa Norda… Pazi…
+      GESAMT                    abs       4 73      7     38     23       5  
+      1 - völlig unzufri…       abs       5 NA     NA     NA     NA      NA  
+                                in %      6 NA     NA     NA     NA      NA  
+      2                         abs       7 NA     NA     NA     NA      NA  
+                                in %      8 NA     NA     NA     NA      NA  
+      3                         abs       9  1     NA      1     NA      NA  
+                                in %     10  1.49  NA      2.86  NA      NA  
+      4                         abs      11  1     NA     NA      1      NA  
+                                in %     12  1.49  NA     NA      4.76   NA  
+      5                         abs      13  4     NA     NA      4      NA  
+                                in %     14  5.97  NA     NA     19.0    NA  
+      6                         abs      15  3     NA      2      1      NA  
+                                in %     16  4.48  NA      5.71   4.76   NA  
+      7                         abs      17  9      2      6     NA       1  
+                                in %     18 13.4   33.3   17.1   NA      20  
+      8                         abs      19 22     NA     11     10       1  
+                                in %     20 32.8   NA     31.4   47.6    20  
+      9                         abs      21 11      2      6     NA       3  
+                                in %     22 16.4   33.3   17.1   NA      60  
+      10 - absolut zufri…       abs      23 16      2      9      5      NA  
+                                in %     24 23.9   33.3   25.7   23.8    NA  
+      ZUSAMMENFASSUNG     1 bi… abs      25  2     NA      1      1      NA  
+                          1 bi… in %     26  2.99  NA      2.86   4.76   NA  
+                          5 bi… abs      27 16      2      8      5       1  
+                          5 bi… in %     28 23.9   33.3   22.9   23.8    20  
+                          8 bi… abs      29 49      4     26     15       4  
+                          8 bi… in %     30 73.1   66.7   74.3   71.4    80  
+      Mittelwert                         31  8.10   8.67   8.26   7.62    8.4
+      Standardfehler                     32  0.197  0.558  0.257  0.417   0.4
+      GÜLTIGE FÄLLE             abs      33 67      6     35     21       5  
+                                in %     34 91.8   85.7   92.1   91.3   100  
+      keine Angabe              abs      35  6      1      3      2      NA  
+                                in %     36  8.22  14.3    7.89   8.70   NA  
+      
+      [[17]][[4]]
+      # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
+      #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
+      #   Kurzfristige Anpassungen
+                                 NULL ----- GESAMT Region ------ ------ ------
+                                 NULL -----        Asien  Europa Norda… Pazif…
+      GESAMT                    abs       4 73      7     38     23      5    
+      1 - völlig unzufri…       abs       5 NA     NA     NA     NA     NA    
+                                in %      6 NA     NA     NA     NA     NA    
+      2                         abs       7  1     NA      1     NA     NA    
+                                in %      8  1.52  NA      2.86  NA     NA    
+      3                         abs       9  1     NA      1     NA     NA    
+                                in %     10  1.52  NA      2.86  NA     NA    
+      4                         abs      11  1     NA     NA      1     NA    
+                                in %     12  1.52  NA     NA      4.76  NA    
+      5                         abs      13  4     NA     NA      4     NA    
+                                in %     14  6.06  NA     NA     19.0   NA    
+      6                         abs      15  2     NA      1      1     NA    
+                                in %     16  3.03  NA      2.86   4.76  NA    
+      7                         abs      17 10      2      7     NA      1    
+                                in %     18 15.2   33.3   20     NA     25    
+      8                         abs      19 21     NA     10     10      1    
+                                in %     20 31.8   NA     28.6   47.6   25    
+      9                         abs      21 10      2      7     NA      1    
+                                in %     22 15.2   33.3   20     NA     25    
+      10 - absolut zufri…       abs      23 16      2      8      5      1    
+                                in %     24 24.2   33.3   22.9   23.8   25    
+      ZUSAMMENFASSUNG     1 bi… abs      25  3     NA      2      1     NA    
+                          1 bi… in %     26  4.55  NA      5.71   4.76  NA    
+                          5 bi… abs      27 16      2      8      5      1    
+                          5 bi… in %     28 24.2   33.3   22.9   23.8   25    
+                          8 bi… abs      29 47      4     25     15      3    
+                          8 bi… in %     30 71.2   66.7   71.4   71.4   75    
+      Mittelwert                         31  8.02   8.67   8.09   7.62   8.5  
+      Standardfehler                     32  0.219  0.558  0.305  0.417  0.645
+      GÜLTIGE FÄLLE             abs      33 66      6     35     21      4    
+                                in %     34 90.4   85.7   92.1   91.3   80    
+      keine Angabe              abs      35  7      1      3      2      1    
+                                in %     36  9.59  14.3    7.89   8.70  20    
+      
+      [[17]][[5]]
+      # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
+      #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
+      #   TOP3-Übersicht
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GÜLTIGE FÄLLE (min…  abs       4  38     7    16    11     4  
+      Schnelle Umsetzung   TOP3      5  40.5  28.6  37.5  45.5  66.7
+                           GÜLT…     6  37     7    16    11     3  
+      Kurzfristige Anpas…  TOP3      7  57.1  57.1  46.2  72.7  50  
+                           GÜLT…     8  35     7    13    11     4  
+      
+      [[17]][[6]]
+      # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
+      #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
+      #   Mittelwertüberblick
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GÜLTIGE FÄLLE (min…  abs       4 38     7    16    11     4   
+      Schnelle Umsetzung   Mitt…     5  6.54  5.86  6.25  7     8   
+                           GÜLT…     6 37     7    16    11     3   
+      Kurzfristige Anpas…  Mitt…     7  7.49  7.57  7     7.91  7.75
+                           GÜLT…     8 35     7    13    11     4   
+      
+      [[17]][[7]]
+      # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
+      #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige Schnelle
+      #   Umsetzung
+                                 NULL ----- GESAMT Region  ------ ------ ------
+                                 NULL -----        Asien   Europa Norda… Pazif…
+      GESAMT                    abs       4 43       7     18     13      5    
+      1 - völlig unzufri…       abs       5 NA      NA     NA     NA     NA    
+                                in %      6 NA      NA     NA     NA     NA    
+      2                         abs       7 NA      NA     NA     NA     NA    
+                                in %      8 NA      NA     NA     NA     NA    
+      3                         abs       9  2      NA      2     NA     NA    
+                                in %     10  5.26   NA     13.3   NA     NA    
+      4                         abs      11 NA      NA     NA     NA     NA    
+                                in %     12 NA      NA     NA     NA     NA    
+      5                         abs      13  3       1      2     NA     NA    
+                                in %     14  7.89   14.3   13.3   NA     NA    
+      6                         abs      15  4       1      1      2     NA    
+                                in %     16 10.5    14.3    6.67  16.7   NA    
+      7                         abs      17  3       1      1     NA      1    
+                                in %     18  7.89   14.3    6.67  NA     25    
+      8                         abs      19 11       1      5      4      1    
+                                in %     20 28.9    14.3   33.3   33.3   25    
+      9                         abs      21  4       1      2     NA      1    
+                                in %     22 10.5    14.3   13.3   NA     25    
+      10 - absolut zufri…       abs      23 11       2      2      6      1    
+                                in %     24 28.9    28.6   13.3   50     25    
+      ZUSAMMENFASSUNG     1 bi… abs      25  2      NA      2     NA     NA    
+                          1 bi… in %     26  5.26   NA     13.3   NA     NA    
+                          5 bi… abs      27 10       3      4      2      1    
+                          5 bi… in %     28 26.3    42.9   26.7   16.7   25    
+                          8 bi… abs      29 26       4      9     10      3    
+                          8 bi… in %     30 68.4    57.1   60     83.3   75    
+      Mittelwert                         31  7.89    7.86   7.13   8.67   8.5  
+      Standardfehler                     32  0.320   0.738  0.584  0.449  0.645
+      GÜLTIGE FÄLLE             abs      33 38       7     15     12      4    
+                                in %     34 88.4   100     83.3   92.3   80    
+      keine Angabe              abs      35  5      NA      3      1      1    
+                                in %     36 11.6    NA     16.7    7.69  20    
+      
+      [[17]][[8]]
+      # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
+      #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
+      #   Kurzfristige Anpassungen
+                                 NULL ----- GESAMT Region  ------ ------ ------
+                                 NULL -----        Asien   Europa Norda… Pazif…
+      GESAMT                    abs       4 43       7     18     13      5    
+      1 - völlig unzufri…       abs       5 NA      NA     NA     NA     NA    
+                                in %      6 NA      NA     NA     NA     NA    
+      2                         abs       7 NA      NA     NA     NA     NA    
+                                in %      8 NA      NA     NA     NA     NA    
+      3                         abs       9  2      NA      1      1     NA    
+                                in %     10  5.71   NA      7.69   9.09  NA    
+      4                         abs      11  1       1     NA     NA     NA    
+                                in %     12  2.86   14.3   NA     NA     NA    
+      5                         abs      13  4       1      3     NA     NA    
+                                in %     14 11.4    14.3   23.1   NA     NA    
+      6                         abs      15  4      NA      1      2      1    
+                                in %     16 11.4    NA      7.69  18.2   25    
+      7                         abs      17  4       1      2     NA      1    
+                                in %     18 11.4    14.3   15.4   NA     25    
+      8                         abs      19  9       1      3      4      1    
+                                in %     20 25.7    14.3   23.1   36.4   25    
+      9                         abs      21  2       1      1     NA     NA    
+                                in %     22  5.71   14.3    7.69  NA     NA    
+      10 - absolut zufri…       abs      23  9       2      2      4      1    
+                                in %     24 25.7    28.6   15.4   36.4   25    
+      ZUSAMMENFASSUNG     1 bi… abs      25  3       1      1      1     NA    
+                          1 bi… in %     26  8.57   14.3    7.69   9.09  NA    
+                          5 bi… abs      27 12       2      6      2      2    
+                          5 bi… in %     28 34.3    28.6   46.2   18.2   50    
+                          8 bi… abs      29 20       4      6      8      2    
+                          8 bi… in %     30 57.1    57.1   46.2   72.7   50    
+      Mittelwert                         31  7.49    7.57   7      7.91   7.75 
+      Standardfehler                     32  0.356   0.896  0.588  0.667  0.854
+      GÜLTIGE FÄLLE             abs      33 35       7     13     11      4    
+                                in %     34 81.4   100     72.2   84.6   80    
+      keine Angabe              abs      35  8      NA      5      2      1    
+                                in %     36 18.6    NA     27.8   15.4   20    
+      
+      
 
