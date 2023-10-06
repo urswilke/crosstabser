@@ -59,7 +59,7 @@ get_raw_data.default <- function(qtab) {
 
   # TODO: ask Wolf how to deal with Unguelt mdg vars together with multiple selvars...!
   # TODO: clean up this mess!...:
-  dfsel <- qtab$p$df_multi_selvar[[1]]
+  dfsel <- qtab$p$df_multi_selvar
   dm <- qtab$m$dat_mod
 
   dat <- seq_len(nrow(dfsel)) |> lapply(\(i) {

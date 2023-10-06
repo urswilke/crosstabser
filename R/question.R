@@ -101,7 +101,7 @@ gen_df_selvar <- function(selvar, rowvars) {
       )] |>
       list()
   }
-  list(df_multi_selvar)
+  df_multi_selvar
 }
 
 edit_selval_info <- function(x, subtitle, selval) {
@@ -140,7 +140,7 @@ process_cat_rows <- function(qrow_params, mapping) {
   if (length(qrow_params$RowVar) == 1) {
     return(list(qrow_params))
   }
-  dfsel <- qrow_params$df_multi_selvar[[1]]
+  dfsel <- qrow_params$df_multi_selvar
   if (is.null(dfsel)) {
     n_rowvar <- qrow_params$RowVar |> length()
     res <- rep(list(qrow_params), each = n_rowvar)
@@ -177,7 +177,7 @@ process_cat_rows <- function(qrow_params, mapping) {
   res
 }
 edit_multi_selvar <- function(qrow_params, cat_rowvars, varlabs) {
-  qrow_params$df_multi_selvar[[1]][["rowvar"]] <- cat_rowvars |>
+  qrow_params$df_multi_selvar[["rowvar"]] <- cat_rowvars |>
     as.list()
   qrow_params$Title <- qrow_params$Title |> append(varlabs)
   qrow_params
