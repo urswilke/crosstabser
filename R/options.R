@@ -94,9 +94,9 @@ add_type_specific_params.default <- function(qtab) {
   qtab$p$raw_data_rowvars <- paste0(
     "rowvar_",
     # for multi selvar:
-    qtab$p$multi_selvar_rowvars_qtab
+    qtab$p$selvar_rowvars_qtab
   )
-  qtab$p$rowvars_string <- paste(qtab$p$multi_selvar_rowvars_qtab, collapse = ", ")
+  qtab$p$rowvars_string <- paste(qtab$p$selvar_rowvars_qtab, collapse = ", ")
   qtab$p$raw_data_colvars <- paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))
   if (is.null(qtab$p$Weight[[1]])) {
     qtab$p$long_weight <- character()
@@ -129,7 +129,7 @@ add_type_specific_params.qtab_type_mdg <- function(qtab) {
   # this has to be done before adding the Unguelt variables
   # in order to make row_table_body.qtab_type_mdg() only pick the valid variables
   # for multi selvar mdg tables
-  qtab$p$multi_selvar_rowvars_qtab <- concat_multi_selvar_rowvars(qtab)
+  qtab$p$selvar_rowvars_qtab <- concat_selvar_rowvars(qtab)
   if (is.character(qtab$p$Unguelt)) {
     qtab$p$rowvars_qtab <- c(qtab$p$rowvars_qtab, qtab$p$Unguelt)
   }
@@ -139,7 +139,7 @@ add_type_specific_params.qtab_type_mdg <- function(qtab) {
   }
   NextMethod()
 }
-concat_multi_selvar_rowvars <- function(qtab) {
+concat_selvar_rowvars <- function(qtab) {
   if (is.null(qtab$p$SelVar)) {
     return(qtab$p$rowvars_qtab)
   }
@@ -158,7 +158,7 @@ concat_multi_selvar_rowvars <- function(qtab) {
 add_type_specific_params.qtab_type_mw <- function(qtab) {
   stat_fun <- qtab$p$ZsfgMW
   qtab$p$rowvars_qtab <- qtab$p$RowVar
-  qtab$p$multi_selvar_rowvars_qtab <- concat_multi_selvar_rowvars(qtab)
+  qtab$p$selvar_rowvars_qtab <- concat_selvar_rowvars(qtab)
   if (length(stat_fun) == 0) {
     stat_fun = "mean"
   }
@@ -169,7 +169,7 @@ add_type_specific_params.qtab_type_mw <- function(qtab) {
 add_type_specific_params.qtab_type_cat <- function(qtab) {
   qtab$p$rowvars_qtab <- unlist(qtab$p$df_selvar$rowvar) %||% qtab$p$RowVar
   # for multiple selvar:
-  qtab$p$multi_selvar_rowvars_qtab <- qtab$p$rowvars_qtab |>
+  qtab$p$selvar_rowvars_qtab <- qtab$p$rowvars_qtab |>
     paste(collapse = "/")
   if (!is.null(qtab$p$MetrMac)) {
     qtab$p$df_stat_funs <- process_metr_mac(qtab)
@@ -178,7 +178,7 @@ add_type_specific_params.qtab_type_cat <- function(qtab) {
 }
 add_type_specific_params.qtab_type_mcg <- function(qtab) {
   qtab$p$rowvars_qtab <- qtab$p$RowVar
-  qtab$p$multi_selvar_rowvars_qtab <- concat_multi_selvar_rowvars(qtab)
+  qtab$p$selvar_rowvars_qtab <- concat_selvar_rowvars(qtab)
   NextMethod()
 }
 

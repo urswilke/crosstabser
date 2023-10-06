@@ -162,21 +162,24 @@ process_cat_rows <- function(qrow_params, mapping) {
   n_cats <- length(qrow_params$RowVar) / qrow_params$n_selvar
   res <- rep(list(qrow_params), each = n_cats)
   if (n_cats > 1) {
-    cat_rowvars <- df_selvar$rowvar |> lapply(unlist)
-    varlabs <- lapply(cat_rowvars[[1]], \(rowvar) attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE))
-    res <- purrr::pmap(
-      list(
-        res,
-        cat_rowvars,
-        varlabs
-      ),
-      edit_multi_selvar
-    )
+    res <- edit_df_selvars(res, qrow_params, mapping)
   }
 
   res
 }
-edit_multi_selvar <- function(qrow_params, cat_rowvars, varlabs) {
+edit_df_selvars <- function(res, qrow_params, mapping) {
+  cat_rowvars <- qrow_params$df_selvar$rowvar |> lapply(unlist)
+  varlabs <- lapply(cat_rowvars[[1]], \(rowvar) attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE))
+  purrr::pmap(
+    list(
+      res,
+      cat_rowvars,
+      varlabs
+    ),
+    edit_1_df_selvar
+  )
+}
+edit_1_df_selvar <- function(qrow_params, cat_rowvars, varlabs) {
   qrow_params$df_selvar[["rowvar"]] <- cat_rowvars |>
     as.list()
   qrow_params$Title <- qrow_params$Title |> append(varlabs)
