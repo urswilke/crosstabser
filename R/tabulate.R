@@ -60,7 +60,7 @@ get_raw_data.default <- function(qtab) {
       weightvar = weightvar,
       row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_mod[[selvar_name]], selval)
     ) |>
-    # add selvar/l columns in the beginning but (hopefully/perhaps (?) faster):
+    # add selvar/l columns in the beginning:
     dplyr::mutate(
       selvar = selvar_name,
       selval = selval,
