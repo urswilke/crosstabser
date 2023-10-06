@@ -34,11 +34,11 @@ get_raw_data.default <- function(qtab) {
     rowvars <- qtab$p$rowvars_qtab
     dat <- prep_data(
       qtab,
-      rowvars,
-      paste0("rowvar_", rowvars),
-      colvars_named,
-      weightvar,
-      row_in_filter
+      rowvars = rowvars,
+      new_rowvars = paste0("rowvar_", rowvars),
+      colvars_named = colvars_named,
+      weightvar = weightvar,
+      row_in_filter = row_in_filter
     )
     return(dat)
   }
@@ -54,11 +54,11 @@ get_raw_data.default <- function(qtab) {
     selval <- qtab$p$SelVal
     prep_data(
       qtab,
-      rowvars,
-      qtab$p$raw_data_rowvars,
-      colvars_named,
-      weightvar,
-      row_in_filter & selvar_eq_selval(qtab$m$dat_mod[[selvar_name]], selval)
+      rowvars = rowvars,
+      new_rowvars = qtab$p$raw_data_rowvars,
+      colvars_named = colvars_named,
+      weightvar = weightvar,
+      row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_mod[[selvar_name]], selval)
     ) |>
     # add selvar/l columns in the beginning but (hopefully/perhaps (?) faster):
     dplyr::mutate(
@@ -71,7 +71,14 @@ get_raw_data.default <- function(qtab) {
   dat
 
 }
-prep_data <- function(qtab, rowvars, new_rowvars, colvars_named, weightvar, row_in_filter) {
+prep_data <- function(
+    qtab,
+    rowvars,
+    new_rowvars,
+    colvars_named,
+    weightvar,
+    row_in_filter
+) {
   rowvars_named <- rowvars |> purrr::set_names(new_rowvars)
   if (!is.null(weightvar)) {
     weightvar <- weightvar |> purrr::set_names("weight")
