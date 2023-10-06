@@ -76,11 +76,6 @@ ctl_new_rowid_pillar.pillar_wide_tab <- function(controller, x, width, rowlab_wi
     width = width
   )
 }
-# # https://stackoverflow.com/a/69702705
-# tbl_format_body.pillar_wide_tab <- function (x, setup, ...) {
-#   force(setup)
-#   setup$body[-c(1:2)]
-# }
 
 #' @importFrom pillar ctl_new_pillar
 #' @export
