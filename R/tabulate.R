@@ -27,7 +27,7 @@ get_raw_data.default <- function(qtab) {
   colvars <- qtab$p$ColVar
   colvars_named <- colvars |> purrr::set_names(paste0("colvar_", colvars))
   weightvar <- qtab$p$Weight[[1]]
-  row_filter_lgl <- get_row_filter_lgl(qtab)
+  row_in_filter <- get_row_filter_lgl(qtab)
 
 
   if (is.null(qtab$p$SelVar)) {
@@ -38,7 +38,7 @@ get_raw_data.default <- function(qtab) {
       paste0("rowvar_", rowvars),
       colvars_named,
       weightvar,
-      row_filter_lgl
+      row_in_filter
     )
     return(dat)
   }
@@ -46,26 +46,32 @@ get_raw_data.default <- function(qtab) {
 
   # TODO: ask Wolf how to deal with Unguelt mdg vars together with multiple selvars...!
   df_selvar <- qtab$p$df_selvar
-  dm <- qtab$m$dat_mod
 
   dat <- seq_len(nrow(df_selvar)) |> lapply(\(i) {
     df_selvar_i <- df_selvar[i,]
     rowvars <- df_selvar_i$rowvar[[1]]
-    row_filter_lgl & selvar_eq_selval(dm[[df_selvar_i$selvar]], qtab$p$SelVal)
+    selvar_name <- df_selvar_i$selvar
+    selval <- qtab$p$SelVal
     prep_data(
       qtab,
       rowvars,
       qtab$p$raw_data_rowvars,
       colvars_named,
       weightvar,
-      row_filter_lgl & selvar_eq_selval(dm[[df_selvar_i$selvar]], qtab$p$SelVal)
+      row_in_filter & selvar_eq_selval(qtab$m$dat_mod[[selvar_name]], selval)
+    ) |>
+    # add selvar/l columns in the beginning but (hopefully/perhaps (?) faster):
+    dplyr::mutate(
+      selvar = selvar_name,
+      selval = selval,
+      .before = 1
     )
   }) |>
     dplyr::bind_rows()
   dat
 
 }
-prep_data <- function(qtab, rowvars, new_rowvars, colvars_named, weightvar, row_filter_lgl) {
+prep_data <- function(qtab, rowvars, new_rowvars, colvars_named, weightvar, row_in_filter) {
   rowvars_named <- rowvars |> purrr::set_names(new_rowvars)
   if (!is.null(weightvar)) {
     weightvar <- weightvar |> purrr::set_names("weight")
@@ -83,7 +89,7 @@ prep_data <- function(qtab, rowvars, new_rowvars, colvars_named, weightvar, row_
   #   dplyr::select(!!!long_cols) |>
   #   dplyr::mutate(across(everything(), strip_attributes))
   # ... but with base R (for better performance)
-  dat <- qtab$d$dat_mod[row_filter_lgl, long_cols]
+  dat <- qtab$d$dat_mod[row_in_filter, long_cols]
   names(dat) <- names(long_cols)
   # remove label information:
   for (col in seq_len(ncol(dat))) {
