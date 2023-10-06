@@ -60,9 +60,9 @@ process_selvar <- function(qrow_params, mapping) {
     return(list(qrow_params))
   }
   rowvars <- qrow_params$RowVar
-  qrow_params$df_multi_selvar <- gen_df_selvar(selvar, rowvars)
+  qrow_params$df_selvar <- gen_df_selvar(selvar, rowvars)
   # TODO: deal with that later (probably to name the variables in get_raw_data())
-  # qrow_params$RowVar <- df_multi_selvar$rowvar[1]
+  # qrow_params$RowVar <- df_selvar$rowvar[1]
 
   n_selval <- length(qrow_params$SelVal)
   res0 <- rep(list(qrow_params), each = n_selval)
@@ -91,9 +91,9 @@ process_selvar <- function(qrow_params, mapping) {
 }
 gen_df_selvar <- function(selvar, rowvars) {
   n_selvar <- length(selvar)
-  df_multi_selvar <- tibble::tibble(selvar, rowvar = vector("list", n_selvar))
+  df_selvar <- tibble::tibble(selvar, rowvar = vector("list", n_selvar))
   for (i_row in seq_len(n_selvar)) {
-    df_multi_selvar[i_row,]$rowvar <-
+    df_selvar[i_row,]$rowvar <-
       rowvars[seq(
         i_row,
         length(rowvars),
@@ -101,7 +101,7 @@ gen_df_selvar <- function(selvar, rowvars) {
       )] |>
       list()
   }
-  df_multi_selvar
+  df_selvar
 }
 
 edit_selval_info <- function(x, subtitle, selval) {
@@ -140,8 +140,8 @@ process_cat_rows <- function(qrow_params, mapping) {
   if (length(qrow_params$RowVar) == 1) {
     return(list(qrow_params))
   }
-  dfsel <- qrow_params$df_multi_selvar
-  if (is.null(dfsel)) {
+  df_selvar <- qrow_params$df_selvar
+  if (is.null(df_selvar)) {
     n_rowvar <- qrow_params$RowVar |> length()
     res <- rep(list(qrow_params), each = n_rowvar)
     cat_rowvars <-  qrow_params$RowVar |> lapply(unlist)
@@ -162,7 +162,7 @@ process_cat_rows <- function(qrow_params, mapping) {
   n_cats <- length(qrow_params$RowVar) / qrow_params$n_selvar
   res <- rep(list(qrow_params), each = n_cats)
   if (n_cats > 1) {
-    cat_rowvars <- dfsel$rowvar |> lapply(unlist)
+    cat_rowvars <- df_selvar$rowvar |> lapply(unlist)
     varlabs <- lapply(cat_rowvars[[1]], \(rowvar) attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE))
     res <- purrr::pmap(
       list(
@@ -177,7 +177,7 @@ process_cat_rows <- function(qrow_params, mapping) {
   res
 }
 edit_multi_selvar <- function(qrow_params, cat_rowvars, varlabs) {
-  qrow_params$df_multi_selvar[["rowvar"]] <- cat_rowvars |>
+  qrow_params$df_selvar[["rowvar"]] <- cat_rowvars |>
     as.list()
   qrow_params$Title <- qrow_params$Title |> append(varlabs)
   qrow_params

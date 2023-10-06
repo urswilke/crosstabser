@@ -143,7 +143,7 @@ concat_multi_selvar_rowvars <- function(qtab) {
   if (is.null(qtab$p$SelVar)) {
     return(qtab$p$rowvars_qtab)
   }
-  selvar_rowvars <- qtab$p$df_multi_selvar$rowvar
+  selvar_rowvars <- qtab$p$df_selvar$rowvar
   selvar_rowvars[[1]] |>
     seq_along() |>
     lapply(
@@ -167,7 +167,7 @@ add_type_specific_params.qtab_type_mw <- function(qtab) {
   NextMethod()
 }
 add_type_specific_params.qtab_type_cat <- function(qtab) {
-  qtab$p$rowvars_qtab <- unlist(qtab$p$df_multi_selvar$rowvar) %||% qtab$p$RowVar
+  qtab$p$rowvars_qtab <- unlist(qtab$p$df_selvar$rowvar) %||% qtab$p$RowVar
   # for multiple selvar:
   qtab$p$multi_selvar_rowvars_qtab <- qtab$p$rowvars_qtab |>
     paste(collapse = "/")

@@ -59,19 +59,19 @@ get_raw_data.default <- function(qtab) {
 
   # TODO: ask Wolf how to deal with Unguelt mdg vars together with multiple selvars...!
   # TODO: clean up this mess!...:
-  dfsel <- qtab$p$df_multi_selvar
+  df_selvar <- qtab$p$df_selvar
   dm <- qtab$m$dat_mod
 
-  dat <- seq_len(nrow(dfsel)) |> lapply(\(i) {
-    dfsel_i <- dfsel[i,]
+  dat <- seq_len(nrow(df_selvar)) |> lapply(\(i) {
+    df_selvar_i <- df_selvar[i,]
 
     long_cols <- c(
-      dfsel_i$rowvar[[1]] |> purrr::set_names(qtab$p$raw_data_rowvars),
+      df_selvar_i$rowvar[[1]] |> purrr::set_names(qtab$p$raw_data_rowvars),
       colvars |> purrr::set_names(paste0("colvar_", colvars)),
       weightvar
     )
     dat <- dm[
-      row_filter_lgl & selvar_eq_selval(dm[[dfsel_i$selvar]], qtab$p$SelVal),
+      row_filter_lgl & selvar_eq_selval(dm[[df_selvar_i$selvar]], qtab$p$SelVal),
       long_cols
     ]
     names(dat) <- names(long_cols)
