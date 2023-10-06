@@ -13,6 +13,10 @@ dataframe field of the mapping object. This dataframe has a column
 \code{command_blocks} which is applied to the data in the \code{dat} field by the
 method \code{modify_data()} and then results in the \code{dat_mod} field.
 }
+\details{
+This is copied from datenanpassr and will just serve as a template when the
+code will be documented...
+}
 \examples{
 # Create a Mapping object from the files provided by the package:
 mapping_file <- system.file("extdata", "mapping.xlsx", package = "datenanpassr")

@@ -1,100 +1,14 @@
-new_qtabs <- function(qsheet_processed, mapping) {
-  global_options <- mapping$options$l_macro_scenario
-  params <- qsheet_processed |>
-    purrr::transpose() |>
-    purrr::map(\(x) x[!is.na(x)]) |>
-    purrr::map(\(x) add_global_options(x, global_options))
-  qtabs <- params |>
-    purrr::map(\(x) new_qtab(x, mapping))
-  qtabs |>
-    purrr::walk(\(x) add_type_specific_params(x))
-
-  qtabs
-
+new_qtabs <- function(qrow_params, mapping) {
+  qrow_params |>
+    purrr::map(\(x) new_qtab_type(x, mapping))
 }
 
-new_qtab <- function(params, mapping) {
-  res <- Qtab$new(params, mapping)
-  class(res) <- c(paste0("qtab_type_", params$Type), class(res))
-  res
-}
-
-add_type_specific_params <- function(qtab) {
-  UseMethod("add_type_specific_params")
-}
-
-add_type_specific_params.default <- function(qtab) {
-  qtab$p$long_rowvars <- paste0("rowvar_", qtab$p$RowVar)
-  qtab$p$long_colvars <- paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))
-  if (is.null(qtab$p$Weight[[1]])) {
-    qtab$p$long_weight <- character()
-  } else {
-    qtab$p$long_weight <- "weight"
-  }
-
-  if (!is.null(qtab$p$Sort)) {
-     sort_list <- stringr::str_extract_all(
-      qtab$p$Sort,
-      "\\w+ *= *\\w+"
-    )[[1]] |>
-      stringr::str_split(" *= *")
-    # TODO: find a cleaner way to treat this...(?):
-    order_d <- any(sort_list |> purrr::map_lgl(\(x) all(x == c("ORDER", "D"))))
-    key_count <- any(sort_list |> purrr::map_lgl(\(x) all(x == c("KEY", "COUNT"))))
-    qtab$p$sort_params <- tibble::lst(
-      order_d,
-      key_count
-    )
-  }
-}
-add_type_specific_params.qtab_type_mdg <- function(qtab) {
-  qtab$p$MdgVal <- qtab$p$MdgVal %||% "1"
-  NextMethod()
-}
-add_type_specific_params.qtab_type_mw <- function(qtab) {
-  stat_fun <- qtab$p$ZsfgMW
-  if (length(stat_fun) == 0) {
-    stat_fun = "mean"
-  }
-
-  qtab$p$stat_fun <- stat_fun
-  NextMethod()
-}
-add_type_specific_params.qtab_type_cat <- function(qtab) {
-  if (!is.null(qtab$p$MetrMac)) {
-    qtab$p$df_stat_funs <- process_metr_mac(qtab)
-  }
-  NextMethod()
-}
-
-df_metr_mac <- data.frame(
-  shortcut = c("E", "M", "S", "P", "I", "A", "T"),
-  fun = c("se", "median", "mean", "percentile", "min", "max", "sum"),
-  # TODO: Wolf fragen wo das steht???
-  ctab_entry = c("cTabStdErr", "cTabMedian", "cTabMean", "wo_steht???", "wo_steht2???", "wo_steht3???", "wo_steht4???")
-)
-
-process_metr_mac <- function(qtab) {
-  l <- stringr::str_extract_all(qtab$p$MetrMac, "[A-Z]\\d+")[[1]] |>
-    stringr::str_split("(?=\\d)")
-
-  df_stat_funs <- data.frame(shortcut = l |> purrr::map_chr(1)) |>
-    dplyr::mutate(
-      fun = df_metr_mac$fun[match(shortcut, df_metr_mac$shortcut)],
-      decimals = as.numeric(l |> purrr::map_chr(\(x) x[length(x)])),
-      row_title = qtab$m$options$l_lexikon[
-        df_metr_mac$ctab_entry[match(shortcut, df_metr_mac$shortcut)]
-      ] |> unname()
-    )
-  df_stat_funs$quantile_val <- vector("list", length(l))
-  df_stat_funs[df_stat_funs$shortcut == "P",]$quantile_val <-
-    as.numeric(
-      l[df_stat_funs$shortcut == "P"] |>
-        purrr::map_chr(
-          \(x) x[2:3] |>
-            paste(collapse = ""))
-    ) / 100
-  df_stat_funs
+# S3 Subclass (qtab_type_... cat, mw, mcg or mdg) of Qtab R6 Class:
+new_qtab_type <- function(params, mapping) {
+  qtab <- Qtab$new(params, mapping)
+  class(qtab) <- c(paste0("qtab_type_", params$Type), class(qtab))
+  add_type_specific_params(qtab)
+  qtab
 }
 
 #' Qtab
@@ -115,15 +29,16 @@ Qtab <- R6::R6Class("Qtab",
     initialize = function(params,
                           mapping,
                           ...) {
-      self$p <- params
+      self$p <- params |>
+        # TODO: think if it's better to separate the parts of the parameters
+        # from the Tabula / Qrow more...!
+        add_global_options(mapping)
       self$m <- mapping
       self$p$l_lexikon <- mapping$options$l_lexikon
       self$d$dat_mod  <- mapping$dat_mod
-      self$d$tab_table <- mapping$qsheet$tab_table[
-        mapping$qsheet$tab_table$TabNo == self$p$TabNo,
-      ]
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
+      self$d$tab_table <- gen_tab_table(self$p)
     },
     #' @description todo
     calc_qtab = function() {
@@ -199,31 +114,8 @@ wide_tab <- function(qtab) {
     dplyr::arrange(RowNo)
 }
 
-# the output seems to non-sense (now (?)), but kept here to remind me of the
-# idea to print all the parameters in a wide tibble...: (...Sorry... :)
-#' #' @export
-#' print.crosstabser_tabs <- function(x,
-#'                                    # unnest fields:
-#'                                    uf = c("d"),
-#'                                    n = 30,
-#'                                    ...) {
-#'   field_list <- x |> purrr::map(get_r6_fields)
-#'   df <- tibble::tibble(x = field_list) |>
-#'     tidyr::unnest_wider(x)
-#'   if (length(uf) > 0) {
-#'     df <- df |>
-#'       tidyr::unnest_wider(uf)
-#'     # |>
-#'     #   dplyr::select(-matches("^Col[A-Z]$"))
-#'   }
-#'   print(df, n = n, ...)
-#' }
-
-get_r6_fields <- function(r6_obj) {
-  r6_list <- as.list(r6_obj)
-  r6_list[r6_list |> purrr::map_lgl(\(x) !is.environment(x) && !is.function(x))]
-
-}
+# TODO: keep in mind me the
+# idea to print all the parameters in a wide tibble...
 
 post_process <- function(qtab) {
   if (!is.null(qtab$p$sort_params) && qtab$p$sort_params$key_count) {

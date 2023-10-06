@@ -1,5 +1,7 @@
 #' Tabulation class
 #'
+#' This is copied from datenanpassr and will just serve as a template when the
+#' code will be documented...
 #'
 #' @description The class \code{Mapping} can be used to apply the changes
 #'   specified in the command blocks of an Excel mapping file to a (labelled)
@@ -59,22 +61,17 @@ Tabula <- R6::R6Class("Tabula",
     #'
     initialize = function(dat,
                           mapping_file,
+                          row = NULL,
                           ...) {
       self$mapping_file <- mapping_file
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
-      process_excel(self)
-      init_qrows(self)
+
+      gen_col_tables(self)
+      self$calc_qtabs(row)
     },
     calc_qtabs = function(row = NULL) {
-      process_excel(self)
-      # filter row indices specified, otherwise all:
-      if (is.null(row)) {
-        row <- self$qrows$row
-      }
-      qtabs <- self$qrows[self$qrows$row %in% row,]$qrow
-
-      qtabs |> purrr::walk(\(x) x$calc_qrow_qtabs())
+      parse_qsheet(self, row)
       invisible(self)
     },
     xml = function(row = NULL) {
@@ -90,15 +87,23 @@ Tabula <- R6::R6Class("Tabula",
     #  - the parameters of the qtab object,
     #  - ... (?)
     print = function(...) {
-      seq_len(nrow(self$qrows)) |> lapply(\(i) self$qrows$qrow[[i]]$qtabs) |> print()
+      self$qrows |> lapply(\(x) x$qtabs$obj) |> print()
       invisible(self)
     }
   )
 )
+parse_qsheet <- function(mapping, row) {
+  mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file, row)
+  if (is.null(row)) {
+    row <- mapping$qsheet$qsheet_raw$row
+  }
+  mapping$qsheet$qrow_param_list <- extract_qrow_param_list(mapping)
+  calc_row_lgl <- purrr::map_int(mapping$qsheet$qrow_param_list, "row") %in% row
 
-process_excel <- function(self) {
-  read_qsheet(self)
-  gen_tab_and_col_tables(self)
+  mapping$qrows <- lapply(
+    mapping$qsheet$qrow_param_list[calc_row_lgl],
+    \(p) Qrow$new(p, mapping)
+  )
 }
 
 read_data <- function(dat) {

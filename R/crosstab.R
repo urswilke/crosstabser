@@ -111,10 +111,10 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
   # for TOTAL column:
   df$"colvar_DC#STICHPROBE" <- 1
 
-  df_cols <- df[c(qtab$p$long_colvars, qtab$p$long_weight)]
+  df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
 
-  df_cols$n_valid <- !df[[qtab$p$long_rowvars]] %in% qtab$p$Unguelt
-  df_cols$total <- !is.na(df[[qtab$p$long_rowvars]])
+  df_cols$n_valid <- !df[[qtab$p$raw_data_rowvars]] %in% qtab$p$Unguelt
+  df_cols$total <- !is.na(df[[qtab$p$raw_data_rowvars]])
 
   # TODO: find better organisation (redundant code with calc_stats_rows.qtab_type_mdg):
   df_cols_long <- df_cols |>
@@ -135,7 +135,7 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
       res <- df_stats_rows[c("colvar", "colval", x)]
       names(res)[3] <- "value"
       res$rowval <- 1
-      res$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
+      res$rowvar <- qtab$p$rowvars_string
       res
     })
   l_row_types$total$RowContent <- "Total"
@@ -172,14 +172,17 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
 
   mdg_val <- qtab$p$MdgVal
 
-  df_cols <- df[c(qtab$p$long_colvars, qtab$p$long_weight)]
-  df_rows <- df[qtab$p$long_rowvars]
+  df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
+  df_rows <- df[qtab$p$raw_data_rowvars]
 
-  df_cols$total <- rowSums(is.na(df[qtab$p$long_rowvars])) < ncol(df_rows)
+  df_cols$total <- rowSums(is.na(df[qtab$p$raw_data_rowvars])) < ncol(df_rows)
   sum_of_valid <- rowSums(df_rows == mdg_val, na.rm = TRUE)
   df_cols$sum_of_valid <- sum_of_valid
   df_cols$n_valid <- sum_of_valid >= 1
-  df_cols$invalid_cts <- rowSums(df[paste0("rowvar_", qtab$p$Unguelt)] == mdg_val, na.rm = TRUE) != 0
+  # base R way to do:
+  # df_cols$invalid_cts <- rowSums((df |> select(any_of(paste0("rowvar_", qtab$p$Unguelt)))) == mdg_val, na.rm = TRUE) != 0
+  invalid_colnames <- paste0("rowvar_", qtab$p$Unguelt) |> intersect(names(df))
+  df_cols$invalid_cts <- rowSums(df[invalid_colnames] == mdg_val, na.rm = TRUE) != 0
   df_cols$no_entry <- as.numeric(sum_of_valid + df_cols$invalid_cts == 0)
   df_cols_long <- df_cols |>
     pivot_cols()
@@ -199,7 +202,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
       res <- df_stats_rows[c("colvar", "colval", x)]
       names(res)[3] <- "value"
       res$rowval <- 1
-      res$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
+      res$rowvar <- qtab$p$rowvars_string
       res
     })
   l_row_types$total$RowContent <- "Total"
@@ -222,8 +225,8 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
   # for TOTAL column:
   df$"colvar_DC#STICHPROBE" <- 1
 
-  df_cols <- df[c(qtab$p$long_colvars, qtab$p$long_weight)]
-  df_rows <- df[qtab$p$long_rowvars]
+  df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
+  df_rows <- df[qtab$p$raw_data_rowvars]
 
   df_cols$n_valid <- rowSums(sapply(df_rows, Negate(`%in%`), invalid_vals)) >= 1
   df_cols_long <- df_cols |>
@@ -239,7 +242,7 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
     )
 
   df_stats_rows$rowval <- 1
-  df_stats_rows$rowvar <- paste(qtab$p$RowVar, collapse = ", ")
+  df_stats_rows$rowvar <- qtab$p$rowvars_string
 
   df_stats_rows$RowContent <- "Valid"
   df_stats_rows$RowAbsPercent <- "Abs"
@@ -451,8 +454,14 @@ calc_valid_counts_percentages.default <- function(qtab) {
   total_cts <- qtab$d$stats_rows$total
   valid_cts <- qtab$d$stats_rows$n_valid
 
-  valid_cts$value <- 100 * valid_cts$value / total_cts$value
-  valid_cts$RowAbsPercent <- "Percent"
+  # TODO: check if this can be changed to include implicit missing values in the
+  # raw_data or rather the counts (make them explicit...)
+  # valid_cts$value <- 100 * valid_cts$value / total_cts$value
+  # this doesn't work if the number of valid counts is not equal to the number of total counts...
+  res <- total_cts |> dplyr::select(-RowContent, value_tot = value) |> merge(valid_cts, all.x = TRUE)
+  res$value <- 100 * res$value / res$value_tot
+  res$value_tot <- NULL
+  res$RowAbsPercent <- "Percent"
 
-  valid_cts
+  res
 }
