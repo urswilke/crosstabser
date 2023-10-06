@@ -60,18 +60,7 @@ process_selvar <- function(qrow_params, mapping) {
     return(list(qrow_params))
   }
   rowvars <- qrow_params$RowVar
-  n_selvar <- length(selvar)
-  df_multi_selvar <- tibble::tibble(selvar, rowvar = vector("list", n_selvar))
-  for (i_row in seq_len(n_selvar)) {
-    df_multi_selvar[i_row,]$rowvar <-
-      rowvars[seq(
-        i_row,
-        length(rowvars),
-        n_selvar
-      )] |>
-      list()
-  }
-  qrow_params$df_multi_selvar <- list(df_multi_selvar)
+  qrow_params$df_multi_selvar <- gen_df_selvar(selvar, rowvars)
   # TODO: deal with that later (probably to name the variables in get_raw_data())
   # qrow_params$RowVar <- df_multi_selvar$rowvar[1]
 
@@ -100,6 +89,21 @@ process_selvar <- function(qrow_params, mapping) {
     edit_selval_info
   )
 }
+gen_df_selvar <- function(selvar, rowvars) {
+  n_selvar <- length(selvar)
+  df_multi_selvar <- tibble::tibble(selvar, rowvar = vector("list", n_selvar))
+  for (i_row in seq_len(n_selvar)) {
+    df_multi_selvar[i_row,]$rowvar <-
+      rowvars[seq(
+        i_row,
+        length(rowvars),
+        n_selvar
+      )] |>
+      list()
+  }
+  list(df_multi_selvar)
+}
+
 edit_selval_info <- function(x, subtitle, selval) {
   x$Title <- add_selval_title(x$Title, subtitle)
   x$SelVal <- selval
