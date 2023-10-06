@@ -125,10 +125,14 @@ add_type_specific_params.qtab_type_mdg <- function(qtab) {
   qtab$p$rowvars_valid_qtab <- qtab$p$RowVar
   # TODO: find cleaner way...!
   qtab$p$rowvars_qtab <- qtab$p$RowVar
+
+  # this has to be done before adding the Unguelt variables
+  # in order to make row_table_body.qtab_type_mdg() only pick the valid variables
+  # for multi selvar mdg tables
+  qtab$p$multi_selvar_rowvars_qtab <- concat_multi_selvar_rowvars(qtab)
   if (is.character(qtab$p$Unguelt)) {
     qtab$p$rowvars_qtab <- c(qtab$p$rowvars_qtab, qtab$p$Unguelt)
   }
-  qtab$p$multi_selvar_rowvars_qtab <- concat_multi_selvar_rowvars(qtab)
   # HACK to remove the numeric values that were wrongly added from the Macro sheet:
   if (is.numeric(qtab$p$Unguelt)) {
     qtab$p$Unguelt <- NULL

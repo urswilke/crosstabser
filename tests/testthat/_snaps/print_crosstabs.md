@@ -442,24 +442,18 @@
       [[15]][[1]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Kundenzufriedenheit
-                            NULL ----- GESA… Regi… ----- ----- -----
-                            NULL -----       Asien Euro… Nord… Pazi…
-      GESAMT               abs       4 151    19    75    43    14  
-      Summe der gültigen…  abs       5 162    20    82    46    14  
-      Kundenzufriedenheit  abs       6  NA    NA    NA    NA    NA  
-                           in %      7  NA    NA    NA    NA    NA  
-      Onlineauftritte      abs       8  NA    NA    NA    NA    NA  
-                           in %      9  NA    NA    NA    NA    NA  
-      Strukturanalyse      abs      10  NA    NA    NA    NA    NA  
-                           in %     11  NA    NA    NA    NA    NA  
-      Kundenzufriedenheit  abs      12  NA    NA    NA    NA    NA  
-                           in %     13  NA    NA    NA    NA    NA  
-      Onlineauftritte      abs      14  NA    NA    NA    NA    NA  
-                           in %     15  NA    NA    NA    NA    NA  
-      Strukturanalyse      abs      16  NA    NA    NA    NA    NA  
-                           in %     17  NA    NA    NA    NA    NA  
-      GÜLTIGE FÄLLE        abs      18 135    16    67    40    12  
-                           in %     19  89.4  84.2  89.3  93.0  85.7
+                            NULL ----- GESAMT Regi… ----- ----- -----
+                            NULL -----        Asien Euro… Nord… Pazi…
+      GESAMT               abs       4 151     19   75     43   14   
+      Summe der gültigen…  abs       5 162     20   82     46   14   
+      Kundenzufriedenheit  abs       6 132     15   66     40   11   
+                           in %      7  97.8   93.8 98.5  100   91.7 
+      Onlineauftritte      abs       8  18      3   10      4    1   
+                           in %      9  13.3   18.8 14.9   10    8.33
+      Strukturanalyse      abs      10  12      2    6      2    2   
+                           in %     11   8.89  12.5  8.96   5   16.7 
+      GÜLTIGE FÄLLE        abs      12 135     16   67     40   12   
+                           in %     13  89.4   84.2 89.3   93.0 85.7 
       
       [[15]][[2]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
@@ -468,20 +462,14 @@
                             NULL -----       Asien Euro… Nord… Pazi…
       GESAMT               abs       4  73     7    38    23       5
       Summe der gültigen…  abs       5  27     5    13     6       3
-      Kundenzufriedenheit  abs       6  NA    NA    NA    NA      NA
-                           in %      7  NA    NA    NA    NA      NA
-      Onlineauftritte      abs       8  NA    NA    NA    NA      NA
-                           in %      9  NA    NA    NA    NA      NA
+      Kundenzufriedenheit  abs       6  18     4     9     3       2
+                           in %      7  78.3 100    75    60     100
+      Onlineauftritte      abs       8   9     1     4     3       1
+                           in %      9  39.1  25    33.3  60      50
       Strukturanalyse      abs      10  NA    NA    NA    NA      NA
                            in %     11  NA    NA    NA    NA      NA
-      Kundenzufriedenheit  abs      12  NA    NA    NA    NA      NA
-                           in %     13  NA    NA    NA    NA      NA
-      Onlineauftritte      abs      14  NA    NA    NA    NA      NA
-                           in %     15  NA    NA    NA    NA      NA
-      Strukturanalyse      abs      16  NA    NA    NA    NA      NA
-                           in %     17  NA    NA    NA    NA      NA
-      GÜLTIGE FÄLLE        abs      18  23     4    12     5       2
-                           in %     19  31.5  57.1  31.6  21.7    40
+      GÜLTIGE FÄLLE        abs      12  23     4    12     5       2
+                           in %     13  31.5  57.1  31.6  21.7    40
       
       [[15]][[3]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
@@ -490,20 +478,14 @@
                             NULL -----       Asien Euro… Nord… Pazi…
       GESAMT               abs       4  43     7    18    13       5
       Summe der gültigen…  abs       5  17     2     8     5       2
-      Kundenzufriedenheit  abs       6  NA    NA    NA    NA      NA
-                           in %      7  NA    NA    NA    NA      NA
-      Onlineauftritte      abs       8  NA    NA    NA    NA      NA
-                           in %      9  NA    NA    NA    NA      NA
-      Strukturanalyse      abs      10  NA    NA    NA    NA      NA
-                           in %     11  NA    NA    NA    NA      NA
-      Kundenzufriedenheit  abs      12  NA    NA    NA    NA      NA
-                           in %     13  NA    NA    NA    NA      NA
-      Onlineauftritte      abs      14  NA    NA    NA    NA      NA
-                           in %     15  NA    NA    NA    NA      NA
-      Strukturanalyse      abs      16  NA    NA    NA    NA      NA
-                           in %     17  NA    NA    NA    NA      NA
-      GÜLTIGE FÄLLE        abs      18  15     1     8     4       2
-                           in %     19  34.9  14.3  44.4  30.8    40
+      Kundenzufriedenheit  abs       6  12     1     7     3       1
+                           in %      7  80   100    87.5  75      50
+      Onlineauftritte      abs       8   2     1    NA     1      NA
+                           in %      9  13.3 100    NA    25      NA
+      Strukturanalyse      abs      10   3    NA     1     1       1
+                           in %     11  20    NA    12.5  25      50
+      GÜLTIGE FÄLLE        abs      12  15     1     8     4       2
+                           in %     13  34.9  14.3  44.4  30.8    40
       
       
       [[16]]
