@@ -52,20 +52,17 @@ get_raw_data.default <- function(qtab) {
     rowvars <- df_selvar_i$rowvar[[1]]
     selvar_name <- df_selvar_i$selvar
     selval <- qtab$p$SelVal
-    prep_data(
+    res <- prep_data(
       qtab,
       rowvars = rowvars,
       new_rowvars = qtab$p$raw_data_rowvars,
       colvars_named = colvars_named,
       weightvar = weightvar,
       row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_mod[[selvar_name]], selval)
-    ) |>
-    # add selvar/l columns in the beginning:
-    dplyr::mutate(
-      selvar = selvar_name,
-      selval = selval,
-      .before = 1
     )
+    res$selvar = selvar_name
+    res$selval = selval
+    res
   }) |>
     dplyr::bind_rows()
   dat
@@ -117,6 +114,7 @@ selvar_eq_selval <- function(selvar, selval) {
   if (!is.na(as.numeric(selval) |> suppressWarnings())) {
     return(selvar == as.numeric(selval))
   }
+  # TODO: ask Wolf which possibilities are needed apart from e.g. "1-3" ...:
   selval_interval <- selval |> stringr::str_remove(":.*") |> stringr::str_split_1("-") |> as.numeric()
   selvar >=  selval_interval[1] & selvar <= selval_interval[2]
 }
