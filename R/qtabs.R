@@ -36,7 +36,6 @@ Qtab <- R6::R6Class("Qtab",
 
       self$m <- mapping
 
-      self$d$dat_mod  <- mapping$dat_mod
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
       self$d$tab_table <- gen_tab_table(self$p)
