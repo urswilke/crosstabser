@@ -100,9 +100,9 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
     return(NULL)
   }
-  occuring_vals <- qtab$d$dat_mod[qtab$p$rowvars_qtab] |> unlist(use.names = FALSE) |> unique()
+  occuring_vals <- qtab$m$dat_mod[qtab$p$rowvars_qtab] |> unlist(use.names = FALSE) |> unique()
   invalid_vals <- qtab$p$Unguelt
-  vallabs <- attr(qtab$d$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
+  vallabs <- attr(qtab$m$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
 
   # the following is equivalent to (but faster with base R):
   # vallab_table <- vallabs |>
@@ -152,7 +152,7 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
 
 row_table_body.qtab_type_mdg <- function(qtab) {
   rowvars <- qtab$p$df_selvar$rowvar[[1]] %||% qtab$p$rowvars_valid_qtab
-  l_varlabs <- qtab$d$dat_mod[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  l_varlabs <- qtab$m$dat_mod[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
     l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
@@ -191,7 +191,7 @@ row_table_body.qtab_type_mdg <- function(qtab) {
 
 row_table_body.qtab_type_mw <- function(qtab) {
   rowvars <- qtab$p$df_selvar$rowvar[[1]] %||% qtab$p$rowvars_qtab
-  l_varlabs <- qtab$d$dat_mod[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  l_varlabs <- qtab$m$dat_mod[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
     l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
@@ -349,7 +349,7 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   if (all(!occuring_vals %in% invalid_vals)) {
     return(NULL)
   }
-  vallabs <- attr(qtab$d$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
+  vallabs <- attr(qtab$m$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
 
   occuring_invalid_vals <- intersect(invalid_vals, occuring_vals)
   all_invalid_vals <- c(vallabs, occuring_invalid_vals)
@@ -380,9 +380,9 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   row_table
 }
 row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
-  l_varlabs <- qtab$d$dat_mod[qtab$p$Unguelt] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  l_varlabs <- qtab$m$dat_mod[qtab$p$Unguelt] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   mdg_val <- qtab$p$MdgVal
-  invalids_present <- qtab$d$dat_mod[names(l_varlabs)] |>
+  invalids_present <- qtab$m$dat_mod[names(l_varlabs)] |>
     purrr::map_lgl(\(x) mdg_val %in% x)
   if (sum(invalids_present) == 0) {
     return(NULL)

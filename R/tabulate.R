@@ -93,7 +93,7 @@ prep_data <- function(
   #   dplyr::select(!!!long_cols) |>
   #   dplyr::mutate(across(everything(), strip_attributes))
   # ... but with base R (for better performance)
-  dat <- qtab$d$dat_mod[row_in_filter, long_cols]
+  dat <- qtab$m$dat_mod[row_in_filter, long_cols]
   names(dat) <- names(long_cols)
   # remove label information:
   for (col in names(dat)) {
@@ -107,7 +107,7 @@ get_row_filter_lgl <- function(qtab) {
     return(TRUE)
   }
   filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
-  row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$d$dat_mod))
+  row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$m$dat_mod))
   all_true(row_lgls)
 }
 selvar_eq_selval <- function(selvar, selval) {
