@@ -95,7 +95,7 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 \subsection{Method \code{new()}}{
 Initialize a Tabula object
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$new(dat, mapping_file, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$new(dat, mapping_file, row = NULL, ...)}\if{html}{\out{</div>}}
 }
 
 }
