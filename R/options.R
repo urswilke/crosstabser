@@ -86,6 +86,12 @@ add_global_options <- function(params, mapping) {
   res
 }
 
+qtab_params <- function(params, mapping) {
+  new_qtab_params(params) |>
+    # TODO: think if it's better to separate the parts of the parameters
+    # from the Tabula / Qrow more...!
+    set_qtab_params(mapping)
+}
 # S3 class (qtab_params_... cat, mw, mcg or mdg):
 new_qtab_params <- function(params) {
   class(params) <- c(paste0("qtab_params_", params$Type), class(params))

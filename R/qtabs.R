@@ -29,10 +29,7 @@ Qtab <- R6::R6Class("Qtab",
                           mapping,
                           ...) {
       self$p <- params |>
-        new_qtab_params() |>
-        # TODO: think if it's better to separate the parts of the parameters
-        # from the Tabula / Qrow more...!
-        set_qtab_params(mapping)
+        qtab_params(mapping)
 
       self$m <- mapping
 
