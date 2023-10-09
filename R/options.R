@@ -92,11 +92,11 @@ new_qtab_params <- function(params) {
   params
 }
 
-add_type_specific_params <- function(params, mapping) {
-  UseMethod("add_type_specific_params")
+set_qtab_params <- function(params, mapping) {
+  UseMethod("set_qtab_params")
 }
 
-add_type_specific_params.default <- function(params, mapping) {
+set_qtab_params.default <- function(params, mapping) {
   params$raw_data_rowvars <- paste0(
     "rowvar_",
     # for multi selvar:
@@ -125,9 +125,10 @@ add_type_specific_params.default <- function(params, mapping) {
       key_count
     )
   }
-  params
+  params |>
+    add_global_options(mapping)
 }
-add_type_specific_params.qtab_params_mdg <- function(params, mapping) {
+set_qtab_params.qtab_params_mdg <- function(params, mapping) {
   params$MdgVal <- params$MdgVal %||% "1"
   params$rowvars_valid_qtab <- params$RowVar
   # TODO: find cleaner way...!
@@ -160,7 +161,7 @@ concat_selvar_rowvars <- function(params) {
     unlist()
 }
 
-add_type_specific_params.qtab_params_mw <- function(params, mapping) {
+set_qtab_params.qtab_params_mw <- function(params, mapping) {
   stat_fun <- params$ZsfgMW
   params$rowvars_qtab <- params$RowVar
   params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
@@ -171,7 +172,7 @@ add_type_specific_params.qtab_params_mw <- function(params, mapping) {
   params$stat_fun <- stat_fun
   NextMethod()
 }
-add_type_specific_params.qtab_params_cat <- function(params, mapping) {
+set_qtab_params.qtab_params_cat <- function(params, mapping) {
   params$rowvars_qtab <- unlist(params$df_selvar$rowvar) %||% params$RowVar
   # for multiple selvar:
   params$selvar_rowvars_qtab <- params$rowvars_qtab |>
@@ -181,7 +182,7 @@ add_type_specific_params.qtab_params_cat <- function(params, mapping) {
   }
   NextMethod()
 }
-add_type_specific_params.qtab_params_mcg <- function(params, mapping) {
+set_qtab_params.qtab_params_mcg <- function(params, mapping) {
   params$rowvars_qtab <- params$RowVar
   params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
   NextMethod()

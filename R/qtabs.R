@@ -32,8 +32,7 @@ Qtab <- R6::R6Class("Qtab",
         new_qtab_params() |>
         # TODO: think if it's better to separate the parts of the parameters
         # from the Tabula / Qrow more...!
-        add_type_specific_params(mapping) |>
-        add_global_options(mapping)
+        set_qtab_params(mapping)
       self$m <- mapping
       self$p$l_lexikon <- mapping$options$l_lexikon
       self$d$dat_mod  <- mapping$dat_mod
