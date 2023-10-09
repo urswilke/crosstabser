@@ -78,35 +78,41 @@ add_global_options <- function(params, mapping) {
   if (is.na(res$Weight)) {
     res$Weight <- list(NULL)
   }
-  if (length(res$Unguelt) == 0) {
+  # - quick fix - TODO: find cleaner way for mdg...:
+  if (length(res$Unguelt) == 0 && params$Type != "mdg") {
     res$Unguelt <- global_options$Unguelt
   }
   res$ColVar <- global_options$ColVar
   res
 }
 
+# S3 class (qtab_params_... cat, mw, mcg or mdg):
+new_qtab_params <- function(params) {
+  class(params) <- c(paste0("qtab_params_", params$Type), class(params))
+  params
+}
 
-add_type_specific_params <- function(qtab) {
+add_type_specific_params <- function(params, mapping) {
   UseMethod("add_type_specific_params")
 }
 
-add_type_specific_params.default <- function(qtab) {
-  qtab$p$raw_data_rowvars <- paste0(
+add_type_specific_params.default <- function(params, mapping) {
+  params$raw_data_rowvars <- paste0(
     "rowvar_",
     # for multi selvar:
-    qtab$p$selvar_rowvars_qtab
+    params$selvar_rowvars_qtab
   )
-  qtab$p$rowvars_string <- paste(qtab$p$selvar_rowvars_qtab, collapse = ", ")
-  qtab$p$raw_data_colvars <- paste0("colvar_", c(qtab$p$ColVar, "DC#STICHPROBE"))
-  if (is.null(qtab$p$Weight[[1]])) {
-    qtab$p$long_weight <- character()
+  params$rowvars_string <- paste(params$selvar_rowvars_qtab, collapse = ", ")
+  params$raw_data_colvars <- paste0("colvar_", c(mapping$options$l_macro_scenario$ColVar, "DC#STICHPROBE"))
+  if (is.null(params$Weight[[1]])) {
+    params$long_weight <- character()
   } else {
-    qtab$p$long_weight <- "weight"
+    params$long_weight <- "weight"
   }
 
-  if (!is.null(qtab$p$Sort)) {
+  if (!is.null(params$Sort)) {
     sort_list <- stringr::str_extract_all(
-      qtab$p$Sort,
+      params$Sort,
       "\\w+ *= *\\w+"
     )[[1]] |>
       stringr::str_split(" *= *")
@@ -114,36 +120,37 @@ add_type_specific_params.default <- function(qtab) {
     # options should be implemented:
     order_d <- any(sort_list |> purrr::map_lgl(\(x) all(x == c("ORDER", "D"))))
     key_count <- any(sort_list |> purrr::map_lgl(\(x) all(x == c("KEY", "COUNT"))))
-    qtab$p$sort_params <- tibble::lst(
+    params$sort_params <- tibble::lst(
       order_d,
       key_count
     )
   }
+  params
 }
-add_type_specific_params.qtab_type_mdg <- function(qtab) {
-  qtab$p$MdgVal <- qtab$p$MdgVal %||% "1"
-  qtab$p$rowvars_valid_qtab <- qtab$p$RowVar
+add_type_specific_params.qtab_params_mdg <- function(params, mapping) {
+  params$MdgVal <- params$MdgVal %||% "1"
+  params$rowvars_valid_qtab <- params$RowVar
   # TODO: find cleaner way...!
-  qtab$p$rowvars_qtab <- qtab$p$RowVar
+  params$rowvars_qtab <- params$RowVar
 
   # this has to be done before adding the Unguelt variables
-  # in order to make row_table_body.qtab_type_mdg() only pick the valid variables
+  # in order to make row_table_body.qtab_params_mdg() only pick the valid variables
   # for multi selvar mdg tables
-  qtab$p$selvar_rowvars_qtab <- concat_selvar_rowvars(qtab)
-  if (is.character(qtab$p$Unguelt)) {
-    qtab$p$rowvars_qtab <- c(qtab$p$rowvars_qtab, qtab$p$Unguelt)
+  params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
+  if (is.character(params$Unguelt)) {
+    params$rowvars_qtab <- c(params$rowvars_qtab, params$Unguelt)
   }
   # HACK to remove the numeric values that were wrongly added from the Macro sheet:
-  if (is.numeric(qtab$p$Unguelt)) {
-    qtab$p$Unguelt <- NULL
+  if (is.numeric(params$Unguelt)) {
+    params$Unguelt <- NULL
   }
   NextMethod()
 }
-concat_selvar_rowvars <- function(qtab) {
-  if (is.null(qtab$p$SelVar)) {
-    return(qtab$p$rowvars_qtab)
+concat_selvar_rowvars <- function(params) {
+  if (is.null(params$SelVar)) {
+    return(params$rowvars_qtab)
   }
-  selvar_rowvars <- qtab$p$df_selvar$rowvar
+  selvar_rowvars <- params$df_selvar$rowvar
   selvar_rowvars[[1]] |>
     seq_along() |>
     lapply(
@@ -155,30 +162,30 @@ concat_selvar_rowvars <- function(qtab) {
     unlist()
 }
 
-add_type_specific_params.qtab_type_mw <- function(qtab) {
-  stat_fun <- qtab$p$ZsfgMW
-  qtab$p$rowvars_qtab <- qtab$p$RowVar
-  qtab$p$selvar_rowvars_qtab <- concat_selvar_rowvars(qtab)
+add_type_specific_params.qtab_params_mw <- function(params, mapping) {
+  stat_fun <- params$ZsfgMW
+  params$rowvars_qtab <- params$RowVar
+  params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
   if (length(stat_fun) == 0) {
     stat_fun = "mean"
   }
 
-  qtab$p$stat_fun <- stat_fun
+  params$stat_fun <- stat_fun
   NextMethod()
 }
-add_type_specific_params.qtab_type_cat <- function(qtab) {
-  qtab$p$rowvars_qtab <- unlist(qtab$p$df_selvar$rowvar) %||% qtab$p$RowVar
+add_type_specific_params.qtab_params_cat <- function(params, mapping) {
+  params$rowvars_qtab <- unlist(params$df_selvar$rowvar) %||% params$RowVar
   # for multiple selvar:
-  qtab$p$selvar_rowvars_qtab <- qtab$p$rowvars_qtab |>
+  params$selvar_rowvars_qtab <- params$rowvars_qtab |>
     paste(collapse = "/")
-  if (!is.null(qtab$p$MetrMac)) {
-    qtab$p$df_stat_funs <- process_metr_mac(qtab)
+  if (!is.null(params$MetrMac)) {
+    params$df_stat_funs <- process_metr_mac(params, mapping)
   }
   NextMethod()
 }
-add_type_specific_params.qtab_type_mcg <- function(qtab) {
-  qtab$p$rowvars_qtab <- qtab$p$RowVar
-  qtab$p$selvar_rowvars_qtab <- concat_selvar_rowvars(qtab)
+add_type_specific_params.qtab_params_mcg <- function(params, mapping) {
+  params$rowvars_qtab <- params$RowVar
+  params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
   NextMethod()
 }
 
@@ -189,15 +196,15 @@ df_metr_mac <- data.frame(
   ctab_entry = c("cTabStdErr", "cTabMedian", "cTabMean", "wo_steht???", "wo_steht2???", "wo_steht3???", "wo_steht4???")
 )
 
-process_metr_mac <- function(qtab) {
-  l <- stringr::str_extract_all(qtab$p$MetrMac, "[A-Z]\\d+")[[1]] |>
+process_metr_mac <- function(params, mapping) {
+  l <- stringr::str_extract_all(params$MetrMac, "[A-Z]\\d+")[[1]] |>
     stringr::str_split("(?=\\d)")
 
   df_stat_funs <- data.frame(shortcut = l |> purrr::map_chr(1)) |>
     dplyr::mutate(
       fun = df_metr_mac$fun[match(shortcut, df_metr_mac$shortcut)],
       decimals = as.numeric(l |> purrr::map_chr(\(x) x[length(x)])),
-      row_title = qtab$m$options$l_lexikon[
+      row_title = mapping$options$l_lexikon[
         df_metr_mac$ctab_entry[match(shortcut, df_metr_mac$shortcut)]
       ] |> unname()
     )

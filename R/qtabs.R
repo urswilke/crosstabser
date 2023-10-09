@@ -7,7 +7,6 @@ new_qtabs <- function(qrow_params, mapping) {
 new_qtab_type <- function(params, mapping) {
   qtab <- Qtab$new(params, mapping)
   class(qtab) <- c(paste0("qtab_type_", params$Type), class(qtab))
-  add_type_specific_params(qtab)
   qtab
 }
 
@@ -30,8 +29,10 @@ Qtab <- R6::R6Class("Qtab",
                           mapping,
                           ...) {
       self$p <- params |>
+        new_qtab_params() |>
         # TODO: think if it's better to separate the parts of the parameters
         # from the Tabula / Qrow more...!
+        add_type_specific_params(mapping) |>
         add_global_options(mapping)
       self$m <- mapping
       self$p$l_lexikon <- mapping$options$l_lexikon
