@@ -97,6 +97,8 @@ set_qtab_params <- function(params, mapping) {
 }
 
 set_qtab_params.default <- function(params, mapping) {
+  params$l_lexikon <- mapping$options$l_lexikon
+
   params$raw_data_rowvars <- paste0(
     "rowvar_",
     # for multi selvar:
