@@ -105,6 +105,8 @@ set_qtab_params.default <- function(params, mapping) {
     params$selvar_rowvars_qtab
   )
   params$rowvars_string <- paste(params$selvar_rowvars_qtab, collapse = ", ")
+  # TODO: tell Wolf: Here we could also use ColVar defined in the Questions sheet...:
+  # (with params$ColVar %||% ...)
   params$raw_data_colvars <- paste0("colvar_", c(mapping$options$l_macro_scenario$ColVar, "DC#STICHPROBE"))
   if (is.null(params$Weight[[1]])) {
     params$long_weight <- character()
