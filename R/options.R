@@ -159,16 +159,11 @@ concat_selvar_rowvars <- function(params) {
   if (is.null(params$SelVar)) {
     return(params$rowvars_qtab)
   }
-  selvar_rowvars <- params$df_selvar$rowvar
-  selvar_rowvars[[1]] |>
-    seq_along() |>
-    lapply(
-      \(i) selvar_rowvars |>
-        lapply(\(x) x[i]) |>
-        unlist() |>
-        paste(collapse = "/")
-    ) |>
-    unlist()
+  params$RowVar |>
+    matrix(nrow = length(params$SelVar)) |>
+    asplit(2) |>
+    lapply(\(x) paste(x, collapse = "/")) |>
+    unlist(use.names = FALSE)
 }
 
 set_qtab_params.qtab_params_mw <- function(params, mapping) {
@@ -183,7 +178,10 @@ set_qtab_params.qtab_params_mw <- function(params, mapping) {
   NextMethod()
 }
 set_qtab_params.qtab_params_cat <- function(params, mapping) {
-  params$rowvars_qtab <- unlist(params$df_selvar$rowvar) %||% params$RowVar
+  i_cat <- params$i_cat
+  nsel <- max(length(params$SelVar), 1)
+
+  params$rowvars_qtab <- get_rowvars_cat(params)
   # for multiple selvar:
   params$selvar_rowvars_qtab <- params$rowvars_qtab |>
     paste(collapse = "/")
@@ -191,6 +189,14 @@ set_qtab_params.qtab_params_cat <- function(params, mapping) {
     params$df_stat_funs <- process_metr_mac(params, mapping)
   }
   NextMethod()
+}
+get_rowvars_cat <- function(params) {
+  i_cat <- params$i_cat
+  nsel <- max(length(params$SelVar), 1)
+  if (length(params$SelVar) < 2) {
+    return(params$RowVar[i_cat])
+  }
+  params$RowVar[((i_cat - 1) * nsel + 1):(i_cat * nsel)]
 }
 set_qtab_params.qtab_params_mcg <- function(params, mapping) {
   params$rowvars_qtab <- params$RowVar
