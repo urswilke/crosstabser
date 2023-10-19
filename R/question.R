@@ -85,20 +85,6 @@ process_selval <- function(qrow_params, mapping) {
     edit_selval_info
   )
 }
-gen_df_selvar <- function(selvar, rowvars) {
-  n_selvar <- length(selvar)
-  df_selvar <- tibble::tibble(selvar, rowvar = vector("list", n_selvar))
-  for (i_row in seq_len(n_selvar)) {
-    df_selvar[i_row,]$rowvar <-
-      rowvars[seq(
-        i_row,
-        length(rowvars),
-        n_selvar
-      )] |>
-      list()
-  }
-  df_selvar
-}
 
 edit_selval_info <- function(x, subtitle, selval) {
   x$Title <- add_selval_title(x$Title, subtitle)
@@ -137,7 +123,6 @@ process_cat_rows <- function(qrow_params, mapping) {
     qrow_params$i_cat <- 1L
     return(list(qrow_params))
   }
-  df_selvar <- qrow_params$df_selvar
   qrow_params$n_cats <- n_cats <- if (length(qrow_params$SelVar) > 0) {
     length(qrow_params$RowVar) / length(qrow_params$SelVar)
   } else {
