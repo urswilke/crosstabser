@@ -140,7 +140,6 @@ set_qtab_params.qtab_params_mdg <- function(params, mapping) {
   # this has to be done before adding the Unguelt variables
   # in order to make row_table_body.qtab_params_mdg() only pick the valid variables
   # for multi selvar mdg tables
-  params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
   params$rowvars_qtab <- c(params$rowvars_qtab, params$Unguelt)
   # HACK to remove the numeric values that were wrongly added from the Macro sheet:
   if (is.numeric(params$Unguelt)) {
@@ -149,6 +148,7 @@ set_qtab_params.qtab_params_mdg <- function(params, mapping) {
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()
     params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
+    params$l_selvar$valid <- concat_selvar_rowvars(params)
   }
   NextMethod()
 }

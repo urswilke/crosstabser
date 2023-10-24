@@ -185,7 +185,7 @@ row_table_body.qtab_type_mdg <- function(qtab) {
     1L
   ) |> rep(n_vals)
   row_table$RowContent <- "Detail"
-  row_table$RowVariable <- qtab$p$selvar_rowvars_qtab |> rep(each = 2)
+  row_table$RowVariable <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab |> rep(each = 2)
   row_table
 }
 

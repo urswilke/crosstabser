@@ -9,7 +9,7 @@ get_raw_data <- function(qtab) {
 get_raw_data.qtab_type_mdg <- function(qtab) {
   res <- get_raw_data.default(qtab)
   if (is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
-    rowvars <- qtab$p$selvar_rowvars_qtab
+    rowvars <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab
     rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
     res <- as.data.frame(res)
     res[names(rowvars_named)] <- catrec(

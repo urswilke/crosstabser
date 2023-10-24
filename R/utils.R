@@ -41,6 +41,9 @@ spss_to_r <- function(ex) {
 raw_data_rowvars <- function(qtab) {
   paste0(
     "rowvar_",
-    qtab$p$selvar_rowvars_qtab
+    # TODO: clean up after fully refactoring...!
+
+    qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab %||%
+      qtab$p$selvar_rowvars_qtab
   )
 }
