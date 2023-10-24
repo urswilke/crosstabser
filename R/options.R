@@ -138,7 +138,7 @@ set_qtab_params.qtab_params_mdg <- function(params, mapping) {
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()
     params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
-    params$l_selvar$valid <- concat_selvar_rowvars(params)
+    params$l_selvar$valid <- concat_selvar_rowvars(params$RowVar, params$SelVar)
   }
   NextMethod()
 }
@@ -151,9 +151,9 @@ gen_selvar_rowvars <- function(rowvars, selvars) {
   res
 }
 
-concat_selvar_rowvars <- function(params) {
-  params$RowVar |>
-    matrix(nrow = length(params$SelVar)) |>
+concat_selvar_rowvars <- function(rowvar, selvar) {
+  rowvar |>
+    matrix(nrow = length(selvar)) |>
     asplit(2) |>
     lapply(\(x) paste(x, collapse = "/")) |>
     unlist(use.names = FALSE)
@@ -168,7 +168,7 @@ set_qtab_params.qtab_params_mw <- function(params, mapping) {
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()
     params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
-    params$l_selvar$valid <- concat_selvar_rowvars(params)
+    params$l_selvar$valid <- concat_selvar_rowvars(params$RowVar, params$SelVar)
   }
 
   params$stat_fun <- stat_fun
@@ -200,7 +200,7 @@ set_qtab_params.qtab_params_mcg <- function(params, mapping) {
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()
     params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
-    params$l_selvar$valid <- concat_selvar_rowvars(params)
+    params$l_selvar$valid <- concat_selvar_rowvars(params$RowVar, params$SelVar)
   }
   NextMethod()
 }
