@@ -152,9 +152,6 @@ gen_selvar_rowvars <- function(rowvars, selvars) {
 }
 
 concat_selvar_rowvars <- function(params) {
-  if (is.null(params$SelVar)) {
-    return(params$rowvars_qtab)
-  }
   params$RowVar |>
     matrix(nrow = length(params$SelVar)) |>
     asplit(2) |>
