@@ -152,7 +152,7 @@ set_qtab_params.qtab_params_mdg <- function(params, mapping) {
     params$Unguelt <- NULL
   }
   if (!is.null(params$SelVar)) {
-    params$selvar_rowvars2 <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
+    params$l_selvar_rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
   }
   NextMethod()
 }
@@ -184,7 +184,7 @@ set_qtab_params.qtab_params_mw <- function(params, mapping) {
     stat_fun = "mean"
   }
   if (!is.null(params$SelVar)) {
-    params$selvar_rowvars2 <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
+    params$l_selvar_rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
   }
 
   params$stat_fun <- stat_fun
@@ -192,7 +192,7 @@ set_qtab_params.qtab_params_mw <- function(params, mapping) {
 }
 set_qtab_params.qtab_params_cat <- function(params, mapping) {
   params$rowvars_qtab <- get_rowvars_cat(params)
-  params$selvar_rowvars2 <- get_rowvars_cat(params)
+  params$l_selvar_rowvars <- get_rowvars_cat(params)
   # for multiple selvar:
   params$selvar_rowvars_qtab <- params$rowvars_qtab |>
     paste(collapse = "/")
@@ -213,7 +213,7 @@ set_qtab_params.qtab_params_mcg <- function(params, mapping) {
   params$rowvars_qtab <- params$RowVar
   params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
   if (!is.null(params$SelVar)) {
-    params$selvar_rowvars2 <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
+    params$l_selvar_rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
   }
   NextMethod()
 }
