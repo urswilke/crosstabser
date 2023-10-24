@@ -175,13 +175,13 @@ concat_selvar_rowvars <- function(params) {
 set_qtab_params.qtab_params_mw <- function(params, mapping) {
   stat_fun <- params$ZsfgMW
   params$rowvars_qtab <- params$RowVar
-  params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
   if (length(stat_fun) == 0) {
     stat_fun = "mean"
   }
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()
     params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
+    params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
   }
 
   params$stat_fun <- stat_fun
