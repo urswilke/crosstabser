@@ -43,8 +43,8 @@ row_table_total_line <- function(qtab) {
 
 row_table_total_line.default <- function(qtab) {
   row_table <- empty_row_table()
-  total_row_text <- qtab$p$l_lexikon["cTabGesamt"]
-  abs_text <- qtab$p$l_lexikon["cTabAbs"]
+  total_row_text <- qtab$m$options$l_lexikon["cTabGesamt"]
+  abs_text <- qtab$m$options$l_lexikon["cTabAbs"]
   row_variable <- qtab$p$rowvars_string
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Total", "Abs", total_row_text, total_row_text, abs_text, 0L, row_variable, 1)
   row_table
@@ -62,8 +62,8 @@ row_table_valid_mw.default <- function(qtab) {
 }
 row_table_valid_mw.qtab_type_mw <- function(qtab) {
   row_table <- empty_row_table()
-  valid_mw_text <- qtab$p$l_lexikon["cTabGesamtMW"]
-  abs_text <- qtab$p$l_lexikon["cTabAbs"]
+  valid_mw_text <- qtab$m$options$l_lexikon["cTabGesamtMW"]
+  abs_text <- qtab$m$options$l_lexikon["cTabAbs"]
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Abs", valid_mw_text, valid_mw_text, abs_text, 0L, 1)
   row_table$RowVariable <- qtab$p$rowvars_string
   row_table
@@ -76,8 +76,8 @@ row_table_valid_answers_line <- function(qtab) {
 
 row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_type_mdg <- function(qtab) {
   row_table <- empty_row_table()
-  valid_answers_row_text <- qtab$p$l_lexikon["cTabGesamtMFA"]
-  abs_text <- qtab$p$l_lexikon["cTabAbs"]
+  valid_answers_row_text <- qtab$m$options$l_lexikon["cTabGesamtMFA"]
+  abs_text <- qtab$m$options$l_lexikon["cTabAbs"]
   row_table[
     1,
     c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowValue")
@@ -136,8 +136,8 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   row_table$RowTitle1 <- vallab_table$vallab
   row_table$RowTitle2 <- vallab_table$vallab
   row_table$RowTitle3 <- c(
-    qtab$p$l_lexikon["cTabAbs"],
-    qtab$p$l_lexikon["cTabProz"]
+    qtab$m$options$l_lexikon["cTabAbs"],
+    qtab$m$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(
@@ -176,8 +176,8 @@ row_table_body.qtab_type_mdg <- function(qtab) {
   row_table$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
   row_table$RowTitle3 <- c(
-    qtab$p$l_lexikon["cTabAbs"],
-    qtab$p$l_lexikon["cTabProz"]
+    qtab$m$options$l_lexikon["cTabAbs"],
+    qtab$m$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(
@@ -213,14 +213,14 @@ row_table_body.qtab_type_mw <- function(qtab) {
   row_table[seq_len(n_vals * 2),]$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
 
-  row_title3 <- qtab$p$l_lexikon["cTabMean"]
+  row_title3 <- qtab$m$options$l_lexikon["cTabMean"]
   if (!is.null(qtab$p$repov_names)) {
     row_title3 <- qtab$p$repov_names
   }
   row_table$RowTitle3 <- c(
     # TODO: generalize for media std err etc.:
     row_title3,
-    qtab$p$l_lexikon["cTabGueltig"]
+    qtab$m$options$l_lexikon["cTabGueltig"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Percent", "Abs") |> rep(n_vals)
   row_table$RowContent <- c(
@@ -242,9 +242,9 @@ row_table_valid_cases <- function(qtab) {
 }
 row_table_valid_cases.default <- function(qtab) {
   row_table <- empty_row_table()
-  valid_cases_text <- qtab$p$l_lexikon["cTabGueltig"]
-  abs_text <- qtab$p$l_lexikon["cTabAbs"]
-  percent_text <- qtab$p$l_lexikon["cTabProz"]
+  valid_cases_text <- qtab$m$options$l_lexikon["cTabGueltig"]
+  abs_text <- qtab$m$options$l_lexikon["cTabAbs"]
+  percent_text <- qtab$m$options$l_lexikon["cTabProz"]
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Abs", valid_cases_text, valid_cases_text, abs_text, 0, 1)
   row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Percent", valid_cases_text, valid_cases_text, percent_text, 1, 1)
   row_table$RowVariable <- qtab$p$rowvars_string
@@ -276,15 +276,15 @@ row_table_summary.qtab_type_cat <- function(qtab) {
 
   n_vals <- nrow(row_table) / 2
 
-  row_table$RowTitle1 <- qtab$p$l_lexikon[["cTabZsfg"]]
+  row_table$RowTitle1 <- qtab$m$options$l_lexikon[["cTabZsfg"]]
   row_table[row_table$i_catrec > 1,]$RowTitle1 <- paste(
     row_table[row_table$i_catrec > 1,]$RowTitle1,
     row_table[row_table$i_catrec > 1,]$i_catrec
   )
 
   row_table$RowTitle3 <- c(
-    qtab$p$l_lexikon["cTabAbs"],
-    qtab$p$l_lexikon["cTabProz"]
+    qtab$m$options$l_lexikon["cTabAbs"],
+    qtab$m$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
   row_table$RowVariable <- paste0(qtab$p$selvar_rowvars_qtab, "__summary")
   row_table
@@ -368,8 +368,8 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   row_table$RowTitle1 <- vallab_table$vallab
   row_table$RowTitle2 <- vallab_table$vallab
   row_table$RowTitle3 <- c(
-    qtab$p$l_lexikon["cTabAbs"],
-    qtab$p$l_lexikon["cTabProz"]
+    qtab$m$options$l_lexikon["cTabAbs"],
+    qtab$m$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(0L, 1L) |> rep(n_vals)
@@ -409,8 +409,8 @@ row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
   row_table$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
   row_table$RowTitle3 <- c(
-    qtab$p$l_lexikon["cTabAbs"],
-    qtab$p$l_lexikon["cTabProz"]
+    qtab$m$options$l_lexikon["cTabAbs"],
+    qtab$m$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(
