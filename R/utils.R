@@ -42,10 +42,7 @@ raw_data_rowvars <- function(qtab) {
   paste0(
     "rowvar_",
     # TODO: clean up after fully refactoring...!
-
     qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab %||%
-      # to be removed:
-      qtab$p$selvar_rowvars_qtab %||%
       qtab$p$rowvars_qtab
   )
 }

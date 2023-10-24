@@ -181,7 +181,7 @@ set_qtab_params.qtab_params_mw <- function(params, mapping) {
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()
     params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
-    params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
+    params$l_selvar$valid <- concat_selvar_rowvars(params)
   }
 
   params$stat_fun <- stat_fun
@@ -209,10 +209,10 @@ get_rowvars_cat <- function(params) {
 }
 set_qtab_params.qtab_params_mcg <- function(params, mapping) {
   params$rowvars_qtab <- params$RowVar
-  params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()
     params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
+    params$l_selvar$valid <- concat_selvar_rowvars(params)
   }
   NextMethod()
 }
