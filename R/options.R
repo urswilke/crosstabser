@@ -148,13 +148,12 @@ set_qtab_params.qtab_params_mdg <- function(params, mapping) {
   # in order to make row_table_body.qtab_params_mdg() only pick the valid variables
   # for multi selvar mdg tables
   params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
-  params$rowvars_qtab <- c(params$rowvars_qtab, params$Unguelt)
   # HACK to remove the numeric values that were wrongly added from the Macro sheet:
   if (is.numeric(params$Unguelt)) {
     params$Unguelt <- NULL
   }
   if (!is.null(params$SelVar)) {
-    params$selvar_rowvars2 <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
+    params$selvar_rowvars2 <- gen_selvar_rowvars(c(params$rowvars_qtab, params$Unguelt), params$SelVar)
   }
   NextMethod()
 }
@@ -171,7 +170,7 @@ concat_selvar_rowvars <- function(params) {
   if (is.null(params$SelVar)) {
     return(params$rowvars_qtab)
   }
-  params$RowVar |>
+  c(params$RowVar, params$Unguelt) |>
     matrix(nrow = length(params$SelVar)) |>
     asplit(2) |>
     lapply(\(x) paste(x, collapse = "/")) |>
