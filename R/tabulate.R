@@ -53,7 +53,7 @@ get_raw_data.default <- function(qtab) {
     res <- prep_data(
       qtab,
       rowvars = rowvars,
-      new_rowvars = qtab$p$raw_data_rowvars,
+      new_rowvars = raw_data_rowvars(qtab),
       colvars_named = colvars_named,
       weightvar = weightvar,
       row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_mod[[selvar_name]], selval)

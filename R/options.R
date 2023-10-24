@@ -103,11 +103,6 @@ set_qtab_params <- function(params, mapping) {
 }
 
 set_qtab_params.default <- function(params, mapping) {
-  params$raw_data_rowvars <- paste0(
-    "rowvar_",
-    # for multi selvar:
-    params$selvar_rowvars_qtab
-  )
   params$rowvars_string <- paste(params$selvar_rowvars_qtab, collapse = ", ")
   # TODO: tell Wolf: Here we could also use ColVar defined in the Questions sheet...:
   # (with params$ColVar %||% ...)
