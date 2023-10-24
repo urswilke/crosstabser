@@ -103,7 +103,7 @@ set_qtab_params <- function(params, mapping) {
 }
 
 set_qtab_params.default <- function(params, mapping) {
-  params$rowvars_string <- paste(params$l_selvar$valid, collapse = ", ")
+  params$rowvars_string <- paste(params$l_selvar$valid %||% params$rowvars_qtab, collapse = ", ")
   # TODO: tell Wolf: Here we could also use ColVar defined in the Questions sheet...:
   # (with params$ColVar %||% ...)
   params$raw_data_colvars <- paste0("colvar_", c(mapping$options$l_macro_scenario$ColVar, "DC#STICHPROBE"))
@@ -179,11 +179,12 @@ set_qtab_params.qtab_params_mw <- function(params, mapping) {
 }
 set_qtab_params.qtab_params_cat <- function(params, mapping) {
   params$rowvars_qtab <- get_rowvars_cat(params)
-  params$l_selvar <- list()
-  params$l_selvar$rowvars <- get_rowvars_cat(params)
-  # for multiple selvar:
-  params$l_selvar$valid <- params$rowvars_qtab |>
-    paste(collapse = "/")
+  if (!is.null(params$SelVar)) {
+    params$l_selvar <- list()
+    params$l_selvar$rowvars <- get_rowvars_cat(params)
+    params$l_selvar$valid <- params$rowvars_qtab |>
+      paste(collapse = "/")
+  }
   if (!is.null(params$MetrMac)) {
     params$df_stat_funs <- process_metr_mac(params, mapping)
   }
