@@ -379,14 +379,29 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
 
   row_table
 }
+
+# TODO: add lines with cTabNoEntry ("No entry in the respective variables") if present...!
 row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
-  l_varlabs <- qtab$m$dat_mod[qtab$p$Unguelt] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  # TODO: clean up MESS by trying to hack multi selvar unguelt...:
+  if (is.null(qtab$p$Unguelt)) {
+    return(NULL)
+  }
+  invalid_vals <- qtab$p$l_selvar$rowvars_inv[[1]] %||% qtab$p$Unguelt
+  l_varlabs <- qtab$m$dat_mod[invalid_vals] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   mdg_val <- qtab$p$MdgVal
-  invalids_present <- qtab$m$dat_mod[names(l_varlabs)] |>
+
+  dat <- if (is.null(qtab$p$SelVar)) {
+    qtab$m$dat_mod[names(l_varlabs)]
+  } else {
+    qtab$d$raw_data[paste0("rowvar_", qtab$p$l_selvar$invalid)]
+  }
+
+  invalids_present <- dat |>
     purrr::map_lgl(\(x) mdg_val %in% x)
   if (sum(invalids_present) == 0) {
     return(NULL)
   }
+  names(l_varlabs) <- qtab$p$l_selvar$invalid %||% names(l_varlabs)
   l_varlabs <- l_varlabs[invalids_present]
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
@@ -418,7 +433,7 @@ row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
     1L
   ) |> rep(n_vals)
   row_table$RowVariable <- label_table$var
-  row_table$RowContent <- "Detail"
+  row_table$RowContent <- "Missing"
   row_table
 }
 row_table_invalid_vals.qtab_type_mw <- function(qtab) {

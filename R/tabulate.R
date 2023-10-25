@@ -44,10 +44,8 @@ get_raw_data.default <- function(qtab) {
   }
   # treat selvar:
 
-  # TODO: ask Wolf how to deal with Unguelt mdg vars together with multiple selvars...!
-
   dat <- seq_along(qtab$p$SelVar) |> lapply(\(i) {
-    rowvars <- qtab$p$l_selvar$rowvars[[i]]
+    rowvars <- c(qtab$p$l_selvar$rowvars[[i]], qtab$p$l_selvar$rowvars_inv[[i]])
     selvar_name <- qtab$p$SelVar[i]
     selval <- qtab$p$SelVal
     res <- prep_data(

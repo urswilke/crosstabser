@@ -156,10 +156,10 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
 
   all_counts$RowAbsPercent <- "Abs"
 
-  detail_freqs <- all_counts[!all_counts$rowvar %in% qtab$p$Unguelt,]
+  detail_freqs <- all_counts[!all_counts$rowvar %in% qtab$p$l_selvar$invalid %||% qtab$p$Unguelt,]
   detail_freqs$RowContent <- "Detail"
 
-  invalid_freqs <- all_counts[all_counts$rowvar %in% qtab$p$Unguelt,]
+  invalid_freqs <- all_counts[all_counts$rowvar %in% qtab$p$l_selvar$invalid %||% qtab$p$Unguelt,]
   invalid_freqs$RowContent <- "Missing"
 
   qtab$d$detail_freqs <- detail_freqs
@@ -173,15 +173,16 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   mdg_val <- qtab$p$MdgVal
 
   df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
-  df_rows <- df[raw_data_rowvars(qtab)]
+  rowvars <- paste0("rowvar_", qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab)
+  df_rows <- df[rowvars]
 
-  df_cols$total <- rowSums(is.na(df[raw_data_rowvars(qtab)])) < ncol(df_rows)
+  df_cols$total <- rowSums(is.na(df_rows)) < ncol(df_rows)
   sum_of_valid <- rowSums(df_rows == mdg_val, na.rm = TRUE)
   df_cols$sum_of_valid <- sum_of_valid
   df_cols$n_valid <- sum_of_valid >= 1
   # base R way to do:
   # df_cols$invalid_cts <- rowSums((df |> select(any_of(paste0("rowvar_", qtab$p$Unguelt)))) == mdg_val, na.rm = TRUE) != 0
-  invalid_colnames <- paste0("rowvar_", qtab$p$Unguelt) |> intersect(names(df))
+  invalid_colnames <- paste0("rowvar_", qtab$p$l_selvar$invalid %||% qtab$p$Unguelt) |> intersect(names(df))
   df_cols$invalid_cts <- rowSums(df[invalid_colnames] == mdg_val, na.rm = TRUE) != 0
   df_cols$no_entry <- as.numeric(sum_of_valid + df_cols$invalid_cts == 0)
   df_cols_long <- df_cols |>
