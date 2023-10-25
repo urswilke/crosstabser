@@ -159,6 +159,7 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
   detail_freqs <- all_counts[!all_counts$rowvar %in% qtab$p$l_selvar$invalid %||% qtab$p$Unguelt,]
   detail_freqs$RowContent <- "Detail"
 
+  # TODO: fix counting as done when Exclusive is set...:
   invalid_freqs <- all_counts[all_counts$rowvar %in% qtab$p$l_selvar$invalid %||% qtab$p$Unguelt,]
   invalid_freqs$RowContent <- "Missing"
 
