@@ -493,6 +493,24 @@
       
       [[16]]
       [[16]][[1]]
+      # multi selvar with unguelt: 2. Welche Art von Studien führen Sie mit dem
+      #   Tabellenbandtool durch? Sonstige
+                            NULL ----- GESAMT Regi… ------ ------ -----
+                            NULL -----        Asien Europa Norda… Pazi…
+      GESAMT               abs       4  43      7    18     13        5
+      Summe der gültigen…  abs       5  14      2     7      4        1
+      Kundenzufriedenheit  abs       6  12      1     7      3        1
+                           in %      7 100    100   100    100      100
+      Onlineauftritte      abs       8   2      1    NA      1       NA
+                           in %      9  16.7  100    NA     33.3     NA
+      GÜLTIGE FÄLLE        abs      10  12      1     7      3        1
+                           in %     11  27.9   14.3  38.9   23.1     20
+      Strukturanalyse      abs      12   3      1     1      1       NA
+                           in %     13   6.98  14.3   5.56   7.69    NA
+      
+      
+      [[17]]
+      [[17]][[1]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Kundenzufriedenheit
                             NULL ----- GESAMT Regi… ----- ----- -----
                             NULL -----        Asien Euro… Nord… Pazi…
@@ -515,7 +533,7 @@
       Keine Angabe         abs      20  69      7    34   21      7  
                            in %     21  45.7   36.8  45.3 48.8   50  
       
-      [[16]][[2]]
+      [[17]][[2]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Marktvolumen
                             NULL ----- GESA… Regi… ----- ------ -----
                             NULL -----       Asien Euro… Norda… Pazi…
@@ -536,7 +554,7 @@
       Kompetenz            abs      18 14      1    10     2        1
                            in %     19 19.2   14.3  26.3   8.70    20
       
-      [[16]][[3]]
+      [[17]][[3]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
                             NULL ----- GESA… Regi… ------ ----- -----
                             NULL -----       Asien Europa Nord… Pazi…
@@ -558,8 +576,8 @@
                            in %     19 11.6   NA    11.1  15.4     20
       
       
-      [[17]]
-      [[17]][[1]]
+      [[18]]
+      [[18]][[1]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   TOP3-Übersicht
@@ -571,7 +589,7 @@
       Kurzfristige Anpas…  TOP3      7    NA    NA    NA    NA    NA
                            GÜLT…     8    NA    NA    NA    NA    NA
       
-      [[17]][[2]]
+      [[18]][[2]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Mittelwertüberblick
@@ -583,7 +601,7 @@
       Kurzfristige Anpas…  Mitt…     7    NA    NA    NA    NA    NA
                            GÜLT…     8    NA    NA    NA    NA    NA
       
-      [[17]][[3]]
+      [[18]][[3]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Schnelle Umsetzung
@@ -623,7 +641,7 @@
       keine Angabe              abs      35  5      NA      3      1      1   
                                 in %     36  6.85   NA      7.89   4.35  20   
       
-      [[17]][[4]]
+      [[18]][[4]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Kurzfristige Anpassungen
@@ -663,7 +681,7 @@
       keine Angabe              abs      35  7      1      3      2      1    
                                 in %     36  9.59  14.3    7.89   8.70  20    
       
-      [[17]][[5]]
+      [[18]][[5]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   TOP3-Übersicht
@@ -675,7 +693,7 @@
       Kurzfristige Anpas…  TOP3      7    NA    NA    NA    NA    NA
                            GÜLT…     8    NA    NA    NA    NA    NA
       
-      [[17]][[6]]
+      [[18]][[6]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   Mittelwertüberblick
@@ -687,7 +705,7 @@
       Kurzfristige Anpas…  Mitt…     7    NA    NA    NA    NA    NA
                            GÜLT…     8    NA    NA    NA    NA    NA
       
-      [[17]][[7]]
+      [[18]][[7]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige Schnelle
       #   Umsetzung
@@ -727,7 +745,7 @@
       keine Angabe              abs      35  6      NA      2      2      2   
                                 in %     36 14.0    NA     11.1   15.4   40   
       
-      [[17]][[8]]
+      [[18]][[8]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   Kurzfristige Anpassungen

@@ -137,13 +137,18 @@ set_qtab_params.qtab_params_mdg <- function(params, mapping) {
   params$rowvars_qtab <- c(params$RowVar, params$Unguelt)
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()
-    params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
+    params$l_selvar$rowvars <- gen_selvar_rowvars(params$RowVar, params$SelVar)
+    params$l_selvar$rowvars_inv <- gen_selvar_rowvars(params$Unguelt, params$SelVar)
     params$l_selvar$valid <- concat_selvar_rowvars(params$RowVar, params$SelVar)
+    params$l_selvar$invalid <- concat_selvar_rowvars(params$Unguelt, params$SelVar)
   }
   NextMethod()
 }
 
 gen_selvar_rowvars <- function(rowvars, selvars) {
+  if (is.null(rowvars)) {
+    return(NULL)
+  }
   res <- vector("list", length(selvars))
   for (i in seq_along(selvars)) {
     res[i] <- list(rowvars[seq(i, length(rowvars), length(selvars))])
@@ -152,6 +157,9 @@ gen_selvar_rowvars <- function(rowvars, selvars) {
 }
 
 concat_selvar_rowvars <- function(rowvar, selvar) {
+  if (is.null(rowvar)) {
+    return(NULL)
+  }
   rowvar |>
     matrix(nrow = length(selvar)) |>
     asplit(2) |>

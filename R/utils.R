@@ -37,12 +37,3 @@ spss_to_r <- function(ex) {
     stringr::str_replace_all(" OR ", " | ") |>
     stringr::str_replace_all(" <> ", " != ")
 }
-
-raw_data_rowvars <- function(qtab) {
-  paste0(
-    "rowvar_",
-    # TODO: clean up after fully refactoring...!
-    qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab %||%
-      qtab$p$rowvars_qtab
-  )
-}
