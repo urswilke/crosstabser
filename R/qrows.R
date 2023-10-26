@@ -14,11 +14,11 @@ Qrow <- R6::R6Class("Qrow",
                         self$calc_qrow_qtabs()
                       },
                       calc_qrow_qtabs = function() {
-                        calc_qrow_qtabs(self)
+                        self$qtabs$obj |> lapply(\(x) x$calc_qtab())
                         invisible(self)
                       },
                       wide_tabs = function() {
-                        wide_tabs(self)
+                        self$qtabs |> lapply(\(x) x$wide_tab())
                         invisible(self)
                       },
                       xml = function() {
@@ -41,9 +41,4 @@ Qrow <- R6::R6Class("Qrow",
                       }
                     )
 )
-calc_qrow_qtabs <- function(qrow) {
-  qrow$qtabs$obj |> lapply(\(x) x$calc_qtab())
-}
-wide_tabs <- function(qrow) {
-  qrow$qtabs |> lapply(\(x) x$wide_tab())
-}
+
