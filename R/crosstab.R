@@ -12,7 +12,8 @@ rbind_table_numbers <- function(qtab) {
     qtab$d$stats_rows$n_valid,
     qtab$d$invalid_freqs,
     qtab$d$invalid_percentages,
-    qtab$d$stats_rows$no_entry
+    qtab$d$stats_rows$no_entry,
+    qtab$d$no_entry_percentages
   )
 }
 
@@ -471,4 +472,27 @@ calc_valid_counts_percentages.default <- function(qtab) {
   res$RowAbsPercent <- "Percent"
 
   res
+}
+
+
+calc_no_entry_percentages <- function(qtab) {
+  UseMethod("calc_no_entry_percentages")
+}
+calc_no_entry_percentages.default <- function(qtab) {
+  NULL
+}
+calc_no_entry_percentages.qtab_type_mdg <- function(qtab) {
+  if (nrow(qtab$d$stats_rows$no_entry) == 0) {
+    return(NULL)
+  }
+  1
+  total_cts <- qtab$d$stats_rows$total
+  no_entry_cts <- qtab$d$stats_rows$no_entry
+  res <- total_cts |> dplyr::select(-RowContent, value_tot = value) |> merge(no_entry_cts, all.x = TRUE)
+  res$value <- 100 * res$value / res$value_tot
+  res$value_tot <- NULL
+  res$RowAbsPercent <- "Percent"
+
+  res
+
 }

@@ -82,6 +82,7 @@ calc_qtab <- function(qtab) {
   qtab$d$percentages <- calc_percentages(qtab)
   qtab$d$invalid_percentages <- calc_invalid_percentages(qtab)
   qtab$d$vc_percentages <- calc_valid_counts_percentages(qtab)
+  qtab$d$no_entry_percentages <- calc_no_entry_percentages(qtab)
   qtab$d$tab_values <- rbind_table_numbers(qtab)
   qtab$d$row_table <- gen_row_table(qtab)
   post_process(qtab)

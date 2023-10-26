@@ -9,7 +9,8 @@ gen_row_table <- function(qtab) {
     row_table_summary(qtab),
     row_table_stats(qtab),
     row_table_valid_cases(qtab),
-    row_table_invalid_vals(qtab)
+    row_table_invalid_vals(qtab),
+    row_table_no_entry(qtab)
   )
 
   row_table$TabNo <- qtab$p$TabNo
@@ -433,4 +434,27 @@ row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
 }
 row_table_invalid_vals.qtab_type_mw <- function(qtab) {
   NULL
+}
+
+row_table_no_entry <- function(qtab) {
+  UseMethod("row_table_no_entry")
+}
+row_table_no_entry.default <- function(qtab) {
+  NULL
+}
+row_table_no_entry.qtab_type_mdg <- function(qtab) {
+  if (nrow(qtab$d$stats_rows$no_entry) == 0) {
+    return(NULL)
+  }
+  row_table <- empty_row_table()
+  no_entry_text <- qtab$m$options$l_lexikon["cTabNoEntry"]
+  abs_text <- qtab$m$options$l_lexikon["cTabAbs"]
+  percent_text <- qtab$m$options$l_lexikon["cTabProz"]
+  # TODO: use all variables, not only valid ones...!
+  # (also needs to be done in qtab$d$stats_rows$no_entry...):
+  row_variable <- qtab$p$rowvars_string
+  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Missing", "Abs", no_entry_text, no_entry_text, abs_text, 0, row_variable, 1)
+  row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Missing", "Percent", no_entry_text, no_entry_text, percent_text, 1, row_variable, 1)
+  row_table
+
 }

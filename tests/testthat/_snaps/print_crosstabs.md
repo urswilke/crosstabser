@@ -442,18 +442,20 @@
       [[15]][[1]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Kundenzufriedenheit
-                            NULL ----- GESAMT Regi… ----- ----- -----
-                            NULL -----        Asien Euro… Nord… Pazi…
-      GESAMT               abs       4 151     19   75     43   14   
-      Summe der gültigen…  abs       5 162     20   82     46   14   
-      Kundenzufriedenheit  abs       6 132     15   66     40   11   
-                           in %      7  97.8   93.8 98.5  100   91.7 
-      Onlineauftritte      abs       8  18      3   10      4    1   
-                           in %      9  13.3   18.8 14.9   10    8.33
-      Strukturanalyse      abs      10  12      2    6      2    2   
-                           in %     11   8.89  12.5  8.96   5   16.7 
-      GÜLTIGE FÄLLE        abs      12 135     16   67     40   12   
-                           in %     13  89.4   84.2 89.3   93.0 85.7 
+                            NULL ----- GESAMT Regi… ----- ------ -----
+                            NULL -----        Asien Euro… Norda… Pazi…
+      GESAMT               abs       4 151     19   75     43    14   
+      Summe der gültigen…  abs       5 162     20   82     46    14   
+      Kundenzufriedenheit  abs       6 132     15   66     40    11   
+                           in %      7  97.8   93.8 98.5  100    91.7 
+      Onlineauftritte      abs       8  18      3   10      4     1   
+                           in %      9  13.3   18.8 14.9   10     8.33
+      Strukturanalyse      abs      10  12      2    6      2     2   
+                           in %     11   8.89  12.5  8.96   5    16.7 
+      GÜLTIGE FÄLLE        abs      12 135     16   67     40    12   
+                           in %     13  89.4   84.2 89.3   93.0  85.7 
+      Kein Eintrag in de…  abs      14  16      3    8      3     2   
+                           in %     15  10.6   15.8 10.7    6.98 14.3 
       
       [[15]][[2]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
@@ -470,6 +472,8 @@
                            in %     11  NA    NA    NA    NA      NA
       GÜLTIGE FÄLLE        abs      12  23     4    12     5       2
                            in %     13  31.5  57.1  31.6  21.7    40
+      Kein Eintrag in de…  abs      14  50     3    26    18       3
+                           in %     15  68.5  42.9  68.4  78.3    60
       
       [[15]][[3]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
@@ -486,6 +490,8 @@
                            in %     11  20    NA    12.5  25      50
       GÜLTIGE FÄLLE        abs      12  15     1     8     4       2
                            in %     13  34.9  14.3  44.4  30.8    40
+      Kein Eintrag in de…  abs      14  28     6    10     9       3
+                           in %     15  65.1  85.7  55.6  69.2    60
       
       
       [[16]]
@@ -502,6 +508,8 @@
                            in %      9  16.7 100    NA    33.3    NA
       GÜLTIGE FÄLLE        abs      10  12     1     7     3       1
                            in %     11  27.9  14.3  38.9  23.1    20
+      Kein Eintrag in de…  abs      12  31     6    11    10       4
+                           in %     13  72.1  85.7  61.1  76.9    80
       
       
       [[17]]
