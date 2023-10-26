@@ -22,8 +22,15 @@ Qrow <- R6::R6Class("Qrow",
                         invisible(self)
                       },
                       xml = function() {
+                        scen_name_suffix <-
+                          ifelse(
+                            self$m$options$V_ScenName == "Standard",
+                            "",
+                            paste0(self$m$options$V_ScenName, "_")
+                          )
                         file_name <- paste0(
                           self$m$options$V_XMLName,
+                          scen_name_suffix,
                           stringr::str_pad(self$p$row, 4, pad = "0"),
                           ".xml"
                         )
