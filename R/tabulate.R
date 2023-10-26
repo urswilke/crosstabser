@@ -10,7 +10,7 @@ get_raw_data.qtab_type_mdg <- function(qtab) {
   res <- get_raw_data.default(qtab)
   if (is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
     rowvars <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab
-    rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
+    rowvars_named <- rowvars |> purrr::set_names(rv(rowvars))
     res <- as.data.frame(res)
     res[names(rowvars_named)] <- catrec(
       res[names(rowvars_named)] |>
@@ -25,7 +25,7 @@ get_raw_data.qtab_type_mdg <- function(qtab) {
 }
 get_raw_data.default <- function(qtab) {
   colvars <- qtab$p$ColVar
-  colvars_named <- colvars |> purrr::set_names(paste0("colvar_", colvars))
+  colvars_named <- colvars |> purrr::set_names(cv(colvars))
   weightvar <- qtab$p$Weight[[1]]
   row_in_filter <- get_row_filter_lgl(qtab)
 
@@ -35,7 +35,7 @@ get_raw_data.default <- function(qtab) {
     dat <- prep_data(
       qtab,
       rowvars = rowvars,
-      new_rowvars = paste0("rowvar_", rowvars),
+      new_rowvars = rv(rowvars),
       colvars_named = colvars_named,
       weightvar = weightvar,
       row_in_filter = row_in_filter
@@ -46,9 +46,8 @@ get_raw_data.default <- function(qtab) {
 
   dat <- seq_along(qtab$p$SelVar) |> lapply(\(i) {
     rowvars <- c(qtab$p$l_selvar$rowvars[[i]], qtab$p$l_selvar$rowvars_inv[[i]])
-    new_rowvars <- paste0(
-      "rowvar_",
-      c(qtab$p$l_selvar$valid, qtab$p$l_selvar$invalid) %||% qtab$p$rowvars_valid_qtab %||%
+    new_rowvars <- rv(
+      c(qtab$p$l_selvar$valid, qtab$p$l_selvar$invalid) %||%
         qtab$p$rowvars_qtab
     )
     selvar_name <- qtab$p$SelVar[i]

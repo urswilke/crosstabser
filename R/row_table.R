@@ -393,7 +393,7 @@ row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
   dat <- if (is.null(qtab$p$SelVar)) {
     qtab$m$dat_mod[names(l_varlabs)]
   } else {
-    qtab$d$raw_data[paste0("rowvar_", qtab$p$l_selvar$invalid)]
+    qtab$d$raw_data[rv(qtab$p$l_selvar$invalid)]
   }
 
   invalids_present <- dat |>

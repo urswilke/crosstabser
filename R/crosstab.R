@@ -113,10 +113,7 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
 
   df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
 
-  rowvars <- paste0(
-    "rowvar_",
-    qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab
-  )
+  rowvars <- rv(qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab)
   df_cols$n_valid <- !df[[rowvars]] %in% qtab$p$Unguelt
   df_cols$total <- !is.na(df[[rowvars]])
 
@@ -178,7 +175,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   mdg_val <- qtab$p$MdgVal
 
   df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
-  rowvars <- paste0("rowvar_", qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab)
+  rowvars <- rv(qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab)
   df_rows <- df[rowvars]
 
   df_cols$total <- rowSums(is.na(df_rows)) < ncol(df_rows)
@@ -187,7 +184,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   df_cols$n_valid <- sum_of_valid >= 1
   # base R way to do:
   # df_cols$invalid_cts <- rowSums((df |> select(any_of(paste0("rowvar_", qtab$p$Unguelt)))) == mdg_val, na.rm = TRUE) != 0
-  invalid_colnames <- paste0("rowvar_", qtab$p$l_selvar$invalid %||% qtab$p$Unguelt) |> intersect(names(df))
+  invalid_colnames <- rv(qtab$p$l_selvar$invalid %||% qtab$p$Unguelt)
   df_cols$invalid_cts <- rowSums(df[invalid_colnames] == mdg_val, na.rm = TRUE) != 0
   df_cols$no_entry <- as.numeric(sum_of_valid + df_cols$invalid_cts == 0)
   df_cols_long <- df_cols |>
@@ -233,10 +230,7 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
 
   df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
 
-  rowvars <- paste0(
-    "rowvar_",
-    c(qtab$p$l_selvar$valid) %||% qtab$p$rowvars_qtab
-  )
+  rowvars <- rv(qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab)
   df_rows <- df[rowvars]
 
   df_cols$n_valid <- rowSums(sapply(df_rows, Negate(`%in%`), invalid_vals)) >= 1
