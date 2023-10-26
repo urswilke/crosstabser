@@ -123,7 +123,7 @@ process_cat_rows <- function(qrow_params, mapping) {
     qrow_params$i_cat <- 1L
     return(list(qrow_params))
   }
-  qrow_params$n_cats <- n_cats <- if (length(qrow_params$SelVar) > 0) {
+  n_cats <- if (length(qrow_params$SelVar) > 0) {
     length(qrow_params$RowVar) / length(qrow_params$SelVar)
   } else {
     length(qrow_params$RowVar)
