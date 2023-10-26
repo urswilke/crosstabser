@@ -1,18 +1,11 @@
 write_xml_tables_from_qrows <- function(row = NULL, mapping) {
   # filter row indices specified, otherwise all:
   if (is.null(row)) {
-    row <- mapping$qrows$row
+    row <- mapping$qsheet$qsheet_raw$row
   }
-  qrows <- mapping$qrows[mapping$qrows$row %in% row,]
+  do_xml <- mapping$qsheet$qrow_param_list |> map_int("row") %in% row
 
-  l_row_tabs <- qrows$qrow |> purrr::map("qtabs") |> purrr::map(\(x) purrr::map(x, gen_5_tables))
-
-  file_names <- paste0(mapping$options$V_XMLName, stringr::str_pad(qrows$row, 4, pad = "0"), ".xml")
-  purrr::walk2(
-    l_row_tabs,
-    file_names,
-    \(l_row, filename) write_xml_file(l_row, filename)
-  )
+  mapping$qrows[do_xml] |> lapply(\(x) x$xml())
 }
 
 gen_5_tables <- function(qtab) {

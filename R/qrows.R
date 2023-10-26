@@ -20,6 +20,17 @@ Qrow <- R6::R6Class("Qrow",
                       wide_tabs = function() {
                         wide_tabs(self)
                         invisible(self)
+                      },
+                      xml = function() {
+                        file_name <- paste0(
+                          self$m$options$V_XMLName,
+                          stringr::str_pad(self$p$row, 4, pad = "0"),
+                          ".xml"
+                        )
+                        self$qtabs$obj |>
+                          lapply(gen_5_tables) |>
+                          write_xml_file(file_name)
+                        invisible(self)
                       }
                     )
 )
