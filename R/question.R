@@ -51,7 +51,8 @@ process_qrow_params <- function(qrow_param_list, mapping) {
     process_selval(mapping) |>
     lapply(\(qrow_params) process_mw_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
     lapply(\(qrow_params) process_cat_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
-    lapply(\(qrow_params) process_repov_rows(qrow_params, mapping)) |> unlist(recursive = FALSE)
+    lapply(\(qrow_params) process_repov_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
+    purrr::imap(\(qrow_params, .y) {qrow_params$i_tab <- .y; qrow_params})
 }
 process_selval <- function(qrow_params, mapping) {
   selvar <- qrow_params$SelVar
