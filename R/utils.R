@@ -37,3 +37,12 @@ spss_to_r <- function(ex) {
     stringr::str_replace_all(" OR ", " | ") |>
     stringr::str_replace_all(" <> ", " != ")
 }
+
+add_prefix <- function(x, prefix) {
+  if (length(x) == 0) {
+    return(NULL)
+  }
+  paste0(prefix, x)
+}
+rv <- function(x) add_prefix(x, prefix = "rowvar_")
+cv <- function(x) add_prefix(x, prefix = "colvar_")

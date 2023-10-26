@@ -103,17 +103,10 @@ set_qtab_params <- function(params, mapping) {
 }
 
 set_qtab_params.default <- function(params, mapping) {
-  params$l_lexikon <- mapping$options$l_lexikon
-
-  params$raw_data_rowvars <- paste0(
-    "rowvar_",
-    # for multi selvar:
-    params$selvar_rowvars_qtab
-  )
-  params$rowvars_string <- paste(params$selvar_rowvars_qtab, collapse = ", ")
+  params$rowvars_string <- paste(params$l_selvar$valid %||% params$rowvars_qtab, collapse = ", ")
   # TODO: tell Wolf: Here we could also use ColVar defined in the Questions sheet...:
   # (with params$ColVar %||% ...)
-  params$raw_data_colvars <- paste0("colvar_", c(mapping$options$l_macro_scenario$ColVar, "DC#STICHPROBE"))
+  params$raw_data_colvars <- cv(c(mapping$options$l_macro_scenario$ColVar, "DC#STICHPROBE"))
   if (is.null(params$Weight[[1]])) {
     params$long_weight <- character()
   } else {
@@ -141,60 +134,82 @@ set_qtab_params.default <- function(params, mapping) {
 set_qtab_params.qtab_params_mdg <- function(params, mapping) {
   params$MdgVal <- params$MdgVal %||% "1"
   params$rowvars_valid_qtab <- params$RowVar
-  # TODO: find cleaner way...!
-  params$rowvars_qtab <- params$RowVar
-
-  # this has to be done before adding the Unguelt variables
-  # in order to make row_table_body.qtab_params_mdg() only pick the valid variables
-  # for multi selvar mdg tables
-  params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
-  params$rowvars_qtab <- c(params$rowvars_qtab, params$Unguelt)
-  # HACK to remove the numeric values that were wrongly added from the Macro sheet:
-  if (is.numeric(params$Unguelt)) {
-    params$Unguelt <- NULL
+  params$rowvars_qtab <- c(params$RowVar, params$Unguelt)
+  if (!is.null(params$SelVar)) {
+    params$l_selvar <- list()
+    params$l_selvar$rowvars <- gen_selvar_rowvars(params$RowVar, params$SelVar)
+    params$l_selvar$rowvars_inv <- gen_selvar_rowvars(params$Unguelt, params$SelVar)
+    params$l_selvar$valid <- concat_selvar_rowvars(params$RowVar, params$SelVar)
+    params$l_selvar$invalid <- concat_selvar_rowvars(params$Unguelt, params$SelVar)
   }
   NextMethod()
 }
-concat_selvar_rowvars <- function(params) {
-  if (is.null(params$SelVar)) {
-    return(params$rowvars_qtab)
+
+gen_selvar_rowvars <- function(rowvars, selvars) {
+  if (is.null(rowvars)) {
+    return(NULL)
   }
-  selvar_rowvars <- params$df_selvar$rowvar
-  selvar_rowvars[[1]] |>
-    seq_along() |>
-    lapply(
-      \(i) selvar_rowvars |>
-        lapply(\(x) x[i]) |>
-        unlist() |>
-        paste(collapse = "/")
-    ) |>
-    unlist()
+  res <- vector("list", length(selvars))
+  for (i in seq_along(selvars)) {
+    res[i] <- list(rowvars[seq(i, length(rowvars), length(selvars))])
+  }
+  res
+}
+
+concat_selvar_rowvars <- function(rowvar, selvar) {
+  if (is.null(rowvar)) {
+    return(NULL)
+  }
+  rowvar |>
+    matrix(nrow = length(selvar)) |>
+    asplit(2) |>
+    lapply(\(x) paste(x, collapse = "/")) |>
+    unlist(use.names = FALSE)
 }
 
 set_qtab_params.qtab_params_mw <- function(params, mapping) {
   stat_fun <- params$ZsfgMW
   params$rowvars_qtab <- params$RowVar
-  params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
   if (length(stat_fun) == 0) {
     stat_fun = "mean"
+  }
+  if (!is.null(params$SelVar)) {
+    params$l_selvar <- list()
+    params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
+    params$l_selvar$valid <- concat_selvar_rowvars(params$RowVar, params$SelVar)
   }
 
   params$stat_fun <- stat_fun
   NextMethod()
 }
 set_qtab_params.qtab_params_cat <- function(params, mapping) {
-  params$rowvars_qtab <- unlist(params$df_selvar$rowvar) %||% params$RowVar
-  # for multiple selvar:
-  params$selvar_rowvars_qtab <- params$rowvars_qtab |>
-    paste(collapse = "/")
+  params$rowvars_qtab <- get_rowvars_cat(params)
+  if (!is.null(params$SelVar)) {
+    params$l_selvar <- list()
+    params$l_selvar$rowvars <- get_rowvars_cat(params)
+    params$l_selvar$valid <- params$rowvars_qtab |>
+      paste(collapse = "/")
+  }
   if (!is.null(params$MetrMac)) {
     params$df_stat_funs <- process_metr_mac(params, mapping)
   }
   NextMethod()
 }
+get_rowvars_cat <- function(params) {
+  i_cat <- params$i_cat
+  nsel <- max(length(params$SelVar), 1)
+  if (length(params$SelVar) < 2) {
+    return(params$RowVar[i_cat])
+  }
+  params$RowVar[((i_cat - 1) * nsel + 1):(i_cat * nsel)]
+}
 set_qtab_params.qtab_params_mcg <- function(params, mapping) {
   params$rowvars_qtab <- params$RowVar
-  params$selvar_rowvars_qtab <- concat_selvar_rowvars(params)
+  if (!is.null(params$SelVar)) {
+    params$l_selvar <- list()
+    params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
+    params$l_selvar$valid <- concat_selvar_rowvars(params$RowVar, params$SelVar)
+  }
   NextMethod()
 }
 

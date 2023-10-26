@@ -9,8 +9,8 @@ get_raw_data <- function(qtab) {
 get_raw_data.qtab_type_mdg <- function(qtab) {
   res <- get_raw_data.default(qtab)
   if (is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
-    rowvars <- qtab$p$selvar_rowvars_qtab
-    rowvars_named <- rowvars |> purrr::set_names(paste0("rowvar_", rowvars))
+    rowvars <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab
+    rowvars_named <- rowvars |> purrr::set_names(rv(rowvars))
     res <- as.data.frame(res)
     res[names(rowvars_named)] <- catrec(
       res[names(rowvars_named)] |>
@@ -25,7 +25,7 @@ get_raw_data.qtab_type_mdg <- function(qtab) {
 }
 get_raw_data.default <- function(qtab) {
   colvars <- qtab$p$ColVar
-  colvars_named <- colvars |> purrr::set_names(paste0("colvar_", colvars))
+  colvars_named <- colvars |> purrr::set_names(cv(colvars))
   weightvar <- qtab$p$Weight[[1]]
   row_in_filter <- get_row_filter_lgl(qtab)
 
@@ -35,7 +35,7 @@ get_raw_data.default <- function(qtab) {
     dat <- prep_data(
       qtab,
       rowvars = rowvars,
-      new_rowvars = paste0("rowvar_", rowvars),
+      new_rowvars = rv(rowvars),
       colvars_named = colvars_named,
       weightvar = weightvar,
       row_in_filter = row_in_filter
@@ -44,18 +44,15 @@ get_raw_data.default <- function(qtab) {
   }
   # treat selvar:
 
-  # TODO: ask Wolf how to deal with Unguelt mdg vars together with multiple selvars...!
-  df_selvar <- qtab$p$df_selvar
-
-  dat <- seq_len(nrow(df_selvar)) |> lapply(\(i) {
-    df_selvar_i <- df_selvar[i,]
-    rowvars <- df_selvar_i$rowvar[[1]]
-    selvar_name <- df_selvar_i$selvar
+  dat <- seq_along(qtab$p$SelVar) |> lapply(\(i) {
+    rowvars <- c(qtab$p$l_selvar$rowvars[[i]], qtab$p$l_selvar$rowvars_inv[[i]])
+    new_rowvars <- rv(c(qtab$p$l_selvar$valid, qtab$p$l_selvar$invalid))
+    selvar_name <- qtab$p$SelVar[i]
     selval <- qtab$p$SelVal
     res <- prep_data(
       qtab,
       rowvars = rowvars,
-      new_rowvars = qtab$p$raw_data_rowvars,
+      new_rowvars = new_rowvars,
       colvars_named = colvars_named,
       weightvar = weightvar,
       row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_mod[[selvar_name]], selval)
