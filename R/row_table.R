@@ -231,7 +231,7 @@ row_table_body.qtab_type_mw <- function(qtab) {
     1L,
     0L
   ) |> rep(n_vals)
-  row_table$RowVariable <- rowvars |> rep(each = 2)
+  row_table$RowVariable <- (qtab$p$l_selvar$valid %||% rowvars) |> rep(each = 2)
   row_table
 }
 

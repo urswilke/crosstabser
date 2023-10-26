@@ -580,11 +580,11 @@
       #   TOP3-Übersicht
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
-      GÜLTIGE FÄLLE (min…  abs       4    71     7    38    22     4
-      Schnelle Umsetzung   TOP3      5    NA    NA    NA    NA    NA
-                           GÜLT…     6    NA    NA    NA    NA    NA
-      Kurzfristige Anpas…  TOP3      7    NA    NA    NA    NA    NA
-                           GÜLT…     8    NA    NA    NA    NA    NA
+      GÜLTIGE FÄLLE (min…  abs       4  71     7    38    22       4
+      Schnelle Umsetzung   TOP3      5  64.7  42.9  74.3  59.1    50
+                           GÜLT…     6  68     7    35    22       4
+      Kurzfristige Anpas…  TOP3      7  71.2  66.7  71.4  71.4    75
+                           GÜLT…     8  66     6    35    21       4
       
       [[18]][[2]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
@@ -592,11 +592,11 @@
       #   Mittelwertüberblick
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
-      GÜLTIGE FÄLLE (min…  abs       4    71     7    38    22     4
-      Schnelle Umsetzung   Mitt…     5    NA    NA    NA    NA    NA
-                           GÜLT…     6    NA    NA    NA    NA    NA
-      Kurzfristige Anpas…  Mitt…     7    NA    NA    NA    NA    NA
-                           GÜLT…     8    NA    NA    NA    NA    NA
+      GÜLTIGE FÄLLE (min…  abs       4 71     7    38    22      4  
+      Schnelle Umsetzung   Mitt…     5  7.49  7.43  7.6   7.5    6.5
+                           GÜLT…     6 68     7    35    22      4  
+      Kurzfristige Anpas…  Mitt…     7  8.02  8.67  8.09  7.62   8.5
+                           GÜLT…     8 66     6    35    21      4  
       
       [[18]][[3]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
@@ -684,11 +684,11 @@
       #   TOP3-Übersicht
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
-      GÜLTIGE FÄLLE (min…  abs       4    38     7    16    11     4
-      Schnelle Umsetzung   TOP3      5    NA    NA    NA    NA    NA
-                           GÜLT…     6    NA    NA    NA    NA    NA
-      Kurzfristige Anpas…  TOP3      7    NA    NA    NA    NA    NA
-                           GÜLT…     8    NA    NA    NA    NA    NA
+      GÜLTIGE FÄLLE (min…  abs       4  38     7    16    11     4  
+      Schnelle Umsetzung   TOP3      5  40.5  28.6  37.5  45.5  66.7
+                           GÜLT…     6  37     7    16    11     3  
+      Kurzfristige Anpas…  TOP3      7  57.1  57.1  46.2  72.7  50  
+                           GÜLT…     8  35     7    13    11     4  
       
       [[18]][[6]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
@@ -696,11 +696,11 @@
       #   Mittelwertüberblick
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
-      GÜLTIGE FÄLLE (min…  abs       4    38     7    16    11     4
-      Schnelle Umsetzung   Mitt…     5    NA    NA    NA    NA    NA
-                           GÜLT…     6    NA    NA    NA    NA    NA
-      Kurzfristige Anpas…  Mitt…     7    NA    NA    NA    NA    NA
-                           GÜLT…     8    NA    NA    NA    NA    NA
+      GÜLTIGE FÄLLE (min…  abs       4 38     7    16    11     4   
+      Schnelle Umsetzung   Mitt…     5  6.54  5.86  6.25  7     8   
+                           GÜLT…     6 37     7    16    11     3   
+      Kurzfristige Anpas…  Mitt…     7  7.49  7.57  7     7.91  7.75
+                           GÜLT…     8 35     7    13    11     4   
       
       [[18]][[7]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
