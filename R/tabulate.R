@@ -46,10 +46,7 @@ get_raw_data.default <- function(qtab) {
 
   dat <- seq_along(qtab$p$SelVar) |> lapply(\(i) {
     rowvars <- c(qtab$p$l_selvar$rowvars[[i]], qtab$p$l_selvar$rowvars_inv[[i]])
-    new_rowvars <- rv(
-      c(qtab$p$l_selvar$valid, qtab$p$l_selvar$invalid) %||%
-        qtab$p$rowvars_qtab
-    )
+    new_rowvars <- rv(c(qtab$p$l_selvar$valid, qtab$p$l_selvar$invalid))
     selvar_name <- qtab$p$SelVar[i]
     selval <- qtab$p$SelVal
     res <- prep_data(
