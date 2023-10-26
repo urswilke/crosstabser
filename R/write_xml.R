@@ -3,7 +3,7 @@ write_xml_tables_from_qrows <- function(row = NULL, mapping) {
   if (is.null(row)) {
     row <- mapping$qsheet$qsheet_raw$row
   }
-  do_xml <- mapping$qsheet$qrow_param_list |> map_int("row") %in% row
+  do_xml <- mapping$qsheet$qrow_param_list |> purrr::map_int("row") %in% row
 
   mapping$qrows[do_xml] |> lapply(\(x) x$xml())
 }
@@ -26,7 +26,7 @@ write_xml_file <- function(l_row, filename) {
   list(Root = l_xml) |> xml2::as_xml_document() |> xml2::write_xml(filename)
 }
 table_to_line_lists <- function(df) {
-  l <- transpose(df)
+  l <- purrr::transpose(df)
   names(l) <- rep("Line", length(l))
   l |> lapply(row_to_list_of_lists)
 }
