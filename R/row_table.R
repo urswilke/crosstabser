@@ -43,8 +43,8 @@ row_table_total_line <- function(qtab) {
 
 row_table_total_line.default <- function(qtab) {
   row_table <- empty_row_table()
-  total_row_text <- qtab$p$l_lexikon["cTabGesamt"]
-  abs_text <- qtab$p$l_lexikon["cTabAbs"]
+  total_row_text <- qtab$m$options$l_lexikon["cTabGesamt"]
+  abs_text <- qtab$m$options$l_lexikon["cTabAbs"]
   row_variable <- qtab$p$rowvars_string
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Total", "Abs", total_row_text, total_row_text, abs_text, 0L, row_variable, 1)
   row_table
@@ -62,8 +62,8 @@ row_table_valid_mw.default <- function(qtab) {
 }
 row_table_valid_mw.qtab_type_mw <- function(qtab) {
   row_table <- empty_row_table()
-  valid_mw_text <- qtab$p$l_lexikon["cTabGesamtMW"]
-  abs_text <- qtab$p$l_lexikon["cTabAbs"]
+  valid_mw_text <- qtab$m$options$l_lexikon["cTabGesamtMW"]
+  abs_text <- qtab$m$options$l_lexikon["cTabAbs"]
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Abs", valid_mw_text, valid_mw_text, abs_text, 0L, 1)
   row_table$RowVariable <- qtab$p$rowvars_string
   row_table
@@ -76,8 +76,8 @@ row_table_valid_answers_line <- function(qtab) {
 
 row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_type_mdg <- function(qtab) {
   row_table <- empty_row_table()
-  valid_answers_row_text <- qtab$p$l_lexikon["cTabGesamtMFA"]
-  abs_text <- qtab$p$l_lexikon["cTabAbs"]
+  valid_answers_row_text <- qtab$m$options$l_lexikon["cTabGesamtMFA"]
+  abs_text <- qtab$m$options$l_lexikon["cTabAbs"]
   row_table[
     1,
     c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowValue")
@@ -100,9 +100,9 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
     return(NULL)
   }
-  occuring_vals <- qtab$d$dat_mod[qtab$p$rowvars_qtab] |> unlist(use.names = FALSE) |> unique()
+  occuring_vals <- qtab$m$dat_mod[qtab$p$rowvars_qtab] |> unlist(use.names = FALSE) |> unique()
   invalid_vals <- qtab$p$Unguelt
-  vallabs <- attr(qtab$d$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
+  vallabs <- attr(qtab$m$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
 
   # the following is equivalent to (but faster with base R):
   # vallab_table <- vallabs |>
@@ -136,8 +136,8 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   row_table$RowTitle1 <- vallab_table$vallab
   row_table$RowTitle2 <- vallab_table$vallab
   row_table$RowTitle3 <- c(
-    qtab$p$l_lexikon["cTabAbs"],
-    qtab$p$l_lexikon["cTabProz"]
+    qtab$m$options$l_lexikon["cTabAbs"],
+    qtab$m$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(
@@ -151,8 +151,8 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
 }
 
 row_table_body.qtab_type_mdg <- function(qtab) {
-  rowvars <- qtab$p$df_selvar$rowvar[[1]] %||% qtab$p$rowvars_valid_qtab
-  l_varlabs <- qtab$d$dat_mod[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  rowvars <- qtab$p$l_selvar$rowvars[[1]] %||% qtab$p$rowvars_valid_qtab
+  l_varlabs <- qtab$m$dat_mod[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
     l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
@@ -176,8 +176,8 @@ row_table_body.qtab_type_mdg <- function(qtab) {
   row_table$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
   row_table$RowTitle3 <- c(
-    qtab$p$l_lexikon["cTabAbs"],
-    qtab$p$l_lexikon["cTabProz"]
+    qtab$m$options$l_lexikon["cTabAbs"],
+    qtab$m$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(
@@ -185,13 +185,13 @@ row_table_body.qtab_type_mdg <- function(qtab) {
     1L
   ) |> rep(n_vals)
   row_table$RowContent <- "Detail"
-  row_table$RowVariable <- qtab$p$selvar_rowvars_qtab |> rep(each = 2)
+  row_table$RowVariable <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab |> rep(each = 2)
   row_table
 }
 
 row_table_body.qtab_type_mw <- function(qtab) {
-  rowvars <- qtab$p$df_selvar$rowvar[[1]] %||% qtab$p$rowvars_qtab
-  l_varlabs <- qtab$d$dat_mod[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  rowvars <- qtab$p$l_selvar$rowvars[[1]] %||% qtab$p$rowvars_qtab
+  l_varlabs <- qtab$m$dat_mod[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
     l_varlabs[no_varlab_idx] <- names(l_varlabs[no_varlab_idx])
@@ -213,14 +213,14 @@ row_table_body.qtab_type_mw <- function(qtab) {
   row_table[seq_len(n_vals * 2),]$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
 
-  row_title3 <- qtab$p$l_lexikon["cTabMean"]
+  row_title3 <- qtab$m$options$l_lexikon["cTabMean"]
   if (!is.null(qtab$p$repov_names)) {
     row_title3 <- qtab$p$repov_names
   }
   row_table$RowTitle3 <- c(
     # TODO: generalize for media std err etc.:
     row_title3,
-    qtab$p$l_lexikon["cTabGueltig"]
+    qtab$m$options$l_lexikon["cTabGueltig"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Percent", "Abs") |> rep(n_vals)
   row_table$RowContent <- c(
@@ -231,7 +231,7 @@ row_table_body.qtab_type_mw <- function(qtab) {
     1L,
     0L
   ) |> rep(n_vals)
-  row_table$RowVariable <- qtab$p$selvar_rowvars_qtab |> rep(each = 2)
+  row_table$RowVariable <- (qtab$p$l_selvar$valid %||% rowvars) |> rep(each = 2)
   row_table
 }
 
@@ -242,9 +242,9 @@ row_table_valid_cases <- function(qtab) {
 }
 row_table_valid_cases.default <- function(qtab) {
   row_table <- empty_row_table()
-  valid_cases_text <- qtab$p$l_lexikon["cTabGueltig"]
-  abs_text <- qtab$p$l_lexikon["cTabAbs"]
-  percent_text <- qtab$p$l_lexikon["cTabProz"]
+  valid_cases_text <- qtab$m$options$l_lexikon["cTabGueltig"]
+  abs_text <- qtab$m$options$l_lexikon["cTabAbs"]
+  percent_text <- qtab$m$options$l_lexikon["cTabProz"]
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Abs", valid_cases_text, valid_cases_text, abs_text, 0, 1)
   row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Percent", valid_cases_text, valid_cases_text, percent_text, 1, 1)
   row_table$RowVariable <- qtab$p$rowvars_string
@@ -276,17 +276,17 @@ row_table_summary.qtab_type_cat <- function(qtab) {
 
   n_vals <- nrow(row_table) / 2
 
-  row_table$RowTitle1 <- qtab$p$l_lexikon[["cTabZsfg"]]
+  row_table$RowTitle1 <- qtab$m$options$l_lexikon[["cTabZsfg"]]
   row_table[row_table$i_catrec > 1,]$RowTitle1 <- paste(
     row_table[row_table$i_catrec > 1,]$RowTitle1,
     row_table[row_table$i_catrec > 1,]$i_catrec
   )
 
   row_table$RowTitle3 <- c(
-    qtab$p$l_lexikon["cTabAbs"],
-    qtab$p$l_lexikon["cTabProz"]
+    qtab$m$options$l_lexikon["cTabAbs"],
+    qtab$m$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
-  row_table$RowVariable <- paste0(qtab$p$selvar_rowvars_qtab, "__summary")
+  row_table$RowVariable <- paste0(qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab, "__summary")
   row_table
 }
 catlab_helper <- function(cat_lab_string, catrec_string) {
@@ -332,7 +332,7 @@ row_table_stats.qtab_type_cat <- function(qtab) {
 
   row_table$RowContent <- "Statistics"
   row_table$RowDecimals <- df_stat_funs$decimals
-  row_table$RowVariable <- qtab$p$selvar_rowvars_qtab
+  row_table$RowVariable <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab
   # TODO: tell Wolf that I needed this to properly merge to tab_values when
   # there multiple rows with MStatistics:
   row_table$RowStatFun <- df_stat_funs$fun
@@ -349,7 +349,7 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   if (all(!occuring_vals %in% invalid_vals)) {
     return(NULL)
   }
-  vallabs <- attr(qtab$d$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
+  vallabs <- attr(qtab$m$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
 
   occuring_invalid_vals <- intersect(invalid_vals, occuring_vals)
   all_invalid_vals <- c(vallabs, occuring_invalid_vals)
@@ -368,8 +368,8 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   row_table$RowTitle1 <- vallab_table$vallab
   row_table$RowTitle2 <- vallab_table$vallab
   row_table$RowTitle3 <- c(
-    qtab$p$l_lexikon["cTabAbs"],
-    qtab$p$l_lexikon["cTabProz"]
+    qtab$m$options$l_lexikon["cTabAbs"],
+    qtab$m$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(0L, 1L) |> rep(n_vals)
@@ -379,14 +379,29 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
 
   row_table
 }
+
+# TODO: add lines with cTabNoEntry ("No entry in the respective variables") if present...!
 row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
-  l_varlabs <- qtab$d$dat_mod[qtab$p$Unguelt] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
+  # TODO: clean up MESS by trying to hack multi selvar unguelt...:
+  if (is.null(qtab$p$Unguelt)) {
+    return(NULL)
+  }
+  invalid_vals <- qtab$p$l_selvar$rowvars_inv[[1]] %||% qtab$p$Unguelt
+  l_varlabs <- qtab$m$dat_mod[invalid_vals] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   mdg_val <- qtab$p$MdgVal
-  invalids_present <- qtab$d$dat_mod[names(l_varlabs)] |>
+
+  dat <- if (is.null(qtab$p$SelVar)) {
+    qtab$m$dat_mod[names(l_varlabs)]
+  } else {
+    qtab$d$raw_data[rv(qtab$p$l_selvar$invalid)]
+  }
+
+  invalids_present <- dat |>
     purrr::map_lgl(\(x) mdg_val %in% x)
   if (sum(invalids_present) == 0) {
     return(NULL)
   }
+  names(l_varlabs) <- qtab$p$l_selvar$invalid %||% names(l_varlabs)
   l_varlabs <- l_varlabs[invalids_present]
   no_varlab_idx <- l_varlabs |> sapply(is.null)
   if (sum(no_varlab_idx) > 0) {
@@ -409,8 +424,8 @@ row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
   row_table$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
   row_table$RowTitle3 <- c(
-    qtab$p$l_lexikon["cTabAbs"],
-    qtab$p$l_lexikon["cTabProz"]
+    qtab$m$options$l_lexikon["cTabAbs"],
+    qtab$m$options$l_lexikon["cTabProz"]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
   row_table$RowDecimals <- c(
@@ -418,7 +433,7 @@ row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
     1L
   ) |> rep(n_vals)
   row_table$RowVariable <- label_table$var
-  row_table$RowContent <- "Detail"
+  row_table$RowContent <- "Missing"
   row_table
 }
 row_table_invalid_vals.qtab_type_mw <- function(qtab) {
