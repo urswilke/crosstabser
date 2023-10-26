@@ -190,29 +190,9 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
   if (!is.null(exclusives)) {
     df_rows_long_valids <- df_rows_long_valids |>
       dplyr::mutate(
-        none_exclusive = !any(rowval %in% exclusives),
-        temp = order(factor(rowval, levels = exclusives)),
-        # order doesn't deal correctly with levels not occuring in the factors.
-        # Therefore we set these values to Inf to not select values not in the
-        # set of exclusives here...
-        # TODO: find a cleaner way for Exclusive!...:
-        temp = ifelse(!rowval %in% exclusives, Inf, temp),
-        first_exclusive = temp %in% min(temp, na.rm = TRUE),
-        val_to_count = first_exclusive | none_exclusive,
-        temp = NULL,
-        first_exclusive = NULL,
-        none_exclusive = NULL,
-        # same result but slower:
-        # val_to_count = dplyr::case_when(
-        #   !any(rowval %in% exclusives) ~ TRUE,
-        #   !rowval %in% exclusives ~ FALSE,
-        #   .default = {
-        #     temp <- order(factor(rowval, levels = exclusives))
-        #     temp[!rowval %in% exclusives] <- Inf
-        #     temp == min(temp)
-        #   }
-        # ),
-        .by = "i")
+        val_to_count = flag_exclusives(rowval, exclusives),
+        .by = "i"
+      )
   } else {
     df_rows_long_valids$val_to_count <- TRUE
   }
@@ -229,7 +209,27 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
   df_long$rowvar <- rowvars
   qtab$d$long_data <- df_long
 }
-
+flag_exclusives <- function(rowval, exclusives) {
+  none_exclusive <- !any(rowval %in% exclusives)
+  temp <- order(factor(rowval, levels = exclusives))
+  # order doesn't deal correctly with levels not occuring in the factors.
+  # Therefore we set these values to Inf to not select values not in the
+  # set of exclusives here...
+  # TODO: find a cleaner way for Exclusive!...:
+  temp <- ifelse(!rowval %in% exclusives, Inf, temp)
+  first_exclusive <- temp %in% min(temp, na.rm = TRUE)
+  first_exclusive | none_exclusive
+  # same result but slower:
+  # dplyr::case_when(
+  #   !any(rowval %in% exclusives) ~ TRUE,
+  #   !rowval %in% exclusives ~ FALSE,
+  #   .default = {
+  #     temp <- order(factor(rowval, levels = exclusives))
+  #     temp[!rowval %in% exclusives] <- Inf
+  #     temp == min(temp)
+  #   }
+  # )
+}
 
 gen_val_table <- function(qtab) {
   row_table <- qtab$d$row_table
