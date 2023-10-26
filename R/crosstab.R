@@ -148,7 +148,8 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
 }
 
 calc_detail_freqs.qtab_type_mdg <- function(qtab) {
-  all_counts <- qtab$d$long_data |>
+  long_data <- qtab$d$long_data
+  all_counts <- long_data[long_data$val_to_count,] |>
     summarize_stats(
       NULL,
       wt = qtab$p$Weight[[1]],
@@ -157,11 +158,12 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
 
   all_counts$RowAbsPercent <- "Abs"
 
-  detail_freqs <- all_counts[!all_counts$rowvar %in% qtab$p$l_selvar$invalid %||% qtab$p$Unguelt,]
+  is_valid <- all_counts$rowvar %in% (qtab$p$l_selvar$invalid %||% qtab$p$Unguelt)
+  detail_freqs <- all_counts[!is_valid,]
   detail_freqs$RowContent <- "Detail"
 
   # TODO: fix counting as done when Exclusive is set...:
-  invalid_freqs <- all_counts[all_counts$rowvar %in% qtab$p$l_selvar$invalid %||% qtab$p$Unguelt,]
+  invalid_freqs <- all_counts[is_valid,]
   invalid_freqs$RowContent <- "Missing"
 
   qtab$d$detail_freqs <- detail_freqs

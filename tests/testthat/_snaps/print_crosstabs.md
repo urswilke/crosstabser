@@ -492,22 +492,38 @@
       [[16]][[1]]
       # multi selvar with unguelt: 2. Welche Art von Studien führen Sie mit dem
       #   Tabellenbandtool durch? Sonstige
-                            NULL ----- GESAMT Regi… ------ ------ -----
-                            NULL -----        Asien Europa Norda… Pazi…
-      GESAMT               abs       4  43      7    18     13        5
-      Summe der gültigen…  abs       5  14      2     7      4        1
-      Kundenzufriedenheit  abs       6  12      1     7      3        1
-                           in %      7 100    100   100    100      100
-      Onlineauftritte      abs       8   2      1    NA      1       NA
-                           in %      9  16.7  100    NA     33.3     NA
-      GÜLTIGE FÄLLE        abs      10  12      1     7      3        1
-                           in %     11  27.9   14.3  38.9   23.1     20
-      Strukturanalyse      abs      12   3      1     1      1       NA
-                           in %     13   6.98  14.3   5.56   7.69    NA
+                            NULL ----- GESA… Regi… ----- ----- -----
+                            NULL -----       Asien Euro… Nord… Pazi…
+      GESAMT               abs       4  43     7    18    13       5
+      Summe der gültigen…  abs       5  14     2     7     4       1
+      Kundenzufriedenheit  abs       6  12     1     7     3       1
+                           in %      7 100   100   100   100     100
+      Onlineauftritte      abs       8   2     1    NA     1      NA
+                           in %      9  16.7 100    NA    33.3    NA
+      GÜLTIGE FÄLLE        abs      10  12     1     7     3       1
+                           in %     11  27.9  14.3  38.9  23.1    20
       
       
       [[17]]
       [[17]][[1]]
+      # trigger invalid values: 2. Welche Art von Studien führen Sie mit dem
+      #   Tabellenbandtool durch?
+                            NULL ----- GESAMT Regi… ------ ------ ------
+                            NULL -----        Asien Europa Norda… Pazif…
+      GESAMT               abs       4 151     19    75     43     14   
+      Summe der gültigen…  abs       5   3      0     1      1      1   
+      Werbewirkungsmessu…  abs       6   3     NA     1      1      1   
+                           in %      7 100     NA   100    100    100   
+      GÜLTIGE FÄLLE        abs       8   3      0     1      1      1   
+                           in %      9   1.99   0     1.33   2.33   7.14
+      Marktvolumen         abs      10  46      7    25      8      6   
+                           in %     11  30.5   36.8  33.3   18.6   42.9 
+      Kundenzufriedenheit  abs      12 102     12    49     34      7   
+                           in %     13  67.5   63.2  65.3   79.1   50   
+      
+      
+      [[18]]
+      [[18]][[1]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Kundenzufriedenheit
                             NULL ----- GESAMT Regi… ----- ----- -----
                             NULL -----        Asien Euro… Nord… Pazi…
@@ -530,7 +546,7 @@
       Keine Angabe         abs      20  69      7    34   21      7  
                            in %     21  45.7   36.8  45.3 48.8   50  
       
-      [[17]][[2]]
+      [[18]][[2]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Marktvolumen
                             NULL ----- GESA… Regi… ----- ------ -----
                             NULL -----       Asien Euro… Norda… Pazi…
@@ -551,7 +567,7 @@
       Kompetenz            abs      18 14      1    10     2        1
                            in %     19 19.2   14.3  26.3   8.70    20
       
-      [[17]][[3]]
+      [[18]][[3]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
                             NULL ----- GESA… Regi… ------ ----- -----
                             NULL -----       Asien Europa Nord… Pazi…
@@ -573,8 +589,8 @@
                            in %     19 11.6   NA    11.1  15.4     20
       
       
-      [[18]]
-      [[18]][[1]]
+      [[19]]
+      [[19]][[1]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   TOP3-Übersicht
@@ -586,7 +602,7 @@
       Kurzfristige Anpas…  TOP3      7  71.2  66.7  71.4  71.4    75
                            GÜLT…     8  66     6    35    21       4
       
-      [[18]][[2]]
+      [[19]][[2]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Mittelwertüberblick
@@ -598,7 +614,7 @@
       Kurzfristige Anpas…  Mitt…     7  8.02  8.67  8.09  7.62   8.5
                            GÜLT…     8 66     6    35    21      4  
       
-      [[18]][[3]]
+      [[19]][[3]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Schnelle Umsetzung
@@ -638,7 +654,7 @@
       keine Angabe              abs      35  5      NA      3      1      1   
                                 in %     36  6.85   NA      7.89   4.35  20   
       
-      [[18]][[4]]
+      [[19]][[4]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Kurzfristige Anpassungen
@@ -678,7 +694,7 @@
       keine Angabe              abs      35  7      1      3      2      1    
                                 in %     36  9.59  14.3    7.89   8.70  20    
       
-      [[18]][[5]]
+      [[19]][[5]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   TOP3-Übersicht
@@ -690,7 +706,7 @@
       Kurzfristige Anpas…  TOP3      7  57.1  57.1  46.2  72.7  50  
                            GÜLT…     8  35     7    13    11     4  
       
-      [[18]][[6]]
+      [[19]][[6]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   Mittelwertüberblick
@@ -702,7 +718,7 @@
       Kurzfristige Anpas…  Mitt…     7  7.49  7.57  7     7.91  7.75
                            GÜLT…     8 35     7    13    11     4   
       
-      [[18]][[7]]
+      [[19]][[7]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige Schnelle
       #   Umsetzung
@@ -742,7 +758,7 @@
       keine Angabe              abs      35  6      NA      2      2      2   
                                 in %     36 14.0    NA     11.1   15.4   40   
       
-      [[18]][[8]]
+      [[19]][[8]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   Kurzfristige Anpassungen

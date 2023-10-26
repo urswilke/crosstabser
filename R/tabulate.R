@@ -123,6 +123,7 @@ pivot_table_data.qtab_type_mw <- pivot_table_data.qtab_type_cat <- function(qtab
   # for TOTAL column:
   df <- qtab$d$raw_data
   df$"colvar_DC#STICHPROBE" <- 1
+  df$i <- seq_len(nrow(df))
 
   qtab$d$long_data <- df |>
     pivot_rows() |>
@@ -147,9 +148,24 @@ pivot_rows <- function(df) {
     )
 }
 pivot_table_data.qtab_type_mdg <- function(qtab) {
-  df_long <- pivot_table_data.qtab_type_cat(qtab)
+  df <- qtab$d$raw_data
+  df$"colvar_DC#STICHPROBE" <- 1
+
+  df$i <- seq_len(nrow(df))
+
+  df_rows_long <- df |>
+    pivot_rows()
+
   mdg_val <- qtab$p$MdgVal
-  qtab$d$long_data <- df_long[df_long$rowval == mdg_val,]
+
+  invalids <- qtab$p$l_selvar$invalid %||% qtab$p$Unguelt
+
+  qtab$d$long_data <- df_rows_long[df_rows_long$rowval == mdg_val,] |>
+    dplyr::mutate(
+      val_to_count = flag_invalids(rowvar, invalids),
+      .by = "i"
+    ) |>
+    pivot_cols()
 }
 
 pivot_table_data.qtab_type_mcg <- function(qtab) {
@@ -210,12 +226,16 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
   qtab$d$long_data <- df_long
 }
 flag_exclusives <- function(rowval, exclusives) {
+  # TODO:
+  # - find a cleaner way for Exclusive!...:
+  # - also needed for mdg?
+  # - discuss with Wolf if something like in flag_invalids() can be done...:
+  # - same needed for mcg?
   none_exclusive <- !any(rowval %in% exclusives)
   temp <- order(factor(rowval, levels = exclusives))
   # order doesn't deal correctly with levels not occuring in the factors.
   # Therefore we set these values to Inf to not select values not in the
   # set of exclusives here...
-  # TODO: find a cleaner way for Exclusive!...:
   temp <- ifelse(!rowval %in% exclusives, Inf, temp)
   first_exclusive <- temp %in% min(temp, na.rm = TRUE)
   first_exclusive | none_exclusive
@@ -229,6 +249,21 @@ flag_exclusives <- function(rowval, exclusives) {
   #     temp == min(temp)
   #   }
   # )
+}
+
+flag_invalids <- function(rowvar, invalids) {
+  is_valid <- !rowvar %in% invalids
+  if (any(is_valid)) {
+    return(is_valid)
+  }
+  # same as:
+  # temp <- order(factor(rowvar, levels = invalids))
+  # temp %in% min(temp, na.rm = TRUE)
+  # but faster...:
+  i <- match(rowvar, invalids) |> which.min()
+  res <- rep(FALSE, length(rowvar))
+  res[i] <- TRUE
+  res
 }
 
 gen_val_table <- function(qtab) {
