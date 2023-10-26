@@ -75,7 +75,6 @@ Tabula <- R6::R6Class("Tabula",
       invisible(self)
     },
     xml = function(row = NULL) {
-      self$calc_qtabs(row)
       write_xml_tables_from_qrows(row, self)
       invisible(self)
     },
