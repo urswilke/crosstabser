@@ -136,7 +136,9 @@ process_cat_rows <- function(qrow_params, mapping) {
 
   for (i_cat in seq_len(n_cats)) {
     res[[i_cat]]$i_cat <- i_cat
-    res[[i_cat]]$Title <- c(res[[i_cat]]$Title, varlabs[[i_cat]])
+    if (n_cats > 1) {
+      res[[i_cat]]$Title <- c(res[[i_cat]]$Title, varlabs[[i_cat]])
+    }
   }
   res
 }

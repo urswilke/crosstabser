@@ -318,8 +318,7 @@
       
       [[14]]
       [[14]][[1]]
-      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Kundenzufriedenheit 8.
-      #   Würden Sie das Tabellenbandtool weiterempfehlen?
+      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Kundenzufriedenheit
                                  NULL ----- GESAMT  Regi… ----- ------ ------
                                  NULL -----         Asien Euro… Norda… Pazif…
       GESAMT                    abs       4 151     19    75     43     14   
@@ -359,8 +358,7 @@
                                 in %     38   2.65   5.26  4     NA     NA   
       
       [[14]][[2]]
-      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Marktvolumen 8. Würden
-      #   Sie das Tabellenbandtool weiterempfehlen?
+      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Marktvolumen
                                  NULL ----- GESA… Regi… ----- ------ -----
                                  NULL -----       Asien Euro… Norda… Pazi…
       GESAMT                    abs       4 73      7   38     23        5
@@ -400,8 +398,7 @@
                                 in %     38  1.37  NA    2.63  NA       NA
       
       [[14]][[3]]
-      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Sonstige 8. Würden Sie
-      #   das Tabellenbandtool weiterempfehlen?
+      # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Sonstige
                                  NULL ----- GESA… Regi… ----- ----- -----
                                  NULL -----       Asien Euro… Nord… Pazi…
       GESAMT                    abs       4 43      7   18    13        5
