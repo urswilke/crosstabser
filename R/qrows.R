@@ -22,19 +22,14 @@ Qrow <- R6::R6Class(
       self$qtabs |> lapply(\(x) x$wide_tab())
       invisible(self)
     },
-    xml = function() {
-      # TODO: clean up ...!
-      # scen_name_suffix <- ifelse(
-      #   self$m$options$V_ScenName == "Standard",
-      #   "",
-      #   paste0(self$m$options$V_ScenName, "_")
-      # )
-      file_name <- paste0(
+    xml = function(
+      file_name = paste0(
         self$m$options$V_XMLName,
         # scen_name_suffix,
         stringr::str_pad(self$p$row, 4, pad = "0"),
         ".xml"
       )
+    ) {
       self$qtabs$obj |>
         lapply(gen_5_tables) |>
         write_xml_file(file_name)

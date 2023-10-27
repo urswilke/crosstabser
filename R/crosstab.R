@@ -485,7 +485,6 @@ calc_no_entry_percentages.qtab_type_mdg <- function(qtab) {
   if (nrow(qtab$d$stats_rows$no_entry) == 0) {
     return(NULL)
   }
-  1
   total_cts <- qtab$d$stats_rows$total
   no_entry_cts <- qtab$d$stats_rows$no_entry
   res <- total_cts |> dplyr::select(-RowContent, value_tot = value) |> merge(no_entry_cts, all.x = TRUE)
