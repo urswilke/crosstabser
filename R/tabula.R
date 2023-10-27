@@ -1,3 +1,11 @@
+# TODO: check where to add helper functions (or other OOP structure or something else (?))
+# for common tasks in different methods,
+# e.g. stuff where mcg and mdg do the same, etc.
+
+# TODO: check if possible to refactor code
+# where information of the final 5 tables (Row, Tab, Head, Col & Val) is generated twice,
+# for instance columns in row_table.R & crosstab.R
+
 #' Tabulation class
 #'
 #' This is copied from datenanpassr and will just serve as a template when the

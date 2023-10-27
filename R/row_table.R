@@ -1,3 +1,6 @@
+# TODO: refactor (!?), e.g. to rely more on pre-calculated fields,
+# e.g. qtab$d$tab_values instead of calculating quantities from raw data from scratch
+
 gen_row_table <- function(qtab) {
   # TODO: replaced rbind -> check if the dataframe parts can by simplified (e.g.
   # setting a column to NA shouldn't be necessary anymore...):
