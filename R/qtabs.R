@@ -43,6 +43,7 @@ Qtab <- R6::R6Class("Qtab",
       self$wide_tab()
       invisible(self)
     },
+    # TODO: turn function private?
     #' @description todo
     long_tab = function() {
       self$d$long_tab <- self$d[
@@ -52,6 +53,7 @@ Qtab <- R6::R6Class("Qtab",
         tibble::as_tibble()
       invisible(self)
     },
+    # TODO: turn function private?
     #' @description todo
     wide_tab = function() {
       if (is.null(self$d$long_tab)) {

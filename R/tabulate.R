@@ -189,6 +189,7 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
   )
   df_rows_long_invalids <- df_rows_long[df_rows_long$rowval %in% qtab$p$Unguelt,] |>
     dplyr::mutate(
+      # TODO: also put into helper function like flag_exclusives() or flag_invalids() (?):
       temp = order(factor(rowval, levels = qtab$p$Unguelt)),
       # calculate boolean that's TRUE if:
       val_to_count =

@@ -104,11 +104,11 @@ parse_qsheet <- function(mapping, row) {
   if (is.null(row)) {
     row <- mapping$qsheet$qsheet_raw$row
   }
-  mapping$qsheet$qrow_param_list <- extract_qrow_param_list(mapping)
-  calc_row_lgl <- purrr::map_int(mapping$qsheet$qrow_param_list, "row") %in% row
+  mapping$qsheet$qrows_params <- preprocess_qrows_params(mapping)
+  calc_row_lgl <- purrr::map_int(mapping$qsheet$qrows_params, "row") %in% row
 
   mapping$qrows <- lapply(
-    mapping$qsheet$qrow_param_list[calc_row_lgl],
+    mapping$qsheet$qrows_params[calc_row_lgl],
     \(p) Qrow$new(p, mapping)
   )
 }

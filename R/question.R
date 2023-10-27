@@ -19,7 +19,7 @@ read_qsheet_raw <- function(mapping_file, row, sheet = "Questions") {
   res[res$row %in% row,]
 }
 
-extract_qrow_param_list <- function(mapping) {
+preprocess_qrows_params <- function(mapping) {
   mapping$qsheet$qsheet_raw |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
@@ -40,19 +40,14 @@ extract_qrow_param_list <- function(mapping) {
     purrr::transpose() |>
     lapply(\(x) x[!is.na(x)])
 }
-gen_qrows_df_intermediate <- function(df, mapping) {
-  df |>
-    unnest_qsheet_rows(mapping) |>
-    dplyr::mutate(TabNo = dplyr::row_number(), .before = 1)
-}
 
-process_qrow_params <- function(qrow_param_list, mapping) {
-  qrow_param_list |>
+process_qrow_params <- function(qrow_params, mapping) {
+  qrow_params |>
     process_selval(mapping) |>
-    lapply(\(qrow_params) process_mw_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
-    lapply(\(qrow_params) process_cat_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
-    lapply(\(qrow_params) process_repov_rows(qrow_params, mapping)) |> unlist(recursive = FALSE) |>
-    purrr::imap(\(qrow_params, .y) {qrow_params$i_tab <- .y; qrow_params})
+    lapply(\(x) process_mw_rows(x, mapping)) |> unlist(recursive = FALSE) |>
+    lapply(\(x) process_cat_rows(x, mapping)) |> unlist(recursive = FALSE) |>
+    lapply(\(x) process_repov_rows(x, mapping)) |> unlist(recursive = FALSE) |>
+    purrr::imap(\(x, .y) {x$i_tab <- .y; x})
 }
 process_selval <- function(qrow_params, mapping) {
   selvar <- qrow_params$SelVar
