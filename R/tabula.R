@@ -62,6 +62,7 @@ Tabula <- R6::R6Class("Tabula",
     mapping_file = NULL,
     dat_mod = NULL,
     options = NULL,
+    long_tab_data = NULL,
     qsheet = list(),
     qtabs = list(),
     qrows = list(),
@@ -84,6 +85,17 @@ Tabula <- R6::R6Class("Tabula",
     },
     xml = function(row = NULL) {
       write_xml_tables_from_qrows(row, self)
+      invisible(self)
+    },
+    gen_long_tab_data = function() {
+      self$long_tab_data <- self$qrows |>
+        lapply(\(x) x$qtabs$obj |> lapply(\(x) x$d$long_tab)) |>
+        dplyr::bind_rows(.id = "TabNo") |>
+        tidyr::drop_na(value) |>
+        # TODO name value = Value from the beginiing or adapt:
+        dplyr::relocate(TabNo, RowNo, ColNo, Value = value) |>
+        dplyr::arrange(as.numeric(TabNo), ColNo, RowNo)
+
       invisible(self)
     },
     # TODO: ask Wolf:
