@@ -15,7 +15,7 @@
     </Tab>
     <Row>
       <Line>
-        <RowNo>4</RowNo>
+        <RowNo>1</RowNo>
         <RowContent>Total</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted/>
@@ -28,7 +28,7 @@
         <RowValue>1</RowValue>
       </Line>
       <Line>
-        <RowNo>5</RowNo>
+        <RowNo>2</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted/>
@@ -39,126 +39,126 @@
         <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>1</RowValue>
+      </Line>
+      <Line>
+        <RowNo>3</RowNo>
+        <RowContent>Detail</RowContent>
+        <RowAbsPercent>Percent</RowAbsPercent>
+        <RowWeighted/>
+        <RowTitle1>1 Beschäftigter</RowTitle1>
+        <RowTitle2>1 Beschäftigter</RowTitle2>
+        <RowTitle3>in %</RowTitle3>
+        <RowFormat/>
+        <RowDecimals>1</RowDecimals>
+        <RowVariable>q1</RowVariable>
+        <RowValue>1</RowValue>
+      </Line>
+      <Line>
+        <RowNo>4</RowNo>
+        <RowContent>Detail</RowContent>
+        <RowAbsPercent>Abs</RowAbsPercent>
+        <RowWeighted/>
+        <RowTitle1>2 - 4 Beschäftigte</RowTitle1>
+        <RowTitle2>2 - 4 Beschäftigte</RowTitle2>
+        <RowTitle3>abs</RowTitle3>
+        <RowFormat/>
+        <RowDecimals>0</RowDecimals>
+        <RowVariable>q1</RowVariable>
+        <RowValue>2</RowValue>
+      </Line>
+      <Line>
+        <RowNo>5</RowNo>
+        <RowContent>Detail</RowContent>
+        <RowAbsPercent>Percent</RowAbsPercent>
+        <RowWeighted/>
+        <RowTitle1>2 - 4 Beschäftigte</RowTitle1>
+        <RowTitle2>2 - 4 Beschäftigte</RowTitle2>
+        <RowTitle3>in %</RowTitle3>
+        <RowFormat/>
+        <RowDecimals>1</RowDecimals>
+        <RowVariable>q1</RowVariable>
+        <RowValue>2</RowValue>
       </Line>
       <Line>
         <RowNo>6</RowNo>
         <RowContent>Detail</RowContent>
-        <RowAbsPercent>Percent</RowAbsPercent>
+        <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted/>
-        <RowTitle1>1 Beschäftigter</RowTitle1>
-        <RowTitle2>1 Beschäftigter</RowTitle2>
-        <RowTitle3>in %</RowTitle3>
+        <RowTitle1>5 - 9 Beschäftigte</RowTitle1>
+        <RowTitle2>5 - 9 Beschäftigte</RowTitle2>
+        <RowTitle3>abs</RowTitle3>
         <RowFormat/>
-        <RowDecimals>1</RowDecimals>
+        <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
-        <RowValue>1</RowValue>
+        <RowValue>3</RowValue>
       </Line>
       <Line>
         <RowNo>7</RowNo>
         <RowContent>Detail</RowContent>
-        <RowAbsPercent>Abs</RowAbsPercent>
+        <RowAbsPercent>Percent</RowAbsPercent>
         <RowWeighted/>
-        <RowTitle1>2 - 4 Beschäftigte</RowTitle1>
-        <RowTitle2>2 - 4 Beschäftigte</RowTitle2>
-        <RowTitle3>abs</RowTitle3>
+        <RowTitle1>5 - 9 Beschäftigte</RowTitle1>
+        <RowTitle2>5 - 9 Beschäftigte</RowTitle2>
+        <RowTitle3>in %</RowTitle3>
         <RowFormat/>
-        <RowDecimals>0</RowDecimals>
+        <RowDecimals>1</RowDecimals>
         <RowVariable>q1</RowVariable>
-        <RowValue>2</RowValue>
+        <RowValue>3</RowValue>
       </Line>
       <Line>
         <RowNo>8</RowNo>
         <RowContent>Detail</RowContent>
-        <RowAbsPercent>Percent</RowAbsPercent>
+        <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted/>
-        <RowTitle1>2 - 4 Beschäftigte</RowTitle1>
-        <RowTitle2>2 - 4 Beschäftigte</RowTitle2>
-        <RowTitle3>in %</RowTitle3>
+        <RowTitle1>10 - 19 Beschäftigte</RowTitle1>
+        <RowTitle2>10 - 19 Beschäftigte</RowTitle2>
+        <RowTitle3>abs</RowTitle3>
         <RowFormat/>
-        <RowDecimals>1</RowDecimals>
+        <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
-        <RowValue>2</RowValue>
+        <RowValue>4</RowValue>
       </Line>
       <Line>
         <RowNo>9</RowNo>
         <RowContent>Detail</RowContent>
-        <RowAbsPercent>Abs</RowAbsPercent>
+        <RowAbsPercent>Percent</RowAbsPercent>
         <RowWeighted/>
-        <RowTitle1>5 - 9 Beschäftigte</RowTitle1>
-        <RowTitle2>5 - 9 Beschäftigte</RowTitle2>
-        <RowTitle3>abs</RowTitle3>
+        <RowTitle1>10 - 19 Beschäftigte</RowTitle1>
+        <RowTitle2>10 - 19 Beschäftigte</RowTitle2>
+        <RowTitle3>in %</RowTitle3>
         <RowFormat/>
-        <RowDecimals>0</RowDecimals>
+        <RowDecimals>1</RowDecimals>
         <RowVariable>q1</RowVariable>
-        <RowValue>3</RowValue>
+        <RowValue>4</RowValue>
       </Line>
       <Line>
         <RowNo>10</RowNo>
         <RowContent>Detail</RowContent>
-        <RowAbsPercent>Percent</RowAbsPercent>
+        <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted/>
-        <RowTitle1>5 - 9 Beschäftigte</RowTitle1>
-        <RowTitle2>5 - 9 Beschäftigte</RowTitle2>
-        <RowTitle3>in %</RowTitle3>
+        <RowTitle1>20 Beschäftigte und mehr</RowTitle1>
+        <RowTitle2>20 Beschäftigte und mehr</RowTitle2>
+        <RowTitle3>abs</RowTitle3>
         <RowFormat/>
-        <RowDecimals>1</RowDecimals>
+        <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
-        <RowValue>3</RowValue>
+        <RowValue>5</RowValue>
       </Line>
       <Line>
         <RowNo>11</RowNo>
         <RowContent>Detail</RowContent>
-        <RowAbsPercent>Abs</RowAbsPercent>
+        <RowAbsPercent>Percent</RowAbsPercent>
         <RowWeighted/>
-        <RowTitle1>10 - 19 Beschäftigte</RowTitle1>
-        <RowTitle2>10 - 19 Beschäftigte</RowTitle2>
-        <RowTitle3>abs</RowTitle3>
+        <RowTitle1>20 Beschäftigte und mehr</RowTitle1>
+        <RowTitle2>20 Beschäftigte und mehr</RowTitle2>
+        <RowTitle3>in %</RowTitle3>
         <RowFormat/>
-        <RowDecimals>0</RowDecimals>
+        <RowDecimals>1</RowDecimals>
         <RowVariable>q1</RowVariable>
-        <RowValue>4</RowValue>
+        <RowValue>5</RowValue>
       </Line>
       <Line>
         <RowNo>12</RowNo>
-        <RowContent>Detail</RowContent>
-        <RowAbsPercent>Percent</RowAbsPercent>
-        <RowWeighted/>
-        <RowTitle1>10 - 19 Beschäftigte</RowTitle1>
-        <RowTitle2>10 - 19 Beschäftigte</RowTitle2>
-        <RowTitle3>in %</RowTitle3>
-        <RowFormat/>
-        <RowDecimals>1</RowDecimals>
-        <RowVariable>q1</RowVariable>
-        <RowValue>4</RowValue>
-      </Line>
-      <Line>
-        <RowNo>13</RowNo>
-        <RowContent>Detail</RowContent>
-        <RowAbsPercent>Abs</RowAbsPercent>
-        <RowWeighted/>
-        <RowTitle1>20 Beschäftigte und mehr</RowTitle1>
-        <RowTitle2>20 Beschäftigte und mehr</RowTitle2>
-        <RowTitle3>abs</RowTitle3>
-        <RowFormat/>
-        <RowDecimals>0</RowDecimals>
-        <RowVariable>q1</RowVariable>
-        <RowValue>5</RowValue>
-      </Line>
-      <Line>
-        <RowNo>14</RowNo>
-        <RowContent>Detail</RowContent>
-        <RowAbsPercent>Percent</RowAbsPercent>
-        <RowWeighted/>
-        <RowTitle1>20 Beschäftigte und mehr</RowTitle1>
-        <RowTitle2>20 Beschäftigte und mehr</RowTitle2>
-        <RowTitle3>in %</RowTitle3>
-        <RowFormat/>
-        <RowDecimals>1</RowDecimals>
-        <RowVariable>q1</RowVariable>
-        <RowValue>5</RowValue>
-      </Line>
-      <Line>
-        <RowNo>15</RowNo>
         <RowContent>Valid</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted/>
@@ -171,7 +171,7 @@
         <RowValue>1</RowValue>
       </Line>
       <Line>
-        <RowNo>16</RowNo>
+        <RowNo>13</RowNo>
         <RowContent>Valid</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
         <RowWeighted/>
@@ -198,7 +198,7 @@
     </Head>
     <Col>
       <Line>
-        <ColNo>4</ColNo>
+        <ColNo>1</ColNo>
         <HeadNo>2</HeadNo>
         <ColTitle1>GESAMT</ColTitle1>
         <ColTitle2/>
@@ -206,7 +206,7 @@
         <ColValue>1</ColValue>
       </Line>
       <Line>
-        <ColNo>5</ColNo>
+        <ColNo>2</ColNo>
         <HeadNo>3</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Asien</ColTitle2>
@@ -214,7 +214,7 @@
         <ColValue>1</ColValue>
       </Line>
       <Line>
-        <ColNo>6</ColNo>
+        <ColNo>3</ColNo>
         <HeadNo>3</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Europa</ColTitle2>
@@ -222,7 +222,7 @@
         <ColValue>2</ColValue>
       </Line>
       <Line>
-        <ColNo>7</ColNo>
+        <ColNo>4</ColNo>
         <HeadNo>3</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Nordamerika</ColTitle2>
@@ -230,7 +230,7 @@
         <ColValue>3</ColValue>
       </Line>
       <Line>
-        <ColNo>8</ColNo>
+        <ColNo>5</ColNo>
         <HeadNo>3</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Pazifik</ColTitle2>
@@ -240,228 +240,228 @@
     </Col>
     <Val>
       <Line>
-        <RowNo>4</RowNo>
-        <ColNo>4</ColNo>
+        <RowNo>1</RowNo>
+        <ColNo>1</ColNo>
         <value>151</value>
       </Line>
       <Line>
-        <RowNo>4</RowNo>
-        <ColNo>5</ColNo>
+        <RowNo>1</RowNo>
+        <ColNo>2</ColNo>
         <value>19</value>
       </Line>
       <Line>
-        <RowNo>4</RowNo>
-        <ColNo>6</ColNo>
+        <RowNo>1</RowNo>
+        <ColNo>3</ColNo>
         <value>75</value>
       </Line>
       <Line>
-        <RowNo>4</RowNo>
-        <ColNo>7</ColNo>
+        <RowNo>1</RowNo>
+        <ColNo>4</ColNo>
         <value>43</value>
       </Line>
       <Line>
-        <RowNo>4</RowNo>
-        <ColNo>8</ColNo>
+        <RowNo>1</RowNo>
+        <ColNo>5</ColNo>
         <value>14</value>
       </Line>
       <Line>
-        <RowNo>7</RowNo>
-        <ColNo>4</ColNo>
+        <RowNo>4</RowNo>
+        <ColNo>1</ColNo>
         <value>49</value>
       </Line>
       <Line>
-        <RowNo>7</RowNo>
-        <ColNo>5</ColNo>
+        <RowNo>4</RowNo>
+        <ColNo>2</ColNo>
         <value>5</value>
       </Line>
       <Line>
-        <RowNo>7</RowNo>
-        <ColNo>6</ColNo>
+        <RowNo>4</RowNo>
+        <ColNo>3</ColNo>
         <value>20</value>
       </Line>
       <Line>
-        <RowNo>7</RowNo>
-        <ColNo>7</ColNo>
+        <RowNo>4</RowNo>
+        <ColNo>4</ColNo>
         <value>19</value>
       </Line>
       <Line>
-        <RowNo>7</RowNo>
-        <ColNo>8</ColNo>
+        <RowNo>4</RowNo>
+        <ColNo>5</ColNo>
         <value>5</value>
       </Line>
       <Line>
-        <RowNo>8</RowNo>
-        <ColNo>4</ColNo>
+        <RowNo>5</RowNo>
+        <ColNo>1</ColNo>
         <value>32.4503311258278</value>
       </Line>
       <Line>
-        <RowNo>8</RowNo>
-        <ColNo>5</ColNo>
+        <RowNo>5</RowNo>
+        <ColNo>2</ColNo>
         <value>26.3157894736842</value>
       </Line>
       <Line>
-        <RowNo>8</RowNo>
-        <ColNo>6</ColNo>
+        <RowNo>5</RowNo>
+        <ColNo>3</ColNo>
         <value>26.6666666666667</value>
       </Line>
       <Line>
-        <RowNo>8</RowNo>
-        <ColNo>7</ColNo>
+        <RowNo>5</RowNo>
+        <ColNo>4</ColNo>
         <value>44.1860465116279</value>
       </Line>
       <Line>
-        <RowNo>8</RowNo>
-        <ColNo>8</ColNo>
+        <RowNo>5</RowNo>
+        <ColNo>5</ColNo>
         <value>35.7142857142857</value>
       </Line>
       <Line>
-        <RowNo>9</RowNo>
-        <ColNo>4</ColNo>
+        <RowNo>6</RowNo>
+        <ColNo>1</ColNo>
         <value>63</value>
       </Line>
       <Line>
-        <RowNo>9</RowNo>
-        <ColNo>5</ColNo>
+        <RowNo>6</RowNo>
+        <ColNo>2</ColNo>
         <value>6</value>
       </Line>
       <Line>
-        <RowNo>9</RowNo>
-        <ColNo>6</ColNo>
+        <RowNo>6</RowNo>
+        <ColNo>3</ColNo>
         <value>30</value>
       </Line>
       <Line>
-        <RowNo>9</RowNo>
-        <ColNo>7</ColNo>
+        <RowNo>6</RowNo>
+        <ColNo>4</ColNo>
         <value>21</value>
       </Line>
       <Line>
-        <RowNo>9</RowNo>
-        <ColNo>8</ColNo>
+        <RowNo>6</RowNo>
+        <ColNo>5</ColNo>
         <value>6</value>
       </Line>
       <Line>
-        <RowNo>10</RowNo>
-        <ColNo>4</ColNo>
+        <RowNo>7</RowNo>
+        <ColNo>1</ColNo>
         <value>41.7218543046358</value>
       </Line>
       <Line>
-        <RowNo>10</RowNo>
-        <ColNo>5</ColNo>
+        <RowNo>7</RowNo>
+        <ColNo>2</ColNo>
         <value>31.5789473684211</value>
       </Line>
       <Line>
-        <RowNo>10</RowNo>
-        <ColNo>6</ColNo>
+        <RowNo>7</RowNo>
+        <ColNo>3</ColNo>
         <value>40</value>
       </Line>
       <Line>
-        <RowNo>10</RowNo>
-        <ColNo>7</ColNo>
+        <RowNo>7</RowNo>
+        <ColNo>4</ColNo>
         <value>48.8372093023256</value>
       </Line>
       <Line>
-        <RowNo>10</RowNo>
-        <ColNo>8</ColNo>
+        <RowNo>7</RowNo>
+        <ColNo>5</ColNo>
         <value>42.8571428571429</value>
       </Line>
       <Line>
-        <RowNo>11</RowNo>
-        <ColNo>4</ColNo>
+        <RowNo>8</RowNo>
+        <ColNo>1</ColNo>
         <value>39</value>
       </Line>
       <Line>
-        <RowNo>11</RowNo>
-        <ColNo>5</ColNo>
+        <RowNo>8</RowNo>
+        <ColNo>2</ColNo>
         <value>8</value>
       </Line>
       <Line>
-        <RowNo>11</RowNo>
-        <ColNo>6</ColNo>
+        <RowNo>8</RowNo>
+        <ColNo>3</ColNo>
         <value>25</value>
       </Line>
       <Line>
-        <RowNo>11</RowNo>
-        <ColNo>7</ColNo>
-        <value>3</value>
-      </Line>
-      <Line>
-        <RowNo>11</RowNo>
-        <ColNo>8</ColNo>
-        <value>3</value>
-      </Line>
-      <Line>
-        <RowNo>12</RowNo>
+        <RowNo>8</RowNo>
         <ColNo>4</ColNo>
+        <value>3</value>
+      </Line>
+      <Line>
+        <RowNo>8</RowNo>
+        <ColNo>5</ColNo>
+        <value>3</value>
+      </Line>
+      <Line>
+        <RowNo>9</RowNo>
+        <ColNo>1</ColNo>
         <value>25.8278145695364</value>
       </Line>
       <Line>
-        <RowNo>12</RowNo>
-        <ColNo>5</ColNo>
+        <RowNo>9</RowNo>
+        <ColNo>2</ColNo>
         <value>42.1052631578947</value>
       </Line>
       <Line>
-        <RowNo>12</RowNo>
-        <ColNo>6</ColNo>
+        <RowNo>9</RowNo>
+        <ColNo>3</ColNo>
         <value>33.3333333333333</value>
       </Line>
       <Line>
-        <RowNo>12</RowNo>
-        <ColNo>7</ColNo>
+        <RowNo>9</RowNo>
+        <ColNo>4</ColNo>
         <value>6.97674418604651</value>
       </Line>
       <Line>
-        <RowNo>12</RowNo>
-        <ColNo>8</ColNo>
+        <RowNo>9</RowNo>
+        <ColNo>5</ColNo>
         <value>21.4285714285714</value>
       </Line>
       <Line>
-        <RowNo>15</RowNo>
-        <ColNo>4</ColNo>
+        <RowNo>12</RowNo>
+        <ColNo>1</ColNo>
         <value>151</value>
       </Line>
       <Line>
-        <RowNo>15</RowNo>
-        <ColNo>5</ColNo>
+        <RowNo>12</RowNo>
+        <ColNo>2</ColNo>
         <value>19</value>
       </Line>
       <Line>
-        <RowNo>15</RowNo>
-        <ColNo>6</ColNo>
+        <RowNo>12</RowNo>
+        <ColNo>3</ColNo>
         <value>75</value>
       </Line>
       <Line>
-        <RowNo>15</RowNo>
-        <ColNo>7</ColNo>
+        <RowNo>12</RowNo>
+        <ColNo>4</ColNo>
         <value>43</value>
       </Line>
       <Line>
-        <RowNo>15</RowNo>
-        <ColNo>8</ColNo>
+        <RowNo>12</RowNo>
+        <ColNo>5</ColNo>
         <value>14</value>
       </Line>
       <Line>
-        <RowNo>16</RowNo>
+        <RowNo>13</RowNo>
+        <ColNo>1</ColNo>
+        <value>100</value>
+      </Line>
+      <Line>
+        <RowNo>13</RowNo>
+        <ColNo>2</ColNo>
+        <value>100</value>
+      </Line>
+      <Line>
+        <RowNo>13</RowNo>
+        <ColNo>3</ColNo>
+        <value>100</value>
+      </Line>
+      <Line>
+        <RowNo>13</RowNo>
         <ColNo>4</ColNo>
         <value>100</value>
       </Line>
       <Line>
-        <RowNo>16</RowNo>
+        <RowNo>13</RowNo>
         <ColNo>5</ColNo>
-        <value>100</value>
-      </Line>
-      <Line>
-        <RowNo>16</RowNo>
-        <ColNo>6</ColNo>
-        <value>100</value>
-      </Line>
-      <Line>
-        <RowNo>16</RowNo>
-        <ColNo>7</ColNo>
-        <value>100</value>
-      </Line>
-      <Line>
-        <RowNo>16</RowNo>
-        <ColNo>8</ColNo>
         <value>100</value>
       </Line>
     </Val>
