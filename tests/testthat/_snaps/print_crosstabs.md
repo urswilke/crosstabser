@@ -284,13 +284,13 @@
                                  NULL ----- GESAMT  Regi… ----- ----- -----
                                  NULL -----         Asien Euro… Nord… Pazi…
       GESAMT                    abs       1 151     19    75    43     14  
-                                abs       2   1     NA    NA     1     NA  
+      2                         abs       2   1     NA    NA     1     NA  
                                 in %      3   1.12  NA    NA     3.57  NA  
-                                abs       4  10      1     4     3      2  
+      3                         abs       4  10      1     4     3      2  
                                 in %      5  11.2    9.09  9.76 10.7   22.2
-                                abs       6  29      5    12     9      3  
+      4                         abs       6  29      5    12     9      3  
                                 in %      7  32.6   45.5  29.3  32.1   33.3
-                                abs       8  49      5    25    15      4  
+      5                         abs       8  49      5    25    15      4  
                                 in %      9  55.1   45.5  61.0  53.6   44.4
       ZUSAMMENFASSUNG     1 un… abs      10   1     NA    NA     1     NA  
                           1 un… in %     11   1.12  NA    NA     3.57  NA  

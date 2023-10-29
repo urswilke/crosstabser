@@ -130,7 +130,7 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
 
   vallab_table <- all_valid_vals |>
     tibble::enframe("vallab", "val") |>
-    dplyr::mutate(vallab = dplyr::coalesce(vallab, as.character(val)))
+    dplyr::mutate(vallab = ifelse(vallab == "", as.character(val), vallab))
   n_vals <- nrow(vallab_table)
 
   vallab_table <- vallab_table[rep(seq_len(n_vals), each = 2),]
