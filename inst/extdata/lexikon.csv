@@ -123,6 +123,9 @@ cTabStdErr;Standardfehler;Standardfehler;Std.Err. Of Mean;Std.Err. Of Mean
 cTabStdDev;Standardabweichung;Standardabweichung;Standard deviation;Standard deviation
 cTabFilter;FILTER;FILTER;FILTER;FILTER
 cTabSum;Summe;Summe;Sum;Sum
+cTabMin;Minimum;Minimum;Minimum;Minimum
+cTabMax;Maximum;Maximum;Maximum;Maximum
+cTabPercentile;Perzentil;Perzentil;Percentile;Percentile
 cTabMissing;Fehlende Werte;Fehlende Werte;Missing values;Missing values
 cTabTitle;Titel;Titel;Title;Title
 cTabAbs;abs;abs;abs;abs
