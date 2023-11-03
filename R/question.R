@@ -23,7 +23,7 @@ preprocess_qrows_params <- function(mapping) {
   mapping$qsheet$qsheet_raw |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
-      RowVar = RowVar |> split_cell(" "),
+      RowVar = lapply(RowVar, \(x) extract_rowvars(x, mapping$dat_mod)),
       Unguelt = split_cell(Unguelt),
       Unguelt = purrr::map_if(Unguelt, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
       Type = as.list(Type),
