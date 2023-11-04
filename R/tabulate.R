@@ -279,3 +279,13 @@ gen_val_table <- function(qtab) {
     dplyr::as_tibble()
   res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
 }
+
+gen_long_tab_data = function(mapping) {
+  mapping$long_tab_data <- mapping$qrows |>
+    lapply(\(x) x$qtabs$obj |> lapply(\(x) x$d$long_tab)) |>
+    dplyr::bind_rows(.id = "TabNo") |>
+    tidyr::drop_na(value) |>
+    # TODO name value = Value from the beginiing or adapt:
+    dplyr::relocate(TabNo, RowNo, ColNo, Value = value) |>
+    dplyr::arrange(as.numeric(TabNo), ColNo, RowNo)
+}

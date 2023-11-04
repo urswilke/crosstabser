@@ -87,14 +87,8 @@ Tabula <- R6::R6Class("Tabula",
       write_xml_tables_from_qrows(self, row)
       invisible(self)
     },
-    gen_long_tab_data = function() {
-      self$long_tab_data <- self$qrows |>
-        lapply(\(x) x$qtabs$obj |> lapply(\(x) x$d$long_tab)) |>
-        dplyr::bind_rows(.id = "TabNo") |>
-        tidyr::drop_na(value) |>
-        # TODO name value = Value from the beginiing or adapt:
-        dplyr::relocate(TabNo, RowNo, ColNo, Value = value) |>
-        dplyr::arrange(as.numeric(TabNo), ColNo, RowNo)
+    merge_long_tab_data = function() {
+      self$long_tab_data <- gen_long_tab_data(self)
 
       invisible(self)
     },
