@@ -85,6 +85,10 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
 \item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
 \item \href{#method-Tabula-xml}{\code{Tabula$xml()}}
+\item \href{#method-Tabula-merge_long_tab_data}{\code{Tabula$merge_long_tab_data()}}
+\item \href{#method-Tabula-long_excel}{\code{Tabula$long_excel()}}
+\item \href{#method-Tabula-long_json}{\code{Tabula$long_json()}}
+\item \href{#method-Tabula-long_csv}{\code{Tabula$long_csv()}}
 \item \href{#method-Tabula-print}{\code{Tabula$print()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
@@ -114,6 +118,42 @@ Initialize a Tabula object
 \subsection{Method \code{xml()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$xml(row = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-merge_long_tab_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-merge_long_tab_data}{}}}
+\subsection{Method \code{merge_long_tab_data()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$merge_long_tab_data()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-long_excel"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-long_excel}{}}}
+\subsection{Method \code{long_excel()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$long_excel(file_name = "long_crosstab_data.xlsx")}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-long_json"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-long_json}{}}}
+\subsection{Method \code{long_json()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$long_json(file_name = "long_crosstab_data.json")}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-long_csv"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-long_csv}{}}}
+\subsection{Method \code{long_csv()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$long_csv(file_name = "long_crosstab_data.csv")}\if{html}{\out{</div>}}
 }
 
 }
