@@ -113,9 +113,7 @@ Tabula <- R6::R6Class("Tabula",
 )
 parse_qsheet <- function(mapping, row) {
   mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping$mapping_file, row)
-  if (is.null(row)) {
-    row <- mapping$qsheet$qsheet_raw$row
-  }
+  row <- set_row(mapping, row)
   mapping$qsheet$qrows_params <- preprocess_qrows_params(mapping)
   calc_row_lgl <- purrr::map_int(mapping$qsheet$qrows_params, "row") %in% row
 

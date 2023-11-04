@@ -1,8 +1,6 @@
 write_xml_tables_from_qrows <- function(mapping, row = NULL) {
   # filter row indices specified, otherwise all:
-  if (is.null(row)) {
-    row <- mapping$qsheet$qsheet_raw$row
-  }
+  row <- set_row(mapping, row)
   do_xml <- mapping$qsheet$qrows_params |> purrr::map_int("row") %in% row
 
   mapping$qrows[do_xml] |> lapply(\(x) x$xml())

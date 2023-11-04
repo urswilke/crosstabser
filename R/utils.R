@@ -67,3 +67,10 @@ extract_rowvars <- function(x, data) {
 select_loc <- function(data, ...) {
   tidyselect::eval_select(rlang::parse_expr(c(...)), data) |> names()
 }
+
+set_row <- function(mapping, row) {
+  if (is.null(row)) {
+    return(mapping$qsheet$qsheet_raw$row)
+  }
+  row
+}
