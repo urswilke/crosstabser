@@ -16,8 +16,9 @@ gen_tab_table <- function(params) {
 
 gen_head_table <- function(mapping) {
   header_vars <- mapping$options$l_macro_scenario$ColVar
+  # lapply needed instead of purrr::map_chr because variables could have no variable label:
   header_varlabs <- lapply(header_vars, \(x) attr(mapping$dat_mod[[x]], "label", exact = TRUE))
-  no_varlab_idx <- header_varlabs |> sapply(is.null)
+  no_varlab_idx <- header_varlabs |> purrr::map_lgl(is.null)
   if (sum(no_varlab_idx) > 0) {
     header_varlabs[no_varlab_idx] <- header_vars[no_varlab_idx]
     warning(
@@ -25,7 +26,8 @@ gen_head_table <- function(mapping) {
       header_vars[no_varlab_idx] |> names() |> paste(collapse = ", ")
     )
   }
-  header_varlabs <- unlist(header_varlabs)
+  header_varlabs <- unlist(header_varlabs) %||% character()
+
   res <- tibble::tibble(
     HeadNo = integer(),
     HeadName = character(),
