@@ -23,8 +23,24 @@ expect_snapshot_csv <- function(name) {
   path <- save_csv()
   expect_snapshot_file(path, name)
 }
+# see here: https://stackoverflow.com/a/26931460
+# expect_snapshot_csv <- function(name) {
+#   announce_snapshot_file(name = name)
+#
+#   path <- save_csv()
+#   tryCatch(
+#     expr = {
+#       expect_snapshot_file(path, name)
+#     },
+#     error = function(e){
+#       # https://cli.r-lib.org/reference/links.html#click-to-run-code
+#       cli::cli_text("Run {.run source("dev/save_long_json_example.R", echo=TRUE)} to review")
+#     }
+#   )
+# }
+# ... but doesn't work because somehow the output only works if cli::cli_text is called in the console and not in Rstudio build tab
+# clickable ...
 
-
-test_that("csv export works", {
+test_that('csv export works\nOTHERWISE RUN:\nsource("dev/save_long_json_example.R", echo=TRUE)\nto REGENERATE JSON', {
   expect_snapshot_csv("row5.csv")
 })

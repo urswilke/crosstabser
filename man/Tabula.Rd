@@ -144,7 +144,7 @@ Initialize a Tabula object
 \if{latex}{\out{\hypertarget{method-Tabula-long_json}{}}}
 \subsection{Method \code{long_json()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$long_json(file_name = "long_crosstab_data.json")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$long_json(file_name = "long_crosstab_data.json", ...)}\if{html}{\out{</div>}}
 }
 
 }

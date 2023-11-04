@@ -97,10 +97,10 @@ Tabula <- R6::R6Class("Tabula",
         writexl::write_xlsx(file_name)
       invisible(self)
     },
-    long_json = function(file_name = "long_crosstab_data.json") {
+    long_json = function(file_name = "long_crosstab_data.json", ...) {
       self$merge_long_tab_data()
       self$long_tab_data |>
-        jsonlite::toJSON() |>
+        jsonlite::toJSON(...) |>
         writeLines(file_name)
       invisible(self)
     },
