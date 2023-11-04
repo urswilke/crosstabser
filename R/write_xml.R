@@ -1,4 +1,4 @@
-write_xml_tables_from_qrows <- function(row = NULL, mapping) {
+write_xml_tables_from_qrows <- function(mapping, row = NULL) {
   # filter row indices specified, otherwise all:
   if (is.null(row)) {
     row <- mapping$qsheet$qsheet_raw$row
