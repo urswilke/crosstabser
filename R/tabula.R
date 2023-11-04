@@ -89,7 +89,25 @@ Tabula <- R6::R6Class("Tabula",
     },
     merge_long_tab_data = function() {
       self$long_tab_data <- gen_long_tab_data(self)
-
+      invisible(self)
+    },
+    long_excel = function(file_name = "long_crosstab_data.xlsx") {
+      self$merge_long_tab_data()
+      list(Daten = self$long_tab_data) |>
+        writexl::write_xlsx(file_name)
+      invisible(self)
+    },
+    long_json = function(file_name = "long_crosstab_data.json") {
+      self$merge_long_tab_data()
+      self$long_tab_data |>
+        jsonlite::toJSON() |>
+        writeLines(file_name)
+      invisible(self)
+    },
+    long_csv = function(file_name = "long_crosstab_data.csv") {
+      self$merge_long_tab_data()
+      self$long_tab_data |>
+        write.csv(file_name, row.names = FALSE)
       invisible(self)
     },
     # TODO: ask Wolf:
