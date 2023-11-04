@@ -1,4 +1,5 @@
 setOptions <- function(mapping_file) {
+  # TODO: clean up this mess...!
   # TODO: check if faster bulk-wise or preloading a workbook object with
   # openxlsx, but rather together with Mapping class in datenanpassr...:
   v_scenario <- openxlsx::read.xlsx(
@@ -36,8 +37,6 @@ setOptions <- function(mapping_file) {
   )
   l_lexikon <- df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()
 
-  colvar <- df_macro_raw[5, 4 + v_scenario][[1]] |> stringr::str_split_1("[ ,;]+")
-
   # TODO: find cleaner way to do this!...:
   mapping_r_params <- datenanpassr:::extract_named_region_params.excel(mapping_file)
 
@@ -48,7 +47,6 @@ setOptions <- function(mapping_file) {
     df_macro_raw,
     l_macro_scenario,
     l_lexikon,
-    colvar,
     mapping_r_params
   ))
 }
