@@ -1,10 +1,6 @@
 gen_tab_table <- function(params) {
-  # TODO: use correct numbers instead of placeholder 9999...:
-  # discuss with Wolf how
   tibble::tibble(
-    TabNo = 9999,
-    row = params$row,
-    Type = params$Type |> toupper(),
+    TabNo = params$i_tab,
     TabName = paste0(params$Type, "#", params$Abbreviation  %||% "", "@", params$i_tab),
     TabType = params$Type |> toupper(),
     QuestNo = params$row,
@@ -36,7 +32,7 @@ gen_head_table <- function(mapping) {
   res[1,c("HeadName", "HeadTitle")] <- list("DC#STICHPROBE", mapping$options$l_lexikon["cTabGesamt"])
   res[seq_len(length(header_vars)) + 1,]$HeadName <- header_vars
   res[seq_len(length(header_vars)) + 1,]$HeadTitle <- header_varlabs
-  res$HeadNo <- seq_len(nrow(res)) + 1
+  res$HeadNo <- seq_len(nrow(res))
   res
 }
 
