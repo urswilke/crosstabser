@@ -3,9 +3,7 @@
   <Table>
     <Tab>
       <Line>
-        <TabNo>9999</TabNo>
-        <row>5</row>
-        <Type>CAT</Type>
+        <TabNo>1</TabNo>
         <TabName>cat#Q1@1</TabName>
         <TabType>CAT</TabType>
         <QuestNo>5</QuestNo>
@@ -186,12 +184,12 @@
     </Row>
     <Head>
       <Line>
-        <HeadNo>2</HeadNo>
+        <HeadNo>1</HeadNo>
         <HeadName>DC#STICHPROBE</HeadName>
         <HeadTitle>GESAMT</HeadTitle>
       </Line>
       <Line>
-        <HeadNo>3</HeadNo>
+        <HeadNo>2</HeadNo>
         <HeadName>kregio</HeadName>
         <HeadTitle>Region</HeadTitle>
       </Line>
@@ -207,7 +205,7 @@
       </Line>
       <Line>
         <ColNo>2</ColNo>
-        <HeadNo>3</HeadNo>
+        <HeadNo>2</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Asien</ColTitle2>
         <ColVariable>kregio</ColVariable>
@@ -215,7 +213,7 @@
       </Line>
       <Line>
         <ColNo>3</ColNo>
-        <HeadNo>3</HeadNo>
+        <HeadNo>2</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Europa</ColTitle2>
         <ColVariable>kregio</ColVariable>
@@ -223,7 +221,7 @@
       </Line>
       <Line>
         <ColNo>4</ColNo>
-        <HeadNo>3</HeadNo>
+        <HeadNo>2</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Nordamerika</ColTitle2>
         <ColVariable>kregio</ColVariable>
@@ -231,7 +229,7 @@
       </Line>
       <Line>
         <ColNo>5</ColNo>
-        <HeadNo>3</HeadNo>
+        <HeadNo>2</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Pazifik</ColTitle2>
         <ColVariable>kregio</ColVariable>
