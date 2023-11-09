@@ -26,7 +26,7 @@ Qrow <- R6::R6Class(
       file_name = paste0(
         self$m$options$V_XMLName,
         # scen_name_suffix,
-        stringr::str_pad(self$p$row, 4, pad = "0"),
+        self$p$row,
         ".xml"
       )
     ) {
