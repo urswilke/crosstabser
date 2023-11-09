@@ -32,6 +32,11 @@ Imports:
     haven,
     Hmisc,
     tibble,
+    jsonlite,
+    tidyselect,
+    writexl,
+    pillar,
+    readxl,
     datenanpassr
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
