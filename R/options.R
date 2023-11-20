@@ -238,14 +238,26 @@ process_metr_mac <- function(params, mapping) {
         df_metr_mac$ctab_entry[match(shortcut, df_metr_mac$shortcut)]
       ] |> unname()
     )
+
+  is_percentile_row <- df_stat_funs$shortcut == "P"
+
+  percentile_string <- l[is_percentile_row] |>
+    purrr::map_chr(
+      \(x) x[2:3] |>
+        paste(collapse = "")
+    )
+
+  df_stat_funs$row_title[is_percentile_row] <-
+    paste(
+      df_stat_funs$row_title[is_percentile_row],
+      percentile_string,
+      "%"
+    )
+
   df_stat_funs$quantile_val <- vector("list", length(l))
-  df_stat_funs[df_stat_funs$shortcut == "P",]$quantile_val <-
-    as.numeric(
-      l[df_stat_funs$shortcut == "P"] |>
-        purrr::map_chr(
-          \(x) x[2:3] |>
-            paste(collapse = ""))
-    ) / 100
+  df_stat_funs$quantile_val[is_percentile_row] <-
+    as.numeric(percentile_string) / 100
+
   df_stat_funs
 }
 
