@@ -222,7 +222,6 @@ set_qtab_params.qtab_params_mcg <- function(params, mapping) {
 df_metr_mac <- data.frame(
   shortcut = c("E", "M", "S", "P", "I", "A", "T"),
   fun = c("se", "median", "mean", "percentile", "min", "max", "sum"),
-  # TODO: Wolf fragen wo das steht???
   ctab_entry = c("cTabStdErr", "cTabMedian", "cTabMean", "cTabPercentile", "cTabMin", "cTabMax", "cTabSum")
 )
 

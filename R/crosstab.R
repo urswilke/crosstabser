@@ -17,7 +17,6 @@ rbind_table_numbers <- function(qtab) {
   )
 }
 
-# TODO: think whether cat and mw can/should be treated with the same function:
 calc_stat_fun <- function(qtab) {
   UseMethod("calc_stat_fun")
 }
@@ -48,7 +47,6 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
     return(NULL)
   }
   long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% qtab$p$Unguelt,]
-  # TODO: check if  TOTAL, VALID CASES etc. are correct, when using MWRec:
   if (!is.null(qtab$p$MWRec)) {
     long_data$rowval <- catrec(long_data$rowval, qtab$p$MWRec)
   }
@@ -326,17 +324,7 @@ summarise_catrec <- function(df_long, catrec_string, wt) {
   df_long$rowval <- catrec(df_long$rowval, catrec_string)
   df_long$rowvar <- paste0(df_long$rowvar, "__summary")
   non_recoded_idx <- is.na(df_long$rowval)
-  if (any(non_recoded_idx)) {
-    # TODO: not sure if this still holds true
-    # (because the .default option was added to dplyr::case_when() in catrec()):
-    warning(
-      "\nIn table in row ", df_row$row, ":\n",
-      "These valid values are not recoded by CatRec: ",
-      vec[non_recoded_idx] |> unique(),
-      "\nTabulation not implemented yet!!!"
-    )
-    df_long <- df_long[!non_recoded_idx,]
-  }
+
   res <- df_long |>
     summarize_stats(
       NULL,
@@ -382,9 +370,6 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
       .by = c("rowvar", "colvar", "colval")
     )
 
-  # to prevent warning when calling `gen_val_table()`...:
-  # TODO: remove when refactoring gen_val_table()...!
-  res$rowval <- NA_real_
   res$RowContent <- "MValid"
   res$RowAbsPercent <- "Abs"
   qtab$d$detail_freqs <- res

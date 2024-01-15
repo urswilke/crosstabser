@@ -125,7 +125,6 @@ order_by_counts.default <- function(qtab) {
   warning("Not yet implemented for this qtab type")
 }
 order_by_counts.qtab_type_mcg <- function(qtab) {
-  # TODO: Wolf fragen ob bei SPSS ORDER=A nicht funzt ???
   # TODO: Wolf sagen dass es nur für gültige Werte geschieht...
   # TODO: gucken ob das auch für andere qtab types funktioniert!...:
   val_table_counts <- qtab$d$detail_freqs[
