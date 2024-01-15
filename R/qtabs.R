@@ -102,11 +102,7 @@ wide_tab <- function(qtab) {
     return(NULL)
   }
 
-  qtab$d$wide_tab <- long_tab |>
-    dplyr::select(dplyr::all_of(cols_for_wide_tab)) |>
-    # correct ordering in result:
-    # TODO: find cleaner way!...
-    dplyr::arrange(ColNo) |>
+  qtab$d$wide_tab <- long_tab[order(long_tab$ColNo), cols_for_wide_tab] |>
     tidyr::pivot_wider(
       names_from = dplyr::matches("Col"),
       values_from = value
