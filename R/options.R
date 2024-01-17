@@ -112,7 +112,7 @@ set_qtab_params.default <- function(params, mapping) {
   # TODO: tell Wolf: Here we could also use ColVar defined in the Questions sheet...:
   # (with params$ColVar %||% ...)
   params$raw_data_colvars <- cv(c(mapping$options$l_macro_scenario$ColVar, "DC#STICHPROBE"))
-  if (is.null(params$Weight[[1]])) {
+  if (is.null(params$Weight[[1]]) & is.na(mapping$options$l_macro_scenario$Weight)) {
     params$long_weight <- character()
   } else {
     params$long_weight <- "weight"

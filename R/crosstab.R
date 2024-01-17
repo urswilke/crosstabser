@@ -265,12 +265,12 @@ calc_stats_rows.qtab_type_mcg <- function(qtab) {
   # the next is equivalent to (for unweighted):
   # total <- df_long |> dplyr::summarise(value = dplyr::n_distinct(i), .by = c("colvar", "colval"))
   total <- df_long |>
-    dplyr::distinct(dplyr::across(dplyr::all_of(c("i", group_variables)))) |>
+    dplyr::distinct(dplyr::across(dplyr::all_of(c("i", group_variables, qtab$p$long_weight)))) |>
     summarize_stats(NULL, qtab$p$Weight[[1]], .by = group_variables)
   sum_of_valid <- df_long_valid |>
     summarize_stats(NULL, qtab$p$Weight[[1]], .by = group_variables)
   n_valid <- df_long_valid |>
-    dplyr::distinct(dplyr::across(dplyr::all_of(c("i", group_variables)))) |>
+    dplyr::distinct(dplyr::across(dplyr::all_of(c("i", group_variables, qtab$p$long_weight)))) |>
     summarize_stats(NULL, qtab$p$Weight[[1]], .by = group_variables)
 
 
