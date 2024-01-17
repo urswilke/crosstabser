@@ -129,7 +129,7 @@
       [[7]]
       [[7]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-      #   Mittelwertüberblick
+      #   Mittelwertüberblick gewichtet mit gew
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs       1 151    15    71.5  47.5  17  
@@ -142,6 +142,7 @@
       [[8]]
       [[8]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
+      #   gewichtet mit gew
                             NULL ----- GESAMT  Regi… ------ ------ -----
                             NULL -----         Asien Europa Norda… Pazi…
       GESAMT               abs       1   151    15     71.5   47.5  17  

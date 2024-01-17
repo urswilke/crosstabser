@@ -18,6 +18,21 @@ gen_row_table <- function(qtab) {
 
   row_table$TabNo <- qtab$p$TabNo
   row_table$RowNo <- seq_len(nrow(row_table))
+
+  if (!is.null(qtab$p$Weight[[1]])) {
+    row_table$RowWeighted <- "Weighted"
+  } else {
+    row_table$RowWeighted <- "Unweighted"
+  }
+  if (qtab$p$Unweight) {
+    row_table_unweighted <- row_table
+    row_table$RowTitle3 <- paste(row_table$RowTitle3, qtab$m$options$l_lexikon["cTabWeighted"])
+    row_table_unweighted$RowWeighted <- "Unweighted"
+    row_table <- rbind(row_table_unweighted, row_table)
+    row_table <- row_table[order(row_table$RowNo),]
+    row_table$RowNo <- seq_len(nrow(row_table))
+  }
+
   row_table
 }
 empty_row_table <- function() {

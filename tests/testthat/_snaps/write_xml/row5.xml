@@ -16,7 +16,7 @@
         <RowNo>1</RowNo>
         <RowContent>Total</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>GESAMT</RowTitle1>
         <RowTitle2>GESAMT</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -29,7 +29,7 @@
         <RowNo>2</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>1 Beschäftigter</RowTitle1>
         <RowTitle2>1 Beschäftigter</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -42,7 +42,7 @@
         <RowNo>3</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>1 Beschäftigter</RowTitle1>
         <RowTitle2>1 Beschäftigter</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -55,7 +55,7 @@
         <RowNo>4</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>2 - 4 Beschäftigte</RowTitle1>
         <RowTitle2>2 - 4 Beschäftigte</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -68,7 +68,7 @@
         <RowNo>5</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>2 - 4 Beschäftigte</RowTitle1>
         <RowTitle2>2 - 4 Beschäftigte</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -81,7 +81,7 @@
         <RowNo>6</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>5 - 9 Beschäftigte</RowTitle1>
         <RowTitle2>5 - 9 Beschäftigte</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -94,7 +94,7 @@
         <RowNo>7</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>5 - 9 Beschäftigte</RowTitle1>
         <RowTitle2>5 - 9 Beschäftigte</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -107,7 +107,7 @@
         <RowNo>8</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>10 - 19 Beschäftigte</RowTitle1>
         <RowTitle2>10 - 19 Beschäftigte</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -120,7 +120,7 @@
         <RowNo>9</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>10 - 19 Beschäftigte</RowTitle1>
         <RowTitle2>10 - 19 Beschäftigte</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -133,7 +133,7 @@
         <RowNo>10</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>20 Beschäftigte und mehr</RowTitle1>
         <RowTitle2>20 Beschäftigte und mehr</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -146,7 +146,7 @@
         <RowNo>11</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>20 Beschäftigte und mehr</RowTitle1>
         <RowTitle2>20 Beschäftigte und mehr</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -159,7 +159,7 @@
         <RowNo>12</RowNo>
         <RowContent>Valid</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>GÜLTIGE FÄLLE</RowTitle1>
         <RowTitle2>GÜLTIGE FÄLLE</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -172,7 +172,7 @@
         <RowNo>13</RowNo>
         <RowContent>Valid</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
-        <RowWeighted/>
+        <RowWeighted>Unweighted</RowWeighted>
         <RowTitle1>GÜLTIGE FÄLLE</RowTitle1>
         <RowTitle2>GÜLTIGE FÄLLE</RowTitle2>
         <RowTitle3>in %</RowTitle3>

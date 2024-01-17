@@ -1,15 +1,3 @@
-new_qtabs <- function(qrow_params, mapping) {
-  qrow_params |>
-    purrr::map(\(x) new_qtab_type(x, mapping))
-}
-
-# S3 Subclass (qtab_type_... cat, mw, mcg or mdg) of Qtab R6 Class:
-new_qtab_type <- function(params, mapping) {
-  qtab <- Qtab$new(params, mapping)
-  class(qtab) <- c(paste0("qtab_type_", params$Type), class(qtab))
-  qtab
-}
-
 #' Qtab
 #' @description Qtab
 #' @field p parameters
@@ -35,7 +23,11 @@ Qtab <- R6::R6Class("Qtab",
 
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
+
       self$d$tab_table <- gen_tab_table(self$p)
+
+      class(self) <- c(paste0("qtab_type_", params$Type), class(self))
+      self$calc_qtab()
     },
     #' @description todo
     calc_qtab = function() {
@@ -70,11 +62,28 @@ Qtab <- R6::R6Class("Qtab",
   )
 )
 calc_qtab <- function(qtab) {
-  df <- get_raw_data(qtab)
-  if (nrow(df) == 0) {
-    return(NULL)
+  calc_qtab_elements(qtab)
+  tab_values <- rbind_table_numbers(qtab)
+
+  if (qtab$p$Unweight) {
+    qtab_unweighted <- qtab$clone()
+    qtab_unweighted$p$Weight <- list(NULL)
+    qtab_unweighted$p$Unweight <- FALSE
+    qtab_unweighted$p$long_weight <- character()
+    calc_qtab_elements(qtab_unweighted)
+    tab_values_unweighted <- rbind_table_numbers(qtab_unweighted)
+    tab_values$RowWeighted <- "Weighted"
+    tab_values_unweighted$RowWeighted <- "Unweighted"
+    tab_values <- rbind(tab_values, tab_values_unweighted)
   }
-  qtab$d$raw_data <- df
+
+  qtab$d$tab_values <- tab_values
+  qtab$d$row_table <- gen_row_table(qtab)
+  post_process(qtab)
+  qtab$d$val_table <- gen_val_table(qtab)
+}
+calc_qtab_elements <- function(qtab) {
+  qtab$d$raw_data <- get_raw_data(qtab)
 
   pivot_table_data(qtab)
   calc_stats_rows(qtab)
@@ -85,10 +94,7 @@ calc_qtab <- function(qtab) {
   qtab$d$invalid_percentages <- calc_invalid_percentages(qtab)
   qtab$d$vc_percentages <- calc_valid_counts_percentages(qtab)
   qtab$d$no_entry_percentages <- calc_no_entry_percentages(qtab)
-  qtab$d$tab_values <- rbind_table_numbers(qtab)
-  qtab$d$row_table <- gen_row_table(qtab)
-  post_process(qtab)
-  qtab$d$val_table <- gen_val_table(qtab)
+
 }
 wide_tab <- function(qtab) {
   cols_for_wide_tab <- c(

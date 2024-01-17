@@ -66,6 +66,12 @@ extract_scenario_options <- function(df_macro_raw, v_scenario) {
 
   res$Unguelt <- param_list[c("Miss1", "Miss2", "Miss3")] |> as.numeric()
   res$Weight <- param_list[["Weight"]]
+  if (!is.na(param_list["Unweight"]) && param_list["Unweight"] == "TRUE") {
+    res$Unweight <- TRUE
+  } else {
+    res$Unweight <- FALSE
+  }
+
   res$Filter <- param_list[["Filter"]] |>
     # hopefully, won't be needed one day:
     spss_to_r()
@@ -83,6 +89,7 @@ add_global_options <- function(params, mapping) {
   if (is.na(res$Weight)) {
     res$Weight <- list(NULL)
   }
+  res$Unweight <- global_options$Unweight
   # - quick fix - TODO: find cleaner way for mdg...:
   if (length(res$Unguelt) == 0 && params$Type != "mdg") {
     res$Unguelt <- global_options$Unguelt
@@ -112,7 +119,7 @@ set_qtab_params.default <- function(params, mapping) {
   # TODO: tell Wolf: Here we could also use ColVar defined in the Questions sheet...:
   # (with params$ColVar %||% ...)
   params$raw_data_colvars <- cv(c(mapping$options$l_macro_scenario$ColVar, "DC#STICHPROBE"))
-  if (is.null(params$Weight[[1]])) {
+  if (is.null(params$Weight[[1]]) & is.na(mapping$options$l_macro_scenario$Weight)) {
     params$long_weight <- character()
   } else {
     params$long_weight <- "weight"
