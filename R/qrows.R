@@ -10,10 +10,6 @@ Qrow <- R6::R6Class(
         lapply(\(x) Qtab$new(x, mapping))
       self$qtabs <- tibble::tibble(params, obj)
     },
-    wide_tabs = function() {
-      self$qtabs |> lapply(\(x) x$wide_tab())
-      invisible(self)
-    },
     xml = function(
       file_name = paste0(
         self$m$options$V_XMLName,
