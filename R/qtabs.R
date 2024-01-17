@@ -63,7 +63,21 @@ Qtab <- R6::R6Class("Qtab",
 )
 calc_qtab <- function(qtab) {
   calc_qtab_elements(qtab)
-  qtab$d$tab_values <- rbind_table_numbers(qtab)
+  tab_values <- rbind_table_numbers(qtab)
+
+  if (qtab$p$Unweight) {
+    qtab_unweighted <- qtab$clone()
+    qtab_unweighted$p$Weight <- list(NULL)
+    qtab_unweighted$p$Unweight <- FALSE
+    qtab_unweighted$p$long_weight <- character()
+    calc_qtab_elements(qtab_unweighted)
+    tab_values_unweighted <- rbind_table_numbers(qtab_unweighted)
+    tab_values$RowWeighted <- "Weighted"
+    tab_values_unweighted$RowWeighted <- "Unweighted"
+    tab_values <- rbind(tab_values, tab_values_unweighted)
+  }
+
+  qtab$d$tab_values <- tab_values
   qtab$d$row_table <- gen_row_table(qtab)
   post_process(qtab)
   qtab$d$val_table <- gen_val_table(qtab)
