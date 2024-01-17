@@ -47,7 +47,17 @@ process_qrow_params <- function(qrow_params, mapping) {
     lapply(\(x) process_mw_rows(x, mapping)) |> unlist(recursive = FALSE) |>
     lapply(\(x) process_cat_rows(x, mapping)) |> unlist(recursive = FALSE) |>
     lapply(\(x) process_repov_rows(x, mapping)) |> unlist(recursive = FALSE) |>
-    purrr::imap(\(x, .y) {x$i_tab <- .y; x})
+    purrr::imap(\(x, .y) {
+      x$i_tab <- .y
+      if (is.null(x$Weight)) {
+        return(x)
+      }
+      x$Title <- append(
+        x$Title,
+        paste0(mapping$options$l_lexikon["cTxtWeightedBy"], x$Weight)
+      )
+      x
+    })
 }
 process_selval <- function(qrow_params, mapping) {
   selvar <- qrow_params$SelVar
