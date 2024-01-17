@@ -62,6 +62,13 @@ Qtab <- R6::R6Class("Qtab",
   )
 )
 calc_qtab <- function(qtab) {
+  calc_qtab_elements(qtab)
+  qtab$d$tab_values <- rbind_table_numbers(qtab)
+  qtab$d$row_table <- gen_row_table(qtab)
+  post_process(qtab)
+  qtab$d$val_table <- gen_val_table(qtab)
+}
+calc_qtab_elements <- function(qtab) {
   qtab$d$raw_data <- get_raw_data(qtab)
 
   pivot_table_data(qtab)
@@ -73,10 +80,7 @@ calc_qtab <- function(qtab) {
   qtab$d$invalid_percentages <- calc_invalid_percentages(qtab)
   qtab$d$vc_percentages <- calc_valid_counts_percentages(qtab)
   qtab$d$no_entry_percentages <- calc_no_entry_percentages(qtab)
-  qtab$d$tab_values <- rbind_table_numbers(qtab)
-  qtab$d$row_table <- gen_row_table(qtab)
-  post_process(qtab)
-  qtab$d$val_table <- gen_val_table(qtab)
+
 }
 wide_tab <- function(qtab) {
   cols_for_wide_tab <- c(
