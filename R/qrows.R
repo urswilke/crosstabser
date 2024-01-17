@@ -9,14 +9,10 @@ Qrow <- R6::R6Class(
                           ...) {
       self$p <- p
       self$m <- mapping
-      self$qtabs <- tibble::tibble(params = process_qrow_params(self$p, self$m))
-      self$qtabs$obj <- new_qtabs(self$qtabs$params, mapping)
-
-      self$calc_qrow_qtabs()
-    },
-    calc_qrow_qtabs = function() {
-      self$qtabs$obj |> lapply(\(x) x$calc_qtab())
-      invisible(self)
+      params <- process_qrow_params(self$p, self$m)
+      obj <- params |>
+        lapply(\(x) Qtab$new(x, mapping))
+      self$qtabs <- tibble::tibble(params, obj)
     },
     wide_tabs = function() {
       self$qtabs |> lapply(\(x) x$wide_tab())

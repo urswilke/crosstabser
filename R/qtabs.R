@@ -1,15 +1,3 @@
-new_qtabs <- function(qrow_params, mapping) {
-  qrow_params |>
-    purrr::map(\(x) new_qtab_type(x, mapping))
-}
-
-# S3 Subclass (qtab_type_... cat, mw, mcg or mdg) of Qtab R6 Class:
-new_qtab_type <- function(params, mapping) {
-  qtab <- Qtab$new(params, mapping)
-  class(qtab) <- c(paste0("qtab_type_", params$Type), class(qtab))
-  qtab
-}
-
 #' Qtab
 #' @description Qtab
 #' @field p parameters
@@ -35,7 +23,11 @@ Qtab <- R6::R6Class("Qtab",
 
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
+
       self$d$tab_table <- gen_tab_table(self$p)
+
+      class(self) <- c(paste0("qtab_type_", params$Type), class(self))
+      self$calc_qtab()
     },
     #' @description todo
     calc_qtab = function() {
