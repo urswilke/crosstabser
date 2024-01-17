@@ -62,11 +62,7 @@ Qtab <- R6::R6Class("Qtab",
   )
 )
 calc_qtab <- function(qtab) {
-  df <- get_raw_data(qtab)
-  if (nrow(df) == 0) {
-    return(NULL)
-  }
-  qtab$d$raw_data <- df
+  qtab$d$raw_data <- get_raw_data(qtab)
 
   pivot_table_data(qtab)
   calc_stats_rows(qtab)
