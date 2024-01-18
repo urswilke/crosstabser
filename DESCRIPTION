@@ -37,6 +37,7 @@ Imports:
     writexl,
     pillar,
     readxl,
+    cli,
     datenanpassr
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
