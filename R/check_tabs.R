@@ -9,11 +9,7 @@ check_tab <- function(qtab) {
 
 check_100percent <- function(qtab) {
   df <- qtab$m$dat_mod[qtab$p$RowVar]
-  filtered_row_idx <- df |>
-    apply(1, unique) |>
-    # TODO: generalize for other values than -2...!:
-    lapply(\(x) dplyr::setequal(x, -2)) |>
-    unlist()
+  filtered_row_idx <- df[[1]] %in% qtab$p$Unguelt
   var_sums <- df[!filtered_row_idx,] |>
     rowSums(na.rm = TRUE)
   if (
