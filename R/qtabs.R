@@ -26,6 +26,8 @@ Qtab <- R6::R6Class("Qtab",
 
       self$d$tab_table <- gen_tab_table(self$p)
 
+      check_tab(self)
+
       class(self) <- c(paste0("qtab_type_", params$Type), class(self))
       self$calc_qtab()
     },
