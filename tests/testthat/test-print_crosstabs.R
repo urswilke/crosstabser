@@ -6,3 +6,5 @@ test_that("crosstab prints are reproduced", {
   testthat::expect_snapshot(tabsi)
 })
 
+tabsi$dat_mod$q3a[1:9] <- 101
+testthat::expect_warning(tabsi$calc_qtabs(7))
