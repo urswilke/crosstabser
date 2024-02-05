@@ -281,11 +281,21 @@ gen_val_table <- function(qtab) {
 }
 
 gen_long_tab_data = function(mapping) {
-  mapping$long_tab_data <- mapping$qrows |>
+  res <- mapping$qrows |>
     lapply(\(x) x$qtabs$obj |> lapply(\(x) x$d$long_tab)) |>
     dplyr::bind_rows() |>
     tidyr::drop_na(value) |>
     # TODO name value = Value from the beginiing or adapt:
     dplyr::relocate(TabNo, RowNo, ColNo, Value = value) |>
     dplyr::arrange(QuestNo, TabNo, RowNo, ColNo)
+  df_total_values <- res[
+    res$RowContent == "Valid" & res$RowAbsPercent == "Abs",
+  ] |>
+    dplyr::select(QuestNo, TabNo, ColNo, ColValidCases = Value)
+  df_mean_values <- res[res$RowContent == "Statistics",] |>
+    dplyr::select(QuestNo, TabNo, ColNo, ColMean = Value)
+
+  mapping$long_tab_data <- res |>
+    dplyr::left_join(df_total_values, by = dplyr::join_by(TabNo, ColNo, QuestNo)) |>
+    dplyr::left_join(df_mean_values, by = dplyr::join_by(TabNo, ColNo, QuestNo))
 }
