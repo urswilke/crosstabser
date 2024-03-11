@@ -293,8 +293,14 @@ gen_long_tab_data = function(mapping) {
   ] |>
     dplyr::select(QuestNo, TabNo, ColNo, ColValidCases = Value)
   # TODO: maybe generalize to stats different from mean...?:
+  is_mean <- if (!"RowStatFun" %in% names(res)) {
+    FALSE
+  } else {
+    res$RowStatFun == "mean"
+  }
+
   df_mean_values <- res[
-    res$RowContent == "Statistics" & res$RowStatFun == "mean",
+    res$RowContent == "Statistics" & is_mean,
   ] |>
     dplyr::select(QuestNo, TabNo, ColNo, ColMean = Value)
 
