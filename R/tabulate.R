@@ -292,10 +292,12 @@ gen_long_tab_data = function(mapping) {
     res$RowContent == "Valid" & res$RowAbsPercent == "Abs",
   ] |>
     dplyr::select(QuestNo, TabNo, ColNo, ColValidCases = Value)
-  df_mean_values <- res[res$RowContent == "Statistics",] |>
+  # TODO: maybe generalize to stats different from mean...?:
+  df_mean_values <- res[
+    res$RowContent == "Statistics" & res$RowStatFun == "mean",
+  ] |>
     dplyr::select(QuestNo, TabNo, ColNo, ColMean = Value)
 
-  # TODO: check if the merging works correctly! In table_charter there are multiple different mean values and therefore duplicated tooltips
   mapping$long_tab_data <- res |>
     dplyr::left_join(df_total_values, by = dplyr::join_by(TabNo, ColNo, QuestNo)) |>
     dplyr::left_join(df_mean_values, by = dplyr::join_by(TabNo, ColNo, QuestNo))
