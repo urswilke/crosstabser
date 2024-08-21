@@ -99,10 +99,10 @@ row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_
   abs_text <- qtab$m$options$l_lexikon["cTabAbs"]
   row_table[
     1,
-    c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowValue")
+    c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowValue", "RowDecimals")
   ] <- list(
     # TODO: Wolf sagen dass geaendert zu "SumOfValid"...:
-    "SumOfValid", "Abs", valid_answers_row_text, valid_answers_row_text, abs_text, 1
+    "SumOfValid", "Abs", valid_answers_row_text, valid_answers_row_text, abs_text, 1, 0
   )
   row_table$RowVariable <- qtab$p$rowvars_string
   row_table
