@@ -29,7 +29,8 @@ summarize_stats_unweighted <- function(df, x, stat_fun = "length", ..., .by) {
   stats::aggregate(
     reformulate(.by, aggregate_fml_lhs(x)),
     data = df,
-    stat_fun, ...
+    stat_fun,
+    ...
   ) |> dplyr::as_tibble()
 
 }

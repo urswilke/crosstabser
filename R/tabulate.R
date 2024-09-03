@@ -275,9 +275,15 @@ gen_val_table <- function(qtab) {
   tab_values <- qtab$d$tab_values
   res <- tab_values |>
     merge(row_table |> dplyr::rename(rowval = RowValue, rowvar = RowVariable)) |>
-    merge(col_table |> dplyr::rename(colval = ColValue, colvar = ColVariable)) |>
-    dplyr::as_tibble()
-  res[order(res$RowNo, res$ColNo), c("RowNo", "ColNo", "value")]
+    merge(col_table |> dplyr::rename(colval = ColValue, colvar = ColVariable))
+
+  # HACK: replace NA with 0 in the table data (replace implicit NA with explicit 0....)
+  res[c("RowNo", "ColNo", "value")] |> tidyr::complete(
+    RowNo = row_table$RowNo,
+    ColNo = col_table$ColNo,
+    fill = list(value = 0),
+    explicit = FALSE
+  )
 }
 
 gen_long_tab_data = function(mapping) {

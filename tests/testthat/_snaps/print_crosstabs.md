@@ -9,16 +9,16 @@
                             NULL ----- GESA… Regi… ----- ------ -----
                             NULL -----       Asien Euro… Norda… Pazi…
       GESAMT               abs       1 151    19    75    43     14  
-      1 Beschäftigter      abs       2  NA    NA    NA    NA     NA  
-                           in %      3  NA    NA    NA    NA     NA  
+      1 Beschäftigter      abs       2   0     0     0     0      0  
+                           in %      3   0     0     0     0      0  
       2 - 4 Beschäftigte   abs       4  49     5    20    19      5  
                            in %      5  32.5  26.3  26.7  44.2   35.7
       5 - 9 Beschäftigte   abs       6  63     6    30    21      6  
                            in %      7  41.7  31.6  40    48.8   42.9
       10 - 19 Beschäftig…  abs       8  39     8    25     3      3  
                            in %      9  25.8  42.1  33.3   6.98  21.4
-      20 Beschäftigte un…  abs      10  NA    NA    NA    NA     NA  
-                           in %     11  NA    NA    NA    NA     NA  
+      20 Beschäftigte un…  abs      10   0     0     0     0      0  
+                           in %     11   0     0     0     0      0  
       GÜLTIGE FÄLLE        abs      12 151    19    75    43     14  
                            in %     13 100   100   100   100    100  
       
@@ -41,8 +41,8 @@
                            in %     10   9.27  15.8    5.33   9.30  21.4 
       Strukturanalyse      abs      11  12      2      6      2      2   
                            in %     12   7.95  10.5    8      4.65  14.3 
-      Werbewirkungsmessu…  abs      13   3     NA      1      1      1   
-                           in %     14   1.99  NA      1.33   2.33   7.14
+      Werbewirkungsmessu…  abs      13   3      0      1      1      1   
+                           in %     14   1.99   0      1.33   2.33   7.14
       Weitere              abs      15   5      1      1      2      1   
                            in %     16   3.31   5.26   1.33   4.65   7.14
       GÜLTIGE FÄLLE        abs      17 151     19     75     43     14   
@@ -120,8 +120,8 @@
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs       1   151    19    75    43    14
-      Kundenzufriedenheit  Mitt…     2   100   100   100   100    65
-                           GÜLT…     3   151    19    75    43    14
+      Kundenzufriedenheit  Mitt…     2   100    NA   100   100    65
+                           GÜLT…     3   132     0    75    43    14
       Marktvolumen         Mitt…     4     0     0     0     0     0
                            GÜLT…     5   151    19    75    43    14
       
@@ -217,8 +217,8 @@
                            in %      8  13.4  16.7   9.76 13.6   28.6
       Sonstiges            abs       9   8     1     2     4      1  
                            in %     10   9.76  8.33  4.88 18.2   14.3
-      Freundlichkeit des…  abs      11   7     2     4     1     NA  
-                           in %     12   8.54 16.7   9.76  4.55  NA  
+      Freundlichkeit des…  abs      11   7     2     4     1      0  
+                           in %     12   8.54 16.7   9.76  4.55   0  
       Darstellung der Da…  abs      13   7     1     3     1      2  
                            in %     14   8.54  8.33  7.32  4.55  28.6
       GÜLTIGE FÄLLE        abs      15  82    12    41    22      7  
@@ -285,22 +285,22 @@
                                  NULL ----- GESAMT  Regi… ----- ----- -----
                                  NULL -----         Asien Euro… Nord… Pazi…
       GESAMT                    abs       1 151     19    75    43     14  
-      2                         abs       2   1     NA    NA     1     NA  
-                                in %      3   1.12  NA    NA     3.57  NA  
+      2                         abs       2   1      0     0     1      0  
+                                in %      3   1.12   0     0     3.57   0  
       3                         abs       4  10      1     4     3      2  
                                 in %      5  11.2    9.09  9.76 10.7   22.2
       4                         abs       6  29      5    12     9      3  
                                 in %      7  32.6   45.5  29.3  32.1   33.3
       5                         abs       8  49      5    25    15      4  
                                 in %      9  55.1   45.5  61.0  53.6   44.4
-      ZUSAMMENFASSUNG     1 un… abs      10   1     NA    NA     1     NA  
-                          1 un… in %     11   1.12  NA    NA     3.57  NA  
+      ZUSAMMENFASSUNG     1 un… abs      10   1      0     0     1      0  
+                          1 un… in %     11   1.12   0     0     3.57   0  
                           3     abs      12  10      1     4     3      2  
                           3     in %     13  11.2    9.09  9.76 10.7   22.2
                           4 un… abs      14  78     10    37    24      7  
                           4 un… in %     15  87.6   90.9  90.2  85.7   77.8
-      ZUSAMMENFASSUNG 2   1 un… abs      16   1     NA    NA     1     NA  
-                          1 un… in %     17   1.12  NA    NA     3.57  NA  
+      ZUSAMMENFASSUNG 2   1 un… abs      16   1      0     0     1      0  
+                          1 un… in %     17   1.12   0     0     3.57   0  
                           3     abs      18  10      1     4     3      2  
                           3     in %     19  11.2    9.09  9.76 10.7   22.2
                           4     abs      20  29      5    12     9      3  
@@ -309,10 +309,10 @@
                           5     in %     23  55.1   45.5  61.0  53.6   44.4
       GÜLTIGE FÄLLE             abs      24  89     11    41    28      9  
                                 in %     25  58.9   57.9  54.7  65.1   64.3
-      weiß nicht                abs      26   1     NA    NA     1     NA  
-                                in %     27   0.662 NA    NA     2.33  NA  
-      keine Angabe              abs      28   1     NA     1    NA     NA  
-                                in %     29   0.662 NA     1.33 NA     NA  
+      weiß nicht                abs      26   1      0     0     1      0  
+                                in %     27   0.662  0     0     2.33   0  
+      keine Angabe              abs      28   1      0     1     0      0  
+                                in %     29   0.662  0     1.33  0      0  
       FILTER                    abs      30  60      8    33    14      5  
                                 in %     31  39.7   42.1  44    32.6   35.7
       
@@ -323,22 +323,22 @@
                                  NULL ----- GESAMT  Regi… ----- ------ ------
                                  NULL -----         Asien Euro… Norda… Pazif…
       GESAMT                    abs       1 151     19    75     43     14   
-      0 - auf keinen Fall       abs       2  NA     NA    NA     NA     NA   
-                                in %      3  NA     NA    NA     NA     NA   
-      1                         abs       4  NA     NA    NA     NA     NA   
-                                in %      5  NA     NA    NA     NA     NA   
-      2                         abs       6   1      1    NA     NA     NA   
-                                in %      7   0.680  5.56 NA     NA     NA   
-      3                         abs       8  NA     NA    NA     NA     NA   
-                                in %      9  NA     NA    NA     NA     NA   
-      4                         abs      10  NA     NA    NA     NA     NA   
-                                in %     11  NA     NA    NA     NA     NA   
-      5                         abs      12   2      1     1     NA     NA   
-                                in %     13   1.36   5.56  1.39  NA     NA   
-      6                         abs      14   2     NA    NA      2     NA   
-                                in %     15   1.36  NA    NA      4.65  NA   
-      7                         abs      16   7      1     4      2     NA   
-                                in %     17   4.76   5.56  5.56   4.65  NA   
+      0 - auf keinen Fall       abs       2   0      0     0      0      0   
+                                in %      3   0      0     0      0      0   
+      1                         abs       4   0      0     0      0      0   
+                                in %      5   0      0     0      0      0   
+      2                         abs       6   1      1     0      0      0   
+                                in %      7   0.680  5.56  0      0      0   
+      3                         abs       8   0      0     0      0      0   
+                                in %      9   0      0     0      0      0   
+      4                         abs      10   0      0     0      0      0   
+                                in %     11   0      0     0      0      0   
+      5                         abs      12   2      1     1      0      0   
+                                in %     13   1.36   5.56  1.39   0      0   
+      6                         abs      14   2      0     0      2      0   
+                                in %     15   1.36   0     0      4.65   0   
+      7                         abs      16   7      1     4      2      0   
+                                in %     17   4.76   5.56  5.56   4.65   0   
       8                         abs      18  24      1    14      7      2   
                                 in %     19  16.3    5.56 19.4   16.3   14.3 
       9                         abs      20  22      6    10      5      1   
@@ -349,94 +349,94 @@
                           Prom… in %     25  75.5   77.8  73.6   74.4   85.7 
                           Indi… abs      26  31      2    18      9      2   
                           Indi… in %     27  21.1   11.1  25     20.9   14.3 
-                          Detr… abs      28   5      2     1      2     NA   
-                          Detr… in %     29   3.40  11.1   1.39   4.65  NA   
+                          Detr… abs      28   5      2     1      2      0   
+                          Detr… in %     29   3.40  11.1   1.39   4.65   0   
                           NPS   abs      30 106     12    52     30     12   
                           NPS   in %     31  72.1   66.7  72.2   69.8   85.7 
       GÜLTIGE FÄLLE             abs      32 147     18    72     43     14   
                                 in %     33  97.4   94.7  96    100    100   
-      keine Angabe              abs      34   4      1     3     NA     NA   
-                                in %     35   2.65   5.26  4     NA     NA   
+      keine Angabe              abs      34   4      1     3      0      0   
+                                in %     35   2.65   5.26  4      0      0   
       
       [[14]][[2]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Marktvolumen
                                  NULL ----- GESA… Regi… ----- ------ -----
                                  NULL -----       Asien Euro… Norda… Pazi…
       GESAMT                    abs       1 73      7   38     23        5
-      0 - auf keinen Fall       abs       2 NA     NA   NA     NA       NA
-                                in %      3 NA     NA   NA     NA       NA
-      1                         abs       4 NA     NA   NA     NA       NA
-                                in %      5 NA     NA   NA     NA       NA
-      2                         abs       6  1     NA    1     NA       NA
-                                in %      7  1.39  NA    2.70  NA       NA
-      3                         abs       8 NA     NA   NA     NA       NA
-                                in %      9 NA     NA   NA     NA       NA
-      4                         abs      10 NA     NA   NA     NA       NA
-                                in %     11 NA     NA   NA     NA       NA
-      5                         abs      12  1     NA    1     NA       NA
-                                in %     13  1.39  NA    2.70  NA       NA
-      6                         abs      14  1     NA   NA      1       NA
-                                in %     15  1.39  NA   NA      4.35    NA
-      7                         abs      16  4      1    2      1       NA
-                                in %     17  5.56  14.3  5.41   4.35    NA
+      0 - auf keinen Fall       abs       2  0      0    0      0        0
+                                in %      3  0      0    0      0        0
+      1                         abs       4  0      0    0      0        0
+                                in %      5  0      0    0      0        0
+      2                         abs       6  1      0    1      0        0
+                                in %      7  1.39   0    2.70   0        0
+      3                         abs       8  0      0    0      0        0
+                                in %      9  0      0    0      0        0
+      4                         abs      10  0      0    0      0        0
+                                in %     11  0      0    0      0        0
+      5                         abs      12  1      0    1      0        0
+                                in %     13  1.39   0    2.70   0        0
+      6                         abs      14  1      0    0      1        0
+                                in %     15  1.39   0    0      4.35     0
+      7                         abs      16  4      1    2      1        0
+                                in %     17  5.56  14.3  5.41   4.35     0
       8                         abs      18 13      2    4      6        1
                                 in %     19 18.1   28.6 10.8   26.1     20
-      9                         abs      20 11     NA    8      2        1
-                                in %     21 15.3   NA   21.6    8.70    20
+      9                         abs      20 11      0    8      2        1
+                                in %     21 15.3    0   21.6    8.70    20
       10 - auf jeden Fall       abs      22 41      4   21     13        3
                                 in %     23 56.9   57.1 56.8   56.5     60
       ZUSAMMENFASSUNG     Prom… abs      24 52      4   29     15        4
                           Prom… in %     25 72.2   57.1 78.4   65.2     80
                           Indi… abs      26 17      3    6      7        1
                           Indi… in %     27 23.6   42.9 16.2   30.4     20
-                          Detr… abs      28  3     NA    2      1       NA
-                          Detr… in %     29  4.17  NA    5.41   4.35    NA
+                          Detr… abs      28  3      0    2      1        0
+                          Detr… in %     29  4.17   0    5.41   4.35     0
                           NPS   abs      30 49      4   27     14        4
                           NPS   in %     31 68.1   57.1 73.0   60.9     80
       GÜLTIGE FÄLLE             abs      32 72      7   37     23        5
                                 in %     33 98.6  100   97.4  100      100
-      keine Angabe              abs      34  1     NA    1     NA       NA
-                                in %     35  1.37  NA    2.63  NA       NA
+      keine Angabe              abs      34  1      0    1      0        0
+                                in %     35  1.37   0    2.63   0        0
       
       [[14]][[3]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Sonstige
                                  NULL ----- GESA… Regi… ----- ----- -----
                                  NULL -----       Asien Euro… Nord… Pazi…
       GESAMT                    abs       1 43      7   18    13        5
-      0 - auf keinen Fall       abs       2 NA     NA   NA    NA       NA
-                                in %      3 NA     NA   NA    NA       NA
-      1                         abs       4 NA     NA   NA    NA       NA
-                                in %      5 NA     NA   NA    NA       NA
-      2                         abs       6 NA     NA   NA    NA       NA
-                                in %      7 NA     NA   NA    NA       NA
-      3                         abs       8 NA     NA   NA    NA       NA
-                                in %      9 NA     NA   NA    NA       NA
-      4                         abs      10 NA     NA   NA    NA       NA
-                                in %     11 NA     NA   NA    NA       NA
-      5                         abs      12  2      1    1    NA       NA
-                                in %     13  5.13  16.7  6.25 NA       NA
-      6                         abs      14  1     NA   NA     1       NA
-                                in %     15  2.56  NA   NA     8.33    NA
-      7                         abs      16  3      1    2    NA       NA
-                                in %     17  7.69  16.7 12.5  NA       NA
-      8                         abs      18  6     NA    4     1        1
-                                in %     19 15.4   NA   25     8.33    20
-      9                         abs      20  6      2    2     2       NA
-                                in %     21 15.4   33.3 12.5  16.7     NA
+      0 - auf keinen Fall       abs       2  0      0    0     0        0
+                                in %      3  0      0    0     0        0
+      1                         abs       4  0      0    0     0        0
+                                in %      5  0      0    0     0        0
+      2                         abs       6  0      0    0     0        0
+                                in %      7  0      0    0     0        0
+      3                         abs       8  0      0    0     0        0
+                                in %      9  0      0    0     0        0
+      4                         abs      10  0      0    0     0        0
+                                in %     11  0      0    0     0        0
+      5                         abs      12  2      1    1     0        0
+                                in %     13  5.13  16.7  6.25  0        0
+      6                         abs      14  1      0    0     1        0
+                                in %     15  2.56   0    0     8.33     0
+      7                         abs      16  3      1    2     0        0
+                                in %     17  7.69  16.7 12.5   0        0
+      8                         abs      18  6      0    4     1        1
+                                in %     19 15.4    0   25     8.33    20
+      9                         abs      20  6      2    2     2        0
+                                in %     21 15.4   33.3 12.5  16.7      0
       10 - auf jeden Fall       abs      22 21      2    7     8        4
                                 in %     23 53.8   33.3 43.8  66.7     80
       ZUSAMMENFASSUNG     Prom… abs      24 27      4    9    10        4
                           Prom… in %     25 69.2   66.7 56.2  83.3     80
                           Indi… abs      26  9      1    6     1        1
                           Indi… in %     27 23.1   16.7 37.5   8.33    20
-                          Detr… abs      28  3      1    1     1       NA
-                          Detr… in %     29  7.69  16.7  6.25  8.33    NA
+                          Detr… abs      28  3      1    1     1        0
+                          Detr… in %     29  7.69  16.7  6.25  8.33     0
                           NPS   abs      30 24      3    8     9        4
                           NPS   in %     31 61.5   50   50    75       80
       GÜLTIGE FÄLLE             abs      32 39      6   16    12        5
                                 in %     33 90.7   85.7 88.9  92.3    100
-      keine Angabe              abs      34  4      1    2     1       NA
-                                in %     35  9.30  14.3 11.1   7.69    NA
+      keine Angabe              abs      34  4      1    2     1        0
+                                in %     35  9.30  14.3 11.1   7.69     0
       
       
       [[15]]
@@ -469,8 +469,8 @@
                            in %      4  78.3 100    75    60     100
       Onlineauftritte      abs       5   9     1     4     3       1
                            in %      6  39.1  25    33.3  60      50
-      Strukturanalyse      abs       7  NA    NA    NA    NA      NA
-                           in %      8  NA    NA    NA    NA      NA
+      Strukturanalyse      abs       7   0     0     0     0       0
+                           in %      8   0     0     0     0       0
       GÜLTIGE FÄLLE        abs       9  23     4    12     5       2
                            in %     10  31.5  57.1  31.6  21.7    40
       Kein Eintrag in de…  abs      11  50     3    26    18       3
@@ -485,10 +485,10 @@
       Summe der gültigen…  abs       2  17     2     8     5       2
       Kundenzufriedenheit  abs       3  12     1     7     3       1
                            in %      4  80   100    87.5  75      50
-      Onlineauftritte      abs       5   2     1    NA     1      NA
-                           in %      6  13.3 100    NA    25      NA
-      Strukturanalyse      abs       7   3    NA     1     1       1
-                           in %      8  20    NA    12.5  25      50
+      Onlineauftritte      abs       5   2     1     0     1       0
+                           in %      6  13.3 100     0    25       0
+      Strukturanalyse      abs       7   3     0     1     1       1
+                           in %      8  20     0    12.5  25      50
       GÜLTIGE FÄLLE        abs       9  15     1     8     4       2
                            in %     10  34.9  14.3  44.4  30.8    40
       Kein Eintrag in de…  abs      11  28     6    10     9       3
@@ -505,8 +505,8 @@
       Summe der gültigen…  abs       2  14     2     7     4       1
       Kundenzufriedenheit  abs       3  12     1     7     3       1
                            in %      4 100   100   100   100     100
-      Onlineauftritte      abs       5   2     1    NA     1      NA
-                           in %      6  16.7 100    NA    33.3    NA
+      Onlineauftritte      abs       5   2     1     0     1       0
+                           in %      6  16.7 100     0    33.3     0
       GÜLTIGE FÄLLE        abs       7  12     1     7     3       1
                            in %      8  27.9  14.3  38.9  23.1    20
       Kein Eintrag in de…  abs       9  31     6    11    10       4
@@ -521,8 +521,8 @@
                             NULL -----        Asien Europa Norda… Pazif…
       GESAMT               abs       1 151     19    75     43     14   
       Summe der gültigen…  abs       2   3      0     1      1      1   
-      Werbewirkungsmessu…  abs       3   3     NA     1      1      1   
-                           in %      4 100     NA   100    100    100   
+      Werbewirkungsmessu…  abs       3   3      0     1      1      1   
+                           in %      4 100      0   100    100    100   
       GÜLTIGE FÄLLE        abs       5   3      0     1      1      1   
                            in %      6   1.99   0     1.33   2.33   7.14
       Marktvolumen         abs       7  46      7    25      8      6   
@@ -538,20 +538,20 @@
                             NULL -----        Asien Euro… Nord… Pazi…
       GESAMT               abs       1 151     19    75   43     14  
       Summe der gültigen…  abs       2  42      7    19   11      5  
-      Darstellung der Da…  abs       3  13     NA     8    3      2  
-                           in %      4  35.1   NA    47.1 30     50  
+      Darstellung der Da…  abs       3  13      0     8    3      2  
+                           in %      4  35.1    0    47.1 30     50  
       Sonstiges            abs       5  12      2     4    5      1  
                            in %      6  32.4   33.3  23.5 50     25  
       Schnelligkeit der …  abs       7  11      3     3    3      2  
                            in %      8  29.7   50    17.6 30     50  
-      Freundlichkeit des…  abs       9   6      2     4   NA     NA  
-                           in %     10  16.2   33.3  23.5 NA     NA  
+      Freundlichkeit des…  abs       9   6      2     4    0      0  
+                           in %     10  16.2   33.3  23.5  0      0  
       GÜLTIGE FÄLLE        abs      11  37      6    17   10      4  
                            in %     12  24.5   31.6  22.7 23.3   28.6
       einfache Weiterver…  abs      13  37      3    22    8      4  
                            in %     14  24.5   15.8  29.3 18.6   28.6
-      Kompetenz            abs      15  13      3     6    4     NA  
-                           in %     16   8.61  15.8   8    9.30  NA  
+      Kompetenz            abs      15  13      3     6    4      0  
+                           in %     16   8.61  15.8   8    9.30   0  
       Keine Angabe         abs      17  69      7    34   21      7  
                            in %     18  45.7   36.8  45.3 48.8   50  
       
@@ -561,18 +561,18 @@
                             NULL -----       Asien Euro… Norda… Pazi…
       GESAMT               abs       1 73      7    38    23        5
       Summe der gültigen…  abs       2  8      1     4     2        1
-      Schnelligkeit der …  abs       3  4     NA     3    NA        1
-                           in %      4 50     NA    75    NA      100
-      Freundlichkeit des…  abs       5  2     NA    NA     2       NA
-                           in %      6 25     NA    NA   100       NA
-      Darstellung der Da…  abs       7  2      1     1    NA       NA
-                           in %      8 25    100    25    NA       NA
-      Sonstiges            abs       9 NA     NA    NA    NA       NA
-                           in %     10 NA     NA    NA    NA       NA
+      Schnelligkeit der …  abs       3  4      0     3     0        1
+                           in %      4 50      0    75     0      100
+      Freundlichkeit des…  abs       5  2      0     0     2        0
+                           in %      6 25      0     0   100        0
+      Darstellung der Da…  abs       7  2      1     1     0        0
+                           in %      8 25    100    25     0        0
+      Sonstiges            abs       9  0      0     0     0        0
+                           in %     10  0      0     0     0        0
       GÜLTIGE FÄLLE        abs      11  8      1     4     2        1
                            in %     12 11.0   14.3  10.5   8.70    20
-      einfache Weiterver…  abs      13  1     NA    NA     1       NA
-                           in %     14  1.37  NA    NA     4.35    NA
+      einfache Weiterver…  abs      13  1      0     0     1        0
+                           in %     14  1.37   0     0     4.35     0
       Kompetenz            abs      15 14      1    10     2        1
                            in %     16 19.2   14.3  26.3   8.70    20
       
@@ -582,20 +582,20 @@
                             NULL -----       Asien Europa Nord… Pazi…
       GESAMT               abs       1 43      7    18    13        5
       Summe der gültigen…  abs       2  6      1     1     3        1
-      Darstellung der Da…  abs       3  3      1    NA     2       NA
-                           in %      4 50    100    NA    66.7     NA
-      Freundlichkeit des…  abs       5  2     NA     1    NA        1
-                           in %      6 33.3   NA   100    NA      100
-      Schnelligkeit der …  abs       7  1     NA    NA     1       NA
-                           in %      8 16.7   NA    NA    33.3     NA
-      Sonstiges            abs       9 NA     NA    NA    NA       NA
-                           in %     10 NA     NA    NA    NA       NA
+      Darstellung der Da…  abs       3  3      1     0     2        0
+                           in %      4 50    100     0    66.7      0
+      Freundlichkeit des…  abs       5  2      0     1     0        1
+                           in %      6 33.3    0   100     0      100
+      Schnelligkeit der …  abs       7  1      0     0     1        0
+                           in %      8 16.7    0     0    33.3      0
+      Sonstiges            abs       9  0      0     0     0        0
+                           in %     10  0      0     0     0        0
       GÜLTIGE FÄLLE        abs      11  6      1     1     3        1
                            in %     12 14.0   14.3   5.56 23.1     20
-      einfache Weiterver…  abs      13  4      2     1     1       NA
-                           in %     14  9.30  28.6   5.56  7.69    NA
-      Kompetenz            abs      15  5     NA     2     2        1
-                           in %     16 11.6   NA    11.1  15.4     20
+      einfache Weiterver…  abs      13  4      2     1     1        0
+                           in %     14  9.30  28.6   5.56  7.69     0
+      Kompetenz            abs      15  5      0     2     2        1
+                           in %     16 11.6    0    11.1  15.4     20
       
       
       [[19]]
@@ -630,28 +630,28 @@
                                  NULL ----- GESAMT Region  ------ ------ -----
                                  NULL -----        Asien   Europa Norda… Pazi…
       GESAMT                    abs       1 73       7     38     23      5   
-      1 - völlig unzufri…       abs       2  1      NA      1     NA     NA   
-                                in %      3  1.47   NA      2.86  NA     NA   
-      2                         abs       4  2      NA      1      1     NA   
-                                in %      5  2.94   NA      2.86   4.55  NA   
-      3                         abs       6  1      NA     NA     NA      1   
-                                in %      7  1.47   NA     NA     NA     25   
-      4                         abs       8  1      NA      1     NA     NA   
-                                in %      9  1.47   NA      2.86  NA     NA   
-      5                         abs      10  5       1      2      2     NA   
-                                in %     11  7.35   14.3    5.71   9.09  NA   
-      6                         abs      12  2      NA     NA      2     NA   
-                                in %     13  2.94   NA     NA      9.09  NA   
+      1 - völlig unzufri…       abs       2  1       0      1      0      0   
+                                in %      3  1.47    0      2.86   0      0   
+      2                         abs       4  2       0      1      1      0   
+                                in %      5  2.94    0      2.86   4.55   0   
+      3                         abs       6  1       0      0      0      1   
+                                in %      7  1.47    0      0      0     25   
+      4                         abs       8  1       0      1      0      0   
+                                in %      9  1.47    0      2.86   0      0   
+      5                         abs      10  5       1      2      2      0   
+                                in %     11  7.35   14.3    5.71   9.09   0   
+      6                         abs      12  2       0      0      2      0   
+                                in %     13  2.94    0      0      9.09   0   
       7                         abs      14 12       3      4      4      1   
                                 in %     15 17.6    42.9   11.4   18.2   25   
       8                         abs      16 26       1     17      6      2   
                                 in %     17 38.2    14.3   48.6   27.3   50   
-      9                         abs      18 12       2      5      5     NA   
-                                in %     19 17.6    28.6   14.3   22.7   NA   
-      10 - absolut zufri…       abs      20  6      NA      4      2     NA   
-                                in %     21  8.82   NA     11.4    9.09  NA   
-      ZUSAMMENFASSUNG     1 bi… abs      22  5      NA      3      1      1   
-                          1 bi… in %     23  7.35   NA      8.57   4.55  25   
+      9                         abs      18 12       2      5      5      0   
+                                in %     19 17.6    28.6   14.3   22.7    0   
+      10 - absolut zufri…       abs      20  6       0      4      2      0   
+                                in %     21  8.82    0     11.4    9.09   0   
+      ZUSAMMENFASSUNG     1 bi… abs      22  5       0      3      1      1   
+                          1 bi… in %     23  7.35    0      8.57   4.55  25   
                           5 bi… abs      24 19       4      6      8      1   
                           5 bi… in %     25 27.9    57.1   17.1   36.4   25   
                           8 bi… abs      26 44       3     26     13      2   
@@ -660,8 +660,8 @@
       Standardfehler                     29  0.232   0.528  0.341  0.399  1.19
       GÜLTIGE FÄLLE             abs      30 68       7     35     22      4   
                                 in %     31 93.2   100     92.1   95.7   80   
-      keine Angabe              abs      32  5      NA      3      1      1   
-                                in %     33  6.85   NA      7.89   4.35  20   
+      keine Angabe              abs      32  5       0      3      1      1   
+                                in %     33  6.85    0      7.89   4.35  20   
       
       [[19]][[4]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
@@ -670,28 +670,28 @@
                                  NULL ----- GESAMT Region ------ ------ ------
                                  NULL -----        Asien  Europa Norda… Pazif…
       GESAMT                    abs       1 73      7     38     23      5    
-      1 - völlig unzufri…       abs       2 NA     NA     NA     NA     NA    
-                                in %      3 NA     NA     NA     NA     NA    
-      2                         abs       4  1     NA      1     NA     NA    
-                                in %      5  1.52  NA      2.86  NA     NA    
-      3                         abs       6  1     NA      1     NA     NA    
-                                in %      7  1.52  NA      2.86  NA     NA    
-      4                         abs       8  1     NA     NA      1     NA    
-                                in %      9  1.52  NA     NA      4.76  NA    
-      5                         abs      10  4     NA     NA      4     NA    
-                                in %     11  6.06  NA     NA     19.0   NA    
-      6                         abs      12  2     NA      1      1     NA    
-                                in %     13  3.03  NA      2.86   4.76  NA    
-      7                         abs      14 10      2      7     NA      1    
-                                in %     15 15.2   33.3   20     NA     25    
-      8                         abs      16 21     NA     10     10      1    
-                                in %     17 31.8   NA     28.6   47.6   25    
-      9                         abs      18 10      2      7     NA      1    
-                                in %     19 15.2   33.3   20     NA     25    
+      1 - völlig unzufri…       abs       2  0      0      0      0      0    
+                                in %      3  0      0      0      0      0    
+      2                         abs       4  1      0      1      0      0    
+                                in %      5  1.52   0      2.86   0      0    
+      3                         abs       6  1      0      1      0      0    
+                                in %      7  1.52   0      2.86   0      0    
+      4                         abs       8  1      0      0      1      0    
+                                in %      9  1.52   0      0      4.76   0    
+      5                         abs      10  4      0      0      4      0    
+                                in %     11  6.06   0      0     19.0    0    
+      6                         abs      12  2      0      1      1      0    
+                                in %     13  3.03   0      2.86   4.76   0    
+      7                         abs      14 10      2      7      0      1    
+                                in %     15 15.2   33.3   20      0     25    
+      8                         abs      16 21      0     10     10      1    
+                                in %     17 31.8    0     28.6   47.6   25    
+      9                         abs      18 10      2      7      0      1    
+                                in %     19 15.2   33.3   20      0     25    
       10 - absolut zufri…       abs      20 16      2      8      5      1    
                                 in %     21 24.2   33.3   22.9   23.8   25    
-      ZUSAMMENFASSUNG     1 bi… abs      22  3     NA      2      1     NA    
-                          1 bi… in %     23  4.55  NA      5.71   4.76  NA    
+      ZUSAMMENFASSUNG     1 bi… abs      22  3      0      2      1      0    
+                          1 bi… in %     23  4.55   0      5.71   4.76   0    
                           5 bi… abs      24 16      2      8      5      1    
                           5 bi… in %     25 24.2   33.3   22.9   23.8   25    
                           8 bi… abs      26 47      4     25     15      3    
@@ -734,28 +734,28 @@
                                  NULL ----- GESAMT Region  ------ ------ -----
                                  NULL -----        Asien   Europa Norda… Pazi…
       GESAMT                    abs       1 43       7     18     13      5   
-      1 - völlig unzufri…       abs       2  1      NA      1     NA     NA   
-                                in %      3  2.70   NA      6.25  NA     NA   
-      2                         abs       4  1      NA      1     NA     NA   
-                                in %      5  2.70   NA      6.25  NA     NA   
-      3                         abs       6  2       1     NA      1     NA   
-                                in %      7  5.41   14.3   NA      9.09  NA   
-      4                         abs       8  1      NA      1     NA     NA   
-                                in %      9  2.70   NA      6.25  NA     NA   
+      1 - völlig unzufri…       abs       2  1       0      1      0      0   
+                                in %      3  2.70    0      6.25   0      0   
+      2                         abs       4  1       0      1      0      0   
+                                in %      5  2.70    0      6.25   0      0   
+      3                         abs       6  2       1      0      1      0   
+                                in %      7  5.41   14.3    0      9.09   0   
+      4                         abs       8  1       0      1      0      0   
+                                in %      9  2.70    0      6.25   0      0   
       5                         abs      10  9       2      3      3      1   
                                 in %     11 24.3    28.6   18.8   27.3   33.3 
-      6                         abs      12  3       2      1     NA     NA   
-                                in %     13  8.11   28.6    6.25  NA     NA   
-      7                         abs      14  5      NA      3      2     NA   
-                                in %     15 13.5    NA     18.8   18.2   NA   
-      8                         abs      16  8       2      4      2     NA   
-                                in %     17 21.6    28.6   25     18.2   NA   
-      9                         abs      18  3      NA      1      1      1   
-                                in %     19  8.11   NA      6.25   9.09  33.3 
-      10 - absolut zufri…       abs      20  4      NA      1      2      1   
-                                in %     21 10.8    NA      6.25  18.2   33.3 
-      ZUSAMMENFASSUNG     1 bi… abs      22  5       1      3      1     NA   
-                          1 bi… in %     23 13.5    14.3   18.8    9.09  NA   
+      6                         abs      12  3       2      1      0      0   
+                                in %     13  8.11   28.6    6.25   0      0   
+      7                         abs      14  5       0      3      2      0   
+                                in %     15 13.5     0     18.8   18.2    0   
+      8                         abs      16  8       2      4      2      0   
+                                in %     17 21.6    28.6   25     18.2    0   
+      9                         abs      18  3       0      1      1      1   
+                                in %     19  8.11    0      6.25   9.09  33.3 
+      10 - absolut zufri…       abs      20  4       0      1      2      1   
+                                in %     21 10.8     0      6.25  18.2   33.3 
+      ZUSAMMENFASSUNG     1 bi… abs      22  5       1      3      1      0   
+                          1 bi… in %     23 13.5    14.3   18.8    9.09   0   
                           5 bi… abs      24 17       4      7      5      1   
                           5 bi… in %     25 45.9    57.1   43.8   45.5   33.3 
                           8 bi… abs      26 15       2      6      5      2   
@@ -764,8 +764,8 @@
       Standardfehler                     29  0.377   0.670  0.616  0.688  1.53
       GÜLTIGE FÄLLE             abs      30 37       7     16     11      3   
                                 in %     31 86.0   100     88.9   84.6   60   
-      keine Angabe              abs      32  6      NA      2      2      2   
-                                in %     33 14.0    NA     11.1   15.4   40   
+      keine Angabe              abs      32  6       0      2      2      2   
+                                in %     33 14.0     0     11.1   15.4   40   
       
       [[19]][[8]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
@@ -774,28 +774,28 @@
                                  NULL ----- GESAMT Region  ------ ------ ------
                                  NULL -----        Asien   Europa Norda… Pazif…
       GESAMT                    abs       1 43       7     18     13      5    
-      1 - völlig unzufri…       abs       2 NA      NA     NA     NA     NA    
-                                in %      3 NA      NA     NA     NA     NA    
-      2                         abs       4 NA      NA     NA     NA     NA    
-                                in %      5 NA      NA     NA     NA     NA    
-      3                         abs       6  2      NA      1      1     NA    
-                                in %      7  5.71   NA      7.69   9.09  NA    
-      4                         abs       8  1       1     NA     NA     NA    
-                                in %      9  2.86   14.3   NA     NA     NA    
-      5                         abs      10  4       1      3     NA     NA    
-                                in %     11 11.4    14.3   23.1   NA     NA    
-      6                         abs      12  4      NA      1      2      1    
-                                in %     13 11.4    NA      7.69  18.2   25    
-      7                         abs      14  4       1      2     NA      1    
-                                in %     15 11.4    14.3   15.4   NA     25    
+      1 - völlig unzufri…       abs       2  0       0      0      0      0    
+                                in %      3  0       0      0      0      0    
+      2                         abs       4  0       0      0      0      0    
+                                in %      5  0       0      0      0      0    
+      3                         abs       6  2       0      1      1      0    
+                                in %      7  5.71    0      7.69   9.09   0    
+      4                         abs       8  1       1      0      0      0    
+                                in %      9  2.86   14.3    0      0      0    
+      5                         abs      10  4       1      3      0      0    
+                                in %     11 11.4    14.3   23.1    0      0    
+      6                         abs      12  4       0      1      2      1    
+                                in %     13 11.4     0      7.69  18.2   25    
+      7                         abs      14  4       1      2      0      1    
+                                in %     15 11.4    14.3   15.4    0     25    
       8                         abs      16  9       1      3      4      1    
                                 in %     17 25.7    14.3   23.1   36.4   25    
-      9                         abs      18  2       1      1     NA     NA    
-                                in %     19  5.71   14.3    7.69  NA     NA    
+      9                         abs      18  2       1      1      0      0    
+                                in %     19  5.71   14.3    7.69   0      0    
       10 - absolut zufri…       abs      20  9       2      2      4      1    
                                 in %     21 25.7    28.6   15.4   36.4   25    
-      ZUSAMMENFASSUNG     1 bi… abs      22  3       1      1      1     NA    
-                          1 bi… in %     23  8.57   14.3    7.69   9.09  NA    
+      ZUSAMMENFASSUNG     1 bi… abs      22  3       1      1      1      0    
+                          1 bi… in %     23  8.57   14.3    7.69   9.09   0    
                           5 bi… abs      24 12       2      6      2      2    
                           5 bi… in %     25 34.3    28.6   46.2   18.2   50    
                           8 bi… abs      26 20       4      6      8      2    
@@ -804,8 +804,8 @@
       Standardfehler                     29  0.356   0.896  0.588  0.667  0.854
       GÜLTIGE FÄLLE             abs      30 35       7     13     11      4    
                                 in %     31 81.4   100     72.2   84.6   80    
-      keine Angabe              abs      32  8      NA      5      2      1    
-                                in %     33 18.6    NA     27.8   15.4   20    
+      keine Angabe              abs      32  8       0      5      2      1    
+                                in %     33 18.6     0     27.8   15.4   20    
       
       
 

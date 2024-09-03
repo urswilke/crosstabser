@@ -10,10 +10,10 @@
                             NULL -----       Asien Euro… Norda… Pazi…
       GESAMT               abs       1 151    19    75    43     14  
                            abs ⚖     2 151    15    71.5  47.5   17  
-      1 Beschäftigter      abs       3  NA    NA    NA    NA     NA  
-                           abs ⚖     4  NA    NA    NA    NA     NA  
-                           in %      5  NA    NA    NA    NA     NA  
-                           in %…     6  NA    NA    NA    NA     NA  
+      1 Beschäftigter      abs       3   0     0     0     0      0  
+                           abs ⚖     4   0     0     0     0      0  
+                           in %      5   0     0     0     0      0  
+                           in %…     6   0     0     0     0      0  
       2 - 4 Beschäftigte   abs       7  49     5    20    19      5  
                            abs ⚖     8  54     4.5  18.5  24      7  
                            in %      9  32.5  26.3  26.7  44.2   35.7
@@ -26,10 +26,10 @@
                            abs ⚖    16  36     7    25     2      2  
                            in %     17  25.8  42.1  33.3   6.98  21.4
                            in %…    18  23.8  46.7  35.0   4.21  11.8
-      20 Beschäftigte un…  abs      19  NA    NA    NA    NA     NA  
-                           abs ⚖    20  NA    NA    NA    NA     NA  
-                           in %     21  NA    NA    NA    NA     NA  
-                           in %…    22  NA    NA    NA    NA     NA  
+      20 Beschäftigte un…  abs      19   0     0     0     0      0  
+                           abs ⚖    20   0     0     0     0      0  
+                           in %     21   0     0     0     0      0  
+                           in %…    22   0     0     0     0      0  
       GÜLTIGE FÄLLE        abs      23 151    19    75    43     14  
                            abs ⚖    24 151    15    71.5  47.5   17  
                            in %     25 100   100   100   100    100  
@@ -66,10 +66,10 @@
                            abs ⚖    22  10.5     2      4.5     1.5    2.5 
                            in %     23   7.95   10.5    8       4.65  14.3 
                            in %…    24   6.95   13.3    6.29    3.16  14.7 
-      Werbewirkungsmessu…  abs      25   3      NA      1       1      1   
-                           abs ⚖    26   1.5    NA      0.5     0.5    0.5 
-                           in %     27   1.99   NA      1.33    2.33   7.14
-                           in %…    28   0.993  NA      0.699   1.05   2.94
+      Werbewirkungsmessu…  abs      25   3       0      1       1      1   
+                           abs ⚖    26   1.5     0      0.5     0.5    0.5 
+                           in %     27   1.99    0      1.33    2.33   7.14
+                           in %…    28   0.993   0      0.699   1.05   2.94
       Weitere              abs      29   5       1      1       2      1   
                            abs ⚖    30   4       1      1       1.5    0.5 
                            in %     31   3.31    5.26   1.33    4.65   7.14
@@ -339,10 +339,10 @@
                            abs ⚖    14   8.5   2     4     1.5   1   
                            in %     15  13.4  16.7   9.76 13.6  28.6 
                            in %…    16  11.4  21.1  11.0   6.98 14.3 
-      Freundlichkeit des…  abs      17   7     2     4     1    NA   
-                           abs ⚖    18   7.5   3     4     0.5  NA   
-                           in %     19   8.54 16.7   9.76  4.55 NA   
-                           in %…    20  10.1  31.6  11.0   2.33 NA   
+      Freundlichkeit des…  abs      17   7     2     4     1     0   
+                           abs ⚖    18   7.5   3     4     0.5   0   
+                           in %     19   8.54 16.7   9.76  4.55  0   
+                           in %…    20  10.1  31.6  11.0   2.33  0   
       Sonstiges            abs      21   8     1     2     4     1   
                            abs ⚖    22   7     0.5   1     5     0.5 
                            in %     23   9.76  8.33  4.88 18.2  14.3 
@@ -454,10 +454,10 @@
                                  NULL -----         Asien Euro… Nord… Pazi…
       GESAMT                    abs       1 151     19    75    43     14  
                                 abs ⚖     2 151     15    71.5  47.5   17  
-      2                         abs       3   1     NA    NA     1     NA  
-                                abs ⚖     4   2     NA    NA     2     NA  
-                                in %      5   1.12  NA    NA     3.57  NA  
-                                in %…     6   2.29  NA    NA     6.90  NA  
+      2                         abs       3   1      0     0     1      0  
+                                abs ⚖     4   2      0     0     2      0  
+                                in %      5   1.12   0     0     3.57   0  
+                                in %…     6   2.29   0     0     6.90   0  
       3                         abs       7  10      1     4     3      2  
                                 abs ⚖     8  14      0.5   5     6      2.5
                                 in %      9  11.2    9.09  9.76 10.7   22.2
@@ -470,10 +470,10 @@
                                 abs ⚖    16  45      4.5  23    14      3.5
                                 in %     17  55.1   45.5  61.0  53.6   44.4
                                 in %…    18  51.4   47.4  58.2  48.3   36.8
-      ZUSAMMENFASSUNG     1 un… abs      19   1     NA    NA     1     NA  
-                          1 un… abs ⚖    20   2     NA    NA     2     NA  
-                          1 un… in %     21   1.12  NA    NA     3.57  NA  
-                          1 un… in %…    22   2.29  NA    NA     6.90  NA  
+      ZUSAMMENFASSUNG     1 un… abs      19   1      0     0     1      0  
+                          1 un… abs ⚖    20   2      0     0     2      0  
+                          1 un… in %     21   1.12   0     0     3.57   0  
+                          1 un… in %…    22   2.29   0     0     6.90   0  
                           3     abs      23  10      1     4     3      2  
                           3     abs ⚖    24  14      0.5   5     6      2.5
                           3     in %     25  11.2    9.09  9.76 10.7   22.2
@@ -482,10 +482,10 @@
                           4 un… abs ⚖    28  71.5    9    34.5  21      7  
                           4 un… in %     29  87.6   90.9  90.2  85.7   77.8
                           4 un… in %…    30  81.7   94.7  87.3  72.4   73.7
-      ZUSAMMENFASSUNG 2   1 un… abs      31   1     NA    NA     1     NA  
-                          1 un… abs ⚖    32   2     NA    NA     2     NA  
-                          1 un… in %     33   1.12  NA    NA     3.57  NA  
-                          1 un… in %…    34   2.29  NA    NA     6.90  NA  
+      ZUSAMMENFASSUNG 2   1 un… abs      31   1      0     0     1      0  
+                          1 un… abs ⚖    32   2      0     0     2      0  
+                          1 un… in %     33   1.12   0     0     3.57   0  
+                          1 un… in %…    34   2.29   0     0     6.90   0  
                           3     abs      35  10      1     4     3      2  
                           3     abs ⚖    36  14      0.5   5     6      2.5
                           3     in %     37  11.2    9.09  9.76 10.7   22.2
@@ -502,14 +502,14 @@
                                 abs ⚖    48  87.5    9.5  39.5  29      9.5
                                 in %     49  58.9   57.9  54.7  65.1   64.3
                                 in %…    50  57.9   63.3  55.2  61.1   55.9
-      weiß nicht                abs      51   1     NA    NA     1     NA  
-                                abs ⚖    52   0.5   NA    NA     0.5   NA  
-                                in %     53   0.662 NA    NA     2.33  NA  
-                                in %…    54   0.331 NA    NA     1.05  NA  
-      keine Angabe              abs      55   1     NA     1    NA     NA  
-                                abs ⚖    56   1     NA     1    NA     NA  
-                                in %     57   0.662 NA     1.33 NA     NA  
-                                in %…    58   0.662 NA     1.40 NA     NA  
+      weiß nicht                abs      51   1      0     0     1      0  
+                                abs ⚖    52   0.5    0     0     0.5    0  
+                                in %     53   0.662  0     0     2.33   0  
+                                in %…    54   0.331  0     0     1.05   0  
+      keine Angabe              abs      55   1      0     1     0      0  
+                                abs ⚖    56   1      0     1     0      0  
+                                in %     57   0.662  0     1.33  0      0  
+                                in %…    58   0.662  0     1.40  0      0  
       FILTER                    abs      59  60      8    33    14      5  
                                 abs ⚖    60  62      5.5  31    18      7.5
                                 in %     61  39.7   42.1  44    32.6   35.7
@@ -523,38 +523,38 @@
                                  NULL -----         Asien Euro… Norda… Pazif…
       GESAMT                    abs       1 151     19    75     43     14   
                                 abs ⚖     2 151     15    71.5   47.5   17   
-      0 - auf keinen Fall       abs       3  NA     NA    NA     NA     NA   
-                                abs ⚖     4  NA     NA    NA     NA     NA   
-                                in %      5  NA     NA    NA     NA     NA   
-                                in %…     6  NA     NA    NA     NA     NA   
-      1                         abs       7  NA     NA    NA     NA     NA   
-                                abs ⚖     8  NA     NA    NA     NA     NA   
-                                in %      9  NA     NA    NA     NA     NA   
-                                in %…    10  NA     NA    NA     NA     NA   
-      2                         abs      11   1      1    NA     NA     NA   
-                                abs ⚖    12   0.5    0.5  NA     NA     NA   
-                                in %     13   0.680  5.56 NA     NA     NA   
-                                in %…    14   0.338  3.45 NA     NA     NA   
-      3                         abs      15  NA     NA    NA     NA     NA   
-                                abs ⚖    16  NA     NA    NA     NA     NA   
-                                in %     17  NA     NA    NA     NA     NA   
-                                in %…    18  NA     NA    NA     NA     NA   
-      4                         abs      19  NA     NA    NA     NA     NA   
-                                abs ⚖    20  NA     NA    NA     NA     NA   
-                                in %     21  NA     NA    NA     NA     NA   
-                                in %…    22  NA     NA    NA     NA     NA   
-      5                         abs      23   2      1     1     NA     NA   
-                                abs ⚖    24   2.5    0.5   2     NA     NA   
-                                in %     25   1.36   5.56  1.39  NA     NA   
-                                in %…    26   1.69   3.45  2.90  NA     NA   
-      6                         abs      27   2     NA    NA      2     NA   
-                                abs ⚖    28   2.5   NA    NA      2.5   NA   
-                                in %     29   1.36  NA    NA      4.65  NA   
-                                in %…    30   1.69  NA    NA      5.26  NA   
-      7                         abs      31   7      1     4      2     NA   
-                                abs ⚖    32   5.5    0.5   3.5    1.5   NA   
-                                in %     33   4.76   5.56  5.56   4.65  NA   
-                                in %…    34   3.72   3.45  5.07   3.16  NA   
+      0 - auf keinen Fall       abs       3   0      0     0      0      0   
+                                abs ⚖     4   0      0     0      0      0   
+                                in %      5   0      0     0      0      0   
+                                in %…     6   0      0     0      0      0   
+      1                         abs       7   0      0     0      0      0   
+                                abs ⚖     8   0      0     0      0      0   
+                                in %      9   0      0     0      0      0   
+                                in %…    10   0      0     0      0      0   
+      2                         abs      11   1      1     0      0      0   
+                                abs ⚖    12   0.5    0.5   0      0      0   
+                                in %     13   0.680  5.56  0      0      0   
+                                in %…    14   0.338  3.45  0      0      0   
+      3                         abs      15   0      0     0      0      0   
+                                abs ⚖    16   0      0     0      0      0   
+                                in %     17   0      0     0      0      0   
+                                in %…    18   0      0     0      0      0   
+      4                         abs      19   0      0     0      0      0   
+                                abs ⚖    20   0      0     0      0      0   
+                                in %     21   0      0     0      0      0   
+                                in %…    22   0      0     0      0      0   
+      5                         abs      23   2      1     1      0      0   
+                                abs ⚖    24   2.5    0.5   2      0      0   
+                                in %     25   1.36   5.56  1.39   0      0   
+                                in %…    26   1.69   3.45  2.90   0      0   
+      6                         abs      27   2      0     0      2      0   
+                                abs ⚖    28   2.5    0     0      2.5    0   
+                                in %     29   1.36   0     0      4.65   0   
+                                in %…    30   1.69   0     0      5.26   0   
+      7                         abs      31   7      1     4      2      0   
+                                abs ⚖    32   5.5    0.5   3.5    1.5    0   
+                                in %     33   4.76   5.56  5.56   4.65   0   
+                                in %…    34   3.72   3.45  5.07   3.16   0   
       8                         abs      35  24      1    14      7      2   
                                 abs ⚖    36  25.5    2    14      8.5    1   
                                 in %     37  16.3    5.56 19.4   16.3   14.3 
@@ -575,10 +575,10 @@
                           Indi… abs ⚖    52  31      2.5  17.5   10      1   
                           Indi… in %     53  21.1   11.1  25     20.9   14.3 
                           Indi… in %…    54  20.9   17.2  25.4   21.1    5.88
-                          Detr… abs      55   5      2     1      2     NA   
-                          Detr… abs ⚖    56   5.5    1     2      2.5   NA   
-                          Detr… in %     57   3.40  11.1   1.39   4.65  NA   
-                          Detr… in %…    58   3.72   6.90  2.90   5.26  NA   
+                          Detr… abs      55   5      2     1      2      0   
+                          Detr… abs ⚖    56   5.5    1     2      2.5    0   
+                          Detr… in %     57   3.40  11.1   1.39   4.65   0   
+                          Detr… in %…    58   3.72   6.90  2.90   5.26   0   
                           NPS   abs      59 106     12    52     30     12   
                           NPS   abs ⚖    60 106     10    47.5   32.5   16   
                           NPS   in %     61  72.1   66.7  72.2   69.8   85.7 
@@ -587,10 +587,10 @@
                                 abs ⚖    64 148     14.5  69     47.5   17   
                                 in %     65  97.4   94.7  96    100    100   
                                 in %…    66  98.0   96.7  96.5  100    100   
-      keine Angabe              abs      67   4      1     3     NA     NA   
-                                abs ⚖    68   3      0.5   2.5   NA     NA   
-                                in %     69   2.65   5.26  4     NA     NA   
-                                in %…    70   1.99   3.33  3.50  NA     NA   
+      keine Angabe              abs      67   4      1     3      0      0   
+                                abs ⚖    68   3      0.5   2.5    0      0   
+                                in %     69   2.65   5.26  4      0      0   
+                                in %…    70   1.99   3.33  3.50   0      0   
       
       [[14]][[2]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Marktvolumen
@@ -598,46 +598,46 @@
                                  NULL -----        Asien  Euro… Norda… Pazif…
       GESAMT                    abs       1 73       7    38     23      5   
                                 abs ⚖     2 78       6    38.5   28      5.5 
-      0 - auf keinen Fall       abs       3 NA      NA    NA     NA     NA   
-                                abs ⚖     4 NA      NA    NA     NA     NA   
-                                in %      5 NA      NA    NA     NA     NA   
-                                in %…     6 NA      NA    NA     NA     NA   
-      1                         abs       7 NA      NA    NA     NA     NA   
-                                abs ⚖     8 NA      NA    NA     NA     NA   
-                                in %      9 NA      NA    NA     NA     NA   
-                                in %…    10 NA      NA    NA     NA     NA   
-      2                         abs      11  1      NA     1     NA     NA   
-                                abs ⚖    12  2      NA     2     NA     NA   
-                                in %     13  1.39   NA     2.70  NA     NA   
-                                in %…    14  2.58   NA     5.26  NA     NA   
-      3                         abs      15 NA      NA    NA     NA     NA   
-                                abs ⚖    16 NA      NA    NA     NA     NA   
-                                in %     17 NA      NA    NA     NA     NA   
-                                in %…    18 NA      NA    NA     NA     NA   
-      4                         abs      19 NA      NA    NA     NA     NA   
-                                abs ⚖    20 NA      NA    NA     NA     NA   
-                                in %     21 NA      NA    NA     NA     NA   
-                                in %…    22 NA      NA    NA     NA     NA   
-      5                         abs      23  1      NA     1     NA     NA   
-                                abs ⚖    24  2      NA     2     NA     NA   
-                                in %     25  1.39   NA     2.70  NA     NA   
-                                in %…    26  2.58   NA     5.26  NA     NA   
-      6                         abs      27  1      NA    NA      1     NA   
-                                abs ⚖    28  2      NA    NA      2     NA   
-                                in %     29  1.39   NA    NA      4.35  NA   
-                                in %…    30  2.58   NA    NA      7.14  NA   
-      7                         abs      31  4       1     2      1     NA   
-                                abs ⚖    32  4       0.5   2.5    1     NA   
-                                in %     33  5.56   14.3   5.41   4.35  NA   
-                                in %…    34  5.16    8.33  6.58   3.57  NA   
+      0 - auf keinen Fall       abs       3  0       0     0      0      0   
+                                abs ⚖     4  0       0     0      0      0   
+                                in %      5  0       0     0      0      0   
+                                in %…     6  0       0     0      0      0   
+      1                         abs       7  0       0     0      0      0   
+                                abs ⚖     8  0       0     0      0      0   
+                                in %      9  0       0     0      0      0   
+                                in %…    10  0       0     0      0      0   
+      2                         abs      11  1       0     1      0      0   
+                                abs ⚖    12  2       0     2      0      0   
+                                in %     13  1.39    0     2.70   0      0   
+                                in %…    14  2.58    0     5.26   0      0   
+      3                         abs      15  0       0     0      0      0   
+                                abs ⚖    16  0       0     0      0      0   
+                                in %     17  0       0     0      0      0   
+                                in %…    18  0       0     0      0      0   
+      4                         abs      19  0       0     0      0      0   
+                                abs ⚖    20  0       0     0      0      0   
+                                in %     21  0       0     0      0      0   
+                                in %…    22  0       0     0      0      0   
+      5                         abs      23  1       0     1      0      0   
+                                abs ⚖    24  2       0     2      0      0   
+                                in %     25  1.39    0     2.70   0      0   
+                                in %…    26  2.58    0     5.26   0      0   
+      6                         abs      27  1       0     0      1      0   
+                                abs ⚖    28  2       0     0      2      0   
+                                in %     29  1.39    0     0      4.35   0   
+                                in %…    30  2.58    0     0      7.14   0   
+      7                         abs      31  4       1     2      1      0   
+                                abs ⚖    32  4       0.5   2.5    1      0   
+                                in %     33  5.56   14.3   5.41   4.35   0   
+                                in %…    34  5.16    8.33  6.58   3.57   0   
       8                         abs      35 13       2     4      6      1   
                                 abs ⚖    36 14       1.5   4      8      0.5 
                                 in %     37 18.1    28.6  10.8   26.1   20   
                                 in %…    38 18.1    25    10.5   28.6    9.09
-      9                         abs      39 11      NA     8      2      1   
-                                abs ⚖    40 10      NA     7.5    2      0.5 
-                                in %     41 15.3    NA    21.6    8.70  20   
-                                in %…    42 12.9    NA    19.7    7.14   9.09
+      9                         abs      39 11       0     8      2      1   
+                                abs ⚖    40 10       0     7.5    2      0.5 
+                                in %     41 15.3     0    21.6    8.70  20   
+                                in %…    42 12.9     0    19.7    7.14   9.09
       10 - auf jeden Fall       abs      43 41       4    21     13      3   
                                 abs ⚖    44 43.5     4    20     15      4.5 
                                 in %     45 56.9    57.1  56.8   56.5   60   
@@ -650,10 +650,10 @@
                           Indi… abs ⚖    52 18       2     6.5    9      0.5 
                           Indi… in %     53 23.6    42.9  16.2   30.4   20   
                           Indi… in %…    54 23.2    33.3  17.1   32.1    9.09
-                          Detr… abs      55  3      NA     2      1     NA   
-                          Detr… abs ⚖    56  6      NA     4      2     NA   
-                          Detr… in %     57  4.17   NA     5.41   4.35  NA   
-                          Detr… in %…    58  7.74   NA    10.5    7.14  NA   
+                          Detr… abs      55  3       0     2      1      0   
+                          Detr… abs ⚖    56  6       0     4      2      0   
+                          Detr… in %     57  4.17    0     5.41   4.35   0   
+                          Detr… in %…    58  7.74    0    10.5    7.14   0   
                           NPS   abs      59 49       4    27     14      4   
                           NPS   abs ⚖    60 47.5     4    23.5   15      5   
                           NPS   in %     61 68.1    57.1  73.0   60.9   80   
@@ -662,10 +662,10 @@
                                 abs ⚖    64 77.5     6    38     28      5.5 
                                 in %     65 98.6   100    97.4  100    100   
                                 in %…    66 99.4   100    98.7  100    100   
-      keine Angabe              abs      67  1      NA     1     NA     NA   
-                                abs ⚖    68  0.5    NA     0.5   NA     NA   
-                                in %     69  1.37   NA     2.63  NA     NA   
-                                in %…    70  0.641  NA     1.30  NA     NA   
+      keine Angabe              abs      67  1       0     1      0      0   
+                                abs ⚖    68  0.5     0     0.5    0      0   
+                                in %     69  1.37    0     2.63   0      0   
+                                in %…    70  0.641   0     1.30   0      0   
       
       [[14]][[3]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Sonstige
@@ -673,46 +673,46 @@
                                  NULL -----       Asien Euro… Nord… Pazif…
       GESAMT                    abs       1 43      7   18    13      5   
                                 abs ⚖     2 36.5    4   14    12.5    6   
-      0 - auf keinen Fall       abs       3 NA     NA   NA    NA     NA   
-                                abs ⚖     4 NA     NA   NA    NA     NA   
-                                in %      5 NA     NA   NA    NA     NA   
-                                in %…     6 NA     NA   NA    NA     NA   
-      1                         abs       7 NA     NA   NA    NA     NA   
-                                abs ⚖     8 NA     NA   NA    NA     NA   
-                                in %      9 NA     NA   NA    NA     NA   
-                                in %…    10 NA     NA   NA    NA     NA   
-      2                         abs      11 NA     NA   NA    NA     NA   
-                                abs ⚖    12 NA     NA   NA    NA     NA   
-                                in %     13 NA     NA   NA    NA     NA   
-                                in %…    14 NA     NA   NA    NA     NA   
-      3                         abs      15 NA     NA   NA    NA     NA   
-                                abs ⚖    16 NA     NA   NA    NA     NA   
-                                in %     17 NA     NA   NA    NA     NA   
-                                in %…    18 NA     NA   NA    NA     NA   
-      4                         abs      19 NA     NA   NA    NA     NA   
-                                abs ⚖    20 NA     NA   NA    NA     NA   
-                                in %     21 NA     NA   NA    NA     NA   
-                                in %…    22 NA     NA   NA    NA     NA   
-      5                         abs      23  2      1    1    NA     NA   
-                                abs ⚖    24  1.5    0.5  1    NA     NA   
-                                in %     25  5.13  16.7  6.25 NA     NA   
-                                in %…    26  4.62  14.3  8    NA     NA   
-      6                         abs      27  1     NA   NA     1     NA   
-                                abs ⚖    28  0.5   NA   NA     0.5   NA   
-                                in %     29  2.56  NA   NA     8.33  NA   
-                                in %…    30  1.54  NA   NA     4.76  NA   
-      7                         abs      31  3      1    2    NA     NA   
-                                abs ⚖    32  1.5    0.5  1    NA     NA   
-                                in %     33  7.69  16.7 12.5  NA     NA   
-                                in %…    34  4.62  14.3  8    NA     NA   
-      8                         abs      35  6     NA    4     1      1   
-                                abs ⚖    36  6.5   NA    5.5   0.5    0.5 
-                                in %     37 15.4   NA   25     8.33  20   
-                                in %…    38 20     NA   44     4.76   8.33
-      9                         abs      39  6      2    2     2     NA   
-                                abs ⚖    40  5.5    1.5  1     3     NA   
-                                in %     41 15.4   33.3 12.5  16.7   NA   
-                                in %…    42 16.9   42.9  8    28.6   NA   
+      0 - auf keinen Fall       abs       3  0      0    0     0      0   
+                                abs ⚖     4  0      0    0     0      0   
+                                in %      5  0      0    0     0      0   
+                                in %…     6  0      0    0     0      0   
+      1                         abs       7  0      0    0     0      0   
+                                abs ⚖     8  0      0    0     0      0   
+                                in %      9  0      0    0     0      0   
+                                in %…    10  0      0    0     0      0   
+      2                         abs      11  0      0    0     0      0   
+                                abs ⚖    12  0      0    0     0      0   
+                                in %     13  0      0    0     0      0   
+                                in %…    14  0      0    0     0      0   
+      3                         abs      15  0      0    0     0      0   
+                                abs ⚖    16  0      0    0     0      0   
+                                in %     17  0      0    0     0      0   
+                                in %…    18  0      0    0     0      0   
+      4                         abs      19  0      0    0     0      0   
+                                abs ⚖    20  0      0    0     0      0   
+                                in %     21  0      0    0     0      0   
+                                in %…    22  0      0    0     0      0   
+      5                         abs      23  2      1    1     0      0   
+                                abs ⚖    24  1.5    0.5  1     0      0   
+                                in %     25  5.13  16.7  6.25  0      0   
+                                in %…    26  4.62  14.3  8     0      0   
+      6                         abs      27  1      0    0     1      0   
+                                abs ⚖    28  0.5    0    0     0.5    0   
+                                in %     29  2.56   0    0     8.33   0   
+                                in %…    30  1.54   0    0     4.76   0   
+      7                         abs      31  3      1    2     0      0   
+                                abs ⚖    32  1.5    0.5  1     0      0   
+                                in %     33  7.69  16.7 12.5   0      0   
+                                in %…    34  4.62  14.3  8     0      0   
+      8                         abs      35  6      0    4     1      1   
+                                abs ⚖    36  6.5    0    5.5   0.5    0.5 
+                                in %     37 15.4    0   25     8.33  20   
+                                in %…    38 20      0   44     4.76   8.33
+      9                         abs      39  6      2    2     2      0   
+                                abs ⚖    40  5.5    1.5  1     3      0   
+                                in %     41 15.4   33.3 12.5  16.7    0   
+                                in %…    42 16.9   42.9  8    28.6    0   
       10 - auf jeden Fall       abs      43 21      2    7     8      4   
                                 abs ⚖    44 17      1    4     6.5    5.5 
                                 in %     45 53.8   33.3 43.8  66.7   80   
@@ -725,10 +725,10 @@
                           Indi… abs ⚖    52  8      0.5  6.5   0.5    0.5 
                           Indi… in %     53 23.1   16.7 37.5   8.33  20   
                           Indi… in %…    54 24.6   14.3 52     4.76   8.33
-                          Detr… abs      55  3      1    1     1     NA   
-                          Detr… abs ⚖    56  2      0.5  1     0.5   NA   
-                          Detr… in %     57  7.69  16.7  6.25  8.33  NA   
-                          Detr… in %…    58  6.15  14.3  8     4.76  NA   
+                          Detr… abs      55  3      1    1     1      0   
+                          Detr… abs ⚖    56  2      0.5  1     0.5    0   
+                          Detr… in %     57  7.69  16.7  6.25  8.33   0   
+                          Detr… in %…    58  6.15  14.3  8     4.76   0   
                           NPS   abs      59 24      3    8     9      4   
                           NPS   abs ⚖    60 20.5    2    4     9      5.5 
                           NPS   in %     61 61.5   50   50    75     80   
@@ -737,10 +737,10 @@
                                 abs ⚖    64 32.5    3.5 12.5  10.5    6   
                                 in %     65 90.7   85.7 88.9  92.3  100   
                                 in %…    66 89.0   87.5 89.3  84    100   
-      keine Angabe              abs      67  4      1    2     1     NA   
-                                abs ⚖    68  4      0.5  1.5   2     NA   
-                                in %     69  9.30  14.3 11.1   7.69  NA   
-                                in %…    70 11.0   12.5 10.7  16     NA   
+      keine Angabe              abs      67  4      1    2     1      0   
+                                abs ⚖    68  4      0.5  1.5   2      0   
+                                in %     69  9.30  14.3 11.1   7.69   0   
+                                in %…    70 11.0   12.5 10.7  16      0   
       
       
       [[15]]
@@ -791,10 +791,10 @@
                            abs ⚖    10  10.5   1     5.5   3.5   0.5
                            in %     11  39.1  25    33.3  60    50  
                            in %…    12  36.8  33.3  32.4  58.3  20  
-      Strukturanalyse      abs      13  NA    NA    NA    NA    NA  
-                           abs ⚖    14  NA    NA    NA    NA    NA  
-                           in %     15  NA    NA    NA    NA    NA  
-                           in %…    16  NA    NA    NA    NA    NA  
+      Strukturanalyse      abs      13   0     0     0     0     0  
+                           abs ⚖    14   0     0     0     0     0  
+                           in %     15   0     0     0     0     0  
+                           in %…    16   0     0     0     0     0  
       GÜLTIGE FÄLLE        abs      17  23     4    12     5     2  
                            abs ⚖    18  28.5   3    17     6     2.5
                            in %     19  31.5  57.1  31.6  21.7  40  
@@ -817,14 +817,14 @@
                            abs ⚖     6  13     1    5.5    4.5   2  
                            in %      7  80   100   87.5   75    50  
                            in %…     8  89.7 100   91.7   90    80  
-      Onlineauftritte      abs       9   2     1   NA      1    NA  
-                           abs ⚖    10   3     1   NA      2    NA  
-                           in %     11  13.3 100   NA     25    NA  
-                           in %…    12  20.7 100   NA     40    NA  
-      Strukturanalyse      abs      13   3    NA    1      1     1  
-                           abs ⚖    14   1.5  NA    0.5    0.5   0.5
-                           in %     15  20    NA   12.5   25    50  
-                           in %…    16  10.3  NA    8.33  10    20  
+      Onlineauftritte      abs       9   2     1    0      1     0  
+                           abs ⚖    10   3     1    0      2     0  
+                           in %     11  13.3 100    0     25     0  
+                           in %…    12  20.7 100    0     40     0  
+      Strukturanalyse      abs      13   3     0    1      1     1  
+                           abs ⚖    14   1.5   0    0.5    0.5   0.5
+                           in %     15  20     0   12.5   25    50  
+                           in %…    16  10.3   0    8.33  10    20  
       GÜLTIGE FÄLLE        abs      17  15     1    8      4     2  
                            abs ⚖    18  14.5   1    6      5     2.5
                            in %     19  34.9  14.3 44.4   30.8  40  
@@ -849,10 +849,10 @@
                            abs ⚖     6  13     1     5.5   4.5   2  
                            in %      7 100   100   100   100   100  
                            in %…     8 100   100   100   100   100  
-      Onlineauftritte      abs       9   2     1    NA     1    NA  
-                           abs ⚖    10   3     1    NA     2    NA  
-                           in %     11  16.7 100    NA    33.3  NA  
-                           in %…    12  23.1 100    NA    44.4  NA  
+      Onlineauftritte      abs       9   2     1     0     1     0  
+                           abs ⚖    10   3     1     0     2     0  
+                           in %     11  16.7 100     0    33.3   0  
+                           in %…    12  23.1 100     0    44.4   0  
       GÜLTIGE FÄLLE        abs      13  12     1     7     3     1  
                            abs ⚖    14  13     1     5.5   4.5   2  
                            in %     15  27.9  14.3  38.9  23.1  20  
@@ -873,10 +873,10 @@
                            abs ⚖     2 151      15    71.5    47.5   17   
       Summe der gültigen…  abs       3   3       0     1       1      1   
                            abs ⚖     4   1.5     0     0.5     0.5    0.5 
-      Werbewirkungsmessu…  abs       5   3      NA     1       1      1   
-                           abs ⚖     6   1.5    NA     0.5     0.5    0.5 
-                           in %      7 100      NA   100     100    100   
-                           in %…     8 100      NA   100     100    100   
+      Werbewirkungsmessu…  abs       5   3       0     1       1      1   
+                           abs ⚖     6   1.5     0     0.5     0.5    0.5 
+                           in %      7 100       0   100     100    100   
+                           in %…     8 100       0   100     100    100   
       GÜLTIGE FÄLLE        abs       9   3       0     1       1      1   
                            abs ⚖    10   1.5     0     0.5     0.5    0.5 
                            in %     11   1.99    0     1.33    2.33   7.14
@@ -904,18 +904,18 @@
                            abs ⚖     6  12      1    3.5   7      0.5
                            in %      7  32.4   33.3 23.5  50     25  
                            in %…     8  32.9   16.7 22.6  63.6   12.5
-      Darstellung der Da…  abs       9  13     NA    8     3      2  
-                           abs ⚖    10  11     NA    6.5   3      1.5
-                           in %     11  35.1   NA   47.1  30     50  
-                           in %…    12  30.1   NA   41.9  27.3   37.5
+      Darstellung der Da…  abs       9  13      0    8     3      2  
+                           abs ⚖    10  11      0    6.5   3      1.5
+                           in %     11  35.1    0   47.1  30     50  
+                           in %…    12  30.1    0   41.9  27.3   37.5
       Schnelligkeit der …  abs      13  11      3    3     3      2  
                            abs ⚖    14  10      3    3     1.5    2.5
                            in %     15  29.7   50   17.6  30     50  
                            in %…    16  27.4   50   19.4  13.6   62.5
-      Freundlichkeit des…  abs      17   6      2    4    NA     NA  
-                           abs ⚖    18   7      3    4    NA     NA  
-                           in %     19  16.2   33.3 23.5  NA     NA  
-                           in %…    20  19.2   50   25.8  NA     NA  
+      Freundlichkeit des…  abs      17   6      2    4     0      0  
+                           abs ⚖    18   7      3    4     0      0  
+                           in %     19  16.2   33.3 23.5   0      0  
+                           in %…    20  19.2   50   25.8   0      0  
       GÜLTIGE FÄLLE        abs      21  37      6   17    10      4  
                            abs ⚖    22  36.5    6   15.5  11      4  
                            in %     23  24.5   31.6 22.7  23.3   28.6
@@ -924,10 +924,10 @@
                            abs ⚖    26  34.5    2   20     7.5    5  
                            in %     27  24.5   15.8 29.3  18.6   28.6
                            in %…    28  22.8   13.3 28.0  15.8   29.4
-      Kompetenz            abs      29  13      3    6     4     NA  
-                           abs ⚖    30   9.5    1.5  5     3     NA  
-                           in %     31   8.61  15.8  8     9.30  NA  
-                           in %…    32   6.29  10    6.99  6.32  NA  
+      Kompetenz            abs      29  13      3    6     4      0  
+                           abs ⚖    30   9.5    1.5  5     3      0  
+                           in %     31   8.61  15.8  8     9.30   0  
+                           in %…    32   6.29  10    6.99  6.32   0  
       Keine Angabe         abs      33  69      7   34    21      7  
                            abs ⚖    34  76.5    5.5 35    26     10  
                            in %     35  45.7   36.8 45.3  48.8   50  
@@ -941,30 +941,30 @@
                            abs ⚖     2 78      6    38.5  28      5.5 
       Summe der gültigen…  abs       3  8      1     4     2      1   
                            abs ⚖     4  7      1     4.5   1      0.5 
-      Schnelligkeit der …  abs       5  4     NA     3    NA      1   
-                           abs ⚖     6  3     NA     2.5  NA      0.5 
-                           in %      7 50     NA    75    NA    100   
-                           in %…     8 42.9   NA    55.6  NA    100   
-      Darstellung der Da…  abs       9  2      1     1    NA     NA   
-                           abs ⚖    10  3      1     2    NA     NA   
-                           in %     11 25    100    25    NA     NA   
-                           in %…    12 42.9  100    44.4  NA     NA   
-      Freundlichkeit des…  abs      13  2     NA    NA     2     NA   
-                           abs ⚖    14  1     NA    NA     1     NA   
-                           in %     15 25     NA    NA   100     NA   
-                           in %…    16 14.3   NA    NA   100     NA   
-      Sonstiges            abs      17 NA     NA    NA    NA     NA   
-                           abs ⚖    18 NA     NA    NA    NA     NA   
-                           in %     19 NA     NA    NA    NA     NA   
-                           in %…    20 NA     NA    NA    NA     NA   
+      Schnelligkeit der …  abs       5  4      0     3     0      1   
+                           abs ⚖     6  3      0     2.5   0      0.5 
+                           in %      7 50      0    75     0    100   
+                           in %…     8 42.9    0    55.6   0    100   
+      Darstellung der Da…  abs       9  2      1     1     0      0   
+                           abs ⚖    10  3      1     2     0      0   
+                           in %     11 25    100    25     0      0   
+                           in %…    12 42.9  100    44.4   0      0   
+      Freundlichkeit des…  abs      13  2      0     0     2      0   
+                           abs ⚖    14  1      0     0     1      0   
+                           in %     15 25      0     0   100      0   
+                           in %…    16 14.3    0     0   100      0   
+      Sonstiges            abs      17  0      0     0     0      0   
+                           abs ⚖    18  0      0     0     0      0   
+                           in %     19  0      0     0     0      0   
+                           in %…    20  0      0     0     0      0   
       GÜLTIGE FÄLLE        abs      21  8      1     4     2      1   
                            abs ⚖    22  7      1     4.5   1      0.5 
                            in %     23 11.0   14.3  10.5   8.70  20   
                            in %…    24  8.97  16.7  11.7   3.57   9.09
-      einfache Weiterver…  abs      25  1     NA    NA     1     NA   
-                           abs ⚖    26  1     NA    NA     1     NA   
-                           in %     27  1.37  NA    NA     4.35  NA   
-                           in %…    28  1.28  NA    NA     3.57  NA   
+      einfache Weiterver…  abs      25  1      0     0     1      0   
+                           abs ⚖    26  1      0     0     1      0   
+                           in %     27  1.37   0     0     4.35   0   
+                           in %…    28  1.28   0     0     3.57   0   
       Kompetenz            abs      29 14      1    10     2      1   
                            abs ⚖    30 14      1     8.5   2.5    2   
                            in %     31 19.2   14.3  26.3   8.70  20   
@@ -978,34 +978,34 @@
                            abs ⚖     2 36.5    4    14    12.5    6   
       Summe der gültigen…  abs       3  6      1     1     3      1   
                            abs ⚖     4  4      1     0.5   2      0.5 
-      Darstellung der Da…  abs       5  3      1    NA     2     NA   
-                           abs ⚖     6  2.5    1    NA     1.5   NA   
-                           in %      7 50    100    NA    66.7   NA   
-                           in %…     8 62.5  100    NA    75     NA   
-      Freundlichkeit des…  abs       9  2     NA     1    NA      1   
-                           abs ⚖    10  1     NA     0.5  NA      0.5 
-                           in %     11 33.3   NA   100    NA    100   
-                           in %…    12 25     NA   100    NA    100   
-      Schnelligkeit der …  abs      13  1     NA    NA     1     NA   
-                           abs ⚖    14  0.5   NA    NA     0.5   NA   
-                           in %     15 16.7   NA    NA    33.3   NA   
-                           in %…    16 12.5   NA    NA    25     NA   
-      Sonstiges            abs      17 NA     NA    NA    NA     NA   
-                           abs ⚖    18 NA     NA    NA    NA     NA   
-                           in %     19 NA     NA    NA    NA     NA   
-                           in %…    20 NA     NA    NA    NA     NA   
+      Darstellung der Da…  abs       5  3      1     0     2      0   
+                           abs ⚖     6  2.5    1     0     1.5    0   
+                           in %      7 50    100     0    66.7    0   
+                           in %…     8 62.5  100     0    75      0   
+      Freundlichkeit des…  abs       9  2      0     1     0      1   
+                           abs ⚖    10  1      0     0.5   0      0.5 
+                           in %     11 33.3    0   100     0    100   
+                           in %…    12 25      0   100     0    100   
+      Schnelligkeit der …  abs      13  1      0     0     1      0   
+                           abs ⚖    14  0.5    0     0     0.5    0   
+                           in %     15 16.7    0     0    33.3    0   
+                           in %…    16 12.5    0     0    25      0   
+      Sonstiges            abs      17  0      0     0     0      0   
+                           abs ⚖    18  0      0     0     0      0   
+                           in %     19  0      0     0     0      0   
+                           in %…    20  0      0     0     0      0   
       GÜLTIGE FÄLLE        abs      21  6      1     1     3      1   
                            abs ⚖    22  4      1     0.5   2      0.5 
                            in %     23 14.0   14.3   5.56 23.1   20   
                            in %…    24 11.0   25     3.57 16      8.33
-      einfache Weiterver…  abs      25  4      2     1     1     NA   
-                           abs ⚖    26  2      1     0.5   0.5   NA   
-                           in %     27  9.30  28.6   5.56  7.69  NA   
-                           in %…    28  5.48  25     3.57  4     NA   
-      Kompetenz            abs      29  5     NA     2     2      1   
-                           abs ⚖    30  4     NA     1     2.5    0.5 
-                           in %     31 11.6   NA    11.1  15.4   20   
-                           in %…    32 11.0   NA     7.14 20      8.33
+      einfache Weiterver…  abs      25  4      2     1     1      0   
+                           abs ⚖    26  2      1     0.5   0.5    0   
+                           in %     27  9.30  28.6   5.56  7.69   0   
+                           in %…    28  5.48  25     3.57  4      0   
+      Kompetenz            abs      29  5      0     2     2      1   
+                           abs ⚖    30  4      0     1     2.5    0.5 
+                           in %     31 11.6    0    11.1  15.4   20   
+                           in %…    32 11.0    0     7.14 20      8.33
       
       
       [[19]]
@@ -1051,30 +1051,30 @@
                                  NULL -----        Asien   Europa Norda… Pazi…
       GESAMT                    abs       1 73       7     38     23      5   
                                 abs ⚖     2 78       6     38.5   28      5.5 
-      1 - völlig unzufri…       abs       3  1      NA      1     NA     NA   
-                                abs ⚖     4  2      NA      2     NA     NA   
-                                in %      5  1.47   NA      2.86  NA     NA   
-                                in %…     6  2.78   NA      5.97  NA     NA   
-      2                         abs       7  2      NA      1      1     NA   
-                                abs ⚖     8  3      NA      2      1     NA   
-                                in %      9  2.94   NA      2.86   4.55  NA   
-                                in %…    10  4.17   NA      5.97   3.64  NA   
-      3                         abs      11  1      NA     NA     NA      1   
-                                abs ⚖    12  0.5    NA     NA     NA      0.5 
-                                in %     13  1.47   NA     NA     NA     25   
-                                in %…    14  0.694  NA     NA     NA     10   
-      4                         abs      15  1      NA      1     NA     NA   
-                                abs ⚖    16  1      NA      1     NA     NA   
-                                in %     17  1.47   NA      2.86  NA     NA   
-                                in %…    18  1.39   NA      2.99  NA     NA   
-      5                         abs      19  5       1      2      2     NA   
-                                abs ⚖    20  4       0.5    1      2.5   NA   
-                                in %     21  7.35   14.3    5.71   9.09  NA   
-                                in %…    22  5.56    8.33   2.99   9.09  NA   
-      6                         abs      23  2      NA     NA      2     NA   
-                                abs ⚖    24  2.5    NA     NA      2.5   NA   
-                                in %     25  2.94   NA     NA      9.09  NA   
-                                in %…    26  3.47   NA     NA      9.09  NA   
+      1 - völlig unzufri…       abs       3  1       0      1      0      0   
+                                abs ⚖     4  2       0      2      0      0   
+                                in %      5  1.47    0      2.86   0      0   
+                                in %…     6  2.78    0      5.97   0      0   
+      2                         abs       7  2       0      1      1      0   
+                                abs ⚖     8  3       0      2      1      0   
+                                in %      9  2.94    0      2.86   4.55   0   
+                                in %…    10  4.17    0      5.97   3.64   0   
+      3                         abs      11  1       0      0      0      1   
+                                abs ⚖    12  0.5     0      0      0      0.5 
+                                in %     13  1.47    0      0      0     25   
+                                in %…    14  0.694   0      0      0     10   
+      4                         abs      15  1       0      1      0      0   
+                                abs ⚖    16  1       0      1      0      0   
+                                in %     17  1.47    0      2.86   0      0   
+                                in %…    18  1.39    0      2.99   0      0   
+      5                         abs      19  5       1      2      2      0   
+                                abs ⚖    20  4       0.5    1      2.5    0   
+                                in %     21  7.35   14.3    5.71   9.09   0   
+                                in %…    22  5.56    8.33   2.99   9.09   0   
+      6                         abs      23  2       0      0      2      0   
+                                abs ⚖    24  2.5     0      0      2.5    0   
+                                in %     25  2.94    0      0      9.09   0   
+                                in %…    26  3.47    0      0      9.09   0   
       7                         abs      27 12       3      4      4      1   
                                 abs ⚖    28 11.5     2.5    4      3      2   
                                 in %     29 17.6    42.9   11.4   18.2   25   
@@ -1083,18 +1083,18 @@
                                 abs ⚖    32 24       0.5   15      6      2.5 
                                 in %     33 38.2    14.3   48.6   27.3   50   
                                 in %…    34 33.3     8.33  44.8   21.8   50   
-      9                         abs      35 12       2      5      5     NA   
-                                abs ⚖    36 15.5     2.5    4.5    8.5   NA   
-                                in %     37 17.6    28.6   14.3   22.7   NA   
-                                in %…    38 21.5    41.7   13.4   30.9   NA   
-      10 - absolut zufri…       abs      39  6      NA      4      2     NA   
-                                abs ⚖    40  8      NA      4      4     NA   
-                                in %     41  8.82   NA     11.4    9.09  NA   
-                                in %…    42 11.1    NA     11.9   14.5   NA   
-      ZUSAMMENFASSUNG     1 bi… abs      43  5      NA      3      1      1   
-                          1 bi… abs ⚖    44  6.5    NA      5      1      0.5 
-                          1 bi… in %     45  7.35   NA      8.57   4.55  25   
-                          1 bi… in %…    46  9.03   NA     14.9    3.64  10   
+      9                         abs      35 12       2      5      5      0   
+                                abs ⚖    36 15.5     2.5    4.5    8.5    0   
+                                in %     37 17.6    28.6   14.3   22.7    0   
+                                in %…    38 21.5    41.7   13.4   30.9    0   
+      10 - absolut zufri…       abs      39  6       0      4      2      0   
+                                abs ⚖    40  8       0      4      4      0   
+                                in %     41  8.82    0     11.4    9.09   0   
+                                in %…    42 11.1     0     11.9   14.5    0   
+      ZUSAMMENFASSUNG     1 bi… abs      43  5       0      3      1      1   
+                          1 bi… abs ⚖    44  6.5     0      5      1      0.5 
+                          1 bi… in %     45  7.35    0      8.57   4.55  25   
+                          1 bi… in %…    46  9.03    0     14.9    3.64  10   
                           5 bi… abs      47 19       4      6      8      1   
                           5 bi… abs ⚖    48 18       3      5      8      2   
                           5 bi… in %     49 27.9    57.1   17.1   36.4   25   
@@ -1111,10 +1111,10 @@
                                 abs ⚖    60 72       6     33.5   27.5    5   
                                 in %     61 93.2   100     92.1   95.7   80   
                                 in %…    62 92.3   100     87.0   98.2   90.9 
-      keine Angabe              abs      63  5      NA      3      1      1   
-                                abs ⚖    64  6      NA      5      0.5    0.5 
-                                in %     65  6.85   NA      7.89   4.35  20   
-                                in %…    66  7.69   NA     13.0    1.79   9.09
+      keine Angabe              abs      63  5       0      3      1      1   
+                                abs ⚖    64  6       0      5      0.5    0.5 
+                                in %     65  6.85    0      7.89   4.35  20   
+                                in %…    66  7.69    0     13.0    1.79   9.09
       
       [[19]][[4]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
@@ -1124,50 +1124,50 @@
                                  NULL -----        Asien  Europa Norda… Pazif…
       GESAMT                    abs       1 73      7     38     23      5    
                                 abs ⚖     2 78      6     38.5   28      5.5  
-      1 - völlig unzufri…       abs       3 NA     NA     NA     NA     NA    
-                                abs ⚖     4 NA     NA     NA     NA     NA    
-                                in %      5 NA     NA     NA     NA     NA    
-                                in %…     6 NA     NA     NA     NA     NA    
-      2                         abs       7  1     NA      1     NA     NA    
-                                abs ⚖     8  2     NA      2     NA     NA    
-                                in %      9  1.52  NA      2.86  NA     NA    
-                                in %…    10  2.78  NA      5.56  NA     NA    
-      3                         abs      11  1     NA      1     NA     NA    
-                                abs ⚖    12  2     NA      2     NA     NA    
-                                in %     13  1.52  NA      2.86  NA     NA    
-                                in %…    14  2.78  NA      5.56  NA     NA    
-      4                         abs      15  1     NA     NA      1     NA    
-                                abs ⚖    16  2     NA     NA      2     NA    
-                                in %     17  1.52  NA     NA      4.76  NA    
-                                in %…    18  2.78  NA     NA      7.84  NA    
-      5                         abs      19  4     NA     NA      4     NA    
-                                abs ⚖    20  2.5   NA     NA      2.5   NA    
-                                in %     21  6.06  NA     NA     19.0   NA    
-                                in %…    22  3.47  NA     NA      9.80  NA    
-      6                         abs      23  2     NA      1      1     NA    
-                                abs ⚖    24  3     NA      2      1     NA    
-                                in %     25  3.03  NA      2.86   4.76  NA    
-                                in %…    26  4.17  NA      5.56   3.92  NA    
-      7                         abs      27 10      2      7     NA      1    
-                                abs ⚖    28  9.5    1.5    7.5   NA      0.5  
-                                in %     29 15.2   33.3   20     NA     25    
-                                in %…    30 13.2   27.3   20.8   NA     10    
-      8                         abs      31 21     NA     10     10      1    
-                                abs ⚖    32 21.5   NA      7     12.5    2    
-                                in %     33 31.8   NA     28.6   47.6   25    
-                                in %…    34 29.9   NA     19.4   49.0   40    
-      9                         abs      35 10      2      7     NA      1    
-                                abs ⚖    36  9.5    3      6     NA      0.5  
-                                in %     37 15.2   33.3   20     NA     25    
-                                in %…    38 13.2   54.5   16.7   NA     10    
+      1 - völlig unzufri…       abs       3  0      0      0      0      0    
+                                abs ⚖     4  0      0      0      0      0    
+                                in %      5  0      0      0      0      0    
+                                in %…     6  0      0      0      0      0    
+      2                         abs       7  1      0      1      0      0    
+                                abs ⚖     8  2      0      2      0      0    
+                                in %      9  1.52   0      2.86   0      0    
+                                in %…    10  2.78   0      5.56   0      0    
+      3                         abs      11  1      0      1      0      0    
+                                abs ⚖    12  2      0      2      0      0    
+                                in %     13  1.52   0      2.86   0      0    
+                                in %…    14  2.78   0      5.56   0      0    
+      4                         abs      15  1      0      0      1      0    
+                                abs ⚖    16  2      0      0      2      0    
+                                in %     17  1.52   0      0      4.76   0    
+                                in %…    18  2.78   0      0      7.84   0    
+      5                         abs      19  4      0      0      4      0    
+                                abs ⚖    20  2.5    0      0      2.5    0    
+                                in %     21  6.06   0      0     19.0    0    
+                                in %…    22  3.47   0      0      9.80   0    
+      6                         abs      23  2      0      1      1      0    
+                                abs ⚖    24  3      0      2      1      0    
+                                in %     25  3.03   0      2.86   4.76   0    
+                                in %…    26  4.17   0      5.56   3.92   0    
+      7                         abs      27 10      2      7      0      1    
+                                abs ⚖    28  9.5    1.5    7.5    0      0.5  
+                                in %     29 15.2   33.3   20      0     25    
+                                in %…    30 13.2   27.3   20.8    0     10    
+      8                         abs      31 21      0     10     10      1    
+                                abs ⚖    32 21.5    0      7     12.5    2    
+                                in %     33 31.8    0     28.6   47.6   25    
+                                in %…    34 29.9    0     19.4   49.0   40    
+      9                         abs      35 10      2      7      0      1    
+                                abs ⚖    36  9.5    3      6      0      0.5  
+                                in %     37 15.2   33.3   20      0     25    
+                                in %…    38 13.2   54.5   16.7    0     10    
       10 - absolut zufri…       abs      39 16      2      8      5      1    
                                 abs ⚖    40 20      1      9.5    7.5    2    
                                 in %     41 24.2   33.3   22.9   23.8   25    
                                 in %…    42 27.8   18.2   26.4   29.4   40    
-      ZUSAMMENFASSUNG     1 bi… abs      43  3     NA      2      1     NA    
-                          1 bi… abs ⚖    44  6     NA      4      2     NA    
-                          1 bi… in %     45  4.55  NA      5.71   4.76  NA    
-                          1 bi… in %…    46  8.33  NA     11.1    7.84  NA    
+      ZUSAMMENFASSUNG     1 bi… abs      43  3      0      2      1      0    
+                          1 bi… abs ⚖    44  6      0      4      2      0    
+                          1 bi… in %     45  4.55   0      5.71   4.76   0    
+                          1 bi… in %…    46  8.33   0     11.1    7.84   0    
                           5 bi… abs      47 16      2      8      5      1    
                           5 bi… abs ⚖    48 15      1.5    9.5    3.5    0.5  
                           5 bi… in %     49 24.2   33.3   22.9   23.8   25    
@@ -1231,50 +1231,50 @@
                                  NULL -----        Asien   Europa Norda… Pazi…
       GESAMT                    abs       1 43       7     18     13      5   
                                 abs ⚖     2 36.5     4     14     12.5    6   
-      1 - völlig unzufri…       abs       3  1      NA      1     NA     NA   
-                                abs ⚖     4  0.5    NA      0.5   NA     NA   
-                                in %      5  2.70   NA      6.25  NA     NA   
-                                in %…     6  1.64   NA      4.35  NA     NA   
-      2                         abs       7  1      NA      1     NA     NA   
-                                abs ⚖     8  0.5    NA      0.5   NA     NA   
-                                in %      9  2.70   NA      6.25  NA     NA   
-                                in %…    10  1.64   NA      4.35  NA     NA   
-      3                         abs      11  2       1     NA      1     NA   
-                                abs ⚖    12  1       0.5   NA      0.5   NA   
-                                in %     13  5.41   14.3   NA      9.09  NA   
-                                in %…    14  3.28   12.5   NA      5     NA   
-      4                         abs      15  1      NA      1     NA     NA   
-                                abs ⚖    16  2      NA      2     NA     NA   
-                                in %     17  2.70   NA      6.25  NA     NA   
-                                in %…    18  6.56   NA     17.4   NA     NA   
+      1 - völlig unzufri…       abs       3  1       0      1      0      0   
+                                abs ⚖     4  0.5     0      0.5    0      0   
+                                in %      5  2.70    0      6.25   0      0   
+                                in %…     6  1.64    0      4.35   0      0   
+      2                         abs       7  1       0      1      0      0   
+                                abs ⚖     8  0.5     0      0.5    0      0   
+                                in %      9  2.70    0      6.25   0      0   
+                                in %…    10  1.64    0      4.35   0      0   
+      3                         abs      11  2       1      0      1      0   
+                                abs ⚖    12  1       0.5    0      0.5    0   
+                                in %     13  5.41   14.3    0      9.09   0   
+                                in %…    14  3.28   12.5    0      5      0   
+      4                         abs      15  1       0      1      0      0   
+                                abs ⚖    16  2       0      2      0      0   
+                                in %     17  2.70    0      6.25   0      0   
+                                in %…    18  6.56    0     17.4    0      0   
       5                         abs      19  9       2      3      3      1   
                                 abs ⚖    20  6.5     1      2.5    2      1   
                                 in %     21 24.3    28.6   18.8   27.3   33.3 
                                 in %…    22 21.3    25     21.7   20     20   
-      6                         abs      23  3       2      1     NA     NA   
-                                abs ⚖    24  2.5     1.5    1     NA     NA   
-                                in %     25  8.11   28.6    6.25  NA     NA   
-                                in %…    26  8.20   37.5    8.70  NA     NA   
-      7                         abs      27  5      NA      3      2     NA   
-                                abs ⚖    28  4.5    NA      1.5    3     NA   
-                                in %     29 13.5    NA     18.8   18.2   NA   
-                                in %…    30 14.8    NA     13.0   30     NA   
-      8                         abs      31  8       2      4      2     NA   
-                                abs ⚖    32  5.5     1      2      2.5   NA   
-                                in %     33 21.6    28.6   25     18.2   NA   
-                                in %…    34 18.0    25     17.4   25     NA   
-      9                         abs      35  3      NA      1      1      1   
-                                abs ⚖    36  3      NA      0.5    0.5    2   
-                                in %     37  8.11   NA      6.25   9.09  33.3 
-                                in %…    38  9.84   NA      4.35   5     40   
-      10 - absolut zufri…       abs      39  4      NA      1      2      1   
-                                abs ⚖    40  4.5    NA      1      1.5    2   
-                                in %     41 10.8    NA      6.25  18.2   33.3 
-                                in %…    42 14.8    NA      8.70  15     40   
-      ZUSAMMENFASSUNG     1 bi… abs      43  5       1      3      1     NA   
-                          1 bi… abs ⚖    44  4       0.5    3      0.5   NA   
-                          1 bi… in %     45 13.5    14.3   18.8    9.09  NA   
-                          1 bi… in %…    46 13.1    12.5   26.1    5     NA   
+      6                         abs      23  3       2      1      0      0   
+                                abs ⚖    24  2.5     1.5    1      0      0   
+                                in %     25  8.11   28.6    6.25   0      0   
+                                in %…    26  8.20   37.5    8.70   0      0   
+      7                         abs      27  5       0      3      2      0   
+                                abs ⚖    28  4.5     0      1.5    3      0   
+                                in %     29 13.5     0     18.8   18.2    0   
+                                in %…    30 14.8     0     13.0   30      0   
+      8                         abs      31  8       2      4      2      0   
+                                abs ⚖    32  5.5     1      2      2.5    0   
+                                in %     33 21.6    28.6   25     18.2    0   
+                                in %…    34 18.0    25     17.4   25      0   
+      9                         abs      35  3       0      1      1      1   
+                                abs ⚖    36  3       0      0.5    0.5    2   
+                                in %     37  8.11    0      6.25   9.09  33.3 
+                                in %…    38  9.84    0      4.35   5     40   
+      10 - absolut zufri…       abs      39  4       0      1      2      1   
+                                abs ⚖    40  4.5     0      1      1.5    2   
+                                in %     41 10.8     0      6.25  18.2   33.3 
+                                in %…    42 14.8     0      8.70  15     40   
+      ZUSAMMENFASSUNG     1 bi… abs      43  5       1      3      1      0   
+                          1 bi… abs ⚖    44  4       0.5    3      0.5    0   
+                          1 bi… in %     45 13.5    14.3   18.8    9.09   0   
+                          1 bi… in %…    46 13.1    12.5   26.1    5      0   
                           5 bi… abs      47 17       4      7      5      1   
                           5 bi… abs ⚖    48 13.5     2.5    5      5      1   
                           5 bi… in %     49 45.9    57.1   43.8   45.5   33.3 
@@ -1291,10 +1291,10 @@
                                 abs ⚖    60 30.5     4     11.5   10      5   
                                 in %     61 86.0   100     88.9   84.6   60   
                                 in %…    62 83.6   100     82.1   80     83.3 
-      keine Angabe              abs      63  6      NA      2      2      2   
-                                abs ⚖    64  6      NA      2.5    2.5    1   
-                                in %     65 14.0    NA     11.1   15.4   40   
-                                in %…    66 16.4    NA     17.9   20     16.7 
+      keine Angabe              abs      63  6       0      2      2      2   
+                                abs ⚖    64  6       0      2.5    2.5    1   
+                                in %     65 14.0     0     11.1   15.4   40   
+                                in %…    66 16.4     0     17.9   20     16.7 
       
       [[19]][[8]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
@@ -1304,50 +1304,50 @@
                                  NULL -----        Asien   Europa Norda… Pazif…
       GESAMT                    abs       1 43       7     18     13      5    
                                 abs ⚖     2 36.5     4     14     12.5    6    
-      1 - völlig unzufri…       abs       3 NA      NA     NA     NA     NA    
-                                abs ⚖     4 NA      NA     NA     NA     NA    
-                                in %      5 NA      NA     NA     NA     NA    
-                                in %…     6 NA      NA     NA     NA     NA    
-      2                         abs       7 NA      NA     NA     NA     NA    
-                                abs ⚖     8 NA      NA     NA     NA     NA    
-                                in %      9 NA      NA     NA     NA     NA    
-                                in %…    10 NA      NA     NA     NA     NA    
-      3                         abs      11  2      NA      1      1     NA    
-                                abs ⚖    12  1      NA      0.5    0.5   NA    
-                                in %     13  5.71   NA      7.69   9.09  NA    
-                                in %…    14  3.45   NA      5.26   5     NA    
-      4                         abs      15  1       1     NA     NA     NA    
-                                abs ⚖    16  0.5     0.5   NA     NA     NA    
-                                in %     17  2.86   14.3   NA     NA     NA    
-                                in %…    18  1.72   12.5   NA     NA     NA    
-      5                         abs      19  4       1      3     NA     NA    
-                                abs ⚖    20  3       0.5    2.5   NA     NA    
-                                in %     21 11.4    14.3   23.1   NA     NA    
-                                in %…    22 10.3    12.5   26.3   NA     NA    
-      6                         abs      23  4      NA      1      2      1    
-                                abs ⚖    24  3      NA      0.5    2      0.5  
-                                in %     25 11.4    NA      7.69  18.2   25    
-                                in %…    26 10.3    NA      5.26  20      9.09 
-      7                         abs      27  4       1      2     NA      1    
-                                abs ⚖    28  2.5     0.5    1     NA      1    
-                                in %     29 11.4    14.3   15.4   NA     25    
-                                in %…    30  8.62   12.5   10.5   NA     18.2  
+      1 - völlig unzufri…       abs       3  0       0      0      0      0    
+                                abs ⚖     4  0       0      0      0      0    
+                                in %      5  0       0      0      0      0    
+                                in %…     6  0       0      0      0      0    
+      2                         abs       7  0       0      0      0      0    
+                                abs ⚖     8  0       0      0      0      0    
+                                in %      9  0       0      0      0      0    
+                                in %…    10  0       0      0      0      0    
+      3                         abs      11  2       0      1      1      0    
+                                abs ⚖    12  1       0      0.5    0.5    0    
+                                in %     13  5.71    0      7.69   9.09   0    
+                                in %…    14  3.45    0      5.26   5      0    
+      4                         abs      15  1       1      0      0      0    
+                                abs ⚖    16  0.5     0.5    0      0      0    
+                                in %     17  2.86   14.3    0      0      0    
+                                in %…    18  1.72   12.5    0      0      0    
+      5                         abs      19  4       1      3      0      0    
+                                abs ⚖    20  3       0.5    2.5    0      0    
+                                in %     21 11.4    14.3   23.1    0      0    
+                                in %…    22 10.3    12.5   26.3    0      0    
+      6                         abs      23  4       0      1      2      1    
+                                abs ⚖    24  3       0      0.5    2      0.5  
+                                in %     25 11.4     0      7.69  18.2   25    
+                                in %…    26 10.3     0      5.26  20      9.09 
+      7                         abs      27  4       1      2      0      1    
+                                abs ⚖    28  2.5     0.5    1      0      1    
+                                in %     29 11.4    14.3   15.4    0     25    
+                                in %…    30  8.62   12.5   10.5    0     18.2  
       8                         abs      31  9       1      3      4      1    
                                 abs ⚖    32  9       0.5    3      3.5    2    
                                 in %     33 25.7    14.3   23.1   36.4   25    
                                 in %…    34 31.0    12.5   31.6   35     36.4  
-      9                         abs      35  2       1      1     NA     NA    
-                                abs ⚖    36  1       0.5    0.5   NA     NA    
-                                in %     37  5.71   14.3    7.69  NA     NA    
-                                in %…    38  3.45   12.5    5.26  NA     NA    
+      9                         abs      35  2       1      1      0      0    
+                                abs ⚖    36  1       0.5    0.5    0      0    
+                                in %     37  5.71   14.3    7.69   0      0    
+                                in %…    38  3.45   12.5    5.26   0      0    
       10 - absolut zufri…       abs      39  9       2      2      4      1    
                                 abs ⚖    40  9       1.5    1.5    4      2    
                                 in %     41 25.7    28.6   15.4   36.4   25    
                                 in %…    42 31.0    37.5   15.8   40     36.4  
-      ZUSAMMENFASSUNG     1 bi… abs      43  3       1      1      1     NA    
-                          1 bi… abs ⚖    44  1.5     0.5    0.5    0.5   NA    
-                          1 bi… in %     45  8.57   14.3    7.69   9.09  NA    
-                          1 bi… in %…    46  5.17   12.5    5.26   5     NA    
+      ZUSAMMENFASSUNG     1 bi… abs      43  3       1      1      1      0    
+                          1 bi… abs ⚖    44  1.5     0.5    0.5    0.5    0    
+                          1 bi… in %     45  8.57   14.3    7.69   9.09   0    
+                          1 bi… in %…    46  5.17   12.5    5.26   5      0    
                           5 bi… abs      47 12       2      6      2      2    
                           5 bi… abs ⚖    48  8.5     1      4      2      1.5  
                           5 bi… in %     49 34.3    28.6   46.2   18.2   50    
@@ -1364,10 +1364,10 @@
                                 abs ⚖    60 29       4      9.5   10      5.5  
                                 in %     61 81.4   100     72.2   84.6   80    
                                 in %…    62 79.5   100     67.9   80     91.7  
-      keine Angabe              abs      63  8      NA      5      2      1    
-                                abs ⚖    64  7.5    NA      4.5    2.5    0.5  
-                                in %     65 18.6    NA     27.8   15.4   20    
-                                in %…    66 20.5    NA     32.1   20      8.33 
+      keine Angabe              abs      63  8       0      5      2      1    
+                                abs ⚖    64  7.5     0      4.5    2.5    0.5  
+                                in %     65 18.6     0     27.8   15.4   20    
+                                in %…    66 20.5     0     32.1   20      8.33 
       
       
 

@@ -36,6 +36,12 @@ calc_stat_fun.qtab_type_mw <- function(qtab) {
       wt = qtab$p$Weight[[1]],
       stat_fun = qtab$p$stat_fun,
       .by = c("rowvar", "colvar", "colval")
+    ) |> tidyr::complete(
+      rowvar = qtab$p$RowVar,
+      tidyr::nesting(
+        colvar = qtab$d$col_table$ColVariable,
+        colval = qtab$d$col_table$ColValue
+      )
     )
   res$RowContent <- "MStatistics"
   res$rowval <- NA_real_
