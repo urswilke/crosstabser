@@ -4,7 +4,12 @@
 gen_row_table <- function(qtab) {
   # TODO: replaced rbind -> check if the dataframe parts can by simplified (e.g.
   # setting a column to NA shouldn't be necessary anymore...):
+
   row_table <- dplyr::bind_rows(
+    # TODO: find more elegant way to define column order...!
+    # (done in order to keep the csv & xml snapshots more stable...):
+    empty_row_table(),
+    row_table_beginning(qtab),
     row_table_total_line(qtab),
     row_table_valid_mw(qtab),
     row_table_valid_answers_line(qtab),
@@ -13,7 +18,8 @@ gen_row_table <- function(qtab) {
     row_table_stats(qtab),
     row_table_valid_cases(qtab),
     row_table_invalid_vals(qtab),
-    row_table_no_entry(qtab)
+    row_table_no_entry(qtab),
+    row_table_end()
   )
 
   row_table$TabNo <- qtab$p$TabNo
@@ -56,6 +62,32 @@ empty_row_table <- function() {
     RowValue = double()
   )
 }
+
+row_table_beginning <- function(qtab) {
+  RowBegin <- data.frame(RowContent = c("Title", "Header", "Header"))
+  RowBegin$RowTitle3 <- NA_character_
+  RowBegin$RowTitle2 <- NA_character_
+  RowBegin$RowTitle1 <- NA_character_
+  RowBegin$RowTitle1[1] <- paste(qtab$p$Title, collapse = "\n")
+  RowBegin$RowWeighted <- NA_character_
+  RowBegin$RowAbsPercent <- NA_character_
+  RowBegin$RowVariable <- NA_character_
+  RowBegin
+}
+
+row_table_end <- function() {
+  RowEnd <- data.frame(RowContent = c("Empty"))
+  RowEnd$RowTitle3 <- NA_character_
+  RowEnd$RowTitle2 <- NA_character_
+  RowEnd$RowTitle1 <- NA_character_
+  RowEnd$RowWeighted <- NA_character_
+  RowEnd$RowAbsPercent <- NA_character_
+  RowEnd$RowVariable <- NA_character_
+  RowEnd
+}
+
+
+
 row_table_total_line <- function(qtab) {
   UseMethod("row_table_total_line")
 }

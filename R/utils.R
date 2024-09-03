@@ -74,3 +74,7 @@ set_row <- function(mapping, row) {
   }
   row
 }
+
+rm_header_footer <- function(row_table) {
+  row_table[-c(1:3, nrow(row_table)),]
+}

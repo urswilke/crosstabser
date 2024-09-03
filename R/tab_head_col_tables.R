@@ -61,6 +61,6 @@ gen_col_table <- function(mapping) {
   colvar_headers$ColValue <- lapply(colvar_headers$ColVariable, \(x) attr(mapping$dat_mod[[x]], "labels"))
   colvar_headers$ColTitle2 <- lapply(colvar_headers$ColValue, \(x) names(x))
   res <- res |> dplyr::bind_rows(colvar_headers |> tidyr::unnest(c(ColValue, ColTitle2)))
-  res$ColNo <- 1:nrow(res)
+  res$ColNo <- 1:nrow(res) + 3
   res
 }

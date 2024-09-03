@@ -268,7 +268,7 @@ flag_invalids <- function(rowvar, invalids) {
 }
 
 gen_val_table <- function(qtab) {
-  row_table <- qtab$d$row_table
+  row_table <- qtab$d$row_table |> rm_header_footer()
 
   col_table <- qtab$d$col_table
 

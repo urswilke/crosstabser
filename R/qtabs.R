@@ -40,8 +40,9 @@ Qtab <- R6::R6Class("Qtab",
     # TODO: turn function private?
     #' @description todo
     long_tab = function() {
+      self$d$row_table_values <- self$d$row_table |> rm_header_footer()
       self$d$long_tab <- self$d[
-        c("row_table", "col_table", "val_table", "head_table", "tab_table")
+        c("row_table_values", "col_table", "val_table", "head_table", "tab_table")
       ] |>
         purrr::reduce(merge, all.x = TRUE) |>
         tibble::as_tibble()

@@ -45,9 +45,10 @@ str_trunc_pad <- function(string, width = 5) {
 ctl_new_rowid_pillar.pillar_wide_tab <- function(controller, x, width, rowlab_wid1 = 19, rowlab_wid2 = 5, rowlab_wid3 = 5, ...) {
   out <- NextMethod()
   tables <- attr(controller, "d")
-  row_title1 <- tables$row_table$RowTitle1
-  row_title2 <- tables$row_table$RowTitle2
-  row_title3 <- tables$row_table$RowTitle3
+  row_table <- tables$row_table |> rm_header_footer()
+  row_title1 <- row_table$RowTitle1
+  row_title2 <- row_table$RowTitle2
+  row_title3 <- row_table$RowTitle3
   row_title1[is.na(row_title1)] <- ""
   row_title2[is.na(row_title2)] <- ""
   row_title3[is.na(row_title3)] <- ""
