@@ -154,7 +154,7 @@
       GESAMT               abs       1 151     19     75     43     14   
                            abs ⚖     2 151     15     71.5   47.5   17   
       Mittelwert                     3  95.5   95.4   94.2   97.4   95.7 
-                           Mitt…     4   0      0      0      0      0   
+                           Mitt…     4  NA     NA     NA     NA     NA   
       Standardfehler                 5   1.03   3.32   1.65   1.38   2.97
                            Stan…     6   9.11  10.9   10.5    6.10   9.67
       GÜLTIGE FÄLLE        abs       7 151     19     75     43     14   
@@ -170,7 +170,7 @@
       GESAMT               abs       1 151     19     75     43    14   
                            abs ⚖     2 151     15     71.5   47.5  17   
       Mittelwert                     3  94.8   95     93.6  100    93.3 
-                           Mitt…     4   0      0      0      0     0   
+                           Mitt…     4  NA     NA     NA     NA    NA   
       Standardfehler                 5   2.35   5      3.88   0     6.67
                            Stan…     6   8.73   9.43   9.38   0    11.0 
       GÜLTIGE FÄLLE        abs       7 151     19     75     43    14   

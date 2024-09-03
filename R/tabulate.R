@@ -278,11 +278,11 @@ gen_val_table <- function(qtab) {
     merge(col_table |> dplyr::rename(colval = ColValue, colvar = ColVariable))
 
   # HACK: replace NA with 0 in the table data (replace implicit NA with explicit 0....)
-  # TODO: talk with Wolf if there are exceptions where not to put 0 instead of NA...?!!
   res[c("RowNo", "ColNo", "value")] |> tidyr::complete(
     RowNo = row_table$RowNo,
     ColNo = col_table$ColNo,
-    fill = list(value = 0)
+    fill = list(value = 0),
+    explicit = FALSE
   )
 }
 
