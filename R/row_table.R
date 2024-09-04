@@ -22,8 +22,9 @@ gen_row_table <- function(qtab) {
     row_table_end()
   )
 
-  row_table$TabNo <- qtab$p$TabNo
+  row_table$TabNo <- qtab$p$i_tab
   row_table$RowNo <- seq_len(nrow(row_table))
+  row_table$QuestNo <- qtab$p$Abbreviation
 
   if (!is.null(qtab$p$Weight[[1]])) {
     row_table$RowWeighted <- "Weighted"
@@ -69,8 +70,8 @@ row_table_beginning <- function(qtab) {
   RowBegin$RowTitle2 <- NA_character_
   RowBegin$RowTitle1 <- NA_character_
   RowBegin$RowTitle1[1] <- paste(qtab$p$Title, collapse = "\n")
-  RowBegin$RowWeighted <- NA_character_
-  RowBegin$RowAbsPercent <- NA_character_
+  RowBegin$RowWeighted <- ""
+  RowBegin$RowAbsPercent <- ""
   RowBegin$RowVariable <- NA_character_
   RowBegin
 }

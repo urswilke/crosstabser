@@ -15,8 +15,9 @@
       <Line>
         <RowNo>1</RowNo>
         <RowContent>Title</RowContent>
-        <RowAbsPercent/>
+        <RowAbsPercent></RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?</RowTitle1>
         <RowTitle2/>
         <RowTitle3/>
@@ -24,12 +25,14 @@
         <RowDecimals/>
         <RowVariable/>
         <RowValue/>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>2</RowNo>
         <RowContent>Header</RowContent>
-        <RowAbsPercent/>
+        <RowAbsPercent></RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1/>
         <RowTitle2/>
         <RowTitle3/>
@@ -37,12 +40,14 @@
         <RowDecimals/>
         <RowVariable/>
         <RowValue/>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>3</RowNo>
         <RowContent>Header</RowContent>
-        <RowAbsPercent/>
+        <RowAbsPercent></RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1/>
         <RowTitle2/>
         <RowTitle3/>
@@ -50,12 +55,14 @@
         <RowDecimals/>
         <RowVariable/>
         <RowValue/>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>4</RowNo>
         <RowContent>Total</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>GESAMT</RowTitle1>
         <RowTitle2>GESAMT</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -63,12 +70,14 @@
         <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>1</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>5</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>1 Beschäftigter</RowTitle1>
         <RowTitle2>1 Beschäftigter</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -76,12 +85,14 @@
         <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>1</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>6</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>1 Beschäftigter</RowTitle1>
         <RowTitle2>1 Beschäftigter</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -89,12 +100,14 @@
         <RowDecimals>1</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>1</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>7</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>2 - 4 Beschäftigte</RowTitle1>
         <RowTitle2>2 - 4 Beschäftigte</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -102,12 +115,14 @@
         <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>2</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>8</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>2 - 4 Beschäftigte</RowTitle1>
         <RowTitle2>2 - 4 Beschäftigte</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -115,12 +130,14 @@
         <RowDecimals>1</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>2</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>9</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>5 - 9 Beschäftigte</RowTitle1>
         <RowTitle2>5 - 9 Beschäftigte</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -128,12 +145,14 @@
         <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>3</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>10</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>5 - 9 Beschäftigte</RowTitle1>
         <RowTitle2>5 - 9 Beschäftigte</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -141,12 +160,14 @@
         <RowDecimals>1</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>3</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>11</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>10 - 19 Beschäftigte</RowTitle1>
         <RowTitle2>10 - 19 Beschäftigte</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -154,12 +175,14 @@
         <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>4</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>12</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>10 - 19 Beschäftigte</RowTitle1>
         <RowTitle2>10 - 19 Beschäftigte</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -167,12 +190,14 @@
         <RowDecimals>1</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>4</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>13</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>20 Beschäftigte und mehr</RowTitle1>
         <RowTitle2>20 Beschäftigte und mehr</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -180,12 +205,14 @@
         <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>5</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>14</RowNo>
         <RowContent>Detail</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>20 Beschäftigte und mehr</RowTitle1>
         <RowTitle2>20 Beschäftigte und mehr</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -193,12 +220,14 @@
         <RowDecimals>1</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>5</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>15</RowNo>
         <RowContent>Valid</RowContent>
         <RowAbsPercent>Abs</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>GÜLTIGE FÄLLE</RowTitle1>
         <RowTitle2>GÜLTIGE FÄLLE</RowTitle2>
         <RowTitle3>abs</RowTitle3>
@@ -206,12 +235,14 @@
         <RowDecimals>0</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>1</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>16</RowNo>
         <RowContent>Valid</RowContent>
         <RowAbsPercent>Percent</RowAbsPercent>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1>GÜLTIGE FÄLLE</RowTitle1>
         <RowTitle2>GÜLTIGE FÄLLE</RowTitle2>
         <RowTitle3>in %</RowTitle3>
@@ -219,12 +250,14 @@
         <RowDecimals>1</RowDecimals>
         <RowVariable>q1</RowVariable>
         <RowValue>1</RowValue>
+        <QuestNo>Q1</QuestNo>
       </Line>
       <Line>
         <RowNo>17</RowNo>
         <RowContent>Empty</RowContent>
         <RowAbsPercent/>
         <RowWeighted>Unweighted</RowWeighted>
+        <TabNo>1</TabNo>
         <RowTitle1/>
         <RowTitle2/>
         <RowTitle3/>
@@ -232,6 +265,7 @@
         <RowDecimals/>
         <RowVariable/>
         <RowValue/>
+        <QuestNo>Q1</QuestNo>
       </Line>
     </Row>
     <Head>
