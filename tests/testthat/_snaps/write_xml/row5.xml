@@ -285,7 +285,7 @@
         <ColNo>4</ColNo>
         <HeadNo>2</HeadNo>
         <ColTitle1>GESAMT</ColTitle1>
-        <ColTitle2/>
+        <ColTitle2> </ColTitle2>
         <ColVariable>DC#STICHPROBE</ColVariable>
         <ColValue>1</ColValue>
       </Line>

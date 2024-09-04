@@ -45,7 +45,8 @@ gen_col_table <- function(mapping) {
     ColVariable = character(),
     ColValue = integer(),
   )
-  res[1, c("ColNo", "HeadNo", "ColTitle1", "ColVariable", "ColValue")] <- list(1L, 2L, mapping$options$l_lexikon["cTabGesamt"], "DC#STICHPROBE", 1L)
+  # TODO: ask Wolf if " " is necessary for ColTitle2...:
+  res[1, c("ColNo", "HeadNo", "ColTitle1", "ColTitle2", "ColVariable", "ColValue")] <- list(1L, 2L, mapping$options$l_lexikon["cTabGesamt"], " ", "DC#STICHPROBE", 1L)
 
   head_table <- mapping$qsheet$head_table
   if (nrow(head_table) == 1) {
