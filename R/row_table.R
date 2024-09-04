@@ -333,8 +333,8 @@ row_table_summary.qtab_type_cat <- function(qtab) {
 
   n_vals <- nrow(row_table) / 2
 
-  row_table$RowTitle1 <- qtab$m$options$l_lexikon[["cTabZsfg"]]
-  row_table[row_table$i_catrec > 1,]$RowTitle1 <- paste(
+  row_table$RowTitle1 <- paste0(qtab$m$options$l_lexikon[["cTabZsfg"]], " ")
+  row_table[row_table$i_catrec > 1,]$RowTitle1 <- paste0(
     row_table[row_table$i_catrec > 1,]$RowTitle1,
     row_table[row_table$i_catrec > 1,]$i_catrec
   )
