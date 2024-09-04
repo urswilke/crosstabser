@@ -322,10 +322,10 @@ aggregate_5_tables <- function(tabula) {
   res <- five_table_names |> purrr::set_names() |> lapply(\(x) dplyr::bind_rows(l |> purrr::map(x)))
   previous_rows <- res$row_table |>
     dplyr::group_by(QuestNo, TabNo) |>
-    dplyr::summarise(n = n(), .groups = "drop_last") |>
-    dplyr::mutate(previous_rows = lag(n, default = 0L) |> cumsum()) |>
+    dplyr::summarise(n = dplyr::n(), .groups = "drop_last") |>
+    dplyr::mutate(previous_rows = dplyr::lag(n, default = 0L) |> cumsum()) |>
     dplyr::pull(previous_rows)
-  res$row_table <- map2_dfr(
+  res$row_table <- purrr::map2_dfr(
     res$row_table |> dplyr::group_by(QuestNo, TabNo) |> dplyr::group_split(),
     previous_rows,
     \(x, y) {x$RowNo <- x$RowNo + y; x}
