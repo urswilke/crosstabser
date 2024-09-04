@@ -1,14 +1,14 @@
 "TabNo","RowNo","ColNo","Value","QuestNo","HeadNo","RowContent","RowAbsPercent","RowWeighted","RowTitle1","RowTitle2","RowTitle3","RowFormat","RowDecimals","RowVariable","RowValue","ColTitle1","ColTitle2","ColVariable","ColValue","HeadName","HeadTitle","TabName","TabType","TabTitle","TabCaption","ColValidCases","ColMean"
-1,4,1,151,"Q1",2,"Total","Abs","Unweighted","GESAMT","GESAMT","abs",NA,0,"q1",1,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,5,1,0,"Q1",2,"Detail","Abs","Unweighted","1 Beschäftigter","1 Beschäftigter","abs",NA,0,"q1",1,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,6,1,0,"Q1",2,"Detail","Percent","Unweighted","1 Beschäftigter","1 Beschäftigter","in %",NA,1,"q1",1,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,7,1,49,"Q1",2,"Detail","Abs","Unweighted","2 - 4 Beschäftigte","2 - 4 Beschäftigte","abs",NA,0,"q1",2,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,8,1,32.4503311258278,"Q1",2,"Detail","Percent","Unweighted","2 - 4 Beschäftigte","2 - 4 Beschäftigte","in %",NA,1,"q1",2,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,9,1,63,"Q1",2,"Detail","Abs","Unweighted","5 - 9 Beschäftigte","5 - 9 Beschäftigte","abs",NA,0,"q1",3,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,10,1,41.7218543046358,"Q1",2,"Detail","Percent","Unweighted","5 - 9 Beschäftigte","5 - 9 Beschäftigte","in %",NA,1,"q1",3,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,11,1,39,"Q1",2,"Detail","Abs","Unweighted","10 - 19 Beschäftigte","10 - 19 Beschäftigte","abs",NA,0,"q1",4,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,12,1,25.8278145695364,"Q1",2,"Detail","Percent","Unweighted","10 - 19 Beschäftigte","10 - 19 Beschäftigte","in %",NA,1,"q1",4,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,13,1,0,"Q1",2,"Detail","Abs","Unweighted","20 Beschäftigte und mehr","20 Beschäftigte und mehr","abs",NA,0,"q1",5,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,14,1,0,"Q1",2,"Detail","Percent","Unweighted","20 Beschäftigte und mehr","20 Beschäftigte und mehr","in %",NA,1,"q1",5,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,15,1,151,"Q1",2,"Valid","Abs","Unweighted","GÜLTIGE FÄLLE","GÜLTIGE FÄLLE","abs",NA,0,"q1",1,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
-1,16,1,100,"Q1",2,"Valid","Percent","Unweighted","GÜLTIGE FÄLLE","GÜLTIGE FÄLLE","in %",NA,1,"q1",1,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,NA,NA,NA,NA,151,NA
+1,4,1,151,"Q1",2,"Total","Abs","Unweighted","GESAMT","GESAMT","abs",NA,0,"q1",1,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,5,1,0,"Q1",2,"Detail","Abs","Unweighted","1 Beschäftigter","1 Beschäftigter","abs",NA,0,"q1",1,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,6,1,0,"Q1",2,"Detail","Percent","Unweighted","1 Beschäftigter","1 Beschäftigter","in %",NA,1,"q1",1,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,7,1,49,"Q1",2,"Detail","Abs","Unweighted","2 - 4 Beschäftigte","2 - 4 Beschäftigte","abs",NA,0,"q1",2,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,8,1,32.4503311258278,"Q1",2,"Detail","Percent","Unweighted","2 - 4 Beschäftigte","2 - 4 Beschäftigte","in %",NA,1,"q1",2,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,9,1,63,"Q1",2,"Detail","Abs","Unweighted","5 - 9 Beschäftigte","5 - 9 Beschäftigte","abs",NA,0,"q1",3,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,10,1,41.7218543046358,"Q1",2,"Detail","Percent","Unweighted","5 - 9 Beschäftigte","5 - 9 Beschäftigte","in %",NA,1,"q1",3,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,11,1,39,"Q1",2,"Detail","Abs","Unweighted","10 - 19 Beschäftigte","10 - 19 Beschäftigte","abs",NA,0,"q1",4,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,12,1,25.8278145695364,"Q1",2,"Detail","Percent","Unweighted","10 - 19 Beschäftigte","10 - 19 Beschäftigte","in %",NA,1,"q1",4,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,13,1,0,"Q1",2,"Detail","Abs","Unweighted","20 Beschäftigte und mehr","20 Beschäftigte und mehr","abs",NA,0,"q1",5,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,14,1,0,"Q1",2,"Detail","Percent","Unweighted","20 Beschäftigte und mehr","20 Beschäftigte und mehr","in %",NA,1,"q1",5,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,15,1,151,"Q1",2,"Valid","Abs","Unweighted","GÜLTIGE FÄLLE","GÜLTIGE FÄLLE","abs",NA,0,"q1",1,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA
+1,16,1,100,"Q1",2,"Valid","Percent","Unweighted","GÜLTIGE FÄLLE","GÜLTIGE FÄLLE","in %",NA,1,"q1",1,"GESAMT",NA,"DC#STICHPROBE",1,NA,NA,"cat#Q1@1","CAT","1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?",NA,151,NA

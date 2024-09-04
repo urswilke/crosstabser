@@ -3,7 +3,7 @@ gen_tab_table <- function(params) {
     TabNo = params$i_tab,
     TabName = paste0(params$Type, "#", params$Abbreviation  %||% "", "@", params$i_tab),
     TabType = params$Type |> toupper(),
-    QuestNo = params$row,
+    QuestNo = params$Abbreviation,
     TabTitle = params$Title |> paste(collapse = "\n"),
     TabCaption = params$Fussnote %||% NA_character_
   )
