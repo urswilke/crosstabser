@@ -16,11 +16,11 @@
         <RowNo>1</RowNo>
         <RowContent>Title</RowContent>
         <RowAbsPercent></RowAbsPercent>
-        <RowWeighted>Unweighted</RowWeighted>
+        <RowWeighted></RowWeighted>
         <TabNo>1</TabNo>
         <RowTitle1>1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?</RowTitle1>
-        <RowTitle2/>
-        <RowTitle3/>
+        <RowTitle2></RowTitle2>
+        <RowTitle3></RowTitle3>
         <RowFormat/>
         <RowDecimals/>
         <RowVariable/>
@@ -31,11 +31,11 @@
         <RowNo>2</RowNo>
         <RowContent>Header</RowContent>
         <RowAbsPercent></RowAbsPercent>
-        <RowWeighted>Unweighted</RowWeighted>
+        <RowWeighted></RowWeighted>
         <TabNo>1</TabNo>
         <RowTitle1/>
-        <RowTitle2/>
-        <RowTitle3/>
+        <RowTitle2></RowTitle2>
+        <RowTitle3></RowTitle3>
         <RowFormat/>
         <RowDecimals/>
         <RowVariable/>
@@ -46,11 +46,11 @@
         <RowNo>3</RowNo>
         <RowContent>Header</RowContent>
         <RowAbsPercent></RowAbsPercent>
-        <RowWeighted>Unweighted</RowWeighted>
+        <RowWeighted></RowWeighted>
         <TabNo>1</TabNo>
         <RowTitle1/>
-        <RowTitle2/>
-        <RowTitle3/>
+        <RowTitle2></RowTitle2>
+        <RowTitle3></RowTitle3>
         <RowFormat/>
         <RowDecimals/>
         <RowVariable/>
@@ -255,12 +255,12 @@
       <Line>
         <RowNo>17</RowNo>
         <RowContent>Empty</RowContent>
-        <RowAbsPercent/>
-        <RowWeighted>Unweighted</RowWeighted>
+        <RowAbsPercent></RowAbsPercent>
+        <RowWeighted></RowWeighted>
         <TabNo>1</TabNo>
-        <RowTitle1/>
-        <RowTitle2/>
-        <RowTitle3/>
+        <RowTitle1></RowTitle1>
+        <RowTitle2></RowTitle2>
+        <RowTitle3></RowTitle3>
         <RowFormat/>
         <RowDecimals/>
         <RowVariable/>

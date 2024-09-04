@@ -5,11 +5,7 @@ gen_row_table <- function(qtab) {
   # TODO: replaced rbind -> check if the dataframe parts can by simplified (e.g.
   # setting a column to NA shouldn't be necessary anymore...):
 
-  row_table <- dplyr::bind_rows(
-    # TODO: find more elegant way to define column order...!
-    # (done in order to keep the csv & xml snapshots more stable...):
-    empty_row_table(),
-    row_table_beginning(qtab),
+  value_row_table <- dplyr::bind_rows(
     row_table_total_line(qtab),
     row_table_valid_mw(qtab),
     row_table_valid_answers_line(qtab),
@@ -18,27 +14,33 @@ gen_row_table <- function(qtab) {
     row_table_stats(qtab),
     row_table_valid_cases(qtab),
     row_table_invalid_vals(qtab),
-    row_table_no_entry(qtab),
+    row_table_no_entry(qtab)
+  )
+
+  if (!is.null(qtab$p$Weight[[1]])) {
+    value_row_table$RowWeighted <- "Weighted"
+  } else {
+    value_row_table$RowWeighted <- "Unweighted"
+  }
+  if (qtab$p$Unweight) {
+    row_table_unweighted <- value_row_table
+    value_row_table$RowTitle3 <- paste(value_row_table$RowTitle3, qtab$m$options$l_lexikon["cTabWeighted"])
+    row_table_unweighted$RowWeighted <- "Unweighted"
+    value_row_table <- rbind(row_table_unweighted, value_row_table)
+    value_row_table <- value_row_table[order(value_row_table$RowNo),]
+  }
+  row_table <- dplyr::bind_rows(
+    # TODO: find more elegant way to define column order...!
+    # (done in order to keep the csv & xml snapshots more stable...):
+    empty_row_table(),
+    row_table_beginning(qtab),
+    value_row_table,
     row_table_end()
   )
 
   row_table$TabNo <- qtab$p$i_tab
   row_table$RowNo <- seq_len(nrow(row_table))
   row_table$QuestNo <- qtab$p$Abbreviation
-
-  if (!is.null(qtab$p$Weight[[1]])) {
-    row_table$RowWeighted <- "Weighted"
-  } else {
-    row_table$RowWeighted <- "Unweighted"
-  }
-  if (qtab$p$Unweight) {
-    row_table_unweighted <- row_table
-    row_table$RowTitle3 <- paste(row_table$RowTitle3, qtab$m$options$l_lexikon["cTabWeighted"])
-    row_table_unweighted$RowWeighted <- "Unweighted"
-    row_table <- rbind(row_table_unweighted, row_table)
-    row_table <- row_table[order(row_table$RowNo),]
-    row_table$RowNo <- seq_len(nrow(row_table))
-  }
 
   row_table
 }
@@ -66,8 +68,8 @@ empty_row_table <- function() {
 
 row_table_beginning <- function(qtab) {
   RowBegin <- data.frame(RowContent = c("Title", "Header", "Header"))
-  RowBegin$RowTitle3 <- NA_character_
-  RowBegin$RowTitle2 <- NA_character_
+  RowBegin$RowTitle3 <- ""
+  RowBegin$RowTitle2 <- ""
   RowBegin$RowTitle1 <- NA_character_
   RowBegin$RowTitle1[1] <- paste(qtab$p$Title, collapse = "\n")
   RowBegin$RowWeighted <- ""
@@ -78,11 +80,11 @@ row_table_beginning <- function(qtab) {
 
 row_table_end <- function() {
   RowEnd <- data.frame(RowContent = c("Empty"))
-  RowEnd$RowTitle3 <- NA_character_
-  RowEnd$RowTitle2 <- NA_character_
-  RowEnd$RowTitle1 <- NA_character_
-  RowEnd$RowWeighted <- NA_character_
-  RowEnd$RowAbsPercent <- NA_character_
+  RowEnd$RowTitle3 <- ""
+  RowEnd$RowTitle2 <- ""
+  RowEnd$RowTitle1 <- ""
+  RowEnd$RowWeighted <- ""
+  RowEnd$RowAbsPercent <- ""
   RowEnd$RowVariable <- NA_character_
   RowEnd
 }
