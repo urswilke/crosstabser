@@ -330,5 +330,6 @@ aggregate_5_tables <- function(tabula) {
     previous_rows,
     \(x, y) {x$RowNo <- x$RowNo + y; x}
   )
+  res$col_table <- l[[1]]$col_table
   res
 }
