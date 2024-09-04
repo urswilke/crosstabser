@@ -75,6 +75,9 @@ row_table_beginning <- function(qtab) {
   RowBegin$RowWeighted <- ""
   RowBegin$RowAbsPercent <- ""
   RowBegin$RowVariable <- NA_character_
+  if (!is.null(qtab$p$Fussnote)) {
+    RowBegin$RowTitle1[2:3] <- qtab$p$Fussnote
+  }
   RowBegin
 }
 
