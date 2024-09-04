@@ -314,3 +314,21 @@ gen_long_tab_data = function(mapping) {
     dplyr::left_join(df_total_values, by = dplyr::join_by(TabNo, ColNo, QuestNo)) |>
     dplyr::left_join(df_mean_values, by = dplyr::join_by(TabNo, ColNo, QuestNo))
 }
+
+
+aggregate_5_tables <- function(tabula) {
+  five_table_names <- c("row_table", "col_table", "val_table", "head_table", "tab_table")
+  l <- tabula$qrows |> lapply(\(x) x$qtabs$obj) |> unlist(recursive = F) |> lapply(\(x) x$d[five_table_names])
+  res <- five_table_names |> purrr::set_names() |> lapply(\(x) dplyr::bind_rows(l |> purrr::map(x)))
+  previous_rows <- res$row_table |>
+    dplyr::group_by(QuestNo, TabNo) |>
+    dplyr::summarise(n = n(), .groups = "drop_last") |>
+    dplyr::mutate(previous_rows = lag(n, default = 0L) |> cumsum()) |>
+    dplyr::pull(previous_rows)
+  res$row_table <- map2_dfr(
+    res$row_table |> dplyr::group_by(QuestNo, TabNo) |> dplyr::group_split(),
+    previous_rows,
+    \(x, y) {x$RowNo <- x$RowNo + y; x}
+  )
+  res
+}
