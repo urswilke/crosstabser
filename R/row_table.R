@@ -23,6 +23,7 @@ gen_row_table <- function(qtab) {
     value_row_table$RowWeighted <- "Unweighted"
   }
   if (qtab$p$Unweight) {
+    value_row_table$RowNo <- seq_len(nrow(value_row_table))
     row_table_unweighted <- value_row_table
     value_row_table$RowTitle3 <- paste(value_row_table$RowTitle3, qtab$m$options$l_lexikon["cTabWeighted"])
     row_table_unweighted$RowWeighted <- "Unweighted"
