@@ -1,3 +1,11 @@
+# TODO: use methods instead of passing fields around / using helper functions...!
+# ee.g. for row_table & col_table where we want to acces either the whole table, i.e.
+# - not using rm_header_footer()`` / referencing col_table_all
+# or only the rows referencing labels, i.e.
+# - using rm_header_footer()`` / referencing col_table
+# => use methods Qtab$row_table() / Qtab$col_table() with one optional argument `rm_labels = TRUE/FALSE` instead
+# something like this probably makes sense in a lot more places!
+
 #' Qtab
 #' @description Qtab
 #' @field p parameters
