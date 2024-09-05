@@ -1,6 +1,6 @@
 gen_col_tables <- function(mapping) {
   mapping$qsheet$head_table <- gen_head_table(mapping)
-  mapping$qsheet$col_table <- gen_col_table(mapping)
+  gen_col_table(mapping)
 }
 
 get_raw_data <- function(qtab) {
@@ -268,7 +268,7 @@ flag_invalids <- function(rowvar, invalids) {
 }
 
 gen_val_table <- function(qtab) {
-  row_table <- qtab$d$row_table
+  row_table <- qtab$d$row_table |> rm_header_footer()
 
   col_table <- qtab$d$col_table
 
@@ -313,4 +313,23 @@ gen_long_tab_data = function(mapping) {
   mapping$long_tab_data <- res |>
     dplyr::left_join(df_total_values, by = dplyr::join_by(TabNo, ColNo, QuestNo)) |>
     dplyr::left_join(df_mean_values, by = dplyr::join_by(TabNo, ColNo, QuestNo))
+}
+
+
+aggregate_5_tables <- function(tabula) {
+  five_table_names <- c("row_table", "col_table_all", "val_table", "head_table", "tab_table")
+  l <- tabula$qrows |> lapply(\(x) x$qtabs$obj) |> unlist(recursive = F) |> lapply(\(x) x$d[five_table_names])
+  res <- five_table_names |> purrr::set_names() |> lapply(\(x) dplyr::bind_rows(l |> purrr::map(x)))
+  previous_rows <- res$row_table |>
+    dplyr::group_by(QuestNo, TabNo) |>
+    dplyr::summarise(n = dplyr::n(), .groups = "drop_last") |>
+    dplyr::mutate(previous_rows = dplyr::lag(n, default = 0L) |> cumsum()) |>
+    dplyr::pull(previous_rows)
+  res$row_table <- purrr::map2_dfr(
+    res$row_table |> dplyr::group_by(QuestNo, TabNo) |> dplyr::group_split(),
+    previous_rows,
+    \(x, y) {x$RowNo <- x$RowNo + y; x}
+  )
+  res$col_table_all <- l[[1]]$col_table_all
+  res
 }

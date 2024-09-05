@@ -64,7 +64,8 @@ extract_scenario_options <- function(df_macro_raw, v_scenario) {
     ColVar |> stringr::str_split_1("[ \t]+")
   }
 
-  res$Unguelt <- param_list[c("Miss1", "Miss2", "Miss3")] |> as.numeric()
+  # TODO: also allow ranges...:
+  res$Unguelt <- param_list[["Invalid"]] |> split_cell() |> _[[1]] |> as.numeric()
   res$Weight <- param_list[["Weight"]]
   if (!is.na(param_list["Unweight"]) && param_list["Unweight"] == "TRUE") {
     res$Unweight <- TRUE

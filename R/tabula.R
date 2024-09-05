@@ -66,6 +66,7 @@ Tabula <- R6::R6Class("Tabula",
     qsheet = list(),
     qtabs = list(),
     qrows = list(),
+    crosstabs = list(),
     #' @description Initialize a Tabula object
     #'
     initialize = function(dat,
@@ -81,6 +82,10 @@ Tabula <- R6::R6Class("Tabula",
     },
     calc_qtabs = function(row = NULL) {
       parse_qsheet(self, row)
+      invisible(self)
+    },
+    aggregate_5_tables = function() {
+      self$crosstabs$data <- aggregate_5_tables(self)
       invisible(self)
     },
     xml = function(row = NULL) {

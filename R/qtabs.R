@@ -1,3 +1,11 @@
+# TODO: use methods instead of passing fields around / using helper functions...!
+# ee.g. for row_table & col_table where we want to acces either the whole table, i.e.
+# - not using rm_header_footer()`` / referencing col_table_all
+# or only the rows referencing labels, i.e.
+# - using rm_header_footer()`` / referencing col_table
+# => use methods Qtab$row_table() / Qtab$col_table() with one optional argument `rm_labels = TRUE/FALSE` instead
+# something like this probably makes sense in a lot more places!
+
 #' Qtab
 #' @description Qtab
 #' @field p parameters
@@ -23,6 +31,7 @@ Qtab <- R6::R6Class("Qtab",
 
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
+      self$d$col_table_all <- mapping$qsheet$col_table_all
 
       self$d$tab_table <- gen_tab_table(self$p)
 
@@ -40,8 +49,9 @@ Qtab <- R6::R6Class("Qtab",
     # TODO: turn function private?
     #' @description todo
     long_tab = function() {
+      self$d$row_table_values <- self$d$row_table |> rm_header_footer()
       self$d$long_tab <- self$d[
-        c("row_table", "col_table", "val_table", "head_table", "tab_table")
+        c("row_table_values", "col_table", "val_table", "head_table", "tab_table")
       ] |>
         purrr::reduce(merge, all.x = TRUE) |>
         tibble::as_tibble()

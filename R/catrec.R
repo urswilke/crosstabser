@@ -25,9 +25,9 @@ split_cat_rec_string <- function(cat_rec_string) {
 }
 
 split_cat_lab_string <- function(cat_lab_string) {
-  cat_lab_exprs <- stringr::str_extract_all(cat_lab_string, "\\d+ *'.*?'")[[1]]
+  cat_lab_exprs <- stringr::str_extract_all(cat_lab_string, "\\d+ *['\"].*?['\"]")[[1]]
   cat_lab_nums <- cat_lab_exprs |> stringr::str_extract("^\\d+") |> as.numeric()
-  cat_lab_labs <- cat_lab_exprs |> stringr::str_extract("(?<=').*(?=')")
+  cat_lab_labs <- cat_lab_exprs |> stringr::str_extract("(?<=['\"]).*(?=['\"])")
   purrr::set_names(cat_lab_nums, cat_lab_labs)
 }
 
