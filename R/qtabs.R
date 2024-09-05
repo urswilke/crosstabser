@@ -23,6 +23,7 @@ Qtab <- R6::R6Class("Qtab",
 
       self$d$head_table <- mapping$qsheet$head_table
       self$d$col_table <- mapping$qsheet$col_table
+      self$d$col_table_all <- mapping$qsheet$col_table_all
 
       self$d$tab_table <- gen_tab_table(self$p)
 

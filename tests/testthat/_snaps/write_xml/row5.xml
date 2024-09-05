@@ -270,54 +270,54 @@
     </Row>
     <Head>
       <Line>
-        <HeadNo>1</HeadNo>
+        <HeadNo>2</HeadNo>
         <HeadName>DC#STICHPROBE</HeadName>
         <HeadTitle>GESAMT</HeadTitle>
       </Line>
       <Line>
-        <HeadNo>2</HeadNo>
+        <HeadNo>3</HeadNo>
         <HeadName>kregio</HeadName>
         <HeadTitle>Region</HeadTitle>
       </Line>
     </Head>
     <Col>
       <Line>
-        <ColNo>4</ColNo>
         <HeadNo>2</HeadNo>
         <ColTitle1>GESAMT</ColTitle1>
         <ColTitle2> </ColTitle2>
+        <ColNo>4</ColNo>
         <ColVariable>DC#STICHPROBE</ColVariable>
         <ColValue>1</ColValue>
       </Line>
       <Line>
-        <ColNo>5</ColNo>
-        <HeadNo>2</HeadNo>
+        <HeadNo>3</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Asien</ColTitle2>
+        <ColNo>5</ColNo>
         <ColVariable>kregio</ColVariable>
         <ColValue>1</ColValue>
       </Line>
       <Line>
-        <ColNo>6</ColNo>
-        <HeadNo>2</HeadNo>
+        <HeadNo>3</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Europa</ColTitle2>
+        <ColNo>6</ColNo>
         <ColVariable>kregio</ColVariable>
         <ColValue>2</ColValue>
       </Line>
       <Line>
-        <ColNo>7</ColNo>
-        <HeadNo>2</HeadNo>
+        <HeadNo>3</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Nordamerika</ColTitle2>
+        <ColNo>7</ColNo>
         <ColVariable>kregio</ColVariable>
         <ColValue>3</ColValue>
       </Line>
       <Line>
-        <ColNo>8</ColNo>
-        <HeadNo>2</HeadNo>
+        <HeadNo>3</HeadNo>
         <ColTitle1>Region</ColTitle1>
         <ColTitle2>Pazifik</ColTitle2>
+        <ColNo>8</ColNo>
         <ColVariable>kregio</ColVariable>
         <ColValue>4</ColValue>
       </Line>

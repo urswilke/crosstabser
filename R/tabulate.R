@@ -1,6 +1,6 @@
 gen_col_tables <- function(mapping) {
   mapping$qsheet$head_table <- gen_head_table(mapping)
-  mapping$qsheet$col_table <- gen_col_table(mapping)
+  gen_col_table(mapping)
 }
 
 get_raw_data <- function(qtab) {
@@ -317,7 +317,7 @@ gen_long_tab_data = function(mapping) {
 
 
 aggregate_5_tables <- function(tabula) {
-  five_table_names <- c("row_table", "col_table", "val_table", "head_table", "tab_table")
+  five_table_names <- c("row_table", "col_table_all", "val_table", "head_table", "tab_table")
   l <- tabula$qrows |> lapply(\(x) x$qtabs$obj) |> unlist(recursive = F) |> lapply(\(x) x$d[five_table_names])
   res <- five_table_names |> purrr::set_names() |> lapply(\(x) dplyr::bind_rows(l |> purrr::map(x)))
   previous_rows <- res$row_table |>
@@ -330,6 +330,6 @@ aggregate_5_tables <- function(tabula) {
     previous_rows,
     \(x, y) {x$RowNo <- x$RowNo + y; x}
   )
-  res$col_table <- l[[1]]$col_table
+  res$col_table_all <- l[[1]]$col_table_all
   res
 }
