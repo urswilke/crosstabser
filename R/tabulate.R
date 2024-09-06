@@ -316,20 +316,34 @@ gen_long_tab_data = function(mapping) {
 }
 
 
+five_table_names <- c("row_table", "col_table_all", "val_table", "head_table", "tab_table")
+frame_table_parts <- function(tabula) {
+  qrow <- tabula$qrows
+  qtab <- qrow |> lapply(\(x) x$qtabs)
+  QuestNo <- qrow |> purrr::map_chr(\(x) x$p$Abbreviation) |> forcats::as_factor()
+  dplyr::tibble(QuestNo, qtab) |>
+    tidyr::unnest_longer(qtab) %>%
+    dplyr::mutate(l = purrr::map(qtab$obj, \(x) x$d[five_table_names])) |> tidyr::unnest_wider(l)
+}
+
 aggregate_5_tables <- function(tabula) {
-  five_table_names <- c("row_table", "col_table_all", "val_table", "head_table", "tab_table")
-  l <- tabula$qrows |> lapply(\(x) x$qtabs$obj) |> unlist(recursive = F) |> lapply(\(x) x$d[five_table_names])
-  res <- five_table_names |> purrr::set_names() |> lapply(\(x) dplyr::bind_rows(l |> purrr::map(x)))
-  previous_rows <- res$row_table |>
-    dplyr::group_by(QuestNo, TabNo) |>
-    dplyr::summarise(n = dplyr::n(), .groups = "drop_last") |>
-    dplyr::mutate(previous_rows = dplyr::lag(n, default = 0L) |> cumsum()) |>
-    dplyr::pull(previous_rows)
-  res$row_table <- purrr::map2_dfr(
-    res$row_table |> dplyr::group_by(QuestNo, TabNo) |> dplyr::group_split(),
-    previous_rows,
-    \(x, y) {x$RowNo <- x$RowNo + y; x}
+  # TODO: remove older data structures and refactor the code using `table_parts`...!
+  table_parts <- frame_table_parts(tabula)
+  tabula$crosstabs$table_parts <- table_parts
+
+  tab_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$tab_table)
+  val_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
+  row_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
+  head_table <- table_parts$qtab$obj[[1]]$d$head_table
+  col_table_all <- table_parts$qtab$obj[[1]]$d$col_table_all
+
+  tabula$crosstabs$data <- tibble::lst(
+    tab_table,
+    val_table,
+    row_table,
+    head_table,
+    col_table_all
   )
-  res$col_table_all <- l[[1]]$col_table_all
-  res
+
+
 }

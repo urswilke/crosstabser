@@ -85,7 +85,7 @@ Tabula <- R6::R6Class("Tabula",
       invisible(self)
     },
     aggregate_5_tables = function() {
-      self$crosstabs$data <- aggregate_5_tables(self)
+      aggregate_5_tables(self)
       invisible(self)
     },
     xml = function(row = NULL) {
