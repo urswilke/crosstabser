@@ -13,19 +13,6 @@ Qrow <- R6::R6Class(
       obj <- params |>
         lapply(\(x) Qtab$new(x, mapping))
       self$qtabs <- tibble::tibble(params, obj)
-    },
-    xml = function(
-      file_name = paste0(
-        self$m$options$V_XMLName,
-        # scen_name_suffix,
-        self$p$row,
-        ".xml"
-      )
-    ) {
-      self$qtabs$obj |>
-        lapply(gen_5_tables) |>
-        write_xml_file(file_name)
-      invisible(self)
     }
   )
 )

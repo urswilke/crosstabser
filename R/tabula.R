@@ -89,10 +89,6 @@ Tabula <- R6::R6Class("Tabula",
       add_columns_for_tablebook(self)
       invisible(self)
     },
-    xml = function(row = NULL) {
-      write_xml_tables_from_qrows(self, row)
-      invisible(self)
-    },
     merge_long_tab_data = function() {
       self$long_tab_data <- gen_long_tab_data(self)
       invisible(self)

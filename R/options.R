@@ -12,11 +12,6 @@ setOptions <- function(mapping_file) {
     namedRegion = "V_Language",
     colNames = FALSE
   )[[1]]
-  V_XMLName <- openxlsx::read.xlsx(
-    mapping_file,
-    namedRegion = "V_XMLName",
-    colNames = FALSE
-  )[[1]]
   df_macro_raw <- readxl::read_excel(
     mapping_file,
     sheet = "Macro",
@@ -48,7 +43,6 @@ setOptions <- function(mapping_file) {
   return(tibble::lst(
     v_scenario,
     V_Language,
-    V_XMLName,
     V_BookNo,
     df_macro_raw,
     l_macro_scenario,

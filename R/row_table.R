@@ -32,7 +32,7 @@ gen_row_table <- function(qtab) {
   }
   row_table <- dplyr::bind_rows(
     # TODO: find more elegant way to define column order...!
-    # (done in order to keep the csv & xml snapshots more stable...):
+    # (done in order to keep the csv snapshot more stable...):
     empty_row_table(),
     row_table_beginning(qtab),
     value_row_table,
