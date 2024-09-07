@@ -5,10 +5,10 @@
         crosstabs$data))
     Output
       $tab_table
-      # A tibble: 1 x 14
-        QuestNo TabName  QuestLine TabNo TabType TabTitle                                              TabTitle1                                             TabTitle2                                             TabTitle3                                             TabCaption SelVal repov_name    BookNo TabCount
-        <chr>   <chr>        <dbl> <int> <chr>   <chr>                                                 <chr>                                                 <chr>                                                 <chr>                                                 <chr>      <chr>  <chr>          <dbl>    <int>
-      1 Q1      CAT#Q1@1         5     1 CAT     1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen? 1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen? 1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen? 1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen? <NA>       <NA>   <NA>       999999999       30
+      # A tibble: 1 x 15
+        QuestNo TabName  QuestLine TabNo TabType TabTitle                                              TabTitle1                                             TabTitle2                                             TabTitle3                                             TabCaption SelVal repov_name    BookNo TabCount TabRowTypes
+        <chr>   <chr>        <dbl> <int> <chr>   <chr>                                                 <chr>                                                 <chr>                                                 <chr>                                                 <chr>      <chr>  <chr>          <dbl>    <int>       <int>
+      1 Q1      CAT#Q1@1         5     1 CAT     1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen? 1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen? 1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen? 1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen? <NA>       <NA>   <NA>       999999999       30          NA
       
       $val_table
       # A tibble: 130 x 5

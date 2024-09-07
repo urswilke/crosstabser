@@ -372,7 +372,8 @@ add_columns_for_tablebook <- function(tabula) {
     .by = c("QuestNo", "TabType", "SelVal", "repov_name"),
     .after = 1
   ) |>
-    dplyr::full_join(df_tabcount, by = c("QuestNo", "TabNo"))
+    dplyr::full_join(df_tabcount, by = c("QuestNo", "TabNo")) |>
+    dplyr::mutate(TabRowTypes = NA_integer_)
   res$row_table <- res$row_table |> ascend_rownos_within_questno()
 
   tabula$crosstabs$data <- res
