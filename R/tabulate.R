@@ -393,6 +393,7 @@ add_columns_for_tablebook <- function(tabula) {
     by = "HeadNo"
   )
   res$col_table_all
+  res$val_table <- res$val_table |> dplyr::rename(Value = value)
 
   tabula$crosstabs$data <- res
 }
