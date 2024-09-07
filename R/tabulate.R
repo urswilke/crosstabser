@@ -351,6 +351,14 @@ add_columns_for_tablebook <- function(tabula) {
   res <- five_tables |>
     lapply(\(x) dplyr::mutate(x, BookNo = tabula$options$V_BookNo))
 
+  # the group_by QuestNo, TabNo only works if QuestNo is unique
+  # see also in ascend_rownos_within_questno()
+  # => perhaps better additionally group_by QuestLine and allow duplicated QuestNo?
+  # TODO: discuss with Wolf if it wouldn't be better to allow empty strings, and it that case replace QuestNO with QuestLine... / add _<index> to duplicated `QuestNo`s...!
+  df_tabcount <- res$row_table |>
+    dplyr::group_by(QuestNo, TabNo) |>
+    dplyr::summarise(TabCount = dplyr::n(), .groups = "drop")
+
   res$tab_table <- res$tab_table |> dplyr::mutate(
     TabName = paste0(
       TabType,
@@ -363,7 +371,8 @@ add_columns_for_tablebook <- function(tabula) {
     ),
     .by = c("QuestNo", "TabType", "SelVal", "repov_name"),
     .after = 1
-  )
+  ) |>
+    dplyr::full_join(df_tabcount, by = c("QuestNo", "TabNo"))
   res$row_table <- res$row_table |> ascend_rownos_within_questno()
 
   tabula$crosstabs$data <- res
