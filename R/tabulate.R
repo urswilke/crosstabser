@@ -387,6 +387,12 @@ add_columns_for_tablebook <- function(tabula) {
       # TODO: ask Wolf what exactly goes here...:
       RowContentDetail = "",
     )
+  # TODO: ask Wolf if I should also add the rows for the title/empty lines...:
+  res$head_table <- res$head_table |> dplyr::left_join(
+    res$col_table_all |> dplyr::count(HeadNo, name = "HeadCount"),
+    by = "HeadNo"
+  )
+  res$col_table_all
 
   tabula$crosstabs$data <- res
 }

@@ -181,11 +181,11 @@
       30 999999999    30 Empty      ""            ""               1 ""                                                      ""                         ""        <NA>               NA <NA>              NA Q1      Empty|                        NA ""              
       
       $head_table
-      # A tibble: 2 x 4
-           BookNo HeadNo HeadName      HeadTitle
-            <dbl>  <dbl> <chr>         <chr>    
-      1 999999999      2 DC#STICHPROBE GESAMT   
-      2 999999999      3 kregio        Region   
+      # A tibble: 2 x 5
+           BookNo HeadNo HeadName      HeadTitle HeadCount
+            <dbl>  <dbl> <chr>         <chr>         <int>
+      1 999999999      2 DC#STICHPROBE GESAMT            1
+      2 999999999      3 kregio        Region            4
       
       $col_table_all
          BookNo HeadNo ColTitle1   ColTitle2 ColNo   ColVariable ColValue
