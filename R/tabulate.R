@@ -350,5 +350,20 @@ add_columns_for_tablebook <- function(tabula) {
   five_tables <- tabula$crosstabs$data
   res <- five_tables |>
     lapply(\(x) dplyr::mutate(x, BookNo = tabula$options$V_BookNo))
+
+  res$tab_table <- res$tab_table |> dplyr::mutate(
+    TabName = paste0(
+      TabType,
+      "#",
+      ifelse(!is.na(repov_name), repov_name, ""),
+      QuestNo,
+      ifelse(!is.na(SelVal), paste0("_", SelVal), ""),
+      "@",
+      dplyr::row_number()
+    ),
+    .by = c("QuestNo", "TabType", "SelVal", "repov_name"),
+    .after = 1
+  )
+
   tabula$crosstabs$data <- res
 }

@@ -1,7 +1,6 @@
 gen_tab_table <- function(params) {
   tibble::tibble(
     TabNo = params$i_tab,
-    TabName = paste0(params$Type, "#", params$Abbreviation  %||% "", "@", params$i_tab),
     TabType = params$Type |> toupper(),
     QuestNo = params$Abbreviation,
     TabTitle = params$Title |> paste(collapse = "\n"),
