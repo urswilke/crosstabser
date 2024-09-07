@@ -10,6 +10,7 @@
         <TabTitle>1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?</TabTitle>
         <TabCaption/>
         <SelVal/>
+        <repov_name/>
       </Line>
     </Tab>
     <Row>

@@ -7,6 +7,7 @@ gen_tab_table <- function(params) {
     TabTitle = params$Title |> paste(collapse = "\n"),
     TabCaption = params$Fussnote %||% NA_character_,
     SelVal = params$SelVal %||% NA_character_,
+    repov_name = params$repov_names %||% NA_character_,
   )
 }
 

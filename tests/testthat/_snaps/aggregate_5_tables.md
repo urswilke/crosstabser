@@ -5,10 +5,10 @@
         crosstabs$data))
     Output
       $tab_table
-      # A tibble: 1 x 8
-        TabNo TabName  TabType QuestNo TabTitle                                              TabCaption SelVal    BookNo
-        <int> <chr>    <chr>   <chr>   <chr>                                                 <chr>      <chr>      <dbl>
-      1     1 cat#Q1@1 CAT     Q1      1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen? <NA>       <NA>   999999999
+      # A tibble: 1 x 9
+        TabNo TabName  TabType QuestNo TabTitle                                              TabCaption SelVal repov_name    BookNo
+        <int> <chr>    <chr>   <chr>   <chr>                                                 <chr>      <chr>  <chr>          <dbl>
+      1     1 cat#Q1@1 CAT     Q1      1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen? <NA>       <NA>   <NA>       999999999
       
       $val_table
       # A tibble: 130 x 5
