@@ -2,6 +2,7 @@ gen_tab_table <- function(params) {
   title_vec <- params$Title
   tibble::tibble(
     QuestNo = params$Abbreviation,
+    QuestLine = params$row,
     TabNo = params$i_tab,
     TabType = params$Type |> toupper(),
     TabTitle = title_vec |> paste(collapse = "\n"),
