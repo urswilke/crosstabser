@@ -94,7 +94,7 @@ process_selval <- function(qrow_params, mapping) {
 
 edit_selval_info <- function(x, subtitle, selval) {
   x$Title <- add_selval_title(x$Title, subtitle)
-  x$SelVal <- selval
+  x$SelVal <- selval |> stringr::str_remove(":.*")
   x
 }
 add_selval_title <- function(title, subtitle) {

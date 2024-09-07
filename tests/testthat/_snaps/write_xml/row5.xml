@@ -9,6 +9,7 @@
         <QuestNo>Q1</QuestNo>
         <TabTitle>1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?</TabTitle>
         <TabCaption/>
+        <SelVal/>
       </Line>
     </Tab>
     <Row>

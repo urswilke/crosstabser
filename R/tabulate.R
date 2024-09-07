@@ -112,7 +112,7 @@ selvar_eq_selval <- function(selvar, selval) {
     return(selvar == as.numeric(selval))
   }
   # TODO: ask Wolf which possibilities are needed apart from e.g. "1-3" ...:
-  selval_interval <- selval |> stringr::str_remove(":.*") |> stringr::str_split_1("-") |> as.numeric()
+  selval_interval <- selval |> stringr::str_split_1("-") |> as.numeric()
   selvar >=  selval_interval[1] & selvar <= selval_interval[2]
 }
 
