@@ -331,9 +331,10 @@ aggregate_5_tables <- function(tabula) {
   table_parts <- frame_table_parts(tabula)
   tabula$crosstabs$table_parts <- table_parts
 
+q <- table_parts$QuestNo
   tab_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$tab_table)
-  val_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
-  row_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
+  val_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
+  row_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
   head_table <- table_parts$qtab$obj[[1]]$d$head_table
   col_table_all <- table_parts$qtab$obj[[1]]$d$col_table_all
 
