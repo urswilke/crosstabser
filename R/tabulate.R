@@ -364,6 +364,20 @@ add_columns_for_tablebook <- function(tabula) {
     .by = c("QuestNo", "TabType", "SelVal", "repov_name"),
     .after = 1
   )
+  res$row_table <- res$row_table |> ascend_rownos_within_questno()
 
   tabula$crosstabs$data <- res
+}
+
+ascend_rownos_within_questno <- function(row_table) {
+  previous_rows <- row_table |>
+    dplyr::group_by(QuestNo, TabNo) |>
+    dplyr::summarise(n = dplyr::n(), .groups = "drop_last") |>
+    dplyr::mutate(previous_rows = dplyr::lag(n, default = 0L) |> cumsum()) |>
+    dplyr::pull(previous_rows)
+  purrr::map2_dfr(
+    row_table |> dplyr::group_by(QuestNo, TabNo) |> dplyr::group_split(),
+    previous_rows,
+    \(x, y) {x$RowNo <- x$RowNo + y; x}
+  )
 }
