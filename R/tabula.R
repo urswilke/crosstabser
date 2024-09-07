@@ -89,6 +89,11 @@ Tabula <- R6::R6Class("Tabula",
       add_columns_for_tablebook(self)
       invisible(self)
     },
+    write_to_db = function() {
+      self$aggregate_5_tables()
+      write_to_db(self)
+      invisible(self)
+    },
     merge_long_tab_data = function() {
       self$long_tab_data <- gen_long_tab_data(self)
       invisible(self)

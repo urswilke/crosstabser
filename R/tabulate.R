@@ -410,3 +410,26 @@ ascend_rownos_within_questno <- function(row_table) {
     \(x, y) {x$RowNo <- x$RowNo + y; x}
   )
 }
+
+write_to_db <- function(tabula) {
+  five_tables <- tabula$crosstabs$data |> order_tables()
+  conn <- DBI::dbConnect(odbc::odbc(), dsn="TabBooks")
+
+  DBI::dbWriteTable(conn, "Tab", five_tables$tab_table, append = TRUE)
+  DBI::dbWriteTable(conn, "Row", five_tables$row_table, append = TRUE)
+  try(DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE), silent = TRUE)
+  try(DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE), silent = TRUE)
+  DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
+
+  # TODO: Add log with errors and warnings to data base
+  DBI::dbDisconnect(conn)
+}
+
+order_tables <- function(five_tables) {
+  five_tables$tab_table <- dplyr::select(five_tables$tab_table, BookNo, QuestNo, QuestLine, TabNo, TabName, TabType, TabTitle, TabTitle1, TabTitle2, TabTitle3, TabRowTypes, TabCaption, TabCount)
+  five_tables$row_table <- dplyr::select(five_tables$row_table,  BookNo, QuestNo, RowNo, TabNo, RowTypeS, RowType, RowContent, RowContentDetail, RowAbsPercent, RowWeighted, RowTitle1, RowTitle2, RowTitle3, RowDecimals, RowVariable, RowValue)
+  five_tables$head_table <- dplyr::select(five_tables$head_table, BookNo, HeadNo, HeadName, HeadTitle, HeadCount)
+  five_tables$col_table_all <- dplyr::select(five_tables$col_table_all, BookNo, ColNo, HeadNo, ColTitle1, ColTitle2, ColVariable, ColValue)
+  five_tables$val_table <- dplyr::select(five_tables$val_table, BookNo, QuestNo, RowNo, ColNo, Value)
+  five_tables
+}
