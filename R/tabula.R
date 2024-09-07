@@ -106,12 +106,6 @@ Tabula <- R6::R6Class("Tabula",
         writeLines(file_name)
       invisible(self)
     },
-    long_csv = function(file_name = "long_crosstab_data.csv") {
-      self$merge_long_tab_data()
-      self$long_tab_data |>
-        write.csv(file_name, row.names = FALSE)
-      invisible(self)
-    },
     # TODO: ask Wolf:
     # add more information to the print output, e.g.:
     #  - the row number in the Question sheet
