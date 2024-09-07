@@ -1,9 +1,13 @@
 gen_tab_table <- function(params) {
+  title_vec <- params$Title
   tibble::tibble(
     TabNo = params$i_tab,
     TabType = params$Type |> toupper(),
     QuestNo = params$Abbreviation,
-    TabTitle = params$Title |> paste(collapse = "\n"),
+    TabTitle = title_vec |> paste(collapse = "\n"),
+    TabTitle1 = title_vec[1],
+    TabTitle2 = dplyr::coalesce(title_vec[2], TabTitle1),
+    TabTitle3 = dplyr::coalesce(title_vec[3], TabTitle2),
     TabCaption = params$Fussnote %||% NA_character_,
     SelVal = params$SelVal %||% NA_character_,
     repov_name = params$repov_names %||% NA_character_,
