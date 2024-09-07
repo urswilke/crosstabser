@@ -331,7 +331,7 @@ aggregate_5_tables <- function(tabula) {
   table_parts <- frame_table_parts(tabula)
   tabula$crosstabs$table_parts <- table_parts
 
-q <- table_parts$QuestNo
+  q <- table_parts$QuestNo
   tab_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$tab_table)
   val_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
   row_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
@@ -345,6 +345,10 @@ q <- table_parts$QuestNo
     head_table,
     col_table_all
   )
-
-
+}
+add_columns_for_tablebook <- function(tabula) {
+  five_tables <- tabula$crosstabs$data
+  res <- five_tables |>
+    lapply(\(x) dplyr::mutate(x, BookNo = tabula$options$V_BookNo))
+  tabula$crosstabs$data <- res
 }

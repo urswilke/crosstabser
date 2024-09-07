@@ -86,6 +86,7 @@ Tabula <- R6::R6Class("Tabula",
     },
     aggregate_5_tables = function() {
       aggregate_5_tables(self)
+      add_columns_for_tablebook(self)
       invisible(self)
     },
     xml = function(row = NULL) {
