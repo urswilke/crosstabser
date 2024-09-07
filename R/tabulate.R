@@ -349,7 +349,7 @@ aggregate_5_tables <- function(tabula) {
 add_columns_for_tablebook <- function(tabula) {
   five_tables <- tabula$crosstabs$data
   res <- five_tables |>
-    lapply(\(x) dplyr::mutate(x, BookNo = tabula$options$V_BookNo))
+    lapply(\(x) dplyr::mutate(x, BookNo = tabula$options$V_BookNo, .before = 1))
 
   # the group_by QuestNo, TabNo only works if QuestNo is unique
   # see also in ascend_rownos_within_questno()
@@ -370,7 +370,7 @@ add_columns_for_tablebook <- function(tabula) {
       dplyr::row_number()
     ),
     .by = c("QuestNo", "TabType", "SelVal", "repov_name"),
-    .after = 1
+    .after = "QuestNo"
   ) |>
     dplyr::full_join(df_tabcount, by = c("QuestNo", "TabNo")) |>
     dplyr::mutate(TabRowTypes = NA_integer_)
