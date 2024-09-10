@@ -122,7 +122,7 @@ pivot_table_data <- function(qtab) {
 pivot_table_data.qtab_type_mw <- pivot_table_data.qtab_type_cat <- function(qtab) {
   # for TOTAL column:
   df <- qtab$d$raw_data
-  df$"colvar_DC#STICHPROBE" <- 1
+  df$"colvar_DC#TOTAL" <- 1
   df$i <- seq_len(nrow(df))
 
   qtab$d$long_data <- df |>
@@ -149,7 +149,7 @@ pivot_rows <- function(df) {
 }
 pivot_table_data.qtab_type_mdg <- function(qtab) {
   df <- qtab$d$raw_data
-  df$"colvar_DC#STICHPROBE" <- 1
+  df$"colvar_DC#TOTAL" <- 1
 
   df$i <- seq_len(nrow(df))
 
@@ -171,7 +171,7 @@ pivot_table_data.qtab_type_mdg <- function(qtab) {
 pivot_table_data.qtab_type_mcg <- function(qtab) {
   # for TOTAL column:
   df <- qtab$d$raw_data
-  df$"colvar_DC#STICHPROBE" <- 1
+  df$"colvar_DC#TOTAL" <- 1
 
   df$i <- seq_len(nrow(df))
 
@@ -374,16 +374,40 @@ add_columns_for_tablebook <- function(tabula) {
   ) |>
     dplyr::full_join(df_tabcount, by = c("QuestNo", "TabNo")) |>
     dplyr::mutate(TabRowTypes = NA_integer_)
+
+  # constants for bitwise or operation for Row$RowTypeg
+  cArt <- list()
+  cArt$Title <- 1
+  cArt$Header <- 2
+  cArt$Total <- 256
+  cArt$Detail <- 16
+  cArt$Summary <- 32
+  cArt$Statistics <- 64
+  cArt$Valid <- 512
+  cArt$Missing <- 1024
+  cArt$Filter <- 2048
+  cArt$Empty <- 4
+  cArt$MStatistics <- 65536
+  cArt$MValid <- 131072
+  cArt$AbsWeighted <- 1048576
+  cArt$AbsUnweighted <- 2097152
+  cArt$PercentWeighted <- 16777216
+  cArt$PercentUnweighted <- 33554432
+  cArt$Abs <- 4194304
+  cArt$Percent <- 67108864
+
+
+
   res$row_table <- res$row_table |>
     ascend_rownos_within_questno() |>
     dplyr::mutate(
       RowTypeS = paste0(
         RowContent,
-        "|",
+        dplyr::if_else(RowAbsPercent == "", "", "|"),
         RowAbsPercent,
         RowWeighted
       ),
-      RowType = NA_integer_,
+      RowType = bitwOr(unlist(cArt[gsub("^.*\\|", "", RowTypeS)]), unlist(cArt[gsub("\\|.*$", "", RowTypeS)])),
       # TODO: ask Wolf what exactly goes here...:
       RowContentDetail = "",
     )
@@ -417,8 +441,8 @@ write_to_db <- function(tabula) {
 
   DBI::dbWriteTable(conn, "Tab", five_tables$tab_table, append = TRUE)
   DBI::dbWriteTable(conn, "Row", five_tables$row_table, append = TRUE)
-  try(DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE), silent = TRUE)
-  try(DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE), silent = TRUE)
+  DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
+  DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
   DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
 
   # TODO: Add log with errors and warnings to data base

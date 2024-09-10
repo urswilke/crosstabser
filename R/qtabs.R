@@ -146,7 +146,7 @@ order_by_counts.qtab_type_mcg <- function(qtab) {
   # TODO: Wolf sagen dass es nur für gültige Werte geschieht...
   # TODO: gucken ob das auch für andere qtab types funktioniert!...:
   val_table_counts <- qtab$d$detail_freqs[
-    qtab$d$detail_freqs$colvar == "DC#STICHPROBE"
+    qtab$d$detail_freqs$colvar == "DC#TOTAL"
   ,][c("value", "rowval")]
 
   row_table <- qtab$d$row_table

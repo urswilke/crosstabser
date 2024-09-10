@@ -35,10 +35,14 @@ gen_head_table <- function(mapping) {
     HeadName = character(),
     HeadTitle = character()
   )
-  res[1,c("HeadName", "HeadTitle")] <- list("DC#STICHPROBE", mapping$options$l_lexikon["cTabGesamt"])
-  res[seq_len(length(header_vars)) + 1,]$HeadName <- header_vars
-  res[seq_len(length(header_vars)) + 1,]$HeadTitle <- header_varlabs
-  res$HeadNo <- seq_len(nrow(res)) + 1
+  res[1,]$HeadName <- "DC#ROWHEADER"
+  res[2,c("HeadName", "HeadTitle")] <- list("DC#TOTAL", mapping$options$l_lexikon["cTabGesamt"])
+
+  res[seq_len(length(header_vars)) + 2,]$HeadName <- header_vars
+  res[seq_len(length(header_vars)) + 2,]$HeadTitle <- header_varlabs
+  res[nrow(res) + 1,]$HeadName  <- "DC#EMPTY"
+  res[nrow(res) + 1,]$HeadName  <- "DC#TITLE"
+  res$HeadNo <- seq_len(nrow(res))
   res
 }
 
@@ -50,12 +54,12 @@ gen_col_table <- function(mapping) {
   ColBegin$ColTitle2 = ""
   # TODO: ask Wolf if ColVariable is needed...:
   # ... not implemented like Wolf until now ...
-  # ColBegin$ColVariable = "DC#ROWHEADER"
+  ColBegin$ColVariable = "DC#ROWHEADER"
 
-  ColEnd <- data.frame(HeadNo = c(nrow(head_table) + 2:3))
+  ColEnd <- data.frame(HeadNo = c(nrow(head_table) + -1:0))
   ColEnd$ColTitle1 = ""
   ColEnd$ColTitle2 = ""
-  # ColEnd$ColVariable = c("DC#EMPTY", "DC#TITLE")
+  ColEnd$ColVariable = c("DC#EMPTY", "DC#TITLE")
 
   value_col_table0 <- tibble::tibble(
     ColNo = integer(),
@@ -78,7 +82,7 @@ gen_col_table <- function(mapping) {
     2L,
     mapping$options$l_lexikon["cTabGesamt"],
     " ",
-    "DC#STICHPROBE",
+    "DC#TOTAL",
     1L
   )
   value_col_table1 <- dplyr::bind_rows(
