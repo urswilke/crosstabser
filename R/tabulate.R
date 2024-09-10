@@ -322,7 +322,7 @@ frame_table_parts <- function(tabula) {
   qtab <- qrow |> lapply(\(x) x$qtabs)
   QuestNo <- qrow |> purrr::map_chr(\(x) x$p$Abbreviation) |> forcats::as_factor()
   dplyr::tibble(QuestNo, qtab) |>
-    tidyr::unnest_longer(qtab) %>%
+    tidyr::unnest_longer(qtab) |>
     dplyr::mutate(l = purrr::map(qtab$obj, \(x) x$d[five_table_names])) |> tidyr::unnest_wider(l)
 }
 
