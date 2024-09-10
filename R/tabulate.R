@@ -422,6 +422,11 @@ write_to_db <- function(tabula) {
   DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
 
   # TODO: Add log with errors and warnings to data base
+
+  sql <- paste0("UPDATE Quest
+    SET EndTime = SYSDATETIME(),
+    CountRow = 1, ErrorLog = '' WHERE (BookNo = ", tabula$options$V_BookNo, ")")
+  DBI::dbExecute(conn, sql)
   DBI::dbDisconnect(conn)
 }
 
