@@ -72,11 +72,20 @@ Tabula <- R6::R6Class("Tabula",
     initialize = function(dat,
                           mapping_file,
                           row = NULL,
+                          book_no = NULL,
                           ...) {
       self$mapping_file <- mapping_file
       self$dat_mod <- read_data(dat)
       self$options <- setOptions(mapping_file)
 
+      if (is.null(book_no)) {
+        book_no <- openxlsx::read.xlsx(
+          mapping_file,
+          namedRegion = "V_BookNo",
+          colNames = FALSE
+        )[[1]]
+      }
+      self$options$V_BookNo <- book_no
       gen_col_tables(self)
       self$calc_qtabs(row)
     },

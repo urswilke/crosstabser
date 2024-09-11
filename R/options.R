@@ -20,11 +20,6 @@ setOptions <- function(mapping_file) {
   ) |>
     suppressMessages()
 
-  V_BookNo <- openxlsx::read.xlsx(
-    mapping_file,
-    namedRegion = "V_BookNo",
-    colNames = FALSE
-  )[[1]]
   names(df_macro_raw) <- paste0("X", seq_len(ncol(df_macro_raw)))
 
   l_macro_scenario <- extract_scenario_options(df_macro_raw, v_scenario)
@@ -43,7 +38,6 @@ setOptions <- function(mapping_file) {
   return(tibble::lst(
     v_scenario,
     V_Language,
-    V_BookNo,
     df_macro_raw,
     l_macro_scenario,
     l_lexikon,
