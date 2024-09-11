@@ -333,7 +333,15 @@ aggregate_5_tables <- function(tabula) {
 
   q <- table_parts$QuestNo
   tab_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$tab_table)
-  val_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
+  # TODO: when in the Val table in the database we also have TabNo,
+  # we can remove all this ascending RowNo per QuestNo story (cf. ascend_rownos_within_questno())
+  # and refactor everything...
+  # val_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
+  val_table <- table_parts |>
+    dplyr::select(tab_table, val_table) |>
+    tidyr::unpack(tab_table) |>
+    dplyr::select(QuestNo, TabNo, val_table) |>
+    tidyr::unnest(val_table)
   row_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
   head_table <- table_parts$qtab$obj[[1]]$d$head_table
   col_table_all <- table_parts$qtab$obj[[1]]$d$col_table_all
@@ -345,6 +353,7 @@ aggregate_5_tables <- function(tabula) {
     head_table,
     col_table_all
   )
+  ascend_rownos_within_questno(tabula)
 }
 add_columns_for_tablebook <- function(tabula) {
   five_tables <- tabula$crosstabs$data
@@ -396,10 +405,7 @@ add_columns_for_tablebook <- function(tabula) {
   cArt$Abs <- 4194304
   cArt$Percent <- 67108864
 
-
-
   res$row_table <- res$row_table |>
-    ascend_rownos_within_questno() |>
     dplyr::mutate(
       RowTypeS = paste0(
         RowContent,
@@ -422,17 +428,26 @@ add_columns_for_tablebook <- function(tabula) {
   tabula$crosstabs$data <- res
 }
 
-ascend_rownos_within_questno <- function(row_table) {
+ascend_rownos_within_questno <- function(tabula) {
+  row_table <- tabula$crosstabs$data$row_table
   previous_rows <- row_table |>
     dplyr::group_by(QuestNo, TabNo) |>
     dplyr::summarise(n = dplyr::n(), .groups = "drop_last") |>
     dplyr::mutate(previous_rows = dplyr::lag(n, default = 0L) |> cumsum()) |>
     dplyr::pull(previous_rows)
-  purrr::map2_dfr(
+  row_table_mod <- purrr::map2_dfr(
     row_table |> dplyr::group_by(QuestNo, TabNo) |> dplyr::group_split(),
     previous_rows,
-    \(x, y) {x$RowNo <- x$RowNo + y; x}
+    \(x, y) {x$RowNoMod <- x$RowNo + y; x}
   )
+  tabula$crosstabs$data$row_table <- row_table_mod |> dplyr::mutate(RowNo = RowNoMod, RowNoMod = NULL)
+  tabula$crosstabs$data$val_table <- tabula$crosstabs$data$val_table |>
+    dplyr::left_join(
+      row_table_mod |>
+        dplyr::select(QuestNo, TabNo, RowNo, RowNoMod),
+      by = c("QuestNo", "TabNo", "RowNo")
+    ) |>
+    dplyr::mutate(RowNo = RowNoMod, RowNoMod = NULL)
 }
 
 write_to_db <- function(tabula) {
