@@ -12,7 +12,7 @@
       
       $val_table
       # A tibble: 130 x 5
-             BookNo QuestNo RowNo ColNo  value
+             BookNo QuestNo RowNo ColNo  Value
               <dbl> <chr>   <int> <int>  <dbl>
         1 999999999 Q1          4     4 151   
         2 999999999 Q1          4     5  19   
@@ -147,57 +147,60 @@
       
       $row_table
       # A tibble: 30 x 17
-            BookNo RowNo RowContent RowAbsPercent RowWeighted  TabNo RowTitle1                                               RowTitle2                  RowTitle3 RowFormat RowDecimals RowVariable RowValue QuestNo RowTypeS                 RowType RowContentDetail
-             <dbl> <int> <chr>      <chr>         <chr>        <int> <chr>                                                   <chr>                      <chr>     <chr>           <int> <chr>          <dbl> <chr>   <chr>                      <int> <chr>           
-       1 999999999     1 Title      ""            ""               1 "1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?" ""                         ""        <NA>               NA <NA>              NA Q1      Title|                        NA ""              
-       2 999999999     2 Header     ""            ""               1  <NA>                                                   ""                         ""        <NA>               NA <NA>              NA Q1      Header|                       NA ""              
-       3 999999999     3 Header     ""            ""               1  <NA>                                                   ""                         ""        <NA>               NA <NA>              NA Q1      Header|                       NA ""              
-       4 999999999     4 Total      "Abs"         "Unweighted"     1 "GESAMT"                                                "GESAMT"                   "abs"     <NA>                0 q1                 1 Q1      Total|AbsUnweighted           NA ""              
-       5 999999999     5 Total      "Abs"         "Weighted"       1 "GESAMT"                                                "GESAMT"                   "abs ⚖"   <NA>                0 q1                 1 Q1      Total|AbsWeighted             NA ""              
-       6 999999999     6 Detail     "Abs"         "Unweighted"     1 "1 Beschäftigter"                                       "1 Beschäftigter"          "abs"     <NA>                0 q1                 1 Q1      Detail|AbsUnweighted          NA ""              
-       7 999999999     7 Detail     "Abs"         "Weighted"       1 "1 Beschäftigter"                                       "1 Beschäftigter"          "abs ⚖"   <NA>                0 q1                 1 Q1      Detail|AbsWeighted            NA ""              
-       8 999999999     8 Detail     "Percent"     "Unweighted"     1 "1 Beschäftigter"                                       "1 Beschäftigter"          "in %"    <NA>                1 q1                 1 Q1      Detail|PercentUnweighted      NA ""              
-       9 999999999     9 Detail     "Percent"     "Weighted"       1 "1 Beschäftigter"                                       "1 Beschäftigter"          "in % ⚖"  <NA>                1 q1                 1 Q1      Detail|PercentWeighted        NA ""              
-      10 999999999    10 Detail     "Abs"         "Unweighted"     1 "2 - 4 Beschäftigte"                                    "2 - 4 Beschäftigte"       "abs"     <NA>                0 q1                 2 Q1      Detail|AbsUnweighted          NA ""              
-      11 999999999    11 Detail     "Abs"         "Weighted"       1 "2 - 4 Beschäftigte"                                    "2 - 4 Beschäftigte"       "abs ⚖"   <NA>                0 q1                 2 Q1      Detail|AbsWeighted            NA ""              
-      12 999999999    12 Detail     "Percent"     "Unweighted"     1 "2 - 4 Beschäftigte"                                    "2 - 4 Beschäftigte"       "in %"    <NA>                1 q1                 2 Q1      Detail|PercentUnweighted      NA ""              
-      13 999999999    13 Detail     "Percent"     "Weighted"       1 "2 - 4 Beschäftigte"                                    "2 - 4 Beschäftigte"       "in % ⚖"  <NA>                1 q1                 2 Q1      Detail|PercentWeighted        NA ""              
-      14 999999999    14 Detail     "Abs"         "Unweighted"     1 "5 - 9 Beschäftigte"                                    "5 - 9 Beschäftigte"       "abs"     <NA>                0 q1                 3 Q1      Detail|AbsUnweighted          NA ""              
-      15 999999999    15 Detail     "Abs"         "Weighted"       1 "5 - 9 Beschäftigte"                                    "5 - 9 Beschäftigte"       "abs ⚖"   <NA>                0 q1                 3 Q1      Detail|AbsWeighted            NA ""              
-      16 999999999    16 Detail     "Percent"     "Unweighted"     1 "5 - 9 Beschäftigte"                                    "5 - 9 Beschäftigte"       "in %"    <NA>                1 q1                 3 Q1      Detail|PercentUnweighted      NA ""              
-      17 999999999    17 Detail     "Percent"     "Weighted"       1 "5 - 9 Beschäftigte"                                    "5 - 9 Beschäftigte"       "in % ⚖"  <NA>                1 q1                 3 Q1      Detail|PercentWeighted        NA ""              
-      18 999999999    18 Detail     "Abs"         "Unweighted"     1 "10 - 19 Beschäftigte"                                  "10 - 19 Beschäftigte"     "abs"     <NA>                0 q1                 4 Q1      Detail|AbsUnweighted          NA ""              
-      19 999999999    19 Detail     "Abs"         "Weighted"       1 "10 - 19 Beschäftigte"                                  "10 - 19 Beschäftigte"     "abs ⚖"   <NA>                0 q1                 4 Q1      Detail|AbsWeighted            NA ""              
-      20 999999999    20 Detail     "Percent"     "Unweighted"     1 "10 - 19 Beschäftigte"                                  "10 - 19 Beschäftigte"     "in %"    <NA>                1 q1                 4 Q1      Detail|PercentUnweighted      NA ""              
-      21 999999999    21 Detail     "Percent"     "Weighted"       1 "10 - 19 Beschäftigte"                                  "10 - 19 Beschäftigte"     "in % ⚖"  <NA>                1 q1                 4 Q1      Detail|PercentWeighted        NA ""              
-      22 999999999    22 Detail     "Abs"         "Unweighted"     1 "20 Beschäftigte und mehr"                              "20 Beschäftigte und mehr" "abs"     <NA>                0 q1                 5 Q1      Detail|AbsUnweighted          NA ""              
-      23 999999999    23 Detail     "Abs"         "Weighted"       1 "20 Beschäftigte und mehr"                              "20 Beschäftigte und mehr" "abs ⚖"   <NA>                0 q1                 5 Q1      Detail|AbsWeighted            NA ""              
-      24 999999999    24 Detail     "Percent"     "Unweighted"     1 "20 Beschäftigte und mehr"                              "20 Beschäftigte und mehr" "in %"    <NA>                1 q1                 5 Q1      Detail|PercentUnweighted      NA ""              
-      25 999999999    25 Detail     "Percent"     "Weighted"       1 "20 Beschäftigte und mehr"                              "20 Beschäftigte und mehr" "in % ⚖"  <NA>                1 q1                 5 Q1      Detail|PercentWeighted        NA ""              
-      26 999999999    26 Valid      "Abs"         "Unweighted"     1 "GÜLTIGE FÄLLE"                                         "GÜLTIGE FÄLLE"            "abs"     <NA>                0 q1                 1 Q1      Valid|AbsUnweighted           NA ""              
-      27 999999999    27 Valid      "Abs"         "Weighted"       1 "GÜLTIGE FÄLLE"                                         "GÜLTIGE FÄLLE"            "abs ⚖"   <NA>                0 q1                 1 Q1      Valid|AbsWeighted             NA ""              
-      28 999999999    28 Valid      "Percent"     "Unweighted"     1 "GÜLTIGE FÄLLE"                                         "GÜLTIGE FÄLLE"            "in %"    <NA>                1 q1                 1 Q1      Valid|PercentUnweighted       NA ""              
-      29 999999999    29 Valid      "Percent"     "Weighted"       1 "GÜLTIGE FÄLLE"                                         "GÜLTIGE FÄLLE"            "in % ⚖"  <NA>                1 q1                 1 Q1      Valid|PercentWeighted         NA ""              
-      30 999999999    30 Empty      ""            ""               1 ""                                                      ""                         ""        <NA>               NA <NA>              NA Q1      Empty|                        NA ""              
+            BookNo RowNo RowContent RowAbsPercent RowWeighted  TabNo RowTitle1                                               RowTitle2                  RowTitle3 RowFormat RowDecimals RowVariable RowValue QuestNo RowTypeS                  RowType RowContentDetail
+             <dbl> <int> <chr>      <chr>         <chr>        <int> <chr>                                                   <chr>                      <chr>     <chr>           <int> <chr>          <dbl> <chr>   <chr>                       <int> <chr>           
+       1 999999999     1 Title      ""            ""               1 "1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?" ""                         ""        <NA>               NA <NA>              NA Q1      Title                           1 ""              
+       2 999999999     2 Header     ""            ""               1  <NA>                                                   ""                         ""        <NA>               NA <NA>              NA Q1      Header                          2 ""              
+       3 999999999     3 Header     ""            ""               1  <NA>                                                   ""                         ""        <NA>               NA <NA>              NA Q1      Header                          2 ""              
+       4 999999999     4 Total      "Abs"         "Unweighted"     1 "GESAMT"                                                "GESAMT"                   "abs"     <NA>                0 q1                 1 Q1      Total|AbsUnweighted       2097408 ""              
+       5 999999999     5 Total      "Abs"         "Weighted"       1 "GESAMT"                                                "GESAMT"                   "abs ⚖"   <NA>                0 q1                 1 Q1      Total|AbsWeighted         1048832 ""              
+       6 999999999     6 Detail     "Abs"         "Unweighted"     1 "1 Beschäftigter"                                       "1 Beschäftigter"          "abs"     <NA>                0 q1                 1 Q1      Detail|AbsUnweighted      2097168 ""              
+       7 999999999     7 Detail     "Abs"         "Weighted"       1 "1 Beschäftigter"                                       "1 Beschäftigter"          "abs ⚖"   <NA>                0 q1                 1 Q1      Detail|AbsWeighted        1048592 ""              
+       8 999999999     8 Detail     "Percent"     "Unweighted"     1 "1 Beschäftigter"                                       "1 Beschäftigter"          "in %"    <NA>                1 q1                 1 Q1      Detail|PercentUnweighted 33554448 ""              
+       9 999999999     9 Detail     "Percent"     "Weighted"       1 "1 Beschäftigter"                                       "1 Beschäftigter"          "in % ⚖"  <NA>                1 q1                 1 Q1      Detail|PercentWeighted   16777232 ""              
+      10 999999999    10 Detail     "Abs"         "Unweighted"     1 "2 - 4 Beschäftigte"                                    "2 - 4 Beschäftigte"       "abs"     <NA>                0 q1                 2 Q1      Detail|AbsUnweighted      2097168 ""              
+      11 999999999    11 Detail     "Abs"         "Weighted"       1 "2 - 4 Beschäftigte"                                    "2 - 4 Beschäftigte"       "abs ⚖"   <NA>                0 q1                 2 Q1      Detail|AbsWeighted        1048592 ""              
+      12 999999999    12 Detail     "Percent"     "Unweighted"     1 "2 - 4 Beschäftigte"                                    "2 - 4 Beschäftigte"       "in %"    <NA>                1 q1                 2 Q1      Detail|PercentUnweighted 33554448 ""              
+      13 999999999    13 Detail     "Percent"     "Weighted"       1 "2 - 4 Beschäftigte"                                    "2 - 4 Beschäftigte"       "in % ⚖"  <NA>                1 q1                 2 Q1      Detail|PercentWeighted   16777232 ""              
+      14 999999999    14 Detail     "Abs"         "Unweighted"     1 "5 - 9 Beschäftigte"                                    "5 - 9 Beschäftigte"       "abs"     <NA>                0 q1                 3 Q1      Detail|AbsUnweighted      2097168 ""              
+      15 999999999    15 Detail     "Abs"         "Weighted"       1 "5 - 9 Beschäftigte"                                    "5 - 9 Beschäftigte"       "abs ⚖"   <NA>                0 q1                 3 Q1      Detail|AbsWeighted        1048592 ""              
+      16 999999999    16 Detail     "Percent"     "Unweighted"     1 "5 - 9 Beschäftigte"                                    "5 - 9 Beschäftigte"       "in %"    <NA>                1 q1                 3 Q1      Detail|PercentUnweighted 33554448 ""              
+      17 999999999    17 Detail     "Percent"     "Weighted"       1 "5 - 9 Beschäftigte"                                    "5 - 9 Beschäftigte"       "in % ⚖"  <NA>                1 q1                 3 Q1      Detail|PercentWeighted   16777232 ""              
+      18 999999999    18 Detail     "Abs"         "Unweighted"     1 "10 - 19 Beschäftigte"                                  "10 - 19 Beschäftigte"     "abs"     <NA>                0 q1                 4 Q1      Detail|AbsUnweighted      2097168 ""              
+      19 999999999    19 Detail     "Abs"         "Weighted"       1 "10 - 19 Beschäftigte"                                  "10 - 19 Beschäftigte"     "abs ⚖"   <NA>                0 q1                 4 Q1      Detail|AbsWeighted        1048592 ""              
+      20 999999999    20 Detail     "Percent"     "Unweighted"     1 "10 - 19 Beschäftigte"                                  "10 - 19 Beschäftigte"     "in %"    <NA>                1 q1                 4 Q1      Detail|PercentUnweighted 33554448 ""              
+      21 999999999    21 Detail     "Percent"     "Weighted"       1 "10 - 19 Beschäftigte"                                  "10 - 19 Beschäftigte"     "in % ⚖"  <NA>                1 q1                 4 Q1      Detail|PercentWeighted   16777232 ""              
+      22 999999999    22 Detail     "Abs"         "Unweighted"     1 "20 Beschäftigte und mehr"                              "20 Beschäftigte und mehr" "abs"     <NA>                0 q1                 5 Q1      Detail|AbsUnweighted      2097168 ""              
+      23 999999999    23 Detail     "Abs"         "Weighted"       1 "20 Beschäftigte und mehr"                              "20 Beschäftigte und mehr" "abs ⚖"   <NA>                0 q1                 5 Q1      Detail|AbsWeighted        1048592 ""              
+      24 999999999    24 Detail     "Percent"     "Unweighted"     1 "20 Beschäftigte und mehr"                              "20 Beschäftigte und mehr" "in %"    <NA>                1 q1                 5 Q1      Detail|PercentUnweighted 33554448 ""              
+      25 999999999    25 Detail     "Percent"     "Weighted"       1 "20 Beschäftigte und mehr"                              "20 Beschäftigte und mehr" "in % ⚖"  <NA>                1 q1                 5 Q1      Detail|PercentWeighted   16777232 ""              
+      26 999999999    26 Valid      "Abs"         "Unweighted"     1 "GÜLTIGE FÄLLE"                                         "GÜLTIGE FÄLLE"            "abs"     <NA>                0 q1                 1 Q1      Valid|AbsUnweighted       2097664 ""              
+      27 999999999    27 Valid      "Abs"         "Weighted"       1 "GÜLTIGE FÄLLE"                                         "GÜLTIGE FÄLLE"            "abs ⚖"   <NA>                0 q1                 1 Q1      Valid|AbsWeighted         1049088 ""              
+      28 999999999    28 Valid      "Percent"     "Unweighted"     1 "GÜLTIGE FÄLLE"                                         "GÜLTIGE FÄLLE"            "in %"    <NA>                1 q1                 1 Q1      Valid|PercentUnweighted  33554944 ""              
+      29 999999999    29 Valid      "Percent"     "Weighted"       1 "GÜLTIGE FÄLLE"                                         "GÜLTIGE FÄLLE"            "in % ⚖"  <NA>                1 q1                 1 Q1      Valid|PercentWeighted    16777728 ""              
+      30 999999999    30 Empty      ""            ""               1 ""                                                      ""                         ""        <NA>               NA <NA>              NA Q1      Empty                           4 ""              
       
       $head_table
-      # A tibble: 2 x 5
-           BookNo HeadNo HeadName      HeadTitle HeadCount
-            <dbl>  <dbl> <chr>         <chr>         <int>
-      1 999999999      2 DC#STICHPROBE GESAMT            1
-      2 999999999      3 kregio        Region            4
+      # A tibble: 5 x 5
+           BookNo HeadNo HeadName     HeadTitle HeadCount
+            <dbl>  <dbl> <chr>        <chr>         <int>
+      1 999999999      1 DC#ROWHEADER <NA>              3
+      2 999999999      2 DC#TOTAL     GESAMT            1
+      3 999999999      3 kregio       Region            4
+      4 999999999      4 DC#EMPTY     <NA>              1
+      5 999999999      5 DC#TITLE     <NA>              1
       
       $col_table_all
-         BookNo HeadNo ColTitle1   ColTitle2 ColNo   ColVariable ColValue
-      1   1e+09      1                           1          <NA>       NA
-      2   1e+09      1                           2          <NA>       NA
-      3   1e+09      1                           3          <NA>       NA
-      4   1e+09      2    GESAMT                 4 DC#STICHPROBE        1
-      5   1e+09      3    Region       Asien     5        kregio        1
-      6   1e+09      3    Region      Europa     6        kregio        2
-      7   1e+09      3    Region Nordamerika     7        kregio        3
-      8   1e+09      3    Region     Pazifik     8        kregio        4
-      9   1e+09      4                           9          <NA>       NA
-      10  1e+09      5                          10          <NA>       NA
+         BookNo HeadNo ColTitle1   ColTitle2  ColVariable ColNo ColValue
+      1   1e+09      1                       DC#ROWHEADER     1       NA
+      2   1e+09      1                       DC#ROWHEADER     2       NA
+      3   1e+09      1                       DC#ROWHEADER     3       NA
+      4   1e+09      2    GESAMT                 DC#TOTAL     4        1
+      5   1e+09      3    Region       Asien       kregio     5        1
+      6   1e+09      3    Region      Europa       kregio     6        2
+      7   1e+09      3    Region Nordamerika       kregio     7        3
+      8   1e+09      3    Region     Pazifik       kregio     8        4
+      9   1e+09      4                           DC#EMPTY     9       NA
+      10  1e+09      5                           DC#TITLE    10       NA
       
 
