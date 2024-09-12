@@ -52,8 +52,6 @@ gen_col_table <- function(mapping) {
   ColBegin <- data.frame(HeadNo = c(1,1,1))
   ColBegin$ColTitle1 = ""
   ColBegin$ColTitle2 = ""
-  # TODO: ask Wolf if ColVariable is needed...:
-  # ... not implemented like Wolf until now ...
   ColBegin$ColVariable = "DC#ROWHEADER"
 
   ColEnd <- data.frame(HeadNo = c(nrow(head_table) + -1:0))
