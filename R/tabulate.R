@@ -464,15 +464,20 @@ write_to_db <- function(tabula) {
   DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
   DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
 
-  errors <- tabula$crosstabs$table_parts$error |> jsonlite::toJSON()
-  warns <- tabula$crosstabs$table_parts$warn |> jsonlite::toJSON()
-  sql <- paste0("UPDATE Quest
+  errors <- tabula$qrows |> lapply(\(x) x$log$error)
+  warns <- tabula$qrows |> lapply(\(x) x$log$warn)
+
+  # change Quest table for each QuestNo line by line:
+  for (i in seq_along(errors)) {
+    questno <- tabula$crosstabs$table_parts$QuestNo[i] |> as.character()
+    sql <- paste0("UPDATE Quest
     SET EndTime = SYSDATETIME(),
     CountRow = 1,
-    ErrorLog = ", errors, ",
-    WarnLog = ", warns, ",
-    WHERE (BookNo = ", tabula$options$V_BookNo, ")")
-  DBI::dbExecute(conn, sql)
+    ErrorLog = '", errors[[i]], "',
+    WarnLog = '", warns[[i]], "'
+    WHERE (QuestNo = '", questno, "') AND (BookNo = ", tabula$options$V_BookNo, ")")
+    DBI::dbExecute(conn, sql)
+  }
   DBI::dbDisconnect(conn)
 }
 
