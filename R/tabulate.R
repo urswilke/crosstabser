@@ -320,9 +320,11 @@ five_table_names <- c("row_table", "col_table_all", "val_table", "head_table", "
 frame_table_parts <- function(tabula) {
   qrow <- tabula$qrows
   qtab <- qrow |> lapply(\(x) x$qtabs)
+  warn <- tabula$qrows |> purrr::map(\(x) x$log$warn)
+  error <- tabula$qrows |> purrr::map(\(x) x$log$error)
   QuestNo <- qrow |> purrr::map_chr(\(x) x$p$Abbreviation) |> forcats::as_factor()
-  dplyr::tibble(QuestNo, qtab) |>
-    tidyr::unnest_longer(qtab) |>
+  dplyr::tibble(QuestNo, qtab, warn, error) |>
+    tidyr::unnest_longer(c(qtab, warn, error), keep_empty = TRUE) |>
     dplyr::mutate(l = purrr::map(qtab$obj, \(x) x$d[five_table_names])) |> tidyr::unnest_wider(l)
 }
 
@@ -331,6 +333,9 @@ aggregate_5_tables <- function(tabula) {
   table_parts <- frame_table_parts(tabula)
   tabula$crosstabs$table_parts <- table_parts
 
+  if (all(!is.na(table_parts$error))) {
+    stop("No crosstabs calculated")
+  }
   q <- table_parts$QuestNo
   tab_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$tab_table)
   # TODO: when in the Val table in the database we also have TabNo,
@@ -343,8 +348,8 @@ aggregate_5_tables <- function(tabula) {
     dplyr::select(QuestNo, TabNo, val_table) |>
     tidyr::unnest(val_table)
   row_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
-  head_table <- table_parts$qtab$obj[[1]]$d$head_table
-  col_table_all <- table_parts$qtab$obj[[1]]$d$col_table_all
+  head_table <- tabula$qsheet$head_table
+  col_table_all <- tabula$qsheet$col_table_all
 
   tabula$crosstabs$data <- tibble::lst(
     tab_table,
