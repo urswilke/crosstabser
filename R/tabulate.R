@@ -469,12 +469,15 @@ write_to_db <- function(tabula) {
 
   # change Quest table for each QuestNo line by line:
   for (i in seq_along(errors)) {
-    questno <- tabula$crosstabs$table_parts$QuestNo[i] |> as.character()
+    questno <- tabula$qrows[[i]]$p$Abbreviation
+    # https://stackoverflow.com/questions/65572676/how-do-you-escape-an-apostrophe-in-r-so-you-can-insert-the-string-into-a-mysql-t/65572713#65572713
+    error_log <- errors[[i]] |> stringr::str_replace_all("'", "''")
+    warn_log <- warns[[i]] |> stringr::str_replace_all("'", "''")
     sql <- paste0("UPDATE Quest
     SET EndTime = SYSDATETIME(),
     CountRow = 1,
-    ErrorLog = '", errors[[i]], "',
-    WarnLog = '", warns[[i]], "'
+    ErrorLog = '", error_log, "',
+    WarnLog = '", warn_log, "'
     WHERE (QuestNo = '", questno, "') AND (BookNo = ", tabula$options$V_BookNo, ")")
     DBI::dbExecute(conn, sql)
   }
