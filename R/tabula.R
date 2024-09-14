@@ -83,7 +83,7 @@ Tabula <- R6::R6Class(
         stop("You have to specify at least one of `dat` or `dat_mod`")
       }
       if (!is.null(dat_mod)) {
-        self$dat_mod <- read_data(dat_mod)
+        self$dat_mod <- datenanpassr::read_data(dat_mod)
       }
       if (!is.null(dat)) {
         super$modify_data()
@@ -155,15 +155,4 @@ parse_qsheet <- function(mapping, row) {
     mapping$qsheet$qrows_params[calc_row_lgl],
     \(p) Qrow$new(p, mapping)
   )
-}
-
-# TODO: use only function: this or datananpassr:::initialize_dat()
-read_data <- function(dat) {
-  UseMethod("read_data")
-}
-read_data.data.frame <- function(dat) {
-  dat
-}
-read_data.character <- function(dat) {
-  haven::read_sav(dat)
 }
