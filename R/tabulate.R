@@ -184,7 +184,8 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
 
   # TODO: add test to check if this works correctly!...:
   invalids_to_filter <- intersect(
-    qtab$m$options$mapping_r_params$miss_rec_val,
+    # TODO: put datenanpassr Mapping$params in the same structure as Tabula$p
+    qtab$m$params$miss_rec_val,
     qtab$p$Unguelt
   )
   df_rows_long_invalids <- df_rows_long[df_rows_long$rowval %in% qtab$p$Unguelt,] |>
