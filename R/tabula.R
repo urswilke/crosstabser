@@ -57,9 +57,12 @@
 #' # mapping$save("path/to/your/file.sav")
 #' # or with haven (used under the hood by `save()`):
 #' # haven::write_sav(mapping$dat_mod, "path/to/your/file.sav")
-Tabula <- R6::R6Class("Tabula",
+Tabula <- R6::R6Class(
+  "Tabula",
+  inherit = datenanpassr::Mapping,
   public = list(
     mapping_file = NULL,
+    dat = NULL,
     dat_mod = NULL,
     options = NULL,
     long_tab_data = NULL,
@@ -69,13 +72,22 @@ Tabula <- R6::R6Class("Tabula",
     crosstabs = list(),
     #' @description Initialize a Tabula object
     #'
-    initialize = function(dat,
+    initialize = function(dat_mod = NULL,
                           mapping_file,
                           row = NULL,
+                          dat = NULL,
                           book_no = NULL,
                           ...) {
-      self$mapping_file <- mapping_file
-      self$dat_mod <- read_data(dat)
+      super$initialize(dat, mapping_file, ...)
+      if (is.null(dat) & is.null(dat_mod)) {
+        stop("You have to specify at least one of `dat` or `dat_mod`")
+      }
+      if (!is.null(dat_mod)) {
+        self$dat_mod <- read_data(dat_mod)
+      }
+      if (!is.null(dat)) {
+        super$modify_data()
+      }
       self$options <- setOptions(mapping_file)
 
       if (is.null(book_no)) {
@@ -145,6 +157,7 @@ parse_qsheet <- function(mapping, row) {
   )
 }
 
+# TODO: use only function: this or datananpassr:::initialize_dat()
 read_data <- function(dat) {
   UseMethod("read_data")
 }

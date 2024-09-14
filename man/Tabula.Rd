@@ -45,6 +45,9 @@ mapping$dat_mod
 # or with haven (used under the hood by `save()`):
 # haven::write_sav(mapping$dat_mod, "path/to/your/file.sav")
 }
+\section{Super class}{
+\code{\link[datenanpassr:Mapping]{datenanpassr::Mapping}} -> \code{Tabula}
+}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
@@ -67,9 +70,6 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{dat}}{(filepath to pass to \code{haven::read_sav()} to read in the)
-labelled dataframe to apply the mapping on.}
-
 \item{\code{cmd_tbl}}{Dataframe with the command block information}
 
 \item{\code{cmd}}{R list structure containing the processed command block
@@ -84,22 +84,37 @@ information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-l
 \itemize{
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
 \item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
-\item \href{#method-Tabula-xml}{\code{Tabula$xml()}}
+\item \href{#method-Tabula-aggregate_5_tables}{\code{Tabula$aggregate_5_tables()}}
+\item \href{#method-Tabula-write_to_db}{\code{Tabula$write_to_db()}}
 \item \href{#method-Tabula-merge_long_tab_data}{\code{Tabula$merge_long_tab_data()}}
 \item \href{#method-Tabula-long_excel}{\code{Tabula$long_excel()}}
 \item \href{#method-Tabula-long_json}{\code{Tabula$long_json()}}
-\item \href{#method-Tabula-long_csv}{\code{Tabula$long_csv()}}
 \item \href{#method-Tabula-print}{\code{Tabula$print()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
 }
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="modify_data"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-modify_data'><code>datenanpassr::Mapping$modify_data()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="save"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-save'><code>datenanpassr::Mapping$save()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-new"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-new}{}}}
 \subsection{Method \code{new()}}{
 Initialize a Tabula object
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$new(dat, mapping_file, row = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$new(
+  dat_mod = NULL,
+  mapping_file,
+  row = NULL,
+  dat = NULL,
+  book_no = NULL,
+  ...
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -113,11 +128,20 @@ Initialize a Tabula object
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-xml"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-xml}{}}}
-\subsection{Method \code{xml()}}{
+\if{html}{\out{<a id="method-Tabula-aggregate_5_tables"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-aggregate_5_tables}{}}}
+\subsection{Method \code{aggregate_5_tables()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$xml(row = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$aggregate_5_tables()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-write_to_db"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-write_to_db}{}}}
+\subsection{Method \code{write_to_db()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$write_to_db()}\if{html}{\out{</div>}}
 }
 
 }
@@ -145,15 +169,6 @@ Initialize a Tabula object
 \subsection{Method \code{long_json()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$long_json(file_name = "long_crosstab_data.json", ...)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-long_csv"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-long_csv}{}}}
-\subsection{Method \code{long_csv()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$long_csv(file_name = "long_crosstab_data.csv")}\if{html}{\out{</div>}}
 }
 
 }
