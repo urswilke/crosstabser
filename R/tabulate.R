@@ -320,9 +320,11 @@ five_table_names <- c("row_table", "col_table_all", "val_table", "head_table", "
 frame_table_parts <- function(tabula) {
   qrow <- tabula$qrows
   qtab <- qrow |> lapply(\(x) x$qtabs)
+  warn <- tabula$qrows |> purrr::map(\(x) x$log$warn)
+  error <- tabula$qrows |> purrr::map(\(x) x$log$error)
   QuestNo <- qrow |> purrr::map_chr(\(x) x$p$Abbreviation) |> forcats::as_factor()
   dplyr::tibble(QuestNo, qtab) |>
-    tidyr::unnest_longer(qtab) |>
+    tidyr::unnest_longer(c(qtab), keep_empty = TRUE) |>
     dplyr::mutate(l = purrr::map(qtab$obj, \(x) x$d[five_table_names])) |> tidyr::unnest_wider(l)
 }
 
@@ -331,6 +333,15 @@ aggregate_5_tables <- function(tabula) {
   table_parts <- frame_table_parts(tabula)
   tabula$crosstabs$table_parts <- table_parts
 
+  row_has_error <- tabula$qrows |>
+    lapply(\(x) x$log$error) |>
+    tibble::tibble(a = _) |>
+    tidyr::unnest(a, keep_empty = TRUE) |>
+    dplyr::pull()
+  # all qrows have an error:
+  if (all(!is.na(row_has_error))) {
+    stop("No crosstabs calculated")
+  }
   q <- table_parts$QuestNo
   tab_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$tab_table)
   # TODO: when in the Val table in the database we also have TabNo,
@@ -343,8 +354,8 @@ aggregate_5_tables <- function(tabula) {
     dplyr::select(QuestNo, TabNo, val_table) |>
     tidyr::unnest(val_table)
   row_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
-  head_table <- table_parts$qtab$obj[[1]]$d$head_table
-  col_table_all <- table_parts$qtab$obj[[1]]$d$col_table_all
+  head_table <- tabula$qsheet$head_table
+  col_table_all <- tabula$qsheet$col_table_all
 
   tabula$crosstabs$data <- tibble::lst(
     tab_table,
@@ -459,12 +470,23 @@ write_to_db <- function(tabula) {
   DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
   DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
 
-  # TODO: Add log with errors and warnings to data base
+  errors <- tabula$qrows |> lapply(\(x) x$log$error)
+  warns <- tabula$qrows |> lapply(\(x) x$log$warn)
 
-  sql <- paste0("UPDATE Quest
+  # change Quest table for each QuestNo line by line:
+  for (i in seq_along(errors)) {
+    questno <- tabula$qrows[[i]]$p$Abbreviation
+    # https://stackoverflow.com/questions/65572676/how-do-you-escape-an-apostrophe-in-r-so-you-can-insert-the-string-into-a-mysql-t/65572713#65572713
+    error_log <- errors[[i]] |> stringr::str_replace_all("'", "''")
+    warn_log <- warns[[i]] |> stringr::str_replace_all("'", "''")
+    sql <- paste0("UPDATE Quest
     SET EndTime = SYSDATETIME(),
-    CountRow = 1, ErrorLog = '' WHERE (BookNo = ", tabula$options$V_BookNo, ")")
-  DBI::dbExecute(conn, sql)
+    CountRow = 1,
+    ErrorLog = '", error_log, "',
+    WarnLog = '", warn_log, "'
+    WHERE (QuestNo = '", questno, "') AND (BookNo = ", tabula$options$V_BookNo, ")")
+    DBI::dbExecute(conn, sql)
+  }
   DBI::dbDisconnect(conn)
 }
 
