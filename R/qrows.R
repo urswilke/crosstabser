@@ -12,8 +12,6 @@ Qrow <- R6::R6Class(
       self$m <- mapping
 
       params <- process_qrow_params(self$p, self$m)
-      obj <- list(NULL) |> rep(length(params))
-      error <- warn <- NULL
 
       obj <- withCallingHandlers(
         tryCatch({
@@ -21,17 +19,15 @@ Qrow <- R6::R6Class(
             lapply(\(x) Qtab$new(x, mapping))
         },
         error = function(e) {
-          error <<- capture.output(e)[-1] |> paste(collapse = "\n")
+          self$log$error <- capture.output(e)[-1] |> paste(collapse = "\n")
           obj <- list(NULL)
         }),
         warning = function(w) {
-          warn <<- capture.output(w)[-1] |> paste(collapse = "\n")
+          self$log$warn <- capture.output(w)[-1] |> paste(collapse = "\n")
           tryInvokeRestart("muffleWarning")
         }
       )
 
-      self$log$warn <- warn
-      self$log$error <- error
       self$qtabs <- tibble::tibble(params, obj)
     }
   )
