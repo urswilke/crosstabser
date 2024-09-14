@@ -4,20 +4,14 @@
 \alias{Tabula}
 \title{Tabulation class}
 \description{
-The class \code{Mapping} can be used to apply the changes
-specified in the command blocks of an Excel mapping file to a (labelled)
-dataframe.
-
-The information of the Excel mapping file results in the \code{cmd_tbl}
-dataframe field of the mapping object. This dataframe has a column
-\code{command_blocks} which is applied to the data in the \code{dat} field by the
-method \code{modify_data()} and then results in the \code{dat_mod} field.
-}
-\details{
-This is copied from datenanpassr and will just serve as a template when the
-code will be documented...
+The class \code{Tabula} can be used to calculate the crosstabs
+specified on the Questions sheet of the Excel mapping file.
 }
 \examples{
+# This is copied from datenanpassr and will just serve as a template when the
+# code will be documented...
+
+
 # Create a Mapping object from the files provided by the package:
 mapping_file <- system.file("extdata", "mapping.xlsx", package = "datenanpassr")
 spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datenanpassr")
@@ -51,31 +45,23 @@ mapping$dat_mod
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{dat}}{(filepath to pass to \code{haven::read_sav()} to read in the)
-labelled dataframe to apply the mapping on.}
+\item{\code{dat_mod}}{modified dataframe}
 
 \item{\code{mapping_file}}{filepath of the Excel mapping file}
 
-\item{\code{cmd_tbl}}{Dataframe with the command block information}
+\item{\code{row}}{Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
+Or \code{NULL} (the default) resulting in the selection of all row numbers where \code{Type} is specified.}
 
-\item{\code{cmd}}{R list structure containing the processed command block
-information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
-
-\item{\code{dat_mod}}{modified dataframe}
-
-\item{\code{params}}{Parameter list object}
+\item{\code{dat}}{\code{dat} field of the super-class \code{datenanpassr::Mapping}.
+If this is specified, dat_mod will be ignored, and instead generated with \code{datenanpassr::Mapping$modify_data()}}
 }
 \if{html}{\out{</div>}}
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{cmd_tbl}}{Dataframe with the command block information}
-
-\item{\code{cmd}}{R list structure containing the processed command block
-information of the Excel mapping file. \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
-
-\item{\code{params}}{Parameter list object}
+\item{\code{row}}{Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
+Or \code{NULL} (the default) resulting in the selection of all row numbers where \code{Type} is specified.}
 }
 \if{html}{\out{</div>}}
 }

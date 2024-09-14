@@ -2,35 +2,25 @@
 # for common tasks in different methods,
 # e.g. stuff where mcg and mdg do the same, etc.
 
-# TODO: check if possible to refactor code
-# where information of the final 5 tables (Row, Tab, Head, Col & Val) is generated twice,
-# for instance columns in row_table.R & crosstab.R
-
 #' Tabulation class
 #'
-#' This is copied from datenanpassr and will just serve as a template when the
-#' code will be documented...
+#' @description The class \code{Tabula} can be used to calculate the crosstabs
+#'   specified on the Questions sheet of the Excel mapping file.
 #'
-#' @description The class \code{Mapping} can be used to apply the changes
-#'   specified in the command blocks of an Excel mapping file to a (labelled)
-#'   dataframe.
-#'
-#'   The information of the Excel mapping file results in the `cmd_tbl`
-#'   dataframe field of the mapping object. This dataframe has a column
-#'   `command_blocks` which is applied to the data in the `dat` field by the
-#'   method `modify_data()` and then results in the `dat_mod` field.
-#'
-#' @field dat (filepath to pass to \code{haven::read_sav()} to read in the)
-#'   labelled dataframe to apply the mapping on.
-#' @field mapping_file filepath of the Excel mapping file
-#' @field cmd_tbl Dataframe with the command block information
-#' @field cmd R list structure containing the processed command block
-#'   information of the Excel mapping file. `r lifecycle::badge('experimental')`
 #' @field dat_mod modified dataframe
-#' @field params Parameter list object
+#' @field mapping_file filepath of the Excel mapping file
+#' @field row Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
+#'   Or `NULL` (the default) resulting in the selection of all row numbers where `Type` is specified.
+#' @field dat `dat` field of the super-class `datenanpassr::Mapping`.
+#'   If this is specified, dat_mod will be ignored, and instead generated with `datenanpassr::Mapping$modify_data()`
+#'
 #' @export
 #'
 #' @examples
+#' # This is copied from datenanpassr and will just serve as a template when the
+#' # code will be documented...
+#'
+#'
 #' # Create a Mapping object from the files provided by the package:
 #' mapping_file <- system.file("extdata", "mapping.xlsx", package = "datenanpassr")
 #' spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datenanpassr")
@@ -82,11 +72,11 @@ Tabula <- R6::R6Class(
       if (is.null(dat) & is.null(dat_mod)) {
         stop("You have to specify at least one of `dat` or `dat_mod`")
       }
-      if (!is.null(dat_mod)) {
-        self$dat_mod <- datenanpassr::read_data(dat_mod)
-      }
       if (!is.null(dat)) {
         super$modify_data()
+      } else
+      if (!is.null(dat_mod)) {
+        self$dat_mod <- datenanpassr::read_data(dat_mod)
       }
       self$options <- setOptions(mapping_file)
 
