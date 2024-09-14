@@ -18,7 +18,7 @@ tabsi$calc_qtabs(7)
 tabsi$aggregate_5_tables()
 
 test_that("A warning correctly is written to the log", {
-  testthat::expect_true(!is.na(tabsi$crosstabs$table_parts$warn))
+  testthat::expect_true(!is.null(tabsi$qrows[[1]]$log$warn))
 })
 
 
@@ -29,7 +29,7 @@ tabsi$dat_mod$q1 <- NULL
 tabsi$calc_qtabs(5:6)
 tabsi$aggregate_5_tables()
 test_that("An error is correctly written to the log", {
-  testthat::expect_true(!is.na(tabsi$crosstabs$table_parts$error[1]))
+  testthat::expect_true(!is.null(tabsi$qrows[[1]]$log$error))
 })
 
 # ... otherwise an error is thrown:

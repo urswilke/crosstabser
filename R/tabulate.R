@@ -323,8 +323,8 @@ frame_table_parts <- function(tabula) {
   warn <- tabula$qrows |> purrr::map(\(x) x$log$warn)
   error <- tabula$qrows |> purrr::map(\(x) x$log$error)
   QuestNo <- qrow |> purrr::map_chr(\(x) x$p$Abbreviation) |> forcats::as_factor()
-  dplyr::tibble(QuestNo, qtab, warn, error) |>
-    tidyr::unnest_longer(c(qtab, warn, error), keep_empty = TRUE) |>
+  dplyr::tibble(QuestNo, qtab) |>
+    tidyr::unnest_longer(c(qtab), keep_empty = TRUE) |>
     dplyr::mutate(l = purrr::map(qtab$obj, \(x) x$d[five_table_names])) |> tidyr::unnest_wider(l)
 }
 
@@ -333,7 +333,13 @@ aggregate_5_tables <- function(tabula) {
   table_parts <- frame_table_parts(tabula)
   tabula$crosstabs$table_parts <- table_parts
 
-  if (all(!is.na(table_parts$error))) {
+  row_has_error <- tabula$qrows |>
+    lapply(\(x) x$log$error) |>
+    tibble::tibble(a = _) |>
+    tidyr::unnest(a, keep_empty = TRUE) |>
+    dplyr::pull()
+  # all qrows have an error:
+  if (all(!is.na(row_has_error))) {
     stop("No crosstabs calculated")
   }
   q <- table_parts$QuestNo
