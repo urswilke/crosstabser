@@ -78,7 +78,7 @@ Tabula <- R6::R6Class(
                           dat = NULL,
                           book_no = NULL,
                           ...) {
-      super$initialize(dat, mapping_file, process_sheets = FALSE, ...)
+      super$initialize(dat, mapping_file, process_sheets = FALSE, error_out = "safe", ...)
       if (is.null(dat) & is.null(dat_mod)) {
         stop("You have to specify at least one of `dat` or `dat_mod`")
       }
