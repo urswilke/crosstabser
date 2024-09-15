@@ -24,7 +24,7 @@ setOptions <- function(mapping_file) {
 
   l_macro_scenario <- extract_scenario_options(df_macro_raw, v_scenario)
 
-  df_lexikon_raw <- read.delim(
+  df_lexikon_raw <- utils::read.delim(
     # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
     system.file("extdata", "lexikon.csv", package = "crosstabser"),
     header = FALSE,
