@@ -27,7 +27,7 @@ summarize_stats_unweighted <- function(df, x, stat_fun = "length", ..., .by) {
   }
 
   stats::aggregate(
-    reformulate(.by, aggregate_fml_lhs(x)),
+    stats::reformulate(.by, aggregate_fml_lhs(x)),
     data = df,
     stat_fun,
     ...
@@ -96,11 +96,11 @@ se <- function(x, na.rm = TRUE, ...) {
   if (na.rm) {
     x <- x[!is.na(x)]
   }
-  sd(x) / sqrt(length(x))
+  stats::sd(x) / sqrt(length(x))
 }
 #' @export
 percentile <- function(x, na.rm = TRUE, ...) {
-  quantile(x, na.rm = na.rm, ...)
+  stats::quantile(x, na.rm = na.rm, ...)
 }
 stat_fun_wt <- function(x, ...) {
   UseMethod("stat_fun_wt")

@@ -24,7 +24,7 @@ setOptions <- function(mapping_file) {
 
   l_macro_scenario <- extract_scenario_options(df_macro_raw, v_scenario)
 
-  df_lexikon_raw <- read.delim(
+  df_lexikon_raw <- utils::read.delim(
     # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
     system.file("extdata", "lexikon.csv", package = "crosstabser"),
     header = FALSE,
@@ -32,16 +32,12 @@ setOptions <- function(mapping_file) {
   )
   l_lexikon <- df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()
 
-  # TODO: find cleaner way to do this!...:
-  mapping_r_params <- datenanpassr:::extract_named_region_params.excel(mapping_file)
-
   return(tibble::lst(
     v_scenario,
     V_Language,
     df_macro_raw,
     l_macro_scenario,
-    l_lexikon,
-    mapping_r_params
+    l_lexikon
   ))
 }
 
