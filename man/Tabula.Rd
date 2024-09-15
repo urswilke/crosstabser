@@ -83,6 +83,7 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 <details open><summary>Inherited methods</summary>
 <ul>
 <li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="modify_data"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-modify_data'><code>datenanpassr::Mapping$modify_data()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="process_sheet_commands"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-process_sheet_commands'><code>datenanpassr::Mapping$process_sheet_commands()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="save"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-save'><code>datenanpassr::Mapping$save()</code></a></span></li>
 </ul>
 </details>
