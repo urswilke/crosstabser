@@ -7,3 +7,4 @@
 dev/*
 !dev/save_long_json_example.R
 !dev/example.json
+docs
