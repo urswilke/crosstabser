@@ -78,3 +78,9 @@ set_row <- function(mapping, row) {
 rm_header_footer <- function(row_table) {
   row_table[-c(1:3, nrow(row_table)),]
 }
+
+format_sheet_data <- function(df) {
+  df |>
+    tibble::as_tibble() |>
+    dplyr::mutate(dplyr::across(everything(), stringr::str_trim))
+}

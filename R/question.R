@@ -1,22 +1,26 @@
-read_qsheet_raw <- function(mapping_file, row, sheet = "Questions") {
-  # TODO: only use English column names
-  df_questions <- readxl::read_excel(
-    mapping_file, sheet = sheet,
-    col_types = "text"
-  )
-  res <- df_questions |>
-    # first row column names... (=> " + 1"):
-    dplyr::mutate(row = dplyr::row_number() + 1, .before = 1) |>
-    tidyr::drop_na("Type") |>
-    dplyr::select(-dplyr::matches("^Col[A-Z]$"))
-  # filter row indices specified, otherwise all:
-  if (is.null(row)) {
-    return(res)
+read_qsheet_raw <- function(mapping, row, sheet = "Questions") {
+  do_all <- is.null(row)
+  # filter row indices specified, otherwise all...
+  # ... add the first row with the titles, if only specific rows are read:
+  rows <- if (do_all) NULL else c(1, row)
+  df_questions <- openxlsx2::wb_read(
+    mapping$wb,
+    sheet = "Questions",
+    check_names = TRUE,
+    rows = rows
+  ) |>
+    format_sheet_data()
+  if (do_all) {
+    res0 <- df_questions |>
+      # first row column names... (=> " + 1"):
+      dplyr::mutate(row = dplyr::row_number() + 1, .before = 1) |>
+      tidyr::drop_na("Type")
+  } else {
+    res0 <- df_questions |>
+      dplyr::mutate(row, .before = 1)
   }
-  # TODO: think if this should also be reduced to only reading the specified `row`s (e.g. with openxlsx)!
-  # In the example mapping now, it only takes < 0.3 seconds,
-  # but for big mappings this probably takes more than a second easily.
-  res[res$row %in% row,]
+
+  res0[stringr::str_subset(names(res0), "^Col[A-Z]$", negate = TRUE)]
 }
 
 preprocess_qrows_params <- function(mapping) {
