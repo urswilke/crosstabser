@@ -13,10 +13,11 @@ before_script:
   # install all packages in description file not yet installed:
   - R -e 'install.packages(setdiff(desc::desc()$get_deps()$package, c(installed.packages(), "R")));'
 
-devtools-check:
-  stage: build
-  script:
-    - R -e 'devtools::check()'
+# doesn't work with private datenanpassr repo...:
+# devtools-check:
+#   stage: build
+#   script:
+#     - R -e 'devtools::check()'
 
 pages:
   stage: build
