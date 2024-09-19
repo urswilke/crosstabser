@@ -24,7 +24,9 @@
 #' # Create a Mapping object from the files provided by the package:
 #' mapping_file <- system.file("extdata", "mapping.xlsx", package = "datenanpassr")
 #' spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datenanpassr")
-#' mapping <- Mapping$new(spss_file, mapping_file)
+#' # DOESN'T WORK WITH DATENANPASSR MAPPING FILE!!!
+#' \dontrun{
+#' mapping <- Tabula$new(spss_file, mapping_file)
 #'
 #' # The spss_file path was read into a dataframe in the "dat" field of the
 #' # mapping object:
@@ -34,9 +36,7 @@
 #' # It contains the processed information in a list structure that has
 #' # its own print method.
 #' # You can access it with
-#' \dontrun{
 #' mapping$cmd_tbl$command_blocks
-#' }
 #' # Apply the command blocks to the dataset:
 #' mapping$modify_data()
 #'
@@ -47,6 +47,7 @@
 #' # mapping$save("path/to/your/file.sav")
 #' # or with haven (used under the hood by `save()`):
 #' # haven::write_sav(mapping$dat_mod, "path/to/your/file.sav")
+#' }
 Tabula <- R6::R6Class(
   "Tabula",
   inherit = datenanpassr::Mapping,
