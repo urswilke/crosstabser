@@ -9,7 +9,7 @@ read_qsheet_raw <- function(mapping, row, sheet = "Questions") {
     check_names = TRUE,
     rows = rows
   ) |>
-    format_sheet_data()
+    datenanpassr::format_sheet_data()
   if (do_all) {
     res0 <- df_questions |>
       # first row column names... (=> " + 1"):

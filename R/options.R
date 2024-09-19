@@ -16,7 +16,7 @@ setOptions <- function(tabula) {
     col_names = FALSE,
     check_names = TRUE
   ) |>
-    format_sheet_data()
+    datenanpassr::format_sheet_data()
 
   names(df_macro_raw) <- paste0("X", seq_len(ncol(df_macro_raw)))
 
