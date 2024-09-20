@@ -81,10 +81,10 @@ Tabula <- R6::R6Class(
       }
       setOptions(self, book_no)
 
-      gen_col_tables(self)
       self$calc_qtabs(row)
     },
     calc_qtabs = function(row = NULL) {
+      gen_col_tables(self)
       parse_qsheet(self, row)
       invisible(self)
     },
