@@ -365,7 +365,7 @@ aggregate_5_tables <- function(tabula) {
     head_table,
     col_table_all
   )
-  ascend_rownos_within_questno(tabula)
+  #ascend_rownos_within_questno(tabula)
 }
 add_columns_for_tablebook <- function(tabula) {
   five_tables <- tabula$crosstabs$data
@@ -463,7 +463,9 @@ ascend_rownos_within_questno <- function(tabula) {
 
 write_to_db <- function(tabula) {
   five_tables <- tabula$crosstabs$data |> order_tables()
-  conn <- DBI::dbConnect(odbc::odbc(), dsn="TabBooks")
+  conn <- DBI::dbConnect(odbc::odbc(), dsn="TabBooksPG")
+  # dsn= should be changed to parameter tabula$params$excel_file$database_dsn
+  # is it possible to make dynamic set of parameters (so you can add a name R_xxx in mapping file and have it in params? or Mapping$new(xxx='something')? That would be easiest)
 
   DBI::dbWriteTable(conn, "Tab", five_tables$tab_table, append = TRUE)
   DBI::dbWriteTable(conn, "Row", five_tables$row_table, append = TRUE)
@@ -480,12 +482,23 @@ write_to_db <- function(tabula) {
     # https://stackoverflow.com/questions/65572676/how-do-you-escape-an-apostrophe-in-r-so-you-can-insert-the-string-into-a-mysql-t/65572713#65572713
     error_log <- errors[[i]] |> stringr::str_replace_all("'", "''")
     warn_log <- warns[[i]] |> stringr::str_replace_all("'", "''")
-    sql <- paste0("UPDATE Quest
-    SET EndTime = SYSDATETIME(),
-    CountRow = 1,
-    ErrorLog = '", error_log, "',
-    WarnLog = '", warn_log, "'
-    WHERE (QuestNo = '", questno, "') AND (BookNo = ", tabula$options$V_BookNo, ")")
+
+    #PostgreSQL dialect
+    sql <- paste0("UPDATE \"Quest\"
+    SET \"EndTime\" = CURRENT_TIMESTAMP,
+    \"CountRow\" = 1,
+    \"ErrorLog\" = '", error_log, "',
+    \"WarnLog\" = '", warn_log, "'
+    WHERE (\"QuestNo\" = '", questno, "') AND (\"BookNo\" = ", tabula$options$V_BookNo, ")")
+
+    ## MS SQL dialect
+    #sql <- paste0("UPDATE Quest
+    #    SET EndTime = SYSDATETIME(),
+    #    CountRow = 1,
+    #    ErrorLog = '", error_log, "',
+    #    WarnLog = '", warn_log, "' |>
+    #    WHERE (QuestNo = '", questno, "') AND (BookNo = ", tabula$options$V_BookNo, ")")
+
     DBI::dbExecute(conn, sql)
   }
   DBI::dbDisconnect(conn)
@@ -496,6 +509,6 @@ order_tables <- function(five_tables) {
   five_tables$row_table <- dplyr::select(five_tables$row_table,  BookNo, QuestNo, RowNo, TabNo, RowTypeS, RowType, RowContent, RowContentDetail, RowAbsPercent, RowWeighted, RowTitle1, RowTitle2, RowTitle3, RowDecimals, RowVariable, RowValue)
   five_tables$head_table <- dplyr::select(five_tables$head_table, BookNo, HeadNo, HeadName, HeadTitle, HeadCount)
   five_tables$col_table_all <- dplyr::select(five_tables$col_table_all, BookNo, ColNo, HeadNo, ColTitle1, ColTitle2, ColVariable, ColValue)
-  five_tables$val_table <- dplyr::select(five_tables$val_table, BookNo, QuestNo, RowNo, ColNo, Value)
+  five_tables$val_table <- dplyr::select(five_tables$val_table, BookNo, QuestNo, TabNo, RowNo, ColNo, Value)
   five_tables
 }
