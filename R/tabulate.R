@@ -480,12 +480,20 @@ write_to_db <- function(tabula) {
     # https://stackoverflow.com/questions/65572676/how-do-you-escape-an-apostrophe-in-r-so-you-can-insert-the-string-into-a-mysql-t/65572713#65572713
     error_log <- errors[[i]] |> stringr::str_replace_all("'", "''")
     warn_log <- warns[[i]] |> stringr::str_replace_all("'", "''")
-    sql <- paste0("UPDATE Quest
-    SET EndTime = SYSDATETIME(),
-    CountRow = 1,
-    ErrorLog = '", error_log, "',
-    WarnLog = '", warn_log, "'
-    WHERE (QuestNo = '", questno, "') AND (BookNo = ", tabula$options$V_BookNo, ")")
+    book_no <- tabula$options$V_BookNo
+    sql <- DBI::sqlInterpolate(
+      conn,
+      "UPDATE Quest
+        SET EndTime = SYSDATETIME(),
+        CountRow = 1,
+        ErrorLog = '?error_log',
+        WarnLog = '?warn_log'
+        WHERE (QuestNo = '?questno') AND (BookNo = '?book_no')",
+        error_log,
+        warn_log,
+        questno,
+        book_no
+    )
     DBI::dbExecute(conn, sql)
   }
   DBI::dbDisconnect(conn)
