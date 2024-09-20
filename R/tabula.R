@@ -79,16 +79,8 @@ Tabula <- R6::R6Class(
       if (!is.null(dat_mod)) {
         self$dat_mod <- datenanpassr::read_data(dat_mod)
       }
-      setOptions(self)
+      setOptions(self, book_no)
 
-      if (is.null(book_no)) {
-        book_no <- openxlsx2::wb_read(
-          self$wb,
-          named_region = "V_BookNo",
-          col_names = FALSE
-        )[[1]]
-      }
-      self$options$V_BookNo <- book_no
       gen_col_tables(self)
       self$calc_qtabs(row)
     },

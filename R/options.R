@@ -1,4 +1,4 @@
-setOptions <- function(tabula) {
+setOptions <- function(tabula, book_no) {
   # TODO: clean up this mess...!
   v_scenario <- openxlsx2::wb_read(
     tabula$wb,
@@ -30,12 +30,21 @@ setOptions <- function(tabula) {
   )
   l_lexikon <- df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()
 
+  if (is.null(book_no)) {
+    book_no <- openxlsx2::wb_read(
+      tabula$wb,
+      named_region = "V_BookNo",
+      col_names = FALSE
+    )[[1]]
+  }
+
   tabula$options <- tibble::lst(
     v_scenario,
     V_Language,
     df_macro_raw,
     l_macro_scenario,
-    l_lexikon
+    l_lexikon,
+    V_BookNo = book_no
   )
 }
 
