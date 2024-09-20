@@ -68,6 +68,7 @@ Tabula <- R6::R6Class(
                           row = NULL,
                           dat = NULL,
                           book_no = NULL,
+                          tabulate = TRUE,
                           ...) {
       super$initialize(dat, mapping_file, process_sheets = FALSE, error_out = "safe", ...)
       if (is.null(dat) & is.null(dat_mod)) {
@@ -81,7 +82,9 @@ Tabula <- R6::R6Class(
       }
       setOptions(self, book_no)
 
-      self$calc_qtabs(row)
+      if (tabulate) {
+        self$calc_qtabs(row)
+      }
     },
     calc_qtabs = function(row = NULL) {
       gen_col_tables(self)

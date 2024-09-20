@@ -101,6 +101,7 @@ Initialize a Tabula object
   row = NULL,
   dat = NULL,
   book_no = NULL,
+  tabulate = TRUE,
   ...
 )}\if{html}{\out{</div>}}
 }
