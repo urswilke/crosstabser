@@ -426,8 +426,9 @@ add_columns_for_tablebook <- function(tabula) {
         RowWeighted
       ),
       RowType = bitwOr(unlist(cArt[gsub("^.*\\|", "", RowTypeS)]), unlist(cArt[gsub("\\|.*$", "", RowTypeS)])),
+      # TODO: discuss with Wolf if I should remove the space in front of the weight sign in the row labels...:
       # "\\u2696" is the unicode escape for the weight sign
-      RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub("\u2696", "", RowTitle3), ""),
+      RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub(" \u2696", "", RowTitle3), ""),
     )
   res$head_table <- res$head_table |> dplyr::left_join(
     res$col_table_all |> dplyr::count(HeadNo, name = "HeadCount"),
