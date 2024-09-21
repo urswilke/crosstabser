@@ -143,18 +143,18 @@
       [[8]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   gewichtet mit gew
-                            NULL ----- GESAMT  Regi… ------ ------ -----
-                            NULL -----         Asien Europa Norda… Pazi…
-      GESAMT               abs       4   151    15     71.5   47.5  17  
-      Mittelwert                     5    68.7  56.7   69.5   77.4  52.1
-      Standardfehler                 6    39.6  48.1   38.7   36.3  39.5
-      Median                         7    95    90     90    100    50  
-      Perzentil 25 %                 8    40     5     50     56.2  20  
-      Summe                          9 10379   850   4969   3675   885  
-      Minimum                       10     0     0      0      0     0  
-      Maximum                       11   100   100    100    100   100  
-      GÜLTIGE FÄLLE        abs      12   151    15     71.5   47.5  17  
-                           in %     13   100   100    100    100   100  
+                            NULL ----- GESAMT   Regi… ------- ------- ------
+                            NULL -----          Asien Europa  Nordam… Pazif…
+      GESAMT               abs       4   151     15     71.5    47.5   17   
+      Mittelwert                     5    68.7   56.7   69.5    77.4   52.1 
+      Standardfehler                 6     3.22  12.4    4.58    5.27   9.58
+      Median                         7    95     90     90     100     50   
+      Perzentil 25 %                 8    40      5     50      56.2   20   
+      Summe                          9 10379    850   4969    3675    885   
+      Minimum                       10     0      0      0       0      0   
+      Maximum                       11   100    100    100     100    100   
+      GÜLTIGE FÄLLE        abs      12   151     15     71.5    47.5   17   
+                           in %     13   100    100    100     100    100   
       
       
       [[9]]

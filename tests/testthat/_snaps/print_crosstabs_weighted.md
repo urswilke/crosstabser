@@ -121,46 +121,46 @@
       [[4]]
       [[4]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-                            NULL ----- GESAMT   Region ------- ------- -----
-                            NULL -----          Asien  Europa  Nordam… Pazi…
-      GESAMT               abs       4   151      19     75      43     14  
-                           abs ⚖     5   151      15     71.5    47.5   17  
-      Mittelwert                     6    72.8    66.8   73.3    79.5   57.1
-      Mittelwert ⚖                   7    68.7    56.7   69.5    77.4   52.1
-      Standardfehler                 8     3.05   10.2    4.11    5.31  11.4
-      Standardfehler ⚖               9    39.6    48.1   38.7    36.3   39.5
-      Median                        10   100     100    100     100     65  
-      Median ⚖                      11    95      90     90     100     50  
-      Perzentil 25 %                12    50      15     50      70     20  
-      Perzentil 25 % ⚖              13    40       5     50      56.2   20  
-      Summe                         14 10988    1270   5498    3420    800  
-      Summe ⚖                       15 10379     850   4969    3675    885  
-      Minimum                       16     0       0      0       0      0  
-      Minimum ⚖                     17     0       0      0       0      0  
-      Maximum                       18   100     100    100     100    100  
-      Maximum ⚖                     19   100     100    100     100    100  
-      GÜLTIGE FÄLLE        abs      20   151      19     75      43     14  
-                           abs ⚖    21   151      15     71.5    47.5   17  
-                           in %     22   100     100    100     100    100  
-                           in %…    23   100     100    100     100    100  
+                            NULL ----- GESAMT   Region ------- ------- ------
+                            NULL -----          Asien  Europa  Nordam… Pazif…
+      GESAMT               abs       4   151      19     75      43     14   
+                           abs ⚖     5   151      15     71.5    47.5   17   
+      Mittelwert                     6    72.8    66.8   73.3    79.5   57.1 
+      Mittelwert ⚖                   7    68.7    56.7   69.5    77.4   52.1 
+      Standardfehler                 8     3.05   10.2    4.11    5.31  11.4 
+      Standardfehler ⚖               9     3.22   12.4    4.58    5.27   9.58
+      Median                        10   100     100    100     100     65   
+      Median ⚖                      11    95      90     90     100     50   
+      Perzentil 25 %                12    50      15     50      70     20   
+      Perzentil 25 % ⚖              13    40       5     50      56.2   20   
+      Summe                         14 10988    1270   5498    3420    800   
+      Summe ⚖                       15 10379     850   4969    3675    885   
+      Minimum                       16     0       0      0       0      0   
+      Minimum ⚖                     17     0       0      0       0      0   
+      Maximum                       18   100     100    100     100    100   
+      Maximum ⚖                     19   100     100    100     100    100   
+      GÜLTIGE FÄLLE        abs      20   151      19     75      43     14   
+                           abs ⚖    21   151      15     71.5    47.5   17   
+                           in %     22   100     100    100     100    100   
+                           in %…    23   100     100    100     100    100   
       
       
       [[5]]
       [[5]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Kundenzufriedenheit
-                            NULL ----- GESAMT Region ------ ------ ------
-                            NULL -----        Asien  Europa Norda… Pazif…
-      GESAMT               abs       4 151     19     75     43     14   
-                           abs ⚖     5 151     15     71.5   47.5   17   
-      Mittelwert                     6  95.5   95.4   94.2   97.4   95.7 
-      Mittelwert ⚖                   7  NA     NA     NA     NA     NA   
-      Standardfehler                 8   1.03   3.32   1.65   1.38   2.97
-      Standardfehler ⚖               9   9.11  10.9   10.5    6.10   9.67
-      GÜLTIGE FÄLLE        abs      10 151     19     75     43     14   
-                           abs ⚖    11 151     15     71.5   47.5   17   
-                           in %     12 100    100    100    100    100   
-                           in %…    13 100    100    100    100    100   
+                            NULL ----- GESAMT  Region ------ ------ ------
+                            NULL -----         Asien  Europa Norda… Pazif…
+      GESAMT               abs       4 151      19     75     43     14   
+                           abs ⚖     5 151      15     71.5   47.5   17   
+      Mittelwert                     6  95.5    95.4   94.2   97.4   95.7 
+      Mittelwert ⚖                   7  NA      NA     NA     NA     NA   
+      Standardfehler                 8   1.03    3.32   1.65   1.38   2.97
+      Standardfehler ⚖               9   0.922   3.75   1.53   1.03   3.65
+      GÜLTIGE FÄLLE        abs      10 151      19     75     43     14   
+                           abs ⚖    11 151      15     71.5   47.5   17   
+                           in %     12 100     100    100    100    100   
+                           in %…    13 100     100    100    100    100   
       
       [[5]][[2]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
@@ -172,7 +172,7 @@
       Mittelwert                     6  94.8   95     93.6  100    93.3 
       Mittelwert ⚖                   7  NA     NA     NA     NA    NA   
       Standardfehler                 8   2.35   5      3.88   0     6.67
-      Standardfehler ⚖               9   8.73   9.43   9.38   0    11.0 
+      Standardfehler ⚖               9   1.63   4.44   2.51   0     4.90
       GÜLTIGE FÄLLE        abs      10 151     19     75     43    14   
                            abs ⚖    11 151     15     71.5   47.5  17   
                            in %     12 100    100    100    100   100   
@@ -219,28 +219,28 @@
       [[8]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   gewichtet mit gew
-                            NULL ----- GESAMT   Region ------- ------- -----
-                            NULL -----          Asien  Europa  Nordam… Pazi…
-      GESAMT               abs       4   151      19     75      43     14  
-                           abs ⚖     5   151      15     71.5    47.5   17  
-      Mittelwert                     6    72.8    66.8   73.3    79.5   57.1
-      Mittelwert ⚖                   7    68.7    56.7   69.5    77.4   52.1
-      Standardfehler                 8     3.05   10.2    4.11    5.31  11.4
-      Standardfehler ⚖               9    39.6    48.1   38.7    36.3   39.5
-      Median                        10   100     100    100     100     65  
-      Median ⚖                      11    95      90     90     100     50  
-      Perzentil 25 %                12    50      15     50      70     20  
-      Perzentil 25 % ⚖              13    40       5     50      56.2   20  
-      Summe                         14 10988    1270   5498    3420    800  
-      Summe ⚖                       15 10379     850   4969    3675    885  
-      Minimum                       16     0       0      0       0      0  
-      Minimum ⚖                     17     0       0      0       0      0  
-      Maximum                       18   100     100    100     100    100  
-      Maximum ⚖                     19   100     100    100     100    100  
-      GÜLTIGE FÄLLE        abs      20   151      19     75      43     14  
-                           abs ⚖    21   151      15     71.5    47.5   17  
-                           in %     22   100     100    100     100    100  
-                           in %…    23   100     100    100     100    100  
+                            NULL ----- GESAMT   Region ------- ------- ------
+                            NULL -----          Asien  Europa  Nordam… Pazif…
+      GESAMT               abs       4   151      19     75      43     14   
+                           abs ⚖     5   151      15     71.5    47.5   17   
+      Mittelwert                     6    72.8    66.8   73.3    79.5   57.1 
+      Mittelwert ⚖                   7    68.7    56.7   69.5    77.4   52.1 
+      Standardfehler                 8     3.05   10.2    4.11    5.31  11.4 
+      Standardfehler ⚖               9     3.22   12.4    4.58    5.27   9.58
+      Median                        10   100     100    100     100     65   
+      Median ⚖                      11    95      90     90     100     50   
+      Perzentil 25 %                12    50      15     50      70     20   
+      Perzentil 25 % ⚖              13    40       5     50      56.2   20   
+      Summe                         14 10988    1270   5498    3420    800   
+      Summe ⚖                       15 10379     850   4969    3675    885   
+      Minimum                       16     0       0      0       0      0   
+      Minimum ⚖                     17     0       0      0       0      0   
+      Maximum                       18   100     100    100     100    100   
+      Maximum ⚖                     19   100     100    100     100    100   
+      GÜLTIGE FÄLLE        abs      20   151      19     75      43     14   
+                           abs ⚖    21   151      15     71.5    47.5   17   
+                           in %     22   100     100    100     100    100   
+                           in %…    23   100     100    100     100    100   
       
       
       [[9]]
@@ -266,7 +266,7 @@
       Mittelwert                         18   5.52   7.72  5.11   4.8    6.79
       Mittelwert ⚖                       19   6.14   9     4.99   6.01   8.56
       Standardfehler                     20   0.644  2.71  0.601  1.46   2.21
-      Standardfehler ⚖                   21   9.16  12.4   4.76  12.2    9.88
+      Standardfehler ⚖                   21   0.770  3.26  0.584  1.85   2.40
       Median                             22   3      3.5   4      3      3.5 
       Median ⚖                           23   3      4     3      3      4   
       GÜLTIGE FÄLLE             abs      24 143     18    71     40     14   
@@ -1047,74 +1047,74 @@
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Schnelle Umsetzung
-                                 NULL ----- GESAMT Region  ------ ------ -----
-                                 NULL -----        Asien   Europa Norda… Pazi…
-      GESAMT                    abs       4 73       7     38     23      5   
-                                abs ⚖     5 78       6     38.5   28      5.5 
-      1 - völlig unzufri…       abs       6  1       0      1      0      0   
-                                abs ⚖     7  2       0      2      0      0   
-                                in %      8  1.47    0      2.86   0      0   
-                                in %…     9  2.78    0      5.97   0      0   
-      2                         abs      10  2       0      1      1      0   
-                                abs ⚖    11  3       0      2      1      0   
-                                in %     12  2.94    0      2.86   4.55   0   
-                                in %…    13  4.17    0      5.97   3.64   0   
-      3                         abs      14  1       0      0      0      1   
-                                abs ⚖    15  0.5     0      0      0      0.5 
-                                in %     16  1.47    0      0      0     25   
-                                in %…    17  0.694   0      0      0     10   
-      4                         abs      18  1       0      1      0      0   
-                                abs ⚖    19  1       0      1      0      0   
-                                in %     20  1.47    0      2.86   0      0   
-                                in %…    21  1.39    0      2.99   0      0   
-      5                         abs      22  5       1      2      2      0   
-                                abs ⚖    23  4       0.5    1      2.5    0   
-                                in %     24  7.35   14.3    5.71   9.09   0   
-                                in %…    25  5.56    8.33   2.99   9.09   0   
-      6                         abs      26  2       0      0      2      0   
-                                abs ⚖    27  2.5     0      0      2.5    0   
-                                in %     28  2.94    0      0      9.09   0   
-                                in %…    29  3.47    0      0      9.09   0   
-      7                         abs      30 12       3      4      4      1   
-                                abs ⚖    31 11.5     2.5    4      3      2   
-                                in %     32 17.6    42.9   11.4   18.2   25   
-                                in %…    33 16.0    41.7   11.9   10.9   40   
-      8                         abs      34 26       1     17      6      2   
-                                abs ⚖    35 24       0.5   15      6      2.5 
-                                in %     36 38.2    14.3   48.6   27.3   50   
-                                in %…    37 33.3     8.33  44.8   21.8   50   
-      9                         abs      38 12       2      5      5      0   
-                                abs ⚖    39 15.5     2.5    4.5    8.5    0   
-                                in %     40 17.6    28.6   14.3   22.7    0   
-                                in %…    41 21.5    41.7   13.4   30.9    0   
-      10 - absolut zufri…       abs      42  6       0      4      2      0   
-                                abs ⚖    43  8       0      4      4      0   
-                                in %     44  8.82    0     11.4    9.09   0   
-                                in %…    45 11.1     0     11.9   14.5    0   
-      ZUSAMMENFASSUNG     1 bi… abs      46  5       0      3      1      1   
-                          1 bi… abs ⚖    47  6.5     0      5      1      0.5 
-                          1 bi… in %     48  7.35    0      8.57   4.55  25   
-                          1 bi… in %…    49  9.03    0     14.9    3.64  10   
-                          5 bi… abs      50 19       4      6      8      1   
-                          5 bi… abs ⚖    51 18       3      5      8      2   
-                          5 bi… in %     52 27.9    57.1   17.1   36.4   25   
-                          5 bi… in %…    53 25      50     14.9   29.1   40   
-                          8 bi… abs      54 44       3     26     13      2   
-                          8 bi… abs ⚖    55 47.5     3     23.5   18.5    2.5 
-                          8 bi… in %     56 64.7    42.9   74.3   59.1   50   
-                          8 bi… in %…    57 66.0    50     70.1   67.3   50   
-      Mittelwert                         58  7.49    7.43   7.6    7.5    6.5 
-      Mittelwert ⚖                       59  7.51    7.75   7.27   7.82   7.1 
-      Standardfehler                     60  0.232   0.528  0.341  0.399  1.19
-      Standardfehler ⚖                   61  2.13    1.35   2.49   1.89   1.62
-      GÜLTIGE FÄLLE             abs      62 68       7     35     22      4   
-                                abs ⚖    63 72       6     33.5   27.5    5   
-                                in %     64 93.2   100     92.1   95.7   80   
-                                in %…    65 92.3   100     87.0   98.2   90.9 
-      keine Angabe              abs      66  5       0      3      1      1   
-                                abs ⚖    67  6       0      5      0.5    0.5 
-                                in %     68  6.85    0      7.89   4.35  20   
-                                in %…    69  7.69    0     13.0    1.79   9.09
+                                 NULL ----- GESAMT Region  ------ ------ ------
+                                 NULL -----        Asien   Europa Norda… Pazif…
+      GESAMT                    abs       4 73       7     38     23      5    
+                                abs ⚖     5 78       6     38.5   28      5.5  
+      1 - völlig unzufri…       abs       6  1       0      1      0      0    
+                                abs ⚖     7  2       0      2      0      0    
+                                in %      8  1.47    0      2.86   0      0    
+                                in %…     9  2.78    0      5.97   0      0    
+      2                         abs      10  2       0      1      1      0    
+                                abs ⚖    11  3       0      2      1      0    
+                                in %     12  2.94    0      2.86   4.55   0    
+                                in %…    13  4.17    0      5.97   3.64   0    
+      3                         abs      14  1       0      0      0      1    
+                                abs ⚖    15  0.5     0      0      0      0.5  
+                                in %     16  1.47    0      0      0     25    
+                                in %…    17  0.694   0      0      0     10    
+      4                         abs      18  1       0      1      0      0    
+                                abs ⚖    19  1       0      1      0      0    
+                                in %     20  1.47    0      2.86   0      0    
+                                in %…    21  1.39    0      2.99   0      0    
+      5                         abs      22  5       1      2      2      0    
+                                abs ⚖    23  4       0.5    1      2.5    0    
+                                in %     24  7.35   14.3    5.71   9.09   0    
+                                in %…    25  5.56    8.33   2.99   9.09   0    
+      6                         abs      26  2       0      0      2      0    
+                                abs ⚖    27  2.5     0      0      2.5    0    
+                                in %     28  2.94    0      0      9.09   0    
+                                in %…    29  3.47    0      0      9.09   0    
+      7                         abs      30 12       3      4      4      1    
+                                abs ⚖    31 11.5     2.5    4      3      2    
+                                in %     32 17.6    42.9   11.4   18.2   25    
+                                in %…    33 16.0    41.7   11.9   10.9   40    
+      8                         abs      34 26       1     17      6      2    
+                                abs ⚖    35 24       0.5   15      6      2.5  
+                                in %     36 38.2    14.3   48.6   27.3   50    
+                                in %…    37 33.3     8.33  44.8   21.8   50    
+      9                         abs      38 12       2      5      5      0    
+                                abs ⚖    39 15.5     2.5    4.5    8.5    0    
+                                in %     40 17.6    28.6   14.3   22.7    0    
+                                in %…    41 21.5    41.7   13.4   30.9    0    
+      10 - absolut zufri…       abs      42  6       0      4      2      0    
+                                abs ⚖    43  8       0      4      4      0    
+                                in %     44  8.82    0     11.4    9.09   0    
+                                in %…    45 11.1     0     11.9   14.5    0    
+      ZUSAMMENFASSUNG     1 bi… abs      46  5       0      3      1      1    
+                          1 bi… abs ⚖    47  6.5     0      5      1      0.5  
+                          1 bi… in %     48  7.35    0      8.57   4.55  25    
+                          1 bi… in %…    49  9.03    0     14.9    3.64  10    
+                          5 bi… abs      50 19       4      6      8      1    
+                          5 bi… abs ⚖    51 18       3      5      8      2    
+                          5 bi… in %     52 27.9    57.1   17.1   36.4   25    
+                          5 bi… in %…    53 25      50     14.9   29.1   40    
+                          8 bi… abs      54 44       3     26     13      2    
+                          8 bi… abs ⚖    55 47.5     3     23.5   18.5    2.5  
+                          8 bi… in %     56 64.7    42.9   74.3   59.1   50    
+                          8 bi… in %…    57 66.0    50     70.1   67.3   50    
+      Mittelwert                         58  7.49    7.43   7.6    7.5    6.5  
+      Mittelwert ⚖                       59  7.51    7.75   7.27   7.82   7.1  
+      Standardfehler                     60  0.232   0.528  0.341  0.399  1.19 
+      Standardfehler ⚖                   61  0.251   0.552  0.430  0.361  0.723
+      GÜLTIGE FÄLLE             abs      62 68       7     35     22      4    
+                                abs ⚖    63 72       6     33.5   27.5    5    
+                                in %     64 93.2   100     92.1   95.7   80    
+                                in %…    65 92.3   100     87.0   98.2   90.9  
+      keine Angabe              abs      66  5       0      3      1      1    
+                                abs ⚖    67  6       0      5      0.5    0.5  
+                                in %     68  6.85    0      7.89   4.35  20    
+                                in %…    69  7.69    0     13.0    1.79   9.09 
       
       [[19]][[4]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
@@ -1179,7 +1179,7 @@
       Mittelwert                         58  8.02   8.67   8.09   7.62   8.5  
       Mittelwert ⚖                       59  7.95   8.64   7.76   7.90   8.8  
       Standardfehler                     60  0.219  0.558  0.305  0.417  0.645
-      Standardfehler ⚖                   61  2.01   1.18   2.26   1.90   1.20 
+      Standardfehler ⚖                   61  0.237  0.503  0.377  0.376  0.539
       GÜLTIGE FÄLLE             abs      62 66      6     35     21      4    
                                 abs ⚖    63 72      5.5   36     25.5    5    
                                 in %     64 90.4   85.7   92.1   91.3   80    
@@ -1227,74 +1227,74 @@
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige Schnelle
       #   Umsetzung
-                                 NULL ----- GESAMT Region  ------ ------ -----
-                                 NULL -----        Asien   Europa Norda… Pazi…
-      GESAMT                    abs       4 43       7     18     13      5   
-                                abs ⚖     5 36.5     4     14     12.5    6   
-      1 - völlig unzufri…       abs       6  1       0      1      0      0   
-                                abs ⚖     7  0.5     0      0.5    0      0   
-                                in %      8  2.70    0      6.25   0      0   
-                                in %…     9  1.64    0      4.35   0      0   
-      2                         abs      10  1       0      1      0      0   
-                                abs ⚖    11  0.5     0      0.5    0      0   
-                                in %     12  2.70    0      6.25   0      0   
-                                in %…    13  1.64    0      4.35   0      0   
-      3                         abs      14  2       1      0      1      0   
-                                abs ⚖    15  1       0.5    0      0.5    0   
-                                in %     16  5.41   14.3    0      9.09   0   
-                                in %…    17  3.28   12.5    0      5      0   
-      4                         abs      18  1       0      1      0      0   
-                                abs ⚖    19  2       0      2      0      0   
-                                in %     20  2.70    0      6.25   0      0   
-                                in %…    21  6.56    0     17.4    0      0   
-      5                         abs      22  9       2      3      3      1   
-                                abs ⚖    23  6.5     1      2.5    2      1   
-                                in %     24 24.3    28.6   18.8   27.3   33.3 
-                                in %…    25 21.3    25     21.7   20     20   
-      6                         abs      26  3       2      1      0      0   
-                                abs ⚖    27  2.5     1.5    1      0      0   
-                                in %     28  8.11   28.6    6.25   0      0   
-                                in %…    29  8.20   37.5    8.70   0      0   
-      7                         abs      30  5       0      3      2      0   
-                                abs ⚖    31  4.5     0      1.5    3      0   
-                                in %     32 13.5     0     18.8   18.2    0   
-                                in %…    33 14.8     0     13.0   30      0   
-      8                         abs      34  8       2      4      2      0   
-                                abs ⚖    35  5.5     1      2      2.5    0   
-                                in %     36 21.6    28.6   25     18.2    0   
-                                in %…    37 18.0    25     17.4   25      0   
-      9                         abs      38  3       0      1      1      1   
-                                abs ⚖    39  3       0      0.5    0.5    2   
-                                in %     40  8.11    0      6.25   9.09  33.3 
-                                in %…    41  9.84    0      4.35   5     40   
-      10 - absolut zufri…       abs      42  4       0      1      2      1   
-                                abs ⚖    43  4.5     0      1      1.5    2   
-                                in %     44 10.8     0      6.25  18.2   33.3 
-                                in %…    45 14.8     0      8.70  15     40   
-      ZUSAMMENFASSUNG     1 bi… abs      46  5       1      3      1      0   
-                          1 bi… abs ⚖    47  4       0.5    3      0.5    0   
-                          1 bi… in %     48 13.5    14.3   18.8    9.09   0   
-                          1 bi… in %…    49 13.1    12.5   26.1    5      0   
-                          5 bi… abs      50 17       4      7      5      1   
-                          5 bi… abs ⚖    51 13.5     2.5    5      5      1   
-                          5 bi… in %     52 45.9    57.1   43.8   45.5   33.3 
-                          5 bi… in %…    53 44.3    62.5   43.5   50     20   
-                          8 bi… abs      54 15       2      6      5      2   
-                          8 bi… abs ⚖    55 13       1      3.5    4.5    4   
-                          8 bi… in %     56 40.5    28.6   37.5   45.5   66.7 
-                          8 bi… in %…    57 42.6    25     30.4   45     80   
-      Mittelwert                         58  6.54    5.86   6.25   7      8   
-      Mittelwert ⚖                       59  6.80    5.88   6      7.2    8.6 
-      Standardfehler                     60  0.377   0.670  0.616  0.688  1.53
-      Standardfehler ⚖                   61  2.25    1.77   2.41   1.93   2.07
-      GÜLTIGE FÄLLE             abs      62 37       7     16     11      3   
-                                abs ⚖    63 30.5     4     11.5   10      5   
-                                in %     64 86.0   100     88.9   84.6   60   
-                                in %…    65 83.6   100     82.1   80     83.3 
-      keine Angabe              abs      66  6       0      2      2      2   
-                                abs ⚖    67  6       0      2.5    2.5    1   
-                                in %     68 14.0     0     11.1   15.4   40   
-                                in %…    69 16.4     0     17.9   20     16.7 
+                                 NULL ----- GESAMT Region  ------ ------ ------
+                                 NULL -----        Asien   Europa Norda… Pazif…
+      GESAMT                    abs       4 43       7     18     13      5    
+                                abs ⚖     5 36.5     4     14     12.5    6    
+      1 - völlig unzufri…       abs       6  1       0      1      0      0    
+                                abs ⚖     7  0.5     0      0.5    0      0    
+                                in %      8  2.70    0      6.25   0      0    
+                                in %…     9  1.64    0      4.35   0      0    
+      2                         abs      10  1       0      1      0      0    
+                                abs ⚖    11  0.5     0      0.5    0      0    
+                                in %     12  2.70    0      6.25   0      0    
+                                in %…    13  1.64    0      4.35   0      0    
+      3                         abs      14  2       1      0      1      0    
+                                abs ⚖    15  1       0.5    0      0.5    0    
+                                in %     16  5.41   14.3    0      9.09   0    
+                                in %…    17  3.28   12.5    0      5      0    
+      4                         abs      18  1       0      1      0      0    
+                                abs ⚖    19  2       0      2      0      0    
+                                in %     20  2.70    0      6.25   0      0    
+                                in %…    21  6.56    0     17.4    0      0    
+      5                         abs      22  9       2      3      3      1    
+                                abs ⚖    23  6.5     1      2.5    2      1    
+                                in %     24 24.3    28.6   18.8   27.3   33.3  
+                                in %…    25 21.3    25     21.7   20     20    
+      6                         abs      26  3       2      1      0      0    
+                                abs ⚖    27  2.5     1.5    1      0      0    
+                                in %     28  8.11   28.6    6.25   0      0    
+                                in %…    29  8.20   37.5    8.70   0      0    
+      7                         abs      30  5       0      3      2      0    
+                                abs ⚖    31  4.5     0      1.5    3      0    
+                                in %     32 13.5     0     18.8   18.2    0    
+                                in %…    33 14.8     0     13.0   30      0    
+      8                         abs      34  8       2      4      2      0    
+                                abs ⚖    35  5.5     1      2      2.5    0    
+                                in %     36 21.6    28.6   25     18.2    0    
+                                in %…    37 18.0    25     17.4   25      0    
+      9                         abs      38  3       0      1      1      1    
+                                abs ⚖    39  3       0      0.5    0.5    2    
+                                in %     40  8.11    0      6.25   9.09  33.3  
+                                in %…    41  9.84    0      4.35   5     40    
+      10 - absolut zufri…       abs      42  4       0      1      2      1    
+                                abs ⚖    43  4.5     0      1      1.5    2    
+                                in %     44 10.8     0      6.25  18.2   33.3  
+                                in %…    45 14.8     0      8.70  15     40    
+      ZUSAMMENFASSUNG     1 bi… abs      46  5       1      3      1      0    
+                          1 bi… abs ⚖    47  4       0.5    3      0.5    0    
+                          1 bi… in %     48 13.5    14.3   18.8    9.09   0    
+                          1 bi… in %…    49 13.1    12.5   26.1    5      0    
+                          5 bi… abs      50 17       4      7      5      1    
+                          5 bi… abs ⚖    51 13.5     2.5    5      5      1    
+                          5 bi… in %     52 45.9    57.1   43.8   45.5   33.3  
+                          5 bi… in %…    53 44.3    62.5   43.5   50     20    
+                          8 bi… abs      54 15       2      6      5      2    
+                          8 bi… abs ⚖    55 13       1      3.5    4.5    4    
+                          8 bi… in %     56 40.5    28.6   37.5   45.5   66.7  
+                          8 bi… in %…    57 42.6    25     30.4   45     80    
+      Mittelwert                         58  6.54    5.86   6.25   7      8    
+      Mittelwert ⚖                       59  6.80    5.88   6      7.2    8.6  
+      Standardfehler                     60  0.377   0.670  0.616  0.688  1.53 
+      Standardfehler ⚖                   61  0.408   0.887  0.711  0.611  0.927
+      GÜLTIGE FÄLLE             abs      62 37       7     16     11      3    
+                                abs ⚖    63 30.5     4     11.5   10      5    
+                                in %     64 86.0   100     88.9   84.6   60    
+                                in %…    65 83.6   100     82.1   80     83.3  
+      keine Angabe              abs      66  6       0      2      2      2    
+                                abs ⚖    67  6       0      2.5    2.5    1    
+                                in %     68 14.0     0     11.1   15.4   40    
+                                in %…    69 16.4     0     17.9   20     16.7  
       
       [[19]][[8]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
@@ -1359,7 +1359,7 @@
       Mittelwert                         58  7.49    7.57   7      7.91   7.75 
       Mittelwert ⚖                       59  7.81    7.88   7.11   8.15   8.36 
       Standardfehler                     60  0.356   0.896  0.588  0.667  0.854
-      Standardfehler ⚖                   61  1.99    2.55   2.08   2.01   1.51 
+      Standardfehler ⚖                   61  0.369   1.27   0.676  0.635  0.644
       GÜLTIGE FÄLLE             abs      62 35       7     13     11      4    
                                 abs ⚖    63 29       4      9.5   10      5.5  
                                 in %     64 81.4   100     72.2   84.6   80    
