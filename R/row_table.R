@@ -26,6 +26,10 @@ gen_row_table <- function(qtab) {
     value_row_table$RowNo <- seq_len(nrow(value_row_table))
     row_table_unweighted <- value_row_table
     value_row_table$RowTitle3 <- paste(value_row_table$RowTitle3, qtab$m$options$l_lexikon["cTabWeighted"])
+    is_stat_row <- value_row_table$RowContent == "Statistics"
+    value_row_table[is_stat_row, ]$RowTitle1 <- paste(value_row_table[is_stat_row, ]$RowTitle1, qtab$m$options$l_lexikon["cTabWeighted"])
+    value_row_table[is_stat_row, ]$RowTitle2 <- paste(value_row_table[is_stat_row, ]$RowTitle2, qtab$m$options$l_lexikon["cTabWeighted"])
+
     row_table_unweighted$RowWeighted <- "Unweighted"
     value_row_table <- rbind(row_table_unweighted, value_row_table)
     value_row_table <- value_row_table[order(value_row_table$RowNo),]
