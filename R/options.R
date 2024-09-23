@@ -1,24 +1,22 @@
-setOptions <- function(mapping_file) {
+setOptions <- function(tabula, book_no) {
   # TODO: clean up this mess...!
-  # TODO: check if faster bulk-wise or preloading a workbook object with
-  # openxlsx, but rather together with Mapping class in datenanpassr...:
-  v_scenario <- openxlsx::read.xlsx(
-    mapping_file,
-    namedRegion = "V_Scenario",
-    colNames = FALSE
-  )[[1]]
-  V_Language <- openxlsx::read.xlsx(
-    mapping_file,
-    namedRegion = "V_Language",
-    colNames = FALSE
-  )[[1]]
-  df_macro_raw <- readxl::read_excel(
-    mapping_file,
-    sheet = "Macro",
-    col_types = "text",
+  v_scenario <- openxlsx2::wb_read(
+    tabula$wb,
+    named_region = "V_Scenario",
     col_names = FALSE
+  )[[1]]
+  V_Language <- openxlsx2::wb_read(
+    tabula$wb,
+    named_region = "V_Language",
+    col_names = FALSE
+  )[[1]]
+  df_macro_raw <- openxlsx2::wb_read(
+    tabula$wb,
+    sheet = "Macro",
+    col_names = FALSE,
+    check_names = TRUE
   ) |>
-    suppressMessages()
+    datenanpassr::format_sheet_data()
 
   names(df_macro_raw) <- paste0("X", seq_len(ncol(df_macro_raw)))
 
@@ -32,13 +30,22 @@ setOptions <- function(mapping_file) {
   )
   l_lexikon <- df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()
 
-  return(tibble::lst(
+  if (is.null(book_no)) {
+    book_no <- openxlsx2::wb_read(
+      tabula$wb,
+      named_region = "V_BookNo",
+      col_names = FALSE
+    )[[1]]
+  }
+
+  tabula$options <- tibble::lst(
     v_scenario,
     V_Language,
     df_macro_raw,
     l_macro_scenario,
-    l_lexikon
-  ))
+    l_lexikon,
+    V_BookNo = book_no
+  )
 }
 
 
