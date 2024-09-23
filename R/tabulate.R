@@ -438,7 +438,7 @@ add_columns_for_tablebook <- function(tabula) {
   tabula$crosstabs$data <- res
 }
 
-  write_to_db <- function(tabula) {
+write_to_db <- function(tabula) {
   five_tables <- tabula$crosstabs$data |> order_tables()
   conn <- DBI::dbConnect(odbc::odbc(), dsn=tabula$params$database_dsn)
 
@@ -450,24 +450,29 @@ add_columns_for_tablebook <- function(tabula) {
 
   errors <- tabula$qrows |> lapply(\(x) x$log$error)
   warns <- tabula$qrows |> lapply(\(x) x$log$warn)
+  sql = ""
 
   # change Quest table for each QuestNo line by line:
   for (i in seq_along(errors)) {
-    questno <- tabula$qrows[[i]]$p$Abbreviation
-    # https://stackoverflow.com/questions/65572676/how-do-you-escape-an-apostrophe-in-r-so-you-can-insert-the-string-into-a-mysql-t/65572713#65572713
-    error_log <- errors[[i]] |> stringr::str_replace_all("'", "''")
-    warn_log <- warns[[i]] |> stringr::str_replace_all("'", "''")
 
     #PostgreSQL dialect
-    sql <- paste0("UPDATE \"Quest\"
-    SET \"EndTime\" = CURRENT_TIMESTAMP,
-    \"CountRow\" = 1,
-    \"ErrorLog\" = '", error_log, "',
-    \"WarnLog\" = '", warn_log, "'
-    WHERE (\"QuestNo\" = '", questno, "') AND (\"BookNo\" = ", tabula$options$V_BookNo, ")")
-
-    DBI::dbExecute(conn, sql)
+    sql <- paste0(sql,
+      DBI::sqlInterpolate(
+        conn,
+        'UPDATE "Quest"
+          SET "EndTime" = CURRENT_TIMESTAMP,
+          "CountRow" = 1,
+          "ErrorLog" = ?error_log,
+          "WarnLog" = ?warn_log
+          WHERE ("QuestNo" = ?questno) AND ("BookNo" = ?book_no)',
+        error_log = paste0("", errors[[i]]),
+        warn_log = paste0("", warns[[i]]),
+        questno = tabula$qrows[[i]]$p$Abbreviation,
+        book_no = tabula$options$V_BookNo
+      ),
+    sep = ";")
   }
+  DBI::dbExecute(conn, sql)
   DBI::dbDisconnect(conn)
 }
 
