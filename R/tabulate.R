@@ -365,7 +365,6 @@ aggregate_5_tables <- function(tabula) {
     head_table,
     col_table_all
   )
-  #ascend_rownos_within_questno(tabula)
 }
 add_columns_for_tablebook <- function(tabula) {
   five_tables <- tabula$crosstabs$data
@@ -439,33 +438,9 @@ add_columns_for_tablebook <- function(tabula) {
   tabula$crosstabs$data <- res
 }
 
-ascend_rownos_within_questno <- function(tabula) {
-  row_table <- tabula$crosstabs$data$row_table
-  previous_rows <- row_table |>
-    dplyr::group_by(QuestNo, TabNo) |>
-    dplyr::summarise(n = dplyr::n(), .groups = "drop_last") |>
-    dplyr::mutate(previous_rows = dplyr::lag(n, default = 0L) |> cumsum()) |>
-    dplyr::pull(previous_rows)
-  row_table_mod <- purrr::map2_dfr(
-    row_table |> dplyr::group_by(QuestNo, TabNo) |> dplyr::group_split(),
-    previous_rows,
-    \(x, y) {x$RowNoMod <- x$RowNo + y; x}
-  )
-  tabula$crosstabs$data$row_table <- row_table_mod |> dplyr::mutate(RowNo = RowNoMod, RowNoMod = NULL)
-  tabula$crosstabs$data$val_table <- tabula$crosstabs$data$val_table |>
-    dplyr::left_join(
-      row_table_mod |>
-        dplyr::select(QuestNo, TabNo, RowNo, RowNoMod),
-      by = c("QuestNo", "TabNo", "RowNo")
-    ) |>
-    dplyr::mutate(RowNo = RowNoMod, RowNoMod = NULL)
-}
-
-write_to_db <- function(tabula) {
+  write_to_db <- function(tabula) {
   five_tables <- tabula$crosstabs$data |> order_tables()
-  conn <- DBI::dbConnect(odbc::odbc(), dsn="TabBooksPG")
-  # dsn= should be changed to parameter tabula$params$excel_file$database_dsn
-  # is it possible to make dynamic set of parameters (so you can add a name R_xxx in mapping file and have it in params? or Mapping$new(xxx='something')? That would be easiest)
+  conn <- DBI::dbConnect(odbc::odbc(), dsn=tabula$params$database_dsn)
 
   DBI::dbWriteTable(conn, "Tab", five_tables$tab_table, append = TRUE)
   DBI::dbWriteTable(conn, "Row", five_tables$row_table, append = TRUE)
@@ -490,14 +465,6 @@ write_to_db <- function(tabula) {
     \"ErrorLog\" = '", error_log, "',
     \"WarnLog\" = '", warn_log, "'
     WHERE (\"QuestNo\" = '", questno, "') AND (\"BookNo\" = ", tabula$options$V_BookNo, ")")
-
-    ## MS SQL dialect
-    #sql <- paste0("UPDATE Quest
-    #    SET EndTime = SYSDATETIME(),
-    #    CountRow = 1,
-    #    ErrorLog = '", error_log, "',
-    #    WarnLog = '", warn_log, "' |>
-    #    WHERE (QuestNo = '", questno, "') AND (BookNo = ", tabula$options$V_BookNo, ")")
 
     DBI::dbExecute(conn, sql)
   }
