@@ -5,7 +5,7 @@ gen_row_table <- function(qtab) {
   # TODO: replaced rbind -> check if the dataframe parts can by simplified (e.g.
   # setting a column to NA shouldn't be necessary anymore...):
 
-  value_row_table <- dplyr::bind_rows(
+  row_table_raw <- dplyr::bind_rows(
     row_table_total_line(qtab),
     row_table_valid_mw(qtab),
     row_table_valid_answers_line(qtab),
@@ -16,30 +16,43 @@ gen_row_table <- function(qtab) {
     row_table_invalid_vals(qtab),
     row_table_no_entry(qtab)
   )
+  # This column is for ordering and will be overwritten in the final results:
+  row_table_raw$RowNo <- seq_len(nrow(row_table_raw))
 
-  if (!is.null(qtab$p$Weight[[1]])) {
-    value_row_table$RowWeighted <- "Weighted"
-  } else {
-    value_row_table$RowWeighted <- "Unweighted"
+  row_table_weighted <- NULL
+  row_table_unweighted <- NULL
+  weight <- qtab$p$Weight[[1]]
+  unweight <- qtab$p$Unweight
+  # TODO: for an unweighted table book but weight set in an individual Qrow add a subtitle e.g. "weighted with <weight var name?"?  use a check that can be turned off in the column "Checks" with a warning? --> ask Wolf
+  if (is.null(weight) & unweight) {
+    # TODO: discuss with Wolf if that's the desired behaviour
+    stop("You can't set `Unweight = TRUE` without the `Weight` variable being set.")
   }
-  if (qtab$p$Unweight) {
-    value_row_table$RowNo <- seq_len(nrow(value_row_table))
-    row_table_unweighted <- value_row_table
-    value_row_table$RowTitle3 <- paste(value_row_table$RowTitle3, qtab$m$options$l_lexikon["cTabWeighted"])
-    is_stat_row <- value_row_table$RowContent == "Statistics"
-    value_row_table[is_stat_row, ]$RowTitle1 <- paste(value_row_table[is_stat_row, ]$RowTitle1, qtab$m$options$l_lexikon["cTabWeighted"])
-    value_row_table[is_stat_row, ]$RowTitle2 <- paste(value_row_table[is_stat_row, ]$RowTitle2, qtab$m$options$l_lexikon["cTabWeighted"])
-
+  if (is.null(weight) | unweight) {
+    row_table_unweighted <- row_table_raw
     row_table_unweighted$RowWeighted <- "Unweighted"
-    value_row_table <- rbind(row_table_unweighted, value_row_table)
-    value_row_table <- value_row_table[order(value_row_table$RowNo),]
   }
+  if (!is.null(weight)) {
+    row_table_weighted <- row_table_raw
+    row_table_weighted$RowWeighted <- "Weighted"
+
+    weight_sign <- qtab$m$options$l_lexikon["cTabWeighted"]
+    row_table_weighted$RowTitle3 <- paste(row_table_weighted$RowTitle3, weight_sign)
+    is_stat_row <- row_table_weighted$RowContent == "Statistics"
+    row_table_weighted[is_stat_row, ]$RowTitle1 <- paste(row_table_weighted[is_stat_row, ]$RowTitle1, weight_sign)
+    row_table_weighted[is_stat_row, ]$RowTitle2 <- paste(row_table_weighted[is_stat_row, ]$RowTitle2, weight_sign)
+  }
+  row_table_values <- rbind(
+    row_table_unweighted, 
+    row_table_weighted
+  )
+  row_table_values <- row_table_values[order(row_table_values$RowNo),]
   row_table <- dplyr::bind_rows(
     # TODO: find more elegant way to define column order...!
     # (done in order to keep the csv snapshot more stable...):
     empty_row_table(),
     row_table_beginning(qtab),
-    value_row_table,
+    row_table_values,
     row_table_end()
   )
 

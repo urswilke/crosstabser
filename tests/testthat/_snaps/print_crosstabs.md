@@ -132,7 +132,7 @@
       #   Mittelwertüberblick gewichtet mit gew
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
-      GÜLTIGE FÄLLE (min…  abs       4 151    15    71.5  47.5  17  
+      GÜLTIGE FÄLLE (min…  abs ⚖     4 151    15    71.5  47.5  17  
       Kundenzufriedenheit  Mitt…     5  68.7  56.7  69.5  77.4  52.1
                            GÜLT…     6 151    15    71.5  47.5  17  
       Marktvolumen         Mitt…     7  22.2  30.3  23.4  14.7  31.2
@@ -145,16 +145,16 @@
       #   gewichtet mit gew
                             NULL ----- GESAMT   Regi… ------- ------- ------
                             NULL -----          Asien Europa  Nordam… Pazif…
-      GESAMT               abs       4   151     15     71.5    47.5   17   
-      Mittelwert                     5    68.7   56.7   69.5    77.4   52.1 
-      Standardfehler                 6     3.22  12.4    4.58    5.27   9.58
-      Median                         7    95     90     90     100     50   
-      Perzentil 25 %                 8    40      5     50      56.2   20   
-      Summe                          9 10379    850   4969    3675    885   
-      Minimum                       10     0      0      0       0      0   
-      Maximum                       11   100    100    100     100    100   
-      GÜLTIGE FÄLLE        abs      12   151     15     71.5    47.5   17   
-                           in %     13   100    100    100     100    100   
+      GESAMT               abs ⚖     4   151     15     71.5    47.5   17   
+      Mittelwert ⚖                   5    68.7   56.7   69.5    77.4   52.1 
+      Standardfehler ⚖               6     3.22  12.4    4.58    5.27   9.58
+      Median ⚖                       7    95     90     90     100     50   
+      Perzentil 25 % ⚖               8    40      5     50      56.2   20   
+      Summe ⚖                        9 10379    850   4969    3675    885   
+      Minimum ⚖                     10     0      0      0       0      0   
+      Maximum ⚖                     11   100    100    100     100    100   
+      GÜLTIGE FÄLLE        abs ⚖    12   151     15     71.5    47.5   17   
+                           in %…    13   100    100    100     100    100   
       
       
       [[9]]
