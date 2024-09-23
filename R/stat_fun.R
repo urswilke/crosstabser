@@ -125,7 +125,14 @@ stat_fun_wt.se <- function(x, na.rm = TRUE, ...) {
     x$vec <- x$vec[obs]
     x$wt <- x$wt[obs]
   }
+  if (length(x$vec) == 1) {
+    return(NA_real_)
+  }
   w <- x$wt
+  if (sum(w) <= 1) {
+    # see https://github.com/harrelfe/Hmisc/issues/69
+    return(NA_real_)
+  }
   sqrt(
     Hmisc::wtd.var(x$vec, w) *
       sum(w / sum(w)^2)
