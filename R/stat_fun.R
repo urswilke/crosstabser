@@ -109,7 +109,19 @@ stat_fun_wt.length <- function(x, na.rm = TRUE, ...) {
   sum(x$wt, na.rm = na.rm)
 }
 stat_fun_wt.mean <- function(x, na.rm = TRUE, ...) {
-  stats::weighted.mean(x$vec, x$wt, na.rm = na.rm)
+  # TODO: add test to check if results in 0 if all NA
+  # but first ask Wolf if this is the way to do it...
+  if (na.rm) {
+    x <- rm_na(x)
+  }
+  if (length(x$vec) == 0) {
+    return(0)
+  }
+  res <- stats::weighted.mean(x$vec, x$wt, na.rm = na.rm)
+  if (is.nan(res)) {
+    print(x)
+  }
+  res
 }
 stat_fun_wt.median <- function(x, na.rm = TRUE, ties = "mean", ...) {
   matrixStats::weightedMedian(x$vec, x$wt, na.rm = na.rm, ties = ties)
@@ -121,9 +133,7 @@ stat_fun_wt.sum <- function(x, na.rm = TRUE, ...) {
 stat_fun_wt.se <- function(x, na.rm = TRUE, ...) {
   # see here: https://stackoverflow.com/a/60235611
   if (na.rm) {
-    obs <- !is.na(x$vec) & !is.na(x$wt)
-    x$vec <- x$vec[obs]
-    x$wt <- x$wt[obs]
+    x <- rm_na(x)
   }
   if (length(x$vec) == 1) {
     return(NA_real_)
@@ -138,6 +148,13 @@ stat_fun_wt.se <- function(x, na.rm = TRUE, ...) {
       sum(w / sum(w)^2)
   )
 }
+rm_na <- function(x) {
+  obs <- !is.na(x$vec) & !is.na(x$wt)
+  x$vec <- x$vec[obs]
+  x$wt <- x$wt[obs]
+  x
+}
+
 stat_fun_wt.min <- function(x, na.rm = TRUE, ...) {
   min(x$vec, na.rm = na.rm, ...)
 }
