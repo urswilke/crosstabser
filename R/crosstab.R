@@ -36,17 +36,20 @@ calc_stat_fun.qtab_type_mw <- function(qtab) {
       wt = qtab$p$Weight[[1]],
       stat_fun = qtab$p$stat_fun,
       .by = c("rowvar", "colvar", "colval")
-    ) |> tidyr::complete(
-      rowvar = qtab$p$RowVar,
-      tidyr::nesting(
-        colvar = qtab$d$col_table$ColVariable,
-        colval = qtab$d$col_table$ColValue
-      )
-    )
+    ) |> add_missing_cases(qtab)
   res$RowContent <- "MStatistics"
   res$rowval <- NA_real_
   res$RowAbsPercent <- "Percent"
   qtab$d$fun_stats <- res
+}
+add_missing_cases <- function(df, qtab) {
+  df |> tidyr::complete(
+    rowvar = qtab$p$RowVar,
+    tidyr::nesting(
+      colvar = qtab$d$col_table$ColVariable,
+      colval = qtab$d$col_table$ColValue
+    )
+  )
 }
 calc_stat_fun.qtab_type_cat <- function(qtab) {
   if (is.null(qtab$p$MetrMac)) {
@@ -72,7 +75,7 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
           .by = c("rowvar", "colvar", "colval")
         ),
       .id = "RowStatFun"
-    )
+    ) |> add_missing_cases(qtab)
   res$RowContent <- "Statistics"
   res$rowval <- 100
   res$RowAbsPercent <- "Percent"
