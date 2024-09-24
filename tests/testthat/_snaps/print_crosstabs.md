@@ -160,7 +160,7 @@
       100                  abs      31  72         0  39     28      5   
                            in %     32  47.7       0  52     65.1   35.7 
       GÜLTIGE FÄLLE        abs      33 151        19  75     43     14   
-                           in %     34 114.      Inf 100    100    100   
+                           in %     34 114.        0 100    100    100   
       
       [[6]][[3]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
