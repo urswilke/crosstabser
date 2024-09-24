@@ -122,7 +122,7 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
   df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
 
   rowvars <- rv(qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab)
-  df_cols$n_valid <- !df[[rowvars]] %in% qtab$p$Unguelt
+  df_cols$n_valid <- !df[[rowvars]] %in% c(qtab$p$Unguelt, NA)
   df_cols$total <- !is.na(df[[rowvars]])
 
   # TODO: find better organisation (redundant code with calc_stats_rows.qtab_type_mdg):
