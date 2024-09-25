@@ -120,9 +120,9 @@
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs       4   151    19    75    43    14
-      Kundenzufriedenheit  Mitt…     5   100    NA   100   100    65
+      Kundenzufriedenheit  Medi…     5   100    NA   100   100    65
                            GÜLT…     6   132     0    75    43    14
-      Marktvolumen         Mitt…     7     0     0     0     0     0
+      Marktvolumen         Medi…     7     0     0     0     0     0
                            GÜLT…     8   151    19    75    43    14
       
       [[6]][[2]]

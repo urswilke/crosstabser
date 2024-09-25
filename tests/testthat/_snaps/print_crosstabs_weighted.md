@@ -187,12 +187,12 @@
                             NULL -----       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs       4   151    19  75    43      14
                            abs ⚖     5   151    15  71.5  47.5    17
-      Kundenzufriedenheit  Mitt…     6   100    NA 100   100      65
-                           Mitt…     7    98    NA  90   100      50
+      Kundenzufriedenheit  Medi…     6   100    NA 100   100      65
+                           Medi…     7    98    NA  90   100      50
                            GÜLT…     8   132     0  75    43      14
                            GÜLT…     9   151    15  71.5  47.5    17
-      Marktvolumen         Mitt…    10     0     0   0     0       0
-                           Mitt…    11     0     0   0     0       0
+      Marktvolumen         Medi…    10     0     0   0     0       0
+                           Medi…    11     0     0   0     0       0
                            GÜLT…    12   151    19  75    43      14
                            GÜLT…    13   151    15  71.5  47.5    17
       

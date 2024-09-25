@@ -287,8 +287,8 @@ row_table_body.qtab_type_mw <- function(qtab) {
   row_table[seq_len(n_vals * 2),]$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
 
-  # TODO: for stat_fun different than mean(), adapt RowTitle3 accordingly:
-  row_title3 <- qtab$m$options$l_lexikon["cTabMean"]
+  ctab_entry <- df_metr_mac[df_metr_mac$fun == qtab$p$stat_fun, "ctab_entry"]
+  row_title3 <- qtab$m$options$l_lexikon[ctab_entry]
   if (!is.null(qtab$p$repov_names)) {
     row_title3 <- qtab$p$repov_names
   }
