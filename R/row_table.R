@@ -43,7 +43,7 @@ gen_row_table <- function(qtab) {
     row_table_weighted[is_stat_row, ]$RowTitle2 <- paste(row_table_weighted[is_stat_row, ]$RowTitle2, weight_sign)
   }
   row_table_values <- rbind(
-    row_table_unweighted, 
+    row_table_unweighted,
     row_table_weighted
   )
   row_table_values <- row_table_values[order(row_table_values$RowNo),]
@@ -288,6 +288,7 @@ row_table_body.qtab_type_mw <- function(qtab) {
   row_table[seq_len(n_vals * 2),]$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
 
+  # TODO: for stat_fun different than mean(), adapt RowTitle3 accordingly:
   row_title3 <- qtab$m$options$l_lexikon["cTabMean"]
   if (!is.null(qtab$p$repov_names)) {
     row_title3 <- qtab$p$repov_names
