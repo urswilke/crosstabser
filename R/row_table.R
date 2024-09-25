@@ -157,7 +157,6 @@ row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_
     1,
     c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowValue", "RowDecimals")
   ] <- list(
-    # TODO: Wolf sagen dass geaendert zu "SumOfValid"...:
     "SumOfValid", "Abs", valid_answers_row_text, valid_answers_row_text, abs_text, 1, 0
   )
   row_table$RowVariable <- qtab$p$rowvars_string
@@ -402,7 +401,6 @@ row_table_stats.qtab_type_cat <- function(qtab) {
   row_table <- empty_row_table()
   row_table[seq_along(df_stat_funs$shortcut), c("RowTitle1", "RowTitle2", "RowTitle3")] <-
     list(df_stat_funs$row_title) |> rep(3)
-  # TODO: Wolf: why? - but look at these cases together with all other types...!:
   row_table$RowValue <- 100
   row_table$RowAbsPercent <- "Percent"
 

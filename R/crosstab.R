@@ -463,6 +463,7 @@ calc_valid_counts_percentages.default <- function(qtab) {
   # this doesn't work if the number of valid counts is not equal to the number of total counts...
   res <- total_cts |> dplyr::select(-RowContent, value_tot = value) |> merge(valid_cts, all.x = TRUE)
   raw_value <- 100 * res$value / res$value_tot
+  # TODO: check with Wolf if this shouldn't be NA instead of 0:
   raw_value[res$value_tot == 0] <- 0
   res$value <- raw_value
   res$value_tot <- NULL
