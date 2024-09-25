@@ -41,7 +41,6 @@ setOptions <- function(tabula, book_no) {
   tabula$options <- tibble::lst(
     v_scenario,
     V_Language,
-    df_macro_raw,
     l_macro_scenario,
     l_lexikon,
     V_BookNo = book_no
