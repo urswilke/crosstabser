@@ -1,7 +1,12 @@
 spss_file <- "spss/30_Datenanpassungen_mapping_neu.sav" |> testthat::test_path()
-mapping_file <- "excel/mapping_neu_weighted.xlsx" |> testthat::test_path()
+mapping_file <- "excel/mapping_neu_reduced.xlsx" |> testthat::test_path()
+df <- haven::read_sav(spss_file)
+tabsi <- Tabula$new(df, mapping_file, tabulate = FALSE, row = 5)
+tabsi$options$l_macro_scenario$Weight <- "gew"
+tabsi$options$l_macro_scenario$Unweight <- TRUE
+tabsi$calc_qtabs(5)
 
-tabsi <- Tabula$new(spss_file, mapping_file, 5)$aggregate_5_tables()
+tabsi$aggregate_5_tables()
 
 test_that("5 tables' prints are reproduced", {
   testthat::expect_snapshot(

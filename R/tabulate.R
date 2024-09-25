@@ -278,13 +278,20 @@ gen_val_table <- function(qtab) {
     merge(row_table |> dplyr::rename(rowval = RowValue, rowvar = RowVariable)) |>
     merge(col_table |> dplyr::rename(colval = ColValue, colvar = ColVariable))
 
-  # HACK: replace NA with 0 in the table data (replace implicit NA with explicit 0....)
-  res[c("RowNo", "ColNo", "value")] |> tidyr::complete(
-    RowNo = row_table$RowNo,
-    ColNo = col_table$ColNo,
-    fill = list(value = 0),
-    explicit = FALSE
-  )
+  is_stat_row <- row_table$RowContent |> stringr::str_detect("^M?Statistics$")
+  res[c("RowNo", "ColNo", "value")] |>
+    # add rows with value = NA for every RowNo x ColNo combination not occuring in the data:
+    tidyr::complete(
+      RowNo = row_table$RowNo[is_stat_row],
+      ColNo = col_table$ColNo
+    ) |>
+    # add rows with value = 0 for every RowNo x ColNo combination not occuring in the rest of the data:
+    tidyr::complete(
+      RowNo = row_table$RowNo,
+      ColNo = col_table$ColNo,
+      fill = list(value = 0),
+      explicit = FALSE
+    )
 }
 
 gen_long_tab_data = function(mapping) {
@@ -425,8 +432,9 @@ add_columns_for_tablebook <- function(tabula) {
         RowWeighted
       ),
       RowType = bitwOr(unlist(cArt[gsub("^.*\\|", "", RowTypeS)]), unlist(cArt[gsub("\\|.*$", "", RowTypeS)])),
+      # TODO: discuss with Wolf if I should remove the space in front of the weight sign in the row labels...:
       # "\\u2696" is the unicode escape for the weight sign
-      RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub("\\u2696","",RowTitle3), ""),
+      RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub(" \u2696", "", RowTitle3), ""),
     )
   res$head_table <- res$head_table |> dplyr::left_join(
     res$col_table_all |> dplyr::count(HeadNo, name = "HeadCount"),

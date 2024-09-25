@@ -97,7 +97,7 @@ Initialize a Tabula object
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$new(
   dat_mod = NULL,
-  mapping_file,
+  mapping_file = NULL,
   row = NULL,
   dat = NULL,
   book_no = NULL,

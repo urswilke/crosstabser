@@ -64,7 +64,7 @@ Tabula <- R6::R6Class(
     #' @description Initialize a Tabula object
     #'
     initialize = function(dat_mod = NULL,
-                          mapping_file,
+                          mapping_file = NULL,
                           row = NULL,
                           dat = NULL,
                           book_no = NULL,

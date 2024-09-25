@@ -125,6 +125,78 @@
       Marktvolumen         Mitt…     7     0     0     0     0     0
                            GÜLT…     8   151    19    75    43    14
       
+      [[6]][[2]]
+      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
+      #   Kundenzufriedenheit
+                            NULL ----- GESAMT  Regi… ------ ------ ------
+                            NULL -----         Asien Europa Norda… Pazif…
+      GESAMT               abs       4 132         0  75     43     14   
+      0                    abs       5  15         0   9      3      3   
+                           in %      6  11.4       0  12      6.98  21.4 
+      10                   abs       7   4         0   2      2      0   
+                           in %      8   3.03      0   2.67   4.65   0   
+      20                   abs       9   2         0   0      0      2   
+                           in %     10   1.52      0   0      0     14.3 
+      25                   abs      11   1         0   0      1      0   
+                           in %     12   0.758     0   0      2.33   0   
+      30                   abs      13   2         0   0      2      0   
+                           in %     14   1.52      0   0      4.65   0   
+      40                   abs      15   3         0   2      0      1   
+                           in %     16   2.27      0   2.67   0      7.14
+      50                   abs      17  13         0  10      2      1   
+                           in %     18   9.85      0  13.3    4.65   7.14
+      60                   abs      19   4         0   3      1      0   
+                           in %     20   3.03      0   4      2.33   0   
+      70                   abs      21   3         0   3      0      0   
+                           in %     22   2.27      0   4      0      0   
+      80                   abs      23   5         0   3      1      1   
+                           in %     24   3.79      0   4      2.33   7.14
+      90                   abs      25   6         0   3      2      1   
+                           in %     26   4.55      0   4      4.65   7.14
+      95                   abs      27   1         0   0      1      0   
+                           in %     28   0.758     0   0      2.33   0   
+      98                   abs      29   1         0   1      0      0   
+                           in %     30   0.758     0   1.33   0      0   
+      100                  abs      31  72         0  39     28      5   
+                           in %     32  54.5       0  52     65.1   35.7 
+      GÜLTIGE FÄLLE        abs      33 132         0  75     43     14   
+                           in %     34 100         0 100    100    100   
+      
+      [[6]][[3]]
+      # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
+      #   Marktvolumen
+                            NULL ----- GESAMT  Region ------ ------ ------
+                            NULL -----         Asien  Europa Norda… Pazif…
+      GESAMT               abs       4 151      19     75     43     14   
+      0                    abs       5 105      12     50     35      8   
+                           in %      6  69.5    63.2   66.7   81.4   57.1 
+      1                    abs       7   1       0      1      0      0   
+                           in %      8   0.662   0      1.33   0      0   
+      5                    abs       9   1       1      0      0      0   
+                           in %     10   0.662   5.26   0      0      0   
+      10                   abs      11   7       1      6      0      0   
+                           in %     12   4.64    5.26   8      0      0   
+      20                   abs      13   4       1      1      0      2   
+                           in %     14   2.65    5.26   1.33   0     14.3 
+      25                   abs      15   2       0      0      2      0   
+                           in %     16   1.32    0      0      4.65   0   
+      30                   abs      17   1       0      0      1      0   
+                           in %     18   0.662   0      0      2.33   0   
+      40                   abs      19   3       0      1      1      1   
+                           in %     20   1.99    0      1.33   2.33   7.14
+      50                   abs      21   6       0      5      1      0   
+                           in %     22   3.97    0      6.67   2.33   0   
+      60                   abs      23   1       0      1      0      0   
+                           in %     24   0.662   0      1.33   0      0   
+      80                   abs      25   3       1      1      0      1   
+                           in %     26   1.99    5.26   1.33   0      7.14
+      90                   abs      27   1       0      1      0      0   
+                           in %     28   0.662   0      1.33   0      0   
+      100                  abs      29  16       3      8      3      2   
+                           in %     30  10.6    15.8   10.7    6.98  14.3 
+      GÜLTIGE FÄLLE        abs      31 151      19     75     43     14   
+                           in %     32 100     100    100    100    100   
+      
       
       [[7]]
       [[7]][[1]]
@@ -132,7 +204,7 @@
       #   Mittelwertüberblick gewichtet mit gew
                             NULL ----- GESA… Regi… ----- ----- -----
                             NULL -----       Asien Euro… Nord… Pazi…
-      GÜLTIGE FÄLLE (min…  abs       4 151    15    71.5  47.5  17  
+      GÜLTIGE FÄLLE (min…  abs ⚖     4 151    15    71.5  47.5  17  
       Kundenzufriedenheit  Mitt…     5  68.7  56.7  69.5  77.4  52.1
                            GÜLT…     6 151    15    71.5  47.5  17  
       Marktvolumen         Mitt…     7  22.2  30.3  23.4  14.7  31.2
@@ -143,18 +215,18 @@
       [[8]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   gewichtet mit gew
-                            NULL ----- GESAMT  Regi… ------ ------ -----
-                            NULL -----         Asien Europa Norda… Pazi…
-      GESAMT               abs       4   151    15     71.5   47.5  17  
-      Mittelwert                     5    68.7  56.7   69.5   77.4  52.1
-      Standardfehler                 6    39.6  48.1   38.7   36.3  39.5
-      Median                         7    95    90     90    100    50  
-      Perzentil 25 %                 8    40     5     50     56.2  20  
-      Summe                          9 10379   850   4969   3675   885  
-      Minimum                       10     0     0      0      0     0  
-      Maximum                       11   100   100    100    100   100  
-      GÜLTIGE FÄLLE        abs      12   151    15     71.5   47.5  17  
-                           in %     13   100   100    100    100   100  
+                            NULL ----- GESAMT   Regi… ------- ------- ------
+                            NULL -----          Asien Europa  Nordam… Pazif…
+      GESAMT               abs ⚖     4   151     15     71.5    47.5   17   
+      Mittelwert ⚖                   5    68.7   56.7   69.5    77.4   52.1 
+      Standardfehler ⚖               6     3.22  12.4    4.58    5.27   9.58
+      Median ⚖                       7    95     90     90     100     50   
+      Perzentil 25 % ⚖               8    40      5     50      56.2   20   
+      Summe ⚖                        9 10379    850   4969    3675    885   
+      Minimum ⚖                     10     0      0      0       0      0   
+      Maximum ⚖                     11   100    100    100     100    100   
+      GÜLTIGE FÄLLE        abs ⚖    12   151     15     71.5    47.5   17   
+                           in %…    13   100    100    100     100    100   
       
       
       [[9]]

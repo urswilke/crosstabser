@@ -36,17 +36,21 @@ calc_stat_fun.qtab_type_mw <- function(qtab) {
       wt = qtab$p$Weight[[1]],
       stat_fun = qtab$p$stat_fun,
       .by = c("rowvar", "colvar", "colval")
-    ) |> tidyr::complete(
-      rowvar = qtab$p$RowVar,
-      tidyr::nesting(
-        colvar = qtab$d$col_table$ColVariable,
-        colval = qtab$d$col_table$ColValue
-      )
-    )
+    ) |> add_missing_cases(qtab)
   res$RowContent <- "MStatistics"
   res$rowval <- NA_real_
   res$RowAbsPercent <- "Percent"
   qtab$d$fun_stats <- res
+}
+add_missing_cases <- function(df, qtab) {
+  df |> tidyr::complete(
+    rowvar = qtab$p$rowvars_string,
+    tidyr::nesting(
+      colvar = qtab$d$col_table$ColVariable,
+      colval = qtab$d$col_table$ColValue
+    ),
+    RowStatFun = qtab$p$df_stat_funs$fun,
+  )
 }
 calc_stat_fun.qtab_type_cat <- function(qtab) {
   if (is.null(qtab$p$MetrMac)) {
@@ -72,7 +76,7 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
           .by = c("rowvar", "colvar", "colval")
         ),
       .id = "RowStatFun"
-    )
+    ) |> add_missing_cases(qtab)
   res$RowContent <- "Statistics"
   res$rowval <- 100
   res$RowAbsPercent <- "Percent"
@@ -119,7 +123,7 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
   df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
 
   rowvars <- rv(qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab)
-  df_cols$n_valid <- !df[[rowvars]] %in% qtab$p$Unguelt
+  df_cols$n_valid <- !df[[rowvars]] %in% c(qtab$p$Unguelt, NA)
   df_cols$total <- !is.na(df[[rowvars]])
 
   # TODO: find better organisation (redundant code with calc_stats_rows.qtab_type_mdg):
@@ -458,7 +462,10 @@ calc_valid_counts_percentages.default <- function(qtab) {
   # valid_cts$value <- 100 * valid_cts$value / total_cts$value
   # this doesn't work if the number of valid counts is not equal to the number of total counts...
   res <- total_cts |> dplyr::select(-RowContent, value_tot = value) |> merge(valid_cts, all.x = TRUE)
-  res$value <- 100 * res$value / res$value_tot
+  raw_value <- 100 * res$value / res$value_tot
+  # TODO: check with Wolf if this shouldn't be NA instead of 0:
+  raw_value[res$value_tot == 0] <- 0
+  res$value <- raw_value
   res$value_tot <- NULL
   res$RowAbsPercent <- "Percent"
 
