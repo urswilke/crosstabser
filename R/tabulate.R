@@ -278,13 +278,20 @@ gen_val_table <- function(qtab) {
     merge(row_table |> dplyr::rename(rowval = RowValue, rowvar = RowVariable)) |>
     merge(col_table |> dplyr::rename(colval = ColValue, colvar = ColVariable))
 
-  # HACK: replace NA with 0 in the table data (replace implicit NA with explicit 0....)
-  res[c("RowNo", "ColNo", "value")] |> tidyr::complete(
-    RowNo = row_table$RowNo,
-    ColNo = col_table$ColNo,
-    fill = list(value = 0),
-    explicit = FALSE
-  )
+  is_stat_row <- row_table$RowContent |> stringr::str_detect("^M?Statistics$")
+  res[c("RowNo", "ColNo", "value")] |>
+    # add rows with value = NA for every RowNo x ColNo combination not occuring in the data:
+    tidyr::complete(
+      RowNo = row_table$RowNo[is_stat_row],
+      ColNo = col_table$ColNo
+    ) |>
+    # add rows with value = 0 for every RowNo x ColNo combination not occuring in the rest of the data:
+    tidyr::complete(
+      RowNo = row_table$RowNo,
+      ColNo = col_table$ColNo,
+      fill = list(value = 0),
+      explicit = FALSE
+    )
 }
 
 gen_long_tab_data = function(mapping) {
