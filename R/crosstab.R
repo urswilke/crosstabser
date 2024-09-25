@@ -48,7 +48,8 @@ add_missing_cases <- function(df, qtab) {
     tidyr::nesting(
       colvar = qtab$d$col_table$ColVariable,
       colval = qtab$d$col_table$ColValue
-    )
+    ),
+    RowStatFun = qtab$p$df_stat_funs$fun,
   )
 }
 calc_stat_fun.qtab_type_cat <- function(qtab) {
