@@ -22,13 +22,7 @@ setOptions <- function(tabula, book_no) {
 
   l_macro_scenario <- extract_scenario_options(df_macro_raw, v_scenario)
 
-  df_lexikon_raw <- utils::read.delim(
-    # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
-    system.file("extdata", "lexikon.csv", package = "crosstabser"),
-    header = FALSE,
-    sep = ";"
-  )
-  l_lexikon <- df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()
+  l_lexikon <- read_dictionary(V_Language)
 
   if (is.null(book_no)) {
     book_no <- openxlsx2::wb_read(
@@ -46,7 +40,16 @@ setOptions <- function(tabula, book_no) {
     V_BookNo = book_no
   )
 }
+read_dictionary <- function(V_Language) {
+  df_lexikon_raw <- utils::read.delim(
+    # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
+    system.file("extdata", "lexikon.csv", package = "crosstabser"),
+    header = FALSE,
+    sep = ";"
+  )
 
+  df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()
+}
 
 extract_scenario_options <- function(df_macro_raw, v_scenario) {
   param_list <- df_macro_raw[c(1, 4 + v_scenario)] |> tibble::deframe()
