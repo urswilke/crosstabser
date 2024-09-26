@@ -1,4 +1,8 @@
-setOptions <- function(tabula, book_no) {
+set_options <- function(tabula, ...) {
+  UseMethod("set_options", tabula$mapping_file)
+}
+
+set_options.excel <- function(tabula, book_no, ...) {
   # TODO: clean up this mess...!
   v_scenario <- openxlsx2::wb_read(
     tabula$wb,
@@ -22,13 +26,7 @@ setOptions <- function(tabula, book_no) {
 
   l_macro_scenario <- extract_scenario_options(df_macro_raw, v_scenario)
 
-  df_lexikon_raw <- utils::read.delim(
-    # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
-    system.file("extdata", "lexikon.csv", package = "crosstabser"),
-    header = FALSE,
-    sep = ";"
-  )
-  l_lexikon <- df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()
+  l_lexikon <- read_dictionary(V_Language)
 
   if (is.null(book_no)) {
     book_no <- openxlsx2::wb_read(
@@ -41,13 +39,48 @@ setOptions <- function(tabula, book_no) {
   tabula$options <- tibble::lst(
     v_scenario,
     V_Language,
-    df_macro_raw,
     l_macro_scenario,
     l_lexikon,
     V_BookNo = book_no
   )
 }
+# TODO: find cleaner solution to use default parameters
+# probably the best solution is to override the datenanpassr::Mapping method reading in the parameters in Tabula
+set_options.list <- function(
+    tabula,
+    v_scenario = 1,
+    V_Language = 4,
+    colvar = character(),
+    l_macro_scenario = list(ColVar = colvar, Unguelt = c(-1, -3, -2), Weight = NA_character_,
+                            Unweight = FALSE, Filter = NA_character_, scenario_name = "Scenario 2"),
+    l_lexikon = read_dictionary(V_Language),
+    book_no = 999999999,
+    ...
+) {
 
+  tabula$options <- tibble::lst(
+    v_scenario,
+    V_Language,
+    l_macro_scenario,
+    l_lexikon,
+    V_BookNo = book_no
+  )
+}
+set_options.google <- function(tabula, ...) {
+  # TODO: google spreadsheets...
+  stop("Not yet implemented for google sheets.")
+}
+
+read_dictionary <- function(V_Language) {
+  df_lexikon_raw <- utils::read.delim(
+    # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
+    system.file("extdata", "lexikon.csv", package = "crosstabser"),
+    header = FALSE,
+    sep = ";"
+  )
+
+  df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()
+}
 
 extract_scenario_options <- function(df_macro_raw, v_scenario) {
   param_list <- df_macro_raw[c(1, 4 + v_scenario)] |> tibble::deframe()

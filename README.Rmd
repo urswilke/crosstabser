@@ -1,0 +1,64 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# crosstabser
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of crosstabser is to ...
+
+## Installation
+
+You can install the development version of crosstabser like so:
+
+```{r eval=FALSE}
+devtools::install_gitlab("urswilke/crosstabser")
+```
+
+## Example
+
+First load the needed packages:
+
+```{r example}
+library(crosstabser)
+library(dplyr)
+```
+
+Suppose you have survey data `df`:
+```{r}
+df <- tibble(
+  q1 = c(1, 2, 1) |> haven::labelled(c(Yes = 1, No = 2), label = "Super important question"),
+  age = c(2, 1, 1) |> haven::labelled(c("18 - 39" = 1, "40+" = 2), label = "age")
+)
+df
+```
+
+and you want to generate a crosstab, summarizing the values of `q1` on the y-axis, and on the x-axis showing the total counts, as well as those in the sub-populations of the variable `age`.
+
+crosstabser allows this if you define a mapping object like this:
+```{r}
+mapping_file = list(Questions = tibble(
+  Type  = "cat",
+  RowVar = "q1",
+  Title = "The crosstab's title"
+))
+```
+
+and the using the package's `Tabula` class:
+```{r}
+Tabula$new(df, mapping_file, colvar = "age")
+```
+

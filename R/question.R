@@ -1,4 +1,8 @@
-read_qsheet_raw <- function(mapping, row, sheet = "Questions") {
+read_qsheet_raw <- function(mapping, row) {
+  UseMethod("read_qsheet_raw", mapping$mapping_file)
+}
+
+read_qsheet_raw.excel <- function(mapping, row) {
   do_all <- is.null(row)
   # filter row indices specified, otherwise all...
   # ... add the first row with the titles, if only specific rows are read:
@@ -22,7 +26,40 @@ read_qsheet_raw <- function(mapping, row, sheet = "Questions") {
 
   res0[stringr::str_subset(names(res0), "^Col[A-Z]$", negate = TRUE)]
 }
+read_qsheet_raw.list <- function(mapping, row) {
+  df_questions <- dplyr::bind_rows(
+    # HACK to complement all columns that are currently in the Questions sheet...
+    # TODO: find cleaner solution
+    empty_qsheet(),
+    mapping$mapping_file$Questions |>
+      datenanpassr::format_sheet_data()
+  )
+  df_questions |>
+      # first row column names... (=> " + 1"):
+      dplyr::mutate(row = dplyr::row_number() + 1, .before = 1) |>
+      tidyr::drop_na("Type")
+}
+read_qsheet_raw.google <- function(mapping, row) {
+  # TODO: google spreadsheets...
+  stop("Not yet implemented for google sheets.")
+}
 
+empty_qsheet <- function() {
+  tibble::tibble(
+    Abbreviation = character(0), Unguelt = character(0),
+    Filter = character(0), CatRec = character(0), CatLab = character(0),
+    MWRec = character(0), UngueltMW = character(0), MetrMac = character(0),
+    R = character(0), Fussnote = character(0), Sort = character(0),
+    SelVar = character(0), SelVal = character(0), MW = character(0),
+    Freq = character(0), Zsfg = character(0), NoVLab = character(0),
+    MdgVal = character(0), MdgMissLab = character(0), MdgMissValid = character(0),
+    Einzelauspraegung = character(0), ZsfgMW = character(0),
+    ZsfgMFA = character(0), Weight = character(0), WeightLab = character(0),
+    MeanOverviewLabel = character(0), Mult = character(0), RvEmp = character(0),
+    Categories = character(0), RepOV = character(0), MWVar = character(0),
+    Exclusive = character(0), Checks = character(0)
+  )
+}
 preprocess_qrows_params <- function(mapping) {
   mapping$qsheet$qsheet_raw |>
     dplyr::mutate(

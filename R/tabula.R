@@ -80,7 +80,7 @@ Tabula <- R6::R6Class(
       if (!is.null(dat_mod)) {
         self$dat_mod <- datenanpassr::read_data(dat_mod)
       }
-      setOptions(self, book_no)
+      set_options(self, book_no, ...)
 
       if (tabulate) {
         self$calc_qtabs(row)
