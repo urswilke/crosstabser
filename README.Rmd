@@ -30,37 +30,37 @@ devtools::install_gitlab("urswilke/crosstabser")
 
 ## Example
 
-First load the needed packages:
+First we'll load the package.
 
 ```{r example}
 library(crosstabser)
-library(dplyr, warn.conflicts = F)
 ```
 
 
 ### Minimal example
 
-Suppose you have survey data `df`:
+Suppose you have survey data `df`.
 ```{r}
-df <- tibble(
+df <- tibble::tibble(
   q1 = c(1, 2, 1) |> haven::labelled(c(Yes = 1, No = 2), label = "Super important question"),
   age = c(2, 1, 1) |> haven::labelled(c("18-39" = 1, "40+" = 2), label = "age")
 )
 df
 ```
+The data consists of 3 cases with the answers Yes & No stored in the variable `q1` and there age category stored in the variable `age`.
 
-and you want to generate a crosstab, summarizing the values of `q1` on the y-axis, and on the x-axis showing the total counts, as well as those in the sub-populations of the variable `age`.
+And suppose you want to generate a crosstab, summarizing the values of `q1` on the y-axis, and on the x-axis showing the total counts, as well as those in the sub-populations of the variable `age`.
 
 crosstabser allows this if you define a mapping object like this:
 ```{r}
-mapping_file = list(Questions = tibble(
+(mapping_file = list(Questions = data.frame(
   Type  = "cat",
   RowVar = "q1",
   Title = "The crosstab's title"
-))
+)))
 ```
-
-and then using the package's `Tabula` class:
+This is a list with one element `"Questions"` containing a one row data.frame.
+Then you can use the package's `Tabula` class to generate print output of the crosstab in the console:
 ```{r}
 Tabula$new(df, mapping_file, colvar = "age")
 ```
