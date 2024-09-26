@@ -37,11 +37,14 @@ library(crosstabser)
 library(dplyr, warn.conflicts = F)
 ```
 
+
+### Minimal example
+
 Suppose you have survey data `df`:
 ```{r}
 df <- tibble(
   q1 = c(1, 2, 1) |> haven::labelled(c(Yes = 1, No = 2), label = "Super important question"),
-  age = c(2, 1, 1) |> haven::labelled(c("18 - 39" = 1, "40+" = 2), label = "age")
+  age = c(2, 1, 1) |> haven::labelled(c("18-39" = 1, "40+" = 2), label = "age")
 )
 df
 ```
@@ -57,7 +60,7 @@ mapping_file = list(Questions = tibble(
 ))
 ```
 
-and the using the package's `Tabula` class:
+and then using the package's `Tabula` class:
 ```{r}
 Tabula$new(df, mapping_file, colvar = "age")
 ```

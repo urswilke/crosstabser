@@ -25,20 +25,22 @@ library(crosstabser)
 library(dplyr, warn.conflicts = F)
 ```
 
+### Minimal example
+
 Suppose you have survey data `df`:
 
 ``` r
 df <- tibble(
   q1 = c(1, 2, 1) |> haven::labelled(c(Yes = 1, No = 2), label = "Super important question"),
-  age = c(2, 1, 1) |> haven::labelled(c("18 - 39" = 1, "40+" = 2), label = "age")
+  age = c(2, 1, 1) |> haven::labelled(c("18-39" = 1, "40+" = 2), label = "age")
 )
 df
 #> # A tibble: 3 × 2
-#>   q1        age        
-#>   <dbl+lbl> <dbl+lbl>  
-#> 1 1 [Yes]   2 [40+]    
-#> 2 2 [No]    1 [18 - 39]
-#> 3 1 [Yes]   1 [18 - 39]
+#>   q1        age      
+#>   <dbl+lbl> <dbl+lbl>
+#> 1 1 [Yes]   2 [40+]  
+#> 2 2 [No]    1 [18-39]
+#> 3 1 [Yes]   1 [18-39]
 ```
 
 and you want to generate a crosstab, summarizing the values of `q1` on
@@ -55,7 +57,7 @@ mapping_file = list(Questions = tibble(
 ))
 ```
 
-and the using the package’s `Tabula` class:
+and then using the package’s `Tabula` class:
 
 ``` r
 Tabula$new(df, mapping_file, colvar = "age")
@@ -63,7 +65,7 @@ Tabula$new(df, mapping_file, colvar = "age")
 #> [[1]][[1]]
 #> # The crosstab's title
 #>                       NULL ----- TOTAL age   -----
-#>                       NULL -----       18 -… 40+  
+#>                       NULL -----       18-39 40+  
 #> TOTAL                abs       4   3       2     1
 #> Yes                  abs       5   2       1     1
 #>                      in %      6  66.7    50   100
