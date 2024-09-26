@@ -34,7 +34,7 @@ First load the needed packages:
 
 ```{r example}
 library(crosstabser)
-library(dplyr)
+library(dplyr, warn.conflicts = F)
 ```
 
 Suppose you have survey data `df`:
