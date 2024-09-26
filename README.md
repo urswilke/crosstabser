@@ -43,7 +43,7 @@ df
 ```
 
 The data consists of 3 cases with the answers Yes & No stored in the
-variable `q1` and there age category stored in the variable `age`.
+variable `q1` and the age category stored in the variable `age`.
 
 And suppose you want to generate a crosstab, summarizing the values of
 `q1` on the y-axis, and on the x-axis showing the total counts, as well
