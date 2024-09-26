@@ -1,4 +1,8 @@
-setOptions <- function(tabula, book_no) {
+set_options <- function(tabula, ...) {
+  UseMethod("set_options", tabula$mapping_file)
+}
+
+set_options.excel <- function(tabula, book_no, ...) {
   # TODO: clean up this mess...!
   v_scenario <- openxlsx2::wb_read(
     tabula$wb,
@@ -40,6 +44,32 @@ setOptions <- function(tabula, book_no) {
     V_BookNo = book_no
   )
 }
+# TODO: find cleaner solution to use default parameters
+# probably the best solution is to override the datenanpassr::Mapping method reading in the parameters in Tabula
+set_options.list <- function(
+    tabula,
+    v_scenario = 1,
+    V_Language = 4,
+    l_macro_scenario = list(ColVar = character(), Unguelt = c(-1, -3, -2), Weight = NA_character_,
+                            Unweight = FALSE, Filter = NA_character_, scenario_name = "Scenario 2"),
+    l_lexikon = read_dictionary(V_Language),
+    book_no = 999999999,
+    ...
+) {
+
+  tabula$options <- tibble::lst(
+    v_scenario,
+    V_Language,
+    l_macro_scenario,
+    l_lexikon,
+    V_BookNo = book_no
+  )
+}
+set_options.google <- function(tabula, ...) {
+  # TODO: google spreadsheets...
+  stop("Not yet implemented for google sheets.")
+}
+
 read_dictionary <- function(V_Language) {
   df_lexikon_raw <- utils::read.delim(
     # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
