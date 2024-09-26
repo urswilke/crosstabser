@@ -10,16 +10,16 @@ print.Qtab = function(x, ...) {
 
 #' @export
 format.Qtab <- function(qtab, ...) {
-  res <- qtab$d$wide_tab
+  res <- qtab$d$wide_tab[-1]
   if (is.null(res)) {
     return(NULL)
   }
   col_table <- qtab$d$col_table
   col_table$ColTitle1[col_table$ColTitle1 == dplyr::lag(col_table$ColTitle1)] <- ""
   col_table$ColTitle2[is.na(col_table$ColTitle2)] <- ""
-  res[-1] <- purrr::pmap_dfc(
+  res <- purrr::pmap_dfc(
     list(
-      res[-1],
+      res,
       col_table$ColTitle1,
       col_table$ColTitle2
     ),
