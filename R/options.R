@@ -50,14 +50,21 @@ set_options.list <- function(
     tabula,
     v_scenario = 1,
     V_Language = 4,
-    colvar = character(),
-    l_macro_scenario = list(ColVar = colvar, Unguelt = c(-1, -3, -2), Weight = NA_character_,
-                            Unweight = FALSE, Filter = NA_character_, scenario_name = "Scenario 2"),
+    l_macro_scenario = NULL,
     l_lexikon = read_dictionary(V_Language),
     book_no = 999999999,
     ...
 ) {
-
+  # HACK to allow to pass the dots (...) to override parameters from the Macro "sheet":
+  # TODO: probably much cleaner to add a Macro list element to the mapping_file object,
+  # that either accepts a data.frame like from the Excel file Macro sheet or a named list
+  # (if not interested in running different scenarios)
+  l_macro_scenario <- modifyList(
+    list(ColVar = character(), Unguelt = c(-1, -3, -2), Weight = NA_character_,
+       Unweight = FALSE, Filter = NA_character_, scenario_name = "Scenario 2"
+    ),
+    list(...)
+  )
   tabula$options <- tibble::lst(
     v_scenario,
     V_Language,
