@@ -156,10 +156,10 @@ rm_na <- function(x) {
 }
 
 stat_fun_wt.min <- function(x, na.rm = TRUE, ...) {
-  min(x$vec, na.rm = na.rm, ...)
+  min(x$vec, na.rm = na.rm, ...) |> dplyr::na_if(Inf)
 }
 stat_fun_wt.max <- function(x, na.rm = TRUE, ...) {
-  max(x$vec, na.rm = na.rm, ...)
+  max(x$vec, na.rm = na.rm, ...) |> dplyr::na_if(-Inf)
 }
 stat_fun_wt.percentile <- function(x, na.rm = TRUE, ...) {
   Hmisc::wtd.quantile(x$vec, x$wt, probs = x$probs)

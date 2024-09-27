@@ -963,7 +963,7 @@
                            VALI…   3     2     1       0     0
                            VALI…   2.1   0.9   1.2     0     0
       hallo 2              Mini…  NA    NA    NA      NA    NA
-                           Mini… Inf   Inf   Inf      NA    NA
+                           Mini…  NA    NA    NA      NA    NA
                            VALI…   0     0     0       0     0
                            VALI…   2.1   0.9   1.2     0     0
       
@@ -973,18 +973,18 @@
       [[1]]
       [[1]][[1]]
       # Summary of max
-                                 TOTAL  hallo  ------ hall… -----
-                                        Yes    No     Yes   No   
-      VALID CASES (at le…  abs      3      2      1       0     0
-                           abs ⚖    2.1    0.9    1.2     0     0
-      hallo                Maxi…    2      1      2      NA    NA
-                           Maxi…    2      1      2      NA    NA
-                           VALI…    3      2      1       0     0
-                           VALI…    2.1    0.9    1.2     0     0
-      hallo 2              Maxi…   NA     NA     NA      NA    NA
-                           Maxi… -Inf   -Inf   -Inf      NA    NA
-                           VALI…    0      0      0       0     0
-                           VALI…    2.1    0.9    1.2     0     0
+                                 TOTAL hallo ----- hall… -----
+                                       Yes   No    Yes   No   
+      VALID CASES (at le…  abs     3     2     1       0     0
+                           abs ⚖   2.1   0.9   1.2     0     0
+      hallo                Maxi…   2     1     2      NA    NA
+                           Maxi…   2     1     2      NA    NA
+                           VALI…   3     2     1       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      hallo 2              Maxi…  NA    NA    NA      NA    NA
+                           Maxi…  NA    NA    NA      NA    NA
+                           VALI…   0     0     0       0     0
+                           VALI…   2.1   0.9   1.2     0     0
       
       
       
