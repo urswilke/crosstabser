@@ -143,8 +143,8 @@ order_by_counts.default <- function(qtab) {
   warning("Not yet implemented for this qtab type")
 }
 order_by_counts.qtab_type_mcg <- function(qtab) {
-  # TODO: Wolf sagen dass es nur für gültige Werte geschieht...
-  # TODO: gucken ob das auch für andere qtab types funktioniert!...:
+  # TODO: tell Wolf that only valid values are sorted...
+  # TODO: find out if that alse works for other table types than mcg:
   val_table_counts <- qtab$d$detail_freqs[
     qtab$d$detail_freqs$colvar == "DC#TOTAL"
   ,][c("value", "rowval")]

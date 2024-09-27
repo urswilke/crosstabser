@@ -9,12 +9,12 @@ print.Qtab = function(x, ...) {
 }
 
 #' @export
-format.Qtab <- function(qtab, ...) {
-  res <- qtab$d$wide_tab[-1]
+format.Qtab <- function(x, ...) {
+  res <- x$d$wide_tab[-1]
   if (is.null(res)) {
     return(NULL)
   }
-  col_table <- qtab$d$col_table
+  col_table <- x$d$col_table
   col_table$ColTitle1[col_table$ColTitle1 == dplyr::lag(col_table$ColTitle1)] <- ""
   col_table$ColTitle2[is.na(col_table$ColTitle2)] <- ""
   res <- purrr::pmap_dfc(
@@ -33,13 +33,13 @@ format.Qtab <- function(qtab, ...) {
     }
   )
 
-  attr(res, "d") <- qtab$d[c("tab_table", "head_table", "col_table", "row_table")]
+  attr(res, "d") <- x$d[c("tab_table", "head_table", "col_table", "row_table")]
   class(res) <- c("pillar_wide_tab", class(res))
   res
 }
 
 str_trunc_pad <- function(string, width = 5) {
-  stringr::str_trunc(string, width, ellipsis = "…") |>
+  stringr::str_trunc(string, width, ellipsis = "\u2026") |>
     stringr::str_pad(width, "right")
 }
 
@@ -105,8 +105,8 @@ ctl_new_pillar.pillar_wide_tab <- function(controller, x, width, ..., title = NU
     col_title1 <- ""
     col_title2 <- ""
   }
-  col_title1 = stringr::str_trunc(col_title1, width, ellipsis = "…") |> cli::col_blue()
-  col_title2 = stringr::str_trunc(col_title2, width, ellipsis = "…") |> cli::col_blue()
+  col_title1 = stringr::str_trunc(col_title1, width, ellipsis = "\u2026") |> cli::col_blue()
+  col_title2 = stringr::str_trunc(col_title2, width, ellipsis = "\u2026") |> cli::col_blue()
   pillar::new_pillar(list(
     col_title1 = pillar::new_pillar_component(list(col_title1), width = width),
     col_title2 = pillar::new_pillar_component(list(col_title2), width = width),
@@ -150,7 +150,7 @@ format.crosstab_column <- function(x, ...) {
   style <- attr(x, "style")
 
   res <- vector("character", length(x))
-  x_fmt <- vctrs::vec_data(x) |> pillar::pillar() |> capture.output() |> _[-(1:2)]
+  x_fmt <- vctrs::vec_data(x) |> pillar::pillar() |> utils::capture.output() |> _[-(1:2)]
   for (i in seq_along(x)) {
     res[i] <- dplyr::case_when(
       style[i] == "bold" ~ pillar::style_bold(x_fmt[i]),

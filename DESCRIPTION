@@ -29,12 +29,17 @@ Imports:
     rlang,
     matrixStats,
     Hmisc,
-    tibble,
     tidyselect,
     pillar,
     cli,
-    datenanpassr
+    datenanpassr,
+    vctrs,
+    forcats,
+    DBI,
+    odbc
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    haven,
+    withr
 Config/testthat/edition: 3

@@ -217,7 +217,7 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
 
 
   df_long <- dplyr::bind_rows(
-    # TODO: remove rows of cases with multiple values in column "Ëxclusive"...:
+    # TODO: remove rows of cases with multiple values in column "Exclusive"...:
     df_rows_long_valids,
     df_rows_long_invalids
   ) |>

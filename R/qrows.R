@@ -19,11 +19,11 @@ Qrow <- R6::R6Class(
             lapply(\(x) Qtab$new(x, mapping))
         },
         error = function(e) {
-          self$log$error <- capture.output(e)[-1] |> paste(collapse = "\n")
+          self$log$error <- utils::capture.output(e)[-1] |> paste(collapse = "\n")
           obj <- list(NULL)
         }),
         warning = function(w) {
-          self$log$warn <- capture.output(w)[-1] |> paste(collapse = "\n")
+          self$log$warn <- utils::capture.output(w)[-1] |> paste(collapse = "\n")
           tryInvokeRestart("muffleWarning")
         }
       )

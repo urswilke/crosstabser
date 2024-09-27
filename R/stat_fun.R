@@ -44,7 +44,7 @@ summarize_stats_weighted <- function(df, x, wt, stat_fun = "length", ..., .by) {
     dplyr::summarise(dplyr::across(dplyr::all_of(x),
       \(vec) apply_stat(
         x = vec,
-        wt = .data[["weight"]],
+        wt = weight,
         stat_fun = stat_fun,
         ...
       )),
