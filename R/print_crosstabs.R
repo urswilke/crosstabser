@@ -65,8 +65,8 @@ ctl_new_rowid_pillar.pillar_wide_tab <- function(controller, x, width, rowlab_wi
   width <- max(nchar(as.character(rowid)))
   pillar::new_pillar(
     list(
-      title = out$title,
-      type = out$type,
+      title = "",
+      type = "",
       data = pillar::pillar_component(
         pillar::new_pillar_shaft(list(row_ids = rowid),
                                  width = width,

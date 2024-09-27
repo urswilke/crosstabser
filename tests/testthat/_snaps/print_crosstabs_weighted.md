@@ -6,8 +6,8 @@
       [[1]]
       [[1]][[1]]
       # 1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?
-                            NULL GESA… Regi… ----- ------ -----
-                            NULL       Asien Euro… Norda… Pazi…
+                                 GESA… Regi… ----- ------ -----
+                                       Asien Euro… Norda… Pazi…
       GESAMT               abs   151    19    75    43     14  
                            abs ⚖ 151    15    71.5  47.5   17  
       1 Beschäftigter      abs     0     0     0     0      0  
@@ -40,8 +40,8 @@
       [[2]][[1]]
       # 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool durch?
       #   DC#SELVALLAB
-                            NULL GESAMT  Region ------- ------ ------
-                            NULL         Asien  Europa  Norda… Pazif…
+                                 GESAMT  Region ------- ------ ------
+                                         Asien  Europa  Norda… Pazif…
       GESAMT               abs   151      19     75      43     14   
                            abs ⚖ 151      15     71.5    47.5   17   
       Summe der gültigen…  abs   230      31    113      61     25   
@@ -84,8 +84,8 @@
       [[3]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Mittelwertüberblick
-                            NULL GESAMT  Region ------ ------ ------
-                            NULL         Asien  Europa Norda… Pazif…
+                                 GESAMT  Region ------ ------ ------
+                                         Asien  Europa Norda… Pazif…
       GÜLTIGE FÄLLE (min…  abs   151     19     75     43     14    
                            abs ⚖ 151     15     71.5   47.5   17    
       Kundenzufriedenheit  Mitt…  72.8   66.8   73.3   79.5   57.1  
@@ -121,8 +121,8 @@
       [[4]]
       [[4]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
-                            NULL GESAMT   Region ------- ------- ------
-                            NULL          Asien  Europa  Nordam… Pazif…
+                                 GESAMT   Region ------- ------- ------
+                                          Asien  Europa  Nordam… Pazif…
       GESAMT               abs     151      19     75      43     14   
                            abs ⚖   151      15     71.5    47.5   17   
       Mittelwert                    72.8    66.8   73.3    79.5   57.1 
@@ -149,8 +149,8 @@
       [[5]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Kundenzufriedenheit
-                            NULL GESAMT  Region ------ ------ ------
-                            NULL         Asien  Europa Norda… Pazif…
+                                 GESAMT  Region ------ ------ ------
+                                         Asien  Europa Norda… Pazif…
       GESAMT               abs   151      19     75     43     14   
                            abs ⚖ 151      15     71.5   47.5   17   
       Mittelwert                  95.5    95.4   94.2   97.4   95.7 
@@ -165,8 +165,8 @@
       [[5]][[2]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Marktvolumen
-                            NULL GESAMT Region ------ ----- ------
-                            NULL        Asien  Europa Nord… Pazif…
+                                 GESAMT Region ------ ----- ------
+                                        Asien  Europa Nord… Pazif…
       GESAMT               abs   151     19     75     43    14   
                            abs ⚖ 151     15     71.5   47.5  17   
       Mittelwert                  94.8   95     93.6  100    93.3 
@@ -183,8 +183,8 @@
       [[6]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Summary of Medians
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs     151    19  75    43      14
                            abs ⚖   151    15  71.5  47.5    17
       Kundenzufriedenheit  Medi…   100    NA 100   100      65
@@ -199,8 +199,8 @@
       [[6]][[2]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Kundenzufriedenheit
-                            NULL GESAMT  Regi… ------- ------ ------
-                            NULL         Asien Europa  Norda… Pazif…
+                                 GESAMT  Regi… ------- ------ ------
+                                         Asien Europa  Norda… Pazif…
       GESAMT               abs   132         0  75      43     14   
                            abs ⚖ 136         0  71.5    47.5   17   
       0                    abs    15         0   9       3      3   
@@ -267,8 +267,8 @@
       [[6]][[3]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Marktvolumen
-                            NULL GESAMT  Region ------- ------ ------
-                            NULL         Asien  Europa  Norda… Pazif…
+                                 GESAMT  Region ------- ------ ------
+                                         Asien  Europa  Norda… Pazif…
       GESAMT               abs   151      19     75      43     14   
                            abs ⚖ 151      15     71.5    47.5   17   
       0                    abs   105      12     50      35      8   
@@ -333,8 +333,8 @@
       [[7]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Mittelwertüberblick gewichtet mit gew
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs   151    19    75    43    14  
                            abs ⚖ 151    15    71.5  47.5  17  
       Kundenzufriedenheit  Mitt…  72.8  66.8  73.3  79.5  57.1
@@ -351,8 +351,8 @@
       [[8]][[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   gewichtet mit gew
-                            NULL GESAMT   Region ------- ------- ------
-                            NULL          Asien  Europa  Nordam… Pazif…
+                                 GESAMT   Region ------- ------- ------
+                                          Asien  Europa  Nordam… Pazif…
       GESAMT               abs     151      19     75      43     14   
                            abs ⚖   151      15     71.5    47.5   17   
       Mittelwert                    72.8    66.8   73.3    79.5   57.1 
@@ -379,8 +379,8 @@
       [[9]][[1]]
       # 4. Wie häufig haben Sie einen Tabellenband in den letzten 12 Monaten
       #   erstellen lassen?
-                                 NULL GESAMT  Regi… ------ ----- ------
-                                 NULL         Asien Europa Nord… Pazif…
+                                      GESAMT  Regi… ------ ----- ------
+                                              Asien Europa Nord… Pazif…
       GESAMT                    abs   151     19    75     43     14   
                                 abs ⚖ 151     15    71.5   47.5   17   
       ZUSAMMENFASSUNG     1-2m… abs    54      7    26     17      4   
@@ -410,8 +410,8 @@
       [[10]]
       [[10]][[1]]
       # 5. Was lief besonders gut in den Projekten?
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GESAMT               abs   151    19    75   43    14   
                            abs ⚖ 151    15    71.5 47.5  17   
       Summe der gültigen…  abs    60    10    26   16     8   
@@ -453,8 +453,8 @@
       [[11]]
       [[11]][[1]]
       # 5. Was lief besonders gut in den Projekten?
-                            NULL GESAMT Regi… ----- ----- -----
-                            NULL        Asien Euro… Nord… Pazi…
+                                 GESAMT Regi… ----- ----- -----
+                                        Asien Euro… Nord… Pazi…
       GESAMT               abs   151    19    75    43    14   
                            abs ⚖ 151    15    71.5  47.5  17   
       Summe der gültigen…  abs   140    18    70    36    16   
@@ -498,8 +498,8 @@
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein. TOP2-Übersicht
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs    91    11    42    29    9   
                            abs ⚖  89     9.5  40.5  29.5  9.5 
       Schnelle Umsetzung   TOP2   87.6  90.9  90.2  85.7 77.8 
@@ -539,8 +539,8 @@
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein. TOP1-Übersicht
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs   91     11   42    29     9   
                            abs ⚖ 89      9.5 40.5  29.5   9.5 
       Schnelle Umsetzung   TOP1  55.1   45.5 61.0  53.6  44.4 
@@ -582,8 +582,8 @@
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein.
-                                 NULL GESAMT  Regi… ----- ----- -----
-                                 NULL         Asien Euro… Nord… Pazi…
+                                      GESAMT  Regi… ----- ----- -----
+                                              Asien Euro… Nord… Pazi…
       GESAMT                    abs   151     19    75    43     14  
                                 abs ⚖ 151     15    71.5  47.5   17  
       2                         abs     1      0     0     1      0  
@@ -651,8 +651,8 @@
       [[14]]
       [[14]][[1]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Kundenzufriedenheit
-                                 NULL GESAMT  Regi… ----- ------ ------
-                                 NULL         Asien Euro… Norda… Pazif…
+                                      GESAMT  Regi… ----- ------ ------
+                                              Asien Euro… Norda… Pazif…
       GESAMT                    abs   151     19    75     43     14   
                                 abs ⚖ 151     15    71.5   47.5   17   
       0 - auf keinen Fall       abs     0      0     0      0      0   
@@ -726,8 +726,8 @@
       
       [[14]][[2]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Marktvolumen
-                                 NULL GESAMT Region ----- ------ ------
-                                 NULL        Asien  Euro… Norda… Pazif…
+                                      GESAMT Region ----- ------ ------
+                                             Asien  Euro… Norda… Pazif…
       GESAMT                    abs   73       7    38     23      5   
                                 abs ⚖ 78       6    38.5   28      5.5 
       0 - auf keinen Fall       abs    0       0     0      0      0   
@@ -801,8 +801,8 @@
       
       [[14]][[3]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Sonstige
-                                 NULL GESA… Regi… ----- ----- ------
-                                 NULL       Asien Euro… Nord… Pazif…
+                                      GESA… Regi… ----- ----- ------
+                                            Asien Euro… Nord… Pazif…
       GESAMT                    abs   43      7   18    13      5   
                                 abs ⚖ 36.5    4   14    12.5    6   
       0 - auf keinen Fall       abs    0      0    0     0      0   
@@ -879,8 +879,8 @@
       [[15]][[1]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Kundenzufriedenheit
-                            NULL GESAMT Regi… ----- ------ -----
-                            NULL        Asien Euro… Norda… Pazi…
+                                 GESAMT Regi… ----- ------ -----
+                                        Asien Euro… Norda… Pazi…
       GESAMT               abs   151     19   75     43    14   
                            abs ⚖ 151     15   71.5   47.5  17   
       Summe der gültigen…  abs   162     20   82     46    14   
@@ -909,8 +909,8 @@
       [[15]][[2]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Marktvolumen
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GESAMT               abs    73     7    38    23     5  
                            abs ⚖  78     6    38.5  28     5.5
       Summe der gültigen…  abs    27     5    13     6     3  
@@ -939,8 +939,8 @@
       [[15]][[3]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Sonstige
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GESAMT               abs    43     7   18     13     5  
                            abs ⚖  36.5   4   14     12.5   6  
       Summe der gültigen…  abs    17     2    8      5     2  
@@ -971,8 +971,8 @@
       [[16]][[1]]
       # multi selvar with unguelt: 2. Welche Art von Studien führen Sie mit dem
       #   Tabellenbandtool durch? Sonstige
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GESAMT               abs    43     7    18    13     5  
                            abs ⚖  36.5   4    14    12.5   6  
       Summe der gültigen…  abs    14     2     7     4     1  
@@ -999,8 +999,8 @@
       [[17]][[1]]
       # trigger invalid values: 2. Welche Art von Studien führen Sie mit dem
       #   Tabellenbandtool durch?
-                            NULL GESAMT  Regi… ------- ------ ------
-                            NULL         Asien Europa  Norda… Pazif…
+                                 GESAMT  Regi… ------- ------ ------
+                                         Asien Europa  Norda… Pazif…
       GESAMT               abs   151      19    75      43     14   
                            abs ⚖ 151      15    71.5    47.5   17   
       Summe der gültigen…  abs     3       0     1       1      1   
@@ -1026,8 +1026,8 @@
       [[18]]
       [[18]][[1]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Kundenzufriedenheit
-                            NULL GESAMT Regi… ----- ----- -----
-                            NULL        Asien Euro… Nord… Pazi…
+                                 GESAMT Regi… ----- ----- -----
+                                        Asien Euro… Nord… Pazi…
       GESAMT               abs   151     19   75    43     14  
                            abs ⚖ 151     15   71.5  47.5   17  
       Summe der gültigen…  abs    42      7   19    11      5  
@@ -1067,8 +1067,8 @@
       
       [[18]][[2]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Marktvolumen
-                            NULL GESA… Regi… ----- ------ ------
-                            NULL       Asien Euro… Norda… Pazif…
+                                 GESA… Regi… ----- ------ ------
+                                       Asien Euro… Norda… Pazif…
       GESAMT               abs   73      7    38    23      5   
                            abs ⚖ 78      6    38.5  28      5.5 
       Summe der gültigen…  abs    8      1     4     2      1   
@@ -1104,8 +1104,8 @@
       
       [[18]][[3]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
-                            NULL GESA… Regi… ------ ----- ------
-                            NULL       Asien Europa Nord… Pazif…
+                                 GESA… Regi… ------ ----- ------
+                                       Asien Europa Nord… Pazif…
       GESAMT               abs   43      7    18    13      5   
                            abs ⚖ 36.5    4    14    12.5    6   
       Summe der gültigen…  abs    6      1     1     3      1   
@@ -1145,8 +1145,8 @@
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   TOP3-Übersicht
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs    71     7    38    22       4
                            abs ⚖  77     6    38.5  27.5     5
       Schnelle Umsetzung   TOP3   64.7  42.9  74.3  59.1    50
@@ -1162,8 +1162,8 @@
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Mittelwertüberblick
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs   71     7    38    22      4  
                            abs ⚖ 77     6    38.5  27.5    5  
       Schnelle Umsetzung   Mitt…  7.49  7.43  7.6   7.5    6.5
@@ -1179,8 +1179,8 @@
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Schnelle Umsetzung
-                                 NULL GESAMT Region  ------ ------ ------
-                                 NULL        Asien   Europa Norda… Pazif…
+                                      GESAMT Region  ------ ------ ------
+                                             Asien   Europa Norda… Pazif…
       GESAMT                    abs   73       7     38     23      5    
                                 abs ⚖ 78       6     38.5   28      5.5  
       1 - völlig unzufri…       abs    1       0      1      0      0    
@@ -1252,8 +1252,8 @@
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Kurzfristige Anpassungen
-                                 NULL GESAMT Region ------ ------ ------
-                                 NULL        Asien  Europa Norda… Pazif…
+                                      GESAMT Region ------ ------ ------
+                                             Asien  Europa Norda… Pazif…
       GESAMT                    abs   73      7     38     23      5    
                                 abs ⚖ 78      6     38.5   28      5.5  
       1 - völlig unzufri…       abs    0      0      0      0      0    
@@ -1325,8 +1325,8 @@
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   TOP3-Übersicht
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs    38     7    16    11     4  
                            abs ⚖  31     4    11.5  10     5.5
       Schnelle Umsetzung   TOP3   40.5  28.6  37.5  45.5  66.7
@@ -1342,8 +1342,8 @@
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   Mittelwertüberblick
-                            NULL GESA… Regi… ----- ----- -----
-                            NULL       Asien Euro… Nord… Pazi…
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs   38     7    16    11     4   
                            abs ⚖ 31     4    11.5  10     5.5 
       Schnelle Umsetzung   Mitt…  6.54  5.86  6.25  7     8   
@@ -1359,8 +1359,8 @@
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige Schnelle
       #   Umsetzung
-                                 NULL GESAMT Region  ------ ------ ------
-                                 NULL        Asien   Europa Norda… Pazif…
+                                      GESAMT Region  ------ ------ ------
+                                             Asien   Europa Norda… Pazif…
       GESAMT                    abs   43       7     18     13      5    
                                 abs ⚖ 36.5     4     14     12.5    6    
       1 - völlig unzufri…       abs    1       0      1      0      0    
@@ -1432,8 +1432,8 @@
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   Kurzfristige Anpassungen
-                                 NULL GESAMT Region  ------ ------ ------
-                                 NULL        Asien   Europa Norda… Pazif…
+                                      GESAMT Region  ------ ------ ------
+                                             Asien   Europa Norda… Pazif…
       GESAMT                    abs   43       7     18     13      5    
                                 abs ⚖ 36.5     4     14     12.5    6    
       1 - völlig unzufri…       abs    0       0      0      0      0    

@@ -71,8 +71,8 @@ Tabula$new(df, mapping_file, colvar = "age")
 #> [[1]]
 #> [[1]][[1]]
 #> # The crosstab's title
-#>                       NULL TOTAL age   -----
-#>                       NULL       18-39 40+  
+#>                            TOTAL age   -----
+#>                                  18-39 40+  
 #> TOTAL                abs     3       2     1
 #> Yes                  abs     2       1     1
 #>                      in %   66.7    50   100
