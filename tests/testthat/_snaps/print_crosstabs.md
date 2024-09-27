@@ -901,7 +901,7 @@
       hallo 2              Std.… NA      NA    NA      NA    NA
                            Std.… NA      NA    NA      NA    NA
                            VALI…  0       0     0       0     0
-                           VALI…  2.1     0.9   1.2     0     0
+                           VALI…  0       0     0       0     0
       
       
       
@@ -920,7 +920,7 @@
       hallo 2              Medi…  NA    NA    NA      NA    NA
                            Medi…  NA    NA    NA      NA    NA
                            VALI…   0     0     0       0     0
-                           VALI…   2.1   0.9   1.2     0     0
+                           VALI…   0     0     0       0     0
       
       
       
@@ -939,7 +939,7 @@
       hallo 2              Mean  NA     NA    NA      NA    NA
                            Mean…  0      0     0      NA    NA
                            VALI…  0      0     0       0     0
-                           VALI…  2.1    0.9   1.2     0     0
+                           VALI…  0      0     0       0     0
       
       
       
@@ -965,7 +965,7 @@
       hallo 2              Mini…  NA    NA    NA      NA    NA
                            Mini…  NA    NA    NA      NA    NA
                            VALI…   0     0     0       0     0
-                           VALI…   2.1   0.9   1.2     0     0
+                           VALI…   0     0     0       0     0
       
       
       
@@ -984,7 +984,7 @@
       hallo 2              Maxi…  NA    NA    NA      NA    NA
                            Maxi…  NA    NA    NA      NA    NA
                            VALI…   0     0     0       0     0
-                           VALI…   2.1   0.9   1.2     0     0
+                           VALI…   0     0     0       0     0
       
       
       
@@ -1003,7 +1003,7 @@
       hallo 2              Sum    NA    NA    NA      NA    NA
                            Sum ⚖   0     0     0      NA    NA
                            VALI…   0     0     0       0     0
-                           VALI…   2.1   0.9   1.2     0     0
+                           VALI…   0     0     0       0     0
       
       
       

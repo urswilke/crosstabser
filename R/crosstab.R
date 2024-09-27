@@ -371,7 +371,9 @@ parse_catrec_sum_expr <- function(df_summary, catrec_sum_string) {
 
 calc_detail_freqs.qtab_type_mw <- function(qtab) {
   weight <- qtab$p$Weight[[1]]
-  invalid_vals <- qtab$p$Unguelt
+  # TODO: check all occurrences of qtab$p$Unguelt (a lot) if NA also has to be included!
+  # (except mdg of course)
+  invalid_vals <- c(NA, qtab$p$Unguelt)
 
   res <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
     summarize_stats(

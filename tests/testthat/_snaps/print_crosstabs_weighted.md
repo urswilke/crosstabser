@@ -190,7 +190,7 @@
       Kundenzufriedenheit  Medi…   100    NA 100   100      65
                            Medi…    98    NA  90   100      50
                            GÜLT…   132     0  75    43      14
-                           GÜLT…   151    15  71.5  47.5    17
+                           GÜLT…   136     0  71.5  47.5    17
       Marktvolumen         Medi…     0     0   0     0       0
                            Medi…     0     0   0     0       0
                            GÜLT…   151    19  75    43      14
