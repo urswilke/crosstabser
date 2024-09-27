@@ -881,3 +881,130 @@
       
       
 
+# summaries of various stat_fun are reproduced
+
+    Code
+      l
+    Output
+      [[1]]
+      [[1]]
+      [[1]][[1]]
+      # Summary of se
+                                 TOTAL  hallo ----- hall… -----
+                                        Yes   No    Yes   No   
+      VALID CASES (at le…  abs    3       2     1       0     0
+                           abs ⚖  2.1     0.9   1.2     0     0
+      hallo                Std.…  0.333   0    NA      NA    NA
+                           Std.…  0.472  NA    NA      NA    NA
+                           VALI…  3       2     1       0     0
+                           VALI…  2.1     0.9   1.2     0     0
+      hallo 2              Std.… NA      NA    NA      NA    NA
+                           Std.… NA      NA    NA      NA    NA
+                           VALI…  0       0     0       0     0
+                           VALI…  2.1     0.9   1.2     0     0
+      
+      
+      
+      [[2]]
+      [[1]]
+      [[1]][[1]]
+      # Summary of median
+                                 TOTAL hallo ----- hall… -----
+                                       Yes   No    Yes   No   
+      VALID CASES (at le…  abs     3     2     1       0     0
+                           abs ⚖   2.1   0.9   1.2     0     0
+      hallo                Medi…   1     1     2      NA    NA
+                           Medi…   2     1     2      NA    NA
+                           VALI…   3     2     1       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      hallo 2              Medi…  NA    NA    NA      NA    NA
+                           Medi…  NA    NA    NA      NA    NA
+                           VALI…   0     0     0       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      
+      
+      
+      [[3]]
+      [[1]]
+      [[1]][[1]]
+      # Summary of mean
+                                 TOTAL hallo ----- hall… -----
+                                       Yes   No    Yes   No   
+      VALID CASES (at le…  abs    3      2     1       0     0
+                           abs ⚖  2.1    0.9   1.2     0     0
+      hallo                Mean   1.33   1     2      NA    NA
+                           Mean…  1.57   1     2      NA    NA
+                           VALI…  3      2     1       0     0
+                           VALI…  2.1    0.9   1.2     0     0
+      hallo 2              Mean  NA     NA    NA      NA    NA
+                           Mean…  0      0     0      NA    NA
+                           VALI…  0      0     0       0     0
+                           VALI…  2.1    0.9   1.2     0     0
+      
+      
+      
+      [[4]]
+      [[1]]
+      [[1]][[1]]
+      NULL
+      
+      
+      
+      [[5]]
+      [[1]]
+      [[1]][[1]]
+      # Summary of min
+                                 TOTAL hallo ----- hall… -----
+                                       Yes   No    Yes   No   
+      VALID CASES (at le…  abs     3     2     1       0     0
+                           abs ⚖   2.1   0.9   1.2     0     0
+      hallo                Mini…   1     1     2      NA    NA
+                           Mini…   1     1     2      NA    NA
+                           VALI…   3     2     1       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      hallo 2              Mini…  NA    NA    NA      NA    NA
+                           Mini… Inf   Inf   Inf      NA    NA
+                           VALI…   0     0     0       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      
+      
+      
+      [[6]]
+      [[1]]
+      [[1]][[1]]
+      # Summary of max
+                                 TOTAL  hallo  ------ hall… -----
+                                        Yes    No     Yes   No   
+      VALID CASES (at le…  abs      3      2      1       0     0
+                           abs ⚖    2.1    0.9    1.2     0     0
+      hallo                Maxi…    2      1      2      NA    NA
+                           Maxi…    2      1      2      NA    NA
+                           VALI…    3      2      1       0     0
+                           VALI…    2.1    0.9    1.2     0     0
+      hallo 2              Maxi…   NA     NA     NA      NA    NA
+                           Maxi… -Inf   -Inf   -Inf      NA    NA
+                           VALI…    0      0      0       0     0
+                           VALI…    2.1    0.9    1.2     0     0
+      
+      
+      
+      [[7]]
+      [[1]]
+      [[1]][[1]]
+      # Summary of sum
+                                 TOTAL hallo ----- hall… -----
+                                       Yes   No    Yes   No   
+      VALID CASES (at le…  abs     3     2     1       0     0
+                           abs ⚖   2.1   0.9   1.2     0     0
+      hallo                Sum     4     2     2      NA    NA
+                           Sum ⚖   3.3   0.9   2.4    NA    NA
+                           VALI…   3     2     1       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      hallo 2              Sum    NA    NA    NA      NA    NA
+                           Sum ⚖   0     0     0      NA    NA
+                           VALI…   0     0     0       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      
+      
+      
+

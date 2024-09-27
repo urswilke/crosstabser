@@ -40,3 +40,44 @@ test_that("An informative error is thrown when no crosstabs are calculated", {
     regexp = "No crosstabs calculated"
   )
 })
+
+
+df <- tibble::tibble(
+  q1 = c(1, 2, 1) |> haven::labelled(c(Yes = 1, No = 2), label = "hallo"),
+  q2 = c(NA_real_, NA, NA) |> haven::labelled(c(Yes = 1, No = 2), label = "hallo 2"),
+  age = c(2, 1, 1) |> haven::labelled(c("18-39" = 1, "40+" = 2), label = "age"),
+  gew = c(0.5, 1.2, 0.4)
+)
+
+stat_fun <- "se"
+mapping_file = list(Questions = data.frame(
+  Type  = "mw",
+  RowVar = "q1 q2",
+  Title = "The crosstab's title",
+  Freq = "0",
+  ZsfgMW = stat_fun
+))
+m <- Tabula$new(df, mapping_file, ColVar = c("q1", "q2"),
+                Weight = "gew",
+                Unweight = TRUE)
+l <- df_metr_mac$fun |>
+  lapply(
+    \(f) Tabula$new(
+      df,
+      list(Questions = data.frame(
+        Type  = "mw",
+        RowVar = "q1 q2",
+        Title = "",
+        MeanOverviewLabel = paste("Summary of", f),
+        Freq = "0",
+        ZsfgMW = f
+      )),
+      ColVar = c("q1", "q2"),
+      Weight = "gew",
+      Unweight = TRUE
+    )
+  )
+
+test_that("summaries of various stat_fun are reproduced", {
+  testthat::expect_snapshot(l)
+})
