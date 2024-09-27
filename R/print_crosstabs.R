@@ -24,9 +24,12 @@ format.Qtab <- function(qtab, ...) {
       col_table$ColTitle2
     ),
     \(x, t1, t2) {
-      attr(x, "col_title1") <- t1
-      attr(x, "col_title2") <- t2
-      x
+      vctrs::new_vctr(
+        x,
+        col_title1 = t1,
+        col_title2 = t2,
+        class = "crosstab_column"
+      )
     }
   )
 
@@ -87,7 +90,10 @@ ctl_new_pillar.pillar_wide_tab <- function(controller, x, width, ..., title = NU
   col_title1 <- attr(x, "col_title1", exact = TRUE)
   col_title2 <- attr(x, "col_title2", exact = TRUE)
 
-  width = pillar:::pillar_get_width(out)
+  width = max(
+    out$data[[1]][[1]] |> pillar::get_max_extent(),
+    5
+  )
   if (is.null(col_title1)) {
     col_title1 <- rep("-", width) |> paste(collapse = "")
     col_title2 <- rep("-", width) |> paste(collapse = "")
@@ -114,4 +120,43 @@ ctl_new_pillar.pillar_wide_tab <- function(controller, x, width, ..., title = NU
 tbl_sum.pillar_wide_tab <- function(x, ...) {
   tables <- attr(x, "d")
   c(tables$tab_table$TabTitle)
+}
+
+#' @importFrom pillar tbl_format_setup
+#' @export
+tbl_format_setup.pillar_wide_tab <- function(x, width, ...) {
+  rt <- x |> attr("d") |> _$row_table |> rm_header_footer()
+  row_style <- dplyr::case_when(
+    rt$RowContent %in% c("Total", "Valid") ~ "bold",
+    rt$RowAbsPercent %in% "Abs" ~ "subtle",
+    .default = "normal"
+  )
+  for (i in seq_along(x)) {
+    attr(x[[i]], "style") <- row_style
+  }
+  setup <- NextMethod()
+  setup
+}
+
+#' @importFrom pillar pillar_shaft
+#' @export
+pillar_shaft.crosstab_column <- function(x, ...) {
+  fmt <- format(x)
+  style <- attr(x, "style")
+  pillar::new_pillar_shaft_simple(pillar::style_subtle_num(fmt, negative = style == "subtle"), align = "right")
+}
+#' @export
+format.crosstab_column <- function(x, ...) {
+  style <- attr(x, "style")
+
+  res <- vector("character", length(x))
+  x_fmt <- vctrs::vec_data(x) |> pillar::pillar() |> capture.output() |> _[-(1:2)]
+  for (i in seq_along(x)) {
+    res[i] <- dplyr::case_when(
+      style[i] == "bold" ~ pillar::style_bold(x_fmt[i]),
+      style[i] == "subtle" ~ pillar::style_subtle(x_fmt[i]),
+      style[i] == "normal" ~ x_fmt[i] |> as.character()
+    )
+  }
+  pillar::new_ornament(res, width = nchar(x_fmt[1]), align = "right")
 }
