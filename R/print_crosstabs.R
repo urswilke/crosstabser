@@ -150,7 +150,10 @@ format.crosstab_column <- function(x, ...) {
   style <- attr(x, "style")
 
   res <- vector("character", length(x))
-  x_fmt <- vctrs::vec_data(x) |> pillar::pillar() |> utils::capture.output() |> _[-(1:2)]
+  x_fmt <- vctrs::vec_data(x) |>
+    pillar::pillar() |>
+    utils::capture.output() |>
+    _[-(1:2)] |> stringr::str_replace("NA", pillar:::crayon_grey_0.6(" \u2022"))
   for (i in seq_along(x)) {
     res[i] <- dplyr::case_when(
       style[i] == "bold" ~ pillar::style_bold(x_fmt[i]),
