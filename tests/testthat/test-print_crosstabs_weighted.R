@@ -5,6 +5,7 @@ df <- haven::read_sav(spss_file)
 df$q3a_NA <- df$q3a
 df[df$kregio == 1,]$q3a_NA <- NA_real_
 tabsi <- Tabula$new(df, mapping_file, tabulate = F)
+tabsi$options$l_lexikon["cTabWeighted"] <- "W"
 tabsi$options$l_macro_scenario$Weight <- "gew"
 tabsi$options$l_macro_scenario$Unweight <- TRUE
 tabsi$calc_qtabs()
