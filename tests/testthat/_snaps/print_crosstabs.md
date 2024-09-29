@@ -120,7 +120,7 @@
                                  GESA… Regi… ----- ----- -----
                                        Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs     151    19    75    43    14
-      Kundenzufriedenheit  Medi…   100     •   100   100    65
+      Kundenzufriedenheit  Medi…   100     ·   100   100    65
                            GÜLT…   132     0    75    43    14
       Marktvolumen         Medi…     0     0     0     0     0
                            GÜLT…   151    19    75    43    14
@@ -893,12 +893,12 @@
                                         Yes   No    Yes   No   
       VALID CASES (at le…  abs    3       2     1       0     0
                            abs W  2.1     0.9   1.2     0     0
-      hallo                Std.…  0.333   0     •       •     •
-                           Std.…  0.472   •     •       •     •
+      hallo                Std.…  0.333   0     ·       ·     ·
+                           Std.…  0.472   ·     ·       ·     ·
                            VALI…  3       2     1       0     0
                            VALI…  2.1     0.9   1.2     0     0
-      hallo 2              Std.…  •       •     •       •     •
-                           Std.…  •       •     •       •     •
+      hallo 2              Std.…  ·       ·     ·       ·     ·
+                           Std.…  ·       ·     ·       ·     ·
                            VALI…  0       0     0       0     0
                            VALI…  0       0     0       0     0
       
@@ -910,12 +910,12 @@
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
                            abs W   2.1   0.9   1.2     0     0
-      hallo                Medi…   1     1     2       •     •
-                           Medi…   2     1     2       •     •
+      hallo                Medi…   1     1     2       ·     ·
+                           Medi…   2     1     2       ·     ·
                            VALI…   3     2     1       0     0
                            VALI…   2.1   0.9   1.2     0     0
-      hallo 2              Medi…   •     •     •       •     •
-                           Medi…   •     •     •       •     •
+      hallo 2              Medi…   ·     ·     ·       ·     ·
+                           Medi…   ·     ·     ·       ·     ·
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       
@@ -927,12 +927,12 @@
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs    3      2     1       0     0
                            abs W  2.1    0.9   1.2     0     0
-      hallo                Mean   1.33   1     2       •     •
-                           Mean…  1.57   1     2       •     •
+      hallo                Mean   1.33   1     2       ·     ·
+                           Mean…  1.57   1     2       ·     ·
                            VALI…  3      2     1       0     0
                            VALI…  2.1    0.9   1.2     0     0
-      hallo 2              Mean   •      •     •       •     •
-                           Mean…  0      0     0       •     •
+      hallo 2              Mean   ·      ·     ·       ·     ·
+                           Mean…  0      0     0       ·     ·
                            VALI…  0      0     0       0     0
                            VALI…  0      0     0       0     0
       
@@ -949,12 +949,12 @@
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
                            abs W   2.1   0.9   1.2     0     0
-      hallo                Mini…   1     1     2       •     •
-                           Mini…   1     1     2       •     •
+      hallo                Mini…   1     1     2       ·     ·
+                           Mini…   1     1     2       ·     ·
                            VALI…   3     2     1       0     0
                            VALI…   2.1   0.9   1.2     0     0
-      hallo 2              Mini…   •     •     •       •     •
-                           Mini…   •     •     •       •     •
+      hallo 2              Mini…   ·     ·     ·       ·     ·
+                           Mini…   ·     ·     ·       ·     ·
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       
@@ -966,12 +966,12 @@
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
                            abs W   2.1   0.9   1.2     0     0
-      hallo                Maxi…   2     1     2       •     •
-                           Maxi…   2     1     2       •     •
+      hallo                Maxi…   2     1     2       ·     ·
+                           Maxi…   2     1     2       ·     ·
                            VALI…   3     2     1       0     0
                            VALI…   2.1   0.9   1.2     0     0
-      hallo 2              Maxi…   •     •     •       •     •
-                           Maxi…   •     •     •       •     •
+      hallo 2              Maxi…   ·     ·     ·       ·     ·
+                           Maxi…   ·     ·     ·       ·     ·
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       
@@ -983,12 +983,12 @@
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
                            abs W   2.1   0.9   1.2     0     0
-      hallo                Sum     4     2     2       •     •
-                           Sum W   3.3   0.9   2.4     •     •
+      hallo                Sum     4     2     2       ·     ·
+                           Sum W   3.3   0.9   2.4     ·     ·
                            VALI…   3     2     1       0     0
                            VALI…   2.1   0.9   1.2     0     0
-      hallo 2              Sum     •     •     •       •     •
-                           Sum W   0     0     0       •     •
+      hallo 2              Sum     ·     ·     ·       ·     ·
+                           Sum W   0     0     0       ·     ·
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       
