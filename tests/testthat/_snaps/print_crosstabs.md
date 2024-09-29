@@ -932,7 +932,7 @@
                            VALI…  3      2     1       0     0
                            VALI…  2.1    0.9   1.2     0     0
       hallo 2              Mean   ·      ·     ·       ·     ·
-                           Mean…  0      0     0       ·     ·
+                           Mean…  ·      ·     ·       ·     ·
                            VALI…  0      0     0       0     0
                            VALI…  0      0     0       0     0
       
@@ -988,7 +988,7 @@
                            VALI…   3     2     1       0     0
                            VALI…   2.1   0.9   1.2     0     0
       hallo 2              Sum     ·     ·     ·       ·     ·
-                           Sum W   0     0     0       ·     ·
+                           Sum W   ·     ·     ·       ·     ·
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       

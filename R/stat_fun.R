@@ -121,7 +121,7 @@ stat_fun_wt.mean <- function(x, na.rm = TRUE, ...) {
     x <- rm_na(x)
   }
   if (length(x$vec) == 0) {
-    return(0)
+    return(NA_real_)
   }
   res <- stats::weighted.mean(x$vec, x$wt, na.rm = na.rm)
   if (is.nan(res)) {
@@ -133,6 +133,12 @@ stat_fun_wt.median <- function(x, na.rm = TRUE, ties = "mean", ...) {
   matrixStats::weightedMedian(x$vec, x$wt, na.rm = na.rm, ties = ties)
 }
 stat_fun_wt.sum <- function(x, na.rm = TRUE, ...) {
+  if (na.rm) {
+    x <- rm_na(x)
+  }
+  if (length(x$vec) == 0) {
+    return(NA_real_)
+  }
   sum(x$vec * x$wt, na.rm = na.rm)
 }
 # TODO: check if this leads to the same results as with SPSS:
