@@ -58,10 +58,16 @@ mapping_file = list(Questions = data.frame(
   ZsfgMW = f,
   MeanOverviewLabel = paste("Summary of", f)
 ))
-m <- Tabula$new(df, mapping_file, ColVar = c("q1", "q2"),
-                Weight = "gew",
-                Unweight = TRUE)
-
+m <- Tabula$new(
+  df,
+  mapping_file,
+  ColVar = c("q1", "q2"),
+  Weight = "gew",
+  Unweight = TRUE,
+  tabulate = FALSE
+)
+m$options$l_lexikon["cTabWeighted"] <- "W"
+m$calc_qtabs()
 test_that("summaries of various stat_fun are reproduced", {
   testthat::expect_snapshot(m)
 })

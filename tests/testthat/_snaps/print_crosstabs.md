@@ -892,7 +892,7 @@
                                  TOTAL  hallo ----- hall… -----
                                         Yes   No    Yes   No   
       VALID CASES (at le…  abs    3       2     1       0     0
-                           abs ⚖  2.1     0.9   1.2     0     0
+                           abs W  2.1     0.9   1.2     0     0
       hallo                Std.…  0.333   0     •       •     •
                            Std.…  0.472   •     •       •     •
                            VALI…  3       2     1       0     0
@@ -909,7 +909,7 @@
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
-                           abs ⚖   2.1   0.9   1.2     0     0
+                           abs W   2.1   0.9   1.2     0     0
       hallo                Medi…   1     1     2       •     •
                            Medi…   2     1     2       •     •
                            VALI…   3     2     1       0     0
@@ -926,7 +926,7 @@
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs    3      2     1       0     0
-                           abs ⚖  2.1    0.9   1.2     0     0
+                           abs W  2.1    0.9   1.2     0     0
       hallo                Mean   1.33   1     2       •     •
                            Mean…  1.57   1     2       •     •
                            VALI…  3      2     1       0     0
@@ -948,7 +948,7 @@
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
-                           abs ⚖   2.1   0.9   1.2     0     0
+                           abs W   2.1   0.9   1.2     0     0
       hallo                Mini…   1     1     2       •     •
                            Mini…   1     1     2       •     •
                            VALI…   3     2     1       0     0
@@ -965,7 +965,7 @@
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
-                           abs ⚖   2.1   0.9   1.2     0     0
+                           abs W   2.1   0.9   1.2     0     0
       hallo                Maxi…   2     1     2       •     •
                            Maxi…   2     1     2       •     •
                            VALI…   3     2     1       0     0
@@ -982,13 +982,13 @@
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
-                           abs ⚖   2.1   0.9   1.2     0     0
+                           abs W   2.1   0.9   1.2     0     0
       hallo                Sum     4     2     2       •     •
-                           Sum ⚖   3.3   0.9   2.4     •     •
+                           Sum W   3.3   0.9   2.4     •     •
                            VALI…   3     2     1       0     0
                            VALI…   2.1   0.9   1.2     0     0
       hallo 2              Sum     •     •     •       •     •
-                           Sum ⚖   0     0     0       •     •
+                           Sum W   0     0     0       •     •
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       
