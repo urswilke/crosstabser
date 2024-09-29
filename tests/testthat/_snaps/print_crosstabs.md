@@ -884,9 +884,8 @@
 # summaries of various stat_fun are reproduced
 
     Code
-      l
+      m
     Output
-      [[1]]
       [[1]]
       [[1]][[1]]
       # Summary of se
@@ -904,10 +903,8 @@
                            VALI…  0       0     0       0     0
       
       
-      
       [[2]]
-      [[1]]
-      [[1]][[1]]
+      [[2]][[1]]
       # Summary of median
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
@@ -923,10 +920,8 @@
                            VALI…   0     0     0       0     0
       
       
-      
       [[3]]
-      [[1]]
-      [[1]][[1]]
+      [[3]][[1]]
       # Summary of mean
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
@@ -942,17 +937,13 @@
                            VALI…  0      0     0       0     0
       
       
-      
       [[4]]
-      [[1]]
-      [[1]][[1]]
+      [[4]][[1]]
       NULL
       
       
-      
       [[5]]
-      [[1]]
-      [[1]][[1]]
+      [[5]][[1]]
       # Summary of min
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
@@ -968,10 +959,8 @@
                            VALI…   0     0     0       0     0
       
       
-      
       [[6]]
-      [[1]]
-      [[1]][[1]]
+      [[6]][[1]]
       # Summary of max
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
@@ -987,10 +976,8 @@
                            VALI…   0     0     0       0     0
       
       
-      
       [[7]]
-      [[1]]
-      [[1]][[1]]
+      [[7]][[1]]
       # Summary of sum
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
@@ -1004,7 +991,6 @@
                            Sum ⚖   0     0     0       •     •
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
-      
       
       
 
