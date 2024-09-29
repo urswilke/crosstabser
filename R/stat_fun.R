@@ -90,7 +90,11 @@ new_stat_vec <- function(x, wt = NULL, stat_fun = "length", ...) {
   }
   res
 }
-
+#' Calculate sample statistics
+#'
+#' @param x numeric vector
+#' @param na.rm remove NAs
+#' @keywords internal
 #' @export
 se <- function(x, na.rm = TRUE, ...) {
   if (na.rm) {
@@ -98,6 +102,8 @@ se <- function(x, na.rm = TRUE, ...) {
   }
   stats::sd(x) / sqrt(length(x))
 }
+#' @rdname se
+#' @keywords internal
 #' @export
 percentile <- function(x, na.rm = TRUE, ...) {
   stats::quantile(x, na.rm = na.rm, ...)
