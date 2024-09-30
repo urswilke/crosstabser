@@ -13,19 +13,20 @@ Qrow <- R6::R6Class(
 
       params <- process_qrow_params(self$p, self$m)
 
-      obj <- withCallingHandlers(
-        tryCatch({
-          params |>
-            lapply(\(x) Qtab$new(x, mapping))
-        },
+      obj <- tryCatch(
         error = function(e) {
           self$log$error <- utils::capture.output(e)[-1] |> paste(collapse = "\n")
           obj <- list(NULL)
-        }),
-        warning = function(w) {
-          self$log$warn <- utils::capture.output(w)[-1] |> paste(collapse = "\n")
-          tryInvokeRestart("muffleWarning")
-        }
+        },
+        withCallingHandlers(
+          # message = <WE-COULD-ALSO-LOG-MESSAGES..._FUN()>,
+          warning = function(w) {
+            self$log$warn <- utils::capture.output(w)[-1] |> paste(collapse = "\n")
+            tryInvokeRestart("muffleWarning")
+          },
+          params |>
+            lapply(\(x) Qtab$new(x, mapping))
+        )
       )
 
       self$qtabs <- tibble::tibble(params, obj)
