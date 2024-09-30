@@ -102,6 +102,7 @@ Initialize a Tabula object
   dat = NULL,
   book_no = NULL,
   tabulate = TRUE,
+  verbose = FALSE,
   ...
 )}\if{html}{\out{</div>}}
 }

@@ -69,8 +69,19 @@ Tabula <- R6::R6Class(
                           dat = NULL,
                           book_no = NULL,
                           tabulate = TRUE,
+                          # TODO: ask Wolf if we should set this this to interactive() ...:
+                          verbose = FALSE,
                           ...) {
-      super$initialize(dat, mapping_file, process_sheets = FALSE, error_out = "safe", ...)
+      super$initialize(
+        dat,
+        mapping_file,
+        process_sheets = FALSE,
+        error_out = "safe",
+        # TODO: move the definition of this parameter into the initialization of datenanpassr::Mapping,
+        # if we want to use it there as well...!
+        verbose = verbose,
+        ...
+      )
       if (is.null(dat) & is.null(dat_mod)) {
         stop("You have to specify at least one of `dat` or `dat_mod`")
       }
