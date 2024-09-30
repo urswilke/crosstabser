@@ -306,7 +306,7 @@ frame_table_parts <- function(tabula) {
     dplyr::mutate(l = purrr::map(qtab$obj, \(x) x$d[five_table_names])) |> tidyr::unnest_wider(l)
 }
 
-aggregate_5_tables <- function(tabula) {
+aggregate_5_tables_ <- function(tabula) {
   # TODO: remove older data structures and refactor the code using `table_parts`...!
   table_parts <- frame_table_parts(tabula)
   tabula$crosstabs$table_parts <- table_parts
@@ -416,7 +416,7 @@ add_columns_for_tablebook <- function(tabula) {
   tabula$crosstabs$data <- res
 }
 
-write_to_db <- function(tabula) {
+write_to_db_ <- function(tabula) {
   five_tables <- tabula$crosstabs$data |> order_tables()
   conn <- DBI::dbConnect(odbc::odbc(), dsn=tabula$params$database_dsn)
 

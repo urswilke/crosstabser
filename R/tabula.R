@@ -102,13 +102,13 @@ Tabula <- R6::R6Class(
       invisible(self)
     },
     aggregate_5_tables = function() {
-      aggregate_5_tables(self)
+      aggregate_5_tables_(self)
       add_columns_for_tablebook(self)
       invisible(self)
     },
     write_to_db = function() {
       self$aggregate_5_tables()
-      write_to_db(self)
+      write_to_db_(self)
       invisible(self)
     },
     # TODO: ask Wolf:

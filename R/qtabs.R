@@ -42,13 +42,13 @@ Qtab <- R6::R6Class("Qtab",
     },
     #' @description todo
     calc_qtab = function() {
-      calc_qtab(self)
-      self$wide_tab()
+      calc_qtab_(self)
+      self$gen_wide_tab()
       invisible(self)
     },
     # TODO: turn function private?
     #' @description todo
-    long_tab = function() {
+    gen_long_tab = function() {
       self$d$row_table_values <- self$d$row_table |> rm_header_footer()
       self$d$long_tab <- self$d[
         c("row_table_values", "col_table", "val_table", "head_table", "tab_table")
@@ -59,11 +59,11 @@ Qtab <- R6::R6Class("Qtab",
     },
     # TODO: turn function private?
     #' @description todo
-    wide_tab = function() {
+    gen_wide_tab = function() {
       if (is.null(self$d$long_tab)) {
-        self$long_tab()
+        self$gen_long_tab()
       }
-      wide_tab(self)
+      gen_wide_tab_(self)
       invisible(self)
     },
     #' @description print
@@ -73,7 +73,7 @@ Qtab <- R6::R6Class("Qtab",
     }
   )
 )
-calc_qtab <- function(qtab) {
+calc_qtab_ <- function(qtab) {
   calc_qtab_elements(qtab)
   tab_values <- rbind_table_numbers(qtab)
 
@@ -108,7 +108,7 @@ calc_qtab_elements <- function(qtab) {
   qtab$d$no_entry_percentages <- calc_no_entry_percentages(qtab)
 
 }
-wide_tab <- function(qtab) {
+gen_wide_tab_ <- function(qtab) {
   cols_for_wide_tab <- c(
     "RowNo", "ColNo", "value"#,
     # "RowWeighted", "RowTitle1", "RowTitle2", "RowTitle3",
