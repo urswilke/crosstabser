@@ -56,7 +56,6 @@ Tabula <- R6::R6Class(
     dat = NULL,
     dat_mod = NULL,
     options = NULL,
-    long_tab_data = NULL,
     qsheet = list(),
     qtabs = list(),
     qrows = list(),
@@ -110,23 +109,6 @@ Tabula <- R6::R6Class(
     write_to_db = function() {
       self$aggregate_5_tables()
       write_to_db(self)
-      invisible(self)
-    },
-    merge_long_tab_data = function() {
-      self$long_tab_data <- gen_long_tab_data(self)
-      invisible(self)
-    },
-    long_excel = function(file_name = "long_crosstab_data.xlsx") {
-      self$merge_long_tab_data()
-      list(Daten = self$long_tab_data) |>
-        writexl::write_xlsx(file_name)
-      invisible(self)
-    },
-    long_json = function(file_name = "long_crosstab_data.json", ...) {
-      self$merge_long_tab_data()
-      self$long_tab_data |>
-        jsonlite::toJSON(...) |>
-        writeLines(file_name)
       invisible(self)
     },
     # TODO: ask Wolf:

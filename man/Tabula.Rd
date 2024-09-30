@@ -73,9 +73,6 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 \item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
 \item \href{#method-Tabula-aggregate_5_tables}{\code{Tabula$aggregate_5_tables()}}
 \item \href{#method-Tabula-write_to_db}{\code{Tabula$write_to_db()}}
-\item \href{#method-Tabula-merge_long_tab_data}{\code{Tabula$merge_long_tab_data()}}
-\item \href{#method-Tabula-long_excel}{\code{Tabula$long_excel()}}
-\item \href{#method-Tabula-long_json}{\code{Tabula$long_json()}}
 \item \href{#method-Tabula-print}{\code{Tabula$print()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
@@ -132,33 +129,6 @@ Initialize a Tabula object
 \subsection{Method \code{write_to_db()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$write_to_db()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-merge_long_tab_data"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-merge_long_tab_data}{}}}
-\subsection{Method \code{merge_long_tab_data()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$merge_long_tab_data()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-long_excel"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-long_excel}{}}}
-\subsection{Method \code{long_excel()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$long_excel(file_name = "long_crosstab_data.xlsx")}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-long_json"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-long_json}{}}}
-\subsection{Method \code{long_json()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$long_json(file_name = "long_crosstab_data.json", ...)}\if{html}{\out{</div>}}
 }
 
 }

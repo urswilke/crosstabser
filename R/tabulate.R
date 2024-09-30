@@ -294,36 +294,6 @@ gen_val_table <- function(qtab) {
     )
 }
 
-gen_long_tab_data = function(mapping) {
-  res <- mapping$qrows |>
-    lapply(\(x) x$qtabs$obj |> lapply(\(x) x$d$long_tab)) |>
-    dplyr::bind_rows() |>
-    tidyr::drop_na(value) |>
-    # TODO name value = Value from the beginiing or adapt:
-    dplyr::relocate(TabNo, RowNo, ColNo, Value = value) |>
-    dplyr::arrange(QuestNo, TabNo, RowNo, ColNo)
-  df_total_values <- res[
-    res$RowContent == "Valid" & res$RowAbsPercent == "Abs",
-  ] |>
-    dplyr::select(QuestNo, TabNo, ColNo, ColValidCases = Value)
-  # TODO: maybe generalize to stats different from mean...?:
-  is_mean <- if (!"RowStatFun" %in% names(res)) {
-    FALSE
-  } else {
-    res$RowStatFun == "mean"
-  }
-
-  df_mean_values <- res[
-    res$RowContent == "Statistics" & is_mean,
-  ] |>
-    dplyr::select(QuestNo, TabNo, ColNo, ColMean = Value)
-
-  mapping$long_tab_data <- res |>
-    dplyr::left_join(df_total_values, by = dplyr::join_by(TabNo, ColNo, QuestNo)) |>
-    dplyr::left_join(df_mean_values, by = dplyr::join_by(TabNo, ColNo, QuestNo))
-}
-
-
 five_table_names <- c("row_table", "col_table_all", "val_table", "head_table", "tab_table")
 frame_table_parts <- function(tabula) {
   qrow <- tabula$qrows
