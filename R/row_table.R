@@ -23,7 +23,6 @@ gen_row_table <- function(qtab) {
   row_table_unweighted <- NULL
   weight <- qtab$p$Weight[[1]]
   unweight <- qtab$p$Unweight
-  # TODO: for an unweighted table book but weight set in an individual Qrow add a subtitle e.g. "weighted with <weight var name?"?  use a check that can be turned off in the column "Checks" with a warning? --> ask Wolf
   if (is.null(weight) & unweight) {
     # TODO: discuss with Wolf if that's the desired behaviour
     stop("You can't set `Unweight = TRUE` without the `Weight` variable being set.")
