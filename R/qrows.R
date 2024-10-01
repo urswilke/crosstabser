@@ -5,10 +5,10 @@ Qrow <- R6::R6Class(
     m = list(),
     qtabs = tibble::tibble(),
     log = list(warn = NULL, error = NULL),
-    initialize = function(p,
+    initialize = function(df,
                           mapping,
                           ...) {
-      self$p <- p
+      self$p <- preprocess_qrows_params(df, mapping)[[1]]
       self$m <- mapping
 
       params <- process_qrow_params(self$p, self$m)

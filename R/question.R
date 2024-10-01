@@ -60,8 +60,8 @@ empty_qsheet <- function() {
     Exclusive = character(0), Checks = character(0)
   )
 }
-preprocess_qrows_params <- function(mapping) {
-  mapping$qsheet$qsheet_raw |>
+preprocess_qrows_params <- function(df, mapping) {
+  df |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
       RowVar = lapply(RowVar, \(x) extract_rowvars(x, mapping$dat_mod)),

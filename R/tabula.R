@@ -125,11 +125,10 @@ Tabula <- R6::R6Class(
   )
 )
 parse_qsheet <- function(mapping, row) {
-  mapping$qsheet$qsheet_raw <- read_qsheet_raw(mapping, row)
-  mapping$qsheet$qrows_params <- preprocess_qrows_params(mapping)
-
+  qsheet_raw <- read_qsheet_raw(mapping, row)
+  mapping$qsheet$qsheet_raw <- qsheet_raw
   mapping$qrows <- lapply(
-    mapping$qsheet$qrows_params,
-    \(p) Qrow$new(p, mapping)
+    split(qsheet_raw, qsheet_raw$row),
+    \(df) Qrow$new(df, mapping)
   )
 }

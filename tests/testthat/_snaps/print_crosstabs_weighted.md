@@ -3,8 +3,8 @@
     Code
       tabsi
     Output
-      [[1]]
-      [[1]][[1]]
+      $`5`
+      $`5`[[1]]
       # 1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?
                                  GESA… Regi… ----- ------ -----
                                        Asien Euro… Norda… Pazi…
@@ -36,8 +36,8 @@
                            in %… 100   100   100   100    100  
       
       
-      [[2]]
-      [[2]][[1]]
+      $`6`
+      $`6`[[1]]
       # 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool durch?
       #   DC#SELVALLAB
                                  GESAMT  Region ------- ------ ------
@@ -80,8 +80,8 @@
                            in %… 100     100    100     100    100   
       
       
-      [[3]]
-      [[3]][[1]]
+      $`7`
+      $`7`[[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Mittelwertüberblick
                                  GESAMT  Region ------ ------ ------
@@ -118,8 +118,8 @@
                            GÜLT… 151     15     71.5   47.5   17    
       
       
-      [[4]]
-      [[4]][[1]]
+      $`8`
+      $`8`[[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
                                  GESAMT   Region ------- ------- ------
                                           Asien  Europa  Nordam… Pazif…
@@ -145,8 +145,8 @@
                            in %…   100     100    100     100    100   
       
       
-      [[5]]
-      [[5]][[1]]
+      $`9`
+      $`9`[[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Kundenzufriedenheit
                                  GESAMT  Region ------ ------ ------
@@ -162,7 +162,7 @@
                            in %  100     100    100    100    100   
                            in %… 100     100    100    100    100   
       
-      [[5]][[2]]
+      $`9`[[2]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Marktvolumen
                                  GESAMT Region ------ ----- ------
@@ -179,8 +179,8 @@
                            in %… 100    100    100    100   100   
       
       
-      [[6]]
-      [[6]][[1]]
+      $`10`
+      $`10`[[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Summary of Medians
                                  GESA… Regi… ----- ----- -----
@@ -196,7 +196,7 @@
                            GÜLT…   151    19  75    43      14
                            GÜLT…   151    15  71.5  47.5    17
       
-      [[6]][[2]]
+      $`10`[[2]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Kundenzufriedenheit
                                  GESAMT  Regi… ------- ------ ------
@@ -264,7 +264,7 @@
                            in %  100         0 100     100    100   
                            in %… 100         0 100     100    100   
       
-      [[6]][[3]]
+      $`10`[[3]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Marktvolumen
                                  GESAMT  Region ------- ------ ------
@@ -329,8 +329,8 @@
                            in %… 100     100    100     100    100   
       
       
-      [[7]]
-      [[7]][[1]]
+      $`11`
+      $`11`[[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Mittelwertüberblick gewichtet mit gew
                                  GESA… Regi… ----- ----- -----
@@ -347,8 +347,8 @@
                            GÜLT… 151    15    71.5  47.5  17  
       
       
-      [[8]]
-      [[8]][[1]]
+      $`12`
+      $`12`[[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   gewichtet mit gew
                                  GESAMT   Region ------- ------- ------
@@ -375,8 +375,8 @@
                            in %…   100     100    100     100    100   
       
       
-      [[9]]
-      [[9]][[1]]
+      $`13`
+      $`13`[[1]]
       # 4. Wie häufig haben Sie einen Tabellenband in den letzten 12 Monaten
       #   erstellen lassen?
                                       GESAMT  Regi… ------ ----- ------
@@ -407,8 +407,8 @@
                                 in %…  93.7   96.7  93.0   91.6  100   
       
       
-      [[10]]
-      [[10]][[1]]
+      $`14`
+      $`14`[[1]]
       # 5. Was lief besonders gut in den Projekten?
                                  GESA… Regi… ----- ----- -----
                                        Asien Euro… Nord… Pazi…
@@ -450,8 +450,8 @@
                            in %…  50.7  36.7  49.0 54.7  58.8 
       
       
-      [[11]]
-      [[11]][[1]]
+      $`15`
+      $`15`[[1]]
       # 5. Was lief besonders gut in den Projekten?
                                  GESAMT Regi… ----- ----- -----
                                         Asien Euro… Nord… Pazi…
@@ -493,8 +493,8 @@
                            in %…  50.7  36.7  49.0  54.7  58.8 
       
       
-      [[12]]
-      [[12]][[1]]
+      $`16`
+      $`16`[[1]]
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein. TOP2-Übersicht
@@ -535,7 +535,7 @@
                            GÜLT…  90    11    41    29    9   
                            GÜLT…  88     9.5  39.5  29.5  9.5 
       
-      [[12]][[2]]
+      $`16`[[2]]
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein. TOP1-Übersicht
@@ -577,8 +577,8 @@
                            GÜLT… 88      9.5 39.5  29.5   9.5 
       
       
-      [[13]]
-      [[13]][[1]]
+      $`17`
+      $`17`[[1]]
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein.
@@ -648,8 +648,8 @@
                                 in %…  41.1   36.7  43.4  37.9   44.1
       
       
-      [[14]]
-      [[14]][[1]]
+      $`20`
+      $`20`[[1]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Kundenzufriedenheit
                                       GESAMT  Regi… ----- ------ ------
                                               Asien Euro… Norda… Pazif…
@@ -724,7 +724,7 @@
                                 in %    2.65   5.26  4      0      0   
                                 in %…   1.99   3.33  3.50   0      0   
       
-      [[14]][[2]]
+      $`20`[[2]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Marktvolumen
                                       GESAMT Region ----- ------ ------
                                              Asien  Euro… Norda… Pazif…
@@ -799,7 +799,7 @@
                                 in %   1.37    0     2.63   0      0   
                                 in %…  0.641   0     1.30   0      0   
       
-      [[14]][[3]]
+      $`20`[[3]]
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Sonstige
                                       GESA… Regi… ----- ----- ------
                                             Asien Euro… Nord… Pazif…
@@ -875,8 +875,8 @@
                                 in %… 11.0   12.5 10.7  16      0   
       
       
-      [[15]]
-      [[15]][[1]]
+      $`21`
+      $`21`[[1]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Kundenzufriedenheit
                                  GESAMT Regi… ----- ------ -----
@@ -906,7 +906,7 @@
                            in %   10.6   15.8 10.7    6.98 14.3 
                            in %…  14.6   23.3 14.7   10.5  17.6 
       
-      [[15]][[2]]
+      $`21`[[2]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Marktvolumen
                                  GESA… Regi… ----- ----- -----
@@ -936,7 +936,7 @@
                            in %   68.5  42.9  68.4  78.3  60  
                            in %…  63.5  50    55.8  78.6  54.5
       
-      [[15]][[3]]
+      $`21`[[3]]
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Sonstige
                                  GESA… Regi… ----- ----- -----
@@ -967,8 +967,8 @@
                            in %…  60.3  75   57.1   60    58.3
       
       
-      [[16]]
-      [[16]][[1]]
+      $`22`
+      $`22`[[1]]
       # multi selvar with unguelt: 2. Welche Art von Studien führen Sie mit dem
       #   Tabellenbandtool durch? Sonstige
                                  GESA… Regi… ----- ----- -----
@@ -995,8 +995,8 @@
                            in %…  64.4  75    60.7  64    66.7
       
       
-      [[17]]
-      [[17]][[1]]
+      $`23`
+      $`23`[[1]]
       # trigger invalid values: 2. Welche Art von Studien führen Sie mit dem
       #   Tabellenbandtool durch?
                                  GESAMT  Regi… ------- ------ ------
@@ -1023,8 +1023,8 @@
                            in %…  63.9    53.3  60.8    76.8   50   
       
       
-      [[18]]
-      [[18]][[1]]
+      $`24`
+      $`24`[[1]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Kundenzufriedenheit
                                  GESAMT Regi… ----- ----- -----
                                         Asien Euro… Nord… Pazi…
@@ -1065,7 +1065,7 @@
                            in %   45.7   36.8 45.3  48.8   50  
                            in %…  50.7   36.7 49.0  54.7   58.8
       
-      [[18]][[2]]
+      $`24`[[2]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Marktvolumen
                                  GESA… Regi… ----- ------ ------
                                        Asien Euro… Norda… Pazif…
@@ -1102,7 +1102,7 @@
                            in %  19.2   14.3  26.3   8.70  20   
                            in %… 17.9   16.7  22.1   8.93  36.4 
       
-      [[18]][[3]]
+      $`24`[[3]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
                                  GESA… Regi… ------ ----- ------
                                        Asien Europa Nord… Pazif…
@@ -1140,8 +1140,8 @@
                            in %… 11.0    0     7.14 20      8.33
       
       
-      [[19]]
-      [[19]][[1]]
+      $`25`
+      $`25`[[1]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   TOP3-Übersicht
@@ -1158,7 +1158,7 @@
                            GÜLT…  66     6    35    21       4
                            GÜLT…  72     5.5  36    25.5     5
       
-      [[19]][[2]]
+      $`25`[[2]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Mittelwertüberblick
@@ -1175,7 +1175,7 @@
                            GÜLT… 66     6    35    21      4  
                            GÜLT… 72     5.5  36    25.5    5  
       
-      [[19]][[3]]
+      $`25`[[3]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Schnelle Umsetzung
@@ -1248,7 +1248,7 @@
                                 in %   6.85    0      7.89   4.35  20    
                                 in %…  7.69    0     13.0    1.79   9.09 
       
-      [[19]][[4]]
+      $`25`[[4]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Kurzfristige Anpassungen
@@ -1321,7 +1321,7 @@
                                 in %   9.59  14.3    7.89   8.70  20    
                                 in %…  7.69   8.33   6.49   8.93   9.09 
       
-      [[19]][[5]]
+      $`25`[[5]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   TOP3-Übersicht
@@ -1338,7 +1338,7 @@
                            GÜLT…  35     7    13    11     4  
                            GÜLT…  29     4     9.5  10     5.5
       
-      [[19]][[6]]
+      $`25`[[6]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   Mittelwertüberblick
@@ -1355,7 +1355,7 @@
                            GÜLT… 35     7    13    11     4   
                            GÜLT… 29     4     9.5  10     5.5 
       
-      [[19]][[7]]
+      $`25`[[7]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige Schnelle
       #   Umsetzung
@@ -1428,7 +1428,7 @@
                                 in %  14.0     0     11.1   15.4   40    
                                 in %… 16.4     0     17.9   20     16.7  
       
-      [[19]][[8]]
+      $`25`[[8]]
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   Kurzfristige Anpassungen
