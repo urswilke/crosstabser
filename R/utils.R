@@ -9,17 +9,8 @@ strip_attributes <- function(x) {
   x
 }
 
-row_split <- function(df) {
-  df |>
-    dplyr::rowwise() |>
-    dplyr::group_split()
-}
-
 all_true <- function (l) {
   Reduce("&", l)
-}
-any_true <- function (l) {
-  Reduce("|", l)
 }
 
 `%||%` <- rlang::`%||%`
