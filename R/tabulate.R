@@ -300,10 +300,15 @@ frame_table_parts <- function(tabula) {
   qtab <- qrow |> lapply(\(x) x$qtabs)
   warn <- tabula$qrows |> purrr::map(\(x) x$log$warn)
   error <- tabula$qrows |> purrr::map(\(x) x$log$error)
+  # all qrows have an error:
+  if (all(!purrr::map_lgl(error, is.null))) {
+    stop("No crosstabs calculated")
+  }
+
   QuestNo <- qrow |> purrr::map_chr(\(x) x$p$Abbreviation) |> forcats::as_factor()
   dplyr::tibble(QuestNo, qtab) |>
     tidyr::unnest_longer(c(qtab), keep_empty = TRUE) |>
-    dplyr::mutate(l = purrr::map(qtab$obj, \(x) x$d[five_table_names])) |> tidyr::unnest_wider(l)
+    dplyr::mutate(l = purrr::map(qtab, \(x) x$d[five_table_names])) |> tidyr::unnest_wider(l)
 }
 
 aggregate_5_tables_ <- function(tabula) {
@@ -311,27 +316,18 @@ aggregate_5_tables_ <- function(tabula) {
   table_parts <- frame_table_parts(tabula)
   tabula$crosstabs$table_parts <- table_parts
 
-  row_has_error <- tabula$qrows |>
-    lapply(\(x) x$log$error) |>
-    tibble::tibble(a = _) |>
-    tidyr::unnest(a, keep_empty = TRUE) |>
-    dplyr::pull()
-  # all qrows have an error:
-  if (all(!is.na(row_has_error))) {
-    stop("No crosstabs calculated")
-  }
   q <- table_parts$QuestNo
-  tab_table <- table_parts$qtab$obj |> purrr::map_dfr(\(x) x$d$tab_table)
+  tab_table <- table_parts$qtab |> purrr::map_dfr(\(x) x$d$tab_table)
   # TODO: when in the Val table in the database we also have TabNo,
   # we can remove all this ascending RowNo per QuestNo story (cf. ascend_rownos_within_questno())
   # and refactor everything...
-  # val_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
+  # val_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
   val_table <- table_parts |>
     dplyr::select(tab_table, val_table) |>
     tidyr::unpack(tab_table) |>
     dplyr::select(QuestNo, TabNo, val_table) |>
     tidyr::unnest(val_table)
-  row_table <- table_parts$qtab$obj |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
+  row_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
   head_table <- tabula$qsheet$head_table
   col_table_all <- tabula$qsheet$col_table_all
 

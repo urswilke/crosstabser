@@ -32,7 +32,7 @@ Qrow <- R6::R6Class(
         )
       )
 
-      self$qtabs <- tibble::tibble(params, obj)
+      self$qtabs <- obj
     }
   )
 )

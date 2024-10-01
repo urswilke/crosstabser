@@ -119,7 +119,7 @@ Tabula <- R6::R6Class(
     #  - the parameters of the qtab object,
     #  - ... (?)
     print = function(...) {
-      self$qrows |> lapply(\(x) x$qtabs$obj) |> print()
+      self$qrows |> lapply(\(x) x$qtabs) |> print()
       invisible(self)
     }
   )
