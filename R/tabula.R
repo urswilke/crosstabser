@@ -103,12 +103,19 @@ Tabula <- R6::R6Class(
     },
     aggregate_5_tables = function() {
       aggregate_5_tables_(self)
-      add_columns_for_tablebook(self)
+      add_columns_for_tablebook(self, BookNo = self$options$V_BookNo)
       invisible(self)
     },
     write_to_db = function() {
       self$aggregate_5_tables()
-      write_to_db_(self)
+      write_to_db_(
+        self,
+        dsn = self$params$database_dsn,
+        errors = self$qrows |> lapply(\(x) x$log$error),
+        warns = self$qrows |> lapply(\(x) x$log$warn),
+        book_no = self$options$V_BookNo,
+        questno = self$qrows |> lapply(\(x) x$p$Abbreviation)
+      )
       invisible(self)
     },
     # TODO: ask Wolf:

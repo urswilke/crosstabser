@@ -295,26 +295,28 @@ gen_val_table <- function(qtab) {
 }
 
 five_table_names <- c("row_table", "col_table_all", "val_table", "head_table", "tab_table")
-frame_table_parts <- function(tabula) {
-  qrow <- tabula$qrows
-  qtab <- qrow |> lapply(\(x) x$qtabs)
-  warn <- tabula$qrows |> purrr::map(\(x) x$log$warn)
-  error <- tabula$qrows |> purrr::map(\(x) x$log$error)
+frame_table_parts <- function(qrows) {
+  qtab <- qrows |> lapply(\(x) x$qtabs)
+  warn <- qrows |> purrr::map(\(x) x$log$warn)
+  error <- qrows |> purrr::map(\(x) x$log$error)
   # all qrows have an error:
   if (all(!purrr::map_lgl(error, is.null))) {
     stop("No crosstabs calculated")
   }
 
-  QuestNo <- qrow |> purrr::map_chr(\(x) x$p$Abbreviation) |> forcats::as_factor()
+  QuestNo <- qrows |> purrr::map_chr(\(x) x$p$Abbreviation) |> forcats::as_factor()
   dplyr::tibble(QuestNo, qtab) |>
     tidyr::unnest_longer(c(qtab), keep_empty = TRUE) |>
     dplyr::mutate(l = purrr::map(qtab, \(x) x$d[five_table_names])) |> tidyr::unnest_wider(l)
 }
-
-aggregate_5_tables_ <- function(tabula) {
+aggregate_5_tables_ <- function(obj) {
+  UseMethod("aggregate_5_tables_")
+}
+aggregate_5_tables_.Tabula <- function(obj) {
+  qrows <- obj$qrows
   # TODO: remove older data structures and refactor the code using `table_parts`...!
-  table_parts <- frame_table_parts(tabula)
-  tabula$crosstabs$table_parts <- table_parts
+  table_parts <- frame_table_parts(qrows)
+  obj$crosstabs$table_parts <- table_parts
 
   q <- table_parts$QuestNo
   tab_table <- table_parts$qtab |> purrr::map_dfr(\(x) x$d$tab_table)
@@ -328,10 +330,10 @@ aggregate_5_tables_ <- function(tabula) {
     dplyr::select(QuestNo, TabNo, val_table) |>
     tidyr::unnest(val_table)
   row_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
-  head_table <- tabula$qsheet$head_table
-  col_table_all <- tabula$qsheet$col_table_all
+  head_table <- obj$qsheet$head_table
+  col_table_all <- obj$qsheet$col_table_all
 
-  tabula$crosstabs$data <- tibble::lst(
+  obj$crosstabs$data <- tibble::lst(
     tab_table,
     val_table,
     row_table,
@@ -339,10 +341,39 @@ aggregate_5_tables_ <- function(tabula) {
     col_table_all
   )
 }
-add_columns_for_tablebook <- function(tabula) {
-  five_tables <- tabula$crosstabs$data
+aggregate_5_tables_.Qrow <- function(obj) {
+  qrows <- list(obj)
+  # TODO: remove older data structures and refactor the code using `table_parts`...!
+  table_parts <- frame_table_parts(qrows)
+  obj$crosstabs$table_parts <- table_parts
+
+  q <- table_parts$QuestNo
+  tab_table <- table_parts$qtab |> purrr::map_dfr(\(x) x$d$tab_table)
+  # TODO: when in the Val table in the database we also have TabNo,
+  # we can remove all this ascending RowNo per QuestNo story (cf. ascend_rownos_within_questno())
+  # and refactor everything...
+  # val_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
+  val_table <- table_parts |>
+    dplyr::select(tab_table, val_table) |>
+    tidyr::unpack(tab_table) |>
+    dplyr::select(QuestNo, TabNo, val_table) |>
+    tidyr::unnest(val_table)
+  row_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
+  head_table <- obj$m$qsheet$head_table
+  col_table_all <- obj$m$qsheet$col_table_all
+
+  obj$crosstabs$data <- tibble::lst(
+    tab_table,
+    val_table,
+    row_table,
+    head_table,
+    col_table_all
+  )
+}
+add_columns_for_tablebook <- function(obj, BookNo) {
+  five_tables <- obj$crosstabs$data
   res <- five_tables |>
-    lapply(\(x) dplyr::mutate(x, BookNo = tabula$options$V_BookNo, .before = 1))
+    lapply(\(x) dplyr::mutate(x, BookNo, .before = 1))
 
   # the group_by QuestNo, TabNo only works if QuestNo is unique
   # see also in ascend_rownos_within_questno()
@@ -409,21 +440,21 @@ add_columns_for_tablebook <- function(tabula) {
   res$col_table_all
   res$val_table <- res$val_table |> dplyr::rename(Value = value)
 
-  tabula$crosstabs$data <- res
+  obj$crosstabs$data <- res
 }
 
-write_to_db_ <- function(tabula) {
-  five_tables <- tabula$crosstabs$data |> order_tables()
-  conn <- DBI::dbConnect(odbc::odbc(), dsn=tabula$params$database_dsn)
+write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno) {
+  five_tables <- obj$crosstabs$data |> order_tables()
+  conn <- DBI::dbConnect(odbc::odbc(), dsn = dsn)
   on.exit(DBI::dbDisconnect(conn))
   DBI::dbWriteTable(conn, "Tab", five_tables$tab_table, append = TRUE)
   DBI::dbWriteTable(conn, "Row", five_tables$row_table, append = TRUE)
-  DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
-  DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
-  DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
+  # DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
+  # DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
+  # DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
 
-  errors <- tabula$qrows |> lapply(\(x) x$log$error)
-  warns <- tabula$qrows |> lapply(\(x) x$log$warn)
+  # errors <- obj$qrows |> lapply(\(x) x$log$error)
+  # warns <- obj$qrows |> lapply(\(x) x$log$warn)
   sql = ""
 
   # change Quest table for each QuestNo line by line:
@@ -441,8 +472,8 @@ write_to_db_ <- function(tabula) {
           WHERE ("QuestNo" = ?questno) AND ("BookNo" = ?book_no)',
         error_log = paste0("", errors[[i]]),
         warn_log = paste0("", warns[[i]]),
-        questno = tabula$qrows[[i]]$p$Abbreviation,
-        book_no = tabula$options$V_BookNo
+        questno = questno[[i]],
+        book_no = book_no
       ),
     sep = ";")
   }
