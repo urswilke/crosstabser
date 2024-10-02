@@ -61,7 +61,7 @@ set_options.list <- function(
   # (if not interested in running different scenarios)
   l_macro_scenario <- modifyList(
     list(ColVar = character(), Unguelt = c(-1, -3, -2), Weight = NA_character_,
-       Unweight = FALSE, Filter = NA_character_, scenario_name = "Scenario 2"
+       Unwgt = FALSE, Filter = NA_character_, scenario_name = "Scenario 2"
     ),
     list(...)
   )
@@ -104,10 +104,10 @@ extract_scenario_options <- function(df_macro_raw, v_scenario) {
   # TODO: also allow ranges...:
   res$Unguelt <- param_list[["Invalid"]] |> split_cell() |> _[[1]] |> as.numeric()
   res$Weight <- param_list[["Weight"]]
-  if (!is.na(param_list["Unweight"]) && param_list["Unweight"] == "TRUE") {
-    res$Unweight <- TRUE
+  if (!is.na(param_list["Unwgt"]) && param_list["Unwgt"] == "TRUE") {
+    res$Unwgt <- TRUE
   } else {
-    res$Unweight <- FALSE
+    res$Unwgt <- FALSE
   }
 
   res$Filter <- param_list[["Filter"]] |>
@@ -127,7 +127,7 @@ add_global_options <- function(params, mapping) {
   if (is.na(res$Weight)) {
     res$Weight <- list(NULL)
   }
-  res$Unweight <- global_options$Unweight
+  res$Unwgt <- global_options$Unwgt
   # - quick fix - TODO: find cleaner way for mdg...:
   if (length(res$Unguelt) == 0 && params$Type != "mdg") {
     res$Unguelt <- global_options$Unguelt

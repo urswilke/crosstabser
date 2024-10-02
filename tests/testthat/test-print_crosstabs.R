@@ -63,7 +63,7 @@ m <- Tabula$new(
   mapping_file,
   ColVar = c("q1", "q2"),
   Weight = "gew",
-  Unweight = TRUE,
+  Unwgt = TRUE,
   tabulate = FALSE
 )
 m$options$l_lexikon["cTabWeighted"] <- "W"

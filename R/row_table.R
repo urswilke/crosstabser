@@ -22,10 +22,10 @@ gen_row_table <- function(qtab) {
   row_table_weighted <- NULL
   row_table_unweighted <- NULL
   weight <- qtab$p$Weight[[1]]
-  unweight <- qtab$p$Unweight
+  unweight <- qtab$p$Unwgt
   if (is.null(weight) & unweight) {
     # TODO: discuss with Wolf if that's the desired behaviour
-    stop("You can't set `Unweight = TRUE` without the `Weight` variable being set.")
+    stop("You can't set `Unwgt = TRUE` without the `Weight` variable being set.")
   }
   if (is.null(weight) | unweight) {
     row_table_unweighted <- row_table_raw
