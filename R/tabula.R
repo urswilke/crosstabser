@@ -95,6 +95,9 @@ Tabula <- R6::R6Class(
       if (tabulate) {
         self$calc_qtabs(row)
       }
+      if ("qrow_db_write" %in% names(list(...)) && qrow_db_write) {
+        self$add_columns_for_headcol()
+      }
     },
     calc_qtabs = function(row = NULL) {
       gen_col_tables(self)
@@ -106,8 +109,21 @@ Tabula <- R6::R6Class(
       add_columns_for_tablebook(self, BookNo = self$options$V_BookNo)
       invisible(self)
     },
+    add_columns_for_headcol = function() {
+      five_tables <- self$m$qsheet[c("head_table", "col_table_all")] |>
+        lapply(\(x) dplyr::mutate(x, BookNo, .before = 1))
+      five_tables$head_table <- five_tables$head_table |> dplyr::left_join(
+        five_tables$col_table_all |> dplyr::count(HeadNo, name = "HeadCount"),
+        by = "HeadNo"
+      )
+      conn <- DBI::dbConnect(odbc::odbc(), dsn = dsn)
+      on.exit(DBI::dbDisconnect(conn))
+      DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
+      DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
+    },
     write_to_db = function() {
       self$aggregate_5_tables()
+      self$add_columns_for_headcol()
       write_to_db_(
         self,
         dsn = self$params$database_dsn,

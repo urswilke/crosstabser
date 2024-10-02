@@ -451,7 +451,7 @@ write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno) {
   DBI::dbWriteTable(conn, "Row", five_tables$row_table, append = TRUE)
   # DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
   # DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
-  # DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
+  DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
 
   # errors <- obj$qrows |> lapply(\(x) x$log$error)
   # warns <- obj$qrows |> lapply(\(x) x$log$warn)
