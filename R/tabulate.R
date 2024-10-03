@@ -449,9 +449,12 @@ write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno) {
   on.exit(DBI::dbDisconnect(conn))
   DBI::dbWriteTable(conn, "Tab", five_tables$tab_table, append = TRUE)
   DBI::dbWriteTable(conn, "Row", five_tables$row_table, append = TRUE)
-  # DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
-  # DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
-  # DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
+  if (obj$m$options$is_first) {
+    DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
+    DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
+    obj$m$options$is_first <- FALSE
+  }
+  DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
 
   # errors <- obj$qrows |> lapply(\(x) x$log$error)
   # warns <- obj$qrows |> lapply(\(x) x$log$warn)

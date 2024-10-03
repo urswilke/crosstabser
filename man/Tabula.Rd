@@ -100,6 +100,7 @@ Initialize a Tabula object
   book_no = NULL,
   tabulate = TRUE,
   verbose = FALSE,
+  qrow_db_write = FALSE,
   ...
 )}\if{html}{\out{</div>}}
 }

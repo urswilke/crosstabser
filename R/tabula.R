@@ -70,6 +70,7 @@ Tabula <- R6::R6Class(
                           tabulate = TRUE,
                           # TODO: ask Wolf if we should set this this to interactive() ...:
                           verbose = FALSE,
+                          qrow_db_write = FALSE,
                           ...) {
       super$initialize(
         dat,
@@ -91,9 +92,11 @@ Tabula <- R6::R6Class(
         self$dat_mod <- datenanpassr::read_data(dat_mod)
       }
       set_options(self, book_no, ...)
-
       if (tabulate) {
         self$calc_qtabs(row)
+      }
+      if (qrow_db_write) {
+        self$options$is_first <- TRUE
       }
     },
     calc_qtabs = function(row = NULL) {
@@ -108,6 +111,7 @@ Tabula <- R6::R6Class(
     },
     write_to_db = function() {
       self$aggregate_5_tables()
+      self$options$is_first <- TRUE
       write_to_db_(
         self,
         dsn = self$params$database_dsn,
