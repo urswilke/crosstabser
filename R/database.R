@@ -131,23 +131,21 @@ write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno, is_first) {
   if (is_first) {
     DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
     DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
-    # only if obj is of class Qrow:
+    # works/needed only if obj is of class Qrow:
     if (!is.null(obj$m)) obj$m$options$is_first <- FALSE
   }
   DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
 
-  # errors <- obj$qrows |> lapply(\(x) x$log$error)
-  # warns <- obj$qrows |> lapply(\(x) x$log$warn)
   sql = ""
 
   # change Quest table for each QuestNo line by line:
   for (i in seq_along(errors)) {
-
     #PostgreSQL dialect
-    sql <- paste0(sql,
-                  DBI::sqlInterpolate(
-                    conn,
-                    'UPDATE "Quest"
+    sql <- paste0(
+      sql,
+      DBI::sqlInterpolate(
+        conn,
+        'UPDATE "Quest"
           SET "EndTime" = CURRENT_TIMESTAMP,
           "CountRow" = 1,
           "ErrorLog" = ?error_log,
@@ -155,10 +153,11 @@ write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno, is_first) {
           WHERE ("QuestNo" = ?questno) AND ("BookNo" = ?book_no)',
         error_log = errors[[i]] %||% "",
         warn_log = warns[[i]] %||% "",
-                    questno = questno[[i]],
-                    book_no = book_no
-                  ),
-                  sep = ";")
+        questno = questno[[i]],
+        book_no = book_no
+      ),
+      sep = ";"
+    )
   }
   DBI::dbExecute(conn, sql)
 }
