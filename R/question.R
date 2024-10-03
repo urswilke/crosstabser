@@ -60,7 +60,7 @@ empty_qsheet <- function() {
     Exclusive = character(0), Checks = character(0)
   )
 }
-preprocess_qrows_params <- function(df, mapping) {
+process_qrow_params <- function(df, mapping) {
   df |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
@@ -83,7 +83,7 @@ preprocess_qrows_params <- function(df, mapping) {
     _[[1]]
 }
 
-process_qrow_params <- function(qrow_params, mapping) {
+gen_qtabs_params <- function(qrow_params, mapping) {
   qrow_params |>
     process_selval(mapping) |>
     lapply(\(x) process_mw_rows(x, mapping)) |> unlist(recursive = FALSE) |>
