@@ -15,7 +15,7 @@ test_that("crosstab prints are reproduced", {
 
 tabsi$dat_mod$q3a[1:9] <- 101
 tabsi$calc_qtabs(7)
-tabsi$aggregate_5_tables()
+tabsi$assemble_crosstab_data()
 
 test_that("A warning correctly is written to the log", {
   testthat::expect_true(!is.null(tabsi$qrows[[1]]$log$warn))
@@ -23,11 +23,11 @@ test_that("A warning correctly is written to the log", {
 
 
 tabsi$dat_mod$q1 <- NULL
-# TODO: if the crosstabs of none of the rows can be calculated, aggregate_5_tables() errors out
+# TODO: if the crosstabs of none of the rows can be calculated, assemble_crosstab_data() errors out
 #  -> discuss with Wolf how we should treat these edge cases
 # ... therefore we add the 6th row (which doesn't error out),
 tabsi$calc_qtabs(5:6)
-tabsi$aggregate_5_tables()
+tabsi$assemble_crosstab_data()
 test_that("An error is correctly written to the log", {
   testthat::expect_true(!is.null(tabsi$qrows[[1]]$log$error))
 })
@@ -36,7 +36,7 @@ test_that("An error is correctly written to the log", {
 tabsi$calc_qtabs(5)
 test_that("An informative error is thrown when no crosstabs are calculated", {
   testthat::expect_error(
-    tabsi$aggregate_5_tables(),
+    tabsi$assemble_crosstab_data(),
     regexp = "No crosstabs calculated"
   )
 })

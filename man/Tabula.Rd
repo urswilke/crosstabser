@@ -71,7 +71,7 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 \itemize{
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
 \item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
-\item \href{#method-Tabula-aggregate_5_tables}{\code{Tabula$aggregate_5_tables()}}
+\item \href{#method-Tabula-assemble_crosstab_data}{\code{Tabula$assemble_crosstab_data()}}
 \item \href{#method-Tabula-write_to_db}{\code{Tabula$write_to_db()}}
 \item \href{#method-Tabula-print}{\code{Tabula$print()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
@@ -100,6 +100,7 @@ Initialize a Tabula object
   book_no = NULL,
   tabulate = TRUE,
   verbose = FALSE,
+  qrow_db_write = FALSE,
   ...
 )}\if{html}{\out{</div>}}
 }
@@ -115,11 +116,11 @@ Initialize a Tabula object
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-aggregate_5_tables"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-aggregate_5_tables}{}}}
-\subsection{Method \code{aggregate_5_tables()}}{
+\if{html}{\out{<a id="method-Tabula-assemble_crosstab_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-assemble_crosstab_data}{}}}
+\subsection{Method \code{assemble_crosstab_data()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$aggregate_5_tables()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$assemble_crosstab_data()}\if{html}{\out{</div>}}
 }
 
 }

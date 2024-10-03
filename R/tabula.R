@@ -70,6 +70,7 @@ Tabula <- R6::R6Class(
                           tabulate = TRUE,
                           # TODO: ask Wolf if we should set this this to interactive() ...:
                           verbose = FALSE,
+                          qrow_db_write = FALSE,
                           ...) {
       super$initialize(
         dat,
@@ -79,6 +80,7 @@ Tabula <- R6::R6Class(
         # TODO: move the definition of this parameter into the initialization of datenanpassr::Mapping,
         # if we want to use it there as well...!
         verbose = verbose,
+        qrow_db_write = qrow_db_write,
         ...
       )
       if (is.null(dat) & is.null(dat_mod)) {
@@ -91,7 +93,9 @@ Tabula <- R6::R6Class(
         self$dat_mod <- datenanpassr::read_data(dat_mod)
       }
       set_options(self, book_no, ...)
-
+      if (qrow_db_write) {
+        self$options$is_first <- TRUE
+      }
       if (tabulate) {
         self$calc_qtabs(row)
       }
@@ -101,14 +105,23 @@ Tabula <- R6::R6Class(
       parse_qsheet(self, row)
       invisible(self)
     },
-    aggregate_5_tables = function() {
-      aggregate_5_tables_(self)
-      add_columns_for_tablebook(self)
+    assemble_crosstab_data = function() {
+      self$crosstabs <- assemble_crosstab_data_(self)
+      add_columns_for_tablebook(self, BookNo = self$options$V_BookNo)
       invisible(self)
     },
     write_to_db = function() {
-      self$aggregate_5_tables()
-      write_to_db_(self)
+      self$assemble_crosstab_data()
+      self$options$is_first <- TRUE
+      write_to_db_(
+        self,
+        dsn = self$params$database_dsn,
+        errors = self$qrows |> lapply(\(x) x$log$error),
+        warns = self$qrows |> lapply(\(x) x$log$warn),
+        book_no = self$options$V_BookNo,
+        questno = self$qrows |> lapply(\(x) x$p$Abbreviation),
+        is_first = self$options$is_first
+      )
       invisible(self)
     },
     # TODO: ask Wolf:
