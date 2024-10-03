@@ -6,13 +6,13 @@ Qrow <- R6::R6Class(
     qtabs = tibble::tibble(),
     log = list(warn = NULL, error = NULL),
     crosstabs = NULL,
-    initialize = function(df,
+    initialize = function(df_qrow,
                           mapping,
                           ...) {
-      self$p <- preprocess_qrows_params(df, mapping)[[1]]
+      self$p <- process_qrow_params(df_qrow, mapping)
       self$m <- mapping
 
-      params <- process_qrow_params(self$p, self$m)
+      params <- gen_qtabs_params(self$p, self$m)
 
       verbose <- mapping$params$verbose
       obj <- tryCatch(
