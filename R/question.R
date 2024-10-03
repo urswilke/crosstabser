@@ -61,7 +61,7 @@ empty_qsheet <- function() {
   )
 }
 process_qrow_params <- function(df_qrow, mapping) {
-  df |>
+  df_qrow |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
       RowVar = lapply(RowVar, \(x) extract_rowvars(x, mapping$dat_mod)),
