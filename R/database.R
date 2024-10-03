@@ -17,10 +17,10 @@ aggregate_5_tables_ <- function(obj) {
   UseMethod("aggregate_5_tables_")
 }
 aggregate_5_tables_.Tabula <- function(obj) {
-  obj$crosstabs <- extract_5_tables(obj$qrows, obj)
+  extract_5_tables(obj$qrows, obj)
 }
 aggregate_5_tables_.Qrow <- function(obj) {
-  obj$crosstabs <- extract_5_tables(list(obj), obj$m)
+  extract_5_tables(list(obj), obj$m)
 }
 extract_5_tables <- function(qrows, mapping) {
   table_parts <- frame_table_parts(qrows)

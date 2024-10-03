@@ -106,7 +106,7 @@ Tabula <- R6::R6Class(
       invisible(self)
     },
     aggregate_5_tables = function() {
-      aggregate_5_tables_(self)
+      self$crosstabs <- aggregate_5_tables_(self)
       add_columns_for_tablebook(self, BookNo = self$options$V_BookNo)
       invisible(self)
     },

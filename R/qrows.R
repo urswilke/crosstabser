@@ -41,7 +41,7 @@ Qrow <- R6::R6Class(
 
     },
     aggregate_5_tables = function() {
-      aggregate_5_tables_(self)
+      self$crosstabs <- aggregate_5_tables_(self)
       add_columns_for_tablebook(self, BookNo = self$m$options$V_BookNo)
       invisible(self)
     },
