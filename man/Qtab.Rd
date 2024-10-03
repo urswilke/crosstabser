@@ -25,8 +25,8 @@ Qtab
 \itemize{
 \item \href{#method-Qtab-new}{\code{Qtab$new()}}
 \item \href{#method-Qtab-calc_qtab}{\code{Qtab$calc_qtab()}}
-\item \href{#method-Qtab-long_tab}{\code{Qtab$long_tab()}}
-\item \href{#method-Qtab-wide_tab}{\code{Qtab$wide_tab()}}
+\item \href{#method-Qtab-gen_long_tab}{\code{Qtab$gen_long_tab()}}
+\item \href{#method-Qtab-gen_wide_tab}{\code{Qtab$gen_wide_tab()}}
 \item \href{#method-Qtab-print}{\code{Qtab$print()}}
 \item \href{#method-Qtab-clone}{\code{Qtab$clone()}}
 }
@@ -52,22 +52,22 @@ todo
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qtab-long_tab"></a>}}
-\if{latex}{\out{\hypertarget{method-Qtab-long_tab}{}}}
-\subsection{Method \code{long_tab()}}{
+\if{html}{\out{<a id="method-Qtab-gen_long_tab"></a>}}
+\if{latex}{\out{\hypertarget{method-Qtab-gen_long_tab}{}}}
+\subsection{Method \code{gen_long_tab()}}{
 todo
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qtab$long_tab()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Qtab$gen_long_tab()}\if{html}{\out{</div>}}
 }
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qtab-wide_tab"></a>}}
-\if{latex}{\out{\hypertarget{method-Qtab-wide_tab}{}}}
-\subsection{Method \code{wide_tab()}}{
+\if{html}{\out{<a id="method-Qtab-gen_wide_tab"></a>}}
+\if{latex}{\out{\hypertarget{method-Qtab-gen_wide_tab}{}}}
+\subsection{Method \code{gen_wide_tab()}}{
 todo
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qtab$wide_tab()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Qtab$gen_wide_tab()}\if{html}{\out{</div>}}
 }
 
 }

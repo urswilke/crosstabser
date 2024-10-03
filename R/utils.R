@@ -59,13 +59,6 @@ select_loc <- function(data, ...) {
   tidyselect::eval_select(rlang::parse_expr(c(...)), data) |> names()
 }
 
-set_row <- function(mapping, row) {
-  if (is.null(row)) {
-    return(mapping$qsheet$qsheet_raw$row)
-  }
-  row
-}
-
 rm_header_footer <- function(row_table) {
   row_table[-c(1:3, nrow(row_table)),]
 }

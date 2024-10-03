@@ -60,8 +60,8 @@ empty_qsheet <- function() {
     Exclusive = character(0), Checks = character(0)
   )
 }
-preprocess_qrows_params <- function(mapping) {
-  mapping$qsheet$qsheet_raw |>
+process_qrow_params <- function(df_qrow, mapping) {
+  df_qrow |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
       RowVar = lapply(RowVar, \(x) extract_rowvars(x, mapping$dat_mod)),
@@ -79,10 +79,11 @@ preprocess_qrows_params <- function(mapping) {
       Exclusive = split_cell(Exclusive),
     ) |>
     purrr::transpose() |>
-    lapply(\(x) x[!is.na(x)])
+    lapply(\(x) x[!is.na(x)]) |>
+    _[[1]]
 }
 
-process_qrow_params <- function(qrow_params, mapping) {
+gen_qtabs_params <- function(qrow_params, mapping) {
   qrow_params |>
     process_selval(mapping) |>
     lapply(\(x) process_mw_rows(x, mapping)) |> unlist(recursive = FALSE) |>

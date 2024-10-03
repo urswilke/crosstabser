@@ -415,7 +415,7 @@ add_columns_for_tablebook <- function(tabula) {
 write_to_db_ <- function(tabula) {
   five_tables <- tabula$crosstabs$data |> order_tables()
   conn <- DBI::dbConnect(odbc::odbc(), dsn=tabula$params$database_dsn)
-
+  on.exit(DBI::dbDisconnect(conn))
   DBI::dbWriteTable(conn, "Tab", five_tables$tab_table, append = TRUE)
   DBI::dbWriteTable(conn, "Row", five_tables$row_table, append = TRUE)
   DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
@@ -447,7 +447,6 @@ write_to_db_ <- function(tabula) {
     sep = ";")
   }
   DBI::dbExecute(conn, sql)
-  DBI::dbDisconnect(conn)
 }
 
 order_tables <- function(five_tables) {

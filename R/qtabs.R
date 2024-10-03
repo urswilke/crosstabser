@@ -77,10 +77,10 @@ calc_qtab_ <- function(qtab) {
   calc_qtab_elements(qtab)
   tab_values <- rbind_table_numbers(qtab)
 
-  if (qtab$p$Unweight) {
+  if (qtab$p$Unwgt) {
     qtab_unweighted <- qtab$clone()
     qtab_unweighted$p$Weight <- list(NULL)
-    qtab_unweighted$p$Unweight <- FALSE
+    qtab_unweighted$p$Unwgt <- FALSE
     qtab_unweighted$p$long_weight <- character()
     calc_qtab_elements(qtab_unweighted)
     tab_values_unweighted <- rbind_table_numbers(qtab_unweighted)
