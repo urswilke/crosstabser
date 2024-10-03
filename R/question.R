@@ -79,7 +79,8 @@ preprocess_qrows_params <- function(df, mapping) {
       Exclusive = split_cell(Exclusive),
     ) |>
     purrr::transpose() |>
-    lapply(\(x) x[!is.na(x)])
+    lapply(\(x) x[!is.na(x)]) |>
+    _[[1]]
 }
 
 process_qrow_params <- function(qrow_params, mapping) {
