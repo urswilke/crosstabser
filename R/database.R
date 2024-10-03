@@ -13,13 +13,13 @@ frame_table_parts <- function(qrows) {
     tidyr::unnest_longer(c(qtab), keep_empty = TRUE) |>
     dplyr::mutate(l = purrr::map(qtab, \(x) x$d[five_table_names])) |> tidyr::unnest_wider(l)
 }
-aggregate_5_tables_ <- function(obj) {
-  UseMethod("aggregate_5_tables_")
+assemble_crosstab_data_ <- function(obj) {
+  UseMethod("assemble_crosstab_data_")
 }
-aggregate_5_tables_.Tabula <- function(obj) {
+assemble_crosstab_data_.Tabula <- function(obj) {
   extract_5_tables(obj$qrows, obj)
 }
-aggregate_5_tables_.Qrow <- function(obj) {
+assemble_crosstab_data_.Qrow <- function(obj) {
   extract_5_tables(list(obj), obj$m)
 }
 extract_5_tables <- function(qrows, mapping) {

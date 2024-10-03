@@ -40,13 +40,13 @@ Qrow <- R6::R6Class(
       }
 
     },
-    aggregate_5_tables = function() {
-      self$crosstabs <- aggregate_5_tables_(self)
+    assemble_crosstab_data = function() {
+      self$crosstabs <- assemble_crosstab_data_(self)
       add_columns_for_tablebook(self, BookNo = self$m$options$V_BookNo)
       invisible(self)
     },
     write_to_db = function() {
-      self$aggregate_5_tables()
+      self$assemble_crosstab_data()
       write_to_db_(
         self,
         dsn = self$m$params$database_dsn,
