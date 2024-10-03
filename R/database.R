@@ -153,8 +153,8 @@ write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno, is_first) {
           "ErrorLog" = ?error_log,
           "WarnLog" = ?warn_log
           WHERE ("QuestNo" = ?questno) AND ("BookNo" = ?book_no)',
-                    error_log = paste0("", errors[[i]]),
-                    warn_log = paste0("", warns[[i]]),
+        error_log = errors[[i]] %||% "",
+        warn_log = warns[[i]] %||% "",
                     questno = questno[[i]],
                     book_no = book_no
                   ),
