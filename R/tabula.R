@@ -80,6 +80,7 @@ Tabula <- R6::R6Class(
         # TODO: move the definition of this parameter into the initialization of datenanpassr::Mapping,
         # if we want to use it there as well...!
         verbose = verbose,
+        qrow_db_write = qrow_db_write,
         ...
       )
       if (is.null(dat) & is.null(dat_mod)) {
@@ -92,11 +93,11 @@ Tabula <- R6::R6Class(
         self$dat_mod <- datenanpassr::read_data(dat_mod)
       }
       set_options(self, book_no, ...)
-      if (tabulate) {
-        self$calc_qtabs(row)
-      }
       if (qrow_db_write) {
         self$options$is_first <- TRUE
+      }
+      if (tabulate) {
+        self$calc_qtabs(row)
       }
     },
     calc_qtabs = function(row = NULL) {
