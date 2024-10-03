@@ -50,8 +50,8 @@ Qrow <- R6::R6Class(
       write_to_db_(
         self,
         dsn = self$m$params$database_dsn,
-        errors = list(self) |> lapply(\(x) x$log$error),
-        warns = list(self) |> lapply(\(x) x$log$warn),
+        errors = list(self$log$error),
+        warns = list(self$log$warn),
         book_no = self$m$options$V_BookNo,
         questno = self$p$Abbreviation
       )
