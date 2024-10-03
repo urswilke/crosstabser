@@ -60,7 +60,7 @@ empty_qsheet <- function() {
     Exclusive = character(0), Checks = character(0)
   )
 }
-process_qrow_params <- function(df, mapping) {
+process_qrow_params <- function(df_qrow, mapping) {
   df |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
