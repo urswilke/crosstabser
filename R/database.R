@@ -17,61 +17,36 @@ aggregate_5_tables_ <- function(obj) {
   UseMethod("aggregate_5_tables_")
 }
 aggregate_5_tables_.Tabula <- function(obj) {
-  qrows <- obj$qrows
-  # TODO: remove older data structures and refactor the code using `table_parts`...!
+  obj$crosstabs <- extract_5_tables(obj$qrows, obj)
+}
+aggregate_5_tables_.Qrow <- function(obj) {
+  obj$crosstabs <- extract_5_tables(list(obj), obj$m)
+}
+extract_5_tables <- function(qrows, mapping) {
   table_parts <- frame_table_parts(qrows)
-  obj$crosstabs$table_parts <- table_parts
 
   q <- table_parts$QuestNo
   tab_table <- table_parts$qtab |> purrr::map_dfr(\(x) x$d$tab_table)
-  # TODO: when in the Val table in the database we also have TabNo,
-  # we can remove all this ascending RowNo per QuestNo story (cf. ascend_rownos_within_questno())
-  # and refactor everything...
-  # val_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
   val_table <- table_parts |>
     dplyr::select(tab_table, val_table) |>
     tidyr::unpack(tab_table) |>
     dplyr::select(QuestNo, TabNo, val_table) |>
     tidyr::unnest(val_table)
   row_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
-  head_table <- obj$qsheet$head_table
-  col_table_all <- obj$qsheet$col_table_all
+  head_table <- mapping$qsheet$head_table
+  col_table_all <- mapping$qsheet$col_table_all
 
-  obj$crosstabs$data <- tibble::lst(
+  data <- tibble::lst(
     tab_table,
     val_table,
     row_table,
     head_table,
     col_table_all
   )
-}
-aggregate_5_tables_.Qrow <- function(obj) {
-  qrows <- list(obj)
-  # TODO: remove older data structures and refactor the code using `table_parts`...!
-  table_parts <- frame_table_parts(qrows)
-  obj$crosstabs$table_parts <- table_parts
 
-  q <- table_parts$QuestNo
-  tab_table <- table_parts$qtab |> purrr::map_dfr(\(x) x$d$tab_table)
-  # TODO: when in the Val table in the database we also have TabNo,
-  # we can remove all this ascending RowNo per QuestNo story (cf. ascend_rownos_within_questno())
-  # and refactor everything...
-  # val_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$val_table, .id = "QuestNo")
-  val_table <- table_parts |>
-    dplyr::select(tab_table, val_table) |>
-    tidyr::unpack(tab_table) |>
-    dplyr::select(QuestNo, TabNo, val_table) |>
-    tidyr::unnest(val_table)
-  row_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
-  head_table <- obj$m$qsheet$head_table
-  col_table_all <- obj$m$qsheet$col_table_all
-
-  obj$crosstabs$data <- tibble::lst(
-    tab_table,
-    val_table,
-    row_table,
-    head_table,
-    col_table_all
+  tibble::lst(
+    table_parts,
+    data
   )
 }
 add_columns_for_tablebook <- function(obj, BookNo) {
