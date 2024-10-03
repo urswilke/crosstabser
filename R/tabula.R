@@ -119,7 +119,8 @@ Tabula <- R6::R6Class(
         errors = self$qrows |> lapply(\(x) x$log$error),
         warns = self$qrows |> lapply(\(x) x$log$warn),
         book_no = self$options$V_BookNo,
-        questno = self$qrows |> lapply(\(x) x$p$Abbreviation)
+        questno = self$qrows |> lapply(\(x) x$p$Abbreviation),
+        is_first = self$options$is_first
       )
       invisible(self)
     },

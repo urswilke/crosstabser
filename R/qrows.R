@@ -53,7 +53,8 @@ Qrow <- R6::R6Class(
         errors = list(self$log$error),
         warns = list(self$log$warn),
         book_no = self$m$options$V_BookNo,
-        questno = self$p$Abbreviation
+        questno = self$p$Abbreviation,
+        is_first = self$m$options$is_first
       )
       invisible(self)
     }

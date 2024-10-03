@@ -122,15 +122,16 @@ add_columns_for_tablebook <- function(obj, BookNo) {
   obj$crosstabs$data <- res
 }
 
-write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno) {
+write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno, is_first) {
   five_tables <- obj$crosstabs$data |> order_tables()
   conn <- DBI::dbConnect(odbc::odbc(), dsn = dsn)
   on.exit(DBI::dbDisconnect(conn))
   DBI::dbWriteTable(conn, "Tab", five_tables$tab_table, append = TRUE)
   DBI::dbWriteTable(conn, "Row", five_tables$row_table, append = TRUE)
-  if (obj$m$options$is_first %||% obj$options$is_first) {
+  if (is_first) {
     DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
     DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
+    # only if obj is of class Qrow:
     if (!is.null(obj$m)) obj$m$options$is_first <- FALSE
   }
   DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
