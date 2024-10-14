@@ -73,6 +73,7 @@ process_qrow_params <- function(df_qrow, mapping) {
       Filter = as.list(Filter) |>
         purrr::map(\(x) x |> append(mapping$options$l_macro_scenario$Filter)) |>
         purrr::map(\(x) x[!is.na(x)]),
+      UngueltMW = split_cell(UngueltMW) |> lapply(as.numeric),
       SelVar = split_cell(SelVar),
       SelVal = split_cell(SelVal),
       RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE",

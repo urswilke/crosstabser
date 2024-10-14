@@ -25,7 +25,8 @@ calc_stat_fun.default <- function(qtab) {
 }
 # TODO: add tests for stat_fun = median, sum, ...:
 calc_stat_fun.qtab_type_mw <- function(qtab) {
-  long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% qtab$p$Unguelt,]
+  invalid_vals <- c(qtab$p[["Unguelt"]], qtab$p[["UngueltMW"]])
+  long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
 
   if (!is.null(qtab$p$MWRec)) {
     long_data$rowval <- catrec(long_data$rowval, qtab$p$MWRec)
@@ -56,7 +57,8 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
   if (is.null(qtab$p$MetrMac)) {
     return(NULL)
   }
-  long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% qtab$p$Unguelt,]
+  invalid_vals <- c(qtab$p[["Unguelt"]], qtab$p[["UngueltMW"]])
+  long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
   if (!is.null(qtab$p$MWRec)) {
     long_data$rowval <- catrec(long_data$rowval, qtab$p$MWRec)
   }

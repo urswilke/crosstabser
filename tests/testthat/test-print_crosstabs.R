@@ -71,3 +71,32 @@ m$calc_qtabs()
 test_that("summaries of various stat_fun are reproduced", {
   testthat::expect_snapshot(m)
 })
+
+
+
+
+
+mapping_file = list(Questions = data.frame(
+  Type  = c("mw", "cat"),
+  RowVar = c("q1 q2", "q1"),
+  UngueltMW = "2, 4",
+  Title = "",
+  Freq = "0",
+  ZsfgMW = c("mean", NA_character_),
+  MeanOverviewLabel = c("Summary of mean", NA_character_),
+  MetrMac = c(NA_character_, "S1")
+))
+
+m <- Tabula$new(
+  df,
+  mapping_file,
+  ColVar = c("q1"),
+  Weight = "gew",
+  Unwgt = TRUE,
+  tabulate = FALSE
+)
+m$options$l_lexikon["cTabWeighted"] <- "W"
+m$calc_qtabs()
+test_that("mean value overview is reproduced with UngueltMW", {
+  testthat::expect_snapshot(m)
+})
