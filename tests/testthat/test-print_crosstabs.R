@@ -97,6 +97,6 @@ m <- Tabula$new(
 )
 m$options$l_lexikon["cTabWeighted"] <- "W"
 m$calc_qtabs()
-test_that("mean value overview is reproduced with UngueltMW", {
+test_that("mean calculation is reproduced with UngueltMW set (cat & mw)", {
   testthat::expect_snapshot(m)
 })

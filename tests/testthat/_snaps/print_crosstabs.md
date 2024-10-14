@@ -994,7 +994,7 @@
       
       
 
-# mean value overview is reproduced with UngueltMW
+# mean calculation is reproduced with UngueltMW set (cat & mw)
 
     Code
       m
