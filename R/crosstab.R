@@ -101,10 +101,10 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
 
   all_counts$RowAbsPercent <- "Abs"
 
-  detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p$Unguelt,]
+  detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p[["Unguelt"]],]
   detail_freqs$RowContent <- "Detail"
 
-  invalid_freqs <- all_counts[all_counts$rowval %in% qtab$p$Unguelt,]
+  invalid_freqs <- all_counts[all_counts$rowval %in% qtab$p[["Unguelt"]],]
   invalid_freqs$RowContent <- "Missing"
 
   qtab$d$detail_freqs <- detail_freqs
@@ -125,7 +125,7 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
   df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
 
   rowvars <- rv(qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab)
-  df_cols$n_valid <- !df[[rowvars]] %in% c(qtab$p$Unguelt, NA)
+  df_cols$n_valid <- !df[[rowvars]] %in% c(qtab$p[["Unguelt"]], NA)
   df_cols$total <- !is.na(df[[rowvars]])
 
   # TODO: find better organisation (redundant code with calc_stats_rows.qtab_type_mdg):
@@ -169,7 +169,7 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
 
   all_counts$RowAbsPercent <- "Abs"
 
-  is_valid <- all_counts$rowvar %in% (qtab$p$l_selvar$invalid %||% qtab$p$Unguelt)
+  is_valid <- all_counts$rowvar %in% (qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]])
   detail_freqs <- all_counts[!is_valid,]
   detail_freqs$RowContent <- "Detail"
 
@@ -196,8 +196,8 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   df_cols$sum_of_valid <- sum_of_valid
   df_cols$n_valid <- sum_of_valid >= 1
   # base R way to do:
-  # df_cols$invalid_cts <- rowSums((df |> select(any_of(paste0("rowvar_", qtab$p$Unguelt)))) == mdg_val, na.rm = TRUE) != 0
-  invalid_colnames <- rv(qtab$p$l_selvar$invalid %||% qtab$p$Unguelt)
+  # df_cols$invalid_cts <- rowSums((df |> select(any_of(paste0("rowvar_", qtab$p[["Unguelt"]])))) == mdg_val, na.rm = TRUE) != 0
+  invalid_colnames <- rv(qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]])
   df_cols$invalid_cts <- rowSums(df[invalid_colnames] == mdg_val, na.rm = TRUE) != 0
   df_cols$no_entry <- as.numeric(sum_of_valid + df_cols$invalid_cts == 0)
   df_cols_long <- df_cols |>
@@ -236,7 +236,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
 }
 
 calc_stats_rows.qtab_type_mw <- function(qtab) {
-  invalid_vals <- qtab$p$Unguelt
+  invalid_vals <- qtab$p[["Unguelt"]]
   df <- qtab$d$raw_data
   # for TOTAL column:
   df$"colvar_DC#TOTAL" <- 1
@@ -269,7 +269,7 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
 }
 
 calc_stats_rows.qtab_type_mcg <- function(qtab) {
-  invalid_vals <- qtab$p$Unguelt
+  invalid_vals <- qtab$p[["Unguelt"]]
 
   df_long <- qtab$d$long_data
   df_long_valid <- df_long[!df_long$rowval %in% invalid_vals,]
@@ -318,7 +318,7 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   if (is.null(qtab$p$CatRec)) {
     return(NULL)
   }
-  invalid_vals <- qtab$p$Unguelt
+  invalid_vals <- qtab$p[["Unguelt"]]
 
   df_long <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
 
@@ -373,9 +373,9 @@ parse_catrec_sum_expr <- function(df_summary, catrec_sum_string) {
 
 calc_detail_freqs.qtab_type_mw <- function(qtab) {
   weight <- qtab$p$Weight[[1]]
-  # TODO: check all occurrences of qtab$p$Unguelt (a lot) if NA also has to be included!
+  # TODO: check all occurrences of qtab$p[["Unguelt"]] (a lot) if NA also has to be included!
   # (except mdg of course)
-  invalid_vals <- c(NA, qtab$p$Unguelt)
+  invalid_vals <- c(NA, qtab$p[["Unguelt"]])
 
   res <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,] |>
     summarize_stats(
@@ -402,10 +402,10 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
 
   all_counts$RowAbsPercent <- "Abs"
 
-  detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p$Unguelt,]
+  detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p[["Unguelt"]],]
   detail_freqs$RowContent <- "Detail"
 
-  invalid_freqs <- all_counts[all_counts$rowval %in% qtab$p$Unguelt,]
+  invalid_freqs <- all_counts[all_counts$rowval %in% qtab$p[["Unguelt"]],]
   invalid_freqs$RowContent <- "Missing"
 
   qtab$d$detail_freqs <- detail_freqs

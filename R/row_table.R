@@ -174,7 +174,7 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
     return(NULL)
   }
   occuring_vals <- qtab$m$dat_mod[qtab$p$rowvars_qtab] |> unlist(use.names = FALSE) |> unique()
-  invalid_vals <- qtab$p$Unguelt
+  invalid_vals <- qtab$p[["Unguelt"]]
   vallabs <- attr(qtab$m$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
 
   # the following is equivalent to (but faster with base R):
@@ -418,7 +418,7 @@ row_table_invalid_vals <- function(qtab) {
 }
 row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- function(qtab) {
   occuring_vals <- qtab$d$tab_values$rowval |> unique()
-  invalid_vals <- qtab$p$Unguelt
+  invalid_vals <- qtab$p[["Unguelt"]]
   if (all(!occuring_vals %in% invalid_vals)) {
     return(NULL)
   }
@@ -456,16 +456,16 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
 # TODO: add lines with cTabNoEntry ("No entry in the respective variables") if present...!
 row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
   # TODO: clean up MESS by trying to hack multi selvar unguelt...:
-  if (is.null(qtab$p$Unguelt)) {
+  if (is.null(qtab$p[["Unguelt"]])) {
     return(NULL)
   }
-  invalids_present <- qtab$p$l_selvar$invalid %||% qtab$p$Unguelt |>
+  invalids_present <- qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]] |>
     lapply(\(x) x %in% qtab$d$tab_values$rowvar) |>
     unlist()
   if (sum(invalids_present) == 0) {
     return(NULL)
   }
-  invalid_vals <- qtab$p$l_selvar$rowvars_inv[[1]] %||% qtab$p$Unguelt
+  invalid_vals <- qtab$p$l_selvar$rowvars_inv[[1]] %||% qtab$p[["Unguelt"]]
   l_varlabs <- qtab$m$dat_mod[invalid_vals] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
   mdg_val <- qtab$p$MdgVal
 

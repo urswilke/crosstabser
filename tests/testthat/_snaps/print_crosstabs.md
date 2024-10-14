@@ -1008,8 +1008,8 @@
                            abs W   2.1   0.9   1.2
       hallo                Mean    1     1     ·  
                            Mean…   1     1     ·  
-                           VALI…   2     2     0  
-                           VALI…   0.9   0.9   0  
+                           VALI…   3     2     1  
+                           VALI…   2.1   0.9   1.2
       hallo 2              Mean    ·     ·     ·  
                            Mean…   ·     ·     ·  
                            VALI…   0     0     0  
@@ -1025,18 +1025,18 @@
                            abs W   2.1   0.9   1.2
       Yes                  abs     2     2     0  
                            abs W   0.9   0.9   0  
-                           in %  100   100     0  
-                           in %… 100   100     0  
-      Mean                         1     1     ·  
-      Mean W                       1     1     ·  
-      VALID CASES          abs     2     2     0  
-                           abs W   0.9   0.9   0  
                            in %   66.7 100     0  
                            in %…  42.9 100     0  
       No                   abs     1     0     1  
                            abs W   1.2   0     1.2
                            in %   33.3   0   100  
                            in %…  57.1   0   100  
+      Mean                         1     1     ·  
+      Mean W                       1     1     ·  
+      VALID CASES          abs     3     2     1  
+                           abs W   2.1   0.9   1.2
+                           in %  100   100   100  
+                           in %… 100   100   100  
       
       
 

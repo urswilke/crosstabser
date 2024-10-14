@@ -158,7 +158,7 @@ pivot_table_data.qtab_type_mdg <- function(qtab) {
 
   mdg_val <- qtab$p$MdgVal
 
-  invalids <- qtab$p$l_selvar$invalid %||% qtab$p$Unguelt
+  invalids <- qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]]
 
   qtab$d$long_data <- df_rows_long[df_rows_long$rowval == mdg_val,] |>
     dplyr::mutate(
@@ -186,12 +186,12 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
   invalids_to_filter <- intersect(
     # TODO: put datenanpassr Mapping$params in the same structure as Tabula$p
     qtab$m$params$miss_rec_val,
-    qtab$p$Unguelt
+    qtab$p[["Unguelt"]]
   )
-  df_rows_long_invalids <- df_rows_long[df_rows_long$rowval %in% qtab$p$Unguelt,] |>
+  df_rows_long_invalids <- df_rows_long[df_rows_long$rowval %in% qtab$p[["Unguelt"]],] |>
     dplyr::mutate(
       # TODO: also put into helper function like flag_exclusives() or flag_invalids() (?):
-      temp = order(factor(rowval, levels = qtab$p$Unguelt)),
+      temp = order(factor(rowval, levels = qtab$p[["Unguelt"]])),
       # calculate boolean that's TRUE if:
       val_to_count =
         # for each case, only take count one invalid value (the one that occurs
@@ -203,7 +203,7 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
       temp = NULL,
     .by = "i")
 
-  df_rows_long_valids <- df_rows_long[!df_rows_long$rowval %in% qtab$p$Unguelt,]
+  df_rows_long_valids <- df_rows_long[!df_rows_long$rowval %in% qtab$p[["Unguelt"]],]
   exclusives <- qtab$p$Exclusive
   if (!is.null(exclusives)) {
     df_rows_long_valids <- df_rows_long_valids |>
