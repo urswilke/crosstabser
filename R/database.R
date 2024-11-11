@@ -147,10 +147,11 @@ write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno, is_first) {
         conn,
         'UPDATE "Quest"
           SET "EndTime" = CURRENT_TIMESTAMP,
-          "CountRow" = 1,
+          "CountRow" = ?count_row,
           "ErrorLog" = ?error_log,
           "WarnLog" = ?warn_log
           WHERE ("QuestNo" = ?questno) AND ("BookNo" = ?book_no)',
+        count_row = nrow(five_tables$row_table),
         error_log = errors[[i]] %||% "",
         warn_log = warns[[i]] %||% "",
         questno = questno[[i]],
