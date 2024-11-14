@@ -106,6 +106,7 @@ gen_col_table <- function(mapping) {
     ColEnd,
   )
   value_col_table1$ColNo <- 1:nrow(value_col_table1)
+  value_col_table1$ColValue <- value_col_table1$ColValue |> unname()
   mapping$qsheet$col_table_all <- value_col_table1
   mapping$qsheet$col_table <- value_col_table1 |> dplyr::slice(-c(1:3, nrow(value_col_table1) - 0:1))
 }
