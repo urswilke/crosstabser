@@ -186,7 +186,7 @@
             <dbl>  <int> <chr>        <chr>         <int>
       1 999999999      1 DC#ROWHEADER <NA>              3
       2 999999999      2 DC#TOTAL     GESAMT            1
-      3 999999999      3 kregio       Region            4
+      3 999999999      3 kregio@1     Region            4
       4 999999999      4 DC#EMPTY     <NA>              1
       5 999999999      5 DC#TITLE     <NA>              1
       

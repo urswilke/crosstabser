@@ -38,7 +38,10 @@ gen_head_table <- function(mapping) {
   res[1,]$HeadName <- "DC#ROWHEADER"
   res[2,c("HeadName", "HeadTitle")] <- list("DC#TOTAL", mapping$options$l_lexikon["cTabGesamt"])
 
-  res[seq_len(length(header_vars)) + 2,]$HeadName <- header_vars
+  res[seq_len(length(header_vars)) + 2,]$HeadName <- dplyr::tibble(header_vars) |>
+    dplyr::group_by(header_vars) |>
+    dplyr::mutate(header_vars_numerated = paste0(header_vars, "@", dplyr::row_number())) |>
+    dplyr::pull(header_vars_numerated)
   res[seq_len(length(header_vars)) + 2,]$HeadTitle <- header_varlabs
   res[nrow(res) + 1,]$HeadName  <- "DC#EMPTY"
   res[nrow(res) + 1,]$HeadName  <- "DC#TITLE"
@@ -87,13 +90,17 @@ gen_col_table <- function(mapping) {
     ColBegin,
     value_col_table0,
   )
-  if (nrow(head_table) > 1) {
-    # TODO: get from paramter in mapping...!
-    colvar_headers <- head_table[1:nrow(head_table),]
+  # conditional statement not needed; would also work without...:
+  if (length(mapping$options$l_macro_scenario[["ColVar"]]) > 0) {
+    colvar_headers <- head_table
 
     # TODO: clean up this mess: ...!
     names(colvar_headers)[names(colvar_headers) == "HeadTitle"] <- "ColTitle1"
     names(colvar_headers)[names(colvar_headers) == "HeadName"] <- "ColVariable"
+    colvar_headers$ColVariable <- stringr::str_remove(
+      colvar_headers$ColVariable,
+      "@\\d+$"
+    )
     colvar_headers$ColValue <- lapply(colvar_headers$ColVariable, \(x) attr(mapping$dat_mod[[x]], "labels"))
     colvar_headers$ColTitle2 <- lapply(colvar_headers$ColValue, \(x) names(x))
     value_col_table1 <- dplyr::bind_rows(
