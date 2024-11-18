@@ -152,7 +152,7 @@ row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_
     1,
     c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowValue", "RowDecimals")
   ] <- list(
-    "SumOfValid", "Abs", valid_answers_row_text, valid_answers_row_text, abs_text, 1, 0
+    "SumOfValid", "Abs", valid_answers_row_text, valid_answers_row_text, abs_text, 1, 0L
   )
   row_table$RowVariable <- qtab$p$rowvars_string
   row_table
@@ -315,8 +315,8 @@ row_table_valid_cases.default <- function(qtab) {
   valid_cases_text <- qtab$m$options$l_lexikon[["cTabGueltig"]]
   abs_text <- qtab$m$options$l_lexikon[["cTabAbs"]]
   percent_text <- qtab$m$options$l_lexikon[["cTabProz"]]
-  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Abs", valid_cases_text, valid_cases_text, abs_text, 0, 1)
-  row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Percent", valid_cases_text, valid_cases_text, percent_text, 1, 1)
+  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Abs", valid_cases_text, valid_cases_text, abs_text, 0L, 1)
+  row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Percent", valid_cases_text, valid_cases_text, percent_text, 1L, 1)
   row_table$RowVariable <- qtab$p$rowvars_string
   row_table
 }
@@ -521,8 +521,8 @@ row_table_no_entry.qtab_type_mdg <- function(qtab) {
   # TODO: use all variables, not only valid ones...!
   # (also needs to be done in qtab$d$stats_rows$no_entry...):
   row_variable <- qtab$p$rowvars_string
-  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Missing", "Abs", no_entry_text, no_entry_text, abs_text, 0, row_variable, 1)
-  row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Missing", "Percent", no_entry_text, no_entry_text, percent_text, 1, row_variable, 1)
+  row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Missing", "Abs", no_entry_text, no_entry_text, abs_text, 0L, row_variable, 1)
+  row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Missing", "Percent", no_entry_text, no_entry_text, percent_text, 1L, row_variable, 1)
   row_table
 
 }

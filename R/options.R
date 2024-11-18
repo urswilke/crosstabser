@@ -277,7 +277,7 @@ process_metr_mac <- function(params, mapping) {
   df_stat_funs <- data.frame(shortcut = l |> purrr::map_chr(1)) |>
     dplyr::mutate(
       fun = df_metr_mac$fun[match(shortcut, df_metr_mac$shortcut)],
-      decimals = as.numeric(l |> purrr::map_chr(\(x) x[length(x)])),
+      decimals = as.integer(l |> purrr::map_chr(\(x) x[length(x)])),
       row_title = mapping$options$l_lexikon[
         df_metr_mac$ctab_entry[match(shortcut, df_metr_mac$shortcut)]
       ] |> unname()
