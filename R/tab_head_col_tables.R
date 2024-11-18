@@ -49,7 +49,7 @@ gen_head_table <- function(mapping) {
 gen_col_table <- function(mapping) {
   head_table <- mapping$qsheet$head_table
 
-  ColBegin <- data.frame(HeadNo = c(1,1,1))
+  ColBegin <- data.frame(HeadNo = c(1L, 1L, 1L))
   ColBegin$ColTitle1 = ""
   ColBegin$ColTitle2 = ""
   ColBegin$ColVariable = "DC#ROWHEADER"

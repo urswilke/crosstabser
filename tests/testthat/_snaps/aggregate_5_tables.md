@@ -183,7 +183,7 @@
       $head_table
       # A tibble: 5 x 5
            BookNo HeadNo HeadName     HeadTitle HeadCount
-            <dbl>  <dbl> <chr>        <chr>         <int>
+            <dbl>  <int> <chr>        <chr>         <int>
       1 999999999      1 DC#ROWHEADER <NA>              3
       2 999999999      2 DC#TOTAL     GESAMT            1
       3 999999999      3 kregio       Region            4
