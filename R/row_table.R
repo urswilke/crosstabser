@@ -32,10 +32,10 @@ gen_row_table <- function(qtab) {
     row_table_weighted$RowWeighted <- "Weighted"
 
     weight_sign <- qtab$m$options$l_lexikon["cTabWeighted"]
-    row_table_weighted$RowTitle3 <- paste(row_table_weighted$RowTitle3, weight_sign)
+    row_table_weighted$RowTitle3 <- paste0(row_table_weighted$RowTitle3, weight_sign)
     is_stat_row <- row_table_weighted$RowContent == "Statistics"
-    row_table_weighted[is_stat_row, ]$RowTitle1 <- paste(row_table_weighted[is_stat_row, ]$RowTitle1, weight_sign)
-    row_table_weighted[is_stat_row, ]$RowTitle2 <- paste(row_table_weighted[is_stat_row, ]$RowTitle2, weight_sign)
+    row_table_weighted[is_stat_row, ]$RowTitle1 <- paste0(row_table_weighted[is_stat_row, ]$RowTitle1, weight_sign)
+    row_table_weighted[is_stat_row, ]$RowTitle2 <- paste0(row_table_weighted[is_stat_row, ]$RowTitle2, weight_sign)
   }
   row_table_values <- rbind(
     row_table_unweighted,

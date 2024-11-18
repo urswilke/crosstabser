@@ -204,7 +204,7 @@
       #   Mittelwertüberblick gewichtet mit gew
                                  GESA… Regi… ----- ----- -----
                                        Asien Euro… Nord… Pazi…
-      GÜLTIGE FÄLLE (min…  abs ⚖ 151    15    71.5  47.5  17  
+      GÜLTIGE FÄLLE (min…  abs⚖  151    15    71.5  47.5  17  
       Kundenzufriedenheit  Mitt…  68.7  56.7  69.5  77.4  52.1
                            GÜLT… 151    15    71.5  47.5  17  
       Marktvolumen         Mitt…  22.2  30.3  23.4  14.7  31.2
@@ -217,16 +217,16 @@
       #   gewichtet mit gew
                                  GESAMT   Regi… ------- ------- ------
                                           Asien Europa  Nordam… Pazif…
-      GESAMT               abs ⚖   151     15     71.5    47.5   17   
-      Mittelwert ⚖                  68.7   56.7   69.5    77.4   52.1 
-      Standardfehler ⚖               3.22  12.4    4.58    5.27   9.58
-      Median ⚖                      95     90     90     100     50   
-      Perzentil 25 % ⚖              40      5     50      56.2   20   
-      Summe ⚖                    10379    850   4969    3675    885   
-      Minimum ⚖                      0      0      0       0      0   
-      Maximum ⚖                    100    100    100     100    100   
-      GÜLTIGE FÄLLE        abs ⚖   151     15     71.5    47.5   17   
-                           in %…   100    100    100     100    100   
+      GESAMT               abs⚖    151     15     71.5    47.5   17   
+      Mittelwert⚖                   68.7   56.7   69.5    77.4   52.1 
+      Standardfehler⚖                3.22  12.4    4.58    5.27   9.58
+      Median⚖                       95     90     90     100     50   
+      Perzentil 25 %⚖               40      5     50      56.2   20   
+      Summe⚖                     10379    850   4969    3675    885   
+      Minimum⚖                       0      0      0       0      0   
+      Maximum⚖                     100    100    100     100    100   
+      GÜLTIGE FÄLLE        abs⚖    151     15     71.5    47.5   17   
+                           in %⚖   100    100    100     100    100   
       
       
       $`13`
@@ -892,7 +892,7 @@
                                  TOTAL  hallo ----- hall… -----
                                         Yes   No    Yes   No   
       VALID CASES (at le…  abs    3       2     1       0     0
-                           abs W  2.1     0.9   1.2     0     0
+                           absW   2.1     0.9   1.2     0     0
       hallo                Std.…  0.333   0     ·       ·     ·
                            Std.…  0.472   ·     ·       ·     ·
                            VALI…  3       2     1       0     0
@@ -909,7 +909,7 @@
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
-                           abs W   2.1   0.9   1.2     0     0
+                           absW    2.1   0.9   1.2     0     0
       hallo                Medi…   1     1     2       ·     ·
                            Medi…   2     1     2       ·     ·
                            VALI…   3     2     1       0     0
@@ -926,13 +926,13 @@
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs    3      2     1       0     0
-                           abs W  2.1    0.9   1.2     0     0
+                           absW   2.1    0.9   1.2     0     0
       hallo                Mean   1.33   1     2       ·     ·
-                           Mean…  1.57   1     2       ·     ·
+                           MeanW  1.57   1     2       ·     ·
                            VALI…  3      2     1       0     0
                            VALI…  2.1    0.9   1.2     0     0
       hallo 2              Mean   ·      ·     ·       ·     ·
-                           Mean…  ·      ·     ·       ·     ·
+                           MeanW  ·      ·     ·       ·     ·
                            VALI…  0      0     0       0     0
                            VALI…  0      0     0       0     0
       
@@ -948,7 +948,7 @@
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
-                           abs W   2.1   0.9   1.2     0     0
+                           absW    2.1   0.9   1.2     0     0
       hallo                Mini…   1     1     2       ·     ·
                            Mini…   1     1     2       ·     ·
                            VALI…   3     2     1       0     0
@@ -965,7 +965,7 @@
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
-                           abs W   2.1   0.9   1.2     0     0
+                           absW    2.1   0.9   1.2     0     0
       hallo                Maxi…   2     1     2       ·     ·
                            Maxi…   2     1     2       ·     ·
                            VALI…   3     2     1       0     0
@@ -982,13 +982,13 @@
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
       VALID CASES (at le…  abs     3     2     1       0     0
-                           abs W   2.1   0.9   1.2     0     0
+                           absW    2.1   0.9   1.2     0     0
       hallo                Sum     4     2     2       ·     ·
-                           Sum W   3.3   0.9   2.4     ·     ·
+                           SumW    3.3   0.9   2.4     ·     ·
                            VALI…   3     2     1       0     0
                            VALI…   2.1   0.9   1.2     0     0
       hallo 2              Sum     ·     ·     ·       ·     ·
-                           Sum W   ·     ·     ·       ·     ·
+                           SumW    ·     ·     ·       ·     ·
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       
@@ -1005,13 +1005,13 @@
                                  TOTAL hallo -----
                                        Yes   No   
       VALID CASES (at le…  abs     3     2     1  
-                           abs W   2.1   0.9   1.2
+                           absW    2.1   0.9   1.2
       hallo                Mean    1     1     ·  
-                           Mean…   1     1     ·  
+                           MeanW   1     1     ·  
                            VALI…   3     2     1  
                            VALI…   2.1   0.9   1.2
       hallo 2              Mean    ·     ·     ·  
-                           Mean…   ·     ·     ·  
+                           MeanW   ·     ·     ·  
                            VALI…   0     0     0  
                            VALI…   0     0     0  
       
@@ -1022,21 +1022,21 @@
                                  TOTAL hallo -----
                                        Yes   No   
       TOTAL                abs     3     2     1  
-                           abs W   2.1   0.9   1.2
+                           absW    2.1   0.9   1.2
       Yes                  abs     2     2     0  
-                           abs W   0.9   0.9   0  
+                           absW    0.9   0.9   0  
                            in %   66.7 100     0  
-                           in %…  42.9 100     0  
+                           in %W  42.9 100     0  
       No                   abs     1     0     1  
-                           abs W   1.2   0     1.2
+                           absW    1.2   0     1.2
                            in %   33.3   0   100  
-                           in %…  57.1   0   100  
+                           in %W  57.1   0   100  
       Mean                         1     1     ·  
-      Mean W                       1     1     ·  
+      MeanW                        1     1     ·  
       VALID CASES          abs     3     2     1  
-                           abs W   2.1   0.9   1.2
+                           absW    2.1   0.9   1.2
                            in %  100   100   100  
-                           in %… 100   100   100  
+                           in %W 100   100   100  
       
       
 
