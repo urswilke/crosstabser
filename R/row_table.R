@@ -311,6 +311,8 @@ row_table_valid_cases <- function(qtab) {
   UseMethod("row_table_valid_cases")
 }
 row_table_valid_cases.default <- function(qtab) {
+  # for mdg, when there aren't any valid counts, they aren't written...:
+  if (is.null(qtab$d$stats_rows$n_valid)) return()
   row_table <- empty_row_table()
   valid_cases_text <- qtab$m$options$l_lexikon[["cTabGueltig"]]
   abs_text <- qtab$m$options$l_lexikon[["cTabAbs"]]

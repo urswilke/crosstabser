@@ -238,6 +238,8 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   l_row_types$n_valid$RowContent <- "Valid"
   l_row_types$n_valid$RowAbsPercent <- "Abs"
 
+  if (all(l_row_types$n_valid$value == 0)) l_row_types$n_valid <- NULL
+
   qtab$d$stats_rows <- l_row_types
 }
 
@@ -469,6 +471,8 @@ calc_valid_counts_percentages.qtab_type_mw <- function(qtab) {
 calc_valid_counts_percentages.default <- function(qtab) {
   total_cts <- qtab$d$stats_rows$total
   valid_cts <- qtab$d$stats_rows$n_valid
+  # for mdg, when there aren't any valid counts, they aren't written...:
+  if (is.null(valid_cts)) return(NULL)
 
   # TODO: check if this can be changed to include implicit missing values in the
   # raw_data or rather the counts (make them explicit...)
