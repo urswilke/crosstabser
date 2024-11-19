@@ -247,6 +247,10 @@
       Median                            3      3.5   4      3      3.5 
       GÜLTIGE FÄLLE             abs   143     18    71     40     14   
                                 in %   94.7   94.7  94.7   93.0  100   
+      keine Angabe              abs     4      0     3      1      0   
+                                in %    2.65   0     4      2.33   0   
+      weiß nicht                abs     4      1     1      2      0   
+                                in %    2.65   5.26  1.33   4.65   0   
       
       
       $`14`

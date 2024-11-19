@@ -92,9 +92,6 @@ calc_detail_freqs <- function(qtab) {
   UseMethod("calc_detail_freqs")
 }
 calc_detail_freqs.qtab_type_cat <- function(qtab) {
-  if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
-    return(NULL)
-  }
   all_counts <- qtab$d$long_data |>
     summarize_stats(
       NULL,
@@ -104,8 +101,12 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
 
   all_counts$RowAbsPercent <- "Abs"
 
-  detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p[["Unguelt"]],]
-  detail_freqs$RowContent <- "Detail"
+  if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
+    detail_freqs <- NULL
+  } else {
+    detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p[["Unguelt"]],]
+    detail_freqs$RowContent <- "Detail"
+  }
 
   invalid_freqs <- all_counts[all_counts$rowval %in% qtab$p[["Unguelt"]],]
   invalid_freqs$RowContent <- "Missing"
