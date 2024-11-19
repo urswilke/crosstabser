@@ -59,6 +59,9 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
   }
   invalid_vals <- c(qtab$p[["Unguelt"]], qtab$p[["UngueltMW"]])
   long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
+  if (nrow(long_data) == 0) {
+    return()
+  }
   if (!is.null(qtab$p$MWRec)) {
     long_data$rowval <- catrec(long_data$rowval, qtab$p$MWRec)
   }
@@ -160,6 +163,9 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
 
 calc_detail_freqs.qtab_type_mdg <- function(qtab) {
   long_data <- qtab$d$long_data
+  if (nrow(long_data) == 0) {
+    return()
+  }
   all_counts <- long_data[long_data$val_to_count,] |>
     summarize_stats(
       NULL,
@@ -321,6 +327,9 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   invalid_vals <- qtab$p[["Unguelt"]]
 
   df_long <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
+  if (nrow(df_long) == 0) {
+    return()
+  }
 
   catrec_strings <- strsplit(qtab$p$CatRec, "\\|")[[1]]
   all_counts <- catrec_strings |>
