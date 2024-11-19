@@ -515,7 +515,7 @@ row_table_no_entry.qtab_type_mdg <- function(qtab) {
     return(NULL)
   }
   row_table <- empty_row_table()
-  no_entry_text <- qtab$m$options$l_lexikon["cTabNoEntry"]
+  no_entry_text <- qtab$p$MdgMissLab %||% qtab$m$options$l_lexikon[["cTabNoEntry"]]
   abs_text <- qtab$m$options$l_lexikon[["cTabAbs"]]
   percent_text <- qtab$m$options$l_lexikon[["cTabProz"]]
   # TODO: use all variables, not only valid ones...!
