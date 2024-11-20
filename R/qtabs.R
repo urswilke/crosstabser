@@ -93,6 +93,11 @@ calc_qtab_ <- function(qtab) {
   qtab$d$row_table <- gen_row_table(qtab)
   post_process(qtab)
   qtab$d$val_table <- gen_val_table(qtab)
+  # At the moment RowContent is used to merge RowNo and ColNo to tab_table in gen_val_table().
+  # Therefore, we need to also add RowContent columns to all the data.frames used by rbind_table_numbers().
+  # Thus, we can only set RowContent to "Filter" after calling gen_val_table().
+  # TODO: find cleaner solution...:
+  set_row_content_to_filter(qtab)
 }
 calc_qtab_elements <- function(qtab) {
   qtab$d$raw_data <- get_raw_data(qtab)
@@ -158,4 +163,10 @@ order_by_counts.qtab_type_mcg <- function(qtab) {
   row_table_detail_sorted$value <- NULL
 
   qtab$d$row_table[row_table_detail_lgl,] <- row_table_detail_sorted
+}
+
+set_row_content_to_filter <- function(qtab) {
+  row_table <- qtab$d$row_table
+  is_filter <- row_table$RowContent == "Missing" & row_table$RowTitle1 == qtab$m$params$miss_rec_lab
+  qtab$d$row_table$RowContent[is_filter] <- "Filter"
 }
