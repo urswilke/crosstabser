@@ -93,7 +93,7 @@ calc_qtab_ <- function(qtab) {
   qtab$d$row_table <- gen_row_table(qtab)
   post_process(qtab)
   qtab$d$val_table <- gen_val_table(qtab)
-  # At the moment RowContent is used to merge RowNo and ColNo to tab_table in gen_val_table().
+  # At the moment RowContent is used to merge RowNo and ColNo to val_table in gen_val_table().
   # Therefore, we need to also add RowContent columns to all the data.frames used by rbind_table_numbers().
   # Thus, we can only set RowContent to "Filter" after calling gen_val_table().
   # TODO: find cleaner solution...:
