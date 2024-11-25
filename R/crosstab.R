@@ -92,7 +92,11 @@ calc_detail_freqs <- function(qtab) {
   UseMethod("calc_detail_freqs")
 }
 calc_detail_freqs.qtab_type_cat <- function(qtab) {
-  all_counts <- qtab$d$long_data |>
+  long_data <- qtab$d$long_data[!is.na(qtab$d$long_data$rowval),]
+  if (nrow(long_data) == 0) {
+    return()
+  }
+  all_counts <- long_data |>
     summarize_stats(
       NULL,
       wt = qtab$p$Weight[[1]],
