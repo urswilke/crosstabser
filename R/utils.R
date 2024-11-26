@@ -63,4 +63,18 @@ rm_header_footer <- function(row_table) {
   row_table[-c(1:3, nrow(row_table)),]
 }
 
+get_tabulated_invalid_vals <- function(qtab) {
+  raw_data <- qtab$d$raw_data
+  df <- raw_data[names(raw_data) |> stringr::str_subset("^rowvar")]
 
+  all_vals <- df |> unlist() |> unique() |> sort()
+  invalid_vals <- qtab$p[["Unguelt"]]
+  ordered_vals <- all_vals |> setdiff(invalid_vals) |> c(invalid_vals)
+  df$i <- seq_len(nrow(df))
+  df_long <- df |>
+    tidyr::pivot_longer(-i) |>
+    dplyr::mutate(ii = match(value, ordered_vals) |> min(), .by = "i")
+  indices <- df_long$ii |>
+    unique()
+  ordered_vals[indices]
+}

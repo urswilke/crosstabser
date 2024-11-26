@@ -437,16 +437,20 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   if (qtab$p$Type == "mcg" && qtab$d$raw_data[stringr::str_subset(names(qtab$d$raw_data), "^rowvar_")] |> apply(1, \(x) any(!x %in% invalid_vals)) |> all()) {
     return(NULL)
   }
+  if (qtab$p$Type == "mcg") {
+    # TODO: use a unified method together with flag_exclusives() etc (?);
+    # => discuss with Wolf if also needed for mdg?
+    occuring_vals <- get_tabulated_invalid_vals(qtab)
+  }
   vallabs <- attr(qtab$m$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
 
   occuring_invalid_vals <- intersect(invalid_vals, occuring_vals)
-  all_invalid_vals <- c(vallabs, occuring_invalid_vals)
-  all_invalid_vals <- all_invalid_vals[!duplicated(all_invalid_vals) & all_invalid_vals %in% occuring_invalid_vals]
-  sorted_invalid_vals <- all_invalid_vals[order(match(all_invalid_vals, invalid_vals))]
 
-  vallab_table <- sorted_invalid_vals |>
+  vallab_table <- vallabs |>
     tibble::enframe("vallab", "val") |>
+    dplyr::filter(val %in% occuring_invalid_vals) |>
     dplyr::mutate(vallab = ifelse(vallab == "", as.character(val), vallab))
+  vallab_table <- vallab_table[order(match(vallab_table$val, occuring_invalid_vals)),]
   n_vals <- nrow(vallab_table)
 
   vallab_table <- vallab_table[rep(seq_len(n_vals), each = 2),]
