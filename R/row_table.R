@@ -431,7 +431,7 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
 
   vallab_table <- sorted_invalid_vals |>
     tibble::enframe("vallab", "val") |>
-    dplyr::mutate(vallab = dplyr::coalesce(vallab, as.character(val)))
+    dplyr::mutate(vallab = ifelse(vallab == "", as.character(val), vallab))
   n_vals <- nrow(vallab_table)
 
   vallab_table <- vallab_table[rep(seq_len(n_vals), each = 2),]
