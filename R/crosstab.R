@@ -187,7 +187,7 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
     valid_no_entry <- qtab$d$stats_rows$valid_no_entry
     valid_no_entry$rowvar <- "valid_no_entry"
     valid_no_entry$RowAbsPercent <- "Abs"
-    detail_freqs <- rbind(detail_freqs, valid_no_entry)
+    detail_freqs <- rbind(detail_freqs, valid_no_entry[valid_no_entry$value > 0,])
   }
 
   detail_freqs$RowContent <- "Detail"
