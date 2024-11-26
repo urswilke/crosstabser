@@ -182,6 +182,14 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
 
   is_valid <- all_counts$rowvar %in% (qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]])
   detail_freqs <- all_counts[!is_valid,]
+
+  if (!is.null(qtab$p$MdgMissValid) && qtab$p$MdgMissValid == "TRUE") {
+    valid_no_entry <- qtab$d$stats_rows$valid_no_entry
+    valid_no_entry$rowvar <- "valid_no_entry"
+    valid_no_entry$RowAbsPercent <- "Abs"
+    detail_freqs <- rbind(detail_freqs, valid_no_entry)
+  }
+
   detail_freqs$RowContent <- "Detail"
 
   # TODO: fix counting as done when Exclusive is set...:
@@ -215,6 +223,17 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
     pivot_cols()
 
   row_types <- c("total", "sum_of_valid", "n_valid", "no_entry")
+  if (!is.null(qtab$p$MdgMissValid) && qtab$p$MdgMissValid == "TRUE") {
+    df_cols_long <- df_cols_long |>
+      dplyr::mutate(
+        n_valid = n_valid | no_entry,
+        sum_of_valid = sum_of_valid + no_entry,
+        valid_no_entry = no_entry,
+        no_entry = 0
+      )
+    row_types <- row_types |> append("valid_no_entry")
+  }
+
   df_stats_rows <- df_cols_long |>
     summarize_stats(
       row_types,

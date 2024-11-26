@@ -235,6 +235,17 @@ row_table_body.qtab_type_mdg <- function(qtab) {
     label = unlist(l_varlabs, use.names = FALSE)
   ) |>
     dplyr::mutate(label = dplyr::coalesce(label, var))
+  rowvars_valid <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab
+  if (!is.null(qtab$p$MdgMissValid) && qtab$p$MdgMissValid == "TRUE") {
+    mdg_miss_lab <- qtab$p$MdgMissLab
+    if (is.null(mdg_miss_lab)) {
+      stop("When setting MdgMissValid == TRUE, you need to also specify MdgMissLab!")
+    }
+    label_table <- label_table |> rbind(
+      data.frame(var = "valid_no_entry", label = mdg_miss_lab)
+    )
+    rowvars_valid <- rowvars_valid |> append("valid_no_entry")
+  }
   n_vals <- nrow(label_table)
 
   label_table <- label_table[rep(seq_len(n_vals), each = 2),]
@@ -254,7 +265,7 @@ row_table_body.qtab_type_mdg <- function(qtab) {
     1L
   ) |> rep(n_vals)
   row_table$RowContent <- "Detail"
-  row_table$RowVariable <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab |> rep(each = 2)
+  row_table$RowVariable <- rowvars_valid |> rep(each = 2)
   row_table
 }
 
