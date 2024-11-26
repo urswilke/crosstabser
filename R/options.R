@@ -110,6 +110,8 @@ extract_scenario_options <- function(df_macro_raw, v_scenario) {
     res$Unwgt <- FALSE
   }
 
+  if ("gesplab" %in% names(param_list) && !is.na(param_list[["gesplab"]])) res$gesplab <- param_list[["gesplab"]]
+
   res$Filter <- param_list[["Filter"]] |>
     # hopefully, won't be needed one day:
     spss_to_r()

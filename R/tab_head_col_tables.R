@@ -82,7 +82,7 @@ gen_col_table <- function(mapping) {
     1L,
     2L,
     mapping$options$l_lexikon["cTabGesamt"],
-    " ",
+    mapping$options$l_macro_scenario[["gesplab"]] %||% " ",
     "DC#TOTAL",
     1L
   )
