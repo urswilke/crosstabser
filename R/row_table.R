@@ -419,7 +419,11 @@ row_table_invalid_vals <- function(qtab) {
 row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- function(qtab) {
   occuring_vals <- qtab$d$tab_values$rowval |> unique()
   invalid_vals <- qtab$p[["Unguelt"]]
-  if (all(!occuring_vals %in% invalid_vals)) {
+  # TODO: rather use different methods for cat & mcg...!
+  if (qtab$p$Type == "cat" && all(!occuring_vals %in% invalid_vals)) {
+    return(NULL)
+  }
+  if (qtab$p$Type == "mcg" && qtab$d$raw_data[stringr::str_subset(names(qtab$d$raw_data), "^rowvar_")] |> apply(1, \(x) any(!x %in% invalid_vals)) |> all()) {
     return(NULL)
   }
   vallabs <- attr(qtab$m$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
