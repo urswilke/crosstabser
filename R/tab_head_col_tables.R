@@ -101,7 +101,7 @@ gen_col_table <- function(mapping) {
       colvar_headers$ColVariable,
       "@\\d+$"
     )
-    colvar_headers$ColValue <- lapply(colvar_headers$ColVariable, \(x) attr(mapping$dat_mod[[x]], "labels"))
+    colvar_headers$ColValue <- lapply(colvar_headers$ColVariable, \(x) sort(attr(mapping$dat_mod[[x]], "labels")))
     colvar_headers$ColTitle2 <- lapply(colvar_headers$ColValue, \(x) names(x))
     value_col_table1 <- dplyr::bind_rows(
       value_col_table1,
