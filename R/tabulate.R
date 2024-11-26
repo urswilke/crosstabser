@@ -96,6 +96,13 @@ prep_data <- function(
   for (col in names(dat)) {
     attributes(dat[[col]]) <- NULL
   }
+  if (!is.null(weightvar)) {
+    weight_not_pos <- dat[["weight"]] <= 0
+    if (any(weight_not_pos)) {
+      dat <- dat[!weight_not_pos,]
+      warning("There are cases where the weight variable is not positive. They were removed.")
+    }
+  }
   dat
 }
 
