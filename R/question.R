@@ -95,9 +95,10 @@ gen_qtabs_params <- function(qrow_params, mapping) {
       if (is.null(x$Weight)) {
         return(x)
       }
+      weight_label <- attr(mapping$dat_mod[[x$Weight]], "label", exact = TRUE) %||% x$Weight
       x$Title <- append(
         x$Title,
-        paste0(mapping$options$l_lexikon["cTxtWeightedBy"], x$Weight)
+        paste0(mapping$options$l_lexikon["cTxtWeightedBy"], weight_label)
       )
       x
     })
