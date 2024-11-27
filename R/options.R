@@ -300,6 +300,14 @@ process_metr_mac <- function(params, mapping) {
       "%"
     )
 
+  # TODO: add test with multiple percentiles in MetrMac
+  if (dplyr::n_distinct(df_stat_funs$row_title) < nrow(df_stat_funs)) {
+    stop(
+      "You cannot use the same statistical function more than once in MetrMac.\n",
+      "(not yet implemented)"
+    )
+  }
+
   df_stat_funs$quantile_val <- vector("list", length(l))
   df_stat_funs$quantile_val[is_percentile_row] <-
     as.numeric(percentile_string) / 100

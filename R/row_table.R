@@ -419,7 +419,7 @@ row_table_stats.qtab_type_cat <- function(qtab) {
   row_table$RowVariable <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab
   # TODO: tell Wolf that I needed this to properly merge to tab_values when
   # there multiple rows with MStatistics:
-  row_table$RowStatFun <- df_stat_funs$fun
+  row_table$RowStatFun <- df_stat_funs$row_title
   row_table
 }
 

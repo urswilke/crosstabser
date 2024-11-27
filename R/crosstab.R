@@ -50,7 +50,7 @@ add_missing_cases <- function(df, qtab) {
       colvar = qtab$d$col_table$ColVariable,
       colval = qtab$d$col_table$ColValue
     ),
-    RowStatFun = qtab$p$df_stat_funs$fun,
+    RowStatFun = qtab$p$df_stat_funs$row_title,
   )
 }
 calc_stat_fun.qtab_type_cat <- function(qtab) {
@@ -69,7 +69,7 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
   df_stat_funs <- qtab$p$df_stat_funs
   l <- df_stat_funs |>
     split(seq_len(nrow(df_stat_funs))) |>
-    purrr::set_names(df_stat_funs$fun)
+    purrr::set_names(df_stat_funs$row_title)
   res <- l |>
     purrr::map_dfr(
       \(x) long_data |>
