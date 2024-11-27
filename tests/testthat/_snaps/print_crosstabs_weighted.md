@@ -131,7 +131,7 @@
       StandardfehlerW                3.22   12.4    4.58    5.27   9.58
       Median                       100     100    100     100     65   
       MedianW                       95      90     90     100     50   
-      Perzentil 25 %                50      15     50      70     20   
+      Perzentil 25 %                50      10     50      60     20   
       Perzentil 25 %W               40       5     50      56.2   20   
       Summe                      10988    1270   5498    3420    800   
       SummeW                     10379     850   4969    3675    885   
@@ -361,7 +361,7 @@
       StandardfehlerW                3.22   12.4    4.58    5.27   9.58
       Median                       100     100    100     100     65   
       MedianW                       95      90     90     100     50   
-      Perzentil 25 %                50      15     50      70     20   
+      Perzentil 25 %                50      10     50      60     20   
       Perzentil 25 %W               40       5     50      56.2   20   
       Summe                      10988    1270   5498    3420    800   
       SummeW                     10379     850   4969    3675    885   

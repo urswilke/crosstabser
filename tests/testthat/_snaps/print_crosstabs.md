@@ -81,7 +81,7 @@
       Mittelwert                    72.8    66.8   73.3    79.5   57.1
       Standardfehler                 3.05   10.2    4.11    5.31  11.4
       Median                       100     100    100     100     65  
-      Perzentil 25 %                50      15     50      70     20  
+      Perzentil 25 %                50      10     50      60     20  
       Summe                      10988    1270   5498    3420    800  
       Minimum                        0       0      0       0      0  
       Maximum                      100     100    100     100    100  

@@ -106,7 +106,7 @@ se <- function(x, na.rm = TRUE, ...) {
 #' @keywords internal
 #' @export
 percentile <- function(x, na.rm = TRUE, ...) {
-  stats::quantile(x, na.rm = na.rm, ...)
+  stats::quantile(x, na.rm = na.rm, type = 2, ...)
 }
 stat_fun_wt <- function(x, ...) {
   UseMethod("stat_fun_wt")
