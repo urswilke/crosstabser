@@ -93,24 +93,24 @@
       $`9`[[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Kundenzufriedenheit
-                                 GESAMT Region ------ ------ ------
-                                        Asien  Europa Norda… Pazif…
-      GESAMT               abs   151     19     75     43     14   
-      Mittelwert                  95.5   95.4   94.2   97.4   95.7 
-      Standardfehler               1.03   3.32   1.65   1.38   2.97
-      GÜLTIGE FÄLLE        abs   151     19     75     43     14   
-                           in %  100    100    100    100    100   
+                                 GESAMT Regi… ------ ------ -----
+                                        Asien Europa Norda… Pazi…
+      GESAMT               abs   151     19    75     43     14  
+      Mittelwert                  65.8   64.6  64.7   74.3   46.9
+      Standardfehler               3.73  10.9   5.28   6.57  13.6
+      GÜLTIGE FÄLLE        abs   151     19    75     43     14  
+                           in %  100    100   100    100    100  
       
       $`9`[[2]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Marktvolumen
-                                 GESAMT Regi… ------ ----- ------
-                                        Asien Europa Nord… Pazif…
-      GESAMT               abs   151       19  75       43  14   
-      Mittelwert                  94.8     95  93.6    100  93.3 
-      Standardfehler               2.35     5   3.88     0   6.67
-      GÜLTIGE FÄLLE        abs   151       19  75       43  14   
-                           in %  100      100 100      100 100   
+                                 GESAMT Region ------ ------ -----
+                                        Asien  Europa Norda… Pazi…
+      GESAMT               abs   151     19     75     43     14  
+      Mittelwert                  11.5   18.4   12.0    5.12  18.4
+      Standardfehler               2.75   9.37   3.97   4.01  10.9
+      GÜLTIGE FÄLLE        abs   151     19     75     43     14  
+                           in %  100    100    100    100    100  
       
       
       $`10`

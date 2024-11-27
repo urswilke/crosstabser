@@ -2,7 +2,7 @@ catrec <- function(vec, cat_rec_string) {
   cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
   cat_rec_quos <- lapply(cat_rec_interval_splits$interval_strings, gen_cat_rec_fun)
   cat_rec_exprs <- stringr::str_extract_all(cat_rec_string, "(?<=\\().*?(?=\\))")[[1]]
-  cat_rec_vals <- stringr::str_extract(cat_rec_exprs, "(?<=\\=) *\\d+$") |> as.numeric()
+  cat_rec_vals <- stringr::str_extract(cat_rec_exprs, "(?<=\\=) *-?\\d+$") |> as.numeric()
 
   l_cat_rec <- purrr::map2(
     cat_rec_quos,

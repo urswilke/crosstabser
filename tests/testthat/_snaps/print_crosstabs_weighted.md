@@ -149,34 +149,34 @@
       $`9`[[1]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Kundenzufriedenheit
-                                 GESAMT  Region ------ ------ ------
-                                         Asien  Europa Norda… Pazif…
-      GESAMT               abs   151      19     75     43     14   
-                           absW  151      15     71.5   47.5   17   
-      Mittelwert                  95.5    95.4   94.2   97.4   95.7 
-      MittelwertW                 95.9    96.5   94.8   97.7   93.6 
-      Standardfehler               1.03    3.32   1.65   1.38   2.97
-      StandardfehlerW              0.922   3.75   1.53   1.03   3.65
-      GÜLTIGE FÄLLE        abs   151      19     75     43     14   
-                           absW  151      15     71.5   47.5   17   
-                           in %  100     100    100    100    100   
-                           in %W 100     100    100    100    100   
+                                 GESAMT Regi… ------ ------ -----
+                                        Asien Europa Norda… Pazi…
+      GESAMT               abs   151     19    75     43     14  
+                           absW  151     15    71.5   47.5   17  
+      Mittelwert                  65.8   64.6  64.7   74.3   46.9
+      MittelwertW                 61.2   53.8  61.6   71.5   37.4
+      Standardfehler               3.73  10.9   5.28   6.57  13.6
+      StandardfehlerW              3.87  13.2   5.56   6.48  11.8
+      GÜLTIGE FÄLLE        abs   151     19    75     43     14  
+                           absW  151     15    71.5   47.5   17  
+                           in %  100    100   100    100    100  
+                           in %W 100    100   100    100    100  
       
       $`9`[[2]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Marktvolumen
-                                 GESAMT Region ------ ----- ------
-                                        Asien  Europa Nord… Pazif…
-      GESAMT               abs   151     19     75     43    14   
-                           absW  151     15     71.5   47.5  17   
-      Mittelwert                  94.8   95     93.6  100    93.3 
-      MittelwertW                 95.8   95.6   95.7  100    92   
-      Standardfehler               2.35   5      3.88   0     6.67
-      StandardfehlerW              1.63   4.44   2.51   0     4.90
-      GÜLTIGE FÄLLE        abs   151     19     75     43    14   
-                           absW  151     15     71.5   47.5  17   
-                           in %  100    100    100    100   100   
-                           in %W 100    100    100    100   100   
+                                 GESAMT Region ------ ------ -----
+                                        Asien  Europa Norda… Pazi…
+      GESAMT               abs   151     19     75     43     14  
+                           absW  151     15     71.5   47.5   17  
+      Mittelwert                  11.5   18.4   12.0    5.12  18.4
+      MittelwertW                 16.5   27.3   17.1    8.74  25.6
+      Standardfehler               2.75   9.37   3.97   4.01  10.9
+      StandardfehlerW              3.14  12.0    4.64   4.59  10.8
+      GÜLTIGE FÄLLE        abs   151     19     75     43     14  
+                           absW  151     15     71.5   47.5   17  
+                           in %  100    100    100    100    100  
+                           in %W 100    100    100    100    100  
       
       
       $`10`
