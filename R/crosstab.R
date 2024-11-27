@@ -29,7 +29,7 @@ calc_stat_fun.qtab_type_mw <- function(qtab) {
   long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
 
   if (!is.null(qtab$p$MWRec)) {
-    long_data$rowval <- catrec(long_data$rowval, qtab$p$MWRec)
+    long_data$rowval <- mw_rec_helper(long_data$rowval, qtab$p$MWRec)
   }
   res <- long_data |>
     summarize_stats(
@@ -63,7 +63,7 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
     return()
   }
   if (!is.null(qtab$p$MWRec)) {
-    long_data$rowval <- catrec(long_data$rowval, qtab$p$MWRec)
+    long_data$rowval <- mw_rec_helper(long_data$rowval, qtab$p$MWRec)
   }
 
   df_stat_funs <- qtab$p$df_stat_funs
@@ -368,7 +368,7 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
 }
 summarise_catrec <- function(df_long, catrec_string, wt) {
   catrec_sum_string <- catrec_string |> stringr::str_extract("(?<=\\{).*(?=\\})")
-  df_long$rowval <- catrec(df_long$rowval, catrec_string)
+  df_long$rowval <- mw_rec_helper(df_long$rowval, catrec_string)
   df_long$rowvar <- paste0(df_long$rowvar, "__summary")
   non_recoded_idx <- is.na(df_long$rowval)
 

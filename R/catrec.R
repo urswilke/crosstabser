@@ -1,4 +1,5 @@
-catrec <- function(vec, cat_rec_string) {
+catrec <- function(vec, cat_rec_string, else_value = NULL) {
+  if (is.null(else_value)) else_value <- vec
   cat_rec_interval_splits <- split_cat_rec_string(cat_rec_string)
   cat_rec_quos <- lapply(cat_rec_interval_splits$interval_strings, gen_cat_rec_fun)
   cat_rec_exprs <- stringr::str_extract_all(cat_rec_string, "(?<=\\().*?(?=\\))")[[1]]
@@ -9,8 +10,7 @@ catrec <- function(vec, cat_rec_string) {
     cat_rec_vals,
     \(f, x) rlang::quo(!!f(vec) ~ !!x)
   )
-  # TODO: tell Wolf that all "ELSE" values are kept (.default = vec)!...:
-  dplyr::case_when(!!!l_cat_rec, .default = vec)
+  dplyr::case_when(!!!l_cat_rec, .default = else_value)
 }
 
 split_cat_rec_string <- function(cat_rec_string) {
@@ -57,3 +57,20 @@ gen_cat_rec_fun <- function(cat_rec_interval_split) {
   }
 }
 
+mw_rec_helper <- function(vec, mw_rec_string) {
+  else_value <- high_value <- 98765432123
+  else_copy_substring <- "\\( *ELSE *\\= *COPY *\\)"
+  if (stringr::str_detect(mw_rec_string, else_copy_substring)) {
+    mw_rec_string <- stringr::str_remove(mw_rec_string, else_copy_substring)
+    else_value <- vec
+  }
+  vec <- catrec(vec, mw_rec_string, else_value)
+  if (!is.na(match(high_value, vec))) {
+    stop(
+      "Did you forget to recode occurring values in the string\n",
+      mw_rec_string, "\n",
+      "You need to set `(ELSE=COPY)` in at the end of the recoding string to keep values without overwriting."
+    )
+  }
+  vec
+}
