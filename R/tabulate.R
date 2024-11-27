@@ -189,7 +189,11 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
       c("i", "rowval")
     )), .keep_all = TRUE)
 
-  # TODO: add test to check if this works correctly!...:
+  # this doesn't work correctly !!!
+  # (for cases responding invalid values at the same time as valid values;
+  # in that case the invalid values shouldn't be counted)
+  # TODO: fix that!!!!!:
+  # But for mdg it should work the same!!!
   invalids_to_filter <- intersect(
     # TODO: put datenanpassr Mapping$params in the same structure as Tabula$p
     qtab$m$params$miss_rec_val,

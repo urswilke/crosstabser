@@ -651,6 +651,8 @@
                            in %   1.37   0     0     4.35     0
       Kompetenz            abs   14      1    10     2        1
                            in %  19.2   14.3  26.3   8.70    20
+      -2                   abs    0      0     0     0        0
+                           in %   0      0     0     0        0
       
       $`24`[[3]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
@@ -672,6 +674,8 @@
                            in %   9.30  28.6   5.56  7.69     0
       Kompetenz            abs    5      0     2     2        1
                            in %  11.6    0    11.1  15.4     20
+      -2                   abs    0      0     0     0        0
+                           in %   0      0     0     0        0
       
       
       $`25`

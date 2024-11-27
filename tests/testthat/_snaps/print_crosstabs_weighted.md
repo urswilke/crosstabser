@@ -1109,6 +1109,10 @@
                            absW  14      1     8.5   2.5    2   
                            in %  19.2   14.3  26.3   8.70  20   
                            in %W 17.9   16.7  22.1   8.93  36.4 
+      -2                   abs    0      0     0     0      0   
+                           absW   0      0     0     0      0   
+                           in %   0      0     0     0      0   
+                           in %W  0      0     0     0      0   
       
       $`24`[[3]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
@@ -1146,6 +1150,10 @@
                            absW   4      0     1     2.5    0.5 
                            in %  11.6    0    11.1  15.4   20   
                            in %W 11.0    0     7.14 20      8.33
+      -2                   abs    0      0     0     0      0   
+                           absW   0      0     0     0      0   
+                           in %   0      0     0     0      0   
+                           in %W  0      0     0     0      0   
       
       
       $`25`

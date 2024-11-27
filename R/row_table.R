@@ -446,11 +446,18 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
 
   occuring_invalid_vals <- intersect(invalid_vals, occuring_vals)
 
-  vallab_table <- vallabs |>
-    tibble::enframe("vallab", "val") |>
-    dplyr::filter(val %in% occuring_invalid_vals) |>
-    dplyr::mutate(vallab = ifelse(vallab == "", as.character(val), vallab))
-  vallab_table <- vallab_table[order(match(vallab_table$val, occuring_invalid_vals)),]
+  # get a table of all invalid values "val" & their value labels "vallab":
+  # - the order of "val" is defined by invalid_vals
+  # - non-labelled values will be labelled by their values
+  all_invalid_vals <- c(vallabs, occuring_invalid_vals)
+  all_invalid_vals <- all_invalid_vals[!duplicated(all_invalid_vals) & all_invalid_vals %in% occuring_invalid_vals]
+  sorted_invalid_vals <- all_invalid_vals[order(match(all_invalid_vals, invalid_vals))]
+  isnt_labelled <- names(sorted_invalid_vals) == ""
+  names(sorted_invalid_vals)[isnt_labelled] <- as.character(sorted_invalid_vals[isnt_labelled])
+
+  vallab_table <- sorted_invalid_vals |>
+    tibble::enframe("vallab", "val")
+
   n_vals <- nrow(vallab_table)
 
   vallab_table <- vallab_table[rep(seq_len(n_vals), each = 2),]
