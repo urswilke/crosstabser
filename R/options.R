@@ -294,10 +294,9 @@ process_metr_mac <- function(params, mapping) {
     )
 
   df_stat_funs$row_title[is_percentile_row] <-
-    paste(
-      df_stat_funs$row_title[is_percentile_row],
+    paste0(
       percentile_string,
-      "%"
+      df_stat_funs$row_title[is_percentile_row]
     )
 
   # TODO: add test with multiple percentiles in MetrMac

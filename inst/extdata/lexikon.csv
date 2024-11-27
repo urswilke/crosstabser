@@ -125,7 +125,7 @@ cTabFilter;FILTER;FILTER;FILTER;FILTER
 cTabSum;Summe;Summe;Sum;Sum
 cTabMin;Minimum;Minimum;Minimum;Minimum
 cTabMax;Maximum;Maximum;Maximum;Maximum
-cTabPercentile;Perzentil;Perzentil;Percentile;Percentile
+cTabPercentile;. Perzentil;. Perzentil;th percentile;th percentile
 cTabMissing;Fehlende Werte;Fehlende Werte;Missing values;Missing values
 cTabTitle;Titel;Titel;Title;Title
 cTabAbs;abs;abs;abs;abs
