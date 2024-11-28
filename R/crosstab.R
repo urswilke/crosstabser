@@ -268,7 +268,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
 }
 
 calc_stats_rows.qtab_type_mw <- function(qtab) {
-  invalid_vals <- qtab$p[["Unguelt"]]
+  invalid_vals <- c(qtab$p[["Unguelt"]], NA)
   df <- qtab$d$raw_data
   # for TOTAL column:
   df$"colvar_DC#TOTAL" <- 1
