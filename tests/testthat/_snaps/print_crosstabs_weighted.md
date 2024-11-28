@@ -465,8 +465,8 @@
                                         Asien Euro… Nord… Pazi…
       GESAMT               abs   151    19    75    43    14   
                            absW  151    15    71.5  47.5  17   
-      Summe der gültigen…  abs   140    18    70    36    16   
-                           absW  124.   14.5  61.5  32.5  15   
+      Summe der gültigen…  abs    96    14    48    24    10   
+                           absW   85.5  11.5  43    22.5   8.5 
       einfache Weiterver…  abs    28     1    18     7     2   
                            absW   26.5   0.5  16     7.5   2.5 
                            in %   34.1   8.33 43.9  31.8  28.6 

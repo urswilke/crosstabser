@@ -284,7 +284,7 @@
                                  GESAMT Regi… ----- ----- -----
                                         Asien Euro… Nord… Pazi…
       GESAMT               abs   151    19    75    43     14  
-      Summe der gültigen…  abs   140    18    70    36     16  
+      Summe der gültigen…  abs    96    14    48    24     10  
       einfache Weiterver…  abs    28     1    18     7      2  
                            in %   34.1   8.33 43.9  31.8   28.6
       Darstellung der Da…  abs    21     2    11     5      3  

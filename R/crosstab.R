@@ -304,7 +304,7 @@ calc_stats_rows.qtab_type_mcg <- function(qtab) {
   invalid_vals <- qtab$p[["Unguelt"]]
 
   df_long <- qtab$d$long_data
-  df_long_valid <- df_long[!df_long$rowval %in% invalid_vals,]
+  df_long_valid <- df_long[!(df_long$rowval %in% invalid_vals) & df_long$val_to_count,]
   group_variables <- c("colvar", "colval")
   # the next is equivalent to (for unweighted):
   # total <- df_long |> dplyr::summarise(value = dplyr::n_distinct(i), .by = c("colvar", "colval"))
