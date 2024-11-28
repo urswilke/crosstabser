@@ -257,6 +257,7 @@ get_rowvars_cat <- function(params) {
   params$RowVar[((i_cat - 1) * nsel + 1):(i_cat * nsel)]
 }
 set_qtab_params.qtab_params_mcg <- function(params, mapping) {
+  params$Exclusive <- as.numeric(params$Exclusive)
   params$rowvars_qtab <- params$RowVar
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()

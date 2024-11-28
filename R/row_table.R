@@ -438,9 +438,9 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
     return(NULL)
   }
   if (qtab$p$Type == "mcg") {
-    # TODO: use a unified method together with flag_exclusives() etc (?);
-    # => discuss with Wolf if also needed for mdg?
-    occuring_vals <- get_tabulated_invalid_vals(qtab)
+    # we only need the unique values in the lowest_choice column to know which rows should be in the crosstab.
+    # => perhaps better store that in an additional field in Qtab...(?)
+    occuring_vals <- qtab$d$long_data$lowest_choice |> unique()
   }
   vallabs <- attr(qtab$m$dat_mod[[qtab$p$rowvars_qtab[1]]], "labels")
 

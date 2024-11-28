@@ -63,32 +63,20 @@ rm_header_footer <- function(row_table) {
   row_table[-c(1:3, nrow(row_table)),]
 }
 
-get_tabulated_invalid_vals <- function(qtab) {
-  raw_data <- qtab$d$raw_data
-  df <- raw_data[names(raw_data) |> stringr::str_subset("^rowvar")]
-
-  all_vals <- df |> unlist() |> unique() |> sort()
-  invalid_vals <- qtab$p[["Unguelt"]]
-  ordered_vals <- all_vals |> setdiff(invalid_vals) |> c(invalid_vals)
-  df$i <- seq_len(nrow(df))
-  df_long <- df |>
-    tidyr::pivot_longer(-i) |>
-    dplyr::mutate(ii = match(value, ordered_vals) |> min(), .by = "i")
-  indices <- df_long$ii |>
-    unique()
-  ordered_vals[indices]
-}
-
 add_exclusive_info <- function(df_rows_long, exclusives) {
   occurring_vals <- df_rows_long$rowval |> unique() |> sort()
 
   non_exclusives <- occurring_vals |> setdiff(exclusives)
   ordered_vals <- non_exclusives |> c(exclusives)
-  df_rows_long |>
+  res <- df_rows_long |>
     dplyr::mutate(
       index = match(rowval, ordered_vals),
       lowest_index = index |> min(),
       val_to_count = index == lowest_index | ordered_vals[index] %in% non_exclusives,
       .by = "i"
     )
+  res$index <- NULL
+  res$lowest_choice <- ordered_vals[res$lowest_index]
+  res$lowest_index <- NULL
+  res
 }
