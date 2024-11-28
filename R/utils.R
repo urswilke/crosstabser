@@ -78,3 +78,17 @@ get_tabulated_invalid_vals <- function(qtab) {
     unique()
   ordered_vals[indices]
 }
+
+add_exclusive_info <- function(df_rows_long, exclusives) {
+  occurring_vals <- df_rows_long$rowval |> unique() |> sort()
+
+  non_exclusives <- occurring_vals |> setdiff(exclusives)
+  ordered_vals <- non_exclusives |> c(exclusives)
+  df_rows_long |>
+    dplyr::mutate(
+      index = match(rowval, ordered_vals),
+      lowest_index = index |> min(),
+      val_to_count = index == lowest_index | ordered_vals[index] %in% non_exclusives,
+      .by = "i"
+    )
+}

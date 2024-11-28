@@ -256,26 +256,26 @@
       $`14`
       $`14`[[1]]
       # 5. Was lief besonders gut in den Projekten?
-                                 GESA… Regi… ----- ----- -----
-                                       Asien Euro… Nord… Pazi…
-      GESAMT               abs   151    19    75    43   14   
-      Summe der gültigen…  abs    60    10    26    16    8   
-      Darstellung der Da…  abs    21     2    11     5    3   
-                           in %   45.7  25    57.9  35.7 60   
-      Schnelligkeit der …  abs    17     4     6     4    3   
-                           in %   37.0  50    31.6  28.6 60   
-      Sonstiges            abs    12     2     4     5    1   
-                           in %   26.1  25    21.1  35.7 20   
-      Freundlichkeit des…  abs    10     2     5     2    1   
-                           in %   21.7  25    26.3  14.3 20   
-      GÜLTIGE FÄLLE        abs    46     8    19    14    5   
-                           in %   30.5  42.1  25.3  32.6 35.7 
-      einfache Weiterver…  abs    42     4    24    10    4   
-                           in %   27.8  21.1  32    23.3 28.6 
-      Kompetenz            abs    20     4    10     5    1   
-                           in %   13.2  21.1  13.3  11.6  7.14
-      Keine Angabe         abs    69     7    34    21    7   
-                           in %   45.7  36.8  45.3  48.8 50   
+                                 GESAMT Regi… ----- ----- -----
+                                        Asien Euro… Nord… Pazi…
+      GESAMT               abs   151    19    75    43     14  
+      Summe der gültigen…  abs    60    10    26    16      8  
+      Darstellung der Da…  abs    21     2    11     5      3  
+                           in %   45.7  25    57.9  35.7   60  
+      Schnelligkeit der …  abs    17     4     6     4      3  
+                           in %   37.0  50    31.6  28.6   60  
+      Sonstiges            abs    12     2     4     5      1  
+                           in %   26.1  25    21.1  35.7   20  
+      Freundlichkeit des…  abs    10     2     5     2      1  
+                           in %   21.7  25    26.3  14.3   20  
+      GÜLTIGE FÄLLE        abs    46     8    19    14      5  
+                           in %   30.5  42.1  25.3  32.6   35.7
+      einfache Weiterver…  abs    28     1    18     7      2  
+                           in %   18.5   5.26 24    16.3   14.3
+      Kompetenz            abs     8     3     4     1      0  
+                           in %    5.30 15.8   5.33  2.33   0  
+      Keine Angabe         abs    69     7    34    21      7  
+                           in %   45.7  36.8  45.3  48.8   50  
       
       
       $`15`
@@ -285,18 +285,18 @@
                                         Asien Euro… Nord… Pazi…
       GESAMT               abs   151    19    75    43     14  
       Summe der gültigen…  abs   140    18    70    36     16  
-      einfache Weiterver…  abs    42     4    24    10      4  
-                           in %   51.2  33.3  58.5  45.5   57.1
-      Kompetenz            abs    20     4    10     5      1  
-                           in %   24.4  33.3  24.4  22.7   14.3
-      Schnelligkeit der …  abs    11     2     4     3      2  
-                           in %   13.4  16.7   9.76 13.6   28.6
-      Sonstiges            abs     8     1     2     4      1  
-                           in %    9.76  8.33  4.88 18.2   14.3
-      Freundlichkeit des…  abs     7     2     4     1      0  
-                           in %    8.54 16.7   9.76  4.55   0  
-      Darstellung der Da…  abs     7     1     3     1      2  
-                           in %    8.54  8.33  7.32  4.55  28.6
+      einfache Weiterver…  abs    28     1    18     7      2  
+                           in %   34.1   8.33 43.9  31.8   28.6
+      Darstellung der Da…  abs    21     2    11     5      3  
+                           in %   25.6  16.7  26.8  22.7   42.9
+      Schnelligkeit der …  abs    17     4     6     4      3  
+                           in %   20.7  33.3  14.6  18.2   42.9
+      Sonstiges            abs    12     2     4     5      1  
+                           in %   14.6  16.7   9.76 22.7   14.3
+      Freundlichkeit des…  abs    10     2     5     2      1  
+                           in %   12.2  16.7  12.2   9.09  14.3
+      Kompetenz            abs     8     3     4     1      0  
+                           in %    9.76 25     9.76  4.55   0  
       GÜLTIGE FÄLLE        abs    82    12    41    22      7  
                            in %   54.3  63.2  54.7  51.2   50  
       Keine Angabe         abs    69     7    34    21      7  
@@ -624,8 +624,8 @@
                            in %   16.2   33.3  23.5  0      0  
       GÜLTIGE FÄLLE        abs    37      6    17   10      4  
                            in %   24.5   31.6  22.7 23.3   28.6
-      einfache Weiterver…  abs    37      3    22    8      4  
-                           in %   24.5   15.8  29.3 18.6   28.6
+      einfache Weiterver…  abs    32      3    18    8      3  
+                           in %   21.2   15.8  24   18.6   21.4
       Kompetenz            abs    13      3     6    4      0  
                            in %    8.61  15.8   8    9.30   0  
       Keine Angabe         abs    69      7    34   21      7  
@@ -651,8 +651,8 @@
                            in %   1.37   0     0     4.35     0
       Kompetenz            abs   14      1    10     2        1
                            in %  19.2   14.3  26.3   8.70    20
-      -2                   abs    0      0     0     0        0
-                           in %   0      0     0     0        0
+      -2                   abs   50      5    24    18        3
+                           in %  68.5   71.4  63.2  78.3     60
       
       $`24`[[3]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
@@ -674,8 +674,8 @@
                            in %   9.30  28.6   5.56  7.69     0
       Kompetenz            abs    5      0     2     2        1
                            in %  11.6    0    11.1  15.4     20
-      -2                   abs    0      0     0     0        0
-                           in %   0      0     0     0        0
+      -2                   abs   28      4    14     7        3
+                           in %  65.1   57.1  77.8  53.8     60
       
       
       $`25`

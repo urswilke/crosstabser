@@ -189,79 +189,12 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
       c("i", "rowval")
     )), .keep_all = TRUE)
 
-  # this doesn't work correctly !!!
-  # (for cases responding invalid values at the same time as valid values;
-  # in that case the invalid values shouldn't be counted)
-  # TODO: fix that!!!!!:
-  # But for mdg it should work the same!!!
-  invalids_to_filter <- intersect(
-    # TODO: put datenanpassr Mapping$params in the same structure as Tabula$p
-    qtab$m$params$miss_rec_val,
-    qtab$p[["Unguelt"]]
-  )
-  df_rows_long_invalids <- df_rows_long[df_rows_long$rowval %in% qtab$p[["Unguelt"]],] |>
-    dplyr::mutate(
-      # TODO: also put into helper function like flag_exclusives() or flag_invalids() (?):
-      temp = order(factor(rowval, levels = qtab$p[["Unguelt"]])),
-      # calculate boolean that's TRUE if:
-      val_to_count =
-        # for each case, only take count one invalid value (the one that occurs
-        # first in the list of invalid values):
-        temp == 1 &
-        # values not equal to the value defined in the cell of the named region
-        # "R_miss_rec_val" in the mapping file:
-        !rowval %in% invalids_to_filter,
-      temp = NULL,
-    .by = "i")
-
-  df_rows_long_valids <- df_rows_long[!df_rows_long$rowval %in% qtab$p[["Unguelt"]],]
-  exclusives <- qtab$p$Exclusive
-  if (!is.null(exclusives)) {
-    df_rows_long_valids <- df_rows_long_valids |>
-      dplyr::mutate(
-        val_to_count = flag_exclusives(rowval, exclusives),
-        .by = "i"
-      )
-  } else {
-    df_rows_long_valids$val_to_count <- TRUE
-  }
-
-
-  df_long <- dplyr::bind_rows(
-    # TODO: remove rows of cases with multiple values in column "Exclusive"...:
-    df_rows_long_valids,
-    df_rows_long_invalids
-  ) |>
+  df_long <- add_exclusive_info(df_rows_long, c(qtab$p[["Exclusive"]], qtab$p[["Unguelt"]])) |>
     pivot_cols()
 
   rowvars <- qtab$p$rowvars_string
   df_long$rowvar <- rowvars
   qtab$d$long_data <- df_long
-}
-flag_exclusives <- function(rowval, exclusives) {
-  # TODO:
-  # - find a cleaner way for Exclusive!...:
-  # - also needed for mdg?
-  # - discuss with Wolf if something like in flag_invalids() can be done...:
-  # - same needed for mcg?
-  none_exclusive <- !any(rowval %in% exclusives)
-  temp <- order(factor(rowval, levels = exclusives))
-  # order doesn't deal correctly with levels not occuring in the factors.
-  # Therefore we set these values to Inf to not select values not in the
-  # set of exclusives here...
-  temp <- ifelse(!rowval %in% exclusives, Inf, temp)
-  first_exclusive <- temp %in% min(temp, na.rm = TRUE)
-  first_exclusive | none_exclusive
-  # same result but slower:
-  # dplyr::case_when(
-  #   !any(rowval %in% exclusives) ~ TRUE,
-  #   !rowval %in% exclusives ~ FALSE,
-  #   .default = {
-  #     temp <- order(factor(rowval, levels = exclusives))
-  #     temp[!rowval %in% exclusives] <- Inf
-  #     temp == min(temp)
-  #   }
-  # )
 }
 
 flag_invalids <- function(rowvar, invalids) {

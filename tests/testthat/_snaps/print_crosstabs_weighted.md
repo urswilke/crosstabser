@@ -418,44 +418,44 @@
       $`14`
       $`14`[[1]]
       # 5. Was lief besonders gut in den Projekten?
-                                 GESA… Regi… ----- ----- -----
-                                       Asien Euro… Nord… Pazi…
-      GESAMT               abs   151    19    75   43    14   
-                           absW  151    15    71.5 47.5  17   
-      Summe der gültigen…  abs    60    10    26   16     8   
-                           absW   53     9.5  23   14.5   6   
-      Darstellung der Da…  abs    21     2    11    5     3   
-                           absW   18     2     9.5  4.5   2   
-                           in %   45.7  25    57.9 35.7  60   
-                           in %W  42.9  26.7  57.6 33.3  44.4 
-      Schnelligkeit der …  abs    17     4     6    4     3   
-                           absW   14     3.5   5.5  2     3   
-                           in %   37.0  50    31.6 28.6  60   
-                           in %W  33.3  46.7  33.3 14.8  66.7 
-      Sonstiges            abs    12     2     4    5     1   
-                           absW   12     1     3.5  7     0.5 
-                           in %   26.1  25    21.1 35.7  20   
-                           in %W  28.6  13.3  21.2 51.9  11.1 
-      Freundlichkeit des…  abs    10     2     5    2     1   
-                           absW    9     3     4.5  1     0.5 
-                           in %   21.7  25    26.3 14.3  20   
-                           in %W  21.4  40    27.3  7.41 11.1 
-      GÜLTIGE FÄLLE        abs    46     8    19   14     5   
-                           absW   42     7.5  16.5 13.5   4.5 
-                           in %   30.5  42.1  25.3 32.6  35.7 
-                           in %W  27.8  50    23.1 28.4  26.5 
-      einfache Weiterver…  abs    42     4    24   10     4   
-                           absW   37.5   2.5  21    9     5   
-                           in %   27.8  21.1  32   23.3  28.6 
-                           in %W  24.8  16.7  29.4 18.9  29.4 
-      Kompetenz            abs    20     4    10    5     1   
-                           absW   18     2.5   8.5  6     1   
-                           in %   13.2  21.1  13.3 11.6   7.14
-                           in %W  11.9  16.7  11.9 12.6   5.88
-      Keine Angabe         abs    69     7    34   21     7   
-                           absW   76.5   5.5  35   26    10   
-                           in %   45.7  36.8  45.3 48.8  50   
-                           in %W  50.7  36.7  49.0 54.7  58.8 
+                                 GESAMT Regi… ----- ----- -----
+                                        Asien Euro… Nord… Pazi…
+      GESAMT               abs   151    19    75    43     14  
+                           absW  151    15    71.5  47.5   17  
+      Summe der gültigen…  abs    60    10    26    16      8  
+                           absW   53     9.5  23    14.5    6  
+      Darstellung der Da…  abs    21     2    11     5      3  
+                           absW   18     2     9.5   4.5    2  
+                           in %   45.7  25    57.9  35.7   60  
+                           in %W  42.9  26.7  57.6  33.3   44.4
+      Schnelligkeit der …  abs    17     4     6     4      3  
+                           absW   14     3.5   5.5   2      3  
+                           in %   37.0  50    31.6  28.6   60  
+                           in %W  33.3  46.7  33.3  14.8   66.7
+      Sonstiges            abs    12     2     4     5      1  
+                           absW   12     1     3.5   7      0.5
+                           in %   26.1  25    21.1  35.7   20  
+                           in %W  28.6  13.3  21.2  51.9   11.1
+      Freundlichkeit des…  abs    10     2     5     2      1  
+                           absW    9     3     4.5   1      0.5
+                           in %   21.7  25    26.3  14.3   20  
+                           in %W  21.4  40    27.3   7.41  11.1
+      GÜLTIGE FÄLLE        abs    46     8    19    14      5  
+                           absW   42     7.5  16.5  13.5    4.5
+                           in %   30.5  42.1  25.3  32.6   35.7
+                           in %W  27.8  50    23.1  28.4   26.5
+      einfache Weiterver…  abs    28     1    18     7      2  
+                           absW   26.5   0.5  16     7.5    2.5
+                           in %   18.5   5.26 24    16.3   14.3
+                           in %W  17.5   3.33 22.4  15.8   14.7
+      Kompetenz            abs     8     3     4     1      0  
+                           absW    6     1.5   4     0.5    0  
+                           in %    5.30 15.8   5.33  2.33   0  
+                           in %W   3.97 10     5.59  1.05   0  
+      Keine Angabe         abs    69     7    34    21      7  
+                           absW   76.5   5.5  35    26     10  
+                           in %   45.7  36.8  45.3  48.8   50  
+                           in %W  50.7  36.7  49.0  54.7   58.8
       
       
       $`15`
@@ -467,30 +467,30 @@
                            absW  151    15    71.5  47.5  17   
       Summe der gültigen…  abs   140    18    70    36    16   
                            absW  124.   14.5  61.5  32.5  15   
-      einfache Weiterver…  abs    42     4    24    10     4   
-                           absW   37.5   2.5  21     9     5   
-                           in %   51.2  33.3  58.5  45.5  57.1 
-                           in %W  50.3  26.3  57.5  41.9  71.4 
-      Kompetenz            abs    20     4    10     5     1   
-                           absW   18     2.5   8.5   6     1   
-                           in %   24.4  33.3  24.4  22.7  14.3 
-                           in %W  24.2  26.3  23.3  27.9  14.3 
-      Schnelligkeit der …  abs    11     2     4     3     2   
-                           absW    8.5   2     4     1.5   1   
-                           in %   13.4  16.7   9.76 13.6  28.6 
-                           in %W  11.4  21.1  11.0   6.98 14.3 
-      Freundlichkeit des…  abs     7     2     4     1     0   
-                           absW    7.5   3     4     0.5   0   
-                           in %    8.54 16.7   9.76  4.55  0   
-                           in %W  10.1  31.6  11.0   2.33  0   
-      Sonstiges            abs     8     1     2     4     1   
-                           absW    7     0.5   1     5     0.5 
-                           in %    9.76  8.33  4.88 18.2  14.3 
-                           in %W   9.40  5.26  2.74 23.3   7.14
-      Darstellung der Da…  abs     7     1     3     1     2   
-                           absW    6     1     3.5   0.5   1   
-                           in %    8.54  8.33  7.32  4.55 28.6 
-                           in %W   8.05 10.5   9.59  2.33 14.3 
+      einfache Weiterver…  abs    28     1    18     7     2   
+                           absW   26.5   0.5  16     7.5   2.5 
+                           in %   34.1   8.33 43.9  31.8  28.6 
+                           in %W  35.6   5.26 43.8  34.9  35.7 
+      Darstellung der Da…  abs    21     2    11     5     3   
+                           absW   18     2     9.5   4.5   2   
+                           in %   25.6  16.7  26.8  22.7  42.9 
+                           in %W  24.2  21.1  26.0  20.9  28.6 
+      Schnelligkeit der …  abs    17     4     6     4     3   
+                           absW   14     3.5   5.5   2     3   
+                           in %   20.7  33.3  14.6  18.2  42.9 
+                           in %W  18.8  36.8  15.1   9.30 42.9 
+      Sonstiges            abs    12     2     4     5     1   
+                           absW   12     1     3.5   7     0.5 
+                           in %   14.6  16.7   9.76 22.7  14.3 
+                           in %W  16.1  10.5   9.59 32.6   7.14
+      Freundlichkeit des…  abs    10     2     5     2     1   
+                           absW    9     3     4.5   1     0.5 
+                           in %   12.2  16.7  12.2   9.09 14.3 
+                           in %W  12.1  31.6  12.3   4.65  7.14
+      Kompetenz            abs     8     3     4     1     0   
+                           absW    6     1.5   4     0.5   0   
+                           in %    9.76 25     9.76  4.55  0   
+                           in %W   8.05 15.8  11.0   2.33  0   
       GÜLTIGE FÄLLE        abs    82    12    41    22     7   
                            absW   74.5   9.5  36.5  21.5   7   
                            in %   54.3  63.2  54.7  51.2  50   
@@ -1060,10 +1060,10 @@
                            absW   36.5    6   15.5  11      4  
                            in %   24.5   31.6 22.7  23.3   28.6
                            in %W  24.2   40   21.7  23.2   23.5
-      einfache Weiterver…  abs    37      3   22     8      4  
-                           absW   34.5    2   20     7.5    5  
-                           in %   24.5   15.8 29.3  18.6   28.6
-                           in %W  22.8   13.3 28.0  15.8   29.4
+      einfache Weiterver…  abs    32      3   18     8      3  
+                           absW   28.5    2   16     7.5    3  
+                           in %   21.2   15.8 24    18.6   21.4
+                           in %W  18.9   13.3 22.4  15.8   17.6
       Kompetenz            abs    13      3    6     4      0  
                            absW    9.5    1.5  5     3      0  
                            in %    8.61  15.8  8     9.30   0  
@@ -1109,10 +1109,10 @@
                            absW  14      1     8.5   2.5    2   
                            in %  19.2   14.3  26.3   8.70  20   
                            in %W 17.9   16.7  22.1   8.93  36.4 
-      -2                   abs    0      0     0     0      0   
-                           absW   0      0     0     0      0   
-                           in %   0      0     0     0      0   
-                           in %W  0      0     0     0      0   
+      -2                   abs   50      5    24    18      3   
+                           absW  56      4    25.5  23.5    3   
+                           in %  68.5   71.4  63.2  78.3   60   
+                           in %W 71.8   66.7  66.2  83.9   54.5 
       
       $`24`[[3]]
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
@@ -1150,10 +1150,10 @@
                            absW   4      0     1     2.5    0.5 
                            in %  11.6    0    11.1  15.4   20   
                            in %W 11.0    0     7.14 20      8.33
-      -2                   abs    0      0     0     0      0   
-                           absW   0      0     0     0      0   
-                           in %   0      0     0     0      0   
-                           in %W  0      0     0     0      0   
+      -2                   abs   28      4    14     7      3   
+                           absW  26.5    2    12     7.5    5   
+                           in %  65.1   57.1  77.8  53.8   60   
+                           in %W 72.6   50    85.7  60     83.3 
       
       
       $`25`
