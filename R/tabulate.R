@@ -168,9 +168,9 @@ pivot_table_data.qtab_type_mdg <- function(qtab) {
   invalids <- qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]]
 
   qtab$d$long_data <- df_rows_long[df_rows_long$rowval == mdg_val,] |>
-    dplyr::mutate(
-      val_to_count = flag_invalids(rowvar, invalids),
-      .by = "i"
+    add_exclusive_info(
+      c(qtab$p[["Exclusive"]], invalids),
+      "rowvar"
     ) |>
     pivot_cols()
 }
@@ -189,7 +189,11 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
       c("i", "rowval")
     )), .keep_all = TRUE)
 
-  df_long <- add_exclusive_info(df_rows_long, c(qtab$p[["Exclusive"]], qtab$p[["Unguelt"]])) |>
+  df_long <- add_exclusive_info(
+    df_rows_long,
+    c(qtab$p[["Exclusive"]], qtab$p[["Unguelt"]]),
+    "rowval"
+  ) |>
     pivot_cols()
 
   rowvars <- qtab$p$rowvars_string
