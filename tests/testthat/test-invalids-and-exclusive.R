@@ -12,12 +12,11 @@ df <- tibble::tibble(
 )
 
 dfq <- tibble::tribble(
-  ~Title, ~Type, ~RowVar,               ~Unguelt,        ~Exclusive,
-  "mcg with invalids",                 "mcg", "q1n1 q1n2 q1n3 q1n4", "3, 4, -2", NA,
-  "mcg with invalids & exclusive",     "mcg", "q1n1 q1n2 q1n3 q1n4", "3, 4, -2", "1",
-  # "",     "mdg", "q1_1 q1_2 q1_3 q1_4", NA_character_,
-  # "",     "mdg", "q1_1 q1_2",           "q1_3 q1_4",
-  # "",     "mcg", "q1n1 q1n2 q1n3 q1n4", NA_character_,
+  ~Title,                              ~Type, ~RowVar,               ~Unguelt,    ~Exclusive,
+  "mcg with invalids",                 "mcg", "q1n1 q1n2 q1n3 q1n4", "3, 4, -2",  NA,
+  "mcg with invalids & exclusive",     "mcg", "q1n1 q1n2 q1n3 q1n4", "3, 4, -2",  "1",
+  "mdg with invalids",                 "mdg", "q1_1 q1_2",           "q1_3 q1_4", NA,
+  "mdg with invalids & exclusive",     "mdg", "q1_1 q1_2",           "q1_3 q1_4", "q1_1",
 )
 mapping_file = list(Questions = dfq)
 m_rm_invalids <- Tabula$new(
