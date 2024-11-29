@@ -256,26 +256,26 @@
       $`14`
       $`14`[[1]]
       # 5. Was lief besonders gut in den Projekten?
-                                 GESAMT Regi… ----- ----- -----
-                                        Asien Euro… Nord… Pazi…
-      GESAMT               abs   151    19    75    43     14  
-      Summe der gültigen…  abs    60    10    26    16      8  
-      Darstellung der Da…  abs    21     2    11     5      3  
-                           in %   45.7  25    57.9  35.7   60  
-      Schnelligkeit der …  abs    17     4     6     4      3  
-                           in %   37.0  50    31.6  28.6   60  
-      Sonstiges            abs    12     2     4     5      1  
-                           in %   26.1  25    21.1  35.7   20  
-      Freundlichkeit des…  abs    10     2     5     2      1  
-                           in %   21.7  25    26.3  14.3   20  
-      GÜLTIGE FÄLLE        abs    46     8    19    14      5  
-                           in %   30.5  42.1  25.3  32.6   35.7
-      einfache Weiterver…  abs    28     1    18     7      2  
-                           in %   18.5   5.26 24    16.3   14.3
-      Kompetenz            abs     8     3     4     1      0  
-                           in %    5.30 15.8   5.33  2.33   0  
-      Keine Angabe         abs    69     7    34    21      7  
-                           in %   45.7  36.8  45.3  48.8   50  
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
+      GESAMT               abs   151   19     75   43    14   
+      Summe der gültigen…  abs    98   14     46   26    12   
+      Kompetenz            abs    38    4     20   10     4   
+                           in %   57.6 36.4   64.5 55.6  66.7 
+      Darstellung der Da…  abs    21    2     11    5     3   
+                           in %   31.8 18.2   35.5 27.8  50   
+      Schnelligkeit der …  abs    17    4      6    4     3   
+                           in %   25.8 36.4   19.4 22.2  50   
+      Sonstiges            abs    12    2      4    5     1   
+                           in %   18.2 18.2   12.9 27.8  16.7 
+      Freundlichkeit des…  abs    10    2      5    2     1   
+                           in %   15.2 18.2   16.1 11.1  16.7 
+      GÜLTIGE FÄLLE        abs    66   11     31   18     6   
+                           in %   43.7 57.9   41.3 41.9  42.9 
+      einfache Weiterver…  abs    16    1     10    4     1   
+                           in %   10.6  5.26  13.3  9.30  7.14
+      Keine Angabe         abs    69    7     34   21     7   
+                           in %   45.7 36.8   45.3 48.8  50   
       
       
       $`15`
