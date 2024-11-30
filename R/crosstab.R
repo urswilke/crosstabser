@@ -222,12 +222,11 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   df_cols_long <- df_cols |>
     pivot_cols()
 
-  row_types <- c("total", "sum_of_valid", "n_valid", "no_entry")
+  row_types <- c("total", "n_valid", "no_entry")
   if (!is.null(qtab$p$MdgMissValid) && qtab$p$MdgMissValid == "TRUE") {
     df_cols_long <- df_cols_long |>
       dplyr::mutate(
         n_valid = n_valid | no_entry,
-        sum_of_valid = sum_of_valid + no_entry,
         valid_no_entry = no_entry,
         no_entry = 0
       )
@@ -251,11 +250,35 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
       res$rowvar <- qtab$p$rowvars_string
       res
     })
+
+  # VERY HACKY patch for sum of valid to work with Exclusive:
+  df_long <- qtab$d$long_data
+  invalid_vals <- qtab$p[["Unguelt"]]
+  sum_of_valid <- df_long[!(df_long$rowvar %in% invalid_vals) & df_long$val_to_count,] |>
+    summarize_stats(
+      NULL,
+      wt = qtab$p$Weight[[1]],
+      .by = c("colvar", "colval")
+    )
+  if (!is.null(qtab$p$MdgMissValid) && qtab$p$MdgMissValid == "TRUE") {
+    sum_of_valid = sum_of_valid |>
+      dplyr::full_join(
+        df_stats_rows[c("colvar", "colval", "valid_no_entry")],
+        by = c("colvar", "colval")
+      ) |>
+      tidyr::replace_na(list(value = 0, valid_no_entry = 0)) |>
+      dplyr::mutate(value = value + valid_no_entry) |>
+      dplyr::select(-valid_no_entry)
+  }
+  sum_of_valid$RowContent <- "SumOfValid"
+  sum_of_valid$RowAbsPercent <- "Abs"
+  sum_of_valid$rowvar <- qtab$p$rowvars_string
+  sum_of_valid$rowval <- 1
+  l_row_types$sum_of_valid <- sum_of_valid
+
   l_row_types$total$RowContent <- "Total"
-  l_row_types$sum_of_valid$RowContent <- "SumOfValid"
   l_row_types$no_entry$RowContent <- "Missing"
   l_row_types$total$RowAbsPercent <- "Abs"
-  l_row_types$sum_of_valid$RowAbsPercent <- "Abs"
   l_row_types$no_entry$RowAbsPercent <- "Abs"
   l_row_types$no_entry <- l_row_types$no_entry[l_row_types$no_entry$value > 0,]
 

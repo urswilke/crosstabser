@@ -60,7 +60,7 @@
                                  TOTAL age   -----
                                        18-39 40+  
       TOTAL                abs     3       2     1
-      Sum of valid answe…  abs     3       1     2
+      Sum of valid answe…  abs     2       1     1
       Choice 1             abs     0       0     0
                            in %    0       0     0
       Choice 2             abs     2       1     1
