@@ -22,13 +22,8 @@ mapping_file = list(Questions = dfq)
 m_rm_invalids <- Tabula$new(
   df,
   mapping_file,
-  ColVar = c("age"),
-  # Weight = "gew",
-  # Unwgt = TRUE,
-  tabulate = FALSE
+  ColVar = c("age")
 )
-m_rm_invalids$options$l_lexikon["cTabWeighted"] <- "W"
-m_rm_invalids$calc_qtabs()
 m_rm_invalids
 test_that("mcg tables with invalids & Exclusive are reproduced", {
   testthat::expect_snapshot(m_rm_invalids)
