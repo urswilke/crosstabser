@@ -275,12 +275,12 @@ df_metr_mac <- data.frame(
 
 process_metr_mac <- function(params, mapping) {
   l <- stringr::str_extract_all(params$MetrMac, "[A-Z]\\d+")[[1]] |>
-    stringr::str_split("(?=\\d)")
+    stringr::str_split("(?<=[A-Za-z])")
 
   df_stat_funs <- data.frame(shortcut = l |> purrr::map_chr(1)) |>
     dplyr::mutate(
       fun = df_metr_mac$fun[match(shortcut, df_metr_mac$shortcut)],
-      decimals = as.integer(l |> purrr::map_chr(\(x) x[length(x)])),
+      decimals = as.integer(l |> purrr::map_chr(2) |> stringr::str_sub(-1)),
       row_title = mapping$options$l_lexikon[
         df_metr_mac$ctab_entry[match(shortcut, df_metr_mac$shortcut)]
       ] |> unname()
@@ -290,7 +290,7 @@ process_metr_mac <- function(params, mapping) {
 
   percentile_string <- l[is_percentile_row] |>
     purrr::map_chr(
-      \(x) x[2:3] |>
+      \(x) x[2] |> stringr::str_sub(1, 2) |>
         paste(collapse = "")
     )
 
