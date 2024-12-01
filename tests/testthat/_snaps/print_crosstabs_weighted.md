@@ -125,8 +125,8 @@
                                           Asien  Europa  Nordam… Pazif…
       GESAMT               abs     151      19     75      43     14   
                            absW    151      15     71.5    47.5   17   
-      Mittelwert                    72.8    66.8   73.3    79.5   57.1 
-      MittelwertW                   68.7    56.7   69.5    77.4   52.1 
+      hello                         72.8    66.8   73.3    79.5   57.1 
+      helloW                        68.7    56.7   69.5    77.4   52.1 
       Standardfehler                 3.05   10.2    4.11    5.31  11.4 
       StandardfehlerW                3.22   12.4    4.58    5.27   9.58
       Median                       100     100    100     100     65   

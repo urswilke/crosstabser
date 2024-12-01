@@ -78,7 +78,7 @@
                                  GESAMT   Region ------- ------- -----
                                           Asien  Europa  Nordam… Pazi…
       GESAMT               abs     151      19     75      43     14  
-      Mittelwert                    72.8    66.8   73.3    79.5   57.1
+      hello                         72.8    66.8   73.3    79.5   57.1
       Standardfehler                 3.05   10.2    4.11    5.31  11.4
       Median                       100     100    100     100     65  
       25. Perzentil                 50      10     50      60     20  

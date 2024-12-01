@@ -269,49 +269,69 @@ set_qtab_params.qtab_params_mcg <- function(params, mapping) {
 
 df_metr_mac <- data.frame(
   shortcut = c("E", "M", "S", "P", "I", "A", "T"),
+  decimals = c(2L, 0L, 1L, 0L, 0L, 0L, 0L),
   fun = c("se", "median", "mean", "percentile", "min", "max", "sum"),
   ctab_entry = c("cTabStdErr", "cTabMedian", "cTabMean", "cTabPercentile", "cTabMin", "cTabMax", "cTabSum")
 )
 
-process_metr_mac <- function(params, mapping) {
-  l <- stringr::str_extract_all(params$MetrMac, "[A-Z]\\d+")[[1]] |>
-    stringr::str_split("(?<=[A-Za-z])")
-
-  df_stat_funs <- data.frame(shortcut = l |> purrr::map_chr(1)) |>
+extract_metr_mac_unit <- function(x) {
+  data.frame(x) |>
     dplyr::mutate(
-      fun = df_metr_mac$fun[match(shortcut, df_metr_mac$shortcut)],
-      decimals = as.integer(l |> purrr::map_chr(2) |> stringr::str_sub(-1)),
+      shortcut = stringr::str_extract(x, "^[A-Z]"),
+      fun = stringr::str_extract(x, "^[a-z]+"),
+      decimals = x |>
+        stringr::str_remove("^([A-Z]|[a-z]+)") |>
+        stringr::str_extract("^\\d+"),
+      further_args = stringr::str_extract_all(x, "(?<=\\[).*?(?=\\])"),
+    )
+}
+get_named_args <- function(x) {
+  if (length(x) == 0) {
+    NULL
+  } else {
+    name <- x |> stringr::str_extract("[a-zA-Z]+(?=\\=)")
+    val <- x |> stringr::str_extract("(?<=\\=).*")
+    purrr::set_names(val, name)
+  }
+}
+
+process_metr_mac <- function(params, mapping) {
+  l <- stringr::str_extract_all(params$MetrMac, "([A-Z]|[a-z]+)\\d*(\\[.*?\\])*")[[1]]
+  df_raw <- l |>
+    purrr::map_dfr(extract_metr_mac_unit) |>
+    dplyr::mutate(further_args = lapply(further_args, get_named_args)) |>
+    tidyr::unnest_wider(further_args)
+  df_stat_funs <- df_raw |>
+    dplyr::mutate(
+      fun = dplyr::coalesce(fun, df_metr_mac$fun[match(shortcut, df_metr_mac$shortcut)]),
+      shortcut = dplyr::coalesce(shortcut, df_metr_mac$shortcut[match(fun, df_metr_mac$fun)]),
+      percentile_string = ifelse(fun == "percentile", decimals |> stringr::str_sub(1, 2), ""),
       row_title = mapping$options$l_lexikon[
         df_metr_mac$ctab_entry[match(shortcut, df_metr_mac$shortcut)]
-      ] |> unname()
+      ] |> unname(),
+      decimals = ifelse(fun == "percentile", decimals |> stringr::str_sub(3), decimals),
+      decimals = as.integer(decimals),
+      decimals = dplyr::coalesce(decimals, df_metr_mac$decimals[match(fun, df_metr_mac$fun)]),
+      row_title = paste0(percentile_string, row_title),
     )
 
-  is_percentile_row <- df_stat_funs$shortcut == "P"
+  # TODO: clean up legacy code structure in df_stat_funs$quantile_val!
+  is_percentile <- df_stat_funs$shortcut == "P"
+  df_stat_funs$quantile_val <- vector("list", length(l))
+  df_stat_funs[is_percentile,]$quantile_val <-
+    df_stat_funs[is_percentile,]$percentile_string |>
+    as.numeric() |>
+    (\(x) x/100)() |>
+    as.list()
 
-  percentile_string <- l[is_percentile_row] |>
-    purrr::map_chr(
-      \(x) x[2] |> stringr::str_sub(1, 2) |>
-        paste(collapse = "")
-    )
-
-  df_stat_funs$row_title[is_percentile_row] <-
-    paste0(
-      percentile_string,
-      df_stat_funs$row_title[is_percentile_row]
-    )
-
-  # TODO: add test with multiple percentiles in MetrMac
-  if (dplyr::n_distinct(df_stat_funs$row_title) < nrow(df_stat_funs)) {
-    stop(
-      "You cannot use the same statistical function more than once in MetrMac.\n",
-      "(not yet implemented)"
+  if (anyNA(df_stat_funs[c("shortcut", "fun", "decimals")])) {
+    warning(
+      "There were probably problems with reading some of the strings: ",
+      df_stat_funs$x
     )
   }
-
-  df_stat_funs$quantile_val <- vector("list", length(l))
-  df_stat_funs$quantile_val[is_percentile_row] <-
-    as.numeric(percentile_string) / 100
-
+  df_stat_funs$x <- NULL
+  df_stat_funs$percentile_string <- NULL
   df_stat_funs
 }
 
