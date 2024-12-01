@@ -448,9 +448,9 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
 }
 calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   weight <- qtab$p$Weight[[1]]
-  stat_fun <- qtab$p$ZsfgMW
   long_data <- qtab$d$long_data
   long_data[["i"]] <- NULL
+
   all_counts <- long_data[long_data$val_to_count,] |>
     summarize_stats(
       NULL,
