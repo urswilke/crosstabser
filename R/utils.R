@@ -63,14 +63,14 @@ rm_header_footer <- function(row_table) {
   row_table[-c(1:3, nrow(row_table)),]
 }
 
-add_exclusive_info <- function(df_rows_long, exclusives) {
-  occurring_vals <- df_rows_long$rowval |> unique() |> sort()
+add_exclusive_info <- function(df_rows_long, exclusives, choice_col) {
+  occurring_vals <- df_rows_long[[choice_col]] |> unique() |> sort()
 
   non_exclusives <- occurring_vals |> setdiff(exclusives)
   ordered_vals <- non_exclusives |> c(exclusives)
   res <- df_rows_long |>
     dplyr::mutate(
-      index = match(rowval, ordered_vals),
+      index = match(.data[[choice_col]], ordered_vals),
       lowest_index = index |> min(),
       val_to_count = index == lowest_index | ordered_vals[index] %in% non_exclusives,
       .by = "i"
