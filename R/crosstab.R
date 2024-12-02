@@ -380,7 +380,7 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   if (is.null(qtab$p$CatRec)) {
     return(NULL)
   }
-  invalid_vals <- qtab$p[["Unguelt"]]
+  invalid_vals <- c(NA, qtab$p[["Unguelt"]])
 
   df_long <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
   if (nrow(df_long) == 0) {
