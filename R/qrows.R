@@ -17,6 +17,7 @@ Qrow <- R6::R6Class(
       verbose <- mapping$params$verbose
       obj <- tryCatch(
         error = function(e) {
+          if (mapping$params$debug) browser()
           self$log$error <- utils::capture.output(e)[-1] |> paste(collapse = "\n")
           if (verbose) e |> conditionMessage() |> message()
           obj <- list(NULL)
