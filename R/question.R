@@ -68,11 +68,6 @@ process_qrow_params <- function(df_qrow, mapping) {
       Unguelt = split_cell(Unguelt),
       Unguelt = purrr::map_if(Unguelt, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
       Type = as.list(Type),
-      # hopefully, won't be needed one day:
-      Filter = spss_to_r(Filter),
-      Filter = as.list(Filter) |>
-        purrr::map(\(x) x |> append(mapping$options$l_macro_scenario$Filter)) |>
-        purrr::map(\(x) x[!is.na(x)]),
       UngueltMW = split_cell(UngueltMW) |> lapply(as.numeric),
       SelVar = split_cell(SelVar),
       # HACK to also use CatRec syntax with "THRU" instead of the traditional "=":

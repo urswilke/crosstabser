@@ -124,7 +124,10 @@ extract_scenario_options <- function(df_macro_raw, v_scenario) {
 add_global_options <- function(params, mapping) {
   global_options <- mapping$options$l_macro_scenario
   res <- params
-  res$Filter <- append(res$Filter, global_options$Filter[!is.na(global_options$Filter)])
+  res$Filter <- res$Filter |>
+    # hopefully, won't be needed one day:
+    spss_to_r() |>
+    append(global_options$Filter[!is.na(global_options$Filter)])
   res$Weight <- dplyr::coalesce(res$Weight, global_options$Weight)
   if (is.na(res$Weight)) {
     res$Weight <- list(NULL)
