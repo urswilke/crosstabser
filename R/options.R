@@ -221,18 +221,22 @@ concat_selvar_rowvars <- function(rowvar, selvar) {
 }
 
 set_qtab_params.qtab_params_mw <- function(params, mapping) {
-  stat_fun <- params$ZsfgMW
   params$rowvars_qtab <- params$RowVar
-  if (length(stat_fun) == 0) {
-    stat_fun = "mean"
-  }
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()
     params$l_selvar$rowvars <- gen_selvar_rowvars(params$rowvars_qtab, params$SelVar)
     params$l_selvar$valid <- concat_selvar_rowvars(params$RowVar, params$SelVar)
   }
 
-  params$stat_fun <- stat_fun
+  if (!is.null(params$ZsfgMW)) {
+    params$df_stat_funs <- process_metr_mac(params, mapping, "ZsfgMW")
+    if (nrow(params$df_stat_funs) > 1) stop(
+      "Error in ZsfgMW string:\n",
+      params$ZsfgMW,
+      "\nSetting multiple statistical functions to use in ZsfgMW isn't implemented yet."
+    )
+  }
+
   NextMethod()
 }
 set_qtab_params.qtab_params_cat <- function(params, mapping) {
@@ -295,8 +299,8 @@ get_named_args <- function(x) {
   }
 }
 
-process_metr_mac <- function(params, mapping) {
-  l <- stringr::str_extract_all(params$MetrMac, "([A-Z]|[a-z]+)\\d*(\\[.*?\\])*")[[1]]
+process_metr_mac <- function(params, mapping, questions_column = "MetrMac") {
+  l <- stringr::str_extract_all(params[[questions_column]], "([A-Z]|[a-z]+)\\d*(\\[.*?\\])*")[[1]]
   df_raw <- l |>
     purrr::map_dfr(extract_metr_mac_unit) |>
     dplyr::mutate(further_args = lapply(further_args, get_named_args)) |>

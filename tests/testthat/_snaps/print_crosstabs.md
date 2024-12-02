@@ -120,10 +120,10 @@
                                  GESA… Regi… ----- ----- -----
                                        Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs     151    19    75    43    14
-      Kundenzufriedenheit  Medi…   100     ·   100   100    65
-                           GÜLT…   132     0    75    43    14
-      Marktvolumen         Medi…     0     0     0     0     0
-                           GÜLT…   151    19    75    43    14
+      Kundenzufriedenheit  hi      100     ·   100   100    65
+                           how …   132     0    75    43    14
+      Marktvolumen         hi        0     0     0     0     0
+                           how …   151    19    75    43    14
       
       $`10`[[2]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?

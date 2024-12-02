@@ -187,14 +187,14 @@
                                        Asien Euro… Nord… Pazi…
       GÜLTIGE FÄLLE (min…  abs     151    19  75    43      14
                            absW    151    15  71.5  47.5    17
-      Kundenzufriedenheit  Medi…   100     · 100   100      65
-                           Medi…    98     ·  90   100      50
-                           GÜLT…   132     0  75    43      14
-                           GÜLT…   136     0  71.5  47.5    17
-      Marktvolumen         Medi…     0     0   0     0       0
-                           Medi…     0     0   0     0       0
-                           GÜLT…   151    19  75    43      14
-                           GÜLT…   151    15  71.5  47.5    17
+      Kundenzufriedenheit  hi      100     · 100   100      65
+                           hiW      98     ·  90   100      50
+                           how …   132     0  75    43      14
+                           how …   136     0  71.5  47.5    17
+      Marktvolumen         hi        0     0   0     0       0
+                           hiW       0     0   0     0       0
+                           how …   151    19  75    43      14
+                           how …   151    15  71.5  47.5    17
       
       $`10`[[2]]
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?

@@ -31,13 +31,20 @@ calc_stat_fun.qtab_type_mw <- function(qtab) {
   if (!is.null(qtab$p$MWRec)) {
     long_data$rowval <- mw_rec_helper(long_data$rowval, qtab$p$MWRec)
   }
+  stat_fun <- qtab$p$df_stat_funs$fun %||% "mean"
   res <- long_data |>
     summarize_stats(
       "rowval",
       wt = qtab$p$Weight[[1]],
-      stat_fun = qtab$p$stat_fun,
+      stat_fun = stat_fun,
       .by = c("rowvar", "colvar", "colval")
-    ) |> add_missing_cases(qtab)
+    )
+  # TODO: With the refactoring, RowStatFun needs to be added here
+  # and I don't understand why...
+  # perhaps we need qtab$p$df_stat_funs$row_title instead (?)
+  res$RowStatFun <- stat_fun
+  res <- res |> add_missing_cases(qtab)
+
   res$RowContent <- "MStatistics"
   res$rowval <- NA_real_
   res$RowAbsPercent <- "Percent"

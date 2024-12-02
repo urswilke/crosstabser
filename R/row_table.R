@@ -293,15 +293,32 @@ row_table_body.qtab_type_mw <- function(qtab) {
   row_table[seq_len(n_vals * 2),]$RowTitle1 <- label_table$label
   row_table$RowTitle2 <- label_table$label
 
-  ctab_entry <- df_metr_mac[df_metr_mac$fun == qtab$p$stat_fun, "ctab_entry"]
-  row_title3 <- qtab$m$options$l_lexikon[[ctab_entry]]
+  ctab_entry <- df_metr_mac[
+    df_metr_mac$fun == qtab$p$df_stat_funs$fun %||% "mean",
+    "ctab_entry"
+  ]
+  row_title3 <- dplyr::coalesce(
+    qtab$p$df_stat_funs[["label"]],
+    qtab$m$options$l_lexikon[[ctab_entry]]
+  )
+  n_valid_label <- dplyr::coalesce(
+    qtab$p$df_stat_funs[["ValidN"]],
+    qtab$m$options$l_lexikon[["cTabGueltig"]]
+  )
+  fun_decimals <- (
+      qtab$p$df_stat_funs[["decimals"]] %||%
+      1L
+  ) |> as.integer()
+  n_valid_decimals <- (
+    qtab$p$df_stat_funs[["ValidDec"]] %||%
+      0L
+  ) |> as.integer()
   if (!is.null(qtab$p$repov_names)) {
     row_title3 <- qtab$p$repov_names
   }
   row_table$RowTitle3 <- c(
-    # TODO: generalize for media std err etc.:
     row_title3,
-    qtab$m$options$l_lexikon[["cTabGueltig"]]
+    n_valid_label
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Percent", "Abs") |> rep(n_vals)
   row_table$RowContent <- c(
@@ -309,8 +326,8 @@ row_table_body.qtab_type_mw <- function(qtab) {
     "MValid"
   ) |> rep(n_vals)
   row_table$RowDecimals <- c(
-    1L,
-    0L
+    fun_decimals,
+    n_valid_decimals
   ) |> rep(n_vals)
   row_table$RowVariable <- (qtab$p$l_selvar$valid %||% rowvars) |> rep(each = 2)
   row_table
