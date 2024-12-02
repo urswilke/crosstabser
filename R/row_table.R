@@ -429,8 +429,8 @@ row_table_stats.qtab_type_cat <- function(qtab) {
   row_table[seq_along(df_stat_funs$shortcut), c("RowTitle1", "RowTitle2", "RowTitle3")] <-
     list(
       dplyr::coalesce(
-        df_stat_funs$label,
-        df_stat_funs$row_title
+        df_stat_funs[["label"]],
+        df_stat_funs[["row_title"]]
       )
     ) |> rep(3)
   row_table$RowValue <- 100
