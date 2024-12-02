@@ -72,3 +72,24 @@
       
       
 
+# a table is reproduced with a global filter
+
+    Code
+      m_filter$qrows$`2`$qtabs
+    Output
+      [[1]]
+      # mcg with invalids
+                                 TOTAL age   -----
+                                       18-39 40+  
+      TOTAL                abs       2     2     0
+      Sum of valid answe…  abs       1     1     0
+      ch1                  abs       0     0     0
+                           in %      0     0     0
+      ch2                  abs       1     1     0
+                           in %    100   100     0
+      VALID CASES          abs       1     1     0
+                           in %     50    50     0
+      ch3                  abs       1     1     0
+                           in %     50    50     0
+      
+
