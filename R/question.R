@@ -76,7 +76,7 @@ process_qrow_params <- function(df_qrow, mapping) {
       UngueltMW = split_cell(UngueltMW) |> lapply(as.numeric),
       SelVar = split_cell(SelVar),
       # HACK to also use CatRec syntax with "THRU" instead of the traditional "=":
-      SelVal  = SelVal |> stringr::str_replace_all("-", "THRU"),
+      SelVal  = SelVal |> stringr::str_replace_all("(?<!(^|THRU))-", "THRU"),
       # it's important to only split on spaces here to use the CatRec syntax...:
       SelVal = split_cell(SelVal, " "),
       RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE",
