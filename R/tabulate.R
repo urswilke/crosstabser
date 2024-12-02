@@ -118,9 +118,7 @@ selvar_eq_selval <- function(selvar, selval) {
   if (!is.na(as.numeric(selval) |> suppressWarnings())) {
     return(selvar == as.numeric(selval))
   }
-  # TODO: ask Wolf which possibilities are needed apart from e.g. "1-3" ...:
-  selval_interval <- selval |> stringr::str_split_1("-") |> as.numeric()
-  selvar >=  selval_interval[1] & selvar <= selval_interval[2]
+  catrec(vec = selvar, paste0("(", selval, " = 1)"), 0) == 1
 }
 
 pivot_table_data <- function(qtab) {

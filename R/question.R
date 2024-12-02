@@ -75,7 +75,10 @@ process_qrow_params <- function(df_qrow, mapping) {
         purrr::map(\(x) x[!is.na(x)]),
       UngueltMW = split_cell(UngueltMW) |> lapply(as.numeric),
       SelVar = split_cell(SelVar),
-      SelVal = split_cell(SelVal),
+      # HACK to also use CatRec syntax with "THRU" instead of the traditional "=":
+      SelVal  = SelVal |> stringr::str_replace_all("-", "THRU"),
+      # it's important to only split on spaces here to use the CatRec syntax...:
+      SelVal = split_cell(SelVal, " "),
       RvEmp = stringr::str_trim(RvEmp) == "EXCLUDE",
       Exclusive = split_cell(Exclusive),
     ) |>
