@@ -55,7 +55,7 @@ get_raw_data.default <- function(qtab) {
       new_rowvars = new_rowvars,
       colvars_named = colvars_named,
       weightvar = weightvar,
-      row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_mod[[selvar_name]], selval)
+      row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_tab[[selvar_name]], selval)
     )
     res$selvar = selvar_name
     res$selval = selval
@@ -85,12 +85,12 @@ prep_data <- function(
   )
 
   # same as:
-  # mapping$dat_mod |>
+  # mapping$dat_tab |>
   #   dplyr::filter(!!!rlang::parse_exprs(df_row$Filter[[1]])) |>
   #   dplyr::select(!!!long_cols) |>
   #   dplyr::mutate(across(everything(), strip_attributes))
   # ... but with base R (for better performance)
-  dat <- qtab$m$dat_mod[row_in_filter, long_cols]
+  dat <- qtab$m$dat_tab[row_in_filter, long_cols]
   names(dat) <- names(long_cols)
   # remove label information:
   for (col in names(dat)) {
@@ -111,7 +111,7 @@ get_row_filter_lgl <- function(qtab) {
     return(TRUE)
   }
   filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
-  row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$m$dat_mod))
+  row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$m$dat_tab))
   all_true(row_lgls)
 }
 selvar_eq_selval <- function(selvar, selval) {

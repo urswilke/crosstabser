@@ -8,7 +8,7 @@ check_tab <- function(qtab) {
 }
 
 check_100percent <- function(qtab) {
-  df <- qtab$m$dat_mod[qtab$p$RowVar]
+  df <- qtab$m$dat_tab[qtab$p$RowVar]
   filtered_row_idx <- df[[1]] %in% qtab$p[["Unguelt"]]
   var_sums <- df[!filtered_row_idx,] |>
     rowSums(na.rm = TRUE)
@@ -22,7 +22,7 @@ check_100percent <- function(qtab) {
     n_unequal_100 <- sum(var_sums != 100)
     # TODO: Specify the ID variable name in the mapping instead of "DC_ID"
     # (cf. R_id_var in datenanpassr)...:
-    ids_unequal_100 <- qtab$m$dat_mod$DC_ID[!filtered_row_idx][var_sums != 100]
+    ids_unequal_100 <- qtab$m$dat_tab$DC_ID[!filtered_row_idx][var_sums != 100]
 
     warn_part1 <- paste0(
       "In table ",

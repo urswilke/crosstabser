@@ -126,8 +126,7 @@ add_global_options <- function(params, mapping) {
   res <- params
   res$Filter <- res$Filter |>
     # hopefully, won't be needed one day:
-    spss_to_r() |>
-    append(global_options$Filter[!is.na(global_options$Filter)])
+    spss_to_r()
   res$Weight <- dplyr::coalesce(res$Weight, global_options$Weight)
   if (is.na(res$Weight)) {
     res$Weight <- list(NULL)

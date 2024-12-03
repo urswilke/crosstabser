@@ -1518,4 +1518,37 @@
                                 in %W 20.5     0     32.1   20      8.33 
       
       
+      $`26`
+      $`26`[[1]]
+      # 1 (mit Filter). Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?
+                                 GESA… Regi… ----- ----- -----
+                                       Asien Euro… Nord… Pazi…
+      GESAMT               abs    17     4     8     3     2  
+                           absW   23     4.5  10.5   5     3  
+      1 Beschäftigter      abs     0     0     0     0     0  
+                           absW    0     0     0     0     0  
+                           in %    0     0     0     0     0  
+                           in %W   0     0     0     0     0  
+      2 - 4 Beschäftigte   abs     8     0     5     2     1  
+                           absW   10.5   0     4.5   4     2  
+                           in %   47.1   0    62.5  66.7  50  
+                           in %W  45.7   0    42.9  80    66.7
+      5 - 9 Beschäftigte   abs     4     0     2     1     1  
+                           absW    6     0     4     1     1  
+                           in %   23.5   0    25    33.3  50  
+                           in %W  26.1   0    38.1  20    33.3
+      10 - 19 Beschäftig…  abs     5     4     1     0     0  
+                           absW    6.5   4.5   2     0     0  
+                           in %   29.4 100    12.5   0     0  
+                           in %W  28.3 100    19.0   0     0  
+      20 Beschäftigte un…  abs     0     0     0     0     0  
+                           absW    0     0     0     0     0  
+                           in %    0     0     0     0     0  
+                           in %W   0     0     0     0     0  
+      GÜLTIGE FÄLLE        abs    17     4     8     3     2  
+                           absW   23     4.5  10.5   5     3  
+                           in %  100   100   100   100   100  
+                           in %W 100   100   100   100   100  
+      
+      
 

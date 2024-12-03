@@ -64,7 +64,7 @@ process_qrow_params <- function(df_qrow, mapping) {
   df_qrow |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
-      RowVar = lapply(RowVar, \(x) extract_rowvars(x, mapping$dat_mod)),
+      RowVar = lapply(RowVar, \(x) extract_rowvars(x, mapping$dat_tab)),
       Unguelt = split_cell(Unguelt),
       Unguelt = purrr::map_if(Unguelt, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
       Type = as.list(Type),
@@ -93,7 +93,7 @@ gen_qtabs_params <- function(qrow_params, mapping) {
       if (is.null(x$Weight)) {
         return(x)
       }
-      weight_label <- attr(mapping$dat_mod[[x$Weight]], "label", exact = TRUE) %||% x$Weight
+      weight_label <- attr(mapping$dat_tab[[x$Weight]], "label", exact = TRUE) %||% x$Weight
       x$Title <- append(
         x$Title,
         paste0(mapping$options$l_lexikon["cTxtWeightedBy"], weight_label)
@@ -111,7 +111,7 @@ process_selval <- function(qrow_params, mapping) {
   n_selval <- length(qrow_params$SelVal)
   res0 <- rep(list(qrow_params), each = n_selval)
 
-  selvar_vallabs <- attr(mapping$dat_mod[[qrow_params$SelVar[[1]][1]]], "labels")
+  selvar_vallabs <- attr(mapping$dat_tab[[qrow_params$SelVar[[1]][1]]], "labels")
   selval_relabels <- qrow_params$SelVal |>
     stringr::str_extract("(?<=:)[^ ]+") |>
     stringr::str_replace_all("_", " ")
@@ -177,7 +177,7 @@ process_cat_rows <- function(qrow_params, mapping) {
     length(qrow_params$RowVar)
   }
   cat_rowvars <- get_multi_cat_subtitle_vars(qrow_params)
-  varlabs <- lapply(cat_rowvars, \(rowvar) attr(mapping$dat_mod[[rowvar]], "label", exact = TRUE))
+  varlabs <- lapply(cat_rowvars, \(rowvar) attr(mapping$dat_tab[[rowvar]], "label", exact = TRUE))
 
 
   res <- rep(list(qrow_params), each = n_cats)

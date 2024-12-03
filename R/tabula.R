@@ -55,6 +55,7 @@ Tabula <- R6::R6Class(
     mapping_file = NULL,
     dat = NULL,
     dat_mod = NULL,
+    dat_tab = NULL,
     options = NULL,
     qsheet = list(),
     qtabs = list(),
@@ -101,6 +102,7 @@ Tabula <- R6::R6Class(
       }
     },
     calc_qtabs = function(row = NULL) {
+      private$filter_global()
       gen_col_tables(self)
       parse_qsheet(self, row)
       invisible(self)
@@ -135,6 +137,22 @@ Tabula <- R6::R6Class(
       self$qrows |> lapply(\(x) x$qtabs) |> print()
       invisible(self)
     }
+  ),
+  private = list(
+    glob_filter = NULL,
+    filter_global = function() {
+      global_filter <- self$options$l_macro_scenario$Filter
+      private$glob_filter <- if (is.na(global_filter)) TRUE else {
+        global_filter |>
+          # hopefully, won't be needed one day:
+          spss_to_r() |>
+          rlang::parse_expr() |>
+          rlang::eval_tidy(self$dat_mod)
+      }
+
+      self$dat_tab <- self$dat_mod[private$glob_filter,]
+    }
+
   )
 )
 parse_qsheet <- function(mapping, row) {
