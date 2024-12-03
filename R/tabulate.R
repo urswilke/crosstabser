@@ -199,21 +199,6 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
   qtab$d$long_data <- df_long
 }
 
-flag_invalids <- function(rowvar, invalids) {
-  is_valid <- !rowvar %in% invalids
-  if (any(is_valid)) {
-    return(is_valid)
-  }
-  # same as:
-  # temp <- order(factor(rowvar, levels = invalids))
-  # temp %in% min(temp, na.rm = TRUE)
-  # but faster...:
-  i <- match(rowvar, invalids) |> which.min()
-  res <- rep(FALSE, length(rowvar))
-  res[i] <- TRUE
-  res
-}
-
 gen_val_table <- function(qtab) {
   row_table <- qtab$d$row_table |> rm_header_footer()
 
