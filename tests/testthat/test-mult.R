@@ -27,7 +27,8 @@ mapping_file = list(Questions = dfq)
 m_selvar <- Tabula$new(
   df,
   mapping_file,
-  verbose = TRUE
+  verbose = TRUE,
+  ColVar = "age"
 )
 test_that("tables of all 4 types with 2 `SelVar`s & with / without `Mult` are reproduced", {
   testthat::expect_snapshot(m_selvar)
