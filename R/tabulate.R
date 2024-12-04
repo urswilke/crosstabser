@@ -122,13 +122,15 @@ selvar_eq_selval <- function(selvar, selval) {
 }
 
 pivot_table_data <- function(qtab) {
+  df <- qtab$d$raw_data
+  # for TOTAL column:
+  df$"colvar_DC#TOTAL" <- 1
+  df$i <- seq_len(nrow(df))
+  qtab$d$raw_data <- df
   UseMethod("pivot_table_data")
 }
 pivot_table_data.qtab_type_mw <- pivot_table_data.qtab_type_cat <- function(qtab) {
-  # for TOTAL column:
   df <- qtab$d$raw_data
-  df$"colvar_DC#TOTAL" <- 1
-  df$i <- seq_len(nrow(df))
 
   qtab$d$long_data <- df |>
     pivot_rows() |>
@@ -154,9 +156,6 @@ pivot_rows <- function(df) {
 }
 pivot_table_data.qtab_type_mdg <- function(qtab) {
   df <- qtab$d$raw_data
-  df$"colvar_DC#TOTAL" <- 1
-
-  df$i <- seq_len(nrow(df))
 
   df_rows_long <- df |>
     pivot_rows()
@@ -174,11 +173,7 @@ pivot_table_data.qtab_type_mdg <- function(qtab) {
 }
 
 pivot_table_data.qtab_type_mcg <- function(qtab) {
-  # for TOTAL column:
   df <- qtab$d$raw_data
-  df$"colvar_DC#TOTAL" <- 1
-
-  df$i <- seq_len(nrow(df))
 
   df_rows_long <- df |>
     pivot_rows() |>
