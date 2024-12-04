@@ -126,6 +126,9 @@ selvar_eq_selval <- function(selvar, selval) {
   catrec(vec = selvar, paste0("(", selval, " = 1)"), 0) == 1
 }
 pivot_rowvar_data <- function(qtab) {
+  UseMethod("pivot_rowvar_data")
+}
+pivot_rowvar_data.default <- function(qtab) {
   res <- qtab$d$raw_data |>
     pivot_rows()
   if (is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")) {
