@@ -125,15 +125,15 @@ selvar_eq_selval <- function(selvar, selval) {
   }
   catrec(vec = selvar, paste0("(", selval, " = 1)"), 0) == 1
 }
-
+pivot_rowvar_data <- function(qtab) {
+  qtab$d$df_rowvar_long <- qtab$d$raw_data |>
+    pivot_rows()
+}
 pivot_table_data <- function(qtab) {
   UseMethod("pivot_table_data")
 }
 pivot_table_data.qtab_type_mw <- pivot_table_data.qtab_type_cat <- function(qtab) {
-  df <- qtab$d$raw_data
-
-  qtab$d$long_data <- df |>
-    pivot_rows() |>
+  qtab$d$long_data <- qtab$d$df_rowvar_long |>
     pivot_cols()
 }
 pivot_cols <- function(df) {
@@ -155,10 +155,7 @@ pivot_rows <- function(df) {
     )
 }
 pivot_table_data.qtab_type_mdg <- function(qtab) {
-  df <- qtab$d$raw_data
-
-  df_rows_long <- df |>
-    pivot_rows()
+  df_rows_long <- qtab$d$df_rowvar_long
   if (is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")) {
     df_rows_long <- df_rows_long[
       !duplicated(df_rows_long[c("rowvar", "rowval", "row")]),
@@ -178,10 +175,7 @@ pivot_table_data.qtab_type_mdg <- function(qtab) {
 }
 
 pivot_table_data.qtab_type_mcg <- function(qtab) {
-  df <- qtab$d$raw_data
-
-  df_rows_long <- df |>
-    pivot_rows() |>
+  df_rows_long <- qtab$d$df_rowvar_long |>
     # remove duplicated choices:
     dplyr::distinct(dplyr::across(dplyr::all_of(
       c("i", "rowval")
