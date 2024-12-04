@@ -79,6 +79,7 @@ prep_data <- function(
   }
 
   long_cols <- c(
+    c(row = "row"),
     rowvars_named,
     colvars_named,
     weightvar
@@ -90,7 +91,9 @@ prep_data <- function(
   #   dplyr::select(!!!long_cols) |>
   #   dplyr::mutate(across(everything(), strip_attributes))
   # ... but with base R (for better performance)
-  dat <- qtab$m$dat_tab[row_in_filter, long_cols]
+  df <- qtab$m$dat_tab
+  df$row <- seq_len(nrow(df))
+  dat <- df[row_in_filter, long_cols]
   names(dat) <- names(long_cols)
   # remove label information:
   for (col in names(dat)) {
@@ -159,6 +162,11 @@ pivot_table_data.qtab_type_mdg <- function(qtab) {
 
   df_rows_long <- df |>
     pivot_rows()
+  if (is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")) {
+    df_rows_long <- df_rows_long[
+      !duplicated(df_rows_long[c("rowvar", "rowval", "row")]),
+    ]
+  }
 
   mdg_val <- qtab$p$MdgVal
 
