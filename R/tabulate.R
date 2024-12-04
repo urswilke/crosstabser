@@ -40,30 +40,32 @@ get_raw_data.default <- function(qtab) {
       weightvar = weightvar,
       row_in_filter = row_in_filter
     )
-    return(dat)
+  } else {
+    # treat selvar:
+
+    dat <- seq_along(qtab$p$SelVar) |> lapply(\(i) {
+      rowvars <- c(qtab$p$l_selvar$rowvars[[i]], qtab$p$l_selvar$rowvars_inv[[i]])
+      new_rowvars <- rv(c(qtab$p$l_selvar$valid, qtab$p$l_selvar$invalid))
+      selvar_name <- qtab$p$SelVar[i]
+      selval <- qtab$p$SelVal
+      res <- prep_data(
+        qtab,
+        rowvars = rowvars,
+        new_rowvars = new_rowvars,
+        colvars_named = colvars_named,
+        weightvar = weightvar,
+        row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_tab[[selvar_name]], selval)
+      )
+      res$selvar = selvar_name
+      res$selval = selval
+      res
+    }) |>
+      dplyr::bind_rows()
   }
-  # treat selvar:
-
-  dat <- seq_along(qtab$p$SelVar) |> lapply(\(i) {
-    rowvars <- c(qtab$p$l_selvar$rowvars[[i]], qtab$p$l_selvar$rowvars_inv[[i]])
-    new_rowvars <- rv(c(qtab$p$l_selvar$valid, qtab$p$l_selvar$invalid))
-    selvar_name <- qtab$p$SelVar[i]
-    selval <- qtab$p$SelVal
-    res <- prep_data(
-      qtab,
-      rowvars = rowvars,
-      new_rowvars = new_rowvars,
-      colvars_named = colvars_named,
-      weightvar = weightvar,
-      row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_tab[[selvar_name]], selval)
-    )
-    res$selvar = selvar_name
-    res$selval = selval
-    res
-  }) |>
-    dplyr::bind_rows()
+  # for TOTAL column:
+  dat$"colvar_DC#TOTAL" <- 1
+  dat$i <- seq_len(nrow(dat))
   dat
-
 }
 prep_data <- function(
     qtab,
@@ -125,11 +127,6 @@ selvar_eq_selval <- function(selvar, selval) {
 }
 
 pivot_table_data <- function(qtab) {
-  df <- qtab$d$raw_data
-  # for TOTAL column:
-  df$"colvar_DC#TOTAL" <- 1
-  df$i <- seq_len(nrow(df))
-  qtab$d$raw_data <- df
   UseMethod("pivot_table_data")
 }
 pivot_table_data.qtab_type_mw <- pivot_table_data.qtab_type_cat <- function(qtab) {

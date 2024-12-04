@@ -134,8 +134,6 @@ calc_stats_rows.default <- function(qtab) {
 }
 calc_stats_rows.qtab_type_cat <- function(qtab) {
   df <- qtab$d$raw_data
-  # for TOTAL column:
-  df$"colvar_DC#TOTAL" <- 1
 
   df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
 
@@ -208,8 +206,6 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
 }
 calc_stats_rows.qtab_type_mdg <- function(qtab) {
   df <- qtab$d$raw_data
-  # for TOTAL column:
-  df$"colvar_DC#TOTAL" <- 1
 
   mdg_val <- qtab$p$MdgVal
 
@@ -300,8 +296,6 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
 calc_stats_rows.qtab_type_mw <- function(qtab) {
   invalid_vals <- c(qtab$p[["Unguelt"]], NA)
   df <- qtab$d$raw_data
-  # for TOTAL column:
-  df$"colvar_DC#TOTAL" <- 1
 
   df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
 
