@@ -42,20 +42,20 @@
       # mcg without Mult sel2 & 3
                                  TOTAL
                                       
-      TOTAL                abs     4  
-      Sum of valid answe…  abs     3  
-      ch1                  abs     0  
-                           in %    0  
-      ch2                  abs     1  
-                           in %   33.3
-      ch3                  abs     1  
-                           in %   33.3
-      ch4                  abs     1  
-                           in %   33.3
-      VALID CASES          abs     3  
-                           in %   75  
-      -2                   abs     1  
-                           in %   25  
+      TOTAL                abs       2
+      Sum of valid answe…  abs       1
+      ch1                  abs       0
+                           in %      0
+      ch2                  abs       0
+                           in %      0
+      ch3                  abs       0
+                           in %      0
+      ch4                  abs       1
+                           in %    100
+      VALID CASES          abs       1
+                           in %     50
+      -2                   abs       1
+                           in %     50
       
       
       $`5`
@@ -85,18 +85,18 @@
                                  TOTAL
                                       
       VALID CASES (at le…  abs    4   
-      Choice 1 & 2         Mean   2.25
-                           VALI…  4   
-      Choice 3 & 4         Mean   3.5 
-                           VALI…  2   
+      Choice 1 & 2         Mean   2.67
+                           VALI…  3   
+      Choice 3 & 4         Mean   4   
+                           VALI…  1   
       
       $`6`[[2]]
       # mw without Mult sel1 & 2 Choice 1 & 2
                                  TOTAL
                                       
       TOTAL                abs       4
-      ch1                  abs       1
-                           in %     25
+      ch1                  abs       0
+                           in %      0
       ch2                  abs       2
                            in %     50
       ch3                  abs       0
@@ -115,8 +115,8 @@
                            in %      0
       ch2                  abs       0
                            in %      0
-      ch3                  abs       1
-                           in %     50
+      ch3                  abs       0
+                           in %      0
       ch4                  abs       1
                            in %     50
       VALID CASES          abs       2

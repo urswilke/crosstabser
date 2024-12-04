@@ -126,8 +126,14 @@ selvar_eq_selval <- function(selvar, selval) {
   catrec(vec = selvar, paste0("(", selval, " = 1)"), 0) == 1
 }
 pivot_rowvar_data <- function(qtab) {
-  qtab$d$df_rowvar_long <- qtab$d$raw_data |>
+  res <- qtab$d$raw_data |>
     pivot_rows()
+  if (is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")) {
+    res <- res[
+      !duplicated(res[c("rowvar", "row")], fromLast = TRUE),
+    ]
+  }
+  qtab$d$df_rowvar_long <- res
 }
 pivot_table_data <- function(qtab) {
   UseMethod("pivot_table_data")
@@ -156,11 +162,6 @@ pivot_rows <- function(df) {
 }
 pivot_table_data.qtab_type_mdg <- function(qtab) {
   df_rows_long <- qtab$d$df_rowvar_long
-  if (is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")) {
-    df_rows_long <- df_rows_long[
-      !duplicated(df_rows_long[c("rowvar", "rowval", "row")]),
-    ]
-  }
 
   mdg_val <- qtab$p$MdgVal
 
