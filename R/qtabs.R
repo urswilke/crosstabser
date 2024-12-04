@@ -102,7 +102,7 @@ calc_qtab_ <- function(qtab) {
 calc_qtab_elements <- function(qtab) {
   qtab$d$raw_data <- get_raw_data(qtab)
 
-  pivot_rowvar_data(qtab)
+  qtab$d$df_rowvar_long <- pivot_rowvar_data(qtab)
   pivot_table_data(qtab)
   calc_stats_rows(qtab)
   calc_stat_fun(qtab)

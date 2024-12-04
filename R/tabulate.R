@@ -133,7 +133,7 @@ pivot_rowvar_data <- function(qtab) {
       !duplicated(res[c("rowvar", "row")], fromLast = TRUE),
     ]
   }
-  qtab$d$df_rowvar_long <- res
+  res
 }
 pivot_table_data <- function(qtab) {
   UseMethod("pivot_table_data")
