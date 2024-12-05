@@ -84,7 +84,7 @@
       # mw without Mult sel1 & 2 Summary of means
                                  TOTAL age   -----
                                        18-39 40+  
-      VALID CASES (at le…  abs    4        2     2
+      VALID CASES (at le…  abs    3        2     1
       Choice 1 & 2         Mean   2.67     3     2
                            VALI…  3        2     1
       Choice 3 & 4         Mean   4        ·     4

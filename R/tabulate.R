@@ -125,26 +125,7 @@ selvar_eq_selval <- function(selvar, selval) {
   }
   catrec(vec = selvar, paste0("(", selval, " = 1)"), 0) == 1
 }
-pivot_rowvar_data <- function(qtab) {
-  UseMethod("pivot_rowvar_data")
-}
-pivot_rowvar_data.default <- function(qtab) {
-  res <- qtab$d$raw_data |>
-    pivot_rows()
-  if (is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")) {
-    res <- res[
-      !duplicated(res[c("rowvar", "row")], fromLast = TRUE),
-    ]
-  }
-  res
-}
-pivot_table_data <- function(qtab) {
-  UseMethod("pivot_table_data")
-}
-pivot_table_data.qtab_type_mw <- pivot_table_data.qtab_type_cat <- function(qtab) {
-  qtab$d$long_data <- qtab$d$df_rowvar_long |>
-    pivot_cols()
-}
+
 pivot_cols <- function(df) {
   df |>
     tidyr::pivot_longer(
@@ -163,23 +144,34 @@ pivot_rows <- function(df) {
       values_to = "rowval"
     )
 }
-pivot_table_data.qtab_type_mdg <- function(qtab) {
-  df_rows_long <- qtab$d$df_rowvar_long
+pivot_rowvar_data <- function(qtab) {
+  UseMethod("pivot_rowvar_data")
+}
+pivot_rowvar_data.default <- function(qtab) {
+  res <- qtab$d$raw_data |>
+    pivot_rows()
+  if (is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")) {
+    res <- res[
+      !duplicated(res[c("rowvar", "row")], fromLast = TRUE),
+    ]
+  }
+  res
+}
+pivot_rowvar_data.qtab_type_mdg <- function(qtab) {
+  res <- pivot_rowvar_data.default(qtab)
 
   mdg_val <- qtab$p$MdgVal
 
   invalids <- qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]]
 
-  qtab$d$long_data <- df_rows_long[df_rows_long$rowval == mdg_val,] |>
+  res[res$rowval == mdg_val,] |>
     add_exclusive_info(
       c(qtab$p[["Exclusive"]], invalids),
       "rowvar"
-    ) |>
-    pivot_cols()
+    )
 }
-
-pivot_table_data.qtab_type_mcg <- function(qtab) {
-  df_rows_long <- qtab$d$df_rowvar_long |>
+pivot_rowvar_data.qtab_type_mcg <- function(qtab) {
+  df_rows_long <- pivot_rowvar_data.default(qtab) |>
     # remove duplicated choices:
     dplyr::distinct(dplyr::across(dplyr::all_of(
       c("i", "rowval")
@@ -189,12 +181,23 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
     df_rows_long,
     c(qtab$p[["Exclusive"]], qtab$p[["Unguelt"]]),
     "rowval"
-  ) |>
-    pivot_cols()
+  )
+  df_long$rowvar <- qtab$p$rowvars_string
 
-  rowvars <- qtab$p$rowvars_string
-  df_long$rowvar <- rowvars
-  qtab$d$long_data <- df_long
+  df_long
+}
+now_do_colvar <- function(qtab) {
+  UseMethod("now_do_colvar")
+}
+now_do_colvar.default <- function(qtab) {
+  qtab$d$df_rowvar_long |>
+    pivot_cols()
+}
+now_do_colvar.qtab_type_mcg <- function(qtab) {
+  res <- now_do_colvar.default(qtab)
+
+  res$rowvar <- qtab$p$rowvars_string
+  res
 }
 
 gen_val_table <- function(qtab) {

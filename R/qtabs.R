@@ -103,7 +103,8 @@ calc_qtab_elements <- function(qtab) {
   qtab$d$raw_data <- get_raw_data(qtab)
 
   qtab$d$df_rowvar_long <- pivot_rowvar_data(qtab)
-  pivot_table_data(qtab)
+  qtab$d$long_data <- now_do_colvar(qtab)
+
   calc_stats_rows(qtab)
   calc_stat_fun(qtab)
   calc_detail_freqs(qtab)

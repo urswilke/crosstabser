@@ -294,19 +294,44 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
 
 calc_stats_rows.qtab_type_mw <- function(qtab) {
   invalid_vals <- c(qtab$p[["Unguelt"]], NA)
-  df <- qtab$d$raw_data
 
-  df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
+  long_data <- qtab$d$long_data
 
-  rowvars <- rv(qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab)
-  df_rows <- df[rowvars]
+  keep_row <- long_data[["selvar_dup"]] %||% TRUE
 
-  df_cols$n_valid <- rowSums(sapply(df_rows, Negate(`%in%`), invalid_vals)) >= 1
-  df_cols_long <- df_cols |>
-    pivot_cols()
+  case_distinguisher <- if (
+    is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")
+  ) {
+    "row"
+  } else {
+    "i"
+  }
+  # the `weight` column is only used when in the data:
+  # we could also omit the conditional logic
+  # and use any_of instead of all_of below
+  # but with all_of we also get an error check if all columns are present...:
+  weight_string <- if (
+    !is.null(qtab$p$Weight[[1]])
+  ) {
+    "weight"
+  } else {
+    NULL
+  }
+
+  df_valid_cases <- long_data |>
+     _[keep_row, ] |>
+    dplyr::summarise(
+      n_valid = !all(rowval %in% invalid_vals),
+      .by = all_of(c(
+        "colvar",
+        "colval",
+        case_distinguisher,
+        weight_string
+      ))
+    )
 
   row_types <- c("n_valid")
-  df_stats_rows <- df_cols_long |>
+  df_stats_rows <- df_valid_cases |>
     summarize_stats(
       row_types,
       wt = qtab$p$Weight[[1]],
