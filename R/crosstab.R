@@ -23,7 +23,6 @@ calc_stat_fun <- function(qtab) {
 calc_stat_fun.default <- function(qtab) {
   NULL
 }
-# TODO: add tests for stat_fun = median, sum, ...:
 calc_stat_fun.qtab_type_mw <- function(qtab) {
   invalid_vals <- c(qtab$p[["Unguelt"]], qtab$p[["UngueltMW"]])
   long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
