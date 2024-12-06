@@ -40,30 +40,32 @@ get_raw_data.default <- function(qtab) {
       weightvar = weightvar,
       row_in_filter = row_in_filter
     )
-    return(dat)
+  } else {
+    # treat selvar:
+
+    dat <- seq_along(qtab$p$SelVar) |> lapply(\(i) {
+      rowvars <- c(qtab$p$l_selvar$rowvars[[i]], qtab$p$l_selvar$rowvars_inv[[i]])
+      new_rowvars <- rv(c(qtab$p$l_selvar$valid, qtab$p$l_selvar$invalid))
+      selvar_name <- qtab$p$SelVar[i]
+      selval <- qtab$p$SelVal
+      res <- prep_data(
+        qtab,
+        rowvars = rowvars,
+        new_rowvars = new_rowvars,
+        colvars_named = colvars_named,
+        weightvar = weightvar,
+        row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_tab[[selvar_name]], selval)
+      )
+      res$selvar = selvar_name
+      res$selval = selval
+      res
+    }) |>
+      dplyr::bind_rows()
   }
-  # treat selvar:
-
-  dat <- seq_along(qtab$p$SelVar) |> lapply(\(i) {
-    rowvars <- c(qtab$p$l_selvar$rowvars[[i]], qtab$p$l_selvar$rowvars_inv[[i]])
-    new_rowvars <- rv(c(qtab$p$l_selvar$valid, qtab$p$l_selvar$invalid))
-    selvar_name <- qtab$p$SelVar[i]
-    selval <- qtab$p$SelVal
-    res <- prep_data(
-      qtab,
-      rowvars = rowvars,
-      new_rowvars = new_rowvars,
-      colvars_named = colvars_named,
-      weightvar = weightvar,
-      row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$dat_tab[[selvar_name]], selval)
-    )
-    res$selvar = selvar_name
-    res$selval = selval
-    res
-  }) |>
-    dplyr::bind_rows()
+  # for TOTAL column:
+  dat$"colvar_DC#TOTAL" <- 1
+  dat$i <- seq_len(nrow(dat))
   dat
-
 }
 prep_data <- function(
     qtab,
@@ -79,6 +81,7 @@ prep_data <- function(
   }
 
   long_cols <- c(
+    c(row = "row"),
     rowvars_named,
     colvars_named,
     weightvar
@@ -90,7 +93,9 @@ prep_data <- function(
   #   dplyr::select(!!!long_cols) |>
   #   dplyr::mutate(across(everything(), strip_attributes))
   # ... but with base R (for better performance)
-  dat <- qtab$m$dat_tab[row_in_filter, long_cols]
+  df <- qtab$m$dat_tab
+  df$row <- seq_len(nrow(df))
+  dat <- df[row_in_filter, long_cols]
   names(dat) <- names(long_cols)
   # remove label information:
   for (col in names(dat)) {
@@ -121,21 +126,6 @@ selvar_eq_selval <- function(selvar, selval) {
   catrec(vec = selvar, paste0("(", selval, " = 1)"), 0) == 1
 }
 
-pivot_table_data <- function(qtab) {
-  df <- qtab$d$raw_data
-  # for TOTAL column:
-  df$"colvar_DC#TOTAL" <- 1
-  df$i <- seq_len(nrow(df))
-  qtab$d$raw_data <- df
-  UseMethod("pivot_table_data")
-}
-pivot_table_data.qtab_type_mw <- pivot_table_data.qtab_type_cat <- function(qtab) {
-  df <- qtab$d$raw_data
-
-  qtab$d$long_data <- df |>
-    pivot_rows() |>
-    pivot_cols()
-}
 pivot_cols <- function(df) {
   df |>
     tidyr::pivot_longer(
@@ -154,29 +144,34 @@ pivot_rows <- function(df) {
       values_to = "rowval"
     )
 }
-pivot_table_data.qtab_type_mdg <- function(qtab) {
-  df <- qtab$d$raw_data
-
-  df_rows_long <- df |>
+pivot_rowvar_data <- function(qtab) {
+  UseMethod("pivot_rowvar_data")
+}
+pivot_rowvar_data.default <- function(qtab) {
+  res <- qtab$d$raw_data |>
     pivot_rows()
+  if (is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")) {
+    res <- res[
+      !duplicated(res[c("rowvar", "row")], fromLast = TRUE),
+    ]
+  }
+  res
+}
+pivot_rowvar_data.qtab_type_mdg <- function(qtab) {
+  res <- pivot_rowvar_data.default(qtab)
 
   mdg_val <- qtab$p$MdgVal
 
   invalids <- qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]]
 
-  qtab$d$long_data <- df_rows_long[df_rows_long$rowval == mdg_val,] |>
+  res[res$rowval == mdg_val,] |>
     add_exclusive_info(
       c(qtab$p[["Exclusive"]], invalids),
       "rowvar"
-    ) |>
-    pivot_cols()
+    )
 }
-
-pivot_table_data.qtab_type_mcg <- function(qtab) {
-  df <- qtab$d$raw_data
-
-  df_rows_long <- df |>
-    pivot_rows() |>
+pivot_rowvar_data.qtab_type_mcg <- function(qtab) {
+  df_rows_long <- pivot_rowvar_data.default(qtab) |>
     # remove duplicated choices:
     dplyr::distinct(dplyr::across(dplyr::all_of(
       c("i", "rowval")
@@ -186,12 +181,23 @@ pivot_table_data.qtab_type_mcg <- function(qtab) {
     df_rows_long,
     c(qtab$p[["Exclusive"]], qtab$p[["Unguelt"]]),
     "rowval"
-  ) |>
-    pivot_cols()
+  )
+  df_long$rowvar <- qtab$p$rowvars_string
 
-  rowvars <- qtab$p$rowvars_string
-  df_long$rowvar <- rowvars
-  qtab$d$long_data <- df_long
+  df_long
+}
+now_do_colvar <- function(qtab) {
+  UseMethod("now_do_colvar")
+}
+now_do_colvar.default <- function(qtab) {
+  qtab$d$df_rowvar_long |>
+    pivot_cols()
+}
+now_do_colvar.qtab_type_mcg <- function(qtab) {
+  res <- now_do_colvar.default(qtab)
+
+  res$rowvar <- qtab$p$rowvars_string
+  res
 }
 
 gen_val_table <- function(qtab) {
