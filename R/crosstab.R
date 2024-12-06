@@ -305,11 +305,9 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
     "row"
   } else {
     "i"
+    # Or alternatively:
+    # c("row", "selvar")
   }
-  # the `weight` column is only used when in the data:
-  # we could also omit the conditional logic
-  # and use any_of instead of all_of below
-  # but with all_of we also get an error check if all columns are present...:
   weight_string <- if (
     !is.null(qtab$p$Weight[[1]])
   ) {
@@ -318,20 +316,21 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
     NULL
   }
 
-  df_valid_cases <- long_data |>
-     _[keep_row, ] |>
+  any_valid_grouping <- c(
+    "colvar",
+    "colval",
+    case_distinguisher,
+    weight_string
+  )
+  at_least_one_valid <- long_data |>
+    _[keep_row, ] |>
     dplyr::summarise(
-      n_valid = !all(rowval %in% invalid_vals),
-      .by = all_of(c(
-        "colvar",
-        "colval",
-        case_distinguisher,
-        weight_string
-      ))
+      n_valid = any_valid(rowval, invalid_vals),
+      .by = all_of(any_valid_grouping)
     )
 
   row_types <- c("n_valid")
-  df_stats_rows <- df_valid_cases |>
+  df_stats_rows <- at_least_one_valid |>
     summarize_stats(
       row_types,
       wt = qtab$p$Weight[[1]],
@@ -346,6 +345,10 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
   df_stats_rows$RowAbsPercent <- "Abs"
 
   qtab$d$stats_rows <- list(n_valid = df_stats_rows)
+}
+
+any_valid <- function(rowval, invalid_vals) {
+  !all(rowval %in% invalid_vals)
 }
 
 calc_stats_rows.qtab_type_mcg <- function(qtab) {
