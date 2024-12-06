@@ -77,7 +77,6 @@ Tabula <- R6::R6Class(
         dat,
         mapping_file,
         process_sheets = FALSE,
-        error_out = "safe",
         # TODO: move the definition of this parameter into the initialization of datenanpassr::Mapping,
         # if we want to use it there as well...!
         verbose = verbose,
