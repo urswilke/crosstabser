@@ -1,22 +1,9 @@
-summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
-  if (is.null(wt)) {
-    return(summarize_stats_unweighted(
-      df = df,
-      x = x,
-      stat_fun = stat_fun,
-      ...,
-      .by = .by))
-  }
-  summarize_stats_weighted(
-    df = df,
-    x = x,
-    wt = wt,
-    stat_fun = stat_fun,
-    ...,
-    .by = .by)
+.onLoad <- function(...) {
+  S7::methods_register()
 }
 
-summarize_stats_unweighted <- function(df, x, stat_fun = "length", ..., .by) {
+
+summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
   if (length(x) < 2) {
     # HACK to return the results in a column named "value":
     names(df)[names(df) %in% x] <- "value"
@@ -25,31 +12,27 @@ summarize_stats_unweighted <- function(df, x, stat_fun = "length", ..., .by) {
     }
     x <- "value"
   }
-
-  stats::aggregate(
-    stats::reformulate(.by, aggregate_fml_lhs(x)),
-    data = df,
-    stat_fun,
-    ...
-  ) |> dplyr::as_tibble()
-
-}
-summarize_stats_weighted <- function(df, x, wt, stat_fun = "length", ..., .by) {
-  if (is.null(x)) {
-    x <- "value"
-    df[[x]] <- NA_real_
+  f = get(stat_fun) |> ct_fun()
+  class(f) <- c(paste0("ct_", stat_fun), class(f))
+  res <- if (!is.null(wt)) {
+    df |>
+      dplyr::summarise(dplyr::across(dplyr::all_of(x),
+        \(vec) apply_fun(
+          f = f,
+          w = weight,
+          x = vec,
+          ...
+        )),
+        .by = dplyr::all_of(.by)
+      )
+  } else {
+    stats::aggregate(
+      stats::reformulate(.by, aggregate_fml_lhs(x)),
+      data = df,
+      stat_fun,
+      ...
+    ) |> dplyr::as_tibble()
   }
-
-  res <- df |>
-    dplyr::summarise(dplyr::across(dplyr::all_of(x),
-      \(vec) apply_stat(
-        x = vec,
-        wt = weight,
-        stat_fun = stat_fun,
-        ...
-      )),
-      .by = dplyr::all_of(.by)
-    )
   if (length(x) == 1) {
     names(res)[names(res) == x] <- "value"
   }
@@ -64,31 +47,35 @@ aggregate_fml_lhs <- function(x) {
   paste0("cbind(", paste(x, collapse = ", "), ")")
 }
 
-apply_stat <- function(x, wt = NULL, stat_fun = "length", ...) {
-  new_stat_vec(
-    x = x,
-    wt = wt,
-    stat_fun = stat_fun,
-    ...
-  ) |>
-    stat_fun_wt()
-}
+ct_fun <- S7::new_class("ct_fun", S7::class_function)
 
-new_stat_vec <- function(x, wt = NULL, stat_fun = "length", ...) {
-  res <- structure(
-    list(
-      vec = x,
-      wt = wt,
-      ...
-    ),
-    class = c(stat_fun, class(x))
-  )
-  if (!is.null(wt)) {
-    class(res) <- c("weighted", class(res))
-  } else {
-    class(res) <- c("unweighted", class(res))
-  }
-  res
+apply_fun <- S7::new_generic("apply_fun", c("f", "w"))
+# Not used yet:
+S7::method(
+  apply_fun,
+  list(ct_fun, S7::class_missing)
+) <- function(
+    f,
+    w,
+    x,
+    ...
+) {
+  apply_fun_unweighted(f, x, ...)
+}
+S7::method(
+  apply_fun,
+  list(ct_fun, S7::class_double)
+) <- function(
+    f,
+    w,
+    x,
+    ...
+) {
+  apply_fun_weighted(f, w, x, na.rm = TRUE, ...)
+  # stat_fun_wt2(f, w, x, na.rm = TRUE, ...)
+}
+apply_fun_weighted <- function(f, w, x, na.rm = TRUE, ...) {
+  UseMethod("apply_fun_weighted")
 }
 #' Calculate sample statistics
 #'
@@ -108,66 +95,59 @@ se <- function(x, na.rm = TRUE, ...) {
 percentile <- function(x, na.rm = TRUE, ...) {
   stats::quantile(x, na.rm = na.rm, type = 2, ...)
 }
-stat_fun_wt <- function(x, ...) {
-  UseMethod("stat_fun_wt")
+apply_fun_weighted.ct_length <- function(f, w, x, na.rm = TRUE, ...) {
+  sum(w, na.rm = na.rm)
 }
-stat_fun_wt.length <- function(x, na.rm = TRUE, ...) {
-  sum(x$wt, na.rm = na.rm)
-}
-stat_fun_wt.mean <- function(x, na.rm = TRUE, ...) {
+apply_fun_weighted.ct_mean <- function(f, w, x, na.rm = TRUE, ...) {
   if (na.rm) {
-    x <- rm_na(x)
+    obs <- !is.na(x) & !is.na(w)
+    x <- x[obs]
+    w <- w[obs]
   }
-  if (length(x$vec) == 0) {
+  if (length(x) == 0) {
     return(NA_real_)
   }
-  stats::weighted.mean(x$vec, x$wt, na.rm = na.rm)
+  stats::weighted.mean(x, w, na.rm = na.rm)
 }
-stat_fun_wt.median <- function(x, na.rm = TRUE, ties = "mean", ...) {
-  matrixStats::weightedMedian(x$vec, x$wt, na.rm = na.rm, ties = ties)
+apply_fun_weighted.ct_median <- function(f, w, x, na.rm = TRUE, ties = "mean", ...) {
+  matrixStats::weightedMedian(x, w, na.rm = na.rm, ties = ties)
 }
-stat_fun_wt.sum <- function(x, na.rm = TRUE, ...) {
+apply_fun_weighted.ct_sum <- function(f, w, x, na.rm = TRUE, ...) {
   if (na.rm) {
-    x <- rm_na(x)
+    obs <- !is.na(x) & !is.na(w)
+    x <- x[obs]
+    w <- w[obs]
   }
-  if (length(x$vec) == 0) {
+  if (length(x) == 0) {
     return(NA_real_)
   }
-  sum(x$vec * x$wt, na.rm = na.rm)
+  sum(x * w, na.rm = na.rm)
 }
-# TODO: check if this leads to the same results as with SPSS:
-stat_fun_wt.se <- function(x, na.rm = TRUE, ...) {
+apply_fun_weighted.ct_se <- function(f, w, x, na.rm = TRUE, ...) {
   # see here: https://stackoverflow.com/a/60235611
   if (na.rm) {
-    x <- rm_na(x)
+    obs <- !is.na(x) & !is.na(w)
+    x <- x[obs]
+    w <- w[obs]
   }
-  if (length(x$vec) == 1) {
+  if (length(x) == 1) {
     return(NA_real_)
   }
-  w <- x$wt
   if (sum(w) <= 1) {
     # see https://github.com/harrelfe/Hmisc/issues/69
     return(NA_real_)
   }
   sqrt(
-    Hmisc::wtd.var(x$vec, w) *
-      sum(w / sum(w)^2)
+    Hmisc::wtd.var(x, w) *
+      sum(w / sum(w) ^ 2)
   )
 }
-rm_na <- function(x) {
-  obs <- !is.na(x$vec) & !is.na(x$wt)
-  x$vec <- x$vec[obs]
-  x$wt <- x$wt[obs]
-  x
+apply_fun_weighted.ct_min <- function(f, w, x, na.rm = TRUE, ...) {
+  min(x, na.rm = na.rm, ...) |> dplyr::na_if(Inf)
 }
-
-stat_fun_wt.min <- function(x, na.rm = TRUE, ...) {
-  min(x$vec, na.rm = na.rm, ...) |> dplyr::na_if(Inf)
+apply_fun_weighted.ct_max <- function(f, w, x, na.rm = TRUE, ...) {
+  max(x, na.rm = na.rm, ...) |> dplyr::na_if(-Inf)
 }
-stat_fun_wt.max <- function(x, na.rm = TRUE, ...) {
-  max(x$vec, na.rm = na.rm, ...) |> dplyr::na_if(-Inf)
+apply_fun_weighted.ct_percentile <- function(f, w, x, probs, na.rm = TRUE, ...) {
+  Hmisc::wtd.quantile(x, w, probs = probs)
 }
-stat_fun_wt.percentile <- function(x, na.rm = TRUE, ...) {
-  Hmisc::wtd.quantile(x$vec, x$wt, probs = x$probs)
-}
-
