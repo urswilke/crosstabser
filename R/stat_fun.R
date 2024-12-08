@@ -16,7 +16,8 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
   class(f) <- c(paste0("ct_", stat_fun), class(f))
   res <- if (!is.null(wt)) {
     df |>
-      dplyr::summarise(dplyr::across(dplyr::all_of(x),
+      dplyr::summarise(
+        dplyr::across(dplyr::all_of(x),
         \(vec) apply_fun(
           f = f,
           w = weight,
@@ -26,12 +27,14 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
         .by = dplyr::all_of(.by)
       )
   } else {
-    stats::aggregate(
-      stats::reformulate(.by, aggregate_fml_lhs(x)),
-      data = df,
-      stat_fun,
-      ...
-    ) |> dplyr::as_tibble()
+    df |>
+      dplyr::summarise(
+        dplyr::across(
+          dplyr::all_of(x),
+          \(x) apply_fun(f = f, x = x, ...)
+        ),
+        .by = dplyr::all_of(.by)
+      )
   }
   if (length(x) == 1) {
     names(res)[names(res) == x] <- "value"
@@ -77,13 +80,37 @@ S7::method(
 apply_fun_weighted <- function(f, w, x, na.rm = TRUE, ...) {
   UseMethod("apply_fun_weighted")
 }
+apply_fun_unweighted <- function(f, x, na.rm = TRUE, ...) {
+  UseMethod("apply_fun_unweighted")
+}
+apply_fun_unweighted.ct_length <- function(f, x, na.rm = TRUE, ...) {
+  length(x)
+}
+apply_fun_unweighted.ct_mean <- function(f, x, na.rm = TRUE, ...) {
+  res <- mean(x, na.rm = na.rm, ...)
+  if (is.nan(res)) res <- NA_real_
+  res
+}
+apply_fun_unweighted.ct_median <- function(f, x, na.rm = TRUE, ...) {
+  median(x, na.rm = na.rm, ...)
+}
+apply_fun_unweighted.ct_sum <- function(f, x, na.rm = TRUE, ...) {
+  if (all(is.na(x))) return(NA_real_)
+  sum(x, na.rm = na.rm, ...)
+}
+apply_fun_unweighted.ct_min <- function(f, x, na.rm = TRUE, ...) {
+  min(x, na.rm = na.rm, ...) |> dplyr::na_if(Inf)
+}
+apply_fun_unweighted.ct_max <- function(f, x, na.rm = TRUE, ...) {
+  max(x, na.rm = na.rm, ...) |> dplyr::na_if(-Inf)
+}
 #' Calculate sample statistics
 #'
 #' @param x numeric vector
 #' @param na.rm remove NAs
 #' @keywords internal
 #' @export
-se <- function(x, na.rm = TRUE, ...) {
+se <- apply_fun_unweighted.ct_se <- function(f, x, na.rm = TRUE, ...) {
   if (na.rm) {
     x <- x[!is.na(x)]
   }
@@ -92,7 +119,7 @@ se <- function(x, na.rm = TRUE, ...) {
 #' @rdname se
 #' @keywords internal
 #' @export
-percentile <- function(x, na.rm = TRUE, ...) {
+percentile <- apply_fun_unweighted.ct_percentile <- function(f, x, na.rm = TRUE, ...) {
   stats::quantile(x, na.rm = na.rm, type = 2, ...)
 }
 apply_fun_weighted.ct_length <- function(f, w, x, na.rm = TRUE, ...) {
