@@ -187,7 +187,7 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
   is_valid <- all_counts$rowvar %in% (qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]])
   detail_freqs <- all_counts[!is_valid,]
 
-  if (!is.null(qtab$p$MdgMissValid) && qtab$p$MdgMissValid == "TRUE") {
+  if (qtab$p$MdgMissValid) {
     valid_no_entry <- qtab$d$stats_rows$valid_no_entry
     valid_no_entry$rowvar <- "valid_no_entry"
     valid_no_entry$RowAbsPercent <- "Abs"
@@ -225,7 +225,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
     pivot_cols()
 
   row_types <- c("total", "n_valid", "no_entry")
-  if (!is.null(qtab$p$MdgMissValid) && qtab$p$MdgMissValid == "TRUE") {
+  if (qtab$p$MdgMissValid) {
     df_cols_long <- df_cols_long |>
       dplyr::mutate(
         n_valid = n_valid | no_entry,
@@ -262,7 +262,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
       wt = qtab$p$Weight[[1]],
       .by = c("colvar", "colval")
     )
-  if (!is.null(qtab$p$MdgMissValid) && qtab$p$MdgMissValid == "TRUE") {
+  if (qtab$p$MdgMissValid) {
     sum_of_valid = sum_of_valid |>
       dplyr::full_join(
         df_stats_rows[c("colvar", "colval", "valid_no_entry")],
