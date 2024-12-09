@@ -12,7 +12,8 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
     }
     x <- "value"
   }
-  f = get(stat_fun) |> ct_fun()
+  f = stat_fun|> ct_fun()
+  # HACK to add an S3 dispatch mechanism for all the function subclasses needed:
   class(f) <- c(paste0("ct_", stat_fun), class(f))
   res <- if (!is.null(wt)) {
     df |>
@@ -60,7 +61,7 @@ aggregate_fml_lhs <- function(x) {
   paste0("cbind(", paste(x, collapse = ", "), ")")
 }
 
-ct_fun <- S7::new_class("ct_fun", S7::class_function)
+ct_fun <- S7::new_class("ct_fun", S7::class_character)
 ct_weighted <- S7::new_class("ct_weighted", S7::class_double)
 ct_unweighted <- S7::new_class("ct_unweighted", S7::class_list)
 
@@ -129,7 +130,7 @@ apply_fun_unweighted.ct_max <- function(f, x, na.rm = TRUE, ...) {
 #' @param na.rm remove NAs
 #' @keywords internal
 #' @export
-se <- apply_fun_unweighted.ct_se <- function(f, x, na.rm = TRUE, ...) {
+apply_fun_unweighted.ct_se <- function(f, x, na.rm = TRUE, ...) {
   if (na.rm) {
     x <- x[!is.na(x)]
   }
@@ -138,7 +139,7 @@ se <- apply_fun_unweighted.ct_se <- function(f, x, na.rm = TRUE, ...) {
 #' @rdname se
 #' @keywords internal
 #' @export
-percentile <- apply_fun_unweighted.ct_percentile <- function(f, x, na.rm = TRUE, ...) {
+apply_fun_unweighted.ct_percentile <- function(f, x, na.rm = TRUE, ...) {
   stats::quantile(x, na.rm = na.rm, type = 2, ...)
 }
 apply_fun_weighted.ct_length <- function(f, w, x, na.rm = TRUE, ...) {
