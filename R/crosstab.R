@@ -357,8 +357,6 @@ calc_stats_rows.qtab_type_mcg <- function(qtab) {
   df_long <- qtab$d$long_data
   df_long_valid <- df_long[!(df_long$rowval %in% invalid_vals) & df_long$val_to_count,]
   group_variables <- c("colvar", "colval")
-  # the next is equivalent to (for unweighted):
-  # total <- df_long |> dplyr::summarise(value = dplyr::n_distinct(i), .by = c("colvar", "colval"))
   total <- df_long |>
     dplyr::distinct(dplyr::across(dplyr::all_of(c("i", group_variables, qtab$p$long_weight)))) |>
     summarize_stats(NULL, qtab$p$Weight[[1]], .by = group_variables)
@@ -411,7 +409,6 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   catrec_strings <- strsplit(qtab$p$CatRec, "\\|")[[1]]
   all_counts <- catrec_strings |>
     lapply(\(x) summarise_catrec(df_long, x, qtab$p$Weight[[1]])) |>
-    # TODO: tell Wolf about new parameter "i_catrec"!...:
     dplyr::bind_rows(.id = "i_catrec")
   all_counts$RowContent <- "Summary"
   all_counts$RowAbsPercent <- "Abs"
@@ -533,7 +530,7 @@ calc_percentage_helper <- function(cts, divider_cts) {
     paste(percentages$colvar, percentages$colval),
     paste(divider_cts$colvar, divider_cts$colval)
   )
-  percentages$value <- 100 *percentages$value / divider_cts$value[idx]
+  percentages$value <- 100 * percentages$value / divider_cts$value[idx]
   percentages$RowAbsPercent <- "Percent"
   percentages
 }
