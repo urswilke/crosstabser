@@ -15,55 +15,39 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
   f = stat_fun|> ct_fun()
   # HACK to add an S3 dispatch mechanism for all the function subclasses needed:
   class(f) <- c(paste0("ct_", stat_fun), class(f))
-  res <- if (!is.null(wt)) {
-    df |>
-      dplyr::summarise(
-        dplyr::across(dplyr::all_of(x),
+
+  if (!is.null(wt)) {
+    df$weight <- df$weight |> ct_weighted()
+  } else {
+    weight <- ct_unweighted()
+  }
+  res <- df |>
+    dplyr::summarise(
+      dplyr::across(
+        dplyr::all_of(x),
         \(vec) apply_fun(
           f = f,
-          w = weight |> ct_weighted(),
+          w = weight,
           x = vec,
           ...
-        )),
-        .by = dplyr::all_of(.by)
-      )
-  } else {
-    weight <- list(NULL) |> ct_unweighted()
-    # df |>
-    #   dplyr::summarise(
-    #     dplyr::across(
-    #       dplyr::all_of(x),
-    #       \(x) apply_fun_helper(f = f, w = weight, x = x, ...)
-    #     ),
-    #     .by = dplyr::all_of(.by)
-    #   )
-    stats::aggregate(
-      stats::reformulate(.by, aggregate_fml_lhs(x)),
-      data = df,
-      apply_fun_helper,
-      f = f,
-      w = weight,
-      ...
-    ) |> dplyr::as_tibble()
+        )
+      ),
+      .by = dplyr::all_of(.by)
+    )
 
-  }
+
   if (length(x) == 1) {
     names(res)[names(res) == x] <- "value"
   }
   res
 }
 
-# HACK to allow to compute multiple columns with aggregate():
-aggregate_fml_lhs <- function(x) {
-  if (length(x) == 1) {
-    return(x)
-  }
-  paste0("cbind(", paste(x, collapse = ", "), ")")
-}
-
 ct_fun <- S7::new_class("ct_fun", S7::class_character)
 ct_weighted <- S7::new_class("ct_weighted", S7::class_double)
-ct_unweighted <- S7::new_class("ct_unweighted", S7::class_list)
+S7::method(`[`, ct_weighted) <- function(x, ...) {
+  `[`(S7::S7_data(x), ...) |> ct_weighted()
+}
+ct_unweighted <- S7::new_class("ct_unweighted")
 
 apply_fun <- S7::new_generic("apply_fun", c("f", "w"))
 S7::method(
@@ -87,14 +71,6 @@ S7::method(
     ...
 ) {
   apply_fun_weighted(f, S7::S7_data(w), x, na.rm = TRUE, ...)
-}
-apply_fun_helper <- function(
-    x,
-    w,
-    f,
-    ...
-) {
-  apply_fun(f, w, x, ...)
 }
 
 apply_fun_weighted <- function(f, w, x, na.rm = TRUE, ...) {
