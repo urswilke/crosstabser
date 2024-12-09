@@ -20,21 +20,31 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
         dplyr::across(dplyr::all_of(x),
         \(vec) apply_fun(
           f = f,
-          w = weight,
+          w = weight |> ct_weighted(),
           x = vec,
           ...
         )),
         .by = dplyr::all_of(.by)
       )
   } else {
-    df |>
-      dplyr::summarise(
-        dplyr::across(
-          dplyr::all_of(x),
-          \(x) apply_fun(f = f, x = x, ...)
-        ),
-        .by = dplyr::all_of(.by)
-      )
+    weight <- list(NULL) |> ct_unweighted()
+    # df |>
+    #   dplyr::summarise(
+    #     dplyr::across(
+    #       dplyr::all_of(x),
+    #       \(x) apply_fun_helper(f = f, w = weight, x = x, ...)
+    #     ),
+    #     .by = dplyr::all_of(.by)
+    #   )
+    stats::aggregate(
+      stats::reformulate(.by, aggregate_fml_lhs(x)),
+      data = df,
+      apply_fun_helper,
+      f = f,
+      w = weight,
+      ...
+    ) |> dplyr::as_tibble()
+
   }
   if (length(x) == 1) {
     names(res)[names(res) == x] <- "value"
@@ -51,12 +61,13 @@ aggregate_fml_lhs <- function(x) {
 }
 
 ct_fun <- S7::new_class("ct_fun", S7::class_function)
+ct_weighted <- S7::new_class("ct_weighted", S7::class_double)
+ct_unweighted <- S7::new_class("ct_unweighted", S7::class_list)
 
 apply_fun <- S7::new_generic("apply_fun", c("f", "w"))
-# Not used yet:
 S7::method(
   apply_fun,
-  list(ct_fun, S7::class_missing)
+  list(ct_fun, ct_unweighted)
 ) <- function(
     f,
     w,
@@ -67,16 +78,24 @@ S7::method(
 }
 S7::method(
   apply_fun,
-  list(ct_fun, S7::class_double)
+  list(ct_fun, ct_weighted)
 ) <- function(
     f,
     w,
     x,
     ...
 ) {
-  apply_fun_weighted(f, w, x, na.rm = TRUE, ...)
-  # stat_fun_wt2(f, w, x, na.rm = TRUE, ...)
+  apply_fun_weighted(f, S7::S7_data(w), x, na.rm = TRUE, ...)
 }
+apply_fun_helper <- function(
+    x,
+    w,
+    f,
+    ...
+) {
+  apply_fun(f, w, x, ...)
+}
+
 apply_fun_weighted <- function(f, w, x, na.rm = TRUE, ...) {
   UseMethod("apply_fun_weighted")
 }
