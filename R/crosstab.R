@@ -299,15 +299,7 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
 
   keep_row <- long_data[["selvar_dup"]] %||% TRUE
 
-  case_distinguisher <- if (
-    is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")
-  ) {
-    "row"
-  } else {
-    "i"
-    # Or alternatively:
-    # c("row", "selvar")
-  }
+  case_distinguisher <- qtab$p$case_distinguisher
   weight_string <- if (
     !is.null(qtab$p$Weight[[1]])
   ) {

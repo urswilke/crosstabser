@@ -150,7 +150,7 @@ pivot_rowvar_data <- function(qtab) {
 pivot_rowvar_data.default <- function(qtab) {
   res <- qtab$d$raw_data |>
     pivot_rows()
-  if (is.null(qtab$p$Mult) || !qtab$p$Mult %in% c("TRUE", "1")) {
+  if (!qtab$p$Mult) {
     res <- res[
       !duplicated(res[c("rowvar", "row")], fromLast = TRUE),
     ]
