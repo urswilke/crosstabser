@@ -530,7 +530,7 @@ calc_percentage_helper <- function(cts, divider_cts) {
     paste(percentages$colvar, percentages$colval),
     paste(divider_cts$colvar, divider_cts$colval)
   )
-  percentages$value <- 100 *percentages$value / divider_cts$value[idx]
+  percentages$value <- 100 * percentages$value / divider_cts$value[idx]
   percentages$RowAbsPercent <- "Percent"
   percentages
 }

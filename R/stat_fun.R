@@ -12,7 +12,7 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
     }
     x <- "value"
   }
-  f = stat_fun|> ct_fun()
+  f = stat_fun |> ct_fun()
   # HACK to add an S3 dispatch mechanism for all the function subclasses needed:
   class(f) <- c(paste0("ct_", stat_fun), class(f))
 
