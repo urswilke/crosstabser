@@ -124,21 +124,12 @@ apply_fun_unweighted.ct_min <- function(f, x, na.rm = TRUE, ...) {
 apply_fun_unweighted.ct_max <- function(f, x, na.rm = TRUE, ...) {
   max(x, na.rm = na.rm, ...) |> dplyr::na_if(-Inf)
 }
-#' Calculate sample statistics
-#'
-#' @param x numeric vector
-#' @param na.rm remove NAs
-#' @keywords internal
-#' @export
 apply_fun_unweighted.ct_se <- function(f, x, na.rm = TRUE, ...) {
   if (na.rm) {
     x <- x[!is.na(x)]
   }
   stats::sd(x) / sqrt(length(x))
 }
-#' @rdname se
-#' @keywords internal
-#' @export
 apply_fun_unweighted.ct_percentile <- function(f, x, na.rm = TRUE, ...) {
   stats::quantile(x, na.rm = na.rm, type = 2, ...)
 }
