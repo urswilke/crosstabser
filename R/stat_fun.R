@@ -2,7 +2,6 @@
   S7::methods_register()
 }
 
-
 summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
   if (length(x) < 2) {
     # HACK to return the results in a column named "value":
@@ -44,12 +43,15 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
 
 ct_fun <- S7::new_class("ct_fun", S7::class_character)
 ct_weighted <- S7::new_class("ct_weighted", S7::class_double)
+ct_unweighted <- S7::new_class("ct_unweighted")
+
+# needed to allow apply_fun to be run for the weighted case in group_by -> summarize:
 S7::method(`[`, ct_weighted) <- function(x, ...) {
   `[`(S7::S7_data(x), ...) |> ct_weighted()
 }
-ct_unweighted <- S7::new_class("ct_unweighted")
-
 apply_fun <- S7::new_generic("apply_fun", c("f", "w"))
+
+# double dispatch for ct_fun & ct_weighted/ct_unweighted:
 S7::method(
   apply_fun,
   list(ct_fun, ct_unweighted)
@@ -73,9 +75,6 @@ S7::method(
   apply_fun_weighted(f, S7::S7_data(w), x, na.rm = TRUE, ...)
 }
 
-apply_fun_weighted <- function(f, w, x, na.rm = TRUE, ...) {
-  UseMethod("apply_fun_weighted")
-}
 apply_fun_unweighted <- function(f, x, na.rm = TRUE, ...) {
   UseMethod("apply_fun_unweighted")
 }
@@ -108,6 +107,9 @@ apply_fun_unweighted.ct_se <- function(f, x, na.rm = TRUE, ...) {
 }
 apply_fun_unweighted.ct_percentile <- function(f, x, na.rm = TRUE, ...) {
   stats::quantile(x, na.rm = na.rm, type = 2, ...)
+}
+apply_fun_weighted <- function(f, w, x, na.rm = TRUE, ...) {
+  UseMethod("apply_fun_weighted")
 }
 apply_fun_weighted.ct_length <- function(f, w, x, na.rm = TRUE, ...) {
   sum(w, na.rm = na.rm)
