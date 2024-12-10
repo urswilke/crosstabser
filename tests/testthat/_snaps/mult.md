@@ -94,37 +94,37 @@
       # mw without Mult sel1 & 2 Choice 1 & 2
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
-      TOTAL                abs     7       1   3     3  
-      ch1                  abs     0       0   0     0  
-                           in %    0       0   0     0  
-      ch2                  abs     2       1   1     0  
-                           in %   33.3   100  33.3   0  
-      ch3                  abs     0       0   0     0  
-                           in %    0       0   0     0  
-      ch4                  abs     2       0   1     1  
-                           in %   33.3     0  33.3  50  
-      VALID CASES          abs     6       1   3     2  
-                           in %   85.7   100 100    66.7
-      -2                   abs     1       0   0     1  
-                           in %   14.3     0   0    33.3
+      TOTAL                abs       5     1     2     2
+      ch1                  abs       0     0     0     0
+                           in %      0     0     0     0
+      ch2                  abs       2     1     1     0
+                           in %     50   100    50     0
+      ch3                  abs       0     0     0     0
+                           in %      0     0     0     0
+      ch4                  abs       2     0     1     1
+                           in %     50     0    50   100
+      VALID CASES          abs       4     1     2     1
+                           in %     80   100   100    50
+      -2                   abs       1     0     0     1
+                           in %     20     0     0    50
       
       $`6`[[3]]
       # mw without Mult sel1 & 2 Choice 3 & 4
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
-      TOTAL                abs     6       0   3     3  
-      ch1                  abs     0       0   0     0  
-                           in %    0       0   0     0  
-      ch2                  abs     0       0   0     0  
-                           in %    0       0   0     0  
-      ch3                  abs     1       0   0     1  
-                           in %   25       0   0    50  
-      ch4                  abs     1       0   1     0  
-                           in %   25       0  50     0  
-      VALID CASES          abs     4       0   2     2  
-                           in %   66.7     0  66.7  66.7
-      -2                   abs     2       0   1     1  
-                           in %   33.3     0  33.3  33.3
+      TOTAL                abs       4     0     2     2
+      ch1                  abs       0     0     0     0
+                           in %      0     0     0     0
+      ch2                  abs       0     0     0     0
+                           in %      0     0     0     0
+      ch3                  abs       1     0     0     1
+                           in %     50     0     0   100
+      ch4                  abs       1     0     1     0
+                           in %     50     0   100     0
+      VALID CASES          abs       2     0     1     1
+                           in %     50     0    50    50
+      -2                   abs       2     0     1     1
+                           in %     50     0    50    50
       
       
       $`7`

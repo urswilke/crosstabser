@@ -132,42 +132,31 @@ calc_stats_rows.default <- function(qtab) {
   NULL
 }
 calc_stats_rows.qtab_type_cat <- function(qtab) {
-  df <- qtab$d$raw_data
+  weight <- qtab$p$Weight[[1]]
+  group_variables <- c("colvar", "colval")
+  invalid_vals <- c(qtab$p[["Unguelt"]], NA)
 
-  df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
+  long_data <- qtab$d$long_data
 
-  rowvars <- rv(qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab)
-  df_cols$n_valid <- !df[[rowvars]] %in% c(qtab$p[["Unguelt"]], NA)
-  df_cols$total <- !is.na(df[[rowvars]])
+  total <- long_data[!is.na(long_data$rowval),] |>
+    summarize_stats(NULL, weight, .by = group_variables)
+  n_valid <- long_data[!long_data$rowval %in% invalid_vals,] |>
+    summarize_stats(NULL, weight, .by = group_variables)
 
-  # TODO: find better organisation (redundant code with calc_stats_rows.qtab_type_mdg):
-  df_cols_long <- df_cols |>
-    pivot_cols()
+  total$RowContent <- "Total"
+  total$RowAbsPercent <- "Abs"
+  total$rowvar <- qtab$p$rowvars_string
+  total$rowval <- 1
 
-  row_types <- c("total", "n_valid")
-  df_stats_rows <- df_cols_long |>
-    summarize_stats(
-      row_types,
-      wt = qtab$p$Weight[[1]],
-      stat_fun = "sum",
-      .by = c("colvar", "colval")
-    )
+  n_valid$RowContent <- "Valid"
+  n_valid$RowAbsPercent <- "Abs"
+  n_valid$rowvar <- qtab$p$rowvars_string
+  n_valid$rowval <- 1
 
-  l_row_types <- row_types |>
-    purrr::set_names() |>
-    lapply(\(x) {
-      res <- df_stats_rows[c("colvar", "colval", x)]
-      names(res)[3] <- "value"
-      res$rowval <- 1
-      res$rowvar <- qtab$p$rowvars_string
-      res
-    })
-  l_row_types$total$RowContent <- "Total"
-  l_row_types$total$RowAbsPercent <- "Abs"
-  l_row_types$n_valid$RowContent <- "Valid"
-  l_row_types$n_valid$RowAbsPercent <- "Abs"
-
-  qtab$d$stats_rows <- l_row_types
+  qtab$d$stats_rows <- tibble::lst(
+    total,
+    n_valid,
+  )
 }
 
 calc_detail_freqs.qtab_type_mdg <- function(qtab) {
@@ -210,7 +199,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   group_variables <- c("colvar", "colval")
   all_group_variables <- c(case_distinguisher, group_variables)
 
-  
+
   # TODO: move the handling of no_entry data in a pre-processing step...(?):
   # cf. pivot_rowvar_data.qtab_type_mdg & now_do_colvar.qtab_type_mdg
   long_data_all <- qtab$d$long_data_all
