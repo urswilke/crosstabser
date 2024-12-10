@@ -184,20 +184,14 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
 
   all_counts$RowAbsPercent <- "Abs"
 
-  is_valid <- all_counts$rowvar %in% (qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]])
-  detail_freqs <- all_counts[!is_valid,]
+  is_valid <- !all_counts$rowvar %in% (qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]])
+  detail_freqs <- all_counts[is_valid,]
 
-  if (qtab$p$MdgMissValid) {
-    valid_no_entry <- qtab$d$stats_rows$valid_no_entry
-    valid_no_entry$rowvar <- "valid_no_entry"
-    valid_no_entry$RowAbsPercent <- "Abs"
-    detail_freqs <- rbind(detail_freqs, valid_no_entry[valid_no_entry$value > 0,])
-  }
 
   detail_freqs$RowContent <- "Detail"
 
   # TODO: fix counting as done when Exclusive is set...:
-  invalid_freqs <- all_counts[is_valid,]
+  invalid_freqs <- all_counts[!is_valid,]
   invalid_freqs$RowContent <- "Missing"
 
   qtab$d$detail_freqs <- detail_freqs
