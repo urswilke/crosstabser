@@ -117,6 +117,7 @@ row_table_total_line.default <- function(qtab) {
   abs_text <- qtab$m$options$l_lexikon[["cTabAbs"]]
   row_variable <- qtab$p$rowvars_string
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Total", "Abs", total_row_text, total_row_text, abs_text, 0L, row_variable, 1)
+  row_table$row_type <- "total"
   row_table
 }
 row_table_total_line.qtab_type_mw <- function(qtab) {
@@ -136,6 +137,7 @@ row_table_valid_mw.qtab_type_mw <- function(qtab) {
   abs_text <- qtab$m$options$l_lexikon[["cTabAbs"]]
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Abs", valid_mw_text, valid_mw_text, abs_text, 0L, 1)
   row_table$RowVariable <- qtab$p$rowvars_string
+  row_table$row_type <- "n_valid_mw"
   row_table
 }
 
@@ -155,6 +157,7 @@ row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_
     "SumOfValid", "Abs", valid_answers_row_text, valid_answers_row_text, abs_text, 1, 0L
   )
   row_table$RowVariable <- qtab$p$rowvars_string
+  row_table$row_type <- "sum_of_valid"
   row_table
 }
 row_table_valid_answers_line.qtab_type_cat <- row_table_valid_answers_line.qtab_type_mw <- function(qtab) {
@@ -209,6 +212,7 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
     qtab$m$options$l_lexikon[["cTabProz"]]
   ) |> rep(n_vals)
   row_table$RowAbsPercent <- c("Abs", "Percent") |> rep(n_vals)
+  row_table$row_type <- c("detail_freqs_valid", "detail_perc_valid") |> rep(n_vals)
   row_table$RowDecimals <- c(
     0L,
     1L
@@ -265,6 +269,7 @@ row_table_body.qtab_type_mdg <- function(qtab) {
     1L
   ) |> rep(n_vals)
   row_table$RowContent <- "Detail"
+  row_table$row_type <- c("detail_freqs_valid", "detail_perc_valid") |> rep(n_vals)
   row_table$RowVariable <- rowvars_valid |> rep(each = 2)
   row_table
 }
@@ -325,6 +330,10 @@ row_table_body.qtab_type_mw <- function(qtab) {
     "MStatistics",
     "MValid"
   ) |> rep(n_vals)
+  row_table$row_type <- c(
+    "fun_stats",
+    "fun_valid"
+  ) |> rep(n_vals)
   row_table$RowDecimals <- c(
     fun_decimals,
     n_valid_decimals
@@ -350,6 +359,7 @@ row_table_valid_cases.default <- function(qtab) {
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Abs", valid_cases_text, valid_cases_text, abs_text, 0L, 1)
   row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowValue")] <- list("Valid", "Percent", valid_cases_text, valid_cases_text, percent_text, 1L, 1)
   row_table$RowVariable <- qtab$p$rowvars_string
+  row_table$row_type <- c("n_valid_freqs", "n_valid_perc")
   row_table
 }
 row_table_valid_cases.qtab_type_mw <- function(qtab) {
@@ -389,6 +399,8 @@ row_table_summary.qtab_type_cat <- function(qtab) {
     qtab$m$options$l_lexikon[["cTabProz"]]
   ) |> rep(n_vals)
   row_table$RowVariable <- paste0(qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab, "__summary")
+  row_table$row_type <- c("summary_freqs", "summary_perc") |> rep(n_vals)
+
   row_table
 }
 catlab_helper <- function(cat_lab_string, catrec_string) {
@@ -442,6 +454,7 @@ row_table_stats.qtab_type_cat <- function(qtab) {
   # TODO: tell Wolf that I needed this to properly merge to tab_values when
   # there multiple rows with MStatistics:
   row_table$RowStatFun <- df_stat_funs$row_title
+  row_table$row_type <- "fun_stats"
   row_table
 }
 
@@ -497,6 +510,8 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
   row_table$RowValue <- strip_attributes(vallab_table$val)
   row_table$RowVariable <- qtab$p$rowvars_string
   row_table$RowContent <- "Missing"
+  row_table$row_type <- c("detail_freqs_invalid", "detail_perc_invalid") |> rep(n_vals)
+
 
   row_table
 }
@@ -550,6 +565,8 @@ row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
   ) |> rep(n_vals)
   row_table$RowVariable <- label_table$var
   row_table$RowContent <- "Missing"
+  row_table$row_type <- c("detail_freqs_invalid", "detail_perc_invalid") |> rep(n_vals)
+
   row_table
 }
 row_table_invalid_vals.qtab_type_mw <- function(qtab) {
@@ -575,6 +592,7 @@ row_table_no_entry.qtab_type_mdg <- function(qtab) {
   row_variable <- qtab$p$rowvars_string
   row_table[1, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Missing", "Abs", no_entry_text, no_entry_text, abs_text, 0L, row_variable, 1)
   row_table[2, c("RowContent", "RowAbsPercent", "RowTitle1", "RowTitle2", "RowTitle3", "RowDecimals", "RowVariable", "RowValue")] <- list("Missing", "Percent", no_entry_text, no_entry_text, percent_text, 1L, row_variable, 1)
+  row_table$row_type <- c("detail_freqs_invalid", "detail_perc_invalid")
   row_table
 
 }
