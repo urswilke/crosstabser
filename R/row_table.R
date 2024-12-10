@@ -236,7 +236,7 @@ row_table_body.qtab_type_mdg <- function(qtab) {
   ) |>
     dplyr::mutate(label = dplyr::coalesce(label, var))
   rowvars_valid <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab
-  if (!is.null(qtab$p$MdgMissValid) && qtab$p$MdgMissValid == "TRUE") {
+  if (qtab$p$MdgMissValid) {
     mdg_miss_lab <- qtab$p$MdgMissLab
     if (is.null(mdg_miss_lab)) {
       stop("When setting MdgMissValid == TRUE, you need to also specify MdgMissLab!")

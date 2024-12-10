@@ -15,26 +15,30 @@ Qrow <- R6::R6Class(
       params <- gen_qtabs_params(self$p, self$m)
 
       verbose <- mapping$params$verbose
-      obj <- tryCatch(
-        error = function(e) {
-          if (mapping$params$debug) browser()
-          self$log$error <- utils::capture.output(e)[-1] |> paste(collapse = "\n")
-          if (verbose) e |> conditionMessage() |> message()
-          obj <- list(NULL)
-        },
-        withCallingHandlers(
-          # message = <WE-COULD-ALSO-LOG-MESSAGES..._FUN()>,
-          warning = function(w) {
-            self$log$warn <- utils::capture.output(w)[-1] |> paste(collapse = "\n")
-            if (verbose) w |> conditionMessage() |> message()
-            tryInvokeRestart("muffleWarning")
+      self$qtabs <- if (self$m$params$error_out == "unsafe") {
+        params |>
+          lapply(\(x) Qtab$new(x, mapping))
+      } else {
+        tryCatch(
+          error = function(e) {
+            if (mapping$params$debug) browser()
+            self$log$error <- utils::capture.output(e)[-1] |> paste(collapse = "\n")
+            if (verbose) e |> conditionMessage() |> message()
+            obj <- list(NULL)
           },
-          params |>
-            lapply(\(x) Qtab$new(x, mapping))
+          withCallingHandlers(
+            # message = <WE-COULD-ALSO-LOG-MESSAGES..._FUN()>,
+            warning = function(w) {
+              self$log$warn <- utils::capture.output(w)[-1] |> paste(collapse = "\n")
+              if (verbose) w |> conditionMessage() |> message()
+              tryInvokeRestart("muffleWarning")
+            },
+            params |>
+              lapply(\(x) Qtab$new(x, mapping))
+          )
         )
-      )
+      }
 
-      self$qtabs <- obj
 
       if (self$m$params$qrow_db_write) {
         self$write_to_db()

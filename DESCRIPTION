@@ -36,7 +36,8 @@ Imports:
     vctrs,
     forcats,
     DBI,
-    odbc
+    odbc,
+    S7
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
     testthat (>= 3.0.0),
