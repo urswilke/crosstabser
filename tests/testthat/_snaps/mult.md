@@ -8,16 +8,16 @@
       # mdg without Mult sel2 & 3
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
-      TOTAL                abs     7       2     2   3  
-      Sum of valid answe…  abs     4       2     1   1  
-      Choice 1 & 2         abs     1       1     0   0  
-                           in %   20      50     0   0  
-      Choice 3 & 4         abs     3       1     1   1  
-                           in %   60      50    50 100  
-      VALID CASES          abs     5       2     2   1  
-                           in %   71.4   100   100  33.3
-      No entry in the re…  abs     2       0     0   2  
-                           in %   28.6     0     0  66.7
+      TOTAL                abs     4       1     1     2
+      Sum of valid answe…  abs     4       2     1     1
+      Choice 1 & 2         abs     1       1     0     0
+                           in %   33.3   100     0     0
+      Choice 3 & 4         abs     3       1     1     1
+                           in %  100     100   100   100
+      VALID CASES          abs     3       1     1     1
+                           in %   75     100   100    50
+      No entry in the re…  abs     1       0     0     1
+                           in %   25       0     0    50
       
       
       $`3`

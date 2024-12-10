@@ -164,6 +164,8 @@ pivot_rowvar_data.qtab_type_mdg <- function(qtab) {
 
   invalids <- qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]]
 
+  # TODO: find cleaner solution for df_rowvar_long_with_invalids
+  qtab$d$df_rowvar_long_with_invalids <- res
   res[res$rowval == mdg_val,] |>
     add_exclusive_info(
       c(qtab$p[["Exclusive"]], invalids),
@@ -197,6 +199,12 @@ now_do_colvar.qtab_type_mcg <- function(qtab) {
   res <- now_do_colvar.default(qtab)
 
   res$rowvar <- qtab$p$rowvars_string
+  res
+}
+now_do_colvar.qtab_type_mdg <- function(qtab) {
+  qtab$d$long_data_all <- qtab$d$df_rowvar_long_with_invalids |>
+    pivot_cols()
+  res <- now_do_colvar.default(qtab)
   res
 }
 

@@ -198,92 +198,87 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
   qtab$d$invalid_freqs <- invalid_freqs
 }
 calc_stats_rows.qtab_type_mdg <- function(qtab) {
-  df <- qtab$d$raw_data
-
   mdg_val <- qtab$p$MdgVal
 
-  df_cols <- df[c(qtab$p$raw_data_colvars, qtab$p$long_weight)]
-  rowvars <- rv(qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab)
-  df_rows <- df[rowvars]
+  valid_rowvars <- qtab$p$l_selvar$valid %||% qtab$p$RowVar
+  invalid_rowvars <- qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]]
+  all_rowvars <- c(
+    valid_rowvars,
+    invalid_rowvars
+  )
+  case_distinguisher <- qtab$p$case_distinguisher
+  group_variables <- c("colvar", "colval")
+  all_group_variables <- c(case_distinguisher, group_variables)
 
-  df_cols$total <- rowSums(is.na(df_rows)) < ncol(df_rows)
-  sum_of_valid <- rowSums(df_rows == mdg_val, na.rm = TRUE)
-  df_cols$sum_of_valid <- sum_of_valid
-  df_cols$n_valid <- sum_of_valid >= 1
-  # base R way to do:
-  # df_cols$invalid_cts <- rowSums((df |> select(any_of(paste0("rowvar_", qtab$p[["Unguelt"]])))) == mdg_val, na.rm = TRUE) != 0
-  invalid_colnames <- rv(qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]])
-  df_cols$invalid_cts <- rowSums(df[invalid_colnames] == mdg_val, na.rm = TRUE) != 0
-  df_cols$no_entry <- as.numeric(sum_of_valid + df_cols$invalid_cts == 0)
-  df_cols_long <- df_cols |>
-    pivot_cols()
-
-  row_types <- c("total", "n_valid", "no_entry")
-  if (qtab$p$MdgMissValid) {
-    df_cols_long <- df_cols_long |>
-      dplyr::mutate(
-        n_valid = n_valid | no_entry,
-        valid_no_entry = no_entry,
-        no_entry = 0
-      )
-    row_types <- row_types |> append("valid_no_entry")
-  }
-
-  df_stats_rows <- df_cols_long |>
-    summarize_stats(
-      row_types,
-      wt = qtab$p$Weight[[1]],
-      stat_fun = "sum",
-      .by = c("colvar", "colval")
+  
+  # TODO: move the handling of no_entry data in a pre-processing step...(?):
+  # cf. pivot_rowvar_data.qtab_type_mdg & now_do_colvar.qtab_type_mdg
+  long_data_all <- qtab$d$long_data_all
+  no_entry_data <- long_data_all |>
+    dplyr::summarise(
+      has_no_entry = !any(rowvar %in% all_rowvars & rowval == mdg_val),
+      .by = all_of(c(all_group_variables, qtab$p$long_weight))
     )
+  no_entry_data <- no_entry_data[no_entry_data$has_no_entry,]
+  no_entry_data$has_no_entry <- NULL
 
-  l_row_types <- row_types |>
-    purrr::set_names() |>
-    lapply(\(x) {
-      res <- df_stats_rows[c("colvar", "colval", x)]
-      names(res)[3] <- "value"
-      res$rowval <- 1
-      res$rowvar <- qtab$p$rowvars_string
-      res
-    })
-
-  # VERY HACKY patch for sum of valid to work with Exclusive:
+  valid_no_entry <- NULL
+  if (qtab$p$MdgMissValid) {
+    valid_no_entry <- no_entry_data
+    no_entry_data$val_to_count <- TRUE
+    no_entry_data$rowvar <- "valid_no_entry"
+    no_entry_data$rowval <- 1
+    qtab$d$long_data <- qtab$d$long_data |> dplyr::bind_rows(no_entry_data)
+    no_entry_data <- no_entry_data[c(),]
+  }
   df_long <- qtab$d$long_data
-  invalid_vals <- qtab$p[["Unguelt"]]
-  sum_of_valid <- df_long[!(df_long$rowvar %in% invalid_vals) & df_long$val_to_count,] |>
-    summarize_stats(
-      NULL,
-      wt = qtab$p$Weight[[1]],
-      .by = c("colvar", "colval")
-    )
-  if (qtab$p$MdgMissValid) {
-    sum_of_valid = sum_of_valid |>
-      dplyr::full_join(
-        df_stats_rows[c("colvar", "colval", "valid_no_entry")],
-        by = c("colvar", "colval")
-      ) |>
-      tidyr::replace_na(list(value = 0, valid_no_entry = 0)) |>
-      dplyr::mutate(value = value + valid_no_entry) |>
-      dplyr::select(-valid_no_entry)
-  }
+
+  df_long_total <- df_long[df_long$val_to_count,]
+  df_long_valid <- df_long[df_long$val_to_count & df_long$rowvar %in% c(valid_rowvars, "valid_no_entry"),]
+
+  weight <- qtab$p$Weight[[1]]
+
+  total <- df_long_total[!duplicated(df_long_total[c(case_distinguisher, group_variables)], fromLast = TRUE),] |>
+    dplyr::bind_rows(no_entry_data) |>
+    summarize_stats(NULL, weight, .by = group_variables)
+
+  no_entry <- no_entry_data |>
+    summarize_stats(NULL, weight, .by = group_variables)
+  sum_of_valid <- df_long_valid |>
+    summarize_stats(NULL, weight, .by = group_variables)
+  n_valid <- df_long_valid |>
+    dplyr::distinct(dplyr::across(dplyr::all_of(c(case_distinguisher, group_variables, qtab$p$long_weight)))) |>
+    summarize_stats(NULL, weight, .by = group_variables)
+
+
+  no_entry$rowvar <- qtab$p$rowvars_string
+  no_entry$rowval <- 1
+  no_entry$RowContent <- "Missing"
+  no_entry$RowAbsPercent <- "Abs"
+
   sum_of_valid$RowContent <- "SumOfValid"
   sum_of_valid$RowAbsPercent <- "Abs"
   sum_of_valid$rowvar <- qtab$p$rowvars_string
   sum_of_valid$rowval <- 1
-  l_row_types$sum_of_valid <- sum_of_valid
 
-  l_row_types$total$RowContent <- "Total"
-  l_row_types$no_entry$RowContent <- "Missing"
-  l_row_types$total$RowAbsPercent <- "Abs"
-  l_row_types$no_entry$RowAbsPercent <- "Abs"
-  l_row_types$no_entry <- l_row_types$no_entry[l_row_types$no_entry$value > 0,]
+  total$RowContent <- "Total"
+  total$RowAbsPercent <- "Abs"
+  total$rowvar <- qtab$p$rowvars_string
+  total$rowval <- 1
 
-  l_row_types$n_valid$RowContent <- "Valid"
-  l_row_types$n_valid$RowAbsPercent <- "Abs"
+  n_valid$RowContent <- "Valid"
+  n_valid$RowAbsPercent <- "Abs"
+  n_valid$rowvar <- qtab$p$rowvars_string
+  n_valid$rowval <- 1
 
-  if (all(l_row_types$n_valid$value == 0)) l_row_types$n_valid <- NULL
-
-  qtab$d$stats_rows <- l_row_types
+  qtab$d$stats_rows <- tibble::lst(
+    total,
+    sum_of_valid,
+    no_entry,
+    n_valid,
+    # TODO: move the valid_no_entry methodology somewhere else (?):
+    valid_no_entry,
+  )
 }
 
 calc_stats_rows.qtab_type_mw <- function(qtab) {
@@ -555,7 +550,7 @@ calc_no_entry_percentages.default <- function(qtab) {
   NULL
 }
 calc_no_entry_percentages.qtab_type_mdg <- function(qtab) {
-  if (nrow(qtab$d$stats_rows$no_entry) == 0) {
+  if (is.null(qtab$d$stats_rows$no_entry)) {
     return(NULL)
   }
   total_cts <- qtab$d$stats_rows$total
