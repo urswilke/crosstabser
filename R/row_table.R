@@ -399,7 +399,9 @@ row_table_summary.qtab_type_cat <- function(qtab) {
     qtab$m$options$l_lexikon[["cTabProz"]]
   ) |> rep(n_vals)
   row_table$RowVariable <- paste0(qtab$p$l_selvar$valid %||% qtab$p$rowvars_qtab, "__summary")
-  row_table$row_type <- c("summary_freqs", "summary_perc") |> rep(n_vals)
+  # TODO: percentages are im a data frame together with detail_perc_valid.
+  # perhaps better put them in a separate dataframe summary_perc or something...:
+  row_table$row_type <- c("summary_freqs", "detail_perc_valid") |> rep(n_vals)
 
   row_table
 }
