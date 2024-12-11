@@ -2,18 +2,21 @@ rbind_table_numbers <- function(qtab) {
   # TODO: replaced rbind -> check if the dataframe parts can by simplified (e.g.
   # setting a column to NA shouldn't be necessary anymore...):
   dplyr::bind_rows(
-    qtab$d$stats_rows$total,
-    qtab$d$stats_rows$sum_of_valid,
-    qtab$d$fun_stats,
-    qtab$d$detail_freqs,
-    qtab$d$catrec_freqs,
-    qtab$d$percentages,
-    qtab$d$vc_percentages,
-    qtab$d$stats_rows$n_valid,
-    qtab$d$invalid_freqs,
-    qtab$d$invalid_percentages,
-    qtab$d$stats_rows$no_entry,
-    qtab$d$no_entry_percentages
+    total = qtab$d$stats_rows$total,
+    n_valid_mw = qtab$d$stats_rows$n_valid_mw,
+    sum_of_valid = qtab$d$stats_rows$sum_of_valid,
+    fun_stats = qtab$d$fun_stats,
+    detail_freqs_valid = qtab$d$detail_freqs,
+    fun_valid = qtab$d$fun_valid,
+    summary_freqs = qtab$d$catrec_freqs,
+    detail_perc_valid = qtab$d$percentages,
+    n_valid_perc = qtab$d$vc_percentages,
+    n_valid_freqs = qtab$d$stats_rows[["n_valid"]],
+    detail_freqs_invalid = qtab$d$invalid_freqs,
+    detail_perc_invalid = qtab$d$invalid_percentages,
+    detail_freqs_invalid = qtab$d$stats_rows$no_entry,
+    detail_perc_invalid = qtab$d$no_entry_percentages,
+    .id = "row_type"
   )
 }
 
@@ -44,9 +47,7 @@ calc_stat_fun.qtab_type_mw <- function(qtab) {
   res$RowStatFun <- stat_fun
   res <- res |> add_missing_cases(qtab)
 
-  res$RowContent <- "MStatistics"
   res$rowval <- NA_real_
-  res$RowAbsPercent <- "Percent"
   qtab$d$fun_stats <- res
 }
 add_missing_cases <- function(df, qtab) {
@@ -88,9 +89,8 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
         ),
       .id = "RowStatFun"
     ) |> add_missing_cases(qtab)
-  res$RowContent <- "Statistics"
+
   res$rowval <- 100
-  res$RowAbsPercent <- "Percent"
   qtab$d$fun_stats <- res
 }
 
@@ -109,17 +109,13 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
       .by = c("rowvar", "rowval", "colvar", "colval")
     )
 
-  all_counts$RowAbsPercent <- "Abs"
-
   if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
     detail_freqs <- NULL
   } else {
     detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p[["Unguelt"]],]
-    detail_freqs$RowContent <- "Detail"
   }
 
   invalid_freqs <- all_counts[all_counts$rowval %in% qtab$p[["Unguelt"]],]
-  invalid_freqs$RowContent <- "Missing"
 
   qtab$d$detail_freqs <- detail_freqs
   qtab$d$invalid_freqs <- invalid_freqs
@@ -143,13 +139,9 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
   n_valid <- long_data[!long_data$rowval %in% invalid_vals,] |>
     summarize_stats(NULL, weight, .by = group_variables)
 
-  total$RowContent <- "Total"
-  total$RowAbsPercent <- "Abs"
   total$rowvar <- qtab$p$rowvars_string
   total$rowval <- 1
 
-  n_valid$RowContent <- "Valid"
-  n_valid$RowAbsPercent <- "Abs"
   n_valid$rowvar <- qtab$p$rowvars_string
   n_valid$rowval <- 1
 
@@ -171,17 +163,12 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
       .by = c("rowvar", "rowval", "colvar", "colval")
     )
 
-  all_counts$RowAbsPercent <- "Abs"
-
   is_valid <- !all_counts$rowvar %in% (qtab$p$l_selvar$invalid %||% qtab$p[["Unguelt"]])
   detail_freqs <- all_counts[is_valid,]
 
 
-  detail_freqs$RowContent <- "Detail"
-
   # TODO: fix counting as done when Exclusive is set...:
   invalid_freqs <- all_counts[!is_valid,]
-  invalid_freqs$RowContent <- "Missing"
 
   qtab$d$detail_freqs <- detail_freqs
   qtab$d$invalid_freqs <- invalid_freqs
@@ -198,7 +185,6 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   case_distinguisher <- qtab$p$case_distinguisher
   group_variables <- c("colvar", "colval")
   all_group_variables <- c(case_distinguisher, group_variables)
-
 
   # TODO: move the handling of no_entry data in a pre-processing step...(?):
   # cf. pivot_rowvar_data.qtab_type_mdg & now_do_colvar.qtab_type_mdg
@@ -242,21 +228,13 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
 
   no_entry$rowvar <- qtab$p$rowvars_string
   no_entry$rowval <- 1
-  no_entry$RowContent <- "Missing"
-  no_entry$RowAbsPercent <- "Abs"
 
-  sum_of_valid$RowContent <- "SumOfValid"
-  sum_of_valid$RowAbsPercent <- "Abs"
   sum_of_valid$rowvar <- qtab$p$rowvars_string
   sum_of_valid$rowval <- 1
 
-  total$RowContent <- "Total"
-  total$RowAbsPercent <- "Abs"
   total$rowvar <- qtab$p$rowvars_string
   total$rowval <- 1
 
-  n_valid$RowContent <- "Valid"
-  n_valid$RowAbsPercent <- "Abs"
   n_valid$rowvar <- qtab$p$rowvars_string
   n_valid$rowval <- 1
 
@@ -311,10 +289,7 @@ calc_stats_rows.qtab_type_mw <- function(qtab) {
   df_stats_rows$rowval <- 1
   df_stats_rows$rowvar <- qtab$p$rowvars_string
 
-  df_stats_rows$RowContent <- "Valid"
-  df_stats_rows$RowAbsPercent <- "Abs"
-
-  qtab$d$stats_rows <- list(n_valid = df_stats_rows)
+  qtab$d$stats_rows <- list(n_valid_mw = df_stats_rows)
 }
 
 any_valid <- function(rowval, invalid_vals) {
@@ -337,19 +312,14 @@ calc_stats_rows.qtab_type_mcg <- function(qtab) {
     summarize_stats(NULL, qtab$p$Weight[[1]], .by = group_variables)
 
 
-  total$RowContent <- "Total"
-  total$RowAbsPercent <- "Abs"
   total$rowvar <- df_long$rowvar[1]
   total$rowval <- 1
-  sum_of_valid$RowContent <- "SumOfValid"
-  sum_of_valid$RowAbsPercent <- "Abs"
+
   sum_of_valid$rowvar <- df_long$rowvar[1]
   sum_of_valid$rowval <- 1
-  n_valid$RowContent <- "Valid"
-  n_valid$RowAbsPercent <- "Abs"
+
   n_valid$rowvar <- df_long$rowvar[1]
   n_valid$rowval <- 1
-
 
   qtab$d$stats_rows <- list(
     total = total,
@@ -380,8 +350,7 @@ calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   all_counts <- catrec_strings |>
     lapply(\(x) summarise_catrec(df_long, x, qtab$p$Weight[[1]])) |>
     dplyr::bind_rows(.id = "i_catrec")
-  all_counts$RowContent <- "Summary"
-  all_counts$RowAbsPercent <- "Abs"
+
   all_counts
 }
 summarise_catrec <- function(df_long, catrec_string, wt) {
@@ -437,9 +406,7 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
       .by = c("rowvar", "colvar", "colval")
     )
 
-  res$RowContent <- "MValid"
-  res$RowAbsPercent <- "Abs"
-  qtab$d$detail_freqs <- res
+  qtab$d$fun_valid <- res
 }
 calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   weight <- qtab$p$Weight[[1]]
@@ -453,13 +420,9 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
       .by = c("rowvar", "rowval", "colvar", "colval")
     )
 
-  all_counts$RowAbsPercent <- "Abs"
-
   detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p[["Unguelt"]],]
-  detail_freqs$RowContent <- "Detail"
 
   invalid_freqs <- all_counts[all_counts$rowval %in% qtab$p[["Unguelt"]],]
-  invalid_freqs$RowContent <- "Missing"
 
   qtab$d$detail_freqs <- detail_freqs
   qtab$d$invalid_freqs <- invalid_freqs
@@ -472,7 +435,10 @@ calc_percentages.qtab_type_mw <- function(qtab) {
   NULL
 }
 calc_percentages.default <- function(qtab) {
-  cts <- dplyr::bind_rows(qtab$d$detail_freqs, qtab$d$catrec_freqs)
+  # TODO: put elements in empty tibbles from the beginning?...:
+  detail_freqs <- qtab$d$detail_freqs %||% tibble::tibble()
+  catrec_freqs <- qtab$d$catrec_freqs %||% tibble::tibble()
+  cts <- dplyr::bind_rows(detail_freqs, catrec_freqs)
   vc <- qtab$d$stats_rows$n_valid
   calc_percentage_helper(cts, vc)
 }
@@ -485,10 +451,11 @@ calc_invalid_percentages.qtab_type_mw <- function(qtab) {
 calc_invalid_percentages.default <- function(qtab) {
   cts <- qtab$d$invalid_freqs
   tc <- qtab$d$stats_rows$total
-  calc_percentage_helper(cts, tc)
+  res <- calc_percentage_helper(cts, tc) %||% tibble::tibble()
+  res
 }
 calc_percentage_helper <- function(cts, divider_cts) {
-  if (length(cts) == 0) {
+  if (nrow(cts) == 0) {
     return(NULL)
   }
   percentages <- cts
@@ -501,7 +468,6 @@ calc_percentage_helper <- function(cts, divider_cts) {
     paste(divider_cts$colvar, divider_cts$colval)
   )
   percentages$value <- 100 * percentages$value / divider_cts$value[idx]
-  percentages$RowAbsPercent <- "Percent"
   percentages
 }
 calc_valid_counts_percentages <- function(qtab) {
@@ -520,13 +486,12 @@ calc_valid_counts_percentages.default <- function(qtab) {
   # raw_data or rather the counts (make them explicit...)
   # valid_cts$value <- 100 * valid_cts$value / total_cts$value
   # this doesn't work if the number of valid counts is not equal to the number of total counts...
-  res <- total_cts |> dplyr::select(-RowContent, value_tot = value) |> merge(valid_cts, all.x = TRUE)
+  res <- total_cts |> dplyr::select(value_tot = value, colvar, colval) |> merge(valid_cts, all.x = TRUE)
   raw_value <- 100 * res$value / res$value_tot
   # TODO: check with Wolf if this shouldn't be NA instead of 0:
   raw_value[res$value_tot == 0] <- 0
   res$value <- raw_value
   res$value_tot <- NULL
-  res$RowAbsPercent <- "Percent"
 
   res
 }
@@ -544,10 +509,9 @@ calc_no_entry_percentages.qtab_type_mdg <- function(qtab) {
   }
   total_cts <- qtab$d$stats_rows$total
   no_entry_cts <- qtab$d$stats_rows$no_entry
-  res <- total_cts |> dplyr::select(-RowContent, value_tot = value) |> merge(no_entry_cts, all.x = TRUE)
+  res <- total_cts |> dplyr::select(value_tot = value, colvar, colval) |> merge(no_entry_cts, all.x = TRUE)
   res$value <- 100 * res$value / res$value_tot
   res$value_tot <- NULL
-  res$RowAbsPercent <- "Percent"
 
   res
 
