@@ -1,3 +1,19 @@
+# TODO: export this function
+# (which will then be imported to the database child package, to be created...:)!
+# - for this we should add an example excel mapping file to the crosstabser package
+# - and then add a docs example, something like this:
+# # Only for documentation purposes:
+# # (`get_mapping_options()` isn't supposed to be be called directly).
+# mapping_file <- system.file(
+#   "extdata",
+#   "<file-to-be-created-mapping.xlsx>",
+#   package = "crosstabser"
+# )
+# m <- Tabula$new(mapping_file = mapping_file)
+# # Result of datenanpassr::get_mapping_options() in `da` field:
+# m$opts$da
+# # Result of get_tabula_options() in `da` field:
+# m$opts$ct
 get_tabula_options <- function(tabula, ...) {
   UseMethod("get_tabula_options", tabula$mapping_file)
 }
