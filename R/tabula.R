@@ -67,7 +67,6 @@ Tabula <- R6::R6Class(
                           mapping_file = NULL,
                           row = NULL,
                           dat = NULL,
-                          book_no = NULL,
                           tabulate = TRUE,
                           # TODO: ask Wolf if we should set this this to interactive() ...:
                           verbose = FALSE,
@@ -92,13 +91,16 @@ Tabula <- R6::R6Class(
       if (!is.null(dat_mod)) {
         self$dat_mod <- datenanpassr::read_data(dat_mod)
       }
-      set_options(self, book_no, ...)
       if (qrow_db_write) {
         self$options$is_first <- TRUE
       }
       if (tabulate) {
         self$calc_qtabs(row)
       }
+    },
+    set_options = function(...) {
+      self$opts$da <- datenanpassr::get_mapping_options(self$mapping_file, wb = self$wb, ...)
+      self$options <- get_tabula_options(self, ...)
     },
     calc_qtabs = function(row = NULL) {
       private$filter_global()

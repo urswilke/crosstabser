@@ -1,8 +1,8 @@
-set_options <- function(tabula, ...) {
-  UseMethod("set_options", tabula$mapping_file)
+get_tabula_options <- function(tabula, ...) {
+  UseMethod("get_tabula_options", tabula$mapping_file)
 }
 
-set_options.excel <- function(tabula, book_no, ...) {
+get_tabula_options.excel <- function(tabula, book_no = NULL, ...) {
   # TODO: clean up this mess...!
   v_scenario <- openxlsx2::wb_read(
     tabula$wb,
@@ -36,7 +36,7 @@ set_options.excel <- function(tabula, book_no, ...) {
     )[[1]]
   }
 
-  tabula$options <- tibble::lst(
+  tibble::lst(
     v_scenario,
     V_Language,
     l_macro_scenario,
@@ -46,7 +46,7 @@ set_options.excel <- function(tabula, book_no, ...) {
 }
 # TODO: find cleaner solution to use default parameters
 # probably the best solution is to override the datenanpassr::Mapping method reading in the parameters in Tabula
-set_options.list <- function(
+get_tabula_options.list <- function(
     tabula,
     v_scenario = 1,
     V_Language = 4,
@@ -65,7 +65,7 @@ set_options.list <- function(
     ),
     list(...)
   )
-  tabula$options <- tibble::lst(
+  tibble::lst(
     v_scenario,
     V_Language,
     l_macro_scenario,
@@ -73,7 +73,7 @@ set_options.list <- function(
     V_BookNo = book_no
   )
 }
-set_options.google <- function(tabula, ...) {
+get_tabula_options.google <- function(tabula, ...) {
   # TODO: google spreadsheets...
   stop("Not yet implemented for google sheets.")
 }

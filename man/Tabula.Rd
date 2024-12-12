@@ -70,6 +70,7 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
+\item \href{#method-Tabula-set_options}{\code{Tabula$set_options()}}
 \item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
 \item \href{#method-Tabula-assemble_crosstab_data}{\code{Tabula$assemble_crosstab_data()}}
 \item \href{#method-Tabula-write_to_db}{\code{Tabula$write_to_db()}}
@@ -97,12 +98,20 @@ Initialize a Tabula object
   mapping_file = NULL,
   row = NULL,
   dat = NULL,
-  book_no = NULL,
   tabulate = TRUE,
   verbose = FALSE,
   qrow_db_write = FALSE,
   ...
 )}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-set_options"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-set_options}{}}}
+\subsection{Method \code{set_options()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$set_options(...)}\if{html}{\out{</div>}}
 }
 
 }
