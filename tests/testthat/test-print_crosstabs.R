@@ -14,7 +14,7 @@ test_that("crosstab prints are reproduced", {
 })
 
 tabsi$dat_mod$q3a[1:9] <- 101
-tabsi$params$error_out <- "safe"
+tabsi$opts$da$error_out <- "safe"
 tabsi$calc_qtabs(7)
 tabsi$assemble_crosstab_data()
 
@@ -69,7 +69,7 @@ m <- Tabula$new(
 )
 m$options$l_lexikon["cTabWeighted"] <- "W"
 # TODO: find out what's the error here with the percentile table...!
-m$params$error_out <- "safe"
+m$opts$da$error_out <- "safe"
 m$calc_qtabs()
 test_that("summaries of various stat_fun are reproduced", {
   testthat::expect_snapshot(m)

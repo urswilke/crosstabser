@@ -14,14 +14,14 @@ Qrow <- R6::R6Class(
 
       params <- gen_qtabs_params(self$p, self$m)
 
-      verbose <- mapping$params$verbose
-      self$qtabs <- if (self$m$params$error_out == "unsafe") {
+      verbose <- mapping$opts$da$verbose
+      self$qtabs <- if (self$m$opts$da$error_out == "unsafe") {
         params |>
           lapply(\(x) Qtab$new(x, mapping))
       } else {
         tryCatch(
           error = function(e) {
-            if (mapping$params$debug) browser()
+            if (mapping$opts$da$debug) browser()
             self$log$error <- utils::capture.output(e)[-1] |> paste(collapse = "\n")
             if (verbose) e |> conditionMessage() |> message()
             obj <- list(NULL)
@@ -40,7 +40,7 @@ Qrow <- R6::R6Class(
       }
 
 
-      if (self$m$params$qrow_db_write) {
+      if (self$m$opts$da$qrow_db_write) {
         self$write_to_db()
       }
 
@@ -54,7 +54,7 @@ Qrow <- R6::R6Class(
       self$assemble_crosstab_data()
       write_to_db_(
         self,
-        dsn = self$m$params$database_dsn,
+        dsn = self$m$opts$da$database_dsn,
         errors = list(self$log$error),
         warns = list(self$log$warn),
         book_no = self$m$options$V_BookNo,

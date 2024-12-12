@@ -116,7 +116,7 @@ Tabula <- R6::R6Class(
       self$options$is_first <- TRUE
       write_to_db_(
         self,
-        dsn = self$params$database_dsn,
+        dsn = self$opts$da$database_dsn,
         errors = self$qrows |> lapply(\(x) x$log$error),
         warns = self$qrows |> lapply(\(x) x$log$warn),
         book_no = self$options$V_BookNo,
