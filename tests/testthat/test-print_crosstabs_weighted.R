@@ -5,9 +5,9 @@ df <- haven::read_sav(spss_file)
 df$q3a_NA <- df$q3a
 df[df$kregio == 1,]$q3a_NA <- NA_real_
 tabsi <- Tabula$new(df, mapping_file, tabulate = FALSE)
-tabsi$options$l_lexikon["cTabWeighted"] <- "W"
-tabsi$options$l_macro_scenario$Weight <- "gew"
-tabsi$options$l_macro_scenario$Unwgt <- TRUE
+tabsi$opts$ct$l_lexikon["cTabWeighted"] <- "W"
+tabsi$opts$ct$l_macro_scenario$Weight <- "gew"
+tabsi$opts$ct$l_macro_scenario$Unwgt <- TRUE
 tabsi$calc_qtabs()
 test_that("crosstab prints are reproduced", {
   testthat::expect_snapshot(tabsi)

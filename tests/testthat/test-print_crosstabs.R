@@ -67,7 +67,7 @@ m <- Tabula$new(
   Unwgt = TRUE,
   tabulate = FALSE
 )
-m$options$l_lexikon["cTabWeighted"] <- "W"
+m$opts$ct$l_lexikon["cTabWeighted"] <- "W"
 # TODO: find out what's the error here with the percentile table...!
 m$opts$da$error_out <- "safe"
 m$calc_qtabs()
@@ -98,7 +98,7 @@ m <- Tabula$new(
   Unwgt = TRUE,
   tabulate = FALSE
 )
-m$options$l_lexikon["cTabWeighted"] <- "W"
+m$opts$ct$l_lexikon["cTabWeighted"] <- "W"
 m$calc_qtabs()
 test_that("mean calculation is reproduced with UngueltMW set (cat & mw)", {
   testthat::expect_snapshot(m)

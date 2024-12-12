@@ -132,7 +132,7 @@ write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno, is_first) {
     DBI::dbWriteTable(conn, "Head", five_tables$head_table, append = TRUE)
     DBI::dbWriteTable(conn, "Col", five_tables$col_table_all, append = TRUE)
     # works/needed only if obj is of class Qrow:
-    if (!is.null(obj$m)) obj$m$options$is_first <- FALSE
+    if (!is.null(obj$m)) obj$m$opts$ct$is_first <- FALSE
   }
   DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
 

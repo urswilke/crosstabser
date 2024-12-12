@@ -2,8 +2,8 @@ spss_file <- "spss/30_Datenanpassungen_mapping_neu.sav" |> testthat::test_path()
 mapping_file <- "excel/mapping_neu_reduced.xlsx" |> testthat::test_path()
 df <- haven::read_sav(spss_file)
 tabsi <- Tabula$new(df, mapping_file, tabulate = FALSE, row = 5)
-tabsi$options$l_macro_scenario$Weight <- "gew"
-tabsi$options$l_macro_scenario$Unwgt <- TRUE
+tabsi$opts$ct$l_macro_scenario$Weight <- "gew"
+tabsi$opts$ct$l_macro_scenario$Unwgt <- TRUE
 tabsi$calc_qtabs(5)
 
 tabsi$assemble_crosstab_data()

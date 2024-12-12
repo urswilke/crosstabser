@@ -47,7 +47,7 @@ Qrow <- R6::R6Class(
     },
     assemble_crosstab_data = function() {
       self$crosstabs <- assemble_crosstab_data_(self)
-      add_columns_for_tablebook(self, BookNo = self$m$options$V_BookNo)
+      add_columns_for_tablebook(self, BookNo = self$m$opts$ct$V_BookNo)
       invisible(self)
     },
     write_to_db = function() {
@@ -57,9 +57,9 @@ Qrow <- R6::R6Class(
         dsn = self$m$opts$da$database_dsn,
         errors = list(self$log$error),
         warns = list(self$log$warn),
-        book_no = self$m$options$V_BookNo,
+        book_no = self$m$opts$ct$V_BookNo,
         questno = self$p$Abbreviation,
-        is_first = self$m$options$is_first
+        is_first = self$m$opts$ct$is_first
       )
       invisible(self)
     }

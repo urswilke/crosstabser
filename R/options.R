@@ -122,7 +122,7 @@ extract_scenario_options <- function(df_macro_raw, v_scenario) {
 }
 
 add_global_options <- function(params, mapping) {
-  global_options <- mapping$options$l_macro_scenario
+  global_options <- mapping$opts$ct$l_macro_scenario
   res <- params
   res$Filter <- res$Filter |>
     # hopefully, won't be needed one day:
@@ -166,8 +166,8 @@ set_qtab_params.default <- function(params, mapping) {
   params$rowvars_string <- paste(params$l_selvar$valid %||% params$rowvars_qtab, collapse = ", ")
   # TODO: tell Wolf: Here we could also use ColVar defined in the Questions sheet...:
   # (with params$ColVar %||% ...)
-  params$raw_data_colvars <- cv(c(mapping$options$l_macro_scenario$ColVar, "DC#TOTAL"))
-  if (is.null(params$Weight[[1]]) & is.na(mapping$options$l_macro_scenario$Weight)) {
+  params$raw_data_colvars <- cv(c(mapping$opts$ct$l_macro_scenario$ColVar, "DC#TOTAL"))
+  if (is.null(params$Weight[[1]]) & is.na(mapping$opts$ct$l_macro_scenario$Weight)) {
     params$long_weight <- character()
   } else {
     params$long_weight <- "weight"
@@ -324,7 +324,7 @@ process_metr_mac <- function(params, mapping, questions_column = "MetrMac") {
       fun = dplyr::coalesce(fun, df_metr_mac$fun[match(shortcut, df_metr_mac$shortcut)]),
       shortcut = dplyr::coalesce(shortcut, df_metr_mac$shortcut[match(fun, df_metr_mac$fun)]),
       percentile_string = ifelse(fun == "percentile", decimals |> stringr::str_sub(1, 2), ""),
-      row_title = mapping$options$l_lexikon[
+      row_title = mapping$opts$ct$l_lexikon[
         df_metr_mac$ctab_entry[match(shortcut, df_metr_mac$shortcut)]
       ] |> unname(),
       decimals = ifelse(fun == "percentile", decimals |> stringr::str_sub(3), decimals),

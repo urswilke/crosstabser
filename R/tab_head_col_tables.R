@@ -17,7 +17,7 @@ gen_tab_table <- function(params) {
 
 
 gen_head_table <- function(mapping) {
-  header_vars <- mapping$options$l_macro_scenario$ColVar
+  header_vars <- mapping$opts$ct$l_macro_scenario$ColVar
   # lapply needed instead of purrr::map_chr because variables could have no variable label:
   header_varlabs <- lapply(header_vars, \(x) attr(mapping$dat_tab[[x]], "label", exact = TRUE))
   no_varlab_idx <- header_varlabs |> purrr::map_lgl(is.null)
@@ -36,7 +36,7 @@ gen_head_table <- function(mapping) {
     HeadTitle = character()
   )
   res[1,]$HeadName <- "DC#ROWHEADER"
-  res[2,c("HeadName", "HeadTitle")] <- list("DC#TOTAL", mapping$options$l_lexikon["cTabGesamt"])
+  res[2,c("HeadName", "HeadTitle")] <- list("DC#TOTAL", mapping$opts$ct$l_lexikon["cTabGesamt"])
 
   res[seq_len(length(header_vars)) + 2,]$HeadName <- dplyr::tibble(header_vars) |>
     dplyr::group_by(header_vars) |>
@@ -81,8 +81,8 @@ gen_col_table <- function(mapping) {
   )] <- list(
     1L,
     2L,
-    mapping$options$l_lexikon["cTabGesamt"],
-    mapping$options$l_macro_scenario[["gesplab"]] %||% " ",
+    mapping$opts$ct$l_lexikon["cTabGesamt"],
+    mapping$opts$ct$l_macro_scenario[["gesplab"]] %||% " ",
     "DC#TOTAL",
     1L
   )
@@ -91,7 +91,7 @@ gen_col_table <- function(mapping) {
     value_col_table0,
   )
   # conditional statement not needed; would also work without...:
-  if (length(mapping$options$l_macro_scenario[["ColVar"]]) > 0) {
+  if (length(mapping$opts$ct$l_macro_scenario[["ColVar"]]) > 0) {
     colvar_headers <- head_table
 
     # TODO: clean up this mess: ...!
