@@ -1,8 +1,24 @@
-set_options <- function(tabula, ...) {
-  UseMethod("set_options", tabula$mapping_file)
+# TODO: export this function
+# (which will then be imported to the database child package, to be created...:)!
+# - for this we should add an example excel mapping file to the crosstabser package
+# - and then add a docs example, something like this:
+# # Only for documentation purposes:
+# # (`get_mapping_options()` isn't supposed to be be called directly).
+# mapping_file <- system.file(
+#   "extdata",
+#   "<file-to-be-created-mapping.xlsx>",
+#   package = "crosstabser"
+# )
+# m <- Tabula$new(mapping_file = mapping_file)
+# # Result of datenanpassr::get_mapping_options() in `da` field:
+# m$opts$da
+# # Result of get_tabula_options() in `da` field:
+# m$opts$ct
+get_tabula_options <- function(tabula, ...) {
+  UseMethod("get_tabula_options", tabula$mapping_file)
 }
 
-set_options.excel <- function(tabula, book_no, ...) {
+get_tabula_options.excel <- function(tabula, book_no = NULL, ...) {
   # TODO: clean up this mess...!
   v_scenario <- openxlsx2::wb_read(
     tabula$wb,
@@ -36,7 +52,7 @@ set_options.excel <- function(tabula, book_no, ...) {
     )[[1]]
   }
 
-  tabula$options <- tibble::lst(
+  tibble::lst(
     v_scenario,
     V_Language,
     l_macro_scenario,
@@ -46,7 +62,7 @@ set_options.excel <- function(tabula, book_no, ...) {
 }
 # TODO: find cleaner solution to use default parameters
 # probably the best solution is to override the datenanpassr::Mapping method reading in the parameters in Tabula
-set_options.list <- function(
+get_tabula_options.list <- function(
     tabula,
     v_scenario = 1,
     V_Language = 4,
@@ -65,7 +81,7 @@ set_options.list <- function(
     ),
     list(...)
   )
-  tabula$options <- tibble::lst(
+  tibble::lst(
     v_scenario,
     V_Language,
     l_macro_scenario,
@@ -73,7 +89,7 @@ set_options.list <- function(
     V_BookNo = book_no
   )
 }
-set_options.google <- function(tabula, ...) {
+get_tabula_options.google <- function(tabula, ...) {
   # TODO: google spreadsheets...
   stop("Not yet implemented for google sheets.")
 }
@@ -122,7 +138,7 @@ extract_scenario_options <- function(df_macro_raw, v_scenario) {
 }
 
 add_global_options <- function(params, mapping) {
-  global_options <- mapping$options$l_macro_scenario
+  global_options <- mapping$opts$ct$l_macro_scenario
   res <- params
   res$Filter <- res$Filter |>
     # hopefully, won't be needed one day:
@@ -166,8 +182,8 @@ set_qtab_params.default <- function(params, mapping) {
   params$rowvars_string <- paste(params$l_selvar$valid %||% params$rowvars_qtab, collapse = ", ")
   # TODO: tell Wolf: Here we could also use ColVar defined in the Questions sheet...:
   # (with params$ColVar %||% ...)
-  params$raw_data_colvars <- cv(c(mapping$options$l_macro_scenario$ColVar, "DC#TOTAL"))
-  if (is.null(params$Weight[[1]]) & is.na(mapping$options$l_macro_scenario$Weight)) {
+  params$raw_data_colvars <- cv(c(mapping$opts$ct$l_macro_scenario$ColVar, "DC#TOTAL"))
+  if (is.null(params$Weight[[1]]) & is.na(mapping$opts$ct$l_macro_scenario$Weight)) {
     params$long_weight <- character()
   } else {
     params$long_weight <- "weight"
@@ -324,7 +340,7 @@ process_metr_mac <- function(params, mapping, questions_column = "MetrMac") {
       fun = dplyr::coalesce(fun, df_metr_mac$fun[match(shortcut, df_metr_mac$shortcut)]),
       shortcut = dplyr::coalesce(shortcut, df_metr_mac$shortcut[match(fun, df_metr_mac$fun)]),
       percentile_string = ifelse(fun == "percentile", decimals |> stringr::str_sub(1, 2), ""),
-      row_title = mapping$options$l_lexikon[
+      row_title = mapping$opts$ct$l_lexikon[
         df_metr_mac$ctab_entry[match(shortcut, df_metr_mac$shortcut)]
       ] |> unname(),
       decimals = ifelse(fun == "percentile", decimals |> stringr::str_sub(3), decimals),

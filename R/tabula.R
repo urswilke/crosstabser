@@ -56,7 +56,6 @@ Tabula <- R6::R6Class(
     dat = NULL,
     dat_mod = NULL,
     dat_tab = NULL,
-    options = NULL,
     qsheet = list(),
     qtabs = list(),
     qrows = list(),
@@ -67,19 +66,14 @@ Tabula <- R6::R6Class(
                           mapping_file = NULL,
                           row = NULL,
                           dat = NULL,
-                          book_no = NULL,
                           tabulate = TRUE,
                           # TODO: ask Wolf if we should set this this to interactive() ...:
-                          verbose = FALSE,
                           qrow_db_write = FALSE,
                           ...) {
       super$initialize(
         dat,
         mapping_file,
         process_sheets = FALSE,
-        # TODO: move the definition of this parameter into the initialization of datenanpassr::Mapping,
-        # if we want to use it there as well...!
-        verbose = verbose,
         qrow_db_write = qrow_db_write,
         ...
       )
@@ -92,13 +86,29 @@ Tabula <- R6::R6Class(
       if (!is.null(dat_mod)) {
         self$dat_mod <- datenanpassr::read_data(dat_mod)
       }
-      set_options(self, book_no, ...)
       if (qrow_db_write) {
-        self$options$is_first <- TRUE
+        self$opts$ct$is_first <- TRUE
       }
       if (tabulate) {
         self$calc_qtabs(row)
       }
+    },
+    set_options = function(...) {
+      # inspired by: https://stackoverflow.com/questions/4124900/is-there-a-way-to-use-two-statements-in-a-function-in-r/4128401#4128401
+      args <- list(...)
+      da_formals <- formals(datenanpassr::get_mapping_options) |> names()
+
+      da_args <- c(
+        list(
+          mapping_file = self$mapping_file,
+          wb = self$wb
+        ),
+        args[names(args) %in% da_formals]
+      )
+      ct_args <- args |> setdiff(da_args)
+
+      self$opts$da <- do.call(datenanpassr::get_mapping_options, da_args)
+      self$opts$ct <- do.call(get_tabula_options, c(self, ct_args))
     },
     calc_qtabs = function(row = NULL) {
       private$filter_global()
@@ -108,20 +118,20 @@ Tabula <- R6::R6Class(
     },
     assemble_crosstab_data = function() {
       self$crosstabs <- assemble_crosstab_data_(self)
-      add_columns_for_tablebook(self, BookNo = self$options$V_BookNo)
+      add_columns_for_tablebook(self, BookNo = self$opts$ct$V_BookNo)
       invisible(self)
     },
     write_to_db = function() {
       self$assemble_crosstab_data()
-      self$options$is_first <- TRUE
+      self$opts$ct$is_first <- TRUE
       write_to_db_(
         self,
-        dsn = self$params$database_dsn,
+        dsn = self$opts$da$database_dsn,
         errors = self$qrows |> lapply(\(x) x$log$error),
         warns = self$qrows |> lapply(\(x) x$log$warn),
-        book_no = self$options$V_BookNo,
+        book_no = self$opts$ct$V_BookNo,
         questno = self$qrows |> lapply(\(x) x$p$Abbreviation),
-        is_first = self$options$is_first
+        is_first = self$opts$ct$is_first
       )
       invisible(self)
     },
@@ -140,7 +150,7 @@ Tabula <- R6::R6Class(
   private = list(
     glob_filter = NULL,
     filter_global = function() {
-      global_filter <- self$options$l_macro_scenario$Filter
+      global_filter <- self$opts$ct$l_macro_scenario$Filter
       private$glob_filter <- if (is.na(global_filter)) TRUE else {
         global_filter |>
           # hopefully, won't be needed one day:

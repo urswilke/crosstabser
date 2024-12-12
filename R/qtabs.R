@@ -169,6 +169,6 @@ order_by_counts.qtab_type_mcg <- function(qtab) {
 
 set_row_content_to_filter <- function(qtab) {
   row_table <- qtab$d$row_table
-  is_filter <- row_table$RowContent == "Missing" & row_table$RowTitle1 == qtab$m$options$l_lexikon[["cTabFilter"]]
+  is_filter <- row_table$RowContent == "Missing" & row_table$RowTitle1 == qtab$m$opts$ct$l_lexikon[["cTabFilter"]]
   qtab$d$row_table$RowContent[is_filter] <- "Filter"
 }

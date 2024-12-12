@@ -33,7 +33,7 @@ test_that("mcg tables with invalids & Exclusive are reproduced", {
 # global filter:
 m_filter <- m_rm_invalids$clone(deep = TRUE)
 # here we can't use SPSS syntax because this is transformed to R syntax in Tabula$new():
-m_filter$options$l_macro_scenario$Filter <- "age == 1 & !age == 0"
+m_filter$opts$ct$l_macro_scenario$Filter <- "age == 1 & !age == 0"
 m_filter$calc_qtabs(2)
 test_that("a table is reproduced with a global filter", {
   testthat::expect_snapshot(m_filter$qrows$`2`$qtabs)

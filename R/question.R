@@ -96,7 +96,7 @@ gen_qtabs_params <- function(qrow_params, mapping) {
       weight_label <- attr(mapping$dat_tab[[x$Weight]], "label", exact = TRUE) %||% x$Weight
       x$Title <- append(
         x$Title,
-        paste0(mapping$options$l_lexikon["cTxtWeightedBy"], weight_label)
+        paste0(mapping$opts$ct$l_lexikon["cTxtWeightedBy"], weight_label)
       )
       x
     })
@@ -151,7 +151,7 @@ process_mw_rows <- function(qrow_params, mapping) {
   if (qrow_params$Type != "mw") {
     return(res)
   }
-  mw_label <- qrow_params$MeanOverviewLabel %||% mapping$options$l_lexikon[["cTabMeanOV"]]
+  mw_label <- qrow_params$MeanOverviewLabel %||% mapping$opts$ct$l_lexikon[["cTabMeanOV"]]
   title <- qrow_params$Title
   res[[1]]$Title <- title |> append(mw_label)
   if (!is.null(qrow_params$Freq) && qrow_params$Freq %in% c("0", "FALSE")) {
@@ -207,7 +207,7 @@ process_repov_rows <- function(qrow_params, mapping) {
   mw_title_string <- qrow_params$Title
   repov_title_appendices <- paste0(
     repov_names,
-    mapping$options$l_lexikon[["cTabOverview"]]
+    mapping$opts$ct$l_lexikon[["cTabOverview"]]
   )
   repov_titles <- repov_title_appendices |> lapply(\(x) c(
     mw_title_string[-length(mw_title_string)],
