@@ -68,16 +68,12 @@ Tabula <- R6::R6Class(
                           dat = NULL,
                           tabulate = TRUE,
                           # TODO: ask Wolf if we should set this this to interactive() ...:
-                          verbose = FALSE,
                           qrow_db_write = FALSE,
                           ...) {
       super$initialize(
         dat,
         mapping_file,
         process_sheets = FALSE,
-        # TODO: move the definition of this parameter into the initialization of datenanpassr::Mapping,
-        # if we want to use it there as well...!
-        verbose = verbose,
         qrow_db_write = qrow_db_write,
         ...
       )
@@ -98,8 +94,21 @@ Tabula <- R6::R6Class(
       }
     },
     set_options = function(...) {
-      self$opts$da <- datenanpassr::get_mapping_options(self$mapping_file, wb = self$wb, ...)
-      self$opts$ct <- get_tabula_options(self, ...)
+      # inspired by: https://stackoverflow.com/questions/4124900/is-there-a-way-to-use-two-statements-in-a-function-in-r/4128401#4128401
+      args <- list(...)
+      da_formals <- formals(datenanpassr::get_mapping_options) |> names()
+
+      da_args <- c(
+        list(
+          mapping_file = self$mapping_file,
+          wb = self$wb
+        ),
+        args[names(args) %in% da_formals]
+      )
+      ct_args <- args |> setdiff(da_args)
+
+      self$opts$da <- do.call(datenanpassr::get_mapping_options, da_args)
+      self$opts$ct <- do.call(get_tabula_options, c(self, ct_args))
     },
     calc_qtabs = function(row = NULL) {
       private$filter_global()

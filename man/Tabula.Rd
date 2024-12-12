@@ -99,7 +99,6 @@ Initialize a Tabula object
   row = NULL,
   dat = NULL,
   tabulate = TRUE,
-  verbose = FALSE,
   qrow_db_write = FALSE,
   ...
 )}\if{html}{\out{</div>}}
