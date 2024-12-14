@@ -94,21 +94,19 @@ Tabula <- R6::R6Class(
       }
     },
     set_options = function(...) {
-      # inspired by: https://stackoverflow.com/questions/4124900/is-there-a-way-to-use-two-statements-in-a-function-in-r/4128401#4128401
-      args <- list(...)
-      da_formals <- formals(datenanpassr::get_mapping_options) |> names()
+      excel_params <- private$get_named_region_params()
+      # If specified in both, excel parameters will be overwritten by the dots:
+      args <- excel_params |> modifyList(list(...))
 
-      da_args <- c(
-        list(
-          mapping_file = self$mapping_file,
-          wb = self$wb
-        ),
-        args[names(args) %in% da_formals]
+      da <- datenanpassr::use_known_args(datenanpassr::get_mapping_options, args)
+      ct <- datenanpassr::use_known_args(crosstabser::get_tabula_options, c(list(tabula = self), args))
+      dev <- args |> setdiff(c(da, ct))
+
+      self$opts <- tibble::lst(
+        da,
+        ct,
+        dev
       )
-      ct_args <- args |> setdiff(da_args)
-
-      self$opts$da <- do.call(datenanpassr::get_mapping_options, da_args)
-      self$opts$ct <- do.call(get_tabula_options, c(self, ct_args))
     },
     calc_qtabs = function(row = NULL) {
       private$filter_global()

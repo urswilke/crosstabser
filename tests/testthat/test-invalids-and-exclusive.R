@@ -18,11 +18,10 @@ dfq <- tibble::tribble(
   "mdg with invalids",                 "mdg", "q1_1 q1_2",           "q1_3 q1_4", NA,
   "mdg with invalids & exclusive",     "mdg", "q1_1 q1_2",           "q1_3 q1_4", "q1_1",
 )
-mapping_file = list(Questions = dfq)
+mapping_file = list(Questions = dfq, Macro = list(ColVar = "age"))
 m_rm_invalids <- Tabula$new(
   df,
   mapping_file,
-  ColVar = c("age")
 )
 m_rm_invalids
 test_that("mcg tables with invalids & Exclusive are reproduced", {

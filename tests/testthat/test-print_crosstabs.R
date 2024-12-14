@@ -51,20 +51,23 @@ df <- tibble::tibble(
 )
 
 f <- df_metr_mac$fun
-mapping_file = list(Questions = data.frame(
+dfq <- data.frame(
   Type  = "mw",
   RowVar = "q1 q2",
   Title = "",
   Freq = "0",
   ZsfgMW = f,
   MeanOverviewLabel = paste("Summary of", f)
-))
+)
+l_macro <- list(
+  ColVar = c("q1", "q2"),
+  Weight = "gew",
+  Unwgt = TRUE
+)
+mapping_file <- list(Questions = dfq, Macro = l_macro)
 m <- Tabula$new(
   df,
   mapping_file,
-  ColVar = c("q1", "q2"),
-  Weight = "gew",
-  Unwgt = TRUE,
   tabulate = FALSE
 )
 m$opts$ct$l_lexikon["cTabWeighted"] <- "W"
@@ -79,7 +82,12 @@ test_that("summaries of various stat_fun are reproduced", {
 
 
 
-mapping_file = list(Questions = data.frame(
+l_macro <- list(
+  ColVar = c("q1"),
+  Weight = "gew",
+  Unwgt = TRUE
+)
+dfq <- data.frame(
   Type  = c("mw", "cat"),
   RowVar = c("q1 q2", "q1"),
   UngueltMW = "2, 4",
@@ -88,14 +96,12 @@ mapping_file = list(Questions = data.frame(
   ZsfgMW = c("mean", NA_character_),
   MeanOverviewLabel = c("Summary of mean", NA_character_),
   MetrMac = c(NA_character_, "S1")
-))
+)
+mapping_file = list(Questions = dfq, Macro = l_macro)
 
 m <- Tabula$new(
   df,
   mapping_file,
-  ColVar = c("q1"),
-  Weight = "gew",
-  Unwgt = TRUE,
   tabulate = FALSE
 )
 m$opts$ct$l_lexikon["cTabWeighted"] <- "W"

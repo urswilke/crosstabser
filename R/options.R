@@ -1,5 +1,4 @@
-# TODO: export this function
-# (which will then be imported to the database child package, to be created...:)!
+# TODO: document!
 # - for this we should add an example excel mapping file to the crosstabser package
 # - and then add a docs example, something like this:
 # # Only for documentation purposes:
@@ -14,10 +13,13 @@
 # m$opts$da
 # # Result of get_tabula_options() in `da` field:
 # m$opts$ct
+
+#' @export
 get_tabula_options <- function(tabula, ...) {
   UseMethod("get_tabula_options", tabula$mapping_file)
 }
 
+#' @export
 get_tabula_options.excel <- function(tabula, book_no = NULL, ...) {
   # TODO: clean up this mess...!
   v_scenario <- openxlsx2::wb_read(
@@ -62,6 +64,7 @@ get_tabula_options.excel <- function(tabula, book_no = NULL, ...) {
 }
 # TODO: find cleaner solution to use default parameters
 # probably the best solution is to override the datenanpassr::Mapping method reading in the parameters in Tabula
+#' @export
 get_tabula_options.list <- function(
     tabula,
     v_scenario = 1,
@@ -71,15 +74,11 @@ get_tabula_options.list <- function(
     book_no = 999999999,
     ...
 ) {
-  # HACK to allow to pass the dots (...) to override parameters from the Macro "sheet":
-  # TODO: probably much cleaner to add a Macro list element to the mapping_file object,
-  # that either accepts a data.frame like from the Excel file Macro sheet or a named list
-  # (if not interested in running different scenarios)
   l_macro_scenario <- modifyList(
     list(ColVar = character(), Unguelt = c(-1, -3, -2), Weight = NA_character_,
        Unwgt = FALSE, Filter = NA_character_, scenario_name = "Scenario 2"
     ),
-    list(...)
+    tabula$mapping_file$Macro %||% list()
   )
   tibble::lst(
     v_scenario,

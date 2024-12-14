@@ -11,11 +11,10 @@ dfq <- tibble::tribble(
   "mdg with MdgMissLab = FILTER",                 "mdg", "q1_1 q1_2", "FILTER",    NA,
   "mdg with MdgMissLab = new_lab & MdgMissValid", "mdg", "q1_1 q1_2", "new_lab",   "TRUE",
 )
-mapping_file = list(Questions = dfq)
+mapping_file = list(Questions = dfq, Macro = list(ColVar = "age"))
 m_mdg_no_entry <- Tabula$new(
   df,
   mapping_file,
-  ColVar = c("age")
 )
 m_mdg_no_entry
 test_that("mdg tables with no entries are reproduced", {
