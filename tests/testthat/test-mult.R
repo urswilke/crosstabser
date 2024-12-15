@@ -22,13 +22,12 @@ dfq <- tibble::tribble(
   "mw without Mult",  "mw",  "q1n1 q1n2 q1n3 q1n4", "sel1 sel2", "1-2:sel1_&_2", NA,
   "mw with Mult",     "mw",  "q1n1 q1n2 q1n3 q1n4", "sel1 sel2", "1-2:sel1_&_2", "TRUE",
 )
-mapping_file = list(Questions = dfq)
+mapping_file = list(Questions = dfq, Macro = list(ColVar = "age"))
 
 m_selvar <- Tabula$new(
   df,
   mapping_file,
   verbose = TRUE,
-  ColVar = "age"
 )
 test_that("tables of all 4 types with 2 `SelVar`s & with / without `Mult` are reproduced", {
   testthat::expect_snapshot(m_selvar)
