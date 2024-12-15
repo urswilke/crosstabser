@@ -15,7 +15,7 @@
 # m$opts$ct
 
 #' @export
-get_tabula_options <- function(tabula, ...) {
+get_tabula_options <- function(tabula, book_no = NULL, ...) {
   UseMethod("get_tabula_options", tabula$mapping_file)
 }
 
