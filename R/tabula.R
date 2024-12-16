@@ -67,14 +67,11 @@ Tabula <- R6::R6Class(
                           row = NULL,
                           dat = NULL,
                           tabulate = TRUE,
-                          # TODO: ask Wolf if we should set this this to interactive() ...:
-                          qrow_db_write = FALSE,
                           ...) {
       super$initialize(
         dat,
         mapping_file,
         process_sheets = FALSE,
-        qrow_db_write = qrow_db_write,
         ...
       )
       if (is.null(dat) & is.null(dat_mod)) {
@@ -85,9 +82,6 @@ Tabula <- R6::R6Class(
       } else
       if (!is.null(dat_mod)) {
         self$dat_mod <- datenanpassr::read_data(dat_mod)
-      }
-      if (qrow_db_write) {
-        self$opts$ct$is_first <- TRUE
       }
       if (tabulate) {
         self$calc_qtabs(row)
@@ -111,26 +105,12 @@ Tabula <- R6::R6Class(
     calc_qtabs = function(row = NULL) {
       private$filter_global()
       gen_col_tables(self)
-      parse_qsheet(self, row)
+      private$parse_qsheet(row)
       invisible(self)
     },
     assemble_crosstab_data = function() {
       self$crosstabs <- assemble_crosstab_data_(self)
       add_columns_for_tablebook(self, BookNo = self$opts$ct$V_BookNo)
-      invisible(self)
-    },
-    write_to_db = function() {
-      self$assemble_crosstab_data()
-      self$opts$ct$is_first <- TRUE
-      write_to_db_(
-        self,
-        dsn = self$opts$da$database_dsn,
-        errors = self$qrows |> lapply(\(x) x$log$error),
-        warns = self$qrows |> lapply(\(x) x$log$warn),
-        book_no = self$opts$ct$V_BookNo,
-        questno = self$qrows |> lapply(\(x) x$p$Abbreviation),
-        is_first = self$opts$ct$is_first
-      )
       invisible(self)
     },
     # TODO: ask Wolf:
@@ -146,6 +126,15 @@ Tabula <- R6::R6Class(
     }
   ),
   private = list(
+    new_Qrow = Qrow,
+    parse_qsheet = function(row) {
+      qsheet_raw <- read_qsheet_raw(self, row)
+      self$qsheet$qsheet_raw <- qsheet_raw
+      self$qrows <- lapply(
+        split(qsheet_raw, qsheet_raw$row),
+        \(df) private$new_Qrow$new(df, self)
+      )
+    },
     glob_filter = NULL,
     filter_global = function() {
       global_filter <- self$opts$ct$l_macro_scenario$Filter
@@ -162,11 +151,3 @@ Tabula <- R6::R6Class(
 
   )
 )
-parse_qsheet <- function(mapping, row) {
-  qsheet_raw <- read_qsheet_raw(mapping, row)
-  mapping$qsheet$qsheet_raw <- qsheet_raw
-  mapping$qrows <- lapply(
-    split(qsheet_raw, qsheet_raw$row),
-    \(df) Qrow$new(df, mapping)
-  )
-}
