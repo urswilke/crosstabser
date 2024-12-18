@@ -35,8 +35,6 @@ Imports:
     datenanpassr,
     vctrs,
     forcats,
-    DBI,
-    odbc,
     S7
 Remotes: gitlab::urswilke/datenanpassr
 Suggests: 
