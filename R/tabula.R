@@ -110,8 +110,13 @@ Tabula <- R6::R6Class(
       invisible(self)
     },
     assemble_crosstab_data = function() {
-      self$crosstabs <- assemble_crosstab_data_(self)
-      add_columns_for_tablebook(self, BookNo = self$opts$ct$V_BookNo)
+      l <- self$qrows |>
+        lapply(\(x) x$assemble_crosstab_data()) |>
+        lapply(\(x) x$crosstabs$data)
+      self$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
+      self$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()
+      self$crosstabs$data$row_table <- l |> lapply(\(x) x$row_table) |> dplyr::bind_rows()
+      prepare_head_col_tables(self)
       invisible(self)
     },
     # TODO: ask Wolf:

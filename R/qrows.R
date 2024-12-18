@@ -57,7 +57,9 @@ Qrow <- R6::R6Class(
     },
     assemble_crosstab_data = function() {
       self$crosstabs <- assemble_crosstab_data_(self)
-      add_columns_for_tablebook(self, BookNo = self$m$opts$ct$V_BookNo)
+      prepare_row_table_tb(self)
+      prepare_tab_table_tb(self)
+      prepare_val_table_tb(self)
       invisible(self)
     }
   )
