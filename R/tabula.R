@@ -127,9 +127,13 @@ Tabula <- R6::R6Class(
   ),
   private = list(
     new_Qrow = Qrow,
-    parse_qsheet = function(row) {
+    read_qsheet = function(row) {
       qsheet_raw <- read_qsheet_raw(self, row)
       self$qsheet$qsheet_raw <- qsheet_raw
+    },
+    parse_qsheet = function(row) {
+      private$read_qsheet(row)
+      qsheet_raw <- self$qsheet$qsheet_raw
       self$qrows <- lapply(
         split(qsheet_raw, qsheet_raw$row),
         \(df) private$new_Qrow$new(df, self)
