@@ -33,8 +33,8 @@ extract_5_tables <- function(qrows, mapping) {
     dplyr::select(QuestNo, TabNo, val_table) |>
     tidyr::unnest(val_table)
   row_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
-  head_table <- mapping$qsheet$head_table
-  col_table_all <- mapping$qsheet$col_table_all
+  head_table <- mapping$ditw$ct$db_tables$head_table
+  col_table_all <- mapping$ditw$ct$db_tables$col_table_all
 
   data <- tibble::lst(
     tab_table,
