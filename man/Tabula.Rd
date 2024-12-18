@@ -73,7 +73,6 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 \item \href{#method-Tabula-set_options}{\code{Tabula$set_options()}}
 \item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
 \item \href{#method-Tabula-assemble_crosstab_data}{\code{Tabula$assemble_crosstab_data()}}
-\item \href{#method-Tabula-write_to_db}{\code{Tabula$write_to_db()}}
 \item \href{#method-Tabula-print}{\code{Tabula$print()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
@@ -99,7 +98,6 @@ Initialize a Tabula object
   row = NULL,
   dat = NULL,
   tabulate = TRUE,
-  qrow_db_write = FALSE,
   ...
 )}\if{html}{\out{</div>}}
 }
@@ -129,15 +127,6 @@ Initialize a Tabula object
 \subsection{Method \code{assemble_crosstab_data()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$assemble_crosstab_data()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-write_to_db"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-write_to_db}{}}}
-\subsection{Method \code{write_to_db()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$write_to_db()}\if{html}{\out{</div>}}
 }
 
 }

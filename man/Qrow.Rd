@@ -40,7 +40,6 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 \itemize{
 \item \href{#method-Qrow-new}{\code{Qrow$new()}}
 \item \href{#method-Qrow-assemble_crosstab_data}{\code{Qrow$assemble_crosstab_data()}}
-\item \href{#method-Qrow-write_to_db}{\code{Qrow$write_to_db()}}
 \item \href{#method-Qrow-clone}{\code{Qrow$clone()}}
 }
 }
@@ -70,15 +69,6 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 \subsection{Method \code{assemble_crosstab_data()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Qrow$assemble_crosstab_data()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qrow-write_to_db"></a>}}
-\if{latex}{\out{\hypertarget{method-Qrow-write_to_db}{}}}
-\subsection{Method \code{write_to_db()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qrow$write_to_db()}\if{html}{\out{</div>}}
 }
 
 }
