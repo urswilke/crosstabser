@@ -67,11 +67,11 @@ get_tabula_options.excel <- function(tabula, book_no = NULL, ...) {
 #' @export
 get_tabula_options.list <- function(
     tabula,
+    book_no = 999999999,
     v_scenario = 1,
     V_Language = 4,
     l_macro_scenario = NULL,
     l_lexikon = read_dictionary(V_Language),
-    book_no = 999999999,
     ...
 ) {
   l_macro_scenario <- modifyList(
