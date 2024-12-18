@@ -105,7 +105,7 @@ Tabula <- R6::R6Class(
     calc_qtabs = function(row = NULL) {
       private$filter_global()
       gen_col_tables(self)
-      private$parse_qsheet(row)
+      private$process_qsheet(row)
       invisible(self)
     },
     assemble_crosstab_data = function() {
@@ -131,7 +131,7 @@ Tabula <- R6::R6Class(
       qsheet_raw <- read_qsheet_raw(self, row)
       self$qsheet$qsheet_raw <- qsheet_raw
     },
-    parse_qsheet = function(row) {
+    process_qsheet = function(row) {
       private$read_qsheet(row)
       qsheet_raw <- self$qsheet$qsheet_raw
       self$qrows <- lapply(
