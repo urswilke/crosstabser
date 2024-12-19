@@ -16,7 +16,7 @@ test_that("crosstab prints are reproduced", {
 tabsi$dat_mod$q3a[1:9] <- 101
 tabsi$opts$da$error_out <- "safe"
 tabsi$calc_qtabs(7)
-tabsi$assemble_crosstab_data()
+tabsi$prepare_5_tables()
 
 test_that("A warning correctly is written to the log", {
   testthat::expect_true(!is.null(tabsi$qrows[[1]]$log$warn))

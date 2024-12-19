@@ -109,9 +109,9 @@ Tabula <- R6::R6Class(
       private$process_qsheet(row)
       invisible(self)
     },
-    assemble_crosstab_data = function() {
+    prepare_5_tables = function() {
       l <- self$qrows |>
-        lapply(\(x) x$assemble_crosstab_data()) |>
+        lapply(\(x) x$prepare_tab_row_val_tables()) |>
         lapply(\(x) x$crosstabs$data)
       self$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
       self$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()

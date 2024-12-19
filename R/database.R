@@ -10,7 +10,7 @@ frame_table_parts <- function(qrow) {
     dplyr::mutate(l = purrr::map(qtab, \(x) x$d[five_table_names])) |>
     tidyr::unnest_wider(l)
 }
-assemble_crosstab_data_ <- function(qrow) {
+prepare_tab_row_val_tables_ <- function(qrow) {
   table_parts <- frame_table_parts(qrow)
 
   q <- table_parts$QuestNo
