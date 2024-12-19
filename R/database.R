@@ -94,25 +94,27 @@ prepare_row_table_tb <- function(qrow) {
   row_table <- qrow$crosstabs$data$row_table
 
   # constants for bitwise or operation for Row$RowTypeg
-  cArt <- list()
-  cArt$Title <- 1
-  cArt$Header <- 2
-  cArt$Total <- 256
-  cArt$Detail <- 16
-  cArt$Summary <- 32
-  cArt$Statistics <- 64
-  cArt$Valid <- 512
-  cArt$Missing <- 1024
-  cArt$Filter <- 2048
-  cArt$Empty <- 4
-  cArt$MStatistics <- 65536
-  cArt$MValid <- 131072
-  cArt$AbsWeighted <- 1048576
-  cArt$AbsUnweighted <- 2097152
-  cArt$PercentWeighted <- 16777216
-  cArt$PercentUnweighted <- 33554432
-  cArt$Abs <- 4194304
-  cArt$Percent <- 67108864
+  # TODO: What should we do with the SumOfValid...?
+  cArt <- c(
+    Title = 1,
+    Header = 2,
+    Total = 256,
+    Detail = 16,
+    Summary = 32,
+    Statistics = 64,
+    Valid = 512,
+    Missing = 1024,
+    Filter = 2048,
+    Empty = 4,
+    MStatistics = 65536,
+    MValid = 131072,
+    AbsWeighted = 1048576,
+    AbsUnweighted = 2097152,
+    PercentWeighted = 16777216,
+    PercentUnweighted = 33554432,
+    Abs = 4194304,
+    Percent = 67108864
+  )
 
   qrow$crosstabs$data$row_table <- row_table |>
     dplyr::mutate(
@@ -122,7 +124,17 @@ prepare_row_table_tb <- function(qrow) {
         RowAbsPercent,
         RowWeighted
       ),
-      RowType = bitwOr(unlist(cArt[gsub("^.*\\|", "", RowTypeS)]), unlist(cArt[gsub("\\|.*$", "", RowTypeS)])),
+      temp1 = cArt[paste0(RowAbsPercent, RowWeighted)],
+      temp2 = cArt[paste0(RowContent)],
+      RowType = bitwOr(
+        temp1 |> dplyr::coalesce(temp2),
+        temp2 |>
+          # TODO: fix:
+          # SumOfValid is not yet defined and seems to use the same value as for Detail for now:
+          dplyr::coalesce(16L)
+      ),
+      temp1 = NULL,
+      temp2 = NULL,
       # "\\u2696" is the unicode escape for the weight sign
       # TODO: get from cTabWeighted...!:
       RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub("\u2696", "", RowTitle3), ""),
