@@ -93,7 +93,7 @@ prepare_row_table_tb <- function(qrow) {
 
   # constants for bitwise or operation for Row$RowTypeg
   # TODO: What should we do with the SumOfValid...?
-  cArt <- c(
+  cArt <- list(
     Title = 1,
     Header = 2,
     Total = 256,
@@ -122,17 +122,7 @@ prepare_row_table_tb <- function(qrow) {
         RowAbsPercent,
         RowWeighted
       ),
-      temp1 = cArt[paste0(RowAbsPercent, RowWeighted)],
-      temp2 = cArt[paste0(RowContent)],
-      RowType = bitwOr(
-        temp1 |> dplyr::coalesce(temp2),
-        temp2 |>
-          # TODO: fix:
-          # SumOfValid is not yet defined and seems to use the same value as for Detail for now:
-          dplyr::coalesce(16L)
-      ),
-      temp1 = NULL,
-      temp2 = NULL,
+      RowType = bitwOr(unlist(cArt[gsub("^.*\\|", "", RowTypeS)]), unlist(cArt[gsub("\\|.*$", "", RowTypeS)])),
       # "\\u2696" is the unicode escape for the weight sign
       # TODO: get from cTabWeighted...!:
       RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub("\u2696", "", RowTitle3), ""),
