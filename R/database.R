@@ -41,7 +41,7 @@ five_table_names <- c("row_table", "col_table_all", "val_table", "head_table", "
 add_book_no <- function(df, BookNo) {
   df |> dplyr::mutate(BookNo, .before = 1)
 }
-prepare_head_col_tables <- function(tabula) {
+prepare_head_col_tables_ <- function(tabula) {
   book_no <- tabula$opts$ct$V_BookNo
   col_table_all <- tabula$ditw$ct$db_tables$col_table_all |>
     add_book_no(book_no)

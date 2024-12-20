@@ -116,7 +116,7 @@ Tabula <- R6::R6Class(
       self$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
       self$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()
       self$crosstabs$data$row_table <- l |> lapply(\(x) x$row_table) |> dplyr::bind_rows()
-      prepare_head_col_tables(self)
+      private$prepare_head_col_tables()
       invisible(self)
     },
     # TODO: ask Wolf:
@@ -157,7 +157,9 @@ Tabula <- R6::R6Class(
       }
 
       self$dat_tab <- self$dat_mod[private$glob_filter,]
+    },
+    prepare_head_col_tables = function() {
+      prepare_head_col_tables_(self)
     }
-
   )
 )
