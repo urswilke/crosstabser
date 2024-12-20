@@ -111,7 +111,7 @@ Tabula <- R6::R6Class(
     },
     prepare_5_tables = function() {
       l <- self$qrows |>
-        lapply(\(x) x$prepare_tab_row_val_tables()) |>
+        lapply(\(x) x$prep_tab_row_val()) |>
         lapply(\(x) x$crosstabs$data)
       self$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
       self$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()

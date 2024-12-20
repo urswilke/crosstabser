@@ -55,8 +55,8 @@ Qrow <- R6::R6Class(
         )
       }
     },
-    prepare_tab_row_val_tables = function() {
-      self$crosstabs <- prepare_tab_row_val_tables_(self)
+    prep_tab_row_val = function() {
+      self$crosstabs <- prep_tab_row_val_(self)
       prepare_row_table_tb(self)
       prepare_tab_table_tb(self)
       prepare_val_table_tb(self)
