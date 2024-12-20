@@ -86,8 +86,6 @@ prepare_tab_table_tb <- function(qrow) {
 
 
   qrow$crosstabs$data$tab_table <- tab_table |>
-    # TODO: source out for db:
-    # dplyr::select(QuestNo, QuestLine, TabNo, TabName, TabType, TabTitle, TabTitle1, TabTitle2, TabTitle3, TabRowTypes, TabCaption, TabCount) |>
     add_book_no(qrow$m$opts$ct$V_BookNo)
 }
 prepare_row_table_tb <- function(qrow) {
@@ -139,8 +137,6 @@ prepare_row_table_tb <- function(qrow) {
       # TODO: get from cTabWeighted...!:
       RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub("\u2696", "", RowTitle3), ""),
     ) |>
-    # TODO: source out for db:
-    # dplyr::select(QuestNo, RowNo, TabNo, RowTypeS, RowType, RowContent, RowContentDetail, RowAbsPercent, RowWeighted, RowTitle1, RowTitle2, RowTitle3, RowDecimals, RowVariable, RowValue) |>
     add_book_no(qrow$m$opts$ct$V_BookNo)
 
 }
