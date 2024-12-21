@@ -94,24 +94,24 @@ prepare_row_table_tb <- function(qrow) {
   # constants for bitwise or operation for Row$RowTypeg
   # TODO: What should we do with the SumOfValid...?
   cArt <- list(
-    Title = 1,
-    Header = 2,
-    Total = 256,
-    Detail = 16,
-    Summary = 32,
-    Statistics = 64,
-    Valid = 512,
-    Missing = 1024,
-    Filter = 2048,
-    Empty = 4,
-    MStatistics = 65536,
-    MValid = 131072,
-    AbsWeighted = 1048576,
-    AbsUnweighted = 2097152,
-    PercentWeighted = 16777216,
-    PercentUnweighted = 33554432,
-    Abs = 4194304,
-    Percent = 67108864
+    Title = 0,
+    Header = 1,
+    Total = 8,
+    Detail = 4,
+    Summary = 5,
+    Statistics = 6,
+    Valid = 9,
+    Missing = 10,
+    Filter = 11,
+    Empty = 2,
+    MStatistics = 16,
+    MValid = 17,
+    AbsWeighted = 20,
+    AbsUnweighted = 21,
+    PercentWeighted = 24,
+    PercentUnweighted = 25,
+    Abs = 22,
+    Percent = 26
   )
 
   qrow$crosstabs$data$row_table <- row_table |>
@@ -122,7 +122,7 @@ prepare_row_table_tb <- function(qrow) {
         RowAbsPercent,
         RowWeighted
       ),
-      RowType = bitwOr(unlist(cArt[gsub("^.*\\|", "", RowTypeS)]), unlist(cArt[gsub("\\|.*$", "", RowTypeS)])),
+      RowType = bitwOr(2 ^ unlist(cArt[gsub("^.*\\|", "", RowTypeS)]), 2 ^ unlist(cArt[gsub("\\|.*$", "", RowTypeS)])),
       # "\\u2696" is the unicode escape for the weight sign
       # TODO: get from cTabWeighted...!:
       RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub("\u2696", "", RowTitle3), ""),
