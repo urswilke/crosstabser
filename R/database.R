@@ -78,26 +78,8 @@ add_columns_for_tablebook <- function(obj, BookNo) {
     dplyr::full_join(df_tabcount, by = c("QuestNo", "TabNo")) |>
     dplyr::mutate(TabRowTypes = NA_integer_)
 
-  # constants for bitwise or operation for Row$RowTypeg
-  cArt <- list()
-  cArt$Title <- 1
-  cArt$Header <- 2
-  cArt$Total <- 256
-  cArt$Detail <- 16
-  cArt$Summary <- 32
-  cArt$Statistics <- 64
-  cArt$Valid <- 512
-  cArt$Missing <- 1024
-  cArt$Filter <- 2048
-  cArt$Empty <- 4
-  cArt$MStatistics <- 65536
-  cArt$MValid <- 131072
-  cArt$AbsWeighted <- 1048576
-  cArt$AbsUnweighted <- 2097152
-  cArt$PercentWeighted <- 16777216
-  cArt$PercentUnweighted <- 33554432
-  cArt$Abs <- 4194304
-  cArt$Percent <- 67108864
+  # TODO: stupid hack to get lexikon value, should probably be method of Tabula class
+  lexikonret <- function(x, lexikon) { lexikon[x]}
 
   res$row_table <- res$row_table |>
     dplyr::mutate(
@@ -107,10 +89,11 @@ add_columns_for_tablebook <- function(obj, BookNo) {
         RowAbsPercent,
         RowWeighted
       ),
-      RowType = bitwOr(unlist(cArt[gsub("^.*\\|", "", RowTypeS)]), unlist(cArt[gsub("\\|.*$", "", RowTypeS)])),
-      # "\\u2696" is the unicode escape for the weight sign
-      # TODO: get from cTabWeighted...!:
-      RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub("\u2696", "", RowTitle3), ""),
+      RowType = bitwOr(
+        as.numeric(lexikonret(paste0("cArt", gsub("^.*\\|", "", RowTypeS)), obj$m$opts$ct$l_lexikon)),
+        as.numeric(lexikonret(paste0("cArt", gsub("\\|.*$", "", RowTypeS)), obj$m$opts$ct$l_lexikon))
+        ),
+      RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub(lexikonret("cTabWeighted", obj$m$opts$ct$l_lexikon), "", RowTitle3), ""),
     )
   res$head_table <- res$head_table |> dplyr::left_join(
     res$col_table_all |> dplyr::count(HeadNo, name = "HeadCount"),
