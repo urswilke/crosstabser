@@ -33,6 +33,15 @@ extract_5_tables <- function(qrows, mapping) {
     dplyr::select(QuestNo, TabNo, val_table) |>
     tidyr::unnest(val_table)
   row_table <- table_parts$qtab |> purrr::set_names(q) |> purrr::map_dfr(\(x) x$d$row_table, .id = "QuestNo")
+
+  row_table <- row_table |>
+    dplyr::left_join(val_table  |>
+                       dplyr::group_by(QuestNo, TabNo, RowNo) |>
+                       dplyr::summarize(RowValues = gsub("NA","NULL", paste0("{", paste0(value, collapse=","), "}"))),
+                     by = dplyr::join_by("QuestNo", "TabNo", "RowNo")
+    ) |>
+    dplyr::mutate(RowValues = ifelse(is.na(RowValues), "{}", RowValues))
+
   head_table <- mapping$qsheet$head_table
   col_table_all <- mapping$qsheet$col_table_all
 
@@ -117,7 +126,7 @@ write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno, is_first) {
     # works/needed only if obj is of class Qrow:
     if (!is.null(obj$m)) obj$m$opts$ct$is_first <- FALSE
   }
-  DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
+  # DBI::dbWriteTable(conn, "Val", five_tables$val_table, append = TRUE)
 
   sql = ""
 
@@ -148,7 +157,7 @@ write_to_db_ <- function(obj, dsn, errors, warns, book_no, questno, is_first) {
 
 order_tables <- function(five_tables) {
   five_tables$tab_table <- dplyr::select(five_tables$tab_table, BookNo, QuestNo, QuestLine, TabNo, TabName, TabType, TabTitle, TabTitle1, TabTitle2, TabTitle3, TabRowTypes, TabCaption, TabCount)
-  five_tables$row_table <- dplyr::select(five_tables$row_table,  BookNo, QuestNo, RowNo, TabNo, RowTypeS, RowType, RowContent, RowContentDetail, RowAbsPercent, RowWeighted, RowTitle1, RowTitle2, RowTitle3, RowDecimals, RowVariable, RowValue)
+  five_tables$row_table <- dplyr::select(five_tables$row_table,  BookNo, QuestNo, RowNo, TabNo, RowTypeS, RowType, RowContent, RowContentDetail, RowAbsPercent, RowWeighted, RowTitle1, RowTitle2, RowTitle3, RowDecimals, RowVariable, RowValue, RowValues)
   five_tables$head_table <- dplyr::select(five_tables$head_table, BookNo, HeadNo, HeadName, HeadTitle, HeadCount)
   five_tables$col_table_all <- dplyr::select(five_tables$col_table_all, BookNo, ColNo, HeadNo, ColTitle1, ColTitle2, ColVariable, ColValue)
   five_tables$val_table <- dplyr::select(five_tables$val_table, BookNo, QuestNo, TabNo, RowNo, ColNo, Value)
