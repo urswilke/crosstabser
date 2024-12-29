@@ -73,6 +73,7 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 \item \href{#method-Tabula-set_options}{\code{Tabula$set_options()}}
 \item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
 \item \href{#method-Tabula-prepare_5_tables}{\code{Tabula$prepare_5_tables()}}
+\item \href{#method-Tabula-save_html_app}{\code{Tabula$save_html_app()}}
 \item \href{#method-Tabula-print}{\code{Tabula$print()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
@@ -129,6 +130,34 @@ Initialize a Tabula object
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$prepare_5_tables()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-save_html_app"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-save_html_app}{}}}
+\subsection{Method \code{save_html_app()}}{
+Write a table_charter app html file of the crosstab data
+
+In order to generate the \code{template_file},
+run the following comands in your console: \preformatted{
+  git clone https://gitlab.com/urswilke/table_charter
+  cd table_charter
+  npm i
+  npm run standalone-build
+}
+The template file should then be in the \verb{dist/} sub-directory.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$save_html_app(template_file, output_file = "dashboard.html")}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{template_file}}{Path to the template file (see description).}
+
+\item{\code{output_file}}{File path to the table_charter app html file.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-print"></a>}}

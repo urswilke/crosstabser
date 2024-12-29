@@ -119,6 +119,44 @@ Tabula <- R6::R6Class(
       private$prepare_head_col_tables()
       invisible(self)
     },
+    #' @description Write a table_charter app html file of the crosstab data
+    #'
+    #' In order to generate the `template_file`,
+    #' run the following comands in your console: \preformatted{
+    #'   git clone https://gitlab.com/urswilke/table_charter
+    #'   cd table_charter
+    #'   npm i
+    #'   npm run standalone-build
+    #' }
+    #' The template file should then be in the `dist/` sub-directory.
+    #'
+    #' @param template_file Path to the template file (see description).
+    #' @param output_file File path to the table_charter app html file.
+    save_html_app = function(
+    template_file,
+    output_file = "dashboard.html"
+    ) {
+      self$prepare_5_tables()
+
+      l <- self$crosstabs$data |> purrr::set_names(c("Tab", "Val", "Row", "Head", "Col"))
+      l$Val <- l$Val |> tidyr::drop_na(Value)
+
+      data_string <- list(type = "table-object", data = l) |>
+        jsonlite::toJSON(
+          dataframe = "columns",
+          na = "null",
+          null = "null",
+          auto_unbox = TRUE
+        )
+      html_code <- readr::read_lines(template_file)
+      html_code_with_data <- html_code |>
+        stringr::str_replace(
+          "<table-charter-intro></table-charter-intro>",
+          paste0("<table-charter-intro data='", data_string, "'></table-charter-intro>")
+        )
+      write(html_code_with_data, file = output_file)
+
+    },
     # TODO: ask Wolf:
     # add more information to the print output, e.g.:
     #  - the row number in the Question sheet
