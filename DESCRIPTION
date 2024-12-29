@@ -32,11 +32,11 @@ Imports:
     tidyselect,
     pillar,
     cli,
-    datenanpassr,
+    datadaptor,
     vctrs,
     forcats,
     S7
-Remotes: gitlab::urswilke/datenanpassr
+Remotes: gitlab::urswilke/datadaptor
 Suggests: 
     testthat (>= 3.0.0),
     haven,

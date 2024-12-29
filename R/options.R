@@ -9,7 +9,7 @@
 #   package = "crosstabser"
 # )
 # m <- Tabula$new(mapping_file = mapping_file)
-# # Result of datenanpassr::get_mapping_options() in `da` field:
+# # Result of datadaptor::get_mapping_options() in `da` field:
 # m$opts$da
 # # Result of get_tabula_options() in `da` field:
 # m$opts$ct
@@ -38,7 +38,7 @@ get_tabula_options.excel <- function(tabula, book_no = NULL, ...) {
     col_names = FALSE,
     check_names = TRUE
   ) |>
-    datenanpassr::format_sheet_data()
+    datadaptor::format_sheet_data()
 
   names(df_macro_raw) <- paste0("X", seq_len(ncol(df_macro_raw)))
 
@@ -63,7 +63,7 @@ get_tabula_options.excel <- function(tabula, book_no = NULL, ...) {
   )
 }
 # TODO: find cleaner solution to use default parameters
-# probably the best solution is to override the datenanpassr::Mapping method reading in the parameters in Tabula
+# probably the best solution is to override the datadaptor::Mapping method reading in the parameters in Tabula
 #' @export
 get_tabula_options.list <- function(
     tabula,

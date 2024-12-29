@@ -39,7 +39,7 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Qrow-new}{\code{Qrow$new()}}
-\item \href{#method-Qrow-assemble_crosstab_data}{\code{Qrow$assemble_crosstab_data()}}
+\item \href{#method-Qrow-prep_tab_row_val}{\code{Qrow$prep_tab_row_val()}}
 \item \href{#method-Qrow-clone}{\code{Qrow$clone()}}
 }
 }
@@ -64,11 +64,11 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qrow-assemble_crosstab_data"></a>}}
-\if{latex}{\out{\hypertarget{method-Qrow-assemble_crosstab_data}{}}}
-\subsection{Method \code{assemble_crosstab_data()}}{
+\if{html}{\out{<a id="method-Qrow-prep_tab_row_val"></a>}}
+\if{latex}{\out{\hypertarget{method-Qrow-prep_tab_row_val}{}}}
+\subsection{Method \code{prep_tab_row_val()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qrow$assemble_crosstab_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Qrow$prep_tab_row_val()}\if{html}{\out{</div>}}
 }
 
 }

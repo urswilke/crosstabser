@@ -11,20 +11,20 @@
 #' @field mapping_file filepath of the Excel mapping file
 #' @field row Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
 #'   Or `NULL` (the default) resulting in the selection of all row numbers where `Type` is specified.
-#' @field dat `dat` field of the super-class `datenanpassr::Mapping`.
-#'   If this is specified, dat_mod will be ignored, and instead generated with `datenanpassr::Mapping$modify_data()`
+#' @field dat `dat` field of the super-class `datadaptor::Mapping`.
+#'   If this is specified, dat_mod will be ignored, and instead generated with `datadaptor::Mapping$modify_data()`
 #'
 #' @export
 #'
 #' @examples
-#' # This is copied from datenanpassr and will just serve as a template when the
+#' # This is copied from datadaptor and will just serve as a template when the
 #' # code will be documented...
 #'
 #'
 #' # Create a Mapping object from the files provided by the package:
-#' mapping_file <- system.file("extdata", "mapping.xlsx", package = "datenanpassr")
-#' spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datenanpassr")
-#' # DOESN'T WORK WITH DATENANPASSR MAPPING FILE!!!
+#' mapping_file <- system.file("extdata", "mapping.xlsx", package = "datadaptor")
+#' spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datadaptor")
+#' # DOESN'T WORK WITH datadaptor MAPPING FILE!!!
 #' \dontrun{
 #' mapping <- Tabula$new(spss_file, mapping_file)
 #'
@@ -50,7 +50,7 @@
 #' }
 Tabula <- R6::R6Class(
   "Tabula",
-  inherit = datenanpassr::Mapping,
+  inherit = datadaptor::Mapping,
   public = list(
     mapping_file = NULL,
     dat = NULL,
@@ -82,7 +82,7 @@ Tabula <- R6::R6Class(
         super$modify_data()
       } else
       if (!is.null(dat_mod)) {
-        self$dat_mod <- datenanpassr::read_data(dat_mod)
+        self$dat_mod <- datadaptor::read_data(dat_mod)
       }
       if (tabulate) {
         self$calc_qtabs(row)
@@ -93,8 +93,8 @@ Tabula <- R6::R6Class(
       # If specified in both, excel parameters will be overwritten by the dots:
       args <- excel_params |> modifyList(list(...))
 
-      da <- datenanpassr::use_known_args(datenanpassr::get_mapping_options, args)
-      ct <- datenanpassr::use_known_args(crosstabser::get_tabula_options, c(list(tabula = self), args))
+      da <- datadaptor::use_known_args(datadaptor::get_mapping_options, args)
+      ct <- datadaptor::use_known_args(crosstabser::get_tabula_options, c(list(tabula = self), args))
       dev <- args |> setdiff(c(da, ct))
 
       self$opts <- tibble::lst(
