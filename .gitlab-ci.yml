@@ -10,6 +10,7 @@ before_script:
   - apt-get install -y --no-install-recommends ${APT_PKGS}
   - apt-get install -y --no-install-recommends qpdf pandoc
   - R -e 'install.packages(c("testthat", "rmarkdown"));'
+  - R -e 'devtools::install_gitlab("urswilke/datadaptor");'
   # install all packages in description file not yet installed:
   - R -e 'install.packages(setdiff(desc::desc()$get_deps()$package, c(installed.packages(), "R")));'
 
