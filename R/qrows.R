@@ -1,3 +1,16 @@
+#' Questions row class
+#'
+#' @field p parameters
+#' @field m `Tabula` object
+#' @field qtabs list of `Qtabs` objects
+#' @field row Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
+#'   Or `NULL` (the default) resulting in the selection of all row numbers where `Type` is specified.
+#' @field log log entries
+#'
+#' @export
+#'
+#' @examples
+#' # TODO
 Qrow <- R6::R6Class(
   "Qrow",
   public = list(
@@ -6,6 +19,9 @@ Qrow <- R6::R6Class(
     qtabs = tibble::tibble(),
     log = list(warn = NULL, error = NULL),
     crosstabs = NULL,
+    #' @param df_qrow row of the Questions dataframe
+    #' @param mapping `Mapping` object
+    #' @param ... perhaps not used at the moment of writing :)
     initialize = function(df_qrow,
                           mapping,
                           ...) {
@@ -38,29 +54,12 @@ Qrow <- R6::R6Class(
           )
         )
       }
-
-
-      if (self$m$opts$da$qrow_db_write) {
-        self$write_to_db()
-      }
-
     },
-    assemble_crosstab_data = function() {
-      self$crosstabs <- assemble_crosstab_data_(self)
-      add_columns_for_tablebook(self, BookNo = self$m$opts$ct$V_BookNo)
-      invisible(self)
-    },
-    write_to_db = function() {
-      self$assemble_crosstab_data()
-      write_to_db_(
-        self,
-        dsn = self$m$opts$da$database_dsn,
-        errors = list(self$log$error),
-        warns = list(self$log$warn),
-        book_no = self$m$opts$ct$V_BookNo,
-        questno = self$p$Abbreviation,
-        is_first = self$m$opts$ct$is_first
-      )
+    prep_tab_row_val = function() {
+      self$crosstabs <- prep_tab_row_val_(self)
+      prepare_row_table_tb(self)
+      prepare_tab_table_tb(self)
+      prepare_val_table_tb(self)
       invisible(self)
     }
   )

@@ -1,0 +1,29 @@
+variables:
+  _R_CHECK_CRAN_INCOMING_: "true"
+  _R_CHECK_FORCE_SUGGESTS_: "true"
+  APT_PKGS: "libcurl4-openssl-dev"
+
+image: rocker/tidyverse
+
+before_script:
+  - apt-get update
+  - apt-get install -y --no-install-recommends ${APT_PKGS}
+  - apt-get install -y --no-install-recommends qpdf pandoc
+  - R -e 'install.packages(c("testthat", "rmarkdown"));'
+  - R -e 'devtools::install_gitlab("urswilke/datadaptor");'
+  # install all packages in description file not yet installed:
+  - R -e 'install.packages(setdiff(desc::desc()$get_deps()$package, c(installed.packages(), "R")));'
+
+devtools-check:
+  stage: build
+  script:
+    - R -e 'devtools::check()'
+
+pages:
+  stage: build
+  script:
+  - R -e "devtools::document(); pkgdown::build_site()"
+  artifacts:
+    paths:
+    - public
+    expire_in: 1 day

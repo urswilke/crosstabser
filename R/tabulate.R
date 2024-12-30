@@ -1,5 +1,5 @@
 gen_col_tables <- function(mapping) {
-  mapping$qsheet$head_table <- gen_head_table(mapping)
+  mapping$ditw$ct$db_tables$head_table <- gen_head_table(mapping)
   gen_col_table(mapping)
 }
 

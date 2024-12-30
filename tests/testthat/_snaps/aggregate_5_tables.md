@@ -191,16 +191,16 @@
       5 999999999      5 DC#TITLE     <NA>              1
       
       $col_table_all
-         BookNo HeadNo ColTitle1   ColTitle2  ColVariable ColNo ColValue
-      1   1e+09      1                       DC#ROWHEADER     1       NA
-      2   1e+09      1                       DC#ROWHEADER     2       NA
-      3   1e+09      1                       DC#ROWHEADER     3       NA
-      4   1e+09      2    GESAMT                 DC#TOTAL     4        1
-      5   1e+09      3    Region       Asien       kregio     5        1
-      6   1e+09      3    Region      Europa       kregio     6        2
-      7   1e+09      3    Region Nordamerika       kregio     7        3
-      8   1e+09      3    Region     Pazifik       kregio     8        4
-      9   1e+09      4                           DC#EMPTY     9       NA
-      10  1e+09      5                           DC#TITLE    10       NA
+         BookNo ColNo HeadNo ColTitle1   ColTitle2  ColVariable ColValue
+      1   1e+09     1      1                       DC#ROWHEADER       NA
+      2   1e+09     2      1                       DC#ROWHEADER       NA
+      3   1e+09     3      1                       DC#ROWHEADER       NA
+      4   1e+09     4      2    GESAMT                 DC#TOTAL        1
+      5   1e+09     5      3    Region       Asien       kregio        1
+      6   1e+09     6      3    Region      Europa       kregio        2
+      7   1e+09     7      3    Region Nordamerika       kregio        3
+      8   1e+09     8      3    Region     Pazifik       kregio        4
+      9   1e+09     9      4                           DC#EMPTY       NA
+      10  1e+09    10      5                           DC#TITLE       NA
       
 

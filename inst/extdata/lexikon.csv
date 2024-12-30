@@ -1,482 +1,389 @@
-﻿;Translation;;;
-Sprache;Standard;DEUTSCH;Englisch;ENGLISCH
-ValueTitle;1;2;3;4
-cSheetConst;DCConst;DCConst;DCConst;DCConst
-cSheetSettings;DCSettings;DCSettings;DCSettings;DCSettings
-;;;;
-cArtTitle;&H00000001;&H00000001;&H00000001;&H00000001
-cArtHeader;&H00000002;&H00000002;&H00000002;&H00000002
-cArtTotal;&H00000010;&H00000010;&H00000010;&H00000010
-cArtDetail;&H00000040;&H00000040;&H00000040;&H00000040
-cArtSummary;&H00000080;&H00000080;&H00000080;&H00000080
-cArtStatistics;&H00001000;&H00001000;&H00001000;&H00001000
-cArtValid;&H00010000;&H00010000;&H00010000;&H00010000
-cArtMissing;&H00020000;&H00020000;&H00020000;&H00020000
-cArtFilter;&H00040000;&H00040000;&H00040000;&H00040000
-cArtFootnote;&H00080000;&H00080000;&H00080000;&H00080000
-cArtEmpty;&H00100000;&H00100000;&H00100000;&H00100000
-cArtAbs;&H00200000;&H00200000;&H00200000;&H00200000
-cArtPercent;&H00400000;&H00400000;&H00400000;&H00400000
-cArtMStatistics;&H02000000;&H02000000;&H02000000;&H02000000
-cArtMValid;&H04000000;&H04000000;&H04000000;&H04000000
-;;;;
-;;;;
-;;;;
-cSArtWeights;&H78000000;&H78000000;&H78000000;&H78000000
-cSArtWeighted;&H10000000;&H10000000;&H10000000;&H10000000
-cSArtUnweighted;&H20000000;&H20000000;&H20000000;&H20000000
-cSArtTotalSummary;&H00000020;&H00000020;&H00000020;&H00000020
-cSArtHeaderBase;&H00000004;&H00000004;&H00000004;&H00000004
-cSArtHeaderSummary;&H00000008;&H00000008;&H00000008;&H00000008
-oldcSArtWeighted;&H38180003;&H78180003;&H78180003;&H78180003
-cSArtContent;&H061F10D3;&H061F10D3;&H061F10D3;&H061F10D3
-cSArtContent2;&H06791013;&H06791013;&H06791013;&H06791013
-cSArtTablePart;&H01F10D3;&H01F10D3;&H01F10D3;&H01F10D3
-cSArtTableBody;&H060710D0;&H060710D0;&H060710D0;&H060710D0
-cSArtTable;&H068710D2;&H068710D2;&H068710D2;&H068710D2
-cSArtSortKeep;&H00000003;&H00000003;&H00000003;&H00000003
-cSArtViewDetails;&H060010C0;&H060010C0;&H060010C0;&H060010C0
-cSArtAll;&H07FFFFFF;&H07FFFFFF;&H07FFFFFF;&H07FFFFFF
-;;;;
-cAbstTitelKopfgr;1;1;1;1
-cAnsErsteZeile;2;2;2;2
-AltcColZTitel;1;1;1;1
-cColZUeber1;1;1;1;1
-cColZUeber2;2;2;2;2
-cColZAbsJN;3;3;3;3
-cColZGesamt;4;4;4;4
-cColZWert;5;5;5;5
-;;;;
-cColMax;1000;1000;1000;1000
-cRowMax;65000;65000;65000;65000
-cFrageMax;10000;10000;10000;10000
-cKopfgrMax;1000;1000;1000;1000
-;;;;
-cColBZ;;;;
-cColBS;;;;
-cColBRowN;2;2;2;2
-cColBInhalt;3;3;3;3
-cColBInhaltString;4;4;4;4
-cColBFrageN;5;5;5;5
-cColBMergeUeber1;6;6;6;6
-cColBMergeUeber2;7;7;7;7
-cColB;14;14;14;14
-;;;;
-cColTZ;;;;
-cColTS;;;;
-cColTNo;1;1;1;1
-cColTName;2;2;2;2
-cColTVisible;7;7;7;7
-cColTBegRow;8;8;8;8
-cColTEndRow;9;9;9;9
-cColTBegTab;10;10;10;10
-cColTBodyTab;11;11;11;11
-cColTEndTab;12;12;12;12
-cColT;15;15;15;15
-;;;;
-cColSZ;;;;
-cColSS;;;;
-cColSKopfgrN;1;1;1;1
-cColSKopfgrName;2;2;2;2
-cColSVisible;4;4;4;4
-cColSBegCol;5;5;5;5
-cColSEndCol;6;6;6;6
-cColS;6;6;6;6
-;;;;
-cColUZ;;;;
-cColUS;;;;
-cColUAnzahlScen;20;20;20;20
-;;;;
-cColBreiteBCDE;2;2;2;2
-;;;;
-cUebersichtFrageBeginnCol;2;2;2;2
-cUebersichtKopfgrBeginnCol;7;7;7;7
-cUebersichtBeginnRow;6;6;6;6
-cUebersichtSettingsBeginnCol;18;18;18;18
-;;;;
-;;;;
-cColRZ;;;;
-cColRS;;;;
-cColRName;1;1;1;1
-cColRArt;2;2;2;2
-cColRBeschreibung;3;3;3;3
-cColR;3;3;3;3
-;;;;
-cVorlNr;1;1;1;1
-cVorlName;2;2;2;2
-cVorlTabellenart;3;3;3;3
-cVorlBeschreibung;4;4;4;4
-;;;;
-cTabGesamt;GESAMT;GESAMT;TOTAL;TOTAL
-cTabGesamtMFA;Summe der gültigen Nennungen;Summe der gültigen Nennungen;Sum of valid answers;Sum of valid answers
-cTabGueltig;GÜLTIGE FÄLLE;GÜLTIGE FÄLLE;VALID CASES;VALID CASES
-cTabGesamtMW;GÜLTIGE FÄLLE (mind. eine Antwort);GÜLTIGE FÄLLE (mind. eine Antwort);VALID CASES (at least one answer);VALID CASES (at least one answer)
-cTabDetails;DETAILS;DETAILS;DETAILS;DETAILS
-cTabZsfg;ZUSAMMENFASSUNG;ZUSAMMENFASSUNG;SUMMARY;SUMMARY
-cTabMeanOV;Mittelwertüberblick;Mittelwertüberblick;Summary of means;Summary of means
-cTabOverview;-Übersicht;-Übersicht; overview; overview
-cTabMean;Mittelwert;Mittelwert;Mean;Mean
-cTabStatistics;Kennzahlen;Kennzahlen;Statistics;Statistics
-cTabNoEntry;Kein Eintrag in den herangezogenen Variablen;Kein Eintrag in den herangezogenen Variablen;No entry in the respective variables;No entry in the respective variables
-cTabMedian;Median;Median;Median;Median
-cTabStdErr;Standardfehler;Standardfehler;Std.Err. Of Mean;Std.Err. Of Mean
-cTabStdDev;Standardabweichung;Standardabweichung;Standard deviation;Standard deviation
-cTabFilter;FILTER;FILTER;FILTER;FILTER
-cTabSum;Summe;Summe;Sum;Sum
-cTabMin;Minimum;Minimum;Minimum;Minimum
-cTabMax;Maximum;Maximum;Maximum;Maximum
-cTabPercentile;. Perzentil;. Perzentil;th percentile;th percentile
-cTabMissing;Fehlende Werte;Fehlende Werte;Missing values;Missing values
-cTabTitle;Titel;Titel;Title;Title
-cTabAbs;abs;abs;abs;abs
-cTabProz;in %;in %;in %;in %
-cTabWeighted;⚖;⚖;⚖;⚖
-;;;;
-cTxtWeightedAndUnweighted;Bitte für eine korrekte Darstellung der Ansichten, Charts bzw. Signifikanzen entweder gewichtete oder ungewichtete Werte auswählen im Blatt 'Auswahl'.;Bitte für eine korrekte Darstellung der Ansichten, Charts bzw. Signifikanzen entweder gewichtete oder ungewichtete Werte auswählen im Blatt 'Auswahl'.;Please select either weighted or unweighted values on sheet 'Selection' to get results for charts, views or significances.;Please select either weighted or unweighted values on sheet 'Selection' to get results for charts, views or significances.
-cTxtOnlyOneWindow;Die Arbeitsmappe darf nur in einem Fenster geöffnet sein!;Die Arbeitsmappe darf nur in einem Fenster geöffnet sein!;The workbook can be only opened in one window!;The workbook can be only opened in one window!
-cTxtAbsProzText;Absolutwerte und Prozentwerte können nicht beide gleichzeitig ausgeblendet werden. Bitte wählen Sie mindestens eine der beiden Arten!;Absolutwerte und Prozentwerte können nicht beide gleichzeitig ausgeblendet werden. Bitte wählen Sie mindestens eine der beiden Arten!;You can't hide absolut values and fractions at the same time. Please select at least one of them!;You can't hide absolut values and fractions at the same time. Please select at least one of them!
-cTxtAbsProzKopf;Absolut-/Prozentwerte;Absolut-/Prozentwerte;Absolut values/fraction;Absolut values/fraction
-cTxtMWUeber;Mittelwertüberblick;Mittelwertüberblick;Summary of means;Summary of means
-cTxtNothingToView;Mit dieser Auswahl wird nichts angezeigt. Bitte eine andere Auswahl treffen!;Mit dieser Auswahl wird nichts angezeigt. Bitte eine andere Auswahl treffen!;Nothing will be shown with your choice. Please select some tables!;Nothing will be shown with your choice. Please select some tables!
-cTxtErrorMsg;"Es ist ein Fehler aufgetreten:
+"cLanguage","Deutsch","DEUTSCH","Englisch","ENGLISCH"
+"cSheetConst","DCConst","DCConst","DCConst","DCConst"
+"cSheetSettings","DCSettings","DCSettings","DCSettings","DCSettings"
+"cArtTitle","1","1","1","1"
+"cArtHeader","2","2","2","2"
+"cArtTotal","256","256","256","256"
+"cArtDetail","16","16","16","16"
+"cArtSummary","32","32","32","32"
+"cArtStatistics","64","64","64","64"
+"cArtValid","512","512","512","512"
+"cArtMissing","1024","1024","1024","1024"
+"cArtFilter","2048","2048","2048","2048"
+"cArtSumOfValid","4096","4096","4096","4096"
+"cArtEmpty","4","4","4","4"
+"cArtMStatistics","65536","65536","65536","65536"
+"cArtMValid","131072","131072","131072","131072"
+"cArtAbsWeighted","1048576","1048576","1048576","1048576"
+"cArtAbsUnweighted","2097152","2097152","2097152","2097152"
+"cArtPercentWeighted","16777216","16777216","16777216","16777216"
+"cArtPercentUnweighted","33554432","33554432","33554432","33554432"
+"cArtAbs","4194304","4194304","4194304","4194304"
+"cArtPercent","67108864","67108864","67108864","67108864"
+"cSArtContent","991231","991231","991231","991231"
+"cSArtWeighted","17825792","17825792","17825792","17825792"
+"cSArtUnweighted","35651584","35651584","35651584","35651584"
+"cSArtAllAbs","3145728","3145728","3145728","3145728"
+"cSArtAllPercent","50331648","50331648","50331648","50331648"
+"cSArtTablePart","8191","8191","8191","8191"
+"cSArtTable","991218","991218","991218","991218"
+"cSArtWAP","53477376","53477376","53477376","53477376"
+"cColZUeber1","1","1","1","1"
+"cColZUeber2","2","2","2","2"
+"cColZAbsJN","3","3","3","3"
+"cColZGesamt","4","4","4","4"
+"cColZWert","5","5","5","5"
+"cColMax","1000","1000","1000","1000"
+"cRowMax","65000","65000","65000","65000"
+"cFrageMax","10000","10000","10000","10000"
+"cKopfgrMax","1000","1000","1000","1000"
+"cColBreiteBCDE","2","2","2","2"
+"cUebersichtFrageBeginnCol","2","2","2","2"
+"cUebersichtKopfgrBeginnCol","7","7","7","7"
+"cUebersichtBeginnRow","6","6","6","6"
+"cUebersichtSettingsBeginnCol","18","18","18","18"
+"cVorlNr","1","1","1","1"
+"cVorlName","2","2","2","2"
+"cVorlTabellenart","3","3","3","3"
+"cVorlBeschreibung","4","4","4","4"
+"cTabGesamt","GESAMT","GESAMT","TOTAL","TOTAL"
+"cTabGesamtMFA","Summe der gültigen Nennungen","Summe der gültigen Nennungen","Sum of valid answers","Sum of valid answers"
+"cTabGueltig","GÜLTIGE FÄLLE","GÜLTIGE FÄLLE","VALID CASES","VALID CASES"
+"cTabGesamtMW","GÜLTIGE FÄLLE (mind. eine Antwort)","GÜLTIGE FÄLLE (mind. eine Antwort)","VALID CASES (at least one answer)","VALID CASES (at least one answer)"
+"cTabDetails","DETAILS","DETAILS","DETAILS","DETAILS"
+"cTabZsfg","ZUSAMMENFASSUNG","ZUSAMMENFASSUNG","SUMMARY","SUMMARY"
+"cTabMeanOV","Mittelwertüberblick","Mittelwertüberblick","Summary of means","Summary of means"
+"cTabOverview","-Übersicht","-Übersicht"," overview"," overview"
+"cTabMean","Mittelwert","Mittelwert","Mean","Mean"
+"cTabStatistics","Kennzahlen","Kennzahlen","Statistics","Statistics"
+"cTabNoEntry","Kein Eintrag in den herangezogenen Variablen","Kein Eintrag in den herangezogenen Variablen","No entry in the respective variables","No entry in the respective variables"
+"cTabMedian","Median","Median","Median","Median"
+"cTabStdErr","Standardfehler","Standardfehler","Std.Err. Of Mean","Std.Err. Of Mean"
+"cTabStdDev","Standardabweichung","Standardabweichung","Standard deviation","Standard deviation"
+"cTabFilter","FILTER","FILTER","FILTER","FILTER"
+"cTabSum","Summe","Summe","Sum","Sum"
+"cTabMin","Minimum","Minimum","Minimum","Minimum"
+"cTabMax","Maximum","Maximum","Maximum","Maximum"
+"cTabPercentile",". Perzentil",". Perzentil","th percentile","th percentile"
+"cTabMissing","Fehlende Werte","Fehlende Werte","Missing values","Missing values"
+"cTabTitle","Titel","Titel","Title","Title"
+"cTabAbs","abs","abs","abs","abs"
+"cTabProz","in %","in %","in %","in %"
+"cTabWeighted","⚖","⚖","⚖","⚖"
+"cTxtWeightedAndUnweighted","Bitte entweder gewichtete oder ungewichtete Werte auswählen im Blatt 'Auswahl', um Ansichten, Charts bzw. Signifikanzen korrekt anzuzeigen in den folgenden Tabellen:","Bitte entweder gewichtete oder ungewichtete Werte auswählen im Blatt 'Auswahl', um Ansichten, Charts bzw. Signifikanzen korrekt anzuzeigen in den folgenden Tabellen:","Please select either weighted or unweighted values on sheet 'Selection' to get results for charts, views or significances in these tables:","Please select either weighted or unweighted values on sheet 'Selection' to get results for charts, views or significances in these tables:"
+"cTxtOnlyOneWindow","Die Arbeitsmappe darf nur in einem Fenster geöffnet sein!","Die Arbeitsmappe darf nur in einem Fenster geöffnet sein!","The workbook can be only opened in one window!","The workbook can be only opened in one window!"
+"cTxtAbsProzText","Absolutwerte und Prozentwerte können nicht beide gleichzeitig ausgeblendet werden. Bitte wählen Sie mindestens eine der beiden Arten!","Absolutwerte und Prozentwerte können nicht beide gleichzeitig ausgeblendet werden. Bitte wählen Sie mindestens eine der beiden Arten!","You can't hide absolut values and fractions at the same time. Please select at least one of them!","You can't hide absolut values and fractions at the same time. Please select at least one of them!"
+"cTxtAbsProzKopf","Absolut-/Prozentwerte","Absolut-/Prozentwerte","Absolut values/fraction","Absolut values/fraction"
+"cTxtMWUeber","Mittelwertüberblick","Mittelwertüberblick","Summary of means","Summary of means"
+"cTxtNothingToView","Mit dieser Auswahl wird nichts angezeigt. Bitte eine andere Auswahl treffen!","Mit dieser Auswahl wird nichts angezeigt. Bitte eine andere Auswahl treffen!","Nothing will be shown with your choice. Please select some tables!","Nothing will be shown with your choice. Please select some tables!"
+"cTxtErrorMsg","Es ist ein Fehler aufgetreten:
 Nr. <%1> in Funktion '<%2>' im Modul '<%3>'
-Bitte kontaktieren Sie den Autor, wenn dieser Fehler öfter auftritt.";"Es ist ein Fehler aufgetreten:
+Bitte kontaktieren Sie den Autor, wenn dieser Fehler öfter auftritt.","Es ist ein Fehler aufgetreten:
 Nr. <%1> in Funktion '<%2>' im Modul '<%3>'
-Bitte kontaktieren Sie den Autor, wenn dieser Fehler öfter auftritt.";"An error occured:
+Bitte kontaktieren Sie den Autor, wenn dieser Fehler öfter auftritt.","An error occured:
 Nr. <%1> in function '<%2>' in module '<%3>'
-Please contact the author when you think it is a bug.";"An error occured:
+Please contact the author when you think it is a bug.","An error occured:
 Nr. <%1> in function '<%2>' in module '<%3>'
 Please contact the author when you think it is a bug."
-;;;;
-cInhTitle;Titelzeile;Titelzeile;Title;Title
-cInhHeader;Kopfzeile;Kopfzeile;Header;Header
-cInhTotal;Gesamt;Gesamt;Total;Total
-cInhDetail;Einzelausprägungen;Einzelausprägungen;Details;Details
-cInhSummary;Zusammenfassung;Zusammenfassung;Summary;Summary
-cInhStatistics;Kennzahlen;Kennzahlen;Statistics;Statistics
-cInhValid;Gültige Fälle;Gültige Fälle;Valid cases;Valid cases
-cInhMissing;Missings;Missings;Missing values;Missing values
-cInhFilter;Filter;Filter;Filter;Filter
-cInhFootnote;Fußnote;Fußnote;Footnote;Footnote
-cInhEmpty;Leerzeilen;Leerzeilen;Empty lines;Empty lines
-cInhAbs;Absolutwerte;Absolutwerte;Absolut values;Absolut values
-cInhPercent;Prozentwerte;Prozentwerte;Percentages;Percentages
-cInhMValid;Gültige Fälle;Gültige Fälle;Valid cases;Valid cases
-cInhMStatistics;Kennzahlen;Kennzahlen;Statistics;Statistics
-cInhWeight;Gewichtung;Gewichtung;Weight;Weight
-cInhWeightedUnweighted;alle Werte;alle Werte;all values;all values
-cInhUnweighted;nur ungewichtet;nur ungewichtet;only unweighted;only unweighted
-cInhWeighted;nur gewichtet;nur gewichtet;only weighted;only weighted
-;;;;
-cInhFragen;Fragen;Fragen;Questions;Questions
-cInhKopfgr;Kopfgruppen;Kopfgruppen;Headers;Headers
-cInhAnzeige;Anzeige;Anzeige;View;View
-cInhInhalt;Inhalt;Inhalt;Content;Content
-cInhKopfgruppe;Kopfgruppe;Kopfgruppe;Header;Header
-cInhTable;Tabelle;Tabelle;Table;Table
-;;;;
-cSheetUebersicht;Auswahl;Auswahl;Selection;Selection
-cSheetTables;Tabellen;Tabellen;Tables;Tables
-cSheetUserSettings;Einstellungen;Einstellungen;Settings;Settings
-cSheetHilfsblatt;Hilfsblatt;Hilfsblatt;Hilfsblatt;Hilfsblatt
-cSheetTabellenband;Tabellenband;Tabellenband;Tabellenband;Tabellenband
-cSheetView;Ansicht;Ansicht;View;View
-cSheetPreview;Vorschau;Vorschau;Preview;Preview
-cSheetSortTemplate;Sortiervorlagen;Sortiervorlagen;Sortiervorlagen;Sortiervorlagen
-cSheetComparison;Vgl. mit;Vgl. mit;Compared to;Compared to
-cSheetCharting;Charts;Charts;Charting;Charting
-cSheetFormats;Formatierung;Formatierung;Formats;Formats
-;;;;
-cInhHeaderSelection;Kopfgruppenauswahl…;Kopfgruppenauswahl…;Header choice…;Header choice…
-cInhTabellenformat;Tabellenformat wählen…;Tabellenformat wählen…;Choose table format…;Choose table format…
-;;;;
-cButAlleAn;Alle anzeigen;Alle anzeigen;Mark all;Mark all
-cButAlleAus;Alle ausblenden;Alle ausblenden;Unmark all;Unmark all
-cButMarkAn;Markierte anzeigen;Markierte anzeigen;Mark selected;Mark selected
-cButMarkAus;Markierte ausblenden;Markierte ausblenden;Unmark selected;Unmark selected
-cButMarkSel;Nur markierte;Nur markierte;Only selected;Only selected
-cButTextChange;Formatierung übernehmen;Formatierung übernehmen;Take over formats;Take over formats
-cButAnzeigen;Anzeigen;Anzeigen;Show;Show
-cButCompareTablebooks;Tabellenband vergleichen;Tabellenband vergleichen;Compare tablebooks;Compare tablebooks
-;;;;
-cTxtTabellenband;Tabellenband;Tabellenband;Tables;Tables
-cTxtDaten;Daten;Daten;Data;Data
-cTxtErgebnisse;Ergebnisse;Ergebnisse;Results;Results
-;;;;
-cTxtAnd; und ; und ; and ; and 
-cTxtWeightedBy;gewichtet mit ;gewichtet mit ;weighted by ;weighted by 
-;;;;
-cRibGrpChart;Ansichten und Charts;Ansichten und Charts;Tables and charts;Tables and charts
-cRibBtNextHead;Nächste Kopfgruppe;Nächste Kopfgruppe;Next header;Next header
-cRibBtNextTab;Nächste Tabelle;Nächste Tabelle;Next table;Next table
-cRibBtPrevHead;Vorherige Kopfgruppe;Vorherige Kopfgruppe;Previous header;Previous header
-cRibBtPrevTab;Vorherige Tabelle;Vorherige Tabelle;Previous table;Previous table
-cRibChartRun;Erstellen;Erstellen;Run;Run
-cRibChartSel;Charts…;Charts…;Charts…;Charts…
-cRibViewSel;Ansichten…;Ansichten…;Views…;Views…
-cRibChartSettings;Anpassen;Anpassen;Change;Change
-cRibChartTotal;Spalte 'Gesamt' anzeigen;Spalte 'Gesamt' anzeigen;Show 'Total' column;Show 'Total' column
-cRibChartSeveralTables;Alle Detailtabellen verwenden;Alle Detailtabellen verwenden;Use all detail tables;Use all detail tables
-cRibChartActualHeader;Nur aktuelle Spalte;Nur aktuelle Spalte;Only current column;Only current column
-cRibChartAllHeaders;Alle Kopfgruppen verwenden;Alle Kopfgruppen verwenden;Use all headers;Use all headers
-cRibGrpNav;Navigation;Navigation;Navigation;Navigation
-cRibTab;Tabellenband;Tabellenband;Table book;Table book
-cRibTableSel;Tabelle wählen…;Tabelle wählen…;Choose table …;Choose table …
-;;;;
-;;;;
-cRibHeaderSel;Kopfgruppe wählen…;Kopfgruppe wählen…;Choose header …;Choose header …
-cTxtRibTableSelNone;Keine Tabellen vorhanden;Keine Tabellen vorhanden;No tables found;No tables found
-cTxtRibHeaderSelNone;Keine Kopfgruppen vorhanden;Keine Kopfgruppen vorhanden;No headers found;No headers found
-cTxtRibChartSelNone;Keine passenden Ansichten / Charts gefunden;Keine passenden Ansichten / Charts gefunden;No fitting views / charts found;No fitting views / charts found
-;;;;
-cRibGrpTables;Tabellen;Tabellen;Tables;Tables
-cRibGrpBook;Tabellenband;Tabellenband;Table book;Table book
-cRibSelectTable;Tabelle markieren;Tabelle markieren;Select table;Select table
-cRibCopyTable;Tabelle kopieren;Tabelle kopieren;Copy table;Copy table
-cRibCompareTable;Tabelle vergleichen;Tabelle vergleichen;Compare table;Compare table
-cRibTextChanger;Texte anpassen;Texte anpassen;Change texts;Change texts
-cRibCompareTableBook;Tabellenband vergleichen;Tabellenband vergleichen;Compare tablebook;Compare tablebook
-cRibGrpDevelopment;Development;Development;Development;Development
-cRibButton1;Button1;Button1;Button1;Button1
-cRibButton2;Button2;Button2;Button2;Button2
-cRibButton3;Button3;Button3;Button3;Button3
-cRibButton4;Button4;Button4;Button4;Button4
-cRibButton5;Button5;Button5;Button5;Button5
-cTxtRibSelDestToCopy;Bitte Zielzelle wählen (<%1> Zeilen und <%2> Spalten werden unwiderruflich überschrieben):;Bitte Zielzelle wählen (<%1> Zeilen und <%2> Spalten werden unwiderruflich überschrieben):;Select destination cell (<%1> rows and <%2> columns will be overwritten):;Select destination cell (<%1> rows and <%2> columns will be overwritten):
-cTxtRibDestination;Ziel;Ziel;Destination;Destination
-cTxtDestNotChoosen;Kein Ziel gewählt;Kein Ziel gewählt;No destination chosen;No destination chosen
-cTxtSelNotInTable;Bitte erst eine Zelle in einer Tabelle mit Automatisierungsinformationen auswählen;Bitte erst eine Zelle in einer Tabelle mit Automatisierungsinformationen auswählen;Please select a cell of a table with automation information first.;Please select a cell of a table with automation information first.
-;;;;
-cMsgNoChartTplSelected;Bitte erst eine Grafikvorlage wählen.;Bitte erst eine Grafikvorlage wählen.;Please select a chart template first.;Please select a chart template first.
-;;;;
-cInhColWidthQuestionTitle;Spaltenbreite Titel bei Überblick;Spaltenbreite Titel bei Überblick;Column width question title in overview;Column width question title in overview
-cInhColWidthRowtitle1;Spaltenbreite Zeilenüberschrift 1;Spaltenbreite Zeilenüberschrift 1;Column width of row title 1;Column width of row title 1
-cInhColWidthRowtitle2;Spaltenbreite Zeilenüberschrift 2;Spaltenbreite Zeilenüberschrift 2;Column width of row title 2;Column width of row title 2
-cInhColWidthRowtitle3;Spaltenbreite Zeilenüberschrift 3;Spaltenbreite Zeilenüberschrift 3;Column width of row title 3;Column width of row title 3
-cInhColWidthValues;Spaltenbreite Werte;Spaltenbreite Werte;Column width of value columns;Column width of value columns
-;;;;
-cInhRowHeight;Zeilenhoehe anpassen;Zeilenhoehe anpassen;Adjust row height;Adjust row height
-cInhZeroValue;Null-Werte grau;Null-Werte grau;Gray out zero values;Gray out zero values
-cInhMinValidCases;Minimum gültige Fälle:;Minimum gültige Fälle:;Minimum valid cases:;Minimum valid cases:
-cInhMaxInvalidCases;Maximum Anteil ungültig:;Maximum Anteil ungültig:;Maximum invalid cases:;Maximum invalid cases:
-cInhStatisticsMinValid;Minimum gültige Fälle Kennzahlen:;Minimum gültige Fälle Kennzahlen:;Minimum valid cases for statistics:;Minimum valid cases for statistics:
-cInhPageWrap;Seitenumbruch vor Tabelle;Seitenumbruch vor Tabelle;Page wrap before each table;Page wrap before each table
-cInhAutomation;Automatisierungskommentare erzeugen;Automatisierungskommentare erzeugen;Show automation comments;Show automation comments
-cInhSignificanceProportion;Signifikanzniveau Anteile;Signifikanzniveau Anteile;Significance proportions;Significance proportions
-cInhSignificanceMean;Signifikanzniveau Mittelwerte;Signifikanzniveau Mittelwerte;Significance means;Significance means
-cInhSignificanceMeanTip;(nur bei Anzeige des Standardfehlers);(nur bei Anzeige des Standardfehlers);(only if standard error of mean is shown);(only if standard error of mean is shown)
-;;;;
-cTxtChngHeader;Kopfgruppe;Kopfgruppe;Header;Header
-cTxtChngHeaders;Kopfgruppen;Kopfgruppen;Headers;Headers
-cTxtChngTables;Tabellen;Tabellen;Tables;Tables
-cTxtChngColA;Spalte A;Spalte A;Column A;Column A
-cTxtChngColB;Spalte B;Spalte B;Column B;Column B
-cTxtChngAll;Überall?;Überall?;Everywhere?;Everywhere?
-;;;;
-cTxtWorksheetExists;Das Arbeitsblatt '<%1>' existiert bereits. Soll es gelöscht werden?;Das Arbeitsblatt '<%1>' existiert bereits. Soll es gelöscht werden?;The worksheet '<%1>' already exists. Delete it?;The worksheet '<%1>' already exists. Delete it?
-cTxtChooseWorkbookCompare;Bitte zu vergleichenden Tabellenband wählen…;Bitte zu vergleichenden Tabellenband wählen…;Please select table book to compare…;
-cTxtChooseWorkbookTakeOver;Bitte zu übernehmenden Tabellenband wählen…;Bitte zu übernehmenden Tabellenband wählen…;Please select table book to take over…;
-;;;;
-cViewSortAscending;Aufsteigend;Aufsteigend;Ascending;Ascending
-cViewSortDescending;Absteigend;Absteigend;Descending;Descending
-cViewSortNoSort;Nicht sortieren;Nicht sortieren;No sorting;No sorting
-;;;;
-cTxtHeaderTitle;Titelspalte;Titelspalte;Table title;Table title
-cTxtHeaderRowHeader;Überschriften;Überschriften;Row header;Row header
-cTxtHeaderTotal;Gesamt;Gesamt;Total;Total
-cTxtTableCollection;Tabellenzusammenfassung;Tabellenzusammenfassung;Table collection;Table collection
-cTxtFoundFormatErrors;Die angezeigten Texte / Formate wurden im neuen Tabellenband nicht gefunden - bitte manuell anpassen!;Die angezeigten Texte / Formate wurden im neuen Tabellenband nicht gefunden - bitte manuell anpassen!;The texts and / or formats were not found in the new table book - please adjust manually if necessary!;The texts and / or formats were not found in the new table book - please adjust manually if necessary!
-cTxtFormatsError;Text- und Formatkontrolle;Text- und Formatkontrolle;Text and format control;Text and format control
-;;;;
-XMLRowRowNo;1;1;1;1
-;;;;
-;;;;
-XMLRowRowContent;2;2;2;2
-XMLRowRowAbsPercent;3;3;3;3
-XMLRowRowWeighted;4;4;4;4
-XMLRowTabNo;5;5;5;5
-;;;;
-;;;;
-XMLRowRowTitle1;6;6;6;6
-XMLRowRowTitle2;7;7;7;7
-XMLRowRowTitle3;8;8;8;8
-XMLRowRowFormat;9;9;9;9
-XMLRowRowDecimals;10;10;10;10
-XMLRowRowVariable;11;11;11;11
-XMLRowRowValue;12;12;12;12
-XMLTabTabNo;1;1;1;1
-XMLTabTabName;2;2;2;2
-XMLTabQuestNo;3;3;3;3
-XMLTabTabTitle;4;4;4;4
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-XMLTabTabCaption;5;5;5;5
-XMLHeadHeadNo;1;1;1;1
-XMLHeadHeadName;2;2;2;2
-XMLHeadHeadTitle;3;3;3;3
-;;;;
-;;;;
-;;;;
-XMLColColNo;1;1;1;1
-XMLColHeadNo;2;2;2;2
-XMLColColTitle1;3;3;3;3
-XMLColColTitle2;4;4;4;4
-XMLColColVariable;5;5;5;5
-XMLColColValue;6;6;6;6
-XMLValRowNo;1;1;1;1
-XMLValColNo;2;2;2;2
-XMLValValue;3;3;3;3
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-RowRowNo;1;1;1;1
-RowRowTypeS;2;2;2;2
-RowRowType;3;3;3;3
-RowRowContent;4;4;4;4
-RowRowAbsPercent;5;5;5;5
-RowRowWeighted;6;6;6;6
-RowTabNo;7;7;7;7
-RowRowMerge1;8;8;8;8
-RowRowMerge2;9;9;9;9
-RowRowTitle1;10;10;10;10
-RowRowTitle2;11;11;11;11
-RowRowTitle3;12;12;12;12
-RowRowFormat;13;13;13;13
-RowRowDecimals;14;14;14;14
-RowRowVariable;15;15;15;15
-RowRowValue;16;16;16;16
-TabTabNo;1;1;1;1
-TabTabName;2;2;2;2
-TabQuestNo;3;3;3;3
-TabTabTitle;4;4;4;4
-TabTabTitle1;5;5;5;5
-TabTabTitle2;6;6;6;6
-TabTabTitle3;7;7;7;7
-TabTabVisible;8;8;8;8
-TabTabBegin;9;9;9;9
-TabTabEnd;10;10;10;10
-TabTabBodyHead;11;11;11;11
-TabTabBodyBegin;12;12;12;12
-TabTabBodyEnd;13;13;13;13
-TabValBegin;14;14;14;14
-TabValEnd;15;15;15;15
-TabTabCaption;16;16;16;16
-HeadHeadNo;1;1;1;1
-HeadHeadName;2;2;2;2
-HeadHeadTitle;3;3;3;3
-HeadHeadVisible;4;4;4;4
-HeadHeadBegin;5;5;5;5
-HeadHeadEnd;6;6;6;6
-ColColNo;1;1;1;1
-ColHeadNo;2;2;2;2
-ColColTitle1;3;3;3;3
-ColColTitle2;4;4;4;4
-ColColVariable;5;5;5;5
-ColColValue;6;6;6;6
-ValRowNo;1;1;1;1
-ValColNo;2;2;2;2
-ValValue;3;3;3;3
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-XMLRowColN;12;12;12;12
-XMLTabColN;5;5;5;5
-XMLColColN;6;6;6;6
-XMLValColN;3;3;3;3
-XMLHeadColN;3;3;3;3
-;;;;
-;;;;
-;;;;
-RowColN;16;16;16;16
-TabColN;16;16;16;16
-ColColN;6;6;6;6
-ValColN;3;3;3;3
-HeadColN;6;6;6;6
-;;;;
-;;;;
-;;;;
-;;;;
-FmtRowRowNo;1;1;1;1
-FmtRowRowTypeS;3;3;3;3
-FmtRowRowType;1;1;1;1
-FmtRowRowContent;3;3;3;3
-FmtRowRowAbsPercent;3;3;3;3
-FmtRowRowWeighted;3;3;3;3
-FmtRowTabNo;1;1;1;1
-FmtRowRowMerge1;1;1;1;1
-FmtRowRowMerge2;1;1;1;1
-FmtRowRowTitle1;3;3;3;3
-FmtRowRowTitle2;3;3;3;3
-FmtRowRowTitle3;3;3;3;3
-FmtRowRowFormat;3;3;3;3
-FmtRowRowDecimals;1;1;1;1
-FmtRowRowVariable;3;3;3;3
-FmtRowRowValue;1;1;1;1
-FmtTabTabNo;1;1;1;1
-FmtTabTabName;3;3;3;3
-FmtTabQuestNo;1;1;1;1
-FmtTabTabTitle;3;3;3;3
-FmtTabTabTitle1;3;3;3;3
-FmtTabTabTitle2;3;3;3;3
-FmtTabTabTitle3;3;3;3;3
-FmtTabTabVisible;4;4;4;4
-FmtTabTabBegin;1;1;1;1
-FmtTabTabEnd;1;1;1;1
-FmtTabTabBodyHead;1;1;1;1
-FmtTabTabBodyBegin;1;1;1;1
-FmtTabTabBodyEnd;1;1;1;1
-FmtTabValBegin;1;1;1;1
-FmtTabValEnd;1;1;1;1
-FmtTabTabCaption;3;3;3;3
-FmtHeadHeadNo;1;1;1;1
-FmtHeadHeadName;3;3;3;3
-FmtHeadHeadTitle;3;3;3;3
-FmtHeadHeadVisible;4;4;4;4
-FmtHeadHeadBegin;1;1;1;1
-FmtHeadHeadEnd;1;1;1;1
-FmtColColNo;1;1;1;1
-FmtColHeadNo;1;1;1;1
-FmtColColTitle1;3;3;3;3
-FmtColColTitle2;3;3;3;3
-FmtColColVariable;3;3;3;3
-FmtColColValue;1;1;1;1
-FmtValRowNo;1;1;1;1
-FmtValColNo;1;1;1;1
-FmtValValue;2;2;2;2
+"cInhTitle","Titelzeile","Titelzeile","Title","Title"
+"cInhHeader","Kopfzeile","Kopfzeile","Header","Header"
+"cInhTotal","Gesamt","Gesamt","Total","Total"
+"cInhDetail","Einzelausprägungen","Einzelausprägungen","Details","Details"
+"cInhSummary","Zusammenfassung","Zusammenfassung","Summary","Summary"
+"cInhStatistics","Kennzahlen","Kennzahlen","Statistics","Statistics"
+"cInhValid","Gültige Fälle","Gültige Fälle","Valid cases","Valid cases"
+"cInhSumOfValid","Summe der gültigen Nennungen","Summe der gültigen Nennungen","Sum of valid answers","Sum of valid answers"
+"cInhMissing","Missings","Missings","Missing values","Missing values"
+"cInhFilter","Filter","Filter","Filter","Filter"
+"cInhFootnote","Fußnote","Fußnote","Footnote","Footnote"
+"cInhEmpty","Leerzeilen","Leerzeilen","Empty lines","Empty lines"
+"cInhAbs","Absolutwerte","Absolutwerte","Absolut values","Absolut values"
+"cInhPercent","Prozentwerte","Prozentwerte","Percentages","Percentages"
+"cInhMValid","Gültige Fälle","Gültige Fälle","Valid cases","Valid cases"
+"cInhMStatistics","Kennzahlen","Kennzahlen","Statistics","Statistics"
+"cInhWeight","Gewichtung","Gewichtung","Weight","Weight"
+"cInhWeightedUnweighted","alle Werte","alle Werte","all values","all values"
+"cInhUnweighted","nur ungewichtet","nur ungewichtet","only unweighted","only unweighted"
+"cInhWeighted","nur gewichtet","nur gewichtet","only weighted","only weighted"
+"cInhFragen","Fragen","Fragen","Questions","Questions"
+"cInhKopfgr","Kopfgruppen","Kopfgruppen","Headers","Headers"
+"cInhAnzeige","Anzeige","Anzeige","View","View"
+"cInhInhalt","Inhalt","Inhalt","Content","Content"
+"cInhKopfgruppe","Kopfgruppe","Kopfgruppe","Header","Header"
+"cInhTable","Tabelle","Tabelle","Table","Table"
+"cSheetUebersicht","Auswahl","Auswahl","Selection","Selection"
+"cSheetTables","Tabellen","Tabellen","Tables","Tables"
+"cSheetUserSettings","Einstellungen","Einstellungen","Settings","Settings"
+"cSheetHilfsblatt","Hilfsblatt","Hilfsblatt","Hilfsblatt","Hilfsblatt"
+"cSheetTabellenband","Tabellenband","Tabellenband","Tabellenband","Tabellenband"
+"cSheetView","Ansicht","Ansicht","View","View"
+"cSheetPreview","Vorschau","Vorschau","Preview","Preview"
+"cSheetSortTemplate","Sortiervorlagen","Sortiervorlagen","Sortiervorlagen","Sortiervorlagen"
+"cSheetComparison","Vgl. mit","Vgl. mit","Compared to","Compared to"
+"cSheetCharting","Charts","Charts","Charting","Charting"
+"cSheetFormats","Formatierung","Formatierung","Formats","Formats"
+"cSheetPivot1","Pivot 1","Pivot 1","Pivot 1","Pivot 1"
+"cInhHeaderSelection","Kopfgruppenauswahl…","Kopfgruppenauswahl…","Header choice…","Header choice…"
+"cInhTabellenformat","Tabellenformat wählen…","Tabellenformat wählen…","Choose table format…","Choose table format…"
+"cButAlleAn","Alle anzeigen","Alle anzeigen","Mark all","Mark all"
+"cButAlleAus","Alle ausblenden","Alle ausblenden","Unmark all","Unmark all"
+"cButMarkAn","Markierte anzeigen","Markierte anzeigen","Mark selected","Mark selected"
+"cButMarkAus","Markierte ausblenden","Markierte ausblenden","Unmark selected","Unmark selected"
+"cButMarkSel","Nur markierte","Nur markierte","Only selected","Only selected"
+"cButTextChange","Formatierung übernehmen","Formatierung übernehmen","Take over formats","Take over formats"
+"cButAnzeigen","Anzeigen","Anzeigen","Show","Show"
+"cButCompareTablebooks","Tabellenband vergleichen","Tabellenband vergleichen","Compare tablebooks","Compare tablebooks"
+"cTxtTabellenband","Tabellenband","Tabellenband","Tables","Tables"
+"cTxtDaten","Daten","Daten","Data","Data"
+"cTxtErgebnisse","Ergebnisse","Ergebnisse","Results","Results"
+"cTxtAnd"," und "," und "," and "," and "
+"cTxtWeightedBy","gewichtet mit ","gewichtet mit ","weighted by ","weighted by "
+"cRibGrpChart","Ansichten und Charts","Ansichten und Charts","Tables and charts","Tables and charts"
+"cRibBtNextHead","Nächste Kopfgruppe","Nächste Kopfgruppe","Next header","Next header"
+"cRibBtNextTab","Nächste Tabelle","Nächste Tabelle","Next table","Next table"
+"cRibBtPrevHead","Vorherige Kopfgruppe","Vorherige Kopfgruppe","Previous header","Previous header"
+"cRibBtPrevTab","Vorherige Tabelle","Vorherige Tabelle","Previous table","Previous table"
+"cRibChartRun","Erstellen","Erstellen","Run","Run"
+"cRibChartSel","Charts…","Charts…","Charts…","Charts…"
+"cRibViewSel","Ansichten…","Ansichten…","Views…","Views…"
+"cRibChartSettings","Anpassen","Anpassen","Change","Change"
+"cRibChartTotal","Spalte 'Gesamt' anzeigen","Spalte 'Gesamt' anzeigen","Show 'Total' column","Show 'Total' column"
+"cRibChartSeveralTables","Alle Detailtabellen verwenden","Alle Detailtabellen verwenden","Use all detail tables","Use all detail tables"
+"cRibChartActualHeader","Nur aktuelle Spalte","Nur aktuelle Spalte","Only current column","Only current column"
+"cRibChartAllHeaders","Alle Kopfgruppen verwenden","Alle Kopfgruppen verwenden","Use all headers","Use all headers"
+"cRibGrpNav","Navigation","Navigation","Navigation","Navigation"
+"cRibTab","Tabellenband","Tabellenband","Table book","Table book"
+"cRibTableSel","Tabelle wählen…","Tabelle wählen…","Choose table …","Choose table …"
+"cRibHeaderSel","Kopfgruppe wählen…","Kopfgruppe wählen…","Choose header …","Choose header …"
+"cTxtRibTableSelNone","Keine Tabellen vorhanden","Keine Tabellen vorhanden","No tables found","No tables found"
+"cTxtRibHeaderSelNone","Keine Kopfgruppen vorhanden","Keine Kopfgruppen vorhanden","No headers found","No headers found"
+"cTxtRibChartSelNone","Keine passenden Ansichten / Charts gefunden","Keine passenden Ansichten / Charts gefunden","No fitting views / charts found","No fitting views / charts found"
+"cRibGrpTables","Tabellen","Tabellen","Tables","Tables"
+"cRibGrpBook","Tabellenband","Tabellenband","Table book","Table book"
+"cRibSelectTable","Tabelle markieren","Tabelle markieren","Select table","Select table"
+"cRibCopyTable","Tabelle kopieren","Tabelle kopieren","Copy table","Copy table"
+"cRibCompareTable","Tabelle vergleichen","Tabelle vergleichen","Compare table","Compare table"
+"cRibTextChanger","Texte anpassen","Texte anpassen","Change texts","Change texts"
+"cRibCompareTableBook","Tabellenband vergleichen","Tabellenband vergleichen","Compare tablebook","Compare tablebook"
+"cRibGrpDevelopment","Development","Development","Development","Development"
+"cRibButton1","Button1","Button1","Button1","Button1"
+"cRibButton2","Button2","Button2","Button2","Button2"
+"cRibButton3","Button3","Button3","Button3","Button3"
+"cRibButton4","Button4","Button4","Button4","Button4"
+"cRibButton5","Button5","Button5","Button5","Button5"
+"cTxtRibSelDestToCopy","Bitte Zielzelle wählen (<%1> Zeilen und <%2> Spalten werden unwiderruflich überschrieben):","Bitte Zielzelle wählen (<%1> Zeilen und <%2> Spalten werden unwiderruflich überschrieben):","Select destination cell (<%1> rows and <%2> columns will be overwritten):","Select destination cell (<%1> rows and <%2> columns will be overwritten):"
+"cTxtRibDestination","Ziel","Ziel","Destination","Destination"
+"cTxtDestNotChoosen","Kein Ziel gewählt","Kein Ziel gewählt","No destination chosen","No destination chosen"
+"cTxtSelNotInTable","Bitte erst eine Zelle in einer Tabelle mit Automatisierungsinformationen auswählen","Bitte erst eine Zelle in einer Tabelle mit Automatisierungsinformationen auswählen","Please select a cell of a table with automation information first.","Please select a cell of a table with automation information first."
+"cMsgNoChartTplSelected","Bitte erst eine Grafikvorlage wählen.","Bitte erst eine Grafikvorlage wählen.","Please select a chart template first.","Please select a chart template first."
+"cInhColWidthQuestionTitle","Spaltenbreite Titel bei Überblick","Spaltenbreite Titel bei Überblick","Column width question title in overview","Column width question title in overview"
+"cInhColWidthRowtitle1","Spaltenbreite Zeilenüberschrift 1","Spaltenbreite Zeilenüberschrift 1","Column width of row title 1","Column width of row title 1"
+"cInhColWidthRowtitle2","Spaltenbreite Zeilenüberschrift 2","Spaltenbreite Zeilenüberschrift 2","Column width of row title 2","Column width of row title 2"
+"cInhColWidthRowtitle3","Spaltenbreite Zeilenüberschrift 3","Spaltenbreite Zeilenüberschrift 3","Column width of row title 3","Column width of row title 3"
+"cInhColWidthValues","Spaltenbreite Werte","Spaltenbreite Werte","Column width of value columns","Column width of value columns"
+"cInhRowHeight","Zeilenhoehe anpassen","Zeilenhoehe anpassen","Adjust row height","Adjust row height"
+"cInhZeroValue","Null-Werte grau","Null-Werte grau","Gray out zero values","Gray out zero values"
+"cInhMinValidCases","Minimum gültige Fälle:","Minimum gültige Fälle:","Minimum valid cases:","Minimum valid cases:"
+"cInhMaxInvalidCases","Maximum Anteil ungültig:","Maximum Anteil ungültig:","Maximum invalid cases:","Maximum invalid cases:"
+"cInhStatisticsMinValid","Minimum gültige Fälle Kennzahlen:","Minimum gültige Fälle Kennzahlen:","Minimum valid cases for statistics:","Minimum valid cases for statistics:"
+"cInhPageWrap","Seitenumbruch vor Tabelle","Seitenumbruch vor Tabelle","Page wrap before each table","Page wrap before each table"
+"cInhAutomation","Automatisierungskommentare erzeugen","Automatisierungskommentare erzeugen","Show automation comments","Show automation comments"
+"cInhSignificanceProportion","Signifikanzniveau Anteile","Signifikanzniveau Anteile","Significance proportions","Significance proportions"
+"cInhSignificanceMean","Signifikanzniveau Mittelwerte","Signifikanzniveau Mittelwerte","Significance means","Significance means"
+"cInhSignificanceMeanTip","(nur bei Anzeige des Standardfehlers)","(nur bei Anzeige des Standardfehlers)","(only if standard error of mean is shown)","(only if standard error of mean is shown)"
+"cTxtChngHeader","Kopfgruppe","Kopfgruppe","Header","Header"
+"cTxtChngHeaders","Kopfgruppen","Kopfgruppen","Headers","Headers"
+"cTxtChngTables","Tabellen","Tabellen","Tables","Tables"
+"cTxtChngColA","Spalte A","Spalte A","Column A","Column A"
+"cTxtChngColB","Spalte B","Spalte B","Column B","Column B"
+"cTxtChngAll","Überall?","Überall?","Everywhere?","Everywhere?"
+"cSQLBookProductive","UPDATE ""Book"" SET ""Productive"" = CURRENT_TIMESTAMP WHERE ""BookNo"" = {BookNo}","UPDATE ""Book"" SET ""Productive"" = CURRENT_TIMESTAMP WHERE ""BookNo"" = {BookNo}","UPDATE ""Book"" SET ""Productive"" = CURRENT_TIMESTAMP WHERE ""BookNo"" = {BookNo}","UPDATE ""Book"" SET ""Productive"" = CURRENT_TIMESTAMP WHERE ""BookNo"" = {BookNo}"
+"cSQLCopyIdenticalHeadCol","INSERT INTO ""Head"" (""BookNo"" ,""HeadNo"" ,""HeadName"" ,""HeadTitle"" ,""HeadCount"") SELECT {BookNo}, ""HeadNo"" ,""HeadName"" ,""HeadTitle"" ,""HeadCount"" FROM ""Head"" WHERE ""BookNo"" = {OldBookNo}; INSERT INTO ""Col"" (""BookNo"" ,""ColNo"" ,""HeadNo"" ,""ColTitle1"" ,""ColTitle2"" ,""ColVariable"" ,""ColValue"") SELECT {BookNo}, ""ColNo"" ,""HeadNo"" ,""ColTitle1"" ,""ColTitle2"" ,""ColVariable"" ,""ColValue"" FROM ""Col"" WHERE ""BookNo"" = {OldBookNo}","INSERT INTO ""Head"" (""BookNo"" ,""HeadNo"" ,""HeadName"" ,""HeadTitle"" ,""HeadCount"") SELECT {BookNo}, ""HeadNo"" ,""HeadName"" ,""HeadTitle"" ,""HeadCount"" FROM ""Head"" WHERE ""BookNo"" = {OldBookNo}; INSERT INTO ""Col"" (""BookNo"" ,""ColNo"" ,""HeadNo"" ,""ColTitle1"" ,""ColTitle2"" ,""ColVariable"" ,""ColValue"") SELECT {BookNo}, ""ColNo"" ,""HeadNo"" ,""ColTitle1"" ,""ColTitle2"" ,""ColVariable"" ,""ColValue"" FROM ""Col"" WHERE ""BookNo"" = {OldBookNo}","INSERT INTO ""Head"" (""BookNo"" ,""HeadNo"" ,""HeadName"" ,""HeadTitle"" ,""HeadCount"") SELECT {BookNo}, ""HeadNo"" ,""HeadName"" ,""HeadTitle"" ,""HeadCount"" FROM ""Head"" WHERE ""BookNo"" = {OldBookNo}; INSERT INTO ""Col"" (""BookNo"" ,""ColNo"" ,""HeadNo"" ,""ColTitle1"" ,""ColTitle2"" ,""ColVariable"" ,""ColValue"") SELECT {BookNo}, ""ColNo"" ,""HeadNo"" ,""ColTitle1"" ,""ColTitle2"" ,""ColVariable"" ,""ColValue"" FROM ""Col"" WHERE ""BookNo"" = {OldBookNo}","INSERT INTO ""Head"" (""BookNo"" ,""HeadNo"" ,""HeadName"" ,""HeadTitle"" ,""HeadCount"") SELECT {BookNo}, ""HeadNo"" ,""HeadName"" ,""HeadTitle"" ,""HeadCount"" FROM ""Head"" WHERE ""BookNo"" = {OldBookNo}; INSERT INTO ""Col"" (""BookNo"" ,""ColNo"" ,""HeadNo"" ,""ColTitle1"" ,""ColTitle2"" ,""ColVariable"" ,""ColValue"") SELECT {BookNo}, ""ColNo"" ,""HeadNo"" ,""ColTitle1"" ,""ColTitle2"" ,""ColVariable"" ,""ColValue"" FROM ""Col"" WHERE ""BookNo"" = {OldBookNo}"
+"cSQLCopyIdenticalTabRowVal","INSERT INTO ""Tab"" (""BookNo"", ""QuestNo"", ""TabNo"", ""TabName"", ""TabType"", ""TabTitle"", ""TabTitle1"", ""TabTitle2"", ""TabTitle3"", ""TabRowTypes"", ""TabCaption"", ""TabCount"") SELECT {BookNo}, ""QuestNo"", ""TabNo"", ""TabName"", ""TabType"", ""TabTitle"", ""TabTitle1"", ""TabTitle2"", ""TabTitle3"", ""TabRowTypes"", ""TabCaption"", ""TabCount"" FROM ""Tab"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}; INSERT INTO ""Row"" (""BookNo"", ""QuestNo"", ""RowNo"" ,""TabNo"" ,""RowTypeS"" ,""RowType"" ,""RowContent"" ,""RowContentDetail"" ,""RowAbsPercent"" ,""RowWeighted"" ,""RowTitle1"" ,""RowTitle2"" ,""RowTitle3"" ,""RowFormat"" ,""RowDecimals"" ,""RowVariable"" ,""RowValue"") SELECT {BookNo}, ""QuestNo"", ""RowNo"" ,""TabNo"" ,""RowTypeS"" ,""RowType"" ,""RowContent"" ,""RowContentDetail"" ,""RowAbsPercent"" ,""RowWeighted"" ,""RowTitle1"" ,""RowTitle2"" ,""RowTitle3"" ,""RowFormat"" ,""RowDecimals"" ,""RowVariable"" ,""RowValue"" FROM ""Row"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}; INSERT INTO ""Val"" (""BookNo"" ,""QuestNo"" , ""TabNo"", ""RowNo"" ,""ColNo"" ,""Value"") SELECT {BookNo}, ""QuestNo"", ""TabNo"", ""RowNo"" ,""ColNo"" ,""Value"" FROM ""Val"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo};","INSERT INTO ""Tab"" (""BookNo"", ""QuestNo"", ""TabNo"", ""TabName"", ""TabType"", ""TabTitle"", ""TabTitle1"", ""TabTitle2"", ""TabTitle3"", ""TabRowTypes"", ""TabCaption"", ""TabCount"") SELECT {BookNo}, ""QuestNo"", ""TabNo"", ""TabName"", ""TabType"", ""TabTitle"", ""TabTitle1"", ""TabTitle2"", ""TabTitle3"", ""TabRowTypes"", ""TabCaption"", ""TabCount"" FROM ""Tab"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}; INSERT INTO ""Row"" (""BookNo"", ""QuestNo"", ""RowNo"" ,""TabNo"" ,""RowTypeS"" ,""RowType"" ,""RowContent"" ,""RowContentDetail"" ,""RowAbsPercent"" ,""RowWeighted"" ,""RowTitle1"" ,""RowTitle2"" ,""RowTitle3"" ,""RowFormat"" ,""RowDecimals"" ,""RowVariable"" ,""RowValue"") SELECT {BookNo}, ""QuestNo"", ""RowNo"" ,""TabNo"" ,""RowTypeS"" ,""RowType"" ,""RowContent"" ,""RowContentDetail"" ,""RowAbsPercent"" ,""RowWeighted"" ,""RowTitle1"" ,""RowTitle2"" ,""RowTitle3"" ,""RowFormat"" ,""RowDecimals"" ,""RowVariable"" ,""RowValue"" FROM ""Row"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}; INSERT INTO ""Val"" (""BookNo"" ,""QuestNo"" , ""TabNo"", ""RowNo"" ,""ColNo"" ,""Value"") SELECT {BookNo}, ""QuestNo"", ""TabNo"", ""RowNo"" ,""ColNo"" ,""Value"" FROM ""Val"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo};","INSERT INTO ""Tab"" (""BookNo"", ""QuestNo"", ""TabNo"", ""TabName"", ""TabType"", ""TabTitle"", ""TabTitle1"", ""TabTitle2"", ""TabTitle3"", ""TabRowTypes"", ""TabCaption"", ""TabCount"") SELECT {BookNo}, ""QuestNo"", ""TabNo"", ""TabName"", ""TabType"", ""TabTitle"", ""TabTitle1"", ""TabTitle2"", ""TabTitle3"", ""TabRowTypes"", ""TabCaption"", ""TabCount"" FROM ""Tab"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}; INSERT INTO ""Row"" (""BookNo"", ""QuestNo"", ""RowNo"" ,""TabNo"" ,""RowTypeS"" ,""RowType"" ,""RowContent"" ,""RowContentDetail"" ,""RowAbsPercent"" ,""RowWeighted"" ,""RowTitle1"" ,""RowTitle2"" ,""RowTitle3"" ,""RowFormat"" ,""RowDecimals"" ,""RowVariable"" ,""RowValue"") SELECT {BookNo}, ""QuestNo"", ""RowNo"" ,""TabNo"" ,""RowTypeS"" ,""RowType"" ,""RowContent"" ,""RowContentDetail"" ,""RowAbsPercent"" ,""RowWeighted"" ,""RowTitle1"" ,""RowTitle2"" ,""RowTitle3"" ,""RowFormat"" ,""RowDecimals"" ,""RowVariable"" ,""RowValue"" FROM ""Row"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}; INSERT INTO ""Val"" (""BookNo"" ,""QuestNo"" , ""TabNo"", ""RowNo"" ,""ColNo"" ,""Value"") SELECT {BookNo}, ""QuestNo"", ""TabNo"", ""RowNo"" ,""ColNo"" ,""Value"" FROM ""Val"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo};","INSERT INTO ""Tab"" (""BookNo"", ""QuestNo"", ""TabNo"", ""TabName"", ""TabType"", ""TabTitle"", ""TabTitle1"", ""TabTitle2"", ""TabTitle3"", ""TabRowTypes"", ""TabCaption"", ""TabCount"") SELECT {BookNo}, ""QuestNo"", ""TabNo"", ""TabName"", ""TabType"", ""TabTitle"", ""TabTitle1"", ""TabTitle2"", ""TabTitle3"", ""TabRowTypes"", ""TabCaption"", ""TabCount"" FROM ""Tab"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}; INSERT INTO ""Row"" (""BookNo"", ""QuestNo"", ""RowNo"" ,""TabNo"" ,""RowTypeS"" ,""RowType"" ,""RowContent"" ,""RowContentDetail"" ,""RowAbsPercent"" ,""RowWeighted"" ,""RowTitle1"" ,""RowTitle2"" ,""RowTitle3"" ,""RowFormat"" ,""RowDecimals"" ,""RowVariable"" ,""RowValue"") SELECT {BookNo}, ""QuestNo"", ""RowNo"" ,""TabNo"" ,""RowTypeS"" ,""RowType"" ,""RowContent"" ,""RowContentDetail"" ,""RowAbsPercent"" ,""RowWeighted"" ,""RowTitle1"" ,""RowTitle2"" ,""RowTitle3"" ,""RowFormat"" ,""RowDecimals"" ,""RowVariable"" ,""RowValue"" FROM ""Row"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}; INSERT INTO ""Val"" (""BookNo"" ,""QuestNo"" , ""TabNo"", ""RowNo"" ,""ColNo"" ,""Value"") SELECT {BookNo}, ""QuestNo"", ""TabNo"", ""RowNo"" ,""ColNo"" ,""Value"" FROM ""Val"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo};"
+"cSQLSelectNothing","SELECT 1 AS ""Null"" FROM ""Book"" WHERE 1 = 0","SELECT 1 AS ""Null"" FROM ""Book"" WHERE 1 = 0","SELECT 1 AS ""Null"" FROM ""Book"" WHERE 1 = 0","SELECT 1 AS ""Null"" FROM ""Book"" WHERE 1 = 0"
+"cSQLInsertBook","INSERT INTO ""Book"" (""BookNo"", ""Version"", ""Language"", ""ProjectName"", ""BookName"", ""Scenario"", ""ScenName"", ""ColVar"", ""Weight"", ""Parameter"") VALUES ({BookNo}, {Version}, {Language}, {ProjectName}, {BookName}, {Scenario}, {ScenName}, {ColVar}, {Weight}, {Parameter})","INSERT INTO ""Book"" (""BookNo"", ""Version"", ""Language"", ""ProjectName"", ""BookName"", ""Scenario"", ""ScenName"", ""ColVar"", ""Weight"", ""Parameter"") VALUES ({BookNo}, {Version}, {Language}, {ProjectName}, {BookName}, {Scenario}, {ScenName}, {ColVar}, {Weight}, {Parameter})","INSERT INTO ""Book"" (""BookNo"", ""Version"", ""Language"", ""ProjectName"", ""BookName"", ""Scenario"", ""ScenName"", ""ColVar"", ""Weight"", ""Parameter"") VALUES ({BookNo}, {Version}, {Language}, {ProjectName}, {BookName}, {Scenario}, {ScenName}, {ColVar}, {Weight}, {Parameter})","INSERT INTO ""Book"" (""BookNo"", ""Version"", ""Language"", ""ProjectName"", ""BookName"", ""Scenario"", ""ScenName"", ""ColVar"", ""Weight"", ""Parameter"") VALUES ({BookNo}, {Version}, {Language}, {ProjectName}, {BookName}, {Scenario}, {ScenName}, {ColVar}, {Weight}, {Parameter})"
+"cSQLInsertQuest","INSERT INTO ""Quest"" (""BookNo"", ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""RowVar"", ""Hash"", ""Parameters"", ""StartTime"") VALUES ({BookNo}, {QuestNo}, {QuestLine}, {Title}, {Type}, {RowVar}, {Hash}, {Parameters}, CURRENT_TIMESTAMP)","INSERT INTO ""Quest"" (""BookNo"", ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""RowVar"", ""Hash"", ""Parameters"", ""StartTime"") VALUES ({BookNo}, {QuestNo}, {QuestLine}, {Title}, {Type}, {RowVar}, {Hash}, {Parameters}, CURRENT_TIMESTAMP)","INSERT INTO ""Quest"" (""BookNo"", ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""RowVar"", ""Hash"", ""Parameters"", ""StartTime"") VALUES ({BookNo}, {QuestNo}, {QuestLine}, {Title}, {Type}, {RowVar}, {Hash}, {Parameters}, CURRENT_TIMESTAMP)","INSERT INTO ""Quest"" (""BookNo"", ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""RowVar"", ""Hash"", ""Parameters"", ""StartTime"") VALUES ({BookNo}, {QuestNo}, {QuestLine}, {Title}, {Type}, {RowVar}, {Hash}, {Parameters}, CURRENT_TIMESTAMP)"
+"cSQLSelectBook","SELECT * FROM ""Book"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Book"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Book"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Book"" WHERE ""BookNo"" = {BookNo}"
+"cSQLSelectQuest","SELECT * FROM ""Quest"" WHERE ""BookNo"" = {BookNo} ORDER BY ""Quest"".""QuestLine""","SELECT * FROM ""Quest"" WHERE ""BookNo"" = {BookNo} ORDER BY ""Quest"".""QuestLine""","SELECT * FROM ""Quest"" WHERE ""BookNo"" = {BookNo} ORDER BY ""Quest"".""QuestLine""","SELECT * FROM ""Quest"" WHERE ""BookNo"" = {BookNo} ORDER BY ""Quest"".""QuestLine"""
+"cSQLSelectTab","SELECT * FROM ""Tab"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Tab"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Tab"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Tab"" WHERE ""BookNo"" = {BookNo}"
+"cSQLSelectRow","SELECT * FROM ""Row"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Row"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Row"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Row"" WHERE ""BookNo"" = {BookNo}"
+"cSQLSelectHead","SELECT ""Head"".""BookNo"", ""Head"".""HeadNo"", ""Head"".""HeadName"", ""Head"".""HeadTitle"", ""Head"".""HeadCount"",SUM(""Head"".""HeadCount"") OVER (ORDER BY ""Head"".""HeadNo"") - ""Head"".""HeadCount"" AS ""HBegin"" FROM ""Head"" WHERE ""Head"".""BookNo"" = {BookNo}","SELECT ""Head"".""BookNo"", ""Head"".""HeadNo"", ""Head"".""HeadName"", ""Head"".""HeadTitle"", ""Head"".""HeadCount"",SUM(""Head"".""HeadCount"") OVER (ORDER BY ""Head"".""HeadNo"") - ""Head"".""HeadCount"" AS ""HBegin"" FROM ""Head"" WHERE ""Head"".""BookNo"" = {BookNo}","SELECT ""Head"".""BookNo"", ""Head"".""HeadNo"", ""Head"".""HeadName"", ""Head"".""HeadTitle"", ""Head"".""HeadCount"",SUM(""Head"".""HeadCount"") OVER (ORDER BY ""Head"".""HeadNo"") - ""Head"".""HeadCount"" AS ""HBegin"" FROM ""Head"" WHERE ""Head"".""BookNo"" = {BookNo}","SELECT ""Head"".""BookNo"", ""Head"".""HeadNo"", ""Head"".""HeadName"", ""Head"".""HeadTitle"", ""Head"".""HeadCount"",SUM(""Head"".""HeadCount"") OVER (ORDER BY ""Head"".""HeadNo"") - ""Head"".""HeadCount"" AS ""HBegin"" FROM ""Head"" WHERE ""Head"".""BookNo"" = {BookNo}"
+"cSQLSelectCol","SELECT ""Col"".""BookNo"", ""Col"".""ColNo"", ""Col"".""HeadNo"", ""Col"".""ColTitle1"", ""Col"".""ColTitle2"", ""Col"".""ColVariable"", ""Col"".""ColValue"" FROM ""Col"" WHERE ""Col"".""BookNo"" = {BookNo}","SELECT ""Col"".""BookNo"", ""Col"".""ColNo"", ""Col"".""HeadNo"", ""Col"".""ColTitle1"", ""Col"".""ColTitle2"", ""Col"".""ColVariable"", ""Col"".""ColValue"" FROM ""Col"" WHERE ""Col"".""BookNo"" = {BookNo}","SELECT ""Col"".""BookNo"", ""Col"".""ColNo"", ""Col"".""HeadNo"", ""Col"".""ColTitle1"", ""Col"".""ColTitle2"", ""Col"".""ColVariable"", ""Col"".""ColValue"" FROM ""Col"" WHERE ""Col"".""BookNo"" = {BookNo}","SELECT ""Col"".""BookNo"", ""Col"".""ColNo"", ""Col"".""HeadNo"", ""Col"".""ColTitle1"", ""Col"".""ColTitle2"", ""Col"".""ColVariable"", ""Col"".""ColValue"" FROM ""Col"" WHERE ""Col"".""BookNo"" = {BookNo}"
+"cSQLSelectVal","SELECT * FROM ""Val"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Val"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Val"" WHERE ""BookNo"" = {BookNo}","SELECT * FROM ""Val"" WHERE ""BookNo"" = {BookNo}"
+"cSQLSelectQuestInfo","SELECT ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""StartTime"", ""EndTime"", ""CountRow"", ""ErrorLog"", ""WarnLog"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} ORDER BY ""QuestLine""","SELECT ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""StartTime"", ""EndTime"", ""CountRow"", ""ErrorLog"", ""WarnLog"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} ORDER BY ""QuestLine""","SELECT ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""StartTime"", ""EndTime"", ""CountRow"", ""ErrorLog"", ""WarnLog"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} ORDER BY ""QuestLine""","SELECT ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""StartTime"", ""EndTime"", ""CountRow"", ""ErrorLog"", ""WarnLog"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} ORDER BY ""QuestLine"""
+"cSQLSelectQuestError","SELECT ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""StartTime"", ""EndTime"", ""CountRow"", ""WarnLog"", ""ErrorLog"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} AND (""ErrorLog"" != '' OR ""WarnLog"" <> '' OR ""CountRow"" = 0) ORDER BY ""QuestLine""","SELECT ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""StartTime"", ""EndTime"", ""CountRow"", ""WarnLog"", ""ErrorLog"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} AND (""ErrorLog"" != '' OR ""WarnLog"" <> '' OR ""CountRow"" = 0) ORDER BY ""QuestLine""","SELECT ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""StartTime"", ""EndTime"", ""CountRow"", ""WarnLog"", ""ErrorLog"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} AND (""ErrorLog"" != '' OR ""WarnLog"" <> '' OR ""CountRow"" = 0) ORDER BY ""QuestLine""","SELECT ""QuestNo"", ""QuestLine"", ""Title"", ""Type"", ""StartTime"", ""EndTime"", ""CountRow"", ""WarnLog"", ""ErrorLog"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} AND (""ErrorLog"" != '' OR ""WarnLog"" <> '' OR ""CountRow"" = 0) ORDER BY ""QuestLine"""
+"cSQLSelectDatenanpassrLog","SELECT * FROM dscmdlog WHERE datano = {DataNo}","SELECT * FROM dscmdlog WHERE datano = {DataNo}","SELECT * FROM dscmdlog WHERE datano = {DataNo}","SELECT * FROM dscmdlog WHERE datano = {DataNo}"
+"cSQLSelectDatenanpassrErrorLog","SELECT * FROM dscmdlog WHERE datano = {DataNo} AND error != ''","SELECT * FROM dscmdlog WHERE datano = {DataNo} AND error != ''","SELECT * FROM dscmdlog WHERE datano = {DataNo} AND error != ''","SELECT * FROM dscmdlog WHERE datano = {DataNo} AND error != ''"
+"cSQLSelectDatenanpassrChanges","DROP Table  IF EXISTS dst, src, dstlab, srclab, res;
+
+SELECT datano, var, type, varlab, hash INTO TEMP dst
+	FROM public.dsvariable WHERE datano = {DataNo};
+SELECT datano, var, type, varlab, hash INTO TEMP src
+	FROM public.dsvariable WHERE datano IN (SELECT origin FROM dsorigin WHERE datano = {DataNo});
+SELECT datano, var, nv, vallab INTO TEMP dstlab
+	FROM public.dslabel WHERE datano = {DataNo};
+SELECT datano, var, nv, vallab INTO TEMP srclab
+	FROM public.dslabel WHERE datano  IN (SELECT origin FROM dsorigin WHERE datano = {DataNo});
+
+
+SELECT DISTINCT 'New variable label' AS Art, dst.var, dst.type, dst.varlab, CAST(NULL AS Int) AS nv, NULL AS vallab, src.varlab AS change INTO TEMP res FROM dst LEFT JOIN src on dst.var = src.var WHERE dst.varlab <> src.varlab
+UNION SELECT 'New variable' AS Art, dst.var, dst.type, dst.varlab, NULL AS nv, NULL AS vallab, NULL AS change FROM dst LEFT JOIN src on dst.var = src.var WHERE src.var IS NULL
+UNION SELECT 'New variable type' AS Art, dst.var, dst.type, dst.varlab, NULL AS nv, NULL AS vallab, src.type AS change FROM dst LEFT JOIN src on dst.var = src.var WHERE dst.type <> src.type
+UNION SELECT 'New variable value label' AS Art, dstlab.var, NULL AS type, NULL AS varlab, dstlab.nv, dstlab.vallab, srclab.vallab AS change FROM dstlab LEFT JOIN srclab on dstlab.var = srclab.var AND dstlab.nv = srclab.nv WHERE dstlab.vallab <> srclab.vallab;
+
+SELECT * FROM res 
+UNION SELECT DISTINCT 'Only data change' AS Art, dst.var, dst.type, dst.varlab, CAST(NULL AS Int) AS nv, NULL AS vallab, NULL AS change FROM dst LEFT JOIN res ON dst.var = res.var LEFT JOIN src ON dst.var = src.var WHERE res.var IS NULL AND dst.hash <> src.hash 
+ORDER BY art;","DROP Table  IF EXISTS dst, src, dstlab, srclab, res;
+
+SELECT datano, var, type, varlab, hash INTO TEMP dst
+	FROM public.dsvariable WHERE datano = {DataNo};
+SELECT datano, var, type, varlab, hash INTO TEMP src
+	FROM public.dsvariable WHERE datano IN (SELECT origin FROM dsorigin WHERE datano = {DataNo});
+SELECT datano, var, nv, vallab INTO TEMP dstlab
+	FROM public.dslabel WHERE datano = {DataNo};
+SELECT datano, var, nv, vallab INTO TEMP srclab
+	FROM public.dslabel WHERE datano  IN (SELECT origin FROM dsorigin WHERE datano = {DataNo});
+
+
+SELECT DISTINCT 'New variable label' AS Art, dst.var, dst.type, dst.varlab, CAST(NULL AS Int) AS nv, NULL AS vallab, src.varlab AS change INTO TEMP res FROM dst LEFT JOIN src on dst.var = src.var WHERE dst.varlab <> src.varlab
+UNION SELECT 'New variable' AS Art, dst.var, dst.type, dst.varlab, NULL AS nv, NULL AS vallab, NULL AS change FROM dst LEFT JOIN src on dst.var = src.var WHERE src.var IS NULL
+UNION SELECT 'New variable type' AS Art, dst.var, dst.type, dst.varlab, NULL AS nv, NULL AS vallab, src.type AS change FROM dst LEFT JOIN src on dst.var = src.var WHERE dst.type <> src.type
+UNION SELECT 'New variable value label' AS Art, dstlab.var, NULL AS type, NULL AS varlab, dstlab.nv, dstlab.vallab, srclab.vallab AS change FROM dstlab LEFT JOIN srclab on dstlab.var = srclab.var AND dstlab.nv = srclab.nv WHERE dstlab.vallab <> srclab.vallab;
+
+SELECT * FROM res 
+UNION SELECT DISTINCT 'Only data change' AS Art, dst.var, dst.type, dst.varlab, CAST(NULL AS Int) AS nv, NULL AS vallab, NULL AS change FROM dst LEFT JOIN res ON dst.var = res.var LEFT JOIN src ON dst.var = src.var WHERE res.var IS NULL AND dst.hash <> src.hash 
+ORDER BY art;","DROP Table  IF EXISTS dst, src, dstlab, srclab, res;
+
+SELECT datano, var, type, varlab, hash INTO TEMP dst
+	FROM public.dsvariable WHERE datano = {DataNo};
+SELECT datano, var, type, varlab, hash INTO TEMP src
+	FROM public.dsvariable WHERE datano IN (SELECT origin FROM dsorigin WHERE datano = {DataNo});
+SELECT datano, var, nv, vallab INTO TEMP dstlab
+	FROM public.dslabel WHERE datano = {DataNo};
+SELECT datano, var, nv, vallab INTO TEMP srclab
+	FROM public.dslabel WHERE datano  IN (SELECT origin FROM dsorigin WHERE datano = {DataNo});
+
+
+SELECT DISTINCT 'New variable label' AS Art, dst.var, dst.type, dst.varlab, CAST(NULL AS Int) AS nv, NULL AS vallab, src.varlab AS change INTO TEMP res FROM dst LEFT JOIN src on dst.var = src.var WHERE dst.varlab <> src.varlab
+UNION SELECT 'New variable' AS Art, dst.var, dst.type, dst.varlab, NULL AS nv, NULL AS vallab, NULL AS change FROM dst LEFT JOIN src on dst.var = src.var WHERE src.var IS NULL
+UNION SELECT 'New variable type' AS Art, dst.var, dst.type, dst.varlab, NULL AS nv, NULL AS vallab, src.type AS change FROM dst LEFT JOIN src on dst.var = src.var WHERE dst.type <> src.type
+UNION SELECT 'New variable value label' AS Art, dstlab.var, NULL AS type, NULL AS varlab, dstlab.nv, dstlab.vallab, srclab.vallab AS change FROM dstlab LEFT JOIN srclab on dstlab.var = srclab.var AND dstlab.nv = srclab.nv WHERE dstlab.vallab <> srclab.vallab;
+
+SELECT * FROM res 
+UNION SELECT DISTINCT 'Only data change' AS Art, dst.var, dst.type, dst.varlab, CAST(NULL AS Int) AS nv, NULL AS vallab, NULL AS change FROM dst LEFT JOIN res ON dst.var = res.var LEFT JOIN src ON dst.var = src.var WHERE res.var IS NULL AND dst.hash <> src.hash 
+ORDER BY art;","DROP Table  IF EXISTS dst, src, dstlab, srclab, res;
+
+SELECT datano, var, type, varlab, hash INTO TEMP dst
+	FROM public.dsvariable WHERE datano = {DataNo};
+SELECT datano, var, type, varlab, hash INTO TEMP src
+	FROM public.dsvariable WHERE datano IN (SELECT origin FROM dsorigin WHERE datano = {DataNo});
+SELECT datano, var, nv, vallab INTO TEMP dstlab
+	FROM public.dslabel WHERE datano = {DataNo};
+SELECT datano, var, nv, vallab INTO TEMP srclab
+	FROM public.dslabel WHERE datano  IN (SELECT origin FROM dsorigin WHERE datano = {DataNo});
+
+
+SELECT DISTINCT 'New variable label' AS Art, dst.var, dst.type, dst.varlab, CAST(NULL AS Int) AS nv, NULL AS vallab, src.varlab AS change INTO TEMP res FROM dst LEFT JOIN src on dst.var = src.var WHERE dst.varlab <> src.varlab
+UNION SELECT 'New variable' AS Art, dst.var, dst.type, dst.varlab, NULL AS nv, NULL AS vallab, NULL AS change FROM dst LEFT JOIN src on dst.var = src.var WHERE src.var IS NULL
+UNION SELECT 'New variable type' AS Art, dst.var, dst.type, dst.varlab, NULL AS nv, NULL AS vallab, src.type AS change FROM dst LEFT JOIN src on dst.var = src.var WHERE dst.type <> src.type
+UNION SELECT 'New variable value label' AS Art, dstlab.var, NULL AS type, NULL AS varlab, dstlab.nv, dstlab.vallab, srclab.vallab AS change FROM dstlab LEFT JOIN srclab on dstlab.var = srclab.var AND dstlab.nv = srclab.nv WHERE dstlab.vallab <> srclab.vallab;
+
+SELECT * FROM res 
+UNION SELECT DISTINCT 'Only data change' AS Art, dst.var, dst.type, dst.varlab, CAST(NULL AS Int) AS nv, NULL AS vallab, NULL AS change FROM dst LEFT JOIN res ON dst.var = res.var LEFT JOIN src ON dst.var = src.var WHERE res.var IS NULL AND dst.hash <> src.hash 
+ORDER BY art;"
+"cSQLSelectColCount","SELECT Max(""ColNo"") FROM ""Col"" WHERE (""BookNo"" = {BookNo})","SELECT Max(""ColNo"") FROM ""Col"" WHERE (""BookNo"" = {BookNo})","SELECT Max(""ColNo"") FROM ""Col"" WHERE (""BookNo"" = {BookNo})","SELECT Max(""ColNo"") FROM ""Col"" WHERE (""BookNo"" = {BookNo})"
+"cSQLSelectFinishedQuestLine","SELECT ""QuestLine"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} AND ""EndTime"" IS NULL ORDER BY ""QuestLine"" LIMIT 1","SELECT ""QuestLine"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} AND ""EndTime"" IS NULL ORDER BY ""QuestLine"" LIMIT 1","SELECT ""QuestLine"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} AND ""EndTime"" IS NULL ORDER BY ""QuestLine"" LIMIT 1","SELECT ""QuestLine"" FROM ""Quest"" WHERE ""BookNo"" = {BookNo} AND ""EndTime"" IS NULL ORDER BY ""QuestLine"" LIMIT 1"
+"cSQLSelHashes","DROP TABLE IF EXISTS res; SELECT ""QuestNo"", ""Hash"", ""StartTime"", ""EndTime"", ROW_NUMBER() OVER(PARTITION BY ""QuestNo"" ORDER BY ""StartTime"" DESC) AS seq INTO TEMP res FROM ""Quest"" INNER JOIN ""Book"" ON ""Book"".""BookNo"" = ""Quest"".""BookNo"" WHERE ""Book"".""ProjectName"" = {ProjectName} AND ""Book"".""Scenario"" = {Scenario};SELECT ""Hash"" FROM res WHERE seq = 1 AND NOT ""EndTime"" IS NULL;","DROP TABLE IF EXISTS res; SELECT ""QuestNo"", ""Hash"", ""StartTime"", ""EndTime"", ROW_NUMBER() OVER(PARTITION BY ""QuestNo"" ORDER BY ""StartTime"" DESC) AS seq INTO TEMP res FROM ""Quest"" INNER JOIN ""Book"" ON ""Book"".""BookNo"" = ""Quest"".""BookNo"" WHERE ""Book"".""ProjectName"" = {ProjectName} AND ""Book"".""Scenario"" = {Scenario};SELECT ""Hash"" FROM res WHERE seq = 1 AND NOT ""EndTime"" IS NULL;","DROP TABLE IF EXISTS res; SELECT ""QuestNo"", ""Hash"", ""StartTime"", ""EndTime"", ROW_NUMBER() OVER(PARTITION BY ""QuestNo"" ORDER BY ""StartTime"" DESC) AS seq INTO TEMP res FROM ""Quest"" INNER JOIN ""Book"" ON ""Book"".""BookNo"" = ""Quest"".""BookNo"" WHERE ""Book"".""ProjectName"" = {ProjectName} AND ""Book"".""Scenario"" = {Scenario};SELECT ""Hash"" FROM res WHERE seq = 1 AND NOT ""EndTime"" IS NULL;","DROP TABLE IF EXISTS res; SELECT ""QuestNo"", ""Hash"", ""StartTime"", ""EndTime"", ROW_NUMBER() OVER(PARTITION BY ""QuestNo"" ORDER BY ""StartTime"" DESC) AS seq INTO TEMP res FROM ""Quest"" INNER JOIN ""Book"" ON ""Book"".""BookNo"" = ""Quest"".""BookNo"" WHERE ""Book"".""ProjectName"" = {ProjectName} AND ""Book"".""Scenario"" = {Scenario};SELECT ""Hash"" FROM res WHERE seq = 1 AND NOT ""EndTime"" IS NULL;"
+"cSQLSelectHeadCount","SELECT ""Head"".""BookNo"", ""Head"".""HeadNo"", ""Head"".""HeadName"", ""Head"".""HeadTitle"", ""Head"".""HeadCount"",SUM(""Head"".""HeadCount"") OVER (ORDER BY ""Head"".""HeadNo"") - ""Head"".""HeadCount"" AS ""HBegin"" FROM ""Head"" WHERE ""Head"".""BookNo"" = {BookNo}","SELECT ""Head"".""BookNo"", ""Head"".""HeadNo"", ""Head"".""HeadName"", ""Head"".""HeadTitle"", ""Head"".""HeadCount"",SUM(""Head"".""HeadCount"") OVER (ORDER BY ""Head"".""HeadNo"") - ""Head"".""HeadCount"" AS ""HBegin"" FROM ""Head"" WHERE ""Head"".""BookNo"" = {BookNo}","SELECT ""Head"".""BookNo"", ""Head"".""HeadNo"", ""Head"".""HeadName"", ""Head"".""HeadTitle"", ""Head"".""HeadCount"",SUM(""Head"".""HeadCount"") OVER (ORDER BY ""Head"".""HeadNo"") - ""Head"".""HeadCount"" AS ""HBegin"" FROM ""Head"" WHERE ""Head"".""BookNo"" = {BookNo}","SELECT ""Head"".""BookNo"", ""Head"".""HeadNo"", ""Head"".""HeadName"", ""Head"".""HeadTitle"", ""Head"".""HeadCount"",SUM(""Head"".""HeadCount"") OVER (ORDER BY ""Head"".""HeadNo"") - ""Head"".""HeadCount"" AS ""HBegin"" FROM ""Head"" WHERE ""Head"".""BookNo"" = {BookNo}"
+"cSQLSelectRowContentDetail","SELECT DISTINCT ""RowContentDetail"" FROM ""Row"" WHERE ""RowContentDetail"" != '' AND ""BookNo"" = {BookNo}","SELECT DISTINCT ""RowContentDetail"" FROM ""Row"" WHERE ""RowContentDetail"" != '' AND ""BookNo"" = {BookNo}","SELECT DISTINCT ""RowContentDetail"" FROM ""Row"" WHERE ""RowContentDetail"" != '' AND ""BookNo"" = {BookNo}","SELECT DISTINCT ""RowContentDetail"" FROM ""Row"" WHERE ""RowContentDetail"" != '' AND ""BookNo"" = {BookNo}"
+"cSQLSelFinishedRow","SELECT ""RNo"".""RNo"", ""TNo"".""TNo"", ""Row"".""BookNo"", ""Row"".""QuestNo"", ""Row"".""RowNo"", ""Row"".""TabNo"", ""Row"".""RowTypeS"", ""Row"".""RowType"", ""Row"".""RowContent"", ""Row"".""RowContentDetail"", ""Row"".""RowAbsPercent"", ""Row"".""RowWeighted"", ""Row"".""RowTitle1"", ""Row"".""RowTitle2"", ""Row"".""RowTitle3"", ""Row"".""RowFormat"", ""Row"".""RowDecimals"", ""Row"".""RowVariable"", ""Row"".""RowValue"" FROM ""Row"" INNER JOIN ""TNo"" ON  ""TNo"".""BookNo"" = ""Row"".""BookNo"" AND ""TNo"".""QuestNo"" = ""Row"".""QuestNo"" AND ""TNo"".""TabNo"" = ""Row"".""TabNo"" INNER JOIN ""RNo"" ON  ""RNo"".""BookNo"" = ""Row"".""BookNo"" AND ""RNo"".""QuestNo"" = ""Row"".""QuestNo"" AND ""RNo"".""TabNo"" = ""Row"".""TabNo"" AND ""RNo"".""RowNo"" = ""Row"".""RowNo"" ORDER BY ""RNo"".""RNo"";","SELECT ""RNo"".""RNo"", ""TNo"".""TNo"", ""Row"".""BookNo"", ""Row"".""QuestNo"", ""Row"".""RowNo"", ""Row"".""TabNo"", ""Row"".""RowTypeS"", ""Row"".""RowType"", ""Row"".""RowContent"", ""Row"".""RowContentDetail"", ""Row"".""RowAbsPercent"", ""Row"".""RowWeighted"", ""Row"".""RowTitle1"", ""Row"".""RowTitle2"", ""Row"".""RowTitle3"", ""Row"".""RowFormat"", ""Row"".""RowDecimals"", ""Row"".""RowVariable"", ""Row"".""RowValue"" FROM ""Row"" INNER JOIN ""TNo"" ON  ""TNo"".""BookNo"" = ""Row"".""BookNo"" AND ""TNo"".""QuestNo"" = ""Row"".""QuestNo"" AND ""TNo"".""TabNo"" = ""Row"".""TabNo"" INNER JOIN ""RNo"" ON  ""RNo"".""BookNo"" = ""Row"".""BookNo"" AND ""RNo"".""QuestNo"" = ""Row"".""QuestNo"" AND ""RNo"".""TabNo"" = ""Row"".""TabNo"" AND ""RNo"".""RowNo"" = ""Row"".""RowNo"" ORDER BY ""RNo"".""RNo"";","SELECT ""RNo"".""RNo"", ""TNo"".""TNo"", ""Row"".""BookNo"", ""Row"".""QuestNo"", ""Row"".""RowNo"", ""Row"".""TabNo"", ""Row"".""RowTypeS"", ""Row"".""RowType"", ""Row"".""RowContent"", ""Row"".""RowContentDetail"", ""Row"".""RowAbsPercent"", ""Row"".""RowWeighted"", ""Row"".""RowTitle1"", ""Row"".""RowTitle2"", ""Row"".""RowTitle3"", ""Row"".""RowFormat"", ""Row"".""RowDecimals"", ""Row"".""RowVariable"", ""Row"".""RowValue"" FROM ""Row"" INNER JOIN ""TNo"" ON  ""TNo"".""BookNo"" = ""Row"".""BookNo"" AND ""TNo"".""QuestNo"" = ""Row"".""QuestNo"" AND ""TNo"".""TabNo"" = ""Row"".""TabNo"" INNER JOIN ""RNo"" ON  ""RNo"".""BookNo"" = ""Row"".""BookNo"" AND ""RNo"".""QuestNo"" = ""Row"".""QuestNo"" AND ""RNo"".""TabNo"" = ""Row"".""TabNo"" AND ""RNo"".""RowNo"" = ""Row"".""RowNo"" ORDER BY ""RNo"".""RNo"";","SELECT ""RNo"".""RNo"", ""TNo"".""TNo"", ""Row"".""BookNo"", ""Row"".""QuestNo"", ""Row"".""RowNo"", ""Row"".""TabNo"", ""Row"".""RowTypeS"", ""Row"".""RowType"", ""Row"".""RowContent"", ""Row"".""RowContentDetail"", ""Row"".""RowAbsPercent"", ""Row"".""RowWeighted"", ""Row"".""RowTitle1"", ""Row"".""RowTitle2"", ""Row"".""RowTitle3"", ""Row"".""RowFormat"", ""Row"".""RowDecimals"", ""Row"".""RowVariable"", ""Row"".""RowValue"" FROM ""Row"" INNER JOIN ""TNo"" ON  ""TNo"".""BookNo"" = ""Row"".""BookNo"" AND ""TNo"".""QuestNo"" = ""Row"".""QuestNo"" AND ""TNo"".""TabNo"" = ""Row"".""TabNo"" INNER JOIN ""RNo"" ON  ""RNo"".""BookNo"" = ""Row"".""BookNo"" AND ""RNo"".""QuestNo"" = ""Row"".""QuestNo"" AND ""RNo"".""TabNo"" = ""Row"".""TabNo"" AND ""RNo"".""RowNo"" = ""Row"".""RowNo"" ORDER BY ""RNo"".""RNo"";"
+"cSQLSelFinishedTab","SELECT ""TNo"".""TNo"", ""Tab"".""BookNo"", ""Tab"".""QuestNo"", ""Tab"".""TabNo"", ""Tab"".""TabName"", ""Tab"".""TabType"", ""Tab"".""TabTitle"", ""Tab"".""TabTitle1"", ""Tab"".""TabTitle2"", ""Tab"".""TabTitle3"", ""Tab"".""TabRowTypes"", ""Tab"".""TabCaption"", ""Tab"".""TabCount"", ""TNo"".""TBegin"" FROM ""Tab"" INNER JOIN ""TNo"" ON  ""TNo"".""BookNo"" = ""Tab"".""BookNo"" AND ""TNo"".""QuestNo"" = ""Tab"".""QuestNo"" AND ""TNo"".""TabNo"" = ""Tab"".""TabNo"" ORDER BY ""TNo"".""TNo"";","SELECT ""TNo"".""TNo"", ""Tab"".""BookNo"", ""Tab"".""QuestNo"", ""Tab"".""TabNo"", ""Tab"".""TabName"", ""Tab"".""TabType"", ""Tab"".""TabTitle"", ""Tab"".""TabTitle1"", ""Tab"".""TabTitle2"", ""Tab"".""TabTitle3"", ""Tab"".""TabRowTypes"", ""Tab"".""TabCaption"", ""Tab"".""TabCount"", ""TNo"".""TBegin"" FROM ""Tab"" INNER JOIN ""TNo"" ON  ""TNo"".""BookNo"" = ""Tab"".""BookNo"" AND ""TNo"".""QuestNo"" = ""Tab"".""QuestNo"" AND ""TNo"".""TabNo"" = ""Tab"".""TabNo"" ORDER BY ""TNo"".""TNo"";","SELECT ""TNo"".""TNo"", ""Tab"".""BookNo"", ""Tab"".""QuestNo"", ""Tab"".""TabNo"", ""Tab"".""TabName"", ""Tab"".""TabType"", ""Tab"".""TabTitle"", ""Tab"".""TabTitle1"", ""Tab"".""TabTitle2"", ""Tab"".""TabTitle3"", ""Tab"".""TabRowTypes"", ""Tab"".""TabCaption"", ""Tab"".""TabCount"", ""TNo"".""TBegin"" FROM ""Tab"" INNER JOIN ""TNo"" ON  ""TNo"".""BookNo"" = ""Tab"".""BookNo"" AND ""TNo"".""QuestNo"" = ""Tab"".""QuestNo"" AND ""TNo"".""TabNo"" = ""Tab"".""TabNo"" ORDER BY ""TNo"".""TNo"";","SELECT ""TNo"".""TNo"", ""Tab"".""BookNo"", ""Tab"".""QuestNo"", ""Tab"".""TabNo"", ""Tab"".""TabName"", ""Tab"".""TabType"", ""Tab"".""TabTitle"", ""Tab"".""TabTitle1"", ""Tab"".""TabTitle2"", ""Tab"".""TabTitle3"", ""Tab"".""TabRowTypes"", ""Tab"".""TabCaption"", ""Tab"".""TabCount"", ""TNo"".""TBegin"" FROM ""Tab"" INNER JOIN ""TNo"" ON  ""TNo"".""BookNo"" = ""Tab"".""BookNo"" AND ""TNo"".""QuestNo"" = ""Tab"".""QuestNo"" AND ""TNo"".""TabNo"" = ""Tab"".""TabNo"" ORDER BY ""TNo"".""TNo"";"
+"cSQLSelFinishedVal","SELECT ""RNo"".""RNo"", ""Val"".""ColNo"", ""Val"".""Value"" FROM ""Val"" INNER JOIN ""RNo"" ON ""RNo"".""BookNo"" = ""Val"".""BookNo"" AND ""RNo"".""QuestNo"" = ""Val"".""QuestNo"" AND ""RNo"".""TabNo"" = ""Val"".""TabNo"" AND ""RNo"".""RowNo"" = ""Val"".""RowNo"" ORDER BY ""RNo"".""RNo"", ""Val"".""ColNo"";","SELECT ""RNo"".""RNo"", ""Val"".""ColNo"", ""Val"".""Value"" FROM ""Val"" INNER JOIN ""RNo"" ON ""RNo"".""BookNo"" = ""Val"".""BookNo"" AND ""RNo"".""QuestNo"" = ""Val"".""QuestNo"" AND ""RNo"".""TabNo"" = ""Val"".""TabNo"" AND ""RNo"".""RowNo"" = ""Val"".""RowNo"" ORDER BY ""RNo"".""RNo"", ""Val"".""ColNo"";","SELECT ""RNo"".""RNo"", ""Val"".""ColNo"", ""Val"".""Value"" FROM ""Val"" INNER JOIN ""RNo"" ON ""RNo"".""BookNo"" = ""Val"".""BookNo"" AND ""RNo"".""QuestNo"" = ""Val"".""QuestNo"" AND ""RNo"".""TabNo"" = ""Val"".""TabNo"" AND ""RNo"".""RowNo"" = ""Val"".""RowNo"" ORDER BY ""RNo"".""RNo"", ""Val"".""ColNo"";","SELECT ""RNo"".""RNo"", ""Val"".""ColNo"", ""Val"".""Value"" FROM ""Val"" INNER JOIN ""RNo"" ON ""RNo"".""BookNo"" = ""Val"".""BookNo"" AND ""RNo"".""QuestNo"" = ""Val"".""QuestNo"" AND ""RNo"".""TabNo"" = ""Val"".""TabNo"" AND ""RNo"".""RowNo"" = ""Val"".""RowNo"" ORDER BY ""RNo"".""RNo"", ""Val"".""ColNo"";"
+"cSQLSelTableToCopy","SELECT ""BookNo"" FROM ""Quest"" WHERE ""QuestNo"" = {QuestNo} AND ""BookNo"" != {BookNo} AND ""Hash"" = {Hash} ORDER BY ""BookNo"" DESC LIMIT 1","SELECT ""BookNo"" FROM ""Quest"" WHERE ""QuestNo"" = {QuestNo} AND ""BookNo"" != {BookNo} AND ""Hash"" = {Hash} ORDER BY ""BookNo"" DESC LIMIT 1","SELECT ""BookNo"" FROM ""Quest"" WHERE ""QuestNo"" = {QuestNo} AND ""BookNo"" != {BookNo} AND ""Hash"" = {Hash} ORDER BY ""BookNo"" DESC LIMIT 1","SELECT ""BookNo"" FROM ""Quest"" WHERE ""QuestNo"" = {QuestNo} AND ""BookNo"" != {BookNo} AND ""Hash"" = {Hash} ORDER BY ""BookNo"" DESC LIMIT 1"
+"cSQLTNoRNo","DROP TABLE IF EXISTS ""TNo""; DROP TABLE IF EXISTS ""RNo""; SELECT ""Tab"".""BookNo"", ""Tab"".""QuestNo"", ""Tab"".""TabNo"", {TabBase} + ROW_NUMBER() OVER (ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo"") AS ""TNo"", {RowBase}  - ""Tab"".""TabCount"" + SUM(""Tab"".""TabCount"") OVER (ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo"") AS ""TBegin"" INTO TEMP ""TNo"" FROM ""Tab"" INNER JOIN ""Quest"" ON ""Quest"".""BookNo"" = ""Tab"".""BookNo"" AND ""Quest"".""QuestNo"" = ""Tab"".""QuestNo"" WHERE ""Quest"".""BookNo"" = {BookNo}  AND (""Quest"".""QuestLine"" >= {CurQuest}) AND (""Quest"".""QuestLine"" < {aQuest}) ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo""; SELECT ""Quest"".""BookNo"", ""Quest"".""QuestNo"", ""Row"".""TabNo"", ""Row"".""RowNo"", {RowBase} + ROW_NUMBER() OVER (ORDER BY ""Quest"".""QuestLine"", ""Row"".""TabNo"", ""Row"".""RowNo"") AS ""RNo"" INTO TEMP ""RNo"" FROM ""Row"" INNER JOIN ""Quest"" ON ""Quest"".""BookNo"" = ""Row"".""BookNo"" AND ""Quest"".""QuestNo"" = ""Row"".""QuestNo"" WHERE ""Quest"".""BookNo"" = {BookNo}  AND (""Quest"".""QuestLine"" >= {CurQuest}) AND (""Quest"".""QuestLine"" < {aQuest});","DROP TABLE IF EXISTS ""TNo""; DROP TABLE IF EXISTS ""RNo""; SELECT ""Tab"".""BookNo"", ""Tab"".""QuestNo"", ""Tab"".""TabNo"", {TabBase} + ROW_NUMBER() OVER (ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo"") AS ""TNo"", {RowBase}  - ""Tab"".""TabCount"" + SUM(""Tab"".""TabCount"") OVER (ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo"") AS ""TBegin"" INTO TEMP ""TNo"" FROM ""Tab"" INNER JOIN ""Quest"" ON ""Quest"".""BookNo"" = ""Tab"".""BookNo"" AND ""Quest"".""QuestNo"" = ""Tab"".""QuestNo"" WHERE ""Quest"".""BookNo"" = {BookNo}  AND (""Quest"".""QuestLine"" >= {CurQuest}) AND (""Quest"".""QuestLine"" < {aQuest}) ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo""; SELECT ""Quest"".""BookNo"", ""Quest"".""QuestNo"", ""Row"".""TabNo"", ""Row"".""RowNo"", {RowBase} + ROW_NUMBER() OVER (ORDER BY ""Quest"".""QuestLine"", ""Row"".""TabNo"", ""Row"".""RowNo"") AS ""RNo"" INTO TEMP ""RNo"" FROM ""Row"" INNER JOIN ""Quest"" ON ""Quest"".""BookNo"" = ""Row"".""BookNo"" AND ""Quest"".""QuestNo"" = ""Row"".""QuestNo"" WHERE ""Quest"".""BookNo"" = {BookNo}  AND (""Quest"".""QuestLine"" >= {CurQuest}) AND (""Quest"".""QuestLine"" < {aQuest});","DROP TABLE IF EXISTS ""TNo""; DROP TABLE IF EXISTS ""RNo""; SELECT ""Tab"".""BookNo"", ""Tab"".""QuestNo"", ""Tab"".""TabNo"", {TabBase} + ROW_NUMBER() OVER (ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo"") AS ""TNo"", {RowBase}  - ""Tab"".""TabCount"" + SUM(""Tab"".""TabCount"") OVER (ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo"") AS ""TBegin"" INTO TEMP ""TNo"" FROM ""Tab"" INNER JOIN ""Quest"" ON ""Quest"".""BookNo"" = ""Tab"".""BookNo"" AND ""Quest"".""QuestNo"" = ""Tab"".""QuestNo"" WHERE ""Quest"".""BookNo"" = {BookNo}  AND (""Quest"".""QuestLine"" >= {CurQuest}) AND (""Quest"".""QuestLine"" < {aQuest}) ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo""; SELECT ""Quest"".""BookNo"", ""Quest"".""QuestNo"", ""Row"".""TabNo"", ""Row"".""RowNo"", {RowBase} + ROW_NUMBER() OVER (ORDER BY ""Quest"".""QuestLine"", ""Row"".""TabNo"", ""Row"".""RowNo"") AS ""RNo"" INTO TEMP ""RNo"" FROM ""Row"" INNER JOIN ""Quest"" ON ""Quest"".""BookNo"" = ""Row"".""BookNo"" AND ""Quest"".""QuestNo"" = ""Row"".""QuestNo"" WHERE ""Quest"".""BookNo"" = {BookNo}  AND (""Quest"".""QuestLine"" >= {CurQuest}) AND (""Quest"".""QuestLine"" < {aQuest});","DROP TABLE IF EXISTS ""TNo""; DROP TABLE IF EXISTS ""RNo""; SELECT ""Tab"".""BookNo"", ""Tab"".""QuestNo"", ""Tab"".""TabNo"", {TabBase} + ROW_NUMBER() OVER (ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo"") AS ""TNo"", {RowBase}  - ""Tab"".""TabCount"" + SUM(""Tab"".""TabCount"") OVER (ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo"") AS ""TBegin"" INTO TEMP ""TNo"" FROM ""Tab"" INNER JOIN ""Quest"" ON ""Quest"".""BookNo"" = ""Tab"".""BookNo"" AND ""Quest"".""QuestNo"" = ""Tab"".""QuestNo"" WHERE ""Quest"".""BookNo"" = {BookNo}  AND (""Quest"".""QuestLine"" >= {CurQuest}) AND (""Quest"".""QuestLine"" < {aQuest}) ORDER BY ""Quest"".""QuestLine"", ""Tab"".""TabNo""; SELECT ""Quest"".""BookNo"", ""Quest"".""QuestNo"", ""Row"".""TabNo"", ""Row"".""RowNo"", {RowBase} + ROW_NUMBER() OVER (ORDER BY ""Quest"".""QuestLine"", ""Row"".""TabNo"", ""Row"".""RowNo"") AS ""RNo"" INTO TEMP ""RNo"" FROM ""Row"" INNER JOIN ""Quest"" ON ""Quest"".""BookNo"" = ""Row"".""BookNo"" AND ""Quest"".""QuestNo"" = ""Row"".""QuestNo"" WHERE ""Quest"".""BookNo"" = {BookNo}  AND (""Quest"".""QuestLine"" >= {CurQuest}) AND (""Quest"".""QuestLine"" < {aQuest});"
+"cSQLUpdateQuestIdenticalTable","UPDATE ""Quest"" SET ""EndTime"" = ""Old"".""EndTime"", ""CountRow"" = ""Old"".""CountRow"", ""WarnLog"" = ""Old"".""WarnLog"", ""ErrorLog"" = ""Old"".""ErrorLog"" FROM (SELECT ""EndTime"", ""CountRow"", ""WarnLog"", ""ErrorLog"" FROM ""Quest"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}) AS ""Old"" WHERE ""BookNo"" = {BookNo} AND ""QuestNo"" = {QuestNo}","UPDATE ""Quest"" SET ""EndTime"" = ""Old"".""EndTime"", ""CountRow"" = ""Old"".""CountRow"", ""WarnLog"" = ""Old"".""WarnLog"", ""ErrorLog"" = ""Old"".""ErrorLog"" FROM (SELECT ""EndTime"", ""CountRow"", ""WarnLog"", ""ErrorLog"" FROM ""Quest"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}) AS ""Old"" WHERE ""BookNo"" = {BookNo} AND ""QuestNo"" = {QuestNo}","UPDATE ""Quest"" SET ""EndTime"" = ""Old"".""EndTime"", ""CountRow"" = ""Old"".""CountRow"", ""WarnLog"" = ""Old"".""WarnLog"", ""ErrorLog"" = ""Old"".""ErrorLog"" FROM (SELECT ""EndTime"", ""CountRow"", ""WarnLog"", ""ErrorLog"" FROM ""Quest"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}) AS ""Old"" WHERE ""BookNo"" = {BookNo} AND ""QuestNo"" = {QuestNo}","UPDATE ""Quest"" SET ""EndTime"" = ""Old"".""EndTime"", ""CountRow"" = ""Old"".""CountRow"", ""WarnLog"" = ""Old"".""WarnLog"", ""ErrorLog"" = ""Old"".""ErrorLog"" FROM (SELECT ""EndTime"", ""CountRow"", ""WarnLog"", ""ErrorLog"" FROM ""Quest"" WHERE ""BookNo"" = {OldBookNo} AND ""QuestNo"" = {QuestNo}) AS ""Old"" WHERE ""BookNo"" = {BookNo} AND ""QuestNo"" = {QuestNo}"
+"cSQLUpdateQuestIdenticalTableError","UPDATE ""Quest"" SET ""EndTime"" = CURRENT_TIMESTAMP, ""CountRow"" = 0, ""ErrorLog"" = 'Error: No old hash table found' WHERE ""BookNo"" = {BookNo} AND ""QuestNo"" = {QuestNo}","UPDATE ""Quest"" SET ""EndTime"" = CURRENT_TIMESTAMP, ""CountRow"" = 0, ""ErrorLog"" = 'Error: No old hash table found' WHERE ""BookNo"" = {BookNo} AND ""QuestNo"" = {QuestNo}","UPDATE ""Quest"" SET ""EndTime"" = CURRENT_TIMESTAMP, ""CountRow"" = 0, ""ErrorLog"" = 'Error: No old hash table found' WHERE ""BookNo"" = {BookNo} AND ""QuestNo"" = {QuestNo}","UPDATE ""Quest"" SET ""EndTime"" = CURRENT_TIMESTAMP, ""CountRow"" = 0, ""ErrorLog"" = 'Error: No old hash table found' WHERE ""BookNo"" = {BookNo} AND ""QuestNo"" = {QuestNo}"
+"cSQLFunctionDatenanpassrErrorLog","HYPERLINK(""#""&SQLQuery[@sheet]&""!A""&IFERROR(LEFT(SQLQuery[@row],FIND(""_"",SQLQuery[@row])-1),IFERROR(LEFT(SQLQuery[@row],FIND("","",SQLQuery[@row])-1),SQLQuery[@row])))","HYPERLINK(""#""&SQLQuery[@sheet]&""!A""&IFERROR(LEFT(SQLQuery[@row],FIND(""_"",SQLQuery[@row])-1),IFERROR(LEFT(SQLQuery[@row],FIND("","",SQLQuery[@row])-1),SQLQuery[@row])))","HYPERLINK(""#""&SQLQuery[@sheet]&""!A""&IFERROR(LEFT(SQLQuery[@row],FIND(""_"",SQLQuery[@row])-1),IFERROR(LEFT(SQLQuery[@row],FIND("","",SQLQuery[@row])-1),SQLQuery[@row])))","HYPERLINK(""#""&SQLQuery[@sheet]&""!A""&IFERROR(LEFT(SQLQuery[@row],FIND(""_"",SQLQuery[@row])-1),IFERROR(LEFT(SQLQuery[@row],FIND("","",SQLQuery[@row])-1),SQLQuery[@row])))"
+"cSQLFunctionDatenanpassrLog","HYPERLINK(""#""&SQLQuery[@sheet]&""!A""&IFERROR(LEFT(SQLQuery[@row],FIND(""_"",SQLQuery[@row])-1),IFERROR(LEFT(SQLQuery[@row],FIND("","",SQLQuery[@row])-1),SQLQuery[@row])))","HYPERLINK(""#""&SQLQuery[@sheet]&""!A""&IFERROR(LEFT(SQLQuery[@row],FIND(""_"",SQLQuery[@row])-1),IFERROR(LEFT(SQLQuery[@row],FIND("","",SQLQuery[@row])-1),SQLQuery[@row])))","HYPERLINK(""#""&SQLQuery[@sheet]&""!A""&IFERROR(LEFT(SQLQuery[@row],FIND(""_"",SQLQuery[@row])-1),IFERROR(LEFT(SQLQuery[@row],FIND("","",SQLQuery[@row])-1),SQLQuery[@row])))","HYPERLINK(""#""&SQLQuery[@sheet]&""!A""&IFERROR(LEFT(SQLQuery[@row],FIND(""_"",SQLQuery[@row])-1),IFERROR(LEFT(SQLQuery[@row],FIND("","",SQLQuery[@row])-1),SQLQuery[@row])))"
+"cTxtWorksheetExists","Das Arbeitsblatt '<%1>' existiert bereits. Soll es gelöscht werden?","Das Arbeitsblatt '<%1>' existiert bereits. Soll es gelöscht werden?","The worksheet '<%1>' already exists. Delete it?","The worksheet '<%1>' already exists. Delete it?"
+"cTxtChooseWorkbookCompare","Bitte zu vergleichenden Tabellenband wählen…","Bitte zu vergleichenden Tabellenband wählen…","Please select table book to compare…",NA
+"cTxtChooseWorkbookTakeOver","Bitte zu übernehmenden Tabellenband wählen…","Bitte zu übernehmenden Tabellenband wählen…","Please select table book to take over…",NA
+"cViewSortAscending","Aufsteigend","Aufsteigend","Ascending","Ascending"
+"cViewSortDescending","Absteigend","Absteigend","Descending","Descending"
+"cViewSortNoSort","Nicht sortieren","Nicht sortieren","No sorting","No sorting"
+"cTxtHeaderTitle","Titelspalte","Titelspalte","Table title","Table title"
+"cTxtHeaderRowHeader","Überschriften","Überschriften","Row header","Row header"
+"cTxtHeaderTotal","Gesamt","Gesamt","Total","Total"
+"cTxtTableCollection","Tabellenzusammenfassung","Tabellenzusammenfassung","Table collection","Table collection"
+"cTxtFoundFormatErrors","Die angezeigten Texte / Formate wurden im neuen Tabellenband nicht gefunden - bitte manuell anpassen!","Die angezeigten Texte / Formate wurden im neuen Tabellenband nicht gefunden - bitte manuell anpassen!","The texts and / or formats were not found in the new table book - please adjust manually if necessary!","The texts and / or formats were not found in the new table book - please adjust manually if necessary!"
+"cTxtFormatsError","Text- und Formatkontrolle","Text- und Formatkontrolle","Text and format control","Text and format control"
+"RowRNo","1","1","1","1"
+"RowTNo","2","2","2","2"
+"RowBookNo","3","3","3","3"
+"RowQuestNo","4","4","4","4"
+"RowRowNo","5","5","5","5"
+"RowTabNo","6","6","6","6"
+"RowRowTypeS","7","7","7","7"
+"RowRowType","8","8","8","8"
+"RowRowContent","9","9","9","9"
+"RowRowContentDetail","10","10","10","10"
+"RowRowAbsPercent","11","11","11","11"
+"RowRowWeighted","12","12","12","12"
+"RowRowTitle1","13","13","13","13"
+"RowRowTitle2","14","14","14","14"
+"RowRowTitle3","15","15","15","15"
+"RowRowFormat","16","16","16","16"
+"RowRowDecimals","17","17","17","17"
+"RowRowVariable","18","18","18","18"
+"RowRowValue","19","19","19","19"
+"TabTNo","1","1","1","1"
+"TabBookNo","2","2","2","2"
+"TabQuestNo","3","3","3","3"
+"TabTabNo","4","4","4","4"
+"TabTabName","5","5","5","5"
+"TabTabType","6","6","6","6"
+"TabTabTitle","7","7","7","7"
+"TabTabTitle1","8","8","8","8"
+"TabTabTitle2","9","9","9","9"
+"TabTabTitle3","10","10","10","10"
+"TabTabRowTypeS","11","11","11","11"
+"TabTabCaption","12","12","12","12"
+"TabTabCount","13","13","13","13"
+"TabTBegin","14","14","14","14"
+"HeadBookNo","1","1","1","1"
+"HeadHeadNo","2","2","2","2"
+"HeadHeadName","3","3","3","3"
+"HeadHeadTitle","4","4","4","4"
+"HeadHeadCount","5","5","5","5"
+"HeadHBegin","6","6","6","6"
+"ColBookNo","1","1","1","1"
+"ColColNo","2","2","2","2"
+"ColHeadNo","3","3","3","3"
+"ColColTitle1","4","4","4","4"
+"ColColTitle2","5","5","5","5"
+"ColColVariable","6","6","6","6"
+"ColColValue","7","7","7","7"
+"ValRNo","1","1","1","1"
+"ValColNo","2","2","2","2"
+"ValValue","3","3","3","3"
+"QuestBookNo","1","1","1","1"
+"QuestQuestNo","2","2","2","2"
+"QuestQuestLine","3","3","3","3"
+"QuestTitle","4","4","4","4"
+"QuestType","5","5","5","5"
+"QuestRowVar","6","6","6","6"
+"QuestParameters","7","7","7","7"
+"QuestStartTime","8","8","8","8"
+"QuestEndTime","9","9","9","9"
+"QuestErrorLog","10","10","10","10"
+"BookBookNo","1","1","1","1"
+"BookVersion","2","2","2","2"
+"BookLanguage","3","3","3","3"
+"BookProjectName","4","4","4","4"
+"BookBookName","5","5","5","5"
+"BookScenario","6","6","6","6"
+"BookScenName","7","7","7","7"
+"BookColVar","8","8","8","8"
+"BookWeight","9","9","9","9"
+"BookParameter","10","10","10","10"
+"ZZZEnd","10","10","10","10"

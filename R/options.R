@@ -1,20 +1,29 @@
-# TODO: document!
-# - for this we should add an example excel mapping file to the crosstabser package
-# - and then add a docs example, something like this:
-# # Only for documentation purposes:
-# # (`get_mapping_options()` isn't supposed to be be called directly).
-# mapping_file <- system.file(
-#   "extdata",
-#   "<file-to-be-created-mapping.xlsx>",
-#   package = "crosstabser"
-# )
-# m <- Tabula$new(mapping_file = mapping_file)
-# # Result of datenanpassr::get_mapping_options() in `da` field:
-# m$opts$da
-# # Result of get_tabula_options() in `da` field:
-# m$opts$ct
-
+#' Generate list of options for a `Tabula` object
+#'
+#' @param tabula An object generated with `Tabula$new()`.
+#'
+#' @param book_no An integer skalar to identify the
+#' @param ... Arguments passed to methods
+#'
 #' @export
+#' @examples
+#' \dontrun{
+#' # TODO: document!
+#' - for this we should add an example excel mapping file to the crosstabser package
+#' - and then add a docs example, something like this:
+#' # Only for documentation purposes:
+#' # (`get_mapping_options()` isn't supposed to be be called directly).
+#' mapping_file <- system.file(
+#'   "extdata",
+#'   "<file-to-be-created-mapping.xlsx>",
+#'   package = "crosstabser"
+#' )
+#' m <- Tabula$new(mapping_file = mapping_file)
+#' # Result of datadaptor::get_mapping_options() in `da` field:
+#' m$opts$da
+#' # Result of get_tabula_options() in `da` field:
+#' m$opts$ct
+#' }
 get_tabula_options <- function(tabula, book_no = NULL, ...) {
   UseMethod("get_tabula_options", tabula$mapping_file)
 }
@@ -38,7 +47,7 @@ get_tabula_options.excel <- function(tabula, book_no = NULL, ...) {
     col_names = FALSE,
     check_names = TRUE
   ) |>
-    datenanpassr::format_sheet_data()
+    datadaptor::format_sheet_data()
 
   names(df_macro_raw) <- paste0("X", seq_len(ncol(df_macro_raw)))
 
@@ -63,15 +72,15 @@ get_tabula_options.excel <- function(tabula, book_no = NULL, ...) {
   )
 }
 # TODO: find cleaner solution to use default parameters
-# probably the best solution is to override the datenanpassr::Mapping method reading in the parameters in Tabula
+# probably the best solution is to override the datadaptor::Mapping method reading in the parameters in Tabula
 #' @export
 get_tabula_options.list <- function(
     tabula,
+    book_no = 999999999,
     v_scenario = 1,
     V_Language = 4,
     l_macro_scenario = NULL,
     l_lexikon = read_dictionary(V_Language),
-    book_no = 999999999,
     ...
 ) {
   l_macro_scenario <- modifyList(
@@ -94,11 +103,10 @@ get_tabula_options.google <- function(tabula, ...) {
 }
 
 read_dictionary <- function(V_Language) {
-  df_lexikon_raw <- utils::read.delim(
-    # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
-    system.file("extdata", "lexikon.csv", package = "crosstabser"),
-    header = FALSE,
-    sep = ";"
+  df_lexikon_raw <- utils::read.csv(
+    # df <- openxlsx2::read_xlsx("K:/Tools/TableBook/master/Funktionen/Funktionen master.xlsm", sheet = "Lexikon")
+    # write.csv(df, "K:/Git/crosstabser/inst/extdata/lexikon.csv", row.names = FALSE)
+    system.file("extdata", "lexikon.csv", package = "crosstabser")
   )
 
   df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()

@@ -11,20 +11,20 @@
 #' @field mapping_file filepath of the Excel mapping file
 #' @field row Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
 #'   Or `NULL` (the default) resulting in the selection of all row numbers where `Type` is specified.
-#' @field dat `dat` field of the super-class `datenanpassr::Mapping`.
-#'   If this is specified, dat_mod will be ignored, and instead generated with `datenanpassr::Mapping$modify_data()`
+#' @field dat `dat` field of the super-class `datadaptor::Mapping`.
+#'   If this is specified, dat_mod will be ignored, and instead generated with `datadaptor::Mapping$modify_data()`
 #'
 #' @export
 #'
 #' @examples
-#' # This is copied from datenanpassr and will just serve as a template when the
+#' # This is copied from datadaptor and will just serve as a template when the
 #' # code will be documented...
 #'
 #'
 #' # Create a Mapping object from the files provided by the package:
-#' mapping_file <- system.file("extdata", "mapping.xlsx", package = "datenanpassr")
-#' spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datenanpassr")
-#' # DOESN'T WORK WITH DATENANPASSR MAPPING FILE!!!
+#' mapping_file <- system.file("extdata", "mapping.xlsx", package = "datadaptor")
+#' spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datadaptor")
+#' # DOESN'T WORK WITH datadaptor MAPPING FILE!!!
 #' \dontrun{
 #' mapping <- Tabula$new(spss_file, mapping_file)
 #'
@@ -50,7 +50,7 @@
 #' }
 Tabula <- R6::R6Class(
   "Tabula",
-  inherit = datenanpassr::Mapping,
+  inherit = datadaptor::Mapping,
   public = list(
     mapping_file = NULL,
     dat = NULL,
@@ -60,6 +60,7 @@ Tabula <- R6::R6Class(
     qtabs = list(),
     qrows = list(),
     crosstabs = list(),
+    ditw = list(da = NULL, ct = NULL),
     #' @description Initialize a Tabula object
     #'
     initialize = function(dat_mod = NULL,
@@ -67,14 +68,11 @@ Tabula <- R6::R6Class(
                           row = NULL,
                           dat = NULL,
                           tabulate = TRUE,
-                          # TODO: ask Wolf if we should set this this to interactive() ...:
-                          qrow_db_write = FALSE,
                           ...) {
       super$initialize(
         dat,
         mapping_file,
         process_sheets = FALSE,
-        qrow_db_write = qrow_db_write,
         ...
       )
       if (is.null(dat) & is.null(dat_mod)) {
@@ -84,10 +82,7 @@ Tabula <- R6::R6Class(
         super$modify_data()
       } else
       if (!is.null(dat_mod)) {
-        self$dat_mod <- datenanpassr::read_data(dat_mod)
-      }
-      if (qrow_db_write) {
-        self$opts$ct$is_first <- TRUE
+        self$dat_mod <- datadaptor::read_data(dat_mod)
       }
       if (tabulate) {
         self$calc_qtabs(row)
@@ -98,8 +93,8 @@ Tabula <- R6::R6Class(
       # If specified in both, excel parameters will be overwritten by the dots:
       args <- excel_params |> modifyList(list(...))
 
-      da <- datenanpassr::use_known_args(datenanpassr::get_mapping_options, args)
-      ct <- datenanpassr::use_known_args(crosstabser::get_tabula_options, c(list(tabula = self), args))
+      da <- datadaptor::use_known_args(datadaptor::get_mapping_options, args)
+      ct <- datadaptor::use_known_args(crosstabser::get_tabula_options, c(list(tabula = self), args))
       dev <- args |> setdiff(c(da, ct))
 
       self$opts <- tibble::lst(
@@ -111,27 +106,56 @@ Tabula <- R6::R6Class(
     calc_qtabs = function(row = NULL) {
       private$filter_global()
       gen_col_tables(self)
-      parse_qsheet(self, row)
+      private$process_qsheet(row)
       invisible(self)
     },
-    assemble_crosstab_data = function() {
-      self$crosstabs <- assemble_crosstab_data_(self)
-      add_columns_for_tablebook(self, BookNo = self$opts$ct$V_BookNo)
+    prepare_5_tables = function() {
+      l <- self$qrows |>
+        lapply(\(x) x$prep_tab_row_val()) |>
+        lapply(\(x) x$crosstabs$data)
+      self$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
+      self$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()
+      self$crosstabs$data$row_table <- l |> lapply(\(x) x$row_table) |> dplyr::bind_rows()
+      private$prepare_head_col_tables()
       invisible(self)
     },
-    write_to_db = function() {
-      self$assemble_crosstab_data()
-      self$opts$ct$is_first <- TRUE
-      write_to_db_(
-        self,
-        dsn = self$opts$da$database_dsn,
-        errors = self$qrows |> lapply(\(x) x$log$error),
-        warns = self$qrows |> lapply(\(x) x$log$warn),
-        book_no = self$opts$ct$V_BookNo,
-        questno = self$qrows |> lapply(\(x) x$p$Abbreviation),
-        is_first = self$opts$ct$is_first
-      )
-      invisible(self)
+    #' @description Write a table_charter app html file of the crosstab data
+    #'
+    #' In order to generate the `template_file`,
+    #' run the following comands in your console: \preformatted{
+    #'   git clone https://gitlab.com/urswilke/table_charter
+    #'   cd table_charter
+    #'   npm i
+    #'   npm run standalone-build
+    #' }
+    #' The template file should then be in the `dist/` sub-directory.
+    #'
+    #' @param template_file Path to the template file (see description).
+    #' @param output_file File path to the table_charter app html file.
+    save_html_app = function(
+    template_file,
+    output_file = "dashboard.html"
+    ) {
+      self$prepare_5_tables()
+
+      l <- self$crosstabs$data |> purrr::set_names(c("Tab", "Val", "Row", "Head", "Col"))
+      l$Val <- l$Val |> tidyr::drop_na(Value)
+
+      data_string <- list(type = "table-object", data = l) |>
+        jsonlite::toJSON(
+          dataframe = "columns",
+          na = "null",
+          null = "null",
+          auto_unbox = TRUE
+        )
+      html_code <- readr::read_lines(template_file)
+      html_code_with_data <- html_code |>
+        stringr::str_replace(
+          "<table-charter-intro></table-charter-intro>",
+          paste0("<table-charter-intro data='", data_string, "'></table-charter-intro>")
+        )
+      write(html_code_with_data, file = output_file)
+
     },
     # TODO: ask Wolf:
     # add more information to the print output, e.g.:
@@ -146,6 +170,19 @@ Tabula <- R6::R6Class(
     }
   ),
   private = list(
+    new_Qrow = Qrow,
+    read_qsheet = function(row) {
+      qsheet_raw <- read_qsheet_raw(self, row)
+      self$qsheet$qsheet_raw <- qsheet_raw
+    },
+    process_qsheet = function(row) {
+      private$read_qsheet(row)
+      qsheet_raw <- self$qsheet$qsheet_raw
+      self$qrows <- lapply(
+        split(qsheet_raw, qsheet_raw$row),
+        \(df) private$new_Qrow$new(df, self)
+      )
+    },
     glob_filter = NULL,
     filter_global = function() {
       global_filter <- self$opts$ct$l_macro_scenario$Filter
@@ -158,15 +195,9 @@ Tabula <- R6::R6Class(
       }
 
       self$dat_tab <- self$dat_mod[private$glob_filter,]
+    },
+    prepare_head_col_tables = function() {
+      prepare_head_col_tables_(self)
     }
-
   )
 )
-parse_qsheet <- function(mapping, row) {
-  qsheet_raw <- read_qsheet_raw(mapping, row)
-  mapping$qsheet$qsheet_raw <- qsheet_raw
-  mapping$qrows <- lapply(
-    split(qsheet_raw, qsheet_raw$row),
-    \(df) Qrow$new(df, mapping)
-  )
-}

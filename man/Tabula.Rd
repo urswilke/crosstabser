@@ -8,14 +8,14 @@ The class \code{Tabula} can be used to calculate the crosstabs
 specified on the Questions sheet of the Excel mapping file.
 }
 \examples{
-# This is copied from datenanpassr and will just serve as a template when the
+# This is copied from datadaptor and will just serve as a template when the
 # code will be documented...
 
 
 # Create a Mapping object from the files provided by the package:
-mapping_file <- system.file("extdata", "mapping.xlsx", package = "datenanpassr")
-spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datenanpassr")
-# DOESN'T WORK WITH DATENANPASSR MAPPING FILE!!!
+mapping_file <- system.file("extdata", "mapping.xlsx", package = "datadaptor")
+spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datadaptor")
+# DOESN'T WORK WITH datadaptor MAPPING FILE!!!
 \dontrun{
 mapping <- Tabula$new(spss_file, mapping_file)
 
@@ -41,7 +41,7 @@ mapping$dat_mod
 }
 }
 \section{Super class}{
-\code{\link[datenanpassr:Mapping]{datenanpassr::Mapping}} -> \code{Tabula}
+\code{\link[datadaptor:Mapping]{datadaptor::Mapping}} -> \code{Tabula}
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -53,8 +53,8 @@ mapping$dat_mod
 \item{\code{row}}{Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
 Or \code{NULL} (the default) resulting in the selection of all row numbers where \code{Type} is specified.}
 
-\item{\code{dat}}{\code{dat} field of the super-class \code{datenanpassr::Mapping}.
-If this is specified, dat_mod will be ignored, and instead generated with \code{datenanpassr::Mapping$modify_data()}}
+\item{\code{dat}}{\code{dat} field of the super-class \code{datadaptor::Mapping}.
+If this is specified, dat_mod will be ignored, and instead generated with \code{datadaptor::Mapping$modify_data()}}
 }
 \if{html}{\out{</div>}}
 }
@@ -72,8 +72,8 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
 \item \href{#method-Tabula-set_options}{\code{Tabula$set_options()}}
 \item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
-\item \href{#method-Tabula-assemble_crosstab_data}{\code{Tabula$assemble_crosstab_data()}}
-\item \href{#method-Tabula-write_to_db}{\code{Tabula$write_to_db()}}
+\item \href{#method-Tabula-prepare_5_tables}{\code{Tabula$prepare_5_tables()}}
+\item \href{#method-Tabula-save_html_app}{\code{Tabula$save_html_app()}}
 \item \href{#method-Tabula-print}{\code{Tabula$print()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
@@ -81,9 +81,9 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="modify_data"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-modify_data'><code>datenanpassr::Mapping$modify_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="process_sheet_commands"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-process_sheet_commands'><code>datenanpassr::Mapping$process_sheet_commands()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="datenanpassr" data-topic="Mapping" data-id="save"><a href='../../datenanpassr/html/Mapping.html#method-Mapping-save'><code>datenanpassr::Mapping$save()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="modify_data"><a href='../../datadaptor/html/Mapping.html#method-Mapping-modify_data'><code>datadaptor::Mapping$modify_data()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="process_sheet_commands"><a href='../../datadaptor/html/Mapping.html#method-Mapping-process_sheet_commands'><code>datadaptor::Mapping$process_sheet_commands()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="save"><a href='../../datadaptor/html/Mapping.html#method-Mapping-save'><code>datadaptor::Mapping$save()</code></a></span></li>
 </ul>
 </details>
 }}
@@ -99,7 +99,6 @@ Initialize a Tabula object
   row = NULL,
   dat = NULL,
   tabulate = TRUE,
-  qrow_db_write = FALSE,
   ...
 )}\if{html}{\out{</div>}}
 }
@@ -124,22 +123,41 @@ Initialize a Tabula object
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-assemble_crosstab_data"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-assemble_crosstab_data}{}}}
-\subsection{Method \code{assemble_crosstab_data()}}{
+\if{html}{\out{<a id="method-Tabula-prepare_5_tables"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-prepare_5_tables}{}}}
+\subsection{Method \code{prepare_5_tables()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$assemble_crosstab_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$prepare_5_tables()}\if{html}{\out{</div>}}
 }
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-write_to_db"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-write_to_db}{}}}
-\subsection{Method \code{write_to_db()}}{
+\if{html}{\out{<a id="method-Tabula-save_html_app"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-save_html_app}{}}}
+\subsection{Method \code{save_html_app()}}{
+Write a table_charter app html file of the crosstab data
+
+In order to generate the \code{template_file},
+run the following comands in your console: \preformatted{
+  git clone https://gitlab.com/urswilke/table_charter
+  cd table_charter
+  npm i
+  npm run standalone-build
+}
+The template file should then be in the \verb{dist/} sub-directory.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$write_to_db()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$save_html_app(template_file, output_file = "dashboard.html")}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{template_file}}{Path to the template file (see description).}
+
+\item{\code{output_file}}{File path to the table_charter app html file.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-print"></a>}}

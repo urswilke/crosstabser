@@ -13,7 +13,7 @@ read_qsheet_raw.excel <- function(mapping, row) {
     check_names = TRUE,
     rows = rows
   ) |>
-    datenanpassr::format_sheet_data()
+    datadaptor::format_sheet_data()
   if (do_all) {
     res0 <- df_questions |>
       # first row column names... (=> " + 1"):
@@ -32,7 +32,7 @@ read_qsheet_raw.list <- function(mapping, row) {
     # TODO: find cleaner solution
     empty_qsheet(),
     mapping$mapping_file$Questions |>
-      datenanpassr::format_sheet_data()
+      datadaptor::format_sheet_data()
   )
   df_questions |>
       # first row column names... (=> " + 1"):

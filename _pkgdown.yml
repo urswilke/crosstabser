@@ -1,0 +1,11 @@
+# _pkgdown.yml
+url: https://urswilke.gitlab.io/crosstabser/
+repo:
+  url:
+    home: https://gitlab.com/urswilke/crosstabser/
+    source: https://gitlab.com/urswilke/crosstabser/-/tree/master/
+    issue: https://gitlab.com/urswilke/crosstabser/issues/
+    user: https://gitlab.com/
+template:
+  bootstrap: 5
+destination: public/

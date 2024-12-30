@@ -21,7 +21,7 @@ check_100percent <- function(qtab) {
   } else {
     n_unequal_100 <- sum(var_sums != 100)
     # TODO: Specify the ID variable name in the mapping instead of "DC_ID"
-    # (cf. R_id_var in datenanpassr)...:
+    # (cf. R_id_var in datadaptor)...:
     ids_unequal_100 <- qtab$m$dat_tab$DC_ID[!filtered_row_idx][var_sums != 100]
 
     warn_part1 <- paste0(
