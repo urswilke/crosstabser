@@ -103,11 +103,10 @@ get_tabula_options.google <- function(tabula, ...) {
 }
 
 read_dictionary <- function(V_Language) {
-  df_lexikon_raw <- utils::read.delim(
-    # TODO: derive path to Lexikon in Funktionen.xlsm from mapping file:
-    system.file("extdata", "lexikon.csv", package = "crosstabser"),
-    header = FALSE,
-    sep = ";"
+  df_lexikon_raw <- utils::read.csv(
+    # df <- openxlsx2::read_xlsx("K:/Tools/TableBook/master/Funktionen/Funktionen master.xlsm", sheet = "Lexikon")
+    # write.csv(df, "K:/Git/crosstabser/inst/extdata/lexikon.csv", row.names = FALSE)
+    system.file("extdata", "lexikon.csv", package = "crosstabser")
   )
 
   df_lexikon_raw[-1, c(1, V_Language + 1)] |> tibble::deframe()

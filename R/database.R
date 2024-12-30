@@ -91,28 +91,8 @@ prepare_tab_table_tb <- function(qrow) {
 prepare_row_table_tb <- function(qrow) {
   row_table <- qrow$crosstabs$data$row_table
 
-  # constants for bitwise or operation for Row$RowTypeg
-  # TODO: What should we do with the SumOfValid...?
-  cArt <- list(
-    Title = 0,
-    Header = 1,
-    Total = 8,
-    Detail = 4,
-    Summary = 5,
-    Statistics = 6,
-    Valid = 9,
-    Missing = 10,
-    Filter = 11,
-    Empty = 2,
-    MStatistics = 16,
-    MValid = 17,
-    AbsWeighted = 20,
-    AbsUnweighted = 21,
-    PercentWeighted = 24,
-    PercentUnweighted = 25,
-    Abs = 22,
-    Percent = 26
-  )
+  # TODO: stupid hack to get lexikon value, should probably be method of Tabula class
+  lexikonret <- function(x, lexikon) { lexikon[x]}
 
   qrow$crosstabs$data$row_table <- row_table |>
     dplyr::mutate(
@@ -122,10 +102,15 @@ prepare_row_table_tb <- function(qrow) {
         RowAbsPercent,
         RowWeighted
       ),
-      RowType = bitwOr(2 ^ unlist(cArt[gsub("^.*\\|", "", RowTypeS)]), 2 ^ unlist(cArt[gsub("\\|.*$", "", RowTypeS)])),
-      # "\\u2696" is the unicode escape for the weight sign
-      # TODO: get from cTabWeighted...!:
-      RowContentDetail = dplyr::if_else(grepl("Statistics$", RowContent), sub("\u2696", "", RowTitle3), ""),
+      RowType = bitwOr(
+        as.numeric(lexikonret(paste0("cArt", gsub("^.*\\|", "", RowTypeS)), qrow$m$opts$ct$l_lexikon)),
+        as.numeric(lexikonret(paste0("cArt", gsub("\\|.*$", "", RowTypeS)), qrow$m$opts$ct$l_lexikon))
+        ),
+      RowContentDetail = dplyr::if_else(
+        grepl("Statistics$", RowContent),
+        sub(lexikonret("cTabWeighted", qrow$m$opts$ct$l_lexikon), "", RowTitle3),
+        ""
+      ),
     ) |>
     add_book_no(qrow$m$opts$ct$V_BookNo)
 
