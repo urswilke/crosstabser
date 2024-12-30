@@ -90,9 +90,7 @@ prepare_tab_table_tb <- function(qrow) {
 }
 prepare_row_table_tb <- function(qrow) {
   row_table <- qrow$crosstabs$data$row_table
-
-  # TODO: stupid hack to get lexikon value, should probably be method of Tabula class
-  lexikonret <- function(x, lexikon) { lexikon[x]}
+  lexikon <- qrow$m$opts$ct$l_lexikon
 
   qrow$crosstabs$data$row_table <- row_table |>
     dplyr::mutate(
@@ -103,12 +101,12 @@ prepare_row_table_tb <- function(qrow) {
         RowWeighted
       ),
       RowType = bitwOr(
-        as.numeric(lexikonret(paste0("cArt", gsub("^.*\\|", "", RowTypeS)), qrow$m$opts$ct$l_lexikon)),
-        as.numeric(lexikonret(paste0("cArt", gsub("\\|.*$", "", RowTypeS)), qrow$m$opts$ct$l_lexikon))
-        ),
+        as.numeric(lexikon[paste0("cArt", gsub("^.*\\|", "", RowTypeS))]),
+        as.numeric(lexikon[paste0("cArt", gsub("\\|.*$", "", RowTypeS))])
+      ),
       RowContentDetail = dplyr::if_else(
         grepl("Statistics$", RowContent),
-        sub(lexikonret("cTabWeighted", qrow$m$opts$ct$l_lexikon), "", RowTitle3),
+        sub(lexikon["cTabWeighted"], "", RowTitle3),
         ""
       ),
     ) |>
