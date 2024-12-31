@@ -83,6 +83,7 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers where
 <ul>
 <li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="modify_data"><a href='../../datadaptor/html/Mapping.html#method-Mapping-modify_data'><code>datadaptor::Mapping$modify_data()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="process_sheet_commands"><a href='../../datadaptor/html/Mapping.html#method-Mapping-process_sheet_commands'><code>datadaptor::Mapping$process_sheet_commands()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="read_data"><a href='../../datadaptor/html/Mapping.html#method-Mapping-read_data'><code>datadaptor::Mapping$read_data()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="save"><a href='../../datadaptor/html/Mapping.html#method-Mapping-save'><code>datadaptor::Mapping$save()</code></a></span></li>
 </ul>
 </details>
