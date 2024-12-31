@@ -82,7 +82,7 @@ Tabula <- R6::R6Class(
         super$modify_data()
       } else
       if (!is.null(dat_mod)) {
-        self$dat_mod <- datadaptor::read_data(dat_mod)
+        self$dat_mod <- self$read_data(dat_mod)
       }
       if (tabulate) {
         self$calc_qtabs(row)
