@@ -133,8 +133,8 @@ Tabula <- R6::R6Class(
     #' @param template_file Path to the template file (see description).
     #' @param output_file File path to the table_charter app html file.
     save_html_app = function(
-    template_file,
-    output_file = "dashboard.html"
+      template_file,
+      output_file = "dashboard.html"
     ) {
       self$prepare_5_tables()
 
