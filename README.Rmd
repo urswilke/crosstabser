@@ -16,9 +16,18 @@ knitr::opts_chunk$set(
 # crosstabser
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/crosstabser)](https://CRAN.R-project.org/package=crosstabser)
+[![crosstabser status badge](https://urswilke.r-universe.dev/crosstabser/badges/version)](https://urswilke.r-universe.dev/crosstabser)
 <!-- badges: end -->
 
-The goal of crosstabser is to ...
+The goal of crosstabser is to generate crosstabs from labelled data (usually survey data).
+Its parent dependency [datadaptor](https://gitlab.com/urswilke/datadaptor) 
+uses a similar approach to modify datasets. 
+The generated crosstabs can be plotted interactively in html files with the apps
+provided by [table_charter](https://gitlab.com/urswilke/table_charter).
+<!-- TODO: refer to table books on our website!-->
+<!-- TODO: refer to spreadator!-->
+
 
 ## Installation
 
@@ -40,6 +49,7 @@ library(crosstabser)
 ### Minimal example
 
 Suppose you have survey data `df`.
+
 ```{r}
 df <- tibble::tibble(
   q1 = c(1, 2, 1) |> haven::labelled(c(Yes = 1, No = 2), label = "Super important question"),
@@ -47,21 +57,35 @@ df <- tibble::tibble(
 )
 df
 ```
+
 The data consists of 3 cases with the answers Yes & No stored in the variable `q1` and the age category stored in the variable `age`.
 
 And suppose you want to generate a crosstab, summarizing the values of `q1` on the y-axis, and on the x-axis showing the total counts, as well as those in the sub-populations of the variable `age`.
 
 crosstabser allows this if you define a mapping object like this:
+
 ```{r}
-(mapping_file = list(Questions = data.frame(
-  Type  = "cat",
-  RowVar = "q1",
-  Title = "The crosstab's title"
-)))
+(mapping_file = list(
+  Questions = data.frame(
+    Type  = "cat",
+    RowVar = "q1",
+    Title = "The crosstab's title"
+  ),
+  Macro = list(ColVar = "age")
+))
 ```
-This is a list with one element `"Questions"` containing a one row data.frame.
+
 Then you can use the package's `Tabula` class to generate print output of the crosstab in the console:
+
 ```{r}
-Tabula$new(df, mapping_file, colvar = "age")
+Tabula$new(df, mapping_file)
 ```
+
+Please refer to `vignette("questions")` for some more examples, 
+and `vignette("questions-parameters")` 
+for details how to use the parameters in the mapping.
+[Here](https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/)
+you can find an interactive introduction 
+that also shows the resulting table_charter app.
+
 

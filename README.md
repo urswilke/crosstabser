@@ -4,9 +4,21 @@
 # crosstabser
 
 <!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/crosstabser)](https://CRAN.R-project.org/package=crosstabser)
+[![crosstabser status
+badge](https://urswilke.r-universe.dev/crosstabser/badges/version)](https://urswilke.r-universe.dev/crosstabser)
 <!-- badges: end -->
 
-The goal of crosstabser is to …
+The goal of crosstabser is to generate crosstabs from labelled data
+(usually survey data). Its parent dependency
+[datadaptor](https://gitlab.com/urswilke/datadaptor) uses a similar
+approach to modify datasets. The generated crosstabs can be plotted
+interactively in html files with the apps provided by
+[table_charter](https://gitlab.com/urswilke/table_charter).
+<!-- TODO: refer to table books on our website!-->
+<!-- TODO: refer to spreadator!-->
 
 ## Installation
 
@@ -52,24 +64,30 @@ as those in the sub-populations of the variable `age`.
 crosstabser allows this if you define a mapping object like this:
 
 ``` r
-(mapping_file = list(Questions = data.frame(
-  Type  = "cat",
-  RowVar = "q1",
-  Title = "The crosstab's title"
-)))
+(mapping_file = list(
+  Questions = data.frame(
+    Type  = "cat",
+    RowVar = "q1",
+    Title = "The crosstab's title"
+  ),
+  Macro = list(ColVar = "age")
+))
 #> $Questions
 #>   Type RowVar                Title
 #> 1  cat     q1 The crosstab's title
+#> 
+#> $Macro
+#> $Macro$ColVar
+#> [1] "age"
 ```
 
-This is a list with one element `"Questions"` containing a one row
-data.frame. Then you can use the package’s `Tabula` class to generate
-print output of the crosstab in the console:
+Then you can use the package’s `Tabula` class to generate print output
+of the crosstab in the console:
 
 ``` r
-Tabula$new(df, mapping_file, colvar = "age")
-#> [[1]]
-#> [[1]][[1]]
+Tabula$new(df, mapping_file)
+#> $`2`
+#> $`2`[[1]]
 #> # The crosstab's title
 #>                            TOTAL age   -----
 #>                                  18-39 40+  
@@ -81,3 +99,10 @@ Tabula$new(df, mapping_file, colvar = "age")
 #> VALID CASES          abs     3       2     1
 #>                      in %  100     100   100
 ```
+
+Please refer to `vignette("questions")` for some more examples, and
+`vignette("questions-parameters")` for details how to use the parameters
+in the mapping.
+[Here](https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/)
+you can find an interactive introduction that also shows the resulting
+table_charter app.
