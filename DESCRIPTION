@@ -1,5 +1,5 @@
 Package: crosstabser
-Title: Generate crosstabs for Excel with R
+Title: Generate Crosstabs of Labelled Data Sets With Excel Files
 Version: 0.0.0.9000
 Authors@R: 
     c(
@@ -13,7 +13,10 @@ Authors@R:
                role = c("aut"),
                email = "wilke@data-connection.de")
     )
-Description: Generate crosstabs in XML (?) format with R that can then be read in with Excel.
+Description: An R package to use commands in Excel files 
+    to generate crosstabs of labelled data sets (usually survey data).
+    The crosstabs can be printed to the console,
+    and serve as an input for an app to plot them interactively.
 License: AGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
