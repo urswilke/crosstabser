@@ -17,6 +17,12 @@ The goal of crosstabser is to generate crosstabs from labelled data
 approach to modify datasets. The generated crosstabs can be plotted
 interactively in html files with the apps provided by
 [table_charter](https://gitlab.com/urswilke/table_charter).
+
+[Here](https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/)
+you can find an interactive introduction that also shows how the
+resulting table_charter app can be dynamically created with the data
+from crosstabser.
+
 <!-- TODO: refer to table books on our website!-->
 <!-- TODO: refer to spreadator!-->
 
@@ -102,7 +108,5 @@ Tabula$new(df, mapping_file)
 
 Please refer to `vignette("questions")` for some more examples, and
 `vignette("questions-parameters")` for details how to use the parameters
-in the mapping.
-[Here](https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/)
-you can find an interactive introduction that also shows the resulting
-table_charter app.
+in the mapping. In `vignette("data-format")` we have a closer look at
+the structure of the crosstabs’ underlying data.
