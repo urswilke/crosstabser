@@ -55,6 +55,7 @@ get_tabula_options.excel <- function(tabula, book_no = NULL, ...) {
 
   l_lexikon <- read_dictionary(V_Language)
 
+  # TODO: move to spreadator!
   if (is.null(book_no)) {
     book_no <- openxlsx2::wb_read(
       tabula$wb,
