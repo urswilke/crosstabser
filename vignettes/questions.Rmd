@@ -1,8 +1,8 @@
 ---
-title: "Question types for crosstabs"
+title: "Calculating crosstabs"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Question types for crosstabs}
+  %\VignetteIndexEntry{Calculating crosstabs}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,6 +14,124 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+In this vignette we'll show some examples how crosstabs can be generated.
+[Here](https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/)
+you can find an interactive version of this vignette 
+that will also automatically generate an interactive
+[table_charter](https://gitlab.com/urswilke/table_charter) app of the crosstabs.
+First we'll load the library
+
+```{r, setup}
 library(crosstabser)
+library(haven)
 ```
+
+and define a labelled data.frame:
+
+<details>
+  <summary>Show code how the data.frame was generated</summary>
+
+```{r}
+set.seed(123)
+n <- 10
+df <- tibble::tibble(
+    q1_1 = sample(c(0, 1), n, TRUE) |> labelled(c(Selected = 1, Unselected = 0), label = "Pizza"),
+    q1_2 = sample(c(0, 1), n, TRUE) |> labelled(c(Selected = 1, Unselected = 0), label = "Lasagne"),
+    q1_3 = sample(c(0, 1), n, TRUE) |> labelled(c(Selected = 1, Unselected = 0), label = "Bruschetta"),
+    q2n1 = sample(c(1, 2, 3), n, TRUE) |> labelled(c(Beer=1, Sauerkraut=2, Brezel = 3), label = "1st choice"),
+    q2n2 = sample(c(1, 2, 3, rep(NA_real_, 1)), n, TRUE) |> labelled(c(Beer = 1, Sauerkraut = 2, Brezel = 3), label = "2nd choice"),
+    q2n3 = sample(c(1, 2, 3, rep(NA_real_, 4)), n, TRUE) |> labelled(c(Beer = 1, Sauerkraut = 2, Brezel = 3), label = "3rd choice"),
+    q2n4 = sample(c(1, 2, 3, rep(NA_real_, 8)), n, TRUE) |> labelled(c(Beer = 1, Sauerkraut = 2, Brezel = 3), label = "4th choice"),
+    q3_1 = sample(c(1, 2, 3, 4, 5), n, TRUE) |> labelled(c("Not at all" = 1, "2" = 2, "3" = 3, "4" = 4, "Very much" = 5), label = "Dogs are cool"),
+    q3_2 = sample(c(1, 2, 3, 4, 5), n, TRUE) |> labelled(c("Not at all" = 1, "2" = 2, "3" = 3, "4" = 4, "Very much" = 5), label = "Cats are beautiful"),
+    age  = sample(c(1, 2, 3), n, TRUE) |> labelled(c("18-39" = 1, "40-59" = 2, "60+" = 3), label = "age"),
+    gew = runif(n, 0.5, 3),
+)
+# Here, we make sure that this weight variable sums up to `n`:
+df$gew <- df$gew / mean(df$gew)
+```
+</details>
+
+```{r}
+df
+```
+
+Next we define the syntax to generate crosstabs:
+```{r}
+Questions <- tibble::tibble(
+  Abbreviation = c("age", "fav_it", "fav_de", "item_bat"),
+  Title = c(
+    "Age", "What`s your favorite Italian food?",
+    "What`s your favorite German food?", "How much do you agree?"
+  ),
+  Type = c("cat", "mdg", "mcg", "mw"),
+  RowVar = c("age", "q1_1 q1_2 q1_3", "q2n1 q2n2 q2n3 q2n4", "q3_1 q3_2"),
+  MdgMissLab = c("", "No answer", "", ""),
+  Freq = c("", "", "", "0")
+)
+Questions
+```
+
+To define the columns along the x-axis of the crosstabs, we need to define a character vector of variable names in `df`:
+
+```{r}
+ColVar <- "age"
+```
+
+The default method to generate crosstabs is by using Excel mapping files. 
+You could generate a template "mapping.xlsx" for such a file by using:
+
+```{r, eval=FALSE}
+create_tabula(df, "mapping.xlsx")
+```
+In the generated file you could then copy `Questions` into the corresponding columns of the "Questions" sheet, 
+and `ColVar` into the "ColVar" row of the "Macro" sheet. There, the column that is used is defined by the number of the named region "V_Scenario" that corresponds to the "Scenario" row (this allows to store varying parameter sets for different scenarios).
+
+However, for easier documentation the package also allows to define mappings as lists 
+consisting of 2 data.frame elements `Questions` & `Macro`:
+```{r}
+mapping_file <- list(Questions = Questions, Macro = list(ColVar = ColVar))
+```
+
+Now we can construct an R6 object of class "Tabula":
+
+```{r}
+m <- Tabula$new(
+  df,
+  mapping_file,
+)
+```
+
+The `Tabula` class has a special print method that prints all the crosstabs calculated:
+
+```{r}
+m
+```
+
+If you want to weight the variables by `df$gew`, here's how:
+```{r}
+mapping_file$Macro$Weight <- "gew"
+m <- Tabula$new(
+  df,
+  mapping_file,
+  tabulate = FALSE,
+)
+# (by setting `tabulate = FALSE and the next line,
+# we can change options, before calculating the crosstabs.
+# this changes the Symbol for the weighted rows from "⚖" to "W" for a better print output):
+m$opts$ct$l_lexikon["cTabWeighted"] <- " W"
+m$calc_qtabs()
+m
+```
+
+You can also generate both, unweighted & weighted rows (alternating) in the tables by further adding:
+```{r}
+# alternatively we could have set this parameter upfront, as above:
+# mapping_file$Macro$Unwgt <- TRUE
+m$opts$ct$l_macro_scenario$Unwgt <- TRUE
+m$calc_qtabs()
+m
+```
+
+For the various options how to modify the crosstabs, please have a look at
+`vignette("question-parameters")`.

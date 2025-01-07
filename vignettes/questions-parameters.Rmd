@@ -1,0 +1,80 @@
+---
+title: "Parameters in the Questions sheet"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Parameters in the Questions sheet}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette lists the options how to modify the crosstabs generated with crosstabser.
+The items in the bullet points correspond to the column headers of the table in the Questions sheet: 
+
+-	Abbreviation: A unique identifier string
+-	Title: Question title that will be shown in the table; 
+  A blank in single quotes (`' '`) inserts a line break
+<!-- TODO: use different names for the 4 types-->
+-	Type: Defining the type of question; possible cases:
+    -	`"cat"`: for single-choice questions
+    -	`"mw"`: for item batteries questions, 
+      e.g. “Rank each item on a scale from 1 – 5.”; 
+      creating a series of tables of several categorical variables (all containing the same categories). 
+      First a table is created showing the mean values of all the variables in its lines, the “Summary of means” table. 
+      Then, a series of tables showing the frequency counts of each of the categorical variables is generated similar to the case `“cat”`, the “detail tables”. 
+    -	`"mdg"`: multiple dichotomy group (called MDGROUP in SPSS); multiple-choice question;
+      For each answer possibility there is one variable; 
+      the text of the choice is in the variable label of the accdording variable;
+      If this answer was selected the variable usually has the value 1.
+    -	`"mcg"` : multiple category group (called  MCGROUP in SPSS); multiple-choice question; 
+      This is an alternative way to `"mdg"` to code multiple choice questions.
+      The answer possibilities are stored in the value labels here (every variable has the same value labels).
+      This means, you need at least as many variables as the maximum number of choices that were selected by the respondents.
+-	RowVar: variable names containing the information to be tabulated
+-	Unguelt: values / variable names (for `"mdg"`) representing the unvalid cases 
+-	Filter: logical expression for the cases that should be filtered
+-	CatRec & CatLab:
+CatRec: Possibility to add to the table of a categorical variable (“Type” = “cat” or “mw”) the statistics of a recoded variable summarizing categories
+CatLab: Definition of the labels of the recoded summary variable in CatRec
+<!-- TODO: Example: Summarize a categorical variable from 1 to 5, where 1: very positive, 2:positive, 3 neutral, 4 negative and 5 very negative: Reassign 1 & 2 to 1, 3 to 2, and 4 & 5 to 3: -->
+<!-- CatRec: (1 THRU 2=1) (3=2) (4 THRU 5=3)|(1 THRU 34=1) -->
+<!-- CatLab: 1 '1 and 2' 2 '3' 3 '4 and 5'|1 ‘2nd summary’ -->
+-	MWRec: values can be recoded for the calculation of the mean value with the equal syntax as in CatRec.
+-	UngueltMW: values that are excluded for the mean value calculation (if empty, Unguelt ist taken)
+-	MetrMac: Possibility to add one or more of the following lines to the table showing statistics of the variable:
+    -	Sx: Mean with x decimals
+    -	Mx: Median with x decimals
+    -	Tx: Total with x decimals
+    -	Ex: Standard error with x decimals
+    - Ix: Minimum with x decimals
+    - Ax: Maximum with x decimals
+    -	Pnnx: `nn`th Percentile with x decimals
+<!-- -	MWVar: take this variable instead of rowvar for calculating the mean -->
+-	Sort: Possibility to resort the columns showing the categories in the table alphanumerically or by share;\
+  Examples:
+    -	Descending by frequency of items: ORDER=D KEY=COUNT 
+    -	Ascending: ORDER=A
+-	SelVar & SelVal:
+  calculates the table(s) conditionally for every value in SelVal that the Variable SelVar takes, the variables in rowvar have to be mentioned as many times as selvar has items. Format of selval: “1 2 3 4:Name_it_different 2-97:All_others” to produce a table for all values 1 to 4 and one where 2-97 are combined and labelled “All others”. 
+-	MW: if 0 the summary table is not calculated for `Type = "mw"`
+-	Freq: If 0 the detail tables are not calculated for `Type = "mw"`
+<!-- TODO:-	Zsfg: ?? -->
+<!-- -	ColPl: Different headers than in Sheet Macro Row ColPl can be defined (have to have the same number of columns) -->
+-	MdgVal: The value that is counted as selected for `Type = "mdg"`, can be a range (either 0-97 or 0 THRU 97)
+-	MdgMissLab: The Label that is written for the count of cases where none of the variables is selected (type mdg); Default in English: “No entry in the selected variables” (see lexikon `cTabNoEntry`)
+-	MdgMissValid: if TRUE missing cases are set to valid (`Type = "mdg"`)
+-	Einzelauspraegung: if set to 0 the rows in the table corresponding to the values of the variable are removed from the table (`Type = "cat"`)
+-	ZsfgMW: Function name to use in `Type = "mw"`
+<!-- TODO: -	ZsfgMFA: SPSS Syntax for rows in mdg / mcg (normally count and share of valid answers) -->
+-	Weight: variable with which the values are weighted (will overwrite the one that is set in the sheet Macro if existing)
+<!-- TODO: -	WeightLab: will be added to the title of the table in a new line, syntax unsure -->
+-	MeanOverviewLabel: label for summary of means table (normally “Summary of means”, cf. lexikon `cTabMeanOV`)
+-	Mult: if TRUE in SelVar/SelVal interviews should be counted double, if SelVar is SelVal more than once (i.e. if in SelVar two “Other manufacturers” mentioned, they will be seen as two answers)
+-	RvEmp: If set to “EXCLUDE” Rows of values in the resulting tables with 0 counts will be removed.
+<!-- TODO: -	Categories: New feature to be programmed for mcg tables showing a recoded summary variable as in CatRec, however without double-counting individuals in the new categories of the recoded variable; the categories of the recoded variable are shown in the lines above the according original categories. -->
