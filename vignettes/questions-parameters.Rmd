@@ -24,10 +24,10 @@ The items in the bullet points correspond to the column headers of the table in 
 -	`Type`: Defining the type of question; possible cases:
     -	`"cat"`: for single-choice questions
     -	`"mw"`: for item batteries questions, 
-      e.g. “Rank each item on a scale from 1 – 5.”; 
+      e.g. "Rank each item on a scale from 1 – 5."; 
       creating a series of tables of several categorical variables (all containing the same categories). 
-      First a table is created showing the mean values of all the variables in its lines, the “Summary of means” table. 
-      Then, a series of tables showing the frequency counts of each of the categorical variables is generated similar to the case `“cat”`, the “detail tables”. 
+      First a table is created showing the mean values of all the variables in its lines, the "Summary of means" table. 
+      Then, a series of tables showing the frequency counts of each of the categorical variables is generated similar to the case `"cat"`, the "detail tables". 
     -	`"mdg"`: multiple dichotomy group (called MDGROUP in SPSS); multiple-choice question;
       For each answer possibility there is one variable; 
       the text of the choice is in the variable label of the accdording variable;
@@ -61,20 +61,20 @@ The items in the bullet points correspond to the column headers of the table in 
     -	Descending by frequency of items: `ORDER=D KEY=COUNT`
     -	Ascending: `ORDER=A`
 -	`SelVar` & `SelVal`:
-  calculates the table(s) conditionally for every value in SelVal that the Variable SelVar takes, the variables in rowvar have to be mentioned as many times as selvar has items. Format of `SelVal`: “1 2 3 4:Name_it_different 2-97:All_others” to produce a table for all values 1 to 4 and one where 2-97 are combined and labelled “All others”. 
+  calculates the table(s) conditionally for every value in SelVal that the Variable SelVar takes, the variables in rowvar have to be mentioned as many times as selvar has items. Format of `SelVal`: "1 2 3 4:Name_it_different 2-97:All_others" to produce a table for all values 1 to 4 and one where 2-97 are combined and labelled "All others". 
 -	`MW`: if 0 the summary table is not calculated for `Type = "mw"`
 -	`Freq`: If 0 the detail tables are not calculated for `Type = "mw"`
 <!-- TODO:-	Zsfg: ?? -->
 <!-- -	ColPl: Different headers than in Sheet Macro Row ColPl can be defined (have to have the same number of columns) -->
 -	`MdgVal`: The value that is counted as selected for `Type = "mdg"`, can be a range (either 0-97 or 0 THRU 97)
--	`MdgMissLab`: The Label that is written for the count of cases where none of the variables is selected (`Type = mdg`); Default in English: “No entry in the selected variables” (see lexikon `cTabNoEntry`)
+-	`MdgMissLab`: The Label that is written for the count of cases where none of the variables is selected (`Type = mdg`); Default in English: "No entry in the selected variables" (see lexikon `cTabNoEntry`)
 -	`MdgMissValid`: if TRUE missing cases are set to valid (`Type = "mdg"`)
 -	`Einzelauspraegung`: if set to 0 the rows in the table corresponding to the values of the variable are removed from the table (`Type = "cat"`)
 -	`ZsfgMW`: Function name to use in `Type = "mw"`
 <!-- TODO: -	`ZsfgMFA`: SPSS Syntax for rows in mdg / mcg (normally count and share of valid answers) -->
 -	`Weight`: variable with which the values are weighted (will overwrite the one that is set in the sheet Macro if existing)
 <!-- TODO: -	`WeightLab`: will be added to the title of the table in a new line, syntax unsure -->
--	`MeanOverviewLabel`: label for summary of means table (normally “Summary of means”, cf. lexikon `cTabMeanOV`)
--	`Mult`: if `TRUE` in `SelVar`/`SelVal` interviews should be counted double, if `SelVar` is `SelVal` more than once (i.e. if in `SelVar` two “Other manufacturers” mentioned, they will be seen as two answers)
--	`RvEmp`: If set to `“EXCLUDE”` Rows of values in the resulting tables with 0 counts will be removed.
+-	`MeanOverviewLabel`: label for summary of means table (normally "Summary of means", cf. lexikon `cTabMeanOV`)
+-	`Mult`: if `TRUE` in `SelVar`/`SelVal` interviews should be counted double, if `SelVar` is `SelVal` more than once (i.e. if in `SelVar` two "Other manufacturers" mentioned, they will be seen as two answers)
+-	`RvEmp`: If set to `"EXCLUDE"` Rows of values in the resulting tables with 0 counts will be removed.
 <!-- TODO: -	`Categories`: New feature to be programmed for `Type = mcg` tables showing a recoded summary variable as in `CatRec`, however without double-counting individuals in the new categories of the recoded variable; the categories of the recoded variable are shown in the lines above the according original categories. -->
