@@ -46,7 +46,8 @@ read_qsheet_raw.google <- function(mapping, row) {
 
 empty_qsheet <- function() {
   tibble::tibble(
-    Abbreviation = character(0), Unguelt = character(0),
+    Abbreviation = character(0), Title = character(0), RowVar = character(0),
+    Type = character(0), Unguelt = character(0),
     Filter = character(0), CatRec = character(0), CatLab = character(0),
     MWRec = character(0), UngueltMW = character(0), MetrMac = character(0),
     R = character(0), Fussnote = character(0), Sort = character(0),
