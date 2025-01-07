@@ -43,6 +43,7 @@ Remotes: gitlab::urswilke/datadaptor
 Suggests: 
     testthat (>= 3.0.0),
     haven,
+    ggplot2,
     withr,
     knitr,
     rmarkdown
