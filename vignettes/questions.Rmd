@@ -134,4 +134,4 @@ m
 ```
 
 For the various options how to modify the crosstabs, please have a look at
-`vignette("question-parameters")`.
+`vignette("questions-parameters")`.
