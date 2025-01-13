@@ -8,4 +8,5 @@ repo:
     user: https://gitlab.com/
 template:
   bootstrap: 5
+  light-switch: true
 destination: public/
