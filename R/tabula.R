@@ -70,7 +70,6 @@ Tabula <- R6::R6Class(
     dat_mod = NULL,
     dat_tab = NULL,
     qsheet = list(),
-    qtabs = list(),
     qrows = list(),
     crosstabs = list(),
     ditw = list(da = NULL, ct = NULL),
