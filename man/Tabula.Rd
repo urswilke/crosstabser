@@ -8,37 +8,19 @@ The class \code{Tabula} can be used to calculate the crosstabs
 specified on the Questions sheet of the Excel mapping file.
 }
 \examples{
-# This is copied from datadaptor and will just serve as a template when the
-# code will be documented...
-
-
-# Create a Mapping object from the files provided by the package:
-mapping_file <- system.file("extdata", "mapping.xlsx", package = "datadaptor")
-spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datadaptor")
-# DOESN'T WORK WITH datadaptor MAPPING FILE!!!
-\dontrun{
-mapping <- Tabula$new(spss_file, mapping_file)
-
-# The spss_file path was read into a dataframe in the "dat" field of the
-# mapping object:
-mapping$dat
-
-# The Excel mapping file is translated to a `command_blocks()` object.
-# It contains the processed information in a list structure that has
-# its own print method.
-# You can access it with
-mapping$cmd_tbl$command_blocks
-# Apply the command blocks to the dataset:
-mapping$modify_data()
-
-# Access the modified dataframe:
-mapping$dat_mod
-
-# To write it back to an SPSS file, you could do:
-# mapping$save("path/to/your/file.sav")
-# or with haven (used under the hood by `save()`):
-# haven::write_sav(mapping$dat_mod, "path/to/your/file.sav")
-}
+df <- tibble::tibble(
+  q1 = c(1, 2, 1) |> haven::labelled(c(Yes = 1, No = 2), label = "Super important question"),
+  age = c(2, 1, 1) |> haven::labelled(c("18-39" = 1, "40+" = 2), label = "age")
+)
+mapping_file = list(
+  Questions = data.frame(
+    Type  = "cat",
+    RowVar = "q1",
+    Title = "The crosstab's title"
+  ),
+  Macro = list(ColVar = "age")
+)
+Tabula$new(df, mapping_file)
 }
 \section{Super class}{
 \code{\link[datadaptor:Mapping]{datadaptor::Mapping}} -> \code{Tabula}
@@ -55,6 +37,15 @@ If this is specified, dat_mod will be ignored,
 and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
 \item{\code{qrows}}{A \code{list()} of \code{Qrow} objects}
+
+\item{\code{dat_tab, qsheet, crosstabs, ditw}}{Will be deprecated}
+}
+\if{html}{\out{</div>}}
+}
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{dat_tab, qsheet, crosstabs, ditw}}{Will be deprecated}
 }
 \if{html}{\out{</div>}}
 }
@@ -209,6 +200,13 @@ This will call the print method of all \code{Qrow} elements in the \code{Tabula$
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$print(...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{Not used for now.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-clone"></a>}}

@@ -8,6 +8,7 @@ and instead generated with `datadaptor::Mapping$modify_data()`"
 doc_dat_mod <- "`dat_mod` modified data field of the super-class `datadaptor::Mapping`."
 doc_mapping_file <- "`mapping_file` file path field of the super-class `datadaptor::Mapping`."
 
+# TODO: somehow hide fields with "Will be deprecated"
 # TODO: check where to add helper functions (or other OOP structure or something else (?))
 # for common tasks in different methods,
 # e.g. stuff where mcg and mdg do the same, etc.
@@ -26,41 +27,24 @@ doc_mapping_file <- "`mapping_file` file path field of the super-class `datadapt
 #' @field mapping_file `r doc_mapping_file`
 #' @field dat `r doc_dat`
 #' @field qrows A `list()` of `Qrow` objects
+#' @field dat_tab,qsheet,crosstabs,ditw Will be deprecated
 #'
 #' @export
 #'
 #' @examples
-#' # This is copied from datadaptor and will just serve as a template when the
-#' # code will be documented...
-#'
-#'
-#' # Create a Mapping object from the files provided by the package:
-#' mapping_file <- system.file("extdata", "mapping.xlsx", package = "datadaptor")
-#' spss_file <- system.file("extdata", "mtcars_labelled.sav", package = "datadaptor")
-#' # DOESN'T WORK WITH datadaptor MAPPING FILE!!!
-#' \dontrun{
-#' mapping <- Tabula$new(spss_file, mapping_file)
-#'
-#' # The spss_file path was read into a dataframe in the "dat" field of the
-#' # mapping object:
-#' mapping$dat
-#'
-#' # The Excel mapping file is translated to a `command_blocks()` object.
-#' # It contains the processed information in a list structure that has
-#' # its own print method.
-#' # You can access it with
-#' mapping$cmd_tbl$command_blocks
-#' # Apply the command blocks to the dataset:
-#' mapping$modify_data()
-#'
-#' # Access the modified dataframe:
-#' mapping$dat_mod
-#'
-#' # To write it back to an SPSS file, you could do:
-#' # mapping$save("path/to/your/file.sav")
-#' # or with haven (used under the hood by `save()`):
-#' # haven::write_sav(mapping$dat_mod, "path/to/your/file.sav")
-#' }
+#' df <- tibble::tibble(
+#'   q1 = c(1, 2, 1) |> haven::labelled(c(Yes = 1, No = 2), label = "Super important question"),
+#'   age = c(2, 1, 1) |> haven::labelled(c("18-39" = 1, "40+" = 2), label = "age")
+#' )
+#' mapping_file = list(
+#'   Questions = data.frame(
+#'     Type  = "cat",
+#'     RowVar = "q1",
+#'     Title = "The crosstab's title"
+#'   ),
+#'   Macro = list(ColVar = "age")
+#' )
+#' Tabula$new(df, mapping_file)
 Tabula <- R6::R6Class(
   "Tabula",
   inherit = datadaptor::Mapping,
@@ -182,6 +166,7 @@ Tabula <- R6::R6Class(
     #'
     #'   This method is called under the hood, if you `print()` a `Tabula` object.
     #'   This will call the print method of all `Qrow` elements in the `Tabula$qrows` field.
+    #' @param ... Not used for now.
     print = function(...) {
       self$qrows |> lapply(\(x) x$qtabs) |> print()
       invisible(self)
