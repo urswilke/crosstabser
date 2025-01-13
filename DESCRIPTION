@@ -1,5 +1,5 @@
 Package: crosstabser
-Title: Generate Crosstabs of Labelled Data Sets With Excel Files
+Title: Generate Crosstabs of Labelled Data Sets with Excel Files
 Version: 0.0.0.9000
 Authors@R: 
     c(
