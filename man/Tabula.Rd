@@ -46,23 +46,15 @@ mapping$dat_mod
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{dat_mod}}{modified dataframe}
+\item{\code{dat_mod}}{\code{dat_mod} modified data field of the super-class \code{datadaptor::Mapping}.}
 
-\item{\code{mapping_file}}{filepath of the Excel mapping file}
+\item{\code{mapping_file}}{\code{mapping_file} file path field of the super-class \code{datadaptor::Mapping}.}
 
-\item{\code{row}}{Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
-Or \code{NULL} (the default) resulting in the selection of all row numbers where \code{Type} is specified.}
+\item{\code{dat}}{\code{dat} input data field of the super-class \code{datadaptor::Mapping}.
+If this is specified, dat_mod will be ignored,
+and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
-\item{\code{dat}}{\code{dat} field of the super-class \code{datadaptor::Mapping}.
-If this is specified, dat_mod will be ignored, and instead generated with \code{datadaptor::Mapping$modify_data()}}
-}
-\if{html}{\out{</div>}}
-}
-\section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{row}}{Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
-Or \code{NULL} (the default) resulting in the selection of all row numbers where \code{Type} is specified.}
+\item{\code{qrows}}{A \code{list()} of \code{Qrow} objects}
 }
 \if{html}{\out{</div>}}
 }
@@ -104,29 +96,73 @@ Initialize a Tabula object
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{dat_mod}}{\code{dat_mod} modified data field of the super-class \code{datadaptor::Mapping}.}
+
+\item{\code{mapping_file}}{\code{mapping_file} file path field of the super-class \code{datadaptor::Mapping}.}
+
+\item{\code{row}}{Numeric vector with the row numbers in the Questions sheet,
+where crosstabs should be calculated, when calling \code{Tabula$calc_qtabs()}.
+Or \code{NULL} (the default) resulting in the selection of all row numbers
+where \code{Type} is specified.}
+
+\item{\code{dat}}{\code{dat} input data field of the super-class \code{datadaptor::Mapping}.
+If this is specified, dat_mod will be ignored,
+and instead generated with \code{datadaptor::Mapping$modify_data()}}
+
+\item{\code{tabulate}}{Logical, whether to call the \code{Tabula$calc_qtabs()}
+method when initializing (defaults to \code{TRUE}).}
+
+\item{\code{...}}{Arguments passed to \code{Tabula$set_options()}}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-set_options"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-set_options}{}}}
 \subsection{Method \code{set_options()}}{
+Set \code{Tabula} options.
+This overwrites \code{datadaptor::Mapping$set_options()}
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$set_options(...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{Arguments passed to \code{get_tabula_options()}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-calc_qtabs"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-calc_qtabs}{}}}
 \subsection{Method \code{calc_qtabs()}}{
+Calculate the crosstabs
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$calc_qtabs(row = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{row}}{Numeric vector with the row numbers in the Questions sheet,
+where crosstabs should be calculated, when calling \code{Tabula$calc_qtabs()}.
+Or \code{NULL} (the default) resulting in the selection of all row numbers
+where \code{Type} is specified.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-prepare_5_tables"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-prepare_5_tables}{}}}
 \subsection{Method \code{prepare_5_tables()}}{
+Calculate the crosstabs
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$prepare_5_tables()}\if{html}{\out{</div>}}
 }
@@ -139,7 +175,8 @@ Initialize a Tabula object
 Write a table_charter app html file of the crosstab data
 
 In order to generate the \code{template_file},
-run the following comands in your console: \preformatted{
+run the following comands in your console (needs git & npm installed):
+\preformatted{
   git clone https://gitlab.com/urswilke/table_charter
   cd table_charter
   npm i
@@ -164,6 +201,10 @@ The template file should then be in the \verb{dist/} sub-directory.
 \if{html}{\out{<a id="method-Tabula-print"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-print}{}}}
 \subsection{Method \code{print()}}{
+Print the crosstabs of the \code{Tabula} object
+
+This method is called under the hood, if you \code{print()} a \code{Tabula} object.
+This will call the print method of all \code{Qrow} elements in the \code{Tabula$qrows} field.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$print(...)}\if{html}{\out{</div>}}
 }

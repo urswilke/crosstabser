@@ -1,3 +1,13 @@
+doc_row <- "Numeric vector with the row numbers in the Questions sheet,
+where crosstabs should be calculated, when calling `Tabula$calc_qtabs()`.
+Or `NULL` (the default) resulting in the selection of all row numbers
+where `Type` is specified."
+doc_dat <- "`dat` input data field of the super-class `datadaptor::Mapping`.
+If this is specified, dat_mod will be ignored,
+and instead generated with `datadaptor::Mapping$modify_data()`"
+doc_dat_mod <- "`dat_mod` modified data field of the super-class `datadaptor::Mapping`."
+doc_mapping_file <- "`mapping_file` file path field of the super-class `datadaptor::Mapping`."
+
 # TODO: check where to add helper functions (or other OOP structure or something else (?))
 # for common tasks in different methods,
 # e.g. stuff where mcg and mdg do the same, etc.
@@ -7,12 +17,15 @@
 #' @description The class \code{Tabula} can be used to calculate the crosstabs
 #'   specified on the Questions sheet of the Excel mapping file.
 #'
-#' @field dat_mod modified dataframe
-#' @field mapping_file filepath of the Excel mapping file
-#' @field row Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
-#'   Or `NULL` (the default) resulting in the selection of all row numbers where `Type` is specified.
-#' @field dat `dat` field of the super-class `datadaptor::Mapping`.
-#'   If this is specified, dat_mod will be ignored, and instead generated with `datadaptor::Mapping$modify_data()`
+#' @param row `r doc_row`
+#' @param dat `r doc_dat`
+#' @param dat_mod `r doc_dat_mod`
+#' @param mapping_file `r doc_mapping_file`
+#'
+#' @field dat_mod `r doc_dat_mod`
+#' @field mapping_file `r doc_mapping_file`
+#' @field dat `r doc_dat`
+#' @field qrows A `list()` of `Qrow` objects
 #'
 #' @export
 #'
@@ -63,6 +76,9 @@ Tabula <- R6::R6Class(
     ditw = list(da = NULL, ct = NULL),
     #' @description Initialize a Tabula object
     #'
+    #' @param tabulate Logical, whether to call the `Tabula$calc_qtabs()`
+    #'   method when initializing (defaults to `TRUE`).
+    #' @param ... Arguments passed to `Tabula$set_options()`
     initialize = function(dat_mod = NULL,
                           mapping_file = NULL,
                           row = NULL,
@@ -88,6 +104,9 @@ Tabula <- R6::R6Class(
         self$calc_qtabs(row)
       }
     },
+    #' @description Set `Tabula` options.
+    #'   This overwrites `datadaptor::Mapping$set_options()`
+    #' @param ... Arguments passed to `get_tabula_options()`.
     set_options = function(...) {
       excel_params <- private$get_named_region_params()
       # If specified in both, excel parameters will be overwritten by the dots:
@@ -103,12 +122,14 @@ Tabula <- R6::R6Class(
         dev
       )
     },
+    #' @description Calculate the crosstabs
     calc_qtabs = function(row = NULL) {
       private$filter_global()
       gen_col_tables(self)
       private$process_qsheet(row)
       invisible(self)
     },
+    #' @description Calculate the crosstabs
     prepare_5_tables = function() {
       l <- self$qrows |>
         lapply(\(x) x$prep_tab_row_val()) |>
@@ -122,7 +143,8 @@ Tabula <- R6::R6Class(
     #' @description Write a table_charter app html file of the crosstab data
     #'
     #' In order to generate the `template_file`,
-    #' run the following comands in your console: \preformatted{
+    #' run the following comands in your console (needs git & npm installed):
+    #' \preformatted{
     #'   git clone https://gitlab.com/urswilke/table_charter
     #'   cd table_charter
     #'   npm i
@@ -157,13 +179,10 @@ Tabula <- R6::R6Class(
       write(html_code_with_data, file = output_file)
 
     },
-    # TODO: ask Wolf:
-    # add more information to the print output, e.g.:
-    #  - the row number in the Question sheet
-    #  - the qtab type
-    #  - the index of the qtab type
-    #  - the parameters of the qtab object,
-    #  - ... (?)
+    #' @description Print the crosstabs of the `Tabula` object
+    #'
+    #'   This method is called under the hood, if you `print()` a `Tabula` object.
+    #'   This will call the print method of all `Qrow` elements in the `Tabula$qrows` field.
     print = function(...) {
       self$qrows |> lapply(\(x) x$qtabs) |> print()
       invisible(self)
