@@ -3,14 +3,12 @@
 #' @field p parameters
 #' @field m `Tabula` object
 #' @field qtabs list of `Qtabs` objects
-#' @field row Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
-#'   Or `NULL` (the default) resulting in the selection of all row numbers where `Type` is specified.
 #' @field log log entries
 #'
 #' @export
 #'
 #' @examples
-#' # TODO
+#' # see `?Tabula`
 Qrow <- R6::R6Class(
   "Qrow",
   public = list(

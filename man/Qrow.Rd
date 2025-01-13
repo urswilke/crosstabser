@@ -9,7 +9,7 @@ Questions row class
 Questions row class
 }
 \examples{
-# TODO
+# see `?Tabula`
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -20,18 +20,7 @@ Questions row class
 
 \item{\code{qtabs}}{list of \code{Qtabs} objects}
 
-\item{\code{row}}{Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
-Or \code{NULL} (the default) resulting in the selection of all row numbers where \code{Type} is specified.}
-
 \item{\code{log}}{log entries}
-}
-\if{html}{\out{</div>}}
-}
-\section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{row}}{Numeric vector with the row numbers in the Questions sheet, where crosstabs should be calculated.
-Or \code{NULL} (the default) resulting in the selection of all row numbers where \code{Type} is specified.}
 }
 \if{html}{\out{</div>}}
 }
