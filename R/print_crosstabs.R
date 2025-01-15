@@ -1,5 +1,7 @@
 #' Print object of class "Qtab"
 #'
+#' @param x `Qtab` object
+#' @param ... Arguments passed to `print()`
 #' @examples
 #' # see `?Tabula`
 #'

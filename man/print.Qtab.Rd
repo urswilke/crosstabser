@@ -6,6 +6,11 @@
 \usage{
 \method{print}{Qtab}(x, ...)
 }
+\arguments{
+\item{x}{\code{Qtab} object}
+
+\item{...}{Arguments passed to \code{print()}}
+}
 \description{
 Print object of class "Qtab"
 }
