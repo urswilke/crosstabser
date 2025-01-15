@@ -6,21 +6,29 @@
 # => use methods Qtab$row_table() / Qtab$col_table() with one optional argument `rm_labels = TRUE/FALSE` instead
 # something like this probably makes sense in a lot more places!
 
-#' Qtab
-#' @description Qtab
+#' Qtab class
+#'
+#' This is not supposed to be used directly.
+#' When creating a "Tabula" object,
+#' this will generate a list of `Qrow` objects in its `$qrows` field,
+#' themselves each containing a list of `Qtab` objects in their `$qtabs` fields.
+#'
 #' @field p parameters
 #' @field d data
-#' @field m parent mapping
+#' @field m `Tabula` object
+#'
+#' @export
 #'
 #' @examples
-#' "hello"
-#' @export
+#' # see `?Tabula`
 Qtab <- R6::R6Class("Qtab",
   public = list(
     p = list(),
     d = list(),
     m = list(),
-    #' @description todo
+    #' @param params Parameters from `Qrow` object
+    #' @param mapping `Tabula` object
+    #' @param ... Not used at the moment.
     initialize = function(params,
                           mapping,
                           ...) {

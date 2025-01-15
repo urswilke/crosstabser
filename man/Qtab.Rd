@@ -2,12 +2,20 @@
 % Please edit documentation in R/qtabs.R
 \name{Qtab}
 \alias{Qtab}
-\title{Qtab}
+\title{Qtab class}
 \description{
-Qtab
+Qtab class
+
+Qtab class
+}
+\details{
+This is not supposed to be used directly.
+When creating a "Tabula" object,
+this will generate a list of \code{Qrow} objects in its \verb{$qrows} field,
+themselves each containing a list of \code{Qtab} objects in their \verb{$qtabs} fields.
 }
 \examples{
-"hello"
+# see `?Tabula`
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -16,7 +24,7 @@ Qtab
 
 \item{\code{d}}{data}
 
-\item{\code{m}}{parent mapping}
+\item{\code{m}}{\code{Tabula} object}
 }
 \if{html}{\out{</div>}}
 }
@@ -27,7 +35,6 @@ Qtab
 \item \href{#method-Qtab-calc_qtab}{\code{Qtab$calc_qtab()}}
 \item \href{#method-Qtab-gen_long_tab}{\code{Qtab$gen_long_tab()}}
 \item \href{#method-Qtab-gen_wide_tab}{\code{Qtab$gen_wide_tab()}}
-\item \href{#method-Qtab-print}{\code{Qtab$print()}}
 \item \href{#method-Qtab-clone}{\code{Qtab$clone()}}
 }
 }
@@ -35,11 +42,21 @@ Qtab
 \if{html}{\out{<a id="method-Qtab-new"></a>}}
 \if{latex}{\out{\hypertarget{method-Qtab-new}{}}}
 \subsection{Method \code{new()}}{
-todo
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Qtab$new(params, mapping, ...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{params}}{Parameters from \code{Qrow} object}
+
+\item{\code{mapping}}{\code{Tabula} object}
+
+\item{\code{...}}{Not used at the moment.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Qtab-calc_qtab"></a>}}
@@ -66,18 +83,14 @@ todo
 \if{latex}{\out{\hypertarget{method-Qtab-gen_wide_tab}{}}}
 \subsection{Method \code{gen_wide_tab()}}{
 todo
+,
+#' @description print
+print = function(...) {
+self |> print()
+invisible(self)
+}
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Qtab$gen_wide_tab()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qtab-print"></a>}}
-\if{latex}{\out{\hypertarget{method-Qtab-print}{}}}
-\subsection{Method \code{print()}}{
-print
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qtab$print(...)}\if{html}{\out{</div>}}
 }
 
 }
