@@ -20,7 +20,6 @@ Qrow <- R6::R6Class(
     m = list(),
     qtabs = tibble::tibble(),
     log = list(warn = NULL, error = NULL),
-    crosstabs = NULL,
     #' @param df_qrow row of the Questions dataframe
     #' @param mapping `Tabula` object
     #' @param ... Not used at the moment.
@@ -59,8 +58,9 @@ Qrow <- R6::R6Class(
     }
   ),
   private = list(
+    crosstabs = NULL,
     prep_tab_row_val = function() {
-      self$crosstabs <- prep_tab_row_val_(self)
+      private$crosstabs <- prep_tab_row_val_(self)
       prepare_row_table_tb(self)
       prepare_tab_table_tb(self)
       prepare_val_table_tb(self)

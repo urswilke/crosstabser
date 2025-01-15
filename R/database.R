@@ -57,8 +57,8 @@ prepare_head_col_tables_ <- function(tabula) {
 }
 
 prepare_tab_table_tb <- function(qrow) {
-  row_table <- qrow$crosstabs$data$row_table
-  tab_table <- qrow$crosstabs$data$tab_table
+  row_table <- qrow$.__enclos_env__$private$crosstabs$data$row_table
+  tab_table <- qrow$.__enclos_env__$private$crosstabs$data$tab_table
   # the group_by QuestNo, TabNo only works if QuestNo is unique
   # see also in ascend_rownos_within_questno()
   # => perhaps better additionally group_by QuestLine and allow duplicated QuestNo?
@@ -85,14 +85,14 @@ prepare_tab_table_tb <- function(qrow) {
     add_book_no(qrow$m$opts$ct$V_BookNo)
 
 
-  qrow$crosstabs$data$tab_table <- tab_table |>
+  qrow$.__enclos_env__$private$crosstabs$data$tab_table <- tab_table |>
     add_book_no(qrow$m$opts$ct$V_BookNo)
 }
 prepare_row_table_tb <- function(qrow) {
-  row_table <- qrow$crosstabs$data$row_table
+  row_table <- qrow$.__enclos_env__$private$crosstabs$data$row_table
   lexikon <- qrow$m$opts$ct$l_lexikon
 
-  qrow$crosstabs$data$row_table <- row_table |>
+  qrow$.__enclos_env__$private$crosstabs$data$row_table <- row_table |>
     dplyr::mutate(
       RowTypeS = paste0(
         RowContent,
@@ -114,8 +114,8 @@ prepare_row_table_tb <- function(qrow) {
 
 }
 prepare_val_table_tb <- function(qrow) {
-  val_table <- qrow$crosstabs$data$val_table
-  qrow$crosstabs$data$val_table <- val_table |>
+  val_table <- qrow$.__enclos_env__$private$crosstabs$data$val_table
+  qrow$.__enclos_env__$private$crosstabs$data$val_table <- val_table |>
     dplyr::rename(Value = value) |>
     dplyr::select(QuestNo, TabNo, RowNo, ColNo, Value) |>
     add_book_no(qrow$m$opts$ct$V_BookNo)
