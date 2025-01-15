@@ -46,16 +46,15 @@ Qtab <- R6::R6Class("Qtab",
       check_tab(self)
 
       class(self) <- c(paste0("qtab_type_", params$Type), class(self))
-      self$calc_qtab()
-    },
-    #' @description todo
+      private$calc_qtab()
+    }
+  ),
+  private = list(
     calc_qtab = function() {
       calc_qtab_(self)
-      self$gen_wide_tab()
+      private$gen_wide_tab()
       invisible(self)
     },
-    # TODO: turn function private?
-    #' @description todo
     gen_long_tab = function() {
       self$d$row_table_values <- self$d$row_table |> rm_header_footer()
       self$d$long_tab <- self$d[
@@ -65,11 +64,9 @@ Qtab <- R6::R6Class("Qtab",
         tibble::as_tibble()
       invisible(self)
     },
-    # TODO: turn function private?
-    #' @description todo
     gen_wide_tab = function() {
       if (is.null(self$d$long_tab)) {
-        self$gen_long_tab()
+        private$gen_long_tab()
       }
       gen_wide_tab_(self)
       invisible(self)

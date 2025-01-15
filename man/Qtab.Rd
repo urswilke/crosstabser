@@ -4,11 +4,6 @@
 \alias{Qtab}
 \title{Qtab class}
 \description{
-Qtab class
-
-Qtab class
-}
-\details{
 This is not supposed to be used directly.
 When creating a "Tabula" object,
 this will generate a list of \code{Qrow} objects in its \verb{$qrows} field,
@@ -32,9 +27,6 @@ themselves each containing a list of \code{Qtab} objects in their \verb{$qtabs} 
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Qtab-new}{\code{Qtab$new()}}
-\item \href{#method-Qtab-calc_qtab}{\code{Qtab$calc_qtab()}}
-\item \href{#method-Qtab-gen_long_tab}{\code{Qtab$gen_long_tab()}}
-\item \href{#method-Qtab-gen_wide_tab}{\code{Qtab$gen_wide_tab()}}
 \item \href{#method-Qtab-clone}{\code{Qtab$clone()}}
 }
 }
@@ -57,42 +49,6 @@ themselves each containing a list of \code{Qtab} objects in their \verb{$qtabs} 
 }
 \if{html}{\out{</div>}}
 }
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qtab-calc_qtab"></a>}}
-\if{latex}{\out{\hypertarget{method-Qtab-calc_qtab}{}}}
-\subsection{Method \code{calc_qtab()}}{
-todo
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qtab$calc_qtab()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qtab-gen_long_tab"></a>}}
-\if{latex}{\out{\hypertarget{method-Qtab-gen_long_tab}{}}}
-\subsection{Method \code{gen_long_tab()}}{
-todo
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qtab$gen_long_tab()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qtab-gen_wide_tab"></a>}}
-\if{latex}{\out{\hypertarget{method-Qtab-gen_wide_tab}{}}}
-\subsection{Method \code{gen_wide_tab()}}{
-todo
-,
-#' @description print
-print = function(...) {
-self |> print()
-invisible(self)
-}
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qtab$gen_wide_tab()}\if{html}{\out{</div>}}
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Qtab-clone"></a>}}
