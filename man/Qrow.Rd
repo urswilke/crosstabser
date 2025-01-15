@@ -4,9 +4,9 @@
 \alias{Qrow}
 \title{Questions row class}
 \description{
-Questions row class
-
-Questions row class
+This is not supposed to be used directly.
+When creating a "Tabula" object,
+this will generate a list of \code{Qrow} objects in its \verb{$qrows} field.
 }
 \examples{
 # see `?Tabula`
@@ -14,7 +14,7 @@ Questions row class
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{p}}{parameters}
+\item{\code{p}}{parameters extracted from \code{df_qrow}}
 
 \item{\code{m}}{\code{Tabula} object}
 
@@ -28,7 +28,6 @@ Questions row class
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Qrow-new}{\code{Qrow$new()}}
-\item \href{#method-Qrow-prep_tab_row_val}{\code{Qrow$prep_tab_row_val()}}
 \item \href{#method-Qrow-clone}{\code{Qrow$clone()}}
 }
 }
@@ -45,21 +44,12 @@ Questions row class
 \describe{
 \item{\code{df_qrow}}{row of the Questions dataframe}
 
-\item{\code{mapping}}{\code{Mapping} object}
+\item{\code{mapping}}{\code{Tabula} object}
 
-\item{\code{...}}{perhaps not used at the moment of writing :)}
+\item{\code{...}}{Not used at the moment.}
 }
 \if{html}{\out{</div>}}
 }
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qrow-prep_tab_row_val"></a>}}
-\if{latex}{\out{\hypertarget{method-Qrow-prep_tab_row_val}{}}}
-\subsection{Method \code{prep_tab_row_val()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qrow$prep_tab_row_val()}\if{html}{\out{</div>}}
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Qrow-clone"></a>}}

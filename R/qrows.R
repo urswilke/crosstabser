@@ -1,6 +1,10 @@
 #' Questions row class
 #'
-#' @field p parameters
+#' This is not supposed to be used directly.
+#' When creating a "Tabula" object,
+#' this will generate a list of `Qrow` objects in its `$qrows` field.
+#'
+#' @field p parameters extracted from `df_qrow`
 #' @field m `Tabula` object
 #' @field qtabs list of `Qtabs` objects
 #' @field log log entries
@@ -18,8 +22,8 @@ Qrow <- R6::R6Class(
     log = list(warn = NULL, error = NULL),
     crosstabs = NULL,
     #' @param df_qrow row of the Questions dataframe
-    #' @param mapping `Mapping` object
-    #' @param ... perhaps not used at the moment of writing :)
+    #' @param mapping `Tabula` object
+    #' @param ... Not used at the moment.
     initialize = function(df_qrow,
                           mapping,
                           ...) {
