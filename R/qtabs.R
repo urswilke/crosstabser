@@ -73,11 +73,6 @@ Qtab <- R6::R6Class("Qtab",
       }
       gen_wide_tab_(self)
       invisible(self)
-    },
-    #' @description print
-    print = function(...) {
-      self |> print()
-      invisible(self)
     }
   )
 )
