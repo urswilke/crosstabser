@@ -1,3 +1,8 @@
+#' Print object of class "Qtab"
+#'
+#' @examples
+#' # see `?Tabula`
+#'
 #' @export
 print.Qtab = function(x, ...) {
   x_formatted <- format(x)

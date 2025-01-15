@@ -44,7 +44,15 @@ doc_mapping_file <- "`mapping_file` file path field of the super-class `datadapt
 #'   ),
 #'   Macro = list(ColVar = "age")
 #' )
-#' Tabula$new(df, mapping_file)
+#' m <- Tabula$new(df, mapping_file)
+#' m
+#' # The previous line prints the "Tabula" object.
+#' # Under the hood, a list of `Qrow` objects were generated.
+#' # Printing `m` prints the list of `Qtab` elements of each `Qrow`:
+#' m$qrows
+#' # For instance, this prints the list of `Qtab` elements
+#' # of the first `Qrow` element:
+#' m$qrows[[1]]$qtabs |> print()
 Tabula <- R6::R6Class(
   "Tabula",
   inherit = datadaptor::Mapping,

@@ -9,6 +9,10 @@ When creating a "Tabula" object,
 this will generate a list of \code{Qrow} objects in its \verb{$qrows} field,
 themselves each containing a list of \code{Qtab} objects in their \verb{$qtabs} fields.
 }
+\details{
+\code{Qtab} objects have a custom print method \code{print.Qtab}
+(see examples in \code{?Tabula}).
+}
 \examples{
 # see `?Tabula`
 }

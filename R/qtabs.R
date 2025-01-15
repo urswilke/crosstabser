@@ -13,6 +13,9 @@
 #' this will generate a list of `Qrow` objects in its `$qrows` field,
 #' themselves each containing a list of `Qtab` objects in their `$qtabs` fields.
 #'
+#' `Qtab` objects have a custom print method `print.Qtab`
+#' (see examples in `?Tabula`).
+#'
 #' @field p parameters
 #' @field d data
 #' @field m `Tabula` object
