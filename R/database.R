@@ -51,8 +51,8 @@ prepare_head_col_tables_ <- function(tabula) {
   ) |>
     add_book_no(book_no) |>
     dplyr::select(BookNo, HeadNo, HeadName, HeadTitle, HeadCount)
-  tabula$crosstabs$data$head_table <- head_table
-  tabula$crosstabs$data$col_table_all <- col_table_all |>
+  tabula$.__enclos_env__$private$crosstabs$data$head_table <- head_table
+  tabula$.__enclos_env__$private$crosstabs$data$col_table_all <- col_table_all |>
     dplyr::select(BookNo, ColNo, HeadNo, ColTitle1, ColTitle2, ColVariable, ColValue)
 }
 

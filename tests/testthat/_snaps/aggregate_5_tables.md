@@ -2,7 +2,7 @@
 
     Code
       withr::with_options(list(pillar.print_max = Inf, width = 1000), print(tabsi$
-        crosstabs$data))
+        .__enclos_env__$private$crosstabs$data))
     Output
       $tab_table
       # A tibble: 1 x 15
