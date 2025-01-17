@@ -46,14 +46,13 @@ and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
 \item{\code{qrows}}{A \code{list()} of \code{Qrow} objects}
 
-\item{\code{crosstabs, ditw}}{Will be deprecated}
-}
-\if{html}{\out{</div>}}
-}
-\section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{crosstabs, ditw}}{Will be deprecated}
+\item{\code{ditw}}{This is the "dust in the wind" list object field
+that stores data that didn't make it into their own field.
+For developers only!
+For reproducible code you should NEVER rely on this field
+as it might be subject to change without any warning.
+This overwrites the \code{datadaptor::Mapping$ditw} field;
+the list field additionally contains the \code{ct} element.}
 }
 \if{html}{\out{</div>}}
 }

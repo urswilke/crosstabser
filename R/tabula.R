@@ -27,7 +27,13 @@ doc_mapping_file <- "`mapping_file` file path field of the super-class `datadapt
 #' @field mapping_file `r doc_mapping_file`
 #' @field dat `r doc_dat`
 #' @field qrows A `list()` of `Qrow` objects
-#' @field crosstabs,ditw Will be deprecated
+#' @field ditw This is the "dust in the wind" list object field
+#'   that stores data that didn't make it into their own field.
+#'   For developers only!
+#'   For reproducible code you should NEVER rely on this field
+#'   as it might be subject to change without any warning.
+#'   This overwrites the `datadaptor::Mapping$ditw` field;
+#'   the list field additionally contains the `ct` element.
 #'
 #' @export
 #'
