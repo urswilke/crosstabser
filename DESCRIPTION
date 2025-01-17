@@ -37,7 +37,6 @@ Imports:
     cli,
     datadaptor,
     vctrs,
-    forcats,
     S7
 Remotes: gitlab::urswilke/datadaptor
 Suggests: 

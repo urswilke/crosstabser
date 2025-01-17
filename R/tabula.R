@@ -1,3 +1,7 @@
+# from here: https://stackoverflow.com/a/64105860
+#' @import R6
+NULL
+
 doc_row <- "Numeric vector with the row numbers in the Questions sheet,
 where crosstabs should be calculated, when calling `Tabula$calc_qtabs()`.
 Or `NULL` (the default) resulting in the selection of all row numbers
