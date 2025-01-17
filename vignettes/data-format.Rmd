@@ -71,16 +71,11 @@ m <- Tabula$new(
 )
 ```
 
-After running the `$prepare_5_tables()` method,
+The `Tabula$get_crosstabs_data()` method returns a list of dataframes
+containing the crosstabs' underlying data:
 
 ```{r}
-m$prepare_5_tables()
-```
-
-the resulting data is stored in the `$ditw$ct$crosstabs$data` field:
-
-```{r}
-l <- m$ditw$ct$crosstabs$data
+l <- m$get_crosstabs_data()
 l
 ```
 <!-- TODO: remove unneeded columns!-->

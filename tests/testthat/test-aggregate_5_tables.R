@@ -6,13 +6,11 @@ tabsi$opts$ct$l_macro_scenario$Weight <- "gew"
 tabsi$opts$ct$l_macro_scenario$Unwgt <- TRUE
 tabsi$calc_qtabs(5)
 
-tabsi$prepare_5_tables()
-
 test_that("5 tables' prints are reproduced", {
   testthat::expect_snapshot(
     withr::with_options(
       list(pillar.print_max = Inf, width = 1000),
-      print(tabsi$ditw$ct$crosstabs$data)
+      print(tabsi$get_crosstabs_data())
     )
   )
 })

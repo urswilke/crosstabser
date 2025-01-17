@@ -118,17 +118,6 @@ Tabula <- R6::R6Class(
       private$process_qsheet(row)
       invisible(self)
     },
-    #' @description Calculate the crosstabs
-    prepare_5_tables = function() {
-      l <- self$qrows |>
-        lapply(\(x) x$.__enclos_env__$private$prep_tab_row_val()) |>
-        lapply(\(x) x$ditw$ct$crosstabs$data)
-      self$ditw$ct$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
-      self$ditw$ct$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()
-      self$ditw$ct$crosstabs$data$row_table <- l |> lapply(\(x) x$row_table) |> dplyr::bind_rows()
-      private$prepare_head_col_tables()
-      invisible(self)
-    },
     #' @description Write a table_charter app html file of the crosstab data
     #'
     #' In order to generate the `template_file`,
@@ -147,7 +136,7 @@ Tabula <- R6::R6Class(
       template_file,
       output_file = "dashboard.html"
     ) {
-      self$prepare_5_tables()
+      private$prepare_5_tables()
 
       l <- self$ditw$ct$crosstabs$data |> purrr::set_names(c("Tab", "Val", "Row", "Head", "Col"))
       l$Val <- l$Val |> tidyr::drop_na(Value)
@@ -167,6 +156,17 @@ Tabula <- R6::R6Class(
         )
       write(html_code_with_data, file = output_file)
 
+    },
+    #' @description Return the crosstabs data of the `Tabula` object
+    #'
+    #'   This method returns a list of dataframes
+    #'   containing all the crosstabs information.
+    #'   Thus it's not chainable.
+    #' @return A list of dataframes with the data of the crosstabs;
+    #'   see `vignette("data-format")`.
+    get_crosstabs_data = function() {
+      private$prepare_5_tables()
+      return(self$ditw$ct$crosstabs$data)
     },
     #' @description Print the crosstabs of the `Tabula` object
     #'
@@ -191,6 +191,16 @@ Tabula <- R6::R6Class(
         split(qsheet_raw, qsheet_raw$row),
         \(df) private$new_Qrow$new(df, self)
       )
+    },
+    prepare_5_tables = function() {
+      l <- self$qrows |>
+        lapply(\(x) x$.__enclos_env__$private$prep_tab_row_val()) |>
+        lapply(\(x) x$ditw$ct$crosstabs$data)
+      self$ditw$ct$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
+      self$ditw$ct$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()
+      self$ditw$ct$crosstabs$data$row_table <- l |> lapply(\(x) x$row_table) |> dplyr::bind_rows()
+      private$prepare_head_col_tables()
+      invisible(self)
     },
     glob_filter = NULL,
     filter_global = function() {
