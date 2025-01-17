@@ -27,7 +27,13 @@ doc_mapping_file <- "`mapping_file` file path field of the super-class `datadapt
 #' @field mapping_file `r doc_mapping_file`
 #' @field dat `r doc_dat`
 #' @field qrows A `list()` of `Qrow` objects
-#' @field dat_tab,qsheet,crosstabs,ditw Will be deprecated
+#' @field ditw This is the "dust in the wind" list object field
+#'   that stores data that didn't make it into their own field.
+#'   For developers only!
+#'   For reproducible code you should NEVER rely on this field
+#'   as it might be subject to change without any warning.
+#'   This overwrites the `datadaptor::Mapping$ditw` field;
+#'   the list field additionally contains the `ct` element.
 #'
 #' @export
 #'
@@ -60,8 +66,6 @@ Tabula <- R6::R6Class(
     mapping_file = NULL,
     dat = NULL,
     dat_mod = NULL,
-    dat_tab = NULL,
-    qsheet = list(),
     qrows = list(),
     crosstabs = list(),
     ditw = list(da = NULL, ct = NULL),
@@ -101,7 +105,7 @@ Tabula <- R6::R6Class(
     set_options = function(...) {
       excel_params <- private$get_named_region_params()
       # If specified in both, excel parameters will be overwritten by the dots:
-      args <- excel_params |> modifyList(list(...))
+      args <- excel_params |> utils::modifyList(list(...))
 
       da <- datadaptor::use_known_args(datadaptor::get_mapping_options, args)
       ct <- datadaptor::use_known_args(crosstabser::get_tabula_options, c(list(tabula = self), args))
@@ -118,17 +122,6 @@ Tabula <- R6::R6Class(
       private$filter_global()
       gen_col_tables(self)
       private$process_qsheet(row)
-      invisible(self)
-    },
-    #' @description Calculate the crosstabs
-    prepare_5_tables = function() {
-      l <- self$qrows |>
-        lapply(\(x) x$.__enclos_env__$private$prep_tab_row_val()) |>
-        lapply(\(x) x$crosstabs$data)
-      self$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
-      self$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()
-      self$crosstabs$data$row_table <- l |> lapply(\(x) x$row_table) |> dplyr::bind_rows()
-      private$prepare_head_col_tables()
       invisible(self)
     },
     #' @description Write a table_charter app html file of the crosstab data
@@ -149,9 +142,9 @@ Tabula <- R6::R6Class(
       template_file,
       output_file = "dashboard.html"
     ) {
-      self$prepare_5_tables()
+      private$prepare_5_tables()
 
-      l <- self$crosstabs$data |> purrr::set_names(c("Tab", "Val", "Row", "Head", "Col"))
+      l <- self$ditw$ct$crosstabs$data |> purrr::set_names(c("Tab", "Val", "Row", "Head", "Col"))
       l$Val <- l$Val |> tidyr::drop_na(Value)
 
       data_string <- list(type = "table-object", data = l) |>
@@ -170,6 +163,17 @@ Tabula <- R6::R6Class(
       write(html_code_with_data, file = output_file)
 
     },
+    #' @description Return the crosstabs data of the `Tabula` object
+    #'
+    #'   This method returns a list of dataframes
+    #'   containing all the crosstabs information.
+    #'   Thus it's not chainable.
+    #' @return A list of dataframes with the data of the crosstabs;
+    #'   see `vignette("data-format")`.
+    get_crosstabs_data = function() {
+      private$prepare_5_tables()
+      return(self$ditw$ct$crosstabs$data)
+    },
     #' @description Print the crosstabs of the `Tabula` object
     #'
     #'   This method is called under the hood, if you `print()` a `Tabula` object.
@@ -184,15 +188,25 @@ Tabula <- R6::R6Class(
     new_Qrow = Qrow,
     read_qsheet = function(row) {
       qsheet_raw <- read_qsheet_raw(self, row)
-      self$qsheet$qsheet_raw <- qsheet_raw
+      self$ditw$ct$qsheet$qsheet_raw <- qsheet_raw
     },
     process_qsheet = function(row) {
       private$read_qsheet(row)
-      qsheet_raw <- self$qsheet$qsheet_raw
+      qsheet_raw <- self$ditw$ct$qsheet$qsheet_raw
       self$qrows <- lapply(
         split(qsheet_raw, qsheet_raw$row),
         \(df) private$new_Qrow$new(df, self)
       )
+    },
+    prepare_5_tables = function() {
+      l <- self$qrows |>
+        lapply(\(x) x$.__enclos_env__$private$prep_tab_row_val()) |>
+        lapply(\(x) x$ditw$ct$crosstabs$data)
+      self$ditw$ct$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
+      self$ditw$ct$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()
+      self$ditw$ct$crosstabs$data$row_table <- l |> lapply(\(x) x$row_table) |> dplyr::bind_rows()
+      private$prepare_head_col_tables()
+      invisible(self)
     },
     glob_filter = NULL,
     filter_global = function() {
@@ -205,7 +219,7 @@ Tabula <- R6::R6Class(
           rlang::eval_tidy(self$dat_mod)
       }
 
-      self$dat_tab <- self$dat_mod[private$glob_filter,]
+      self$ditw$ct$dat_tab <- self$dat_mod[private$glob_filter,]
     },
     prepare_head_col_tables = function() {
       prepare_head_col_tables_(self)

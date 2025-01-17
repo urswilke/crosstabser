@@ -46,14 +46,13 @@ and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
 \item{\code{qrows}}{A \code{list()} of \code{Qrow} objects}
 
-\item{\code{dat_tab, qsheet, crosstabs, ditw}}{Will be deprecated}
-}
-\if{html}{\out{</div>}}
-}
-\section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{dat_tab, qsheet, crosstabs, ditw}}{Will be deprecated}
+\item{\code{ditw}}{This is the "dust in the wind" list object field
+that stores data that didn't make it into their own field.
+For developers only!
+For reproducible code you should NEVER rely on this field
+as it might be subject to change without any warning.
+This overwrites the \code{datadaptor::Mapping$ditw} field;
+the list field additionally contains the \code{ct} element.}
 }
 \if{html}{\out{</div>}}
 }
@@ -63,8 +62,8 @@ and instead generated with \code{datadaptor::Mapping$modify_data()}}
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
 \item \href{#method-Tabula-set_options}{\code{Tabula$set_options()}}
 \item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
-\item \href{#method-Tabula-prepare_5_tables}{\code{Tabula$prepare_5_tables()}}
 \item \href{#method-Tabula-save_html_app}{\code{Tabula$save_html_app()}}
+\item \href{#method-Tabula-get_crosstabs_data}{\code{Tabula$get_crosstabs_data()}}
 \item \href{#method-Tabula-print}{\code{Tabula$print()}}
 \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
 }
@@ -158,16 +157,6 @@ where \code{Type} is specified.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-prepare_5_tables"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-prepare_5_tables}{}}}
-\subsection{Method \code{prepare_5_tables()}}{
-Calculate the crosstabs
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$prepare_5_tables()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-save_html_app"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-save_html_app}{}}}
 \subsection{Method \code{save_html_app()}}{
@@ -194,6 +183,24 @@ The template file should then be in the \verb{dist/} sub-directory.
 \item{\code{output_file}}{File path to the table_charter app html file.}
 }
 \if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-get_crosstabs_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-get_crosstabs_data}{}}}
+\subsection{Method \code{get_crosstabs_data()}}{
+Return the crosstabs data of the \code{Tabula} object
+
+This method returns a list of dataframes
+containing all the crosstabs information.
+Thus it's not chainable.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$get_crosstabs_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+A list of dataframes with the data of the crosstabs;
+see \code{vignette("data-format")}.
 }
 }
 \if{html}{\out{<hr>}}

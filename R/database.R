@@ -51,14 +51,14 @@ prepare_head_col_tables_ <- function(tabula) {
   ) |>
     add_book_no(book_no) |>
     dplyr::select(BookNo, HeadNo, HeadName, HeadTitle, HeadCount)
-  tabula$crosstabs$data$head_table <- head_table
-  tabula$crosstabs$data$col_table_all <- col_table_all |>
+  tabula$ditw$ct$crosstabs$data$head_table <- head_table
+  tabula$ditw$ct$crosstabs$data$col_table_all <- col_table_all |>
     dplyr::select(BookNo, ColNo, HeadNo, ColTitle1, ColTitle2, ColVariable, ColValue)
 }
 
 prepare_tab_table_tb <- function(qrow) {
-  row_table <- qrow$crosstabs$data$row_table
-  tab_table <- qrow$crosstabs$data$tab_table
+  row_table <- qrow$ditw$ct$crosstabs$data$row_table
+  tab_table <- qrow$ditw$ct$crosstabs$data$tab_table
   # the group_by QuestNo, TabNo only works if QuestNo is unique
   # see also in ascend_rownos_within_questno()
   # => perhaps better additionally group_by QuestLine and allow duplicated QuestNo?
@@ -85,14 +85,14 @@ prepare_tab_table_tb <- function(qrow) {
     add_book_no(qrow$m$opts$ct$V_BookNo)
 
 
-  qrow$crosstabs$data$tab_table <- tab_table |>
+  qrow$ditw$ct$crosstabs$data$tab_table <- tab_table |>
     add_book_no(qrow$m$opts$ct$V_BookNo)
 }
 prepare_row_table_tb <- function(qrow) {
-  row_table <- qrow$crosstabs$data$row_table
+  row_table <- qrow$ditw$ct$crosstabs$data$row_table
   lexikon <- qrow$m$opts$ct$l_lexikon
 
-  qrow$crosstabs$data$row_table <- row_table |>
+  qrow$ditw$ct$crosstabs$data$row_table <- row_table |>
     dplyr::mutate(
       RowTypeS = paste0(
         RowContent,
@@ -114,8 +114,8 @@ prepare_row_table_tb <- function(qrow) {
 
 }
 prepare_val_table_tb <- function(qrow) {
-  val_table <- qrow$crosstabs$data$val_table
-  qrow$crosstabs$data$val_table <- val_table |>
+  val_table <- qrow$ditw$ct$crosstabs$data$val_table
+  qrow$ditw$ct$crosstabs$data$val_table <- val_table |>
     dplyr::rename(Value = value) |>
     dplyr::select(QuestNo, TabNo, RowNo, ColNo, Value) |>
     add_book_no(qrow$m$opts$ct$V_BookNo)

@@ -84,7 +84,7 @@ get_tabula_options.list <- function(
     l_lexikon = read_dictionary(V_Language),
     ...
 ) {
-  l_macro_scenario <- modifyList(
+  l_macro_scenario <- utils::modifyList(
     list(ColVar = character(), Unguelt = c(-1, -3, -2), Weight = NA_character_,
        Unwgt = FALSE, Filter = NA_character_, scenario_name = "Scenario 2"
     ),
