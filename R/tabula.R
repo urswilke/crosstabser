@@ -155,7 +155,8 @@ Tabula <- R6::R6Class(
           na = "null",
           null = "null",
           auto_unbox = TRUE
-        )
+        ) |>
+        stringr::str_replace_all("'", "&apos;")
       html_code <- readr::read_lines(template_file)
       html_code_with_data <- html_code |>
         stringr::str_replace(
