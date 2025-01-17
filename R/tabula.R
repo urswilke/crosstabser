@@ -142,9 +142,7 @@ Tabula <- R6::R6Class(
       template_file,
       output_file = "dashboard.html"
     ) {
-      private$prepare_5_tables()
-
-      l <- self$ditw$ct$crosstabs$data |> purrr::set_names(c("Tab", "Val", "Row", "Head", "Col"))
+      l <- self$get_crosstabs_data() |> purrr::set_names(c("Tab", "Val", "Row", "Head", "Col"))
       l$Val <- l$Val |> tidyr::drop_na(Value)
 
       data_string <- list(type = "table-object", data = l) |>
