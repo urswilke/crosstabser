@@ -87,7 +87,7 @@ apply_fun_unweighted.ct_mean <- function(f, x, na.rm = TRUE, ...) {
   res
 }
 apply_fun_unweighted.ct_median <- function(f, x, na.rm = TRUE, ...) {
-  median(x, na.rm = na.rm, ...)
+  stats::median(x, na.rm = na.rm, ...)
 }
 apply_fun_unweighted.ct_sum <- function(f, x, na.rm = TRUE, ...) {
   if (all(is.na(x))) return(NA_real_)

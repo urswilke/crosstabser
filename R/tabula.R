@@ -99,7 +99,7 @@ Tabula <- R6::R6Class(
     set_options = function(...) {
       excel_params <- private$get_named_region_params()
       # If specified in both, excel parameters will be overwritten by the dots:
-      args <- excel_params |> modifyList(list(...))
+      args <- excel_params |> utils::modifyList(list(...))
 
       da <- datadaptor::use_known_args(datadaptor::get_mapping_options, args)
       ct <- datadaptor::use_known_args(crosstabser::get_tabula_options, c(list(tabula = self), args))
