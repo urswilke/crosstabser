@@ -12,7 +12,7 @@ test_that("5 tables' prints are reproduced", {
   testthat::expect_snapshot(
     withr::with_options(
       list(pillar.print_max = Inf, width = 1000),
-      print(tabsi$crosstabs$data)
+      print(tabsi$ditw$ct$crosstabs$data)
     )
   )
 })

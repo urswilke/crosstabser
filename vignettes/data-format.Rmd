@@ -77,10 +77,10 @@ After running the `$prepare_5_tables()` method,
 m$prepare_5_tables()
 ```
 
-the resulting data is stored in the `$crosstabs$data` field:
+the resulting data is stored in the `$ditw$ct$crosstabs$data` field:
 
 ```{r}
-l <- m$crosstabs$data
+l <- m$ditw$ct$crosstabs$data
 l
 ```
 <!-- TODO: remove unneeded columns!-->

@@ -122,10 +122,10 @@ Tabula <- R6::R6Class(
     prepare_5_tables = function() {
       l <- self$qrows |>
         lapply(\(x) x$.__enclos_env__$private$prep_tab_row_val()) |>
-        lapply(\(x) x$crosstabs$data)
-      self$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
-      self$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()
-      self$crosstabs$data$row_table <- l |> lapply(\(x) x$row_table) |> dplyr::bind_rows()
+        lapply(\(x) x$ditw$ct$crosstabs$data)
+      self$ditw$ct$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
+      self$ditw$ct$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()
+      self$ditw$ct$crosstabs$data$row_table <- l |> lapply(\(x) x$row_table) |> dplyr::bind_rows()
       private$prepare_head_col_tables()
       invisible(self)
     },
@@ -149,7 +149,7 @@ Tabula <- R6::R6Class(
     ) {
       self$prepare_5_tables()
 
-      l <- self$crosstabs$data |> purrr::set_names(c("Tab", "Val", "Row", "Head", "Col"))
+      l <- self$ditw$ct$crosstabs$data |> purrr::set_names(c("Tab", "Val", "Row", "Head", "Col"))
       l$Val <- l$Val |> tidyr::drop_na(Value)
 
       data_string <- list(type = "table-object", data = l) |>
