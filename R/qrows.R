@@ -8,6 +8,11 @@
 #' @field m `Tabula` object
 #' @field qtabs list of `Qtabs` objects
 #' @field log log entries
+#' @field ditw This is the "dust in the wind" list object field
+#'   that stores data that didn't make it into their own field.
+#'   For developers only!
+#'   For reproducible code you should NEVER rely on this field
+#'   as it might be subject to change without any warning.
 #'
 #' @export
 #'
