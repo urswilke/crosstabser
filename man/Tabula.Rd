@@ -46,14 +46,14 @@ and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
 \item{\code{qrows}}{A \code{list()} of \code{Qrow} objects}
 
-\item{\code{dat_tab, qsheet, crosstabs, ditw}}{Will be deprecated}
+\item{\code{qsheet, crosstabs, ditw}}{Will be deprecated}
 }
 \if{html}{\out{</div>}}
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{dat_tab, qsheet, crosstabs, ditw}}{Will be deprecated}
+\item{\code{qsheet, crosstabs, ditw}}{Will be deprecated}
 }
 \if{html}{\out{</div>}}
 }

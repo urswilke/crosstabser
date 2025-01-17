@@ -27,7 +27,7 @@ doc_mapping_file <- "`mapping_file` file path field of the super-class `datadapt
 #' @field mapping_file `r doc_mapping_file`
 #' @field dat `r doc_dat`
 #' @field qrows A `list()` of `Qrow` objects
-#' @field dat_tab,qsheet,crosstabs,ditw Will be deprecated
+#' @field qsheet,crosstabs,ditw Will be deprecated
 #'
 #' @export
 #'
@@ -60,7 +60,6 @@ Tabula <- R6::R6Class(
     mapping_file = NULL,
     dat = NULL,
     dat_mod = NULL,
-    dat_tab = NULL,
     qsheet = list(),
     qrows = list(),
     crosstabs = list(),
@@ -205,7 +204,7 @@ Tabula <- R6::R6Class(
           rlang::eval_tidy(self$dat_mod)
       }
 
-      self$dat_tab <- self$dat_mod[private$glob_filter,]
+      self$ditw$ct$dat_tab <- self$dat_mod[private$glob_filter,]
     },
     prepare_head_col_tables = function() {
       prepare_head_col_tables_(self)
