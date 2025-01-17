@@ -20,7 +20,9 @@ Basically, it's a long format of
 [tidy data](https://r4ds.had.co.nz/tidy-data.html) 
 such as the one needed if you'd want to plot the crosstab with
 [ggplot2](https://github.com/tidyverse/ggplot2/) or 
-[observable plot](https://github.com/observablehq/plot) (like in table_charter).
+[observable plot](https://github.com/observablehq/plot) 
+(like in [table_charter](https://gitlab.com/urswilke/table_charter); see [here](https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/)
+for an interactive demo).
 However, in order to reduce redundancy and to save space
 we store the data in multiple data.frames that can be merged together in the end.
 First, let's load the needed libraries:
