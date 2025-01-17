@@ -27,7 +27,7 @@ doc_mapping_file <- "`mapping_file` file path field of the super-class `datadapt
 #' @field mapping_file `r doc_mapping_file`
 #' @field dat `r doc_dat`
 #' @field qrows A `list()` of `Qrow` objects
-#' @field qsheet,crosstabs,ditw Will be deprecated
+#' @field crosstabs,ditw Will be deprecated
 #'
 #' @export
 #'
@@ -60,7 +60,6 @@ Tabula <- R6::R6Class(
     mapping_file = NULL,
     dat = NULL,
     dat_mod = NULL,
-    qsheet = list(),
     qrows = list(),
     crosstabs = list(),
     ditw = list(da = NULL, ct = NULL),
@@ -183,11 +182,11 @@ Tabula <- R6::R6Class(
     new_Qrow = Qrow,
     read_qsheet = function(row) {
       qsheet_raw <- read_qsheet_raw(self, row)
-      self$qsheet$qsheet_raw <- qsheet_raw
+      self$ditw$ct$qsheet$qsheet_raw <- qsheet_raw
     },
     process_qsheet = function(row) {
       private$read_qsheet(row)
-      qsheet_raw <- self$qsheet$qsheet_raw
+      qsheet_raw <- self$ditw$ct$qsheet$qsheet_raw
       self$qrows <- lapply(
         split(qsheet_raw, qsheet_raw$row),
         \(df) private$new_Qrow$new(df, self)
