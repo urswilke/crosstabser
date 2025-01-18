@@ -130,41 +130,43 @@ Tabula <- R6::R6Class(
     },
     #' @description Write a table_charter app html file of the crosstab data
     #'
-    #' In order to generate the `template_file`,
-    #' run the following comands in your console (needs git & npm installed):
+    #' @details This needs a valid html `template_file`, i.e. one of:
+    #'
+    #' * The file
+    #' [example_dashboard.html](https://gitlab.com/urswilke/table_charter/-/blob/main/example_dashboard.html)
+    #' which is directly scraped from the table_charter repo by default (no installation of table_charter needed).
+    #' * For [deploying it in the web](https://gitlab.com/urswilke/table_charter#deploying-it-in-the-web)
+    #' or [running it on a dev server](https://gitlab.com/urswilke/table_charter#dev-server),
+    #' you need to [install table_charter](https://gitlab.com/urswilke/table_charter#installation) first,
+    #' and then use the file [index.html](https://gitlab.com/urswilke/table_charter/-/blob/main/index.html)
+    #' on your machine.
+    #' * After installing, you can also generate a standalone html file
+    #' (without the need to download javascript libraries) by running:
     #' \preformatted{
-    #'   git clone https://gitlab.com/urswilke/table_charter
-    #'   cd table_charter
-    #'   npm i
     #'   npm run standalone-build
     #' }
-    #' The template file should then be in the `dist/` sub-directory.
+    #' and then using the template file created in the `dist/` sub-directory.
     #'
     #' @param template_file Path to the template file (see description).
     #' @param output_file File path to the table_charter app html file.
     save_html_app = function(
-      template_file,
+      template_file = "https://gitlab.com/urswilke/table_charter/-/raw/main/example_dashboard.html",
       output_file = "dashboard.html"
     ) {
-      l <- self$get_crosstabs_data() |> purrr::set_names(c("Tab", "Val", "Row", "Head", "Col"))
-      l$Val <- l$Val |> tidyr::drop_na(Value)
+      data_string <- self$get_crosstabs_data() |> gen_data_json()
 
-      data_string <- list(type = "table-object", data = l) |>
-        jsonlite::toJSON(
-          dataframe = "columns",
-          na = "null",
-          null = "null",
-          auto_unbox = TRUE
-        ) |>
-        stringr::str_replace_all("'", "&apos;")
-      html_code <- readr::read_lines(template_file)
-      html_code_with_data <- html_code |>
-        stringr::str_replace(
-          "<table-charter-intro></table-charter-intro>",
-          paste0("<table-charter-intro data='", data_string, "'></table-charter-intro>")
-        )
-      write(html_code_with_data, file = output_file)
+      html <- template_file |> xml2::read_html()
 
+      load_data_node <- html |>
+        xml2::xml_find_all("//script[@id='load-example-data']")
+      xml2::xml_remove(load_data_node)
+      tc_node <- html |>
+        xml2::xml_find_all(".//table-charter-intro|.//table-charter")
+      xml2::xml_attr(tc_node, "data") <- data_string
+
+      html |> xml2::write_html(output_file)
+
+      invisible(self)
     },
     #' @description Return the crosstabs data of the `Tabula` object
     #'

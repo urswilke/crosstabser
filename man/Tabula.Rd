@@ -161,18 +161,12 @@ where \code{Type} is specified.}
 \if{latex}{\out{\hypertarget{method-Tabula-save_html_app}{}}}
 \subsection{Method \code{save_html_app()}}{
 Write a table_charter app html file of the crosstab data
-
-In order to generate the \code{template_file},
-run the following comands in your console (needs git & npm installed):
-\preformatted{
-  git clone https://gitlab.com/urswilke/table_charter
-  cd table_charter
-  npm i
-  npm run standalone-build
-}
-The template file should then be in the \verb{dist/} sub-directory.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$save_html_app(template_file, output_file = "dashboard.html")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$save_html_app(
+  template_file =
+    "https://gitlab.com/urswilke/table_charter/-/raw/main/example_dashboard.html",
+  output_file = "dashboard.html"
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -184,6 +178,26 @@ The template file should then be in the \verb{dist/} sub-directory.
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Details}{
+This needs a valid html \code{template_file}, i.e. one of:
+\itemize{
+\item The file
+\href{https://gitlab.com/urswilke/table_charter/-/blob/main/example_dashboard.html}{example_dashboard.html}
+which is directly scraped from the table_charter repo by default (no installation of table_charter needed).
+\item For \href{https://gitlab.com/urswilke/table_charter#deploying-it-in-the-web}{deploying it in the web}
+or \href{https://gitlab.com/urswilke/table_charter#dev-server}{running it on a dev server},
+you need to \href{https://gitlab.com/urswilke/table_charter#installation}{install table_charter} first,
+and then use the file \href{https://gitlab.com/urswilke/table_charter/-/blob/main/index.html}{index.html}
+on your machine.
+\item After installing, you can also generate a standalone html file
+(without the need to download javascript libraries) by running:
+\preformatted{
+  npm run standalone-build
+}
+and then using the template file created in the \verb{dist/} sub-directory.
+}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-get_crosstabs_data"></a>}}
