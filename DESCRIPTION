@@ -38,7 +38,8 @@ Imports:
     datadaptor,
     vctrs,
     S7,
-    xml2
+    xml2,
+    jsonlite
 Remotes: gitlab::urswilke/datadaptor
 Suggests: 
     testthat (>= 3.0.0),
