@@ -268,5 +268,6 @@ gen_data_json <- function(l) {
       na = "null",
       null = "null",
       auto_unbox = TRUE
-    )
+    ) |>
+    as.character()
 }
