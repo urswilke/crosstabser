@@ -16,7 +16,7 @@ A character string
 This helper function generates a json string containing
 the data produced by \code{Tabula$get_crosstabs_data()},
 and which then can be put as the \code{"data"} attribute
-of the \verb{<table-charter>} app.
+of the \verb{<table-charter>} app. It is also used by \code{Tabula$save_html_app()}
 }
 \examples{
 df <- tibble::tibble(
