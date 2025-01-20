@@ -9,3 +9,4 @@ dev/*
 !dev/example.json
 docs
 inst/doc
+public
