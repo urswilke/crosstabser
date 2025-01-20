@@ -25,7 +25,6 @@ df <- tibble::tibble(
 )
 mapping_file = list(
   Questions = data.frame(
-    Abbreviation = "q1",
     Type  = "cat",
     RowVar = "q1",
     Title = "The crosstab's title"

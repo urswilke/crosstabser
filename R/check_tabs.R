@@ -26,7 +26,7 @@ check_100percent <- function(qtab) {
 
     warn_part1 <- paste0(
       "In table ",
-      qtab$p$Abbreviation %||% qtab$p$Title,
+      qtab$p$Abbreviation,
       " (in row ",
       qtab$p$row,
       "):"

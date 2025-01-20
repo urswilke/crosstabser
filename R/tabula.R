@@ -224,6 +224,16 @@ Tabula <- R6::R6Class(
     new_Qrow = Qrow,
     read_qsheet = function(row) {
       qsheet_raw <- read_qsheet_raw(self, row)
+
+      # append "_row_<row value>" to Abbreviation column if duplicated or NA:
+      is_duplicated <- vctrs::vec_duplicate_detect(qsheet_raw$Abbreviation) |
+        is.na(qsheet_raw$Abbreviation)
+      qsheet_raw$Abbreviation[is_duplicated] <- paste0(
+        qsheet_raw$Abbreviation[is_duplicated] |> dplyr::coalesce(""),
+        "_row_",
+        qsheet_raw$row[is_duplicated]
+      )
+
       self$ditw$ct$qsheet$qsheet_raw <- qsheet_raw
     },
     process_qsheet = function(row) {
@@ -282,7 +292,6 @@ Tabula <- R6::R6Class(
 #' )
 #' mapping_file = list(
 #'   Questions = data.frame(
-#'     Abbreviation = "q1",
 #'     Type  = "cat",
 #'     RowVar = "q1",
 #'     Title = "The crosstab's title"

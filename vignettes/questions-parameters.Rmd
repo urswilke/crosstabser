@@ -17,7 +17,9 @@ knitr::opts_chunk$set(
 This vignette lists the options how to modify the crosstabs generated with crosstabser.
 The items in the bullet points correspond to the column headers of the table in the Questions sheet: 
 
--	`Abbreviation`: A unique identifier string
+-	`Abbreviation`: An identifier string for internal use; 
+  if duplicated or not specified, `"_row_<ROW VALUE>"` will be appended 
+  (where `<ROW VALUE>` is the row number)
 -	`Title`: Question title that will be shown in the table; 
   A blank in single quotes (`' '`) inserts a line break
 <!-- TODO: use different names for the 4 types-->

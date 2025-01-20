@@ -59,10 +59,6 @@ prepare_head_col_tables_ <- function(tabula) {
 prepare_tab_table_tb <- function(qrow) {
   row_table <- qrow$ditw$ct$crosstabs$data$row_table
   tab_table <- qrow$ditw$ct$crosstabs$data$tab_table
-  # the group_by QuestNo, TabNo only works if QuestNo is unique
-  # see also in ascend_rownos_within_questno()
-  # => perhaps better additionally group_by QuestLine and allow duplicated QuestNo?
-  # TODO: discuss with Wolf if it wouldn't be better to allow empty strings, and it that case replace QuestNO with QuestLine... / add _<index> to duplicated `QuestNo`s...!
   df_tabcount <- row_table |>
     dplyr::group_by(QuestNo, TabNo) |>
     dplyr::summarise(TabCount = dplyr::n(), .groups = "drop")

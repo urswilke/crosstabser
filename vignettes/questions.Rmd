@@ -59,7 +59,6 @@ df
 Next we define the syntax to generate crosstabs:
 ```{r}
 Questions <- tibble::tibble(
-  Abbreviation = c("age", "fav_it", "fav_de", "item_bat"),
   Title = c(
     "Age", "What`s your favorite Italian food?",
     "What`s your favorite German food?", "How much do you agree?"
