@@ -165,7 +165,8 @@ Write a table_charter app html file of the crosstab data
 \if{html}{\out{<div class="r">}}\preformatted{Tabula$save_html_app(
   template_file =
     "https://gitlab.com/urswilke/table_charter/-/raw/main/example_dashboard.html",
-  output_file = "dashboard.html"
+  output_file = "dashboard.html",
+  project_data = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -175,6 +176,11 @@ Write a table_charter app html file of the crosstab data
 \item{\code{template_file}}{Path to the template file (see description).}
 
 \item{\code{output_file}}{File path to the table_charter app html file.}
+
+\item{\code{project_data}}{Either a \code{list()} object to modify the default:
+\code{list(logo_base64 = "", logo_url = "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg", title = "Dashboard", date = Sys.Date())}, or \code{NULL} (the default).
+If \code{NULL}, nothing is done.
+The fields will modify the elements in the header of the dashboard.}
 }
 \if{html}{\out{</div>}}
 }
