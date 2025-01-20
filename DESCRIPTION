@@ -47,7 +47,8 @@ Suggests:
     ggplot2,
     withr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    glue
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 Language: en-US
