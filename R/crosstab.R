@@ -191,7 +191,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   long_data_all <- qtab$d$long_data_all
   no_entry_data <- long_data_all |>
     dplyr::summarise(
-      has_no_entry = !any(rowvar %in% all_rowvars & rowval == mdg_val),
+      has_no_entry = !any(rowvar %in% all_rowvars & rowval %in% mdg_val),
       .by = all_of(c(all_group_variables, qtab$p$long_weight))
     )
   no_entry_data <- no_entry_data[no_entry_data$has_no_entry,]

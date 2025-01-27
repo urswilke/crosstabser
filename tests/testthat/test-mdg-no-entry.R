@@ -1,5 +1,5 @@
 df <- tibble::tibble(
-  q1_1 = c(1, 0, 0) |> haven::labelled(c(Selected = 1, Unselected = 0), label = "Choice 1"),
+  q1_1 = c(1, 0, NA) |> haven::labelled(c(Selected = 1, Unselected = 0), label = "Choice 1"),
   q1_2 = c(1, 1, 0) |> haven::labelled(c(Selected = 1, Unselected = 0), label = "Choice 2"),
   age = c(2, 1, 1) |> haven::labelled(c("18-39" = 1, "40+" = 2), label = "age"),
   gew = c(0.5, 1.2, 0.4)
