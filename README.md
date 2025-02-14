@@ -17,14 +17,13 @@ The goal of crosstabser is to generate crosstabs from labelled data
 approach to modify datasets. The generated crosstabs can be plotted
 interactively in html files with the apps provided by
 [table_charter](https://gitlab.com/urswilke/table_charter).
-
 [Here](https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/)
 you can find an interactive introduction that also shows how the
 resulting table_charter app can be dynamically created with the data
-from crosstabser.
-
-<!-- TODO: refer to table books on our website!-->
-<!-- TODO: refer to spreadator!-->
+from crosstabser. This package (together with datadaptor) is also used
+to generate the crosstabs in [table
+books](https://www.data-connection.de/table-book.html) (commercial
+product). <!-- TODO: refer to spreadator!-->
 
 ## Installation
 
@@ -34,7 +33,7 @@ You can install the development version of crosstabser like so:
 devtools::install_gitlab("urswilke/crosstabser")
 ```
 
-## Example
+## Minimal example
 
 First we’ll load the package.
 
@@ -42,9 +41,7 @@ First we’ll load the package.
 library(crosstabser)
 ```
 
-### Minimal example
-
-Suppose you have survey data `df`.
+Now, suppose you have survey data `df`.
 
 ``` r
 df <- tibble::tibble(
@@ -87,8 +84,7 @@ crosstabser allows this if you define a mapping object like this:
 #> [1] "age"
 ```
 
-Then you can use the package’s `Tabula` class to generate print output
-of the crosstab in the console:
+This is how you can calculate crosstabs and print them to the console:
 
 ``` r
 Tabula$new(df, mapping_file)
