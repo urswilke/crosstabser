@@ -216,7 +216,7 @@ Tabula <- R6::R6Class(
     #'   This will call the print method of all `Qrow` elements in the `Tabula$qrows` field.
     #' @param ... Not used for now.
     print = function(...) {
-      self$qrows |> lapply(\(x) x$qtabs) |> print()
+      self$qrows |> lapply(\(x) x$qtabs) |> print(...)
       invisible(self)
     }
   ),
