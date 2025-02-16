@@ -112,8 +112,8 @@ ctl_new_pillar.pillar_wide_tab <- function(controller, x, width, ..., title = NU
     col_title1 <- ""
     col_title2 <- ""
   }
-  col_title1 = stringr::str_trunc(col_title1, width, ellipsis = "\u2026") |> cli::col_blue()
-  col_title2 = stringr::str_trunc(col_title2, width, ellipsis = "\u2026") |> cli::col_blue()
+  col_title1 = stringr::str_trunc(col_title1, width, ellipsis = "\u2026") |> cli::col_br_blue()
+  col_title2 = stringr::str_trunc(col_title2, width, ellipsis = "\u2026") |> cli::col_br_blue()
   pillar::new_pillar(list(
     col_title1 = pillar::new_pillar_component(list(col_title1), width = width),
     col_title2 = pillar::new_pillar_component(list(col_title2), width = width),
