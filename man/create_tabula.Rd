@@ -19,17 +19,18 @@ Either "excel" or "list". Defaults to "excel".}
 This function first calls \code{datadaptor::create_mapping_workbook()}.
 Additionally to the sheets "Variables", "Label", "Verbatims" & "Free",
 it will insert 2 more sheets "Macro" & "Questions".
-The Excel workbook is then written to the file \verb{mapp[ing_file}.
+The Excel workbook is then written to the file \code{mapping_file}.
 Please refer to \code{vignette("questions")} & \code{vignette("questions-parameters")}
 for details how to use the mapping.
 }
 \examples{
 spss_file <- system.file(
   "extdata",
-  "mtcars_labelled.sav",
+  "fruit_survey.sav",
   package = "datadaptor"
 )
 df <- haven::read_sav(spss_file)
+# The next command creates an empty mapping file `mapping.xlsx`:
 \dontrun{
 create_tabula(df, "mapping.xlsx")
 }
