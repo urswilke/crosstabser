@@ -14,123 +14,234 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Introduction
+
 In this vignette we'll show some examples how crosstabs can be generated.
+First, a labelled data set is modified with 
+[datadaptor](https://gitlab.com/urswilke/datadaptor)
+to prepare the data for the crosstabs.
+The latter are then calculated with the crosstabser functionalities.
 [Here](https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/)
 you can find an interactive version of this vignette 
 that will also automatically generate an interactive
-[table_charter](https://gitlab.com/urswilke/table_charter) app of the crosstabs.
-First we'll load the library
+[table_charter](https://gitlab.com/urswilke/table_charter) 
+app of the crosstabs in the browser.
+
+
+## Getting started
+
+First, we'll load the library.
 
 ```{r, setup}
 library(crosstabser)
-library(haven)
 ```
 
-and define a labelled data.frame:
+In order to use crosstabser, we need a dataset and a mapping file.
+The latter defines the commands to modify the data (optional; using datadaptor functionalities), 
+and those to calculate crosstabs.
 
-<details>
-  <summary>Show code how the data.frame was generated</summary>
+We'll use the `datadaptor::fruit_survey` toy data set
 
 ```{r}
-set.seed(123)
-n <- 10
-df <- tibble::tibble(
-    q1_1 = sample(c(0, 1), n, TRUE) |> labelled(c(Selected = 1, Unselected = 0), label = "Pizza"),
-    q1_2 = sample(c(0, 1), n, TRUE) |> labelled(c(Selected = 1, Unselected = 0), label = "Lasagne"),
-    q1_3 = sample(c(0, 1), n, TRUE) |> labelled(c(Selected = 1, Unselected = 0), label = "Bruschetta"),
-    q2n1 = sample(c(1, 2, 3), n, TRUE) |> labelled(c(Beer=1, Sauerkraut=2, Brezel = 3), label = "1st choice"),
-    q2n2 = sample(c(1, 2, 3, rep(NA_real_, 1)), n, TRUE) |> labelled(c(Beer = 1, Sauerkraut = 2, Brezel = 3), label = "2nd choice"),
-    q2n3 = sample(c(1, 2, 3, rep(NA_real_, 4)), n, TRUE) |> labelled(c(Beer = 1, Sauerkraut = 2, Brezel = 3), label = "3rd choice"),
-    q2n4 = sample(c(1, 2, 3, rep(NA_real_, 8)), n, TRUE) |> labelled(c(Beer = 1, Sauerkraut = 2, Brezel = 3), label = "4th choice"),
-    q3_1 = sample(c(1, 2, 3, 4, 5), n, TRUE) |> labelled(c("Not at all" = 1, "2" = 2, "3" = 3, "4" = 4, "Very much" = 5), label = "Dogs are cool"),
-    q3_2 = sample(c(1, 2, 3, 4, 5), n, TRUE) |> labelled(c("Not at all" = 1, "2" = 2, "3" = 3, "4" = 4, "Very much" = 5), label = "Cats are beautiful"),
-    age  = sample(c(1, 2, 3), n, TRUE) |> labelled(c("18-39" = 1, "40-59" = 2, "60+" = 3), label = "age"),
-    gew = runif(n, 0.5, 3),
+df <- datadaptor::fruit_survey
+```
+
+together with the 
+[example mapping file](https://gitlab.com/urswilke/crosstabser/-/blob/master/inst/extdata/tabulate-fruits.xlsx) 
+for this data set in the package. 
+If you install crosstabser on your machine, this file is also on your computer:
+
+```{r}
+mapping_file <- system.file("extdata", "tabulate-fruits.xlsx", package = "crosstabser")
+```
+
+We can apply the data modifications and calculate the crosstabs in one command
+by defining an R6 object of class "Tabula":
+
+```{r, message=FALSE}
+m <- crosstabser::Tabula$new(
+  dat = df, 
+  mapping_file = mapping_file
 )
-# Here, we make sure that this weight variable sums up to `n`:
-df$gew <- df$gew / mean(df$gew)
-```
-</details>
-
-```{r}
-df
 ```
 
-Next we define the syntax to generate crosstabs:
-```{r}
-Questions <- tibble::tibble(
-  Title = c(
-    "Age", "What`s your favorite Italian food?",
-    "What`s your favorite German food?", "How much do you agree?"
-  ),
-  Type = c("cat", "mdg", "mcg", "mw"),
-  RowVar = c("age", "q1_1 q1_2 q1_3", "q2n1 q2n2 q2n3 q2n4", "q3_1 q3_2"),
-  MdgMissLab = c("", "No answer", "", ""),
-  Freq = c("", "", "", "0")
-)
-Questions
+and then print the crosstabs defined in the mapping:
+
+(*by passing a high value of the* `width` 
+*parameter, we can make sure that all headers are printed*)
+```{r, R.options = list(width = 1e4)}
+m |> print(width = 1e4)
 ```
 
-To define the columns along the x-axis of the crosstabs, we need to define a character vector of variable names in `df`:
 
-```{r}
-ColVar <- "age"
-```
+## Dive-in
 
-The default method to generate crosstabs is by using Excel mapping files. 
-You could generate a template "mapping.xlsx" for such a file by using:
+In the following, we'll have a closer look, how this works.
+
+
+### Create a mapping file
+
+crosstabser's example file `mapping_file` to generate crosstabs was built
+by editing the empty template of an Excel mapping file. 
+For every data set `df`, 
+this is how you can generate the empty mapping file 
+(named `"mapping.xlsx"` here) 
+from the template:
 
 ```{r, eval=FALSE}
 create_tabula(df, "mapping.xlsx")
 ```
-In the generated file you could then copy `Questions` into the corresponding columns of the "Questions" sheet, 
-and `ColVar` into the "ColVar" row of the "Macro" sheet. There, the column that is used is defined by the number of the named region "V_Scenario" that corresponds to the "Scenario" row (this allows to store varying parameter sets for different scenarios).
 
-However, for easier documentation the package also allows to define mappings as lists 
-consisting of 2 data.frame elements `Questions` & `Macro`:
-```{r}
-mapping_file <- list(Questions = Questions, Macro = list(ColVar = ColVar))
+
+### Mapping file content {.tabset}
+
+```{r, echo=FALSE}
+sheets <-   c("Variables", "Label", "Free1", "Macro", "Questions")
 ```
 
-Now we can construct an R6 object of class "Tabula":
+You can also see the relevant parts in the sheets of `mapping_file` here,
+in the following `r length(sheets)` data.frames:
 
-```{r}
-m <- Tabula$new(
-  df,
-  mapping_file,
+```{r, echo=FALSE}
+wb <- openxlsx2::wb_load(mapping_file)
+l <- purrr::map2(
+  sheets |> purrr::set_names(),
+  c(TRUE, TRUE, FALSE, FALSE, TRUE),
+  \(x, b) openxlsx2::read_xlsx(wb, x, col_names = b, ) |> 
+    dplyr::mutate(across(-matches("(^nv$|sum_var_value)"), as.character)) |> 
+    tibble::as_tibble()
+)
+l$Variables <- l$Variables |> 
+  dplyr::filter(if_any(c("new_label", "new_name", "op"), Negate(is.na)))
+l$Label <- l$Label |> 
+  dplyr::filter(if_any(c("new_label", "sum_var_label", "sum_var_value", "sum_var_vallab"), Negate(is.na)))
+new_names <- paste0("X", 1:5)
+names(l$Free1) <- new_names
+l$Free1 <- l$Free1 |> 
+  dplyr::mutate(row = dplyr::row_number(), .before = 1) |> 
+  dplyr::filter(if_any(all_of(new_names), Negate(is.na)))
+l$Macro <- l$Macro |> janitor::remove_empty("cols") |> _[1:2] |> tidyr::drop_na(E)
+l$Questions <- l$Questions |> janitor::remove_empty("cols") |> janitor::remove_empty("rows")
+not_needed <- list2env(l, globalenv())
+```
+
+
+#### Variables
+
+```{r, R.options = list(width = 1e4)}
+Variables
+```
+
+#### Label
+
+```{r, R.options = list(width = 1e4)}
+Label
+```
+
+#### Free1
+
+```{r, R.options = list(width = 1e4)}
+Free1
+```
+
+#### Macro
+
+```{r, R.options = list(width = 1e4)}
+Macro
+```
+
+We only need the column 
+where `Scenario` is equal to the value `"V_Scenario"` specified in the mapping. 
+
+(This allows to store varying parameter sets for different scenarios. 
+And by using this named region in Excel formulas, 
+you can also enter scenario-specific commands in the Excel file.)
+
+The only relevant argument in this case is the value in the `"ColVar"` row.
+The variable names are entered in a space separated list, 
+corresponding to this character vector:
+
+```{r, comment='', echo=FALSE}
+colvar_cmd <- l$Macro |> 
+  dplyr::filter(A == "ColVar") |>
+  _[-1][[1]] |> 
+  strsplit(" +") |>
+  _[[1]] |> 
+  dput() |> capture.output()
+colvar_cmd <- paste("ColVar <- ", colvar_cmd, collapse = "")
+eval(parse(text = colvar_cmd))
+cat(colvar_cmd)
+```
+
+
+#### Questions {.active}
+
+```{r, R.options = list(width = 1e4)}
+Questions
+```
+
+Only the first three columns `Title`, `RowVar` & `Type` are mandatory for every table.
+The other options allow for further customization of the tables.
+For the various options how to modify the crosstabs, 
+please have a look at `vignette("questions-parameters")`.
+
+
+### Use the mapping
+
+Next, we'll show how we can apply the data modifications and calculate the crosstabs in the mapping.
+
+#### Modify data
+
+The data is modified by applying the commands in the following sheets (using [`datadaptor::Mapping$modify_data()`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html#method-modify-data-) under the hood):
+
+* `Variables`: This modifies the data set's variables and their labels.
+* `Label`: This modifies the data set's variables' value labels and allows to generate summary variables.
+* `Free1`: This allows to define additional commands modifying the data. 
+All the modifications of the `Variables` & `Label` sheets could also be done there.
+
+See [here](https://urswilke.gitlab.io/datadaptor/articles/command_blocks.html)
+for the documentation of the commands used in these sheets.
+
+#### Calculate crosstabs
+
+The following sheets control, which and how crosstabs are calculated:
+
+* `Macro`: This allows to define the additional header variables for the x-axis of the crosstabs.
+* `Questions`: The rows in this table define the crosstabs that are calculated.
+
+#### Execute
+
+We can apply the data modifications and calculate the crosstabs in one command
+by constructing an R6 object of class "Tabula":
+
+```{r, message=FALSE}
+m <- crosstabser::Tabula$new(
+  dat = df, 
+  mapping_file = mapping_file
 )
 ```
 
-The `Tabula` class has a special print method that prints all the crosstabs calculated:
+### Alternative use without Excel
+
+Instead of using an Excel mapping file, 
+we can also define the mapping entirely in R 
+without the need of an Excel file
+by passing the relevant data as a list:
 
 ```{r}
-m
-```
-
-If you want to weight the variables by `df$gew`, here's how:
-```{r}
-mapping_file$Macro$Weight <- "gew"
-m <- Tabula$new(
-  df,
-  mapping_file,
-  tabulate = FALSE,
+mapping_file <- list(
+  Variables = Variables,
+  Label = Label,
+  Free1 = Free1,
+  Questions = Questions, 
+  # You can pass the parameters of the data.frame 
+  # in the `Macro` sheet as a named list:
+  Macro = list(ColVar = ColVar)
 )
-# (by setting `tabulate = FALSE and the next line,
-# we can change options, before calculating the crosstabs.
-# this changes the Symbol for the weighted rows from "⚖" to "W" for a better print output):
-m$opts$ct$l_lexikon["cTabWeighted"] <- " W"
-m$calc_qtabs()
-m
+m <- crosstabser::Tabula$new(
+  dat = df, 
+  mapping_file = mapping_file
+)
 ```
 
-You can also generate both, unweighted & weighted rows (alternating) in the tables by further adding:
-```{r}
-# alternatively we could have set this parameter upfront, as above:
-# mapping_file$Macro$Unwgt <- TRUE
-m$opts$ct$l_macro_scenario$Unwgt <- TRUE
-m$calc_qtabs()
-m
-```
 
-For the various options how to modify the crosstabs, please have a look at
-`vignette("questions-parameters")`.
