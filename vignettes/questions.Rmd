@@ -132,17 +132,42 @@ not_needed <- list2env(l, globalenv())
 Variables
 ```
 
+The variable label of `q4` is changed to `"Favorite fruit"`. 
+
 #### Label
 
 ```{r, R.options = list(width = 1e4)}
 Label
 ```
 
+This creates the 3 variables `kq2_1`, `kq2_2` & `kq2_3` 
+from `q2_1`, `q2_2` & `q2_3` 
+with the variable label "Likes" and the respective value labels
+"Apples", "Bananas" & "Oranges".
+The created variables are `NA` if the respective fruits weren't selected,
+and serve as the basis 
+to calculate and label the corresponding headers in the crosstabs (see Macro sheet).
+
 #### Free1
 
 ```{r, R.options = list(width = 1e4)}
 Free1
 ```
+
+The following calculations are done:
+
+* `n_fruits`: The number of fruits selected in `Q2`.
+* If no fruit was selected in `Q2`, but it was asked according to `Q1`,
+  `Q2` is coded as "No answer".
+* If only 1 fruit is selected in `Q2`, `Q4` wasn't asked and we set `Q4` to this fruit.
+* The variable labels in `Q2` & `Q3` 
+  (which provides the row labels in the crosstabs)
+  are changed to 
+  "Apple", "Banana" & "Orange" & "Other", respectively.
+* Further header variables `kq4` / `kq5` are generated 
+  (also for use in the Macro sheet):
+  * `kq4`: with a subset of values (`NA` otherwise) 
+  * `kq5`: labelled values of summarized intervals
 
 #### Macro
 
@@ -184,6 +209,25 @@ Only the first three columns `Title`, `RowVar` & `Type` are mandatory for every 
 The other options allow for further customization of the tables.
 For the various options how to modify the crosstabs, 
 please have a look at `vignette("questions-parameters")`.
+
+The following `r nrow(l$Questions)` are tabulated:
+
+* `Q1`: Single answer question
+* `Q2`: Multiple answer question, 
+  "No answer" is invalid,
+  and we label as "FILTER" if no variable is selected (also invalid).
+* `Q3`: Item battery: 
+  * First comes a table with the TOP2 overview, 
+  * then the default "Summary of means" overview,
+  * followed by tables of the answers for single items,
+    ordered from top to bottom,
+    and with additional rows for TOP2, MID1 & LOW2,
+    as well as the mean & its standard error.
+* `Q4`: Single choice question, "No answer" is set to invalid.
+* `Q5`: Like the single items in `Q3` 
+  this variable is tabulated with additional rows for 
+  summarized intervals, as well as the mean & its standard error.
+
 
 
 ### Use the mapping
