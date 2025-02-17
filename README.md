@@ -102,7 +102,7 @@ Tabula$new(df, mapping_file)
 #>                      in %  100     100   100
 ```
 
-Please refer to `vignette("questions")` for some more examples, and
-`vignette("questions-parameters")` for details how to use the parameters
-in the mapping. In `vignette("data-format")` we have a closer look at
-the structure of the crosstabs’ underlying data.
+Please refer to `vignette("crosstabser")` for a more thorough
+introduction, and `vignette("questions-parameters")` for details how to
+use the parameters in the mapping. In `vignette("data-format")` we have
+a closer look at the structure of the crosstabs’ underlying data.

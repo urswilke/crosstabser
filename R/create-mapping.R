@@ -6,7 +6,7 @@
 #' Additionally to the sheets "Variables", "Label", "Verbatims" & "Free",
 #' it will insert 2 more sheets "Macro" & "Questions".
 #' The Excel workbook is then written to the file `mapping_file`.
-#' Please refer to `vignette("questions")` & `vignette("questions-parameters")`
+#' Please refer to `vignette("crosstabser")` & `vignette("questions-parameters")`
 #' for details how to use the mapping.
 #'
 #' @param df_raw dataframe with labelled variables, e.g. resulting from

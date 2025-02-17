@@ -20,7 +20,7 @@ This function first calls \code{datadaptor::create_mapping_workbook()}.
 Additionally to the sheets "Variables", "Label", "Verbatims" & "Free",
 it will insert 2 more sheets "Macro" & "Questions".
 The Excel workbook is then written to the file \code{mapping_file}.
-Please refer to \code{vignette("questions")} & \code{vignette("questions-parameters")}
+Please refer to \code{vignette("crosstabser")} & \code{vignette("questions-parameters")}
 for details how to use the mapping.
 }
 \examples{
