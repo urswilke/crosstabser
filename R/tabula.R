@@ -71,7 +71,6 @@ Tabula <- R6::R6Class(
     dat = NULL,
     dat_mod = NULL,
     qrows = list(),
-    crosstabs = list(),
     ditw = list(da = NULL, ct = NULL),
     #' @description Initialize a Tabula object
     #'
