@@ -7,7 +7,7 @@ where crosstabs should be calculated, when calling `Tabula$calc_qtabs()`.
 Or `NULL` (the default) resulting in the selection of all row numbers
 where `Type` is specified."
 doc_dat <- "`dat` input data field of the super-class `datadaptor::Mapping`.
-If this is specified, dat_mod will be ignored,
+If this is specified, `dat_mod` will be ignored,
 and instead generated with `datadaptor::Mapping$modify_data()`"
 doc_dat_mod <- "`dat_mod` modified data field of the super-class `datadaptor::Mapping`."
 doc_mapping_file <- "`mapping_file` file path field of the super-class `datadaptor::Mapping`."

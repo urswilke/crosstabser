@@ -41,7 +41,7 @@ m$qrows[[1]]$qtabs |> print()
 \item{\code{mapping_file}}{\code{mapping_file} file path field of the super-class \code{datadaptor::Mapping}.}
 
 \item{\code{dat}}{\code{dat} input data field of the super-class \code{datadaptor::Mapping}.
-If this is specified, dat_mod will be ignored,
+If this is specified, \code{dat_mod} will be ignored,
 and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
 \item{\code{qrows}}{A \code{list()} of \code{Qrow} objects}
@@ -107,7 +107,7 @@ Or \code{NULL} (the default) resulting in the selection of all row numbers
 where \code{Type} is specified.}
 
 \item{\code{dat}}{\code{dat} input data field of the super-class \code{datadaptor::Mapping}.
-If this is specified, dat_mod will be ignored,
+If this is specified, \code{dat_mod} will be ignored,
 and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
 \item{\code{tabulate}}{Logical, whether to call the \code{Tabula$calc_qtabs()}
