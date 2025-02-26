@@ -62,7 +62,7 @@ empty_qsheet <- function() {
   )
 }
 process_qrow_params <- function(df_qrow, mapping) {
-  df_qrow |>
+  res <- df_qrow |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
       RowVar = lapply(RowVar, \(x) extract_rowvars(x, mapping$ditw$ct$dat_tab)),
@@ -81,6 +81,11 @@ process_qrow_params <- function(df_qrow, mapping) {
     purrr::transpose() |>
     lapply(\(x) x[!is.na(x)]) |>
     _[[1]]
+  if (!"Title" %in% names(res)) {
+    res$Title <- ""
+    warning("Title not specified.")
+  }
+  res
 }
 
 gen_qtabs_params <- function(qrow_params, mapping) {

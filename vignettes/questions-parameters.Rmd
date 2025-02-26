@@ -27,10 +27,8 @@ The items in the bullet points correspond to the column headers of the table in 
 
 ## Mandatory arguments
 
-The arguments `Title`, `Type` and `RowVar` need to be specified for all crosstabs:
+The arguments `Type` and `RowVar` need to be specified for all crosstabs:
 
--	`Title`: Question title that will be shown in the table; 
-  A blank in single quotes (`' '`) inserts a line break
 <!-- TODO: use different names for the 4 types-->
 -	`Type`: Defining the type of question; there are 4 possible cases:
     -	`cat`: for single-choice questions; if multiple `RowVar`s are specified, 
@@ -56,6 +54,8 @@ The arguments `Title`, `Type` and `RowVar` need to be specified for all crosstab
 
 ### Optional arguments for all 4 `Type`s
 
+-	`Title`: Question title that will be shown in the table; 
+  A blank in single quotes (`' '`) inserts a line break
 -	`Abbreviation`: An identifier string for internal use; 
   if duplicated or not specified, `"_row_<ROW VALUE>"` will be appended 
   (where `<ROW VALUE>` is the row number)

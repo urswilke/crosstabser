@@ -205,7 +205,7 @@ cat(colvar_cmd)
 Questions
 ```
 
-Only the first three columns `Title`, `RowVar` & `Type` are mandatory for every table.
+Only the columns `RowVar` & `Type` are mandatory for every table.
 The other options allow for further customization of the tables.
 For the various options how to modify the crosstabs, 
 please have a look at `vignette("questions-parameters")`.
