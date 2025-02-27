@@ -20,7 +20,10 @@ write_html_app(
 
 \item{output_file}{File path to the table_charter app html file.}
 
-\item{project_data}{Either a \code{list()} object to modify the default:}
+\item{project_data}{Either a \code{list()} object to modify the default:
+\code{list(logo_base64 = "", logo_url = "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg", title = "Dashboard", date = Sys.Date())}, or \code{NULL} (the default).
+If \code{NULL}, nothing is done.
+The fields will modify the elements in the header of the dashboard.}
 }
 \value{
 No value's returned. This function writes a file.

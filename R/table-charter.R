@@ -8,6 +8,13 @@
 #' @param template_file Path to the template file (see description).
 #' @param output_file File path to the table_charter app html file.
 #' @param project_data Either a `list()` object to modify the default:
+#'   `list(logo_base64 = "",
+#'     logo_url =
+#'       "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg",
+#'     title = "Dashboard",
+#'     date = Sys.Date())`, or `NULL` (the default).
+#'    If `NULL`, nothing is done.
+#'    The fields will modify the elements in the header of the dashboard.
 #'
 #' @return No value's returned. This function writes a file.
 #' @export
