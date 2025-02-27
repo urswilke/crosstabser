@@ -11,7 +11,18 @@ If this is specified, `dat_mod` will be ignored,
 and instead generated with `datadaptor::Mapping$modify_data()`"
 doc_dat_mod <- "`dat_mod` modified data field of the super-class `datadaptor::Mapping`."
 doc_mapping_file <- "`mapping_file` file path field of the super-class `datadaptor::Mapping`."
-
+doc_data_string <- "Crosstab data produced with
+ `Tabula$get_crosstabs_data() |> gen_data_json()`."
+doc_template_file <- "Path to the template file (see description)."
+doc_output_file <- "File path to the table_charter app html file."
+doc_project_data <- 'Either a `list()` object to modify the default:
+   `list(logo_base64 = "",
+     logo_url =
+       "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg",
+     title = "Dashboard",
+     date = Sys.Date())`, or `NULL` (the default).
+    If `NULL`, nothing is done.
+    The fields will modify the elements in the header of the dashboard.'
 # TODO: somehow hide fields with "Will be deprecated"
 # TODO: check where to add helper functions (or other OOP structure or something else (?))
 # for common tasks in different methods,
@@ -146,16 +157,9 @@ Tabula <- R6::R6Class(
     #' }
     #' and then using the template file created in the `dist/` sub-directory.
     #'
-    #' @param template_file Path to the template file (see description).
-    #' @param output_file File path to the table_charter app html file.
-    #' @param project_data Either a `list()` object to modify the default:
-    #'   `list(logo_base64 = "",
-    #'     logo_url =
-    #'       "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg",
-    #'     title = "Dashboard",
-    #'     date = Sys.Date())`, or `NULL` (the default).
-    #'    If `NULL`, nothing is done.
-    #'    The fields will modify the elements in the header of the dashboard.
+    #' @param template_file `r doc_template_file`
+    #' @param output_file `r doc_output_file`
+    #' @param project_data `r doc_project_data`
     save_html_app = function(
       template_file = "https://gitlab.com/urswilke/table_charter/-/raw/main/example_dashboard.html",
       output_file = "dashboard.html",
@@ -163,38 +167,7 @@ Tabula <- R6::R6Class(
     ) {
       data_string <- self$get_crosstabs_data() |> gen_data_json()
 
-      html <- template_file |> xml2::read_html()
-
-      load_data_node <- html |>
-        xml2::xml_find_all("//script[@id='load-example-data']")
-      xml2::xml_remove(load_data_node)
-      tc_node <- html |>
-        xml2::xml_find_all(".//table-charter-intro|.//table-charter")
-      xml2::xml_attr(tc_node, "data") <- data_string
-
-      if (!is.null(project_data)) {
-        project_data_node <- html |>
-          xml2::xml_find_first(".//script[@id='project-data']")
-        project_data_mod <- list(
-          logo_base64 = "",
-          logo_url =
-            "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg",
-          title = "Dashboard",
-          date = Sys.Date()
-        ) |>
-          utils::modifyList(project_data)
-        xml2::xml_text(project_data_node) <- paste0(
-          "\nconst project_data = ",
-          jsonlite::toJSON(
-            project_data_mod,
-            auto_unbox = TRUE,
-            pretty = TRUE
-          ),
-          ";\n"
-        )
-      }
-
-      html |> xml2::write_html(output_file)
+      write_html_app(data_string, template_file, output_file, project_data)
 
       invisible(self)
     },
