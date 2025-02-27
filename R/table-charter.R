@@ -3,18 +3,10 @@
 #' This helper function is used by `Tabula$save_html_app()`
 #' to write a table_charter app html file of crosstab data.
 #'
-#' @param data_string Crosstab data produced with
-#'   `Tabula$get_crosstabs_data() |> gen_data_json()`.
-#' @param template_file Path to the template file (see description).
-#' @param output_file File path to the table_charter app html file.
-#' @param project_data Either a `list()` object to modify the default:
-#'   `list(logo_base64 = "",
-#'     logo_url =
-#'       "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg",
-#'     title = "Dashboard",
-#'     date = Sys.Date())`, or `NULL` (the default).
-#'    If `NULL`, nothing is done.
-#'    The fields will modify the elements in the header of the dashboard.
+#' @param data_string `r doc_data_string`
+#' @param template_file `r doc_template_file`
+#' @param output_file `r doc_output_file`
+#' @param project_data `r doc_project_data`
 #'
 #' @return No value's returned. This function writes a file.
 #' @export

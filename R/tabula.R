@@ -11,7 +11,18 @@ If this is specified, `dat_mod` will be ignored,
 and instead generated with `datadaptor::Mapping$modify_data()`"
 doc_dat_mod <- "`dat_mod` modified data field of the super-class `datadaptor::Mapping`."
 doc_mapping_file <- "`mapping_file` file path field of the super-class `datadaptor::Mapping`."
-
+doc_data_string <- "Crosstab data produced with
+ `Tabula$get_crosstabs_data() |> gen_data_json()`."
+doc_template_file <- "Path to the template file (see description)."
+doc_output_file <- "File path to the table_charter app html file."
+doc_project_data <- 'Either a `list()` object to modify the default:
+   `list(logo_base64 = "",
+     logo_url =
+       "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg",
+     title = "Dashboard",
+     date = Sys.Date())`, or `NULL` (the default).
+    If `NULL`, nothing is done.
+    The fields will modify the elements in the header of the dashboard.'
 # TODO: somehow hide fields with "Will be deprecated"
 # TODO: check where to add helper functions (or other OOP structure or something else (?))
 # for common tasks in different methods,
@@ -146,16 +157,9 @@ Tabula <- R6::R6Class(
     #' }
     #' and then using the template file created in the `dist/` sub-directory.
     #'
-    #' @param template_file Path to the template file (see description).
-    #' @param output_file File path to the table_charter app html file.
-    #' @param project_data Either a `list()` object to modify the default:
-    #'   `list(logo_base64 = "",
-    #'     logo_url =
-    #'       "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg",
-    #'     title = "Dashboard",
-    #'     date = Sys.Date())`, or `NULL` (the default).
-    #'    If `NULL`, nothing is done.
-    #'    The fields will modify the elements in the header of the dashboard.
+    #' @param template_file `r doc_template_file`
+    #' @param output_file `r doc_output_file`
+    #' @param project_data `r doc_project_data`
     save_html_app = function(
       template_file = "https://gitlab.com/urswilke/table_charter/-/raw/main/example_dashboard.html",
       output_file = "dashboard.html",
