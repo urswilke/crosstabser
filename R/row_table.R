@@ -200,6 +200,10 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
     all_valid_vals <- c("None valid" = 12345678987)
   }
 
+  if (qtab$p$RvEmp %||% FALSE) {
+    all_valid_vals <- all_valid_vals[all_valid_vals %in% occuring_vals]
+  }
+
   vallab_table <- all_valid_vals |>
     tibble::enframe("vallab", "val") |>
     dplyr::mutate(vallab = ifelse(vallab == "" | is.numeric(vallab), as.character(val), vallab))
