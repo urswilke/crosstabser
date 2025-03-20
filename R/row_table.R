@@ -196,6 +196,10 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
     # TODO: Wolf fragen was es alles gibt:
     sort(decreasing = do_sort)
 
+  if (length(all_valid_vals) == 0) {
+    all_valid_vals <- c("None valid" = 12345678987)
+  }
+
   vallab_table <- all_valid_vals |>
     tibble::enframe("vallab", "val") |>
     dplyr::mutate(vallab = ifelse(vallab == "" | is.numeric(vallab), as.character(val), vallab))
