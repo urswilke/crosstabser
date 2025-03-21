@@ -379,9 +379,14 @@ parse_catrec_sum_expr <- function(df_summary, catrec_sum_string) {
       stringr::str_replace_all("(\\[)(\\d+)(\\])", "value[rowval == \\2]")
     rlang::parse_expr(expr_translated)
   }
+  user_vals <- expr_string |>
+    stringr::str_extract_all("(?<=\\[)\\d+(?=\\])") |>
+    _[[1]] |>
+    as.numeric()
   df_user_expr <- df_summary |>
     tidyr::complete(
-      rowvar, rowval,
+      rowvar,
+      rowval = c(rowval, user_vals),
       tidyr::nesting(colvar, colval),
       fill = list(value = 0)
     ) |>
@@ -389,7 +394,7 @@ parse_catrec_sum_expr <- function(df_summary, catrec_sum_string) {
       value = !!translate_user_expression(expr_string),
       .by = c("rowvar", "colvar", "colval")
     )
-  df_user_expr$rowval <- max(df_summary$rowval) + 1
+  df_user_expr$rowval <- max(c(df_summary$rowval, user_vals)) + 1
   df_user_expr
 }
 
