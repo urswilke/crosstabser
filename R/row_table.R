@@ -172,9 +172,17 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
     return(NULL)
   }
+  # TODO: refactor using qtab$d$detail_freqs$rowval
   occuring_vals <- qtab$m$ditw$ct$dat_tab[qtab$p$rowvars_qtab] |> unlist(use.names = FALSE) |> unique()
   invalid_vals <- qtab$p[["Unguelt"]]
-  vallabs <- attr(qtab$m$ditw$ct$dat_tab[[qtab$p$rowvars_qtab[1]]], "labels")
+
+  # For cat or if the first mcg variable contains all value labels,
+  # this would be sufficient:
+  # vallabs <- attr(qtab$m$ditw$ct$dat_tab[[qtab$p$rowvars_qtab[1]]], "labels")
+  vallabs <- qtab$m$ditw$ct$dat_tab[qtab$p$rowvars_qtab] |>
+    lapply(\(x) attr(x, "labels")) |>
+    purrr::reduce(c)
+  vallabs <- vallabs[!duplicated(vallabs)]
 
   # the following is equivalent to (but faster with base R):
   # vallab_table <- vallabs |>
