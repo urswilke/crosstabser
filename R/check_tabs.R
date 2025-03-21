@@ -13,6 +13,7 @@ check_100percent <- function(qtab) {
   var_sums <- df[!filtered_row_idx,] |>
     rowSums(na.rm = TRUE)
   if (
+    length(var_sums) == 0 ||
     var_sums |>
     unique() |>
     dplyr::setequal(100)
