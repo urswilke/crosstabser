@@ -108,10 +108,12 @@ The arguments `Type` and `RowVar` need to be specified for all crosstabs:
 -	`MdgMissValid`: if TRUE missing cases are set to valid (`Type = "mdg"`)
 <!-- TODO: -	`ZsfgMFA`: SPSS Syntax for rows in mdg / mcg (normally count and share of valid answers) -->
 
-### Other arguments tbd
+### Other arguments
 <!-- TODO: discuss with Wolf and fully implement-->
 -	`RvEmp`: If set to `"EXCLUDE"` Rows of values in the resulting tables with 0 counts will be removed.
-<!-- TODO: -	`Categories`: New feature to be programmed for `Type = mcg` tables showing a recoded summary variable as in `CatRec`, however without double-counting individuals in the new categories of the recoded variable; the categories of the recoded variable are shown in the lines above the according original categories. -->
+-	`Categories`: For `Type = mcg` & `cat`; 
+  space-separated numeric values; 
+  if specified only rows with these values will be shown in the valid details of the table.
 -	`Sort`: Possibility to resort the columns showing the categories in the table alphanumerically or by share;\
   Examples:
     -	Descending by frequency of items: `ORDER=D KEY=COUNT`
