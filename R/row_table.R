@@ -204,6 +204,10 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
     # TODO: Wolf fragen was es alles gibt:
     sort(decreasing = do_sort)
 
+  if (!is.null(qtab$p$Categories)) {
+    all_valid_vals <- all_valid_vals[all_valid_vals %in% qtab$p$Categories]
+  }
+
   if (length(all_valid_vals) == 0) {
     all_valid_vals <- c("None valid" = 12345678987)
   }
