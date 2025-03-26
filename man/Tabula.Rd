@@ -61,7 +61,7 @@ the list field additionally contains the \code{ct} element.}
 \itemize{
 \item \href{#method-Tabula-new}{\code{Tabula$new()}}
 \item \href{#method-Tabula-set_options}{\code{Tabula$set_options()}}
-\item \href{#method-Tabula-calc_qtabs}{\code{Tabula$calc_qtabs()}}
+\item \href{#method-Tabula-calc_crosstabs}{\code{Tabula$calc_crosstabs()}}
 \item \href{#method-Tabula-save_html_app}{\code{Tabula$save_html_app()}}
 \item \href{#method-Tabula-get_crosstabs_data}{\code{Tabula$get_crosstabs_data()}}
 \item \href{#method-Tabula-print}{\code{Tabula$print()}}
@@ -102,7 +102,7 @@ Initialize a Tabula object
 \item{\code{mapping_file}}{\code{mapping_file} file path field of the super-class \code{datadaptor::Mapping}.}
 
 \item{\code{row}}{Numeric vector with the row numbers in the Questions sheet,
-where crosstabs should be calculated, when calling \code{Tabula$calc_qtabs()}.
+where crosstabs should be calculated, when calling \code{Tabula$calc_crosstabs()}.
 Or \code{NULL} (the default) resulting in the selection of all row numbers
 where \code{Type} is specified.}
 
@@ -110,7 +110,7 @@ where \code{Type} is specified.}
 If this is specified, \code{dat_mod} will be ignored,
 and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
-\item{\code{tabulate}}{Logical, whether to call the \code{Tabula$calc_qtabs()}
+\item{\code{tabulate}}{Logical, whether to call the \code{Tabula$calc_crosstabs()}
 method when initializing (defaults to \code{TRUE}).}
 
 \item{\code{...}}{Arguments passed to \code{Tabula$set_options()}}
@@ -137,19 +137,19 @@ This overwrites \code{datadaptor::Mapping$set_options()}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-calc_qtabs"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-calc_qtabs}{}}}
-\subsection{Method \code{calc_qtabs()}}{
+\if{html}{\out{<a id="method-Tabula-calc_crosstabs"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-calc_crosstabs}{}}}
+\subsection{Method \code{calc_crosstabs()}}{
 Calculate the crosstabs
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$calc_qtabs(row = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Tabula$calc_crosstabs(row = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{row}}{Numeric vector with the row numbers in the Questions sheet,
-where crosstabs should be calculated, when calling \code{Tabula$calc_qtabs()}.
+where crosstabs should be calculated, when calling \code{Tabula$calc_crosstabs()}.
 Or \code{NULL} (the default) resulting in the selection of all row numbers
 where \code{Type} is specified.}
 }

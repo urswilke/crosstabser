@@ -15,7 +15,7 @@ test_that("crosstab prints are reproduced", {
 
 tabsi$dat_mod$q3a[1:9] <- 101
 tabsi$opts$da$error_out <- "safe"
-tabsi$calc_qtabs(7)
+tabsi$calc_crosstabs(7)
 
 test_that("A warning correctly is written to the log", {
   testthat::expect_true(!is.null(tabsi$qrows[[1]]$log$warn))
@@ -52,7 +52,7 @@ m <- Tabula$new(
 m$opts$ct$l_lexikon["cTabWeighted"] <- "W"
 # TODO: find out what's the error here with the percentile table...!
 m$opts$da$error_out <- "safe"
-m$calc_qtabs()
+m$calc_crosstabs()
 test_that("summaries of various stat_fun are reproduced", {
   testthat::expect_snapshot(m)
 })
@@ -84,7 +84,7 @@ m <- Tabula$new(
   tabulate = FALSE
 )
 m$opts$ct$l_lexikon["cTabWeighted"] <- "W"
-m$calc_qtabs()
+m$calc_crosstabs()
 test_that("mean calculation is reproduced with UngueltMW set (cat & mw)", {
   testthat::expect_snapshot(m)
 })

@@ -8,7 +8,7 @@ tabsi <- Tabula$new(df, mapping_file, tabulate = FALSE)
 tabsi$opts$ct$l_lexikon["cTabWeighted"] <- "W"
 tabsi$opts$ct$l_macro_scenario$Weight <- "gew"
 tabsi$opts$ct$l_macro_scenario$Unwgt <- TRUE
-tabsi$calc_qtabs()
+tabsi$calc_crosstabs()
 test_that("crosstab prints are reproduced", {
   testthat::expect_snapshot(tabsi)
 })

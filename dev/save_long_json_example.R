@@ -6,7 +6,7 @@ tabsi <- Tabula$new(spss_file, mapping_file, 5)
 # set ColVar to empty (for smaller size) and recalculate crosstab:
 tabsi$opts$ct$l_macro_scenario$ColVar <- character()
 tabsi |> gen_col_tables()
-tabsi$calc_qtabs(5)
+tabsi$calc_crosstabs(5)
 tabsi$merge_long_tab_data()
 
 tabsi$long_json("dev/example.json", pretty = TRUE)

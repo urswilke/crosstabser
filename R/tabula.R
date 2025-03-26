@@ -3,7 +3,7 @@
 NULL
 
 doc_row <- "Numeric vector with the row numbers in the Questions sheet,
-where crosstabs should be calculated, when calling `Tabula$calc_qtabs()`.
+where crosstabs should be calculated, when calling `Tabula$calc_crosstabs()`.
 Or `NULL` (the default) resulting in the selection of all row numbers
 where `Type` is specified."
 doc_dat <- "`dat` input data field of the super-class `datadaptor::Mapping`.
@@ -85,7 +85,7 @@ Tabula <- R6::R6Class(
     ditw = list(da = NULL, ct = NULL),
     #' @description Initialize a Tabula object
     #'
-    #' @param tabulate Logical, whether to call the `Tabula$calc_qtabs()`
+    #' @param tabulate Logical, whether to call the `Tabula$calc_crosstabs()`
     #'   method when initializing (defaults to `TRUE`).
     #' @param ... Arguments passed to `Tabula$set_options()`
     initialize = function(dat_mod = NULL,
@@ -110,7 +110,7 @@ Tabula <- R6::R6Class(
         self$dat_mod <- self$read_data(dat_mod)
       }
       if (tabulate) {
-        self$calc_qtabs(row)
+        self$calc_crosstabs(row)
       }
     },
     #' @description Set `Tabula` options.
@@ -132,7 +132,7 @@ Tabula <- R6::R6Class(
       )
     },
     #' @description Calculate the crosstabs
-    calc_qtabs = function(row = NULL) {
+    calc_crosstabs = function(row = NULL) {
       private$filter_global()
       gen_col_tables(self)
       private$process_qsheet(row)

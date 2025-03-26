@@ -4,7 +4,7 @@ df <- haven::read_sav(spss_file)
 tabsi <- Tabula$new(df, mapping_file, tabulate = FALSE, row = 5)
 tabsi$opts$ct$l_macro_scenario$Weight <- "gew"
 tabsi$opts$ct$l_macro_scenario$Unwgt <- TRUE
-tabsi$calc_qtabs(5)
+tabsi$calc_crosstabs(5)
 
 test_that("5 tables' prints are reproduced", {
   testthat::expect_snapshot(
