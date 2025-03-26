@@ -43,22 +43,23 @@ Qrow <- R6::R6Class(
           lapply(\(x) Qtab$new(x, mapping))
       } else {
         tryCatch(
+          withCallingHandlers(
+            {
+              params |>
+                lapply(\(x) Qtab$new(x, mapping))
+            },
+            warning = function(w) {
+              self$log$warn <- utils::capture.output(w)[-1] |> paste(collapse = "\n")
+              if (verbose) w |> conditionMessage() |> message()
+              tryInvokeRestart("muffleWarning")
+            }
+          ),
           error = function(e) {
             if (mapping$opts$da$debug) browser()
             self$log$error <- utils::capture.output(e)[-1] |> paste(collapse = "\n")
             if (verbose) e |> conditionMessage() |> message()
             obj <- list(NULL)
-          },
-          withCallingHandlers(
-            # message = <WE-COULD-ALSO-LOG-MESSAGES..._FUN()>,
-            warning = function(w) {
-              self$log$warn <- utils::capture.output(w)[-1] |> paste(collapse = "\n")
-              if (verbose) w |> conditionMessage() |> message()
-              tryInvokeRestart("muffleWarning")
-            },
-            params |>
-              lapply(\(x) Qtab$new(x, mapping))
-          )
+          }
         )
       }
     }
