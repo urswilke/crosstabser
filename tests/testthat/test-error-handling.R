@@ -30,3 +30,4 @@ testthat::expect_no_error(
   )
 )
 testthat::expect_true(is.character(m$qrows[[1]]$log$error))
+testthat::expect_true(!is.null(m$qrows[[2]]$qtabs[[1]]))
