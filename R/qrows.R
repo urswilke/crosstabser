@@ -56,7 +56,7 @@ Qrow <- R6::R6Class(
           ),
           error = function(e) {
             if (mapping$opts$da$debug) browser()
-            self$log$error <- utils::capture.output(e)[-1] |> paste(collapse = "\n")
+            self$log$error <- e |> paste(collapse = "\n")
             if (verbose) e |> conditionMessage() |> message()
             obj <- list(NULL)
           }
