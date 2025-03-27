@@ -81,8 +81,7 @@ prepare_tab_table_tb <- function(qrow) {
     add_book_no(qrow$m$opts$ct$V_BookNo)
 
 
-  qrow$ditw$ct$crosstabs$data$tab_table <- tab_table |>
-    add_book_no(qrow$m$opts$ct$V_BookNo)
+  qrow$ditw$ct$crosstabs$data$tab_table <- tab_table
 }
 prepare_row_table_tb <- function(qrow) {
   row_table <- qrow$ditw$ct$crosstabs$data$row_table
