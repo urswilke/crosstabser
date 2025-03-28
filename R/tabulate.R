@@ -38,7 +38,7 @@ get_raw_data.default <- function(qtab) {
       new_rowvars = rv(rowvars),
       colvars_named = colvars_named,
       weightvar = weightvar,
-      row_in_filter = row_in_filter
+      row_in_filter = row_in_filter[[1]]
     )
   } else {
     # treat selvar:
@@ -54,7 +54,10 @@ get_raw_data.default <- function(qtab) {
         new_rowvars = new_rowvars,
         colvars_named = colvars_named,
         weightvar = weightvar,
-        row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$ditw$ct$dat_tab[[selvar_name]], selval)
+        row_in_filter = (
+          row_in_filter[[1]] &
+            selvar_eq_selval(qtab$m$ditw$ct$dat_tab[[selvar_name]], selval)
+        )
       )
       res$selvar = selvar_name
       res$selval = selval
@@ -117,7 +120,7 @@ get_row_filter_lgl <- function(qtab) {
   }
   filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
   row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$m$ditw$ct$dat_tab))
-  all_true(row_lgls)
+  row_lgls
 }
 selvar_eq_selval <- function(selvar, selval) {
   if (!is.na(as.numeric(selval) |> suppressWarnings())) {

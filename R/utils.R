@@ -9,10 +9,6 @@ strip_attributes <- function(x) {
   x
 }
 
-all_true <- function (l) {
-  Reduce("&", l)
-}
-
 `%||%` <- rlang::`%||%`
 
 spss_to_r <- function(ex) {
