@@ -60,7 +60,13 @@ The arguments `Type` and `RowVar` need to be specified for all crosstabs:
   if duplicated or not specified, `"_row_<ROW VALUE>"` will be appended 
   (where `<ROW VALUE>` is the row number)
 -	`Unguelt`: values / variable names (for `"mdg"`) representing the unvalid cases 
--	`Filter`: logical expression for the cases that should be filtered
+-	`Filter`: logical expression for the cases that should be filtered; 
+  you can also use different expressions if there are multiple `RowVar`s;
+  this translates a string containing (multiple occurences of):
+  
+    - `prefix_{[A|B|...]}_suffix` into multiple strings `prefix_A_suffix`, `prefix_B_suffix`, `prefix_..._suffix`
+    - `prefix_{rowvar}_suffix` into multiple strings with each of the `RowVar`s replacing the `"{rowvar}"` part(s) of the string
+    - Multiple `SelVar`s AND multiple `Filter`s are not allowed and this will throw an error. 
 -	`SelVar` & `SelVal`:
   calculates the table(s) conditionally for every value in `SelVal` that the Variable `SelVar` takes, the variables in RowVar have to be mentioned as many times as the number of variables in `SelVar`. Format of `SelVal`: "1 2 3 4:Name_it_different 2-97:All_others" to produce a table for all values 1 to 4 and one where 2-97 are combined and labelled "All others". 
 -	`Mult`: if `TRUE` in `SelVar`/`SelVal` interviews should be counted double, if `SelVar` is `SelVal` more than once (i.e. if in `SelVar` two "Other manufacturers" mentioned, they will be seen as two answers)
