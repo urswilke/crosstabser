@@ -19,16 +19,8 @@
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs       1     0     1     0
-      1                    abs       0     0     0     0
-                           in %      0     0     0     0
-      2                    abs       0     0     0     0
-                           in %      0     0     0     0
-      3                    abs       0     0     0     0
-                           in %      0     0     0     0
       4                    abs       1     0     1     0
                            in %    100     0   100     0
-      5                    abs       0     0     0     0
-                           in %      0     0     0     0
       VALID CASES          abs       1     0     1     0
                            in %    100     0   100     0
       
@@ -37,12 +29,8 @@
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs     3       1     1     1
-      1                    abs     0       0     0     0
-                           in %    0       0     0     0
       2                    abs     1       0     0     1
                            in %   33.3     0     0   100
-      3                    abs     0       0     0     0
-                           in %    0       0     0     0
       4                    abs     1       0     1     0
                            in %   33.3     0   100     0
       5                    abs     1       1     0     0
@@ -65,16 +53,8 @@
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs       1     0     0     1
-      1                    abs       0     0     0     0
-                           in %      0     0     0     0
-      2                    abs       0     0     0     0
-                           in %      0     0     0     0
       3                    abs       1     0     0     1
                            in %    100     0     0   100
-      4                    abs       0     0     0     0
-                           in %      0     0     0     0
-      5                    abs       0     0     0     0
-                           in %      0     0     0     0
       VALID CASES          abs       1     0     0     1
                            in %    100     0     0   100
       
@@ -83,15 +63,7 @@
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs       0     0     0     0
-      1                    abs       0     0     0     0
-                           in %      0     0     0     0
-      2                    abs       0     0     0     0
-                           in %      0     0     0     0
-      3                    abs       0     0     0     0
-                           in %      0     0     0     0
-      4                    abs       0     0     0     0
-                           in %      0     0     0     0
-      5                    abs       0     0     0     0
+      None valid           abs       0     0     0     0
                            in %      0     0     0     0
       
       
@@ -117,10 +89,6 @@
                            in %   33.3   100     0     0
       3                    abs     1       0     0     1
                            in %   33.3     0     0   100
-      4                    abs     0       0     0     0
-                           in %    0       0     0     0
-      5                    abs     0       0     0     0
-                           in %    0       0     0     0
       VALID CASES          abs     3       1     1     1
                            in %  100     100   100   100
       
@@ -135,10 +103,6 @@
                            in %   33.3     0     0    50
       3                    abs     1       0     0     1
                            in %   33.3     0     0    50
-      4                    abs     0       0     0     0
-                           in %    0       0     0     0
-      5                    abs     0       0     0     0
-                           in %    0       0     0     0
       VALID CASES          abs     3       0     1     2
                            in %  100       0   100   100
       
