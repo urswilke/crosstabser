@@ -27,7 +27,6 @@ get_raw_data.default <- function(qtab) {
   colvars <- qtab$p$ColVar
   colvars_named <- colvars |> purrr::set_names(cv(colvars))
   weightvar <- qtab$p$Weight[[1]]
-  row_in_filter <- get_row_filter_lgl(qtab)
 
 
   if (is.null(qtab$p$SelVar)) {
@@ -37,8 +36,7 @@ get_raw_data.default <- function(qtab) {
       rowvars = rowvars,
       new_rowvars = rv(rowvars),
       colvars_named = colvars_named,
-      weightvar = weightvar,
-      row_in_filter = row_in_filter[[1]]
+      weightvar = weightvar
     )
   } else {
     # treat selvar:
@@ -53,11 +51,7 @@ get_raw_data.default <- function(qtab) {
         rowvars = rowvars,
         new_rowvars = new_rowvars,
         colvars_named = colvars_named,
-        weightvar = weightvar,
-        row_in_filter = (
-          row_in_filter[[1]] &
-            selvar_eq_selval(qtab$m$ditw$ct$dat_tab[[selvar_name]], selval)
-        )
+        weightvar = weightvar
       )
       res$selvar = selvar_name
       res$selval = selval
@@ -75,8 +69,7 @@ prep_data <- function(
     rowvars,
     new_rowvars,
     colvars_named,
-    weightvar,
-    row_in_filter
+    weightvar
 ) {
   rowvars_named <- rowvars |> purrr::set_names(new_rowvars)
   if (!is.null(weightvar)) {
