@@ -367,10 +367,6 @@ row_table_valid_cases <- function(qtab) {
   UseMethod("row_table_valid_cases")
 }
 row_table_valid_cases.default <- function(qtab) {
-  # TODO: remove the next 2 lines to always show VALID CASES rows...:
-  # for mdg, when there aren't any valid counts, they aren't written...:
-  if (is.null(qtab$d$stats_rows$n_valid)) return()
-  if (all(is.na(qtab$d$long_data$rowval))) return()
   row_table <- empty_row_table()
   valid_cases_text <- qtab$m$opts$ct$l_lexikon[["cTabGueltig"]]
   abs_text <- qtab$m$opts$ct$l_lexikon[["cTabAbs"]]

@@ -65,6 +65,8 @@
       TOTAL                abs       0     0     0     0
       None valid           abs       0     0     0     0
                            in %      0     0     0     0
+      VALID CASES          abs       0     0     0     0
+                           in %      0     0     0     0
       
       
       $`4`
