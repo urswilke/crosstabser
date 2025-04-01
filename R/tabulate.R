@@ -27,7 +27,6 @@ get_raw_data.default <- function(qtab) {
   colvars <- qtab$p$ColVar
   colvars_named <- colvars |> purrr::set_names(cv(colvars))
   weightvar <- qtab$p$Weight[[1]]
-  row_in_filter <- get_row_filter_lgl(qtab)
 
 
   if (is.null(qtab$p$SelVar)) {
@@ -37,8 +36,7 @@ get_raw_data.default <- function(qtab) {
       rowvars = rowvars,
       new_rowvars = rv(rowvars),
       colvars_named = colvars_named,
-      weightvar = weightvar,
-      row_in_filter = row_in_filter
+      weightvar = weightvar
     )
   } else {
     # treat selvar:
@@ -53,8 +51,7 @@ get_raw_data.default <- function(qtab) {
         rowvars = rowvars,
         new_rowvars = new_rowvars,
         colvars_named = colvars_named,
-        weightvar = weightvar,
-        row_in_filter = row_in_filter & selvar_eq_selval(qtab$m$ditw$ct$dat_tab[[selvar_name]], selval)
+        weightvar = weightvar
       )
       res$selvar = selvar_name
       res$selval = selval
@@ -72,8 +69,7 @@ prep_data <- function(
     rowvars,
     new_rowvars,
     colvars_named,
-    weightvar,
-    row_in_filter
+    weightvar
 ) {
   rowvars_named <- rowvars |> purrr::set_names(new_rowvars)
   if (!is.null(weightvar)) {
@@ -95,7 +91,7 @@ prep_data <- function(
   # ... but with base R (for better performance)
   df <- qtab$m$ditw$ct$dat_tab
   df$row <- seq_len(nrow(df))
-  dat <- df[row_in_filter, long_cols]
+  dat <- df[long_cols]
   names(dat) <- names(long_cols)
   # remove label information:
   for (col in names(dat)) {
@@ -117,7 +113,7 @@ get_row_filter_lgl <- function(qtab) {
   }
   filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
   row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$m$ditw$ct$dat_tab))
-  all_true(row_lgls)
+  row_lgls
 }
 selvar_eq_selval <- function(selvar, selval) {
   if (!is.na(as.numeric(selval) |> suppressWarnings())) {
@@ -148,8 +144,28 @@ pivot_rowvar_data <- function(qtab) {
   UseMethod("pivot_rowvar_data")
 }
 pivot_rowvar_data.default <- function(qtab) {
-  res <- qtab$d$raw_data |>
+  raw_data <- qtab$d$raw_data
+  res <- raw_data |>
     pivot_rows()
+
+  # TODO: find cleaner way to derive number of rowvars (when there are multiple `SelVar`s):
+  # probably it would be best to refactor everything
+  n_rowvars <- names(raw_data) |> stringr::str_count("^rowvar_") |> sum()
+
+  filter_filter <- get_row_filter_lgl(qtab) |> as.data.frame() |> t() |> as.vector()
+  selvar_filter <- if (length(qtab$p$SelVar) == 0) {
+    TRUE
+  } else {
+    qtab$p$SelVar |> lapply(
+      \(x) selvar_eq_selval(
+        qtab$m$ditw$ct$dat_tab[[x]],
+        qtab$p$SelVal
+      )
+    ) |> unlist() |>
+      rep(each = n_rowvars)
+  }
+  res <- res[filter_filter & selvar_filter,]
+
   if (!qtab$p$Mult) {
     res <- res[
       !duplicated(res[c("rowvar", "row")], fromLast = TRUE),

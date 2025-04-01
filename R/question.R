@@ -85,8 +85,51 @@ process_qrow_params <- function(df_qrow, mapping) {
     res$Title <- ""
     warning("Title not specified.")
   }
+  if ("Filter" %in% names(res)) {
+    if (length(res$SelVar) > 1) {
+      stop(
+        "Multiple `Filter`s
+        together with multiple `SelVar`s
+        are not implemented yet"
+      )
+    }
+
+    res$Filter <- parse_filter(res)
+  }
+
   res
 }
+
+parse_filter <- function(params) {
+  if (stringr::str_detect(params$Filter, "\\{\\[.*\\]\\}")) {
+    return(parse_multi_filter_strings(params$Filter))
+  }
+  if (stringr::str_detect(params$Filter, "\\{rowvar\\}")) {
+    return(parse_rowvar_filter_strings(params))
+  }
+  params$Filter
+}
+
+parse_multi_filter_strings <- function(filter_string) {
+  filter_string_parts <- filter_string |>
+    stringr::str_extract_all("(?<=\\[)(.*?)(?=\\])") |>
+    _[[1]] |>
+    stringr::str_split("\\|")
+
+  filter_string_parts |>
+    purrr::reduce(
+      \(acc, x) stringr::str_replace(acc, "\\{\\[.*?\\]\\}", x),
+      .init = filter_string
+    )
+}
+parse_rowvar_filter_strings <- function(params) {
+  params$Filter |>
+    stringr::str_replace_all(
+      "\\{rowvar\\}",
+      params$RowVar
+    )
+}
+
 
 gen_qtabs_params <- function(qrow_params, mapping) {
   qrow_params |>
