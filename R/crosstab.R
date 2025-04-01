@@ -460,7 +460,7 @@ calc_invalid_percentages.default <- function(qtab) {
   res
 }
 calc_percentage_helper <- function(cts, divider_cts) {
-  if (nrow(cts) == 0) {
+  if (nrow(cts) == 0 || is.null(cts)) {
     return(NULL)
   }
   percentages <- cts
