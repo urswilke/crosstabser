@@ -17,6 +17,8 @@ print.Qtab = function(x, ...) {
 
 #' @export
 format.Qtab <- function(x, ...) {
+  x$.__enclos_env__$private$gen_wide_tab()
+
   res <- x$d$wide_tab[-1]
   if (is.null(res)) {
     return(NULL)

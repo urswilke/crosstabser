@@ -55,7 +55,6 @@ Qtab <- R6::R6Class("Qtab",
   private = list(
     calc_qtab = function() {
       calc_qtab_(self)
-      private$gen_wide_tab()
       invisible(self)
     },
     gen_long_tab = function() {
