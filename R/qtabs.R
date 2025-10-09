@@ -56,22 +56,6 @@ Qtab <- R6::R6Class("Qtab",
     calc_qtab = function() {
       calc_qtab_(self)
       invisible(self)
-    },
-    gen_long_tab = function() {
-      self$d$row_table_values <- self$d$row_table |> rm_header_footer()
-      self$d$long_tab <- self$d[
-        c("row_table_values", "col_table", "val_table", "head_table", "tab_table")
-      ] |>
-        purrr::reduce(merge, all.x = TRUE) |>
-        tibble::as_tibble()
-      invisible(self)
-    },
-    gen_wide_tab = function() {
-      if (is.null(self$d$long_tab)) {
-        private$gen_long_tab()
-      }
-      gen_wide_tab_(self)
-      invisible(self)
     }
   )
 )
@@ -116,25 +100,6 @@ calc_qtab_elements <- function(qtab) {
   qtab$d$vc_percentages <- calc_valid_counts_percentages(qtab)
   qtab$d$no_entry_percentages <- calc_no_entry_percentages(qtab)
 
-}
-gen_wide_tab_ <- function(qtab) {
-  cols_for_wide_tab <- c(
-    "RowNo", "ColNo", "value"#,
-    # "RowWeighted", "RowTitle1", "RowTitle2", "RowTitle3",
-    # "RowVariable", "RowValue"#,
-    # "ColTitle1", "ColTitle2", "ColVariable", "ColValue"
-  )
-  long_tab <- qtab$d$long_tab
-  if (nrow(long_tab) == 0) {
-    return(NULL)
-  }
-
-  qtab$d$wide_tab <- long_tab[order(long_tab$ColNo), cols_for_wide_tab] |>
-    tidyr::pivot_wider(
-      names_from = dplyr::matches("Col"),
-      values_from = value
-    ) |>
-    dplyr::arrange(RowNo)
 }
 
 # TODO: keep in mind me the

@@ -16,8 +16,41 @@ print.Qtab = function(x, ...) {
 }
 
 #' @export
+as_qtab <- function(x) {
+  class(x) <- c("Qtab", class(x))
+  x
+}
+add_long_tab <- function(x) {
+  x$d$row_table_values <- x$d$row_table |> rm_header_footer()
+  x$d$long_tab <- x$d[
+    c("val_table", "row_table_values", "tab_table", "col_table", "head_table")
+  ] |>
+    purrr::reduce(merge, all.x = TRUE) |>
+    tibble::as_tibble()
+  x
+}
+add_wide_tab <- function(x) {
+  x <- x |> add_long_tab()
+  long_tab <- x$d$long_tab
+  if (nrow(long_tab) == 0) {
+    return(NULL)
+  }
+
+  x$d$wide_tab <- long_tab[
+    order(long_tab$ColNo),
+    c("RowNo", "ColNo", "value")
+  ] |>
+    tidyr::pivot_wider(
+      names_from = dplyr::matches("Col"),
+      values_from = value
+    ) |>
+    dplyr::arrange(RowNo)
+
+  x
+}
+#' @export
 format.Qtab <- function(x, ...) {
-  x$.__enclos_env__$private$gen_wide_tab()
+  x <- x |> add_wide_tab()
 
   res <- x$d$wide_tab[-1]
   if (is.null(res)) {
