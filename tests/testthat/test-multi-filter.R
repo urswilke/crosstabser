@@ -23,8 +23,8 @@ m <- Tabula$new(
 
 testthat::expect_true(
   all(purrr::map2_lgl(
-    1:3 |> lapply(\(i) m$qrows[[1]]$qtabs[[i]] |> capture.output() |> _[-1]),
-    1:3 |> lapply(\(i) m$qrows[[2]]$qtabs[[i]] |> capture.output() |> _[-1]),
+    1:3 |> lapply(\(i) m$qrows[[1]]$qtabs[[i]] |> capture.output() |> _[-(1:3)]),
+    1:3 |> lapply(\(i) m$qrows[[2]]$qtabs[[i]] |> capture.output() |> _[-(1:2)]),
     \(x, y) all.equal(x, y)
   ))
 )

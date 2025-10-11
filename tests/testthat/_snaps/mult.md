@@ -5,7 +5,8 @@
     Output
       $`2`
       $`2`[[1]]
-      # mdg without Mult sel2 & 3
+      # mdg without Mult
+      # sel2 & 3
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs     4       1     1     2
@@ -22,7 +23,8 @@
       
       $`3`
       $`3`[[1]]
-      # mdg with Mult sel2 & 3
+      # mdg with Mult
+      # sel2 & 3
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs     7       2     2   3  
@@ -39,7 +41,8 @@
       
       $`4`
       $`4`[[1]]
-      # mcg without Mult sel2 & 3
+      # mcg without Mult
+      # sel2 & 3
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs     4       1     1     2
@@ -60,7 +63,8 @@
       
       $`5`
       $`5`[[1]]
-      # mcg with Mult sel2 & 3
+      # mcg with Mult
+      # sel2 & 3
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs     7       2     2   3  
@@ -81,7 +85,9 @@
       
       $`6`
       $`6`[[1]]
-      # mw without Mult sel1 & 2 Summary of means
+      # mw without Mult
+      # sel1 & 2
+      # Summary of means
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       VALID CASES (at le…  abs     5       1     2     2
@@ -91,7 +97,9 @@
                            VALI…   2       0     1     1
       
       $`6`[[2]]
-      # mw without Mult sel1 & 2 Choice 1 & 2
+      # mw without Mult
+      # sel1 & 2
+      # Choice 1 & 2
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs       5     1     2     2
@@ -109,7 +117,9 @@
                            in %     20     0     0    50
       
       $`6`[[3]]
-      # mw without Mult sel1 & 2 Choice 3 & 4
+      # mw without Mult
+      # sel1 & 2
+      # Choice 3 & 4
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs       4     0     2     2
@@ -129,7 +139,9 @@
       
       $`7`
       $`7`[[1]]
-      # mw with Mult sel1 & 2 Summary of means
+      # mw with Mult
+      # sel1 & 2
+      # Summary of means
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       VALID CASES (at le…  abs    7        1  3        3
@@ -139,7 +151,9 @@
                            VALI…  4        0  2        2
       
       $`7`[[2]]
-      # mw with Mult sel1 & 2 Choice 1 & 2
+      # mw with Mult
+      # sel1 & 2
+      # Choice 1 & 2
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs     7       1   3     3  
@@ -157,7 +171,9 @@
                            in %   14.3     0   0    33.3
       
       $`7`[[3]]
-      # mw with Mult sel1 & 2 Choice 3 & 4
+      # mw with Mult
+      # sel1 & 2
+      # Choice 3 & 4
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
       TOTAL                abs     6       0   3     3  

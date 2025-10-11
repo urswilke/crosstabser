@@ -161,7 +161,7 @@ ctl_new_pillar.pillar_wide_tab <- function(controller, x, width, ..., title = NU
 #' @export
 tbl_sum.pillar_wide_tab <- function(x, ...) {
   tables <- attr(x, "d")
-  c(tables$tab_table$TabTitle)
+  c(tables$tab_table$TabTitle1, tables$tab_table$TabTitle2, tables$tab_table$TabTitle3) |> na.omit() |> unique()
 }
 
 #' @importFrom pillar tbl_format_setup
