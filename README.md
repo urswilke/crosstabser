@@ -16,7 +16,7 @@ badge](https://urswilke.r-universe.dev/crosstabser/badges/version)](https://ursw
 
 The goal of crosstabser is to generate crosstabs from labelled data
 (usually survey data). Its parent dependency
-[datadaptor](https://gitlab.com/urswilke/datadaptor) uses a similar
+[datadaptor](https://codeberg.org/urswilke/datadaptor) uses a similar
 approach to modify datasets. The generated crosstabs can be plotted
 interactively in html files with the apps provided by
 [table_charter](https://gitlab.com/urswilke/table_charter).
