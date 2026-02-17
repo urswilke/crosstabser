@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 In this vignette we'll show some examples how crosstabs can be generated.
 First, a labelled data set is modified with 
-[datadaptor](https://gitlab.com/urswilke/datadaptor)
+[datadaptor](https://codeberg.org/urswilke/datadaptor)
 to prepare the data for the crosstabs.
 The latter are then calculated with the crosstabser functionalities.
 [Here](https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/)
@@ -47,7 +47,7 @@ df <- datadaptor::fruit_survey
 ```
 
 together with the 
-[example mapping file](https://gitlab.com/urswilke/crosstabser/-/blob/master/inst/extdata/tabulate-fruits.xlsx) 
+[example mapping file](https://codeberg.org/urswilke/crosstabser/src/branch/main/inst/extdata/tabulate-fruits.xlsx) 
 for this data set in the package. 
 If you install crosstabser on your machine, this file is also on your computer:
 
@@ -236,14 +236,14 @@ Next, we'll show how we can apply the data modifications and calculate the cross
 
 #### Modify data
 
-The data is modified by applying the commands in the following sheets (using [`datadaptor::Mapping$modify_data()`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html#method-modify-data-) under the hood):
+The data is modified by applying the commands in the following sheets (using [`datadaptor::Mapping$modify_data()`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-Mapping-modify_data) under the hood):
 
 * `Variables`: This modifies the data set's variables and their labels.
 * `Label`: This modifies the data set's variables' value labels and allows to generate summary variables.
 * `Free1`: This allows to define additional commands modifying the data. 
 All the modifications of the `Variables` & `Label` sheets could also be done there.
 
-See [here](https://urswilke.gitlab.io/datadaptor/articles/command_blocks.html)
+See [here](https://urswilke.codeberg.page/datadaptor/articles/command_blocks.html)
 for the documentation of the commands used in these sheets.
 
 #### Calculate crosstabs
