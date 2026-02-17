@@ -3,6 +3,9 @@
 
 # crosstabser
 
+*The main home of this repository is
+[here](https://codeberg.org/urswilke/crosstabser)*
+
 <!-- badges: start -->
 
 [![CRAN
@@ -27,9 +30,16 @@ product). <!-- TODO: refer to spreadator!-->
 
 ## Installation
 
-You can install the development version of crosstabser like so:
+You can install crosstabser from codeberg with:
 
 ``` r
+devtools::install_git("https://codeberg.org/urswilke/crosstabser")
+```
+
+Otherwise, you can also install crosstabser from github or gitlab with:
+
+``` r
+devtools::install_github("urswilke/crosstabser")
 devtools::install_gitlab("urswilke/crosstabser")
 ```
 

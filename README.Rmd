@@ -15,6 +15,8 @@ knitr::opts_chunk$set(
 
 # crosstabser
 
+*The main home of this repository is [here](https://codeberg.org/urswilke/crosstabser)*
+
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/crosstabser)](https://CRAN.R-project.org/package=crosstabser)
 [![crosstabser status badge](https://urswilke.r-universe.dev/crosstabser/badges/version)](https://urswilke.r-universe.dev/crosstabser)
@@ -33,9 +35,16 @@ This package (together with datadaptor) is also used to generate the crosstabs i
 
 ## Installation
 
-You can install the development version of crosstabser like so:
+You can install crosstabser from codeberg with:
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
+devtools::install_git("https://codeberg.org/urswilke/crosstabser")
+```
+
+Otherwise, you can also install crosstabser from github or gitlab with:
+
+```{r, eval=FALSE}
+devtools::install_github("urswilke/crosstabser")
 devtools::install_gitlab("urswilke/crosstabser")
 ```
 
