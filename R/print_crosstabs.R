@@ -88,6 +88,9 @@ str_trunc_pad <- function(string, width = 5) {
 #' @importFrom pillar ctl_new_rowid_pillar
 #' @export
 ctl_new_rowid_pillar.pillar_wide_tab <- function(controller, x, width, rowlab_wid1 = 19, rowlab_wid2 = 5, rowlab_wid3 = 5, ...) {
+  rowlab_wid1 <- getOption("rowlab_wid1") %||% rowlab_wid1
+  rowlab_wid2 <- getOption("rowlab_wid2") %||% rowlab_wid2
+  rowlab_wid3 <- getOption("rowlab_wid3") %||% rowlab_wid3
   out <- NextMethod()
   tables <- attr(controller, "d")
   row_table <- tables$row_table |> rm_header_footer()
