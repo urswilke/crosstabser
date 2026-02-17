@@ -1,11 +1,11 @@
 # _pkgdown.yml
-url: https://urswilke.gitlab.io/crosstabser/
+url: https://urswilke.codeberg.page/crosstabser
 repo:
   url:
-    home: https://gitlab.com/urswilke/crosstabser/
-    source: https://gitlab.com/urswilke/crosstabser/-/tree/main/
-    issue: https://gitlab.com/urswilke/crosstabser/issues/
-    user: https://gitlab.com/
+    home: https://codeberg.org/urswilke/crosstabser/
+    source: https://codeberg.org/urswilke/crosstabser/src/branch/master/
+    issue: https://codeberg.org/urswilke/crosstabser/issues/
+    user: https://codeberg.org/
 template:
   bootstrap: 5
   light-switch: true
