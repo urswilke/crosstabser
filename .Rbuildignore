@@ -7,3 +7,5 @@ dev
 ^docs$
 ^pkgdown$
 ^\.gitlab-ci\.yml$
+^\.github$
+^\.woodpecker$
