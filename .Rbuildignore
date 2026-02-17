@@ -9,3 +9,4 @@ dev
 ^\.gitlab-ci\.yml$
 ^\.github$
 ^\.woodpecker$
+^codecov\.yml$
