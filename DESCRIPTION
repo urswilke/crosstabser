@@ -54,6 +54,6 @@ Config/testthat/edition: 3
 VignetteBuilder: knitr
 Language: en-US
 URL: 
-    https://urswilke.gitlab.io/crosstabser, 
-    https://gitlab.com/urswilke/crosstabser,
+    https://urswilke.codeberg.page/crosstabser, 
+    https://codeberg.org/urswilke/crosstabser,
     https://urswilke.r-universe.dev/crosstabser
