@@ -78,9 +78,9 @@
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>In this vignette we’ll show some examples how crosstabs can be
-generated. First, a labelled data set is modified with <a href="https://gitlab.com/urswilke/datadaptor" class="external-link">datadaptor</a> to prepare
-the data for the crosstabs. The latter are then calculated with the
-crosstabser functionalities. <a href="https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/" class="external-link">Here</a>
+generated. First, a labelled data set is modified with <a href="https://codeberg.org/urswilke/datadaptor" class="external-link">datadaptor</a> to
+prepare the data for the crosstabs. The latter are then calculated with
+the crosstabser functionalities. <a href="https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/" class="external-link">Here</a>
 you can find an interactive version of this vignette that will also
 automatically generate an interactive <a href="https://gitlab.com/urswilke/table_charter" class="external-link">table_charter</a> app
 of the crosstabs in the browser.</p>
@@ -97,7 +97,7 @@ datadaptor functionalities), and those to calculate crosstabs.</p>
 <p>We’ll use the <code><a href="https://urswilke.gitlab.io/datadaptor/reference/fruit_survey.html" class="external-link">datadaptor::fruit_survey</a></code> toy data set</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">datadaptor</span><span class="fu">::</span><span class="va"><a href="https://urswilke.gitlab.io/datadaptor/reference/fruit_survey.html" class="external-link">fruit_survey</a></span></span></code></pre></div>
-<p>together with the <a href="https://gitlab.com/urswilke/crosstabser/-/blob/master/inst/extdata/tabulate-fruits.xlsx" class="external-link">example
+<p>together with the <a href="https://codeberg.org/urswilke/crosstabser/src/branch/main/inst/extdata/tabulate-fruits.xlsx" class="external-link">example
 mapping file</a> for this data set in the package. If you install
 crosstabser on your machine, this file is also on your computer:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -541,7 +541,7 @@ calculate the crosstabs in the mapping.</p>
 <h4 id="modify-data">Modify data<a class="anchor" aria-label="anchor" href="#modify-data"></a>
 </h4>
 <p>The data is modified by applying the commands in the following sheets
-(using <a href="https://urswilke.gitlab.io/datadaptor/reference/Mapping.html#method-modify-data-" class="external-link"><code>datadaptor::Mapping$modify_data()</code></a>
+(using <a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-Mapping-modify_data" class="external-link"><code>datadaptor::Mapping$modify_data()</code></a>
 under the hood):</p>
 <ul>
 <li>
@@ -555,7 +555,7 @@ labels and allows to generate summary variables.</li>
 modifying the data. All the modifications of the <code>Variables</code>
 &amp; <code>Label</code> sheets could also be done there.</li>
 </ul>
-<p>See <a href="https://urswilke.gitlab.io/datadaptor/articles/command_blocks.html" class="external-link">here</a>
+<p>See <a href="https://urswilke.codeberg.page/datadaptor/articles/command_blocks.html" class="external-link">here</a>
 for the documentation of the commands used in these sheets.</p>
 </div>
 <div class="section level4">

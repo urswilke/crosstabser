@@ -4,9 +4,9 @@
 
 In this vignette we’ll show some examples how crosstabs can be
 generated. First, a labelled data set is modified with
-[datadaptor](https://gitlab.com/urswilke/datadaptor) to prepare the data
-for the crosstabs. The latter are then calculated with the crosstabser
-functionalities.
+[datadaptor](https://codeberg.org/urswilke/datadaptor) to prepare the
+data for the crosstabs. The latter are then calculated with the
+crosstabser functionalities.
 [Here](https://urswilke.github.io/datadaptor-crosstabser-table_charter-demo/)
 you can find an interactive version of this vignette that will also
 automatically generate an interactive
@@ -36,7 +36,7 @@ df <- datadaptor::fruit_survey
 ```
 
 together with the [example mapping
-file](https://gitlab.com/urswilke/crosstabser/-/blob/master/inst/extdata/tabulate-fruits.xlsx)
+file](https://codeberg.org/urswilke/crosstabser/src/branch/main/inst/extdata/tabulate-fruits.xlsx)
 for this data set in the package. If you install crosstabser on your
 machine, this file is also on your computer:
 
@@ -470,7 +470,7 @@ the crosstabs in the mapping.
 
 The data is modified by applying the commands in the following sheets
 (using
-[`datadaptor::Mapping$modify_data()`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html#method-modify-data-)
+[`datadaptor::Mapping$modify_data()`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-Mapping-modify_data)
 under the hood):
 
 - `Variables`: This modifies the data set’s variables and their labels.
@@ -481,7 +481,7 @@ under the hood):
   be done there.
 
 See
-[here](https://urswilke.gitlab.io/datadaptor/articles/command_blocks.html)
+[here](https://urswilke.codeberg.page/datadaptor/articles/command_blocks.html)
 for the documentation of the commands used in these sheets.
 
 #### Calculate crosstabs
