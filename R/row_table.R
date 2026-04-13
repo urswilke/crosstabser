@@ -175,12 +175,7 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   occuring_vals <- qtab$d$long_data$rowval |> unique()
   invalid_vals <- qtab$p[["Unguelt"]]
 
-  # For cat or if the first mcg variable contains all value labels,
-  # this would be sufficient:
-  # vallabs <- attr(qtab$m$ditw$ct$dat_tab[[qtab$p$rowvars_qtab[1]]], "labels")
-  vallabs <- qtab$m$ditw$ct$dat_tab[qtab$p$rowvars_qtab] |>
-    lapply(\(x) attr(x, "labels")) |>
-    purrr::reduce(c)
+  vallabs <- qtab$.__enclos_env__$private$get_row_labels()
   vallabs <- vallabs[!duplicated(vallabs)]
 
   # the following is equivalent to (but faster with base R):
@@ -494,7 +489,7 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
     # => perhaps better store that in an additional field in Qtab...(?)
     occuring_vals <- qtab$d$long_data$lowest_choice |> unique()
   }
-  vallabs <- attr(qtab$m$ditw$ct$dat_tab[[qtab$p$rowvars_qtab[1]]], "labels")
+  vallabs <- qtab$.__enclos_env__$private$get_row_labels()
 
   occuring_invalid_vals <- intersect(invalid_vals, occuring_vals)
 

@@ -73,6 +73,12 @@ Qtab <- R6::R6Class("Qtab",
       }
       gen_wide_tab_(self)
       invisible(self)
+    },
+    get_row_labels = function() {
+      vallabs <- self$m$ditw$ct$dat_tab[self$p$rowvars_qtab] |>
+        lapply(\(x) attr(x, "labels")) |>
+        purrr::reduce(c)
+      return(vallabs[unique(names(vallabs))])
     }
   )
 )
