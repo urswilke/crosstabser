@@ -176,7 +176,6 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   invalid_vals <- qtab$p[["Unguelt"]]
 
   vallabs <- qtab$.__enclos_env__$private$get_row_labels()
-  vallabs <- vallabs[!duplicated(vallabs)]
 
   # the following is equivalent to (but faster with base R):
   # vallab_table <- vallabs |>
@@ -199,7 +198,19 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
     sort(decreasing = do_sort)
 
   if (!is.null(qtab$p$Categories)) {
-    all_valid_vals <- all_valid_vals[all_valid_vals %in% qtab$p$Categories]
+    overcodes <- qtab$p$overcodes
+    if (!is.null(overcodes)) {
+      label_vec <- c()
+      hi_val <- max(qtab$.__enclos_env__$private$get_row_labels())
+      for (i in seq_along(overcodes)) {
+        label_vec <- c(label_vec, (i + hi_val) |> purrr::set_names(overcodes[i] |> names()))
+        label_vec <- c(label_vec, vallabs[vallabs %in% overcodes[[i]]])
+      }
+      all_valid_vals <- label_vec
+    } else {
+      all_valid_vals <- all_valid_vals[all_valid_vals %in% qtab$p$Categories]
+    }
+
   }
 
   if (length(all_valid_vals) == 0) {

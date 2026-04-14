@@ -112,6 +112,9 @@ calc_qtab_elements <- function(qtab) {
   qtab$d$raw_data <- get_raw_data(qtab)
 
   qtab$d$df_rowvar_long <- pivot_rowvar_data(qtab)
+
+  treat_categories(qtab)
+
   qtab$d$long_data <- now_do_colvar(qtab)
 
   calc_stats_rows(qtab)
@@ -180,4 +183,66 @@ set_row_content_to_filter <- function(qtab) {
   row_table <- qtab$d$row_table
   is_filter <- row_table$RowContent == "Missing" & row_table$RowTitle1 == qtab$m$opts$ct$l_lexikon[["cTabFilter"]]
   qtab$d$row_table$RowContent[is_filter] <- "Filter"
+}
+
+treat_categories <- function(qtab) {
+  UseMethod("treat_categories")
+}
+treat_categories.default <- function(qtab) {
+  NULL
+}
+treat_categories.qtab_type_cat <- treat_categories.qtab_type_mcg <- function(qtab) {
+  cats <- qtab$p$Categories
+  if (is.null(cats)) {
+    return()
+  }
+  occurring_vals <- cats |>
+    split_cell(" +") |>
+    _[[1]] |>
+    as.numeric() |>
+    suppressWarnings()
+
+  if (any(is.na(occurring_vals))) {
+    qtab$p$overcodes <- extract_overcode_data_mcg(qtab)
+  } else {
+    qtab$p$Categories <- occurring_vals
+  }
+
+  overcodes <- qtab$p$overcodes
+  if (!is.null(overcodes)) {
+    df_rowvar_long_oc <- qtab$d$df_rowvar_long
+    df_rowvar_long_oc$rowvar <- paste("OVERCODE: ", df_rowvar_long_oc$rowvar)
+    lookup <- overcodes |>
+      unname() |>
+      tibble::enframe() |>
+      tidyr::unnest(value)
+    hi_val <- max(qtab$.__enclos_env__$private$get_row_labels())
+    df_rowvar_long_oc$rowval <- lookup$name[match(df_rowvar_long_oc$rowval, lookup$value)] + hi_val
+    df_rowvar_long_oc$overcode <- TRUE
+    qtab$d$df_rowvar_long$overcode <- FALSE
+    qtab$d$df_rowvar_long <- rbind(
+      qtab$d$df_rowvar_long,
+      df_rowvar_long_oc |> unique()
+    )
+  }
+}
+
+extract_overcode_data_mcg <- function(qtab) {
+  l <- qtab$p$Categories |>
+    stringr::str_extract_all("subtotal=(['\"]).*?\\1(\\d+(,\\d+)*|othernm)") |>
+    _[[1]] |>
+    stringr::str_remove("^subtotal=")
+  overcodes <- l |> stringr::str_extract("(?<=['\"]).*(?=['\"])")
+
+  codes_raw <- l |> stringr::str_remove(".*['\"]")
+  codes <- vector("list", length(codes_raw))
+  codes[!codes_raw %in% "othernm"] <- codes_raw[!codes_raw %in% "othernm"] |> strsplit(",") |> lapply(as.numeric)
+  codes[codes_raw %in% "othernm"] <- setdiff(
+    qtab$.__enclos_env__$private$get_row_labels(),
+    unlist(codes)
+  ) |>
+    setdiff(qtab$p[["Unguelt"]]) |>
+    list()
+  names(codes) <- overcodes
+  codes
 }

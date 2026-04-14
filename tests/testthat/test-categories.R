@@ -8,6 +8,8 @@ dfq <- tibble::tribble(
   ~Title,                  ~Type, ~RowVar,     ~Categories,
   "cat with 'Categories'", "cat", "q1n1",      "1 2",
   "mcg with 'Categories'", "mcg", "q1n1 q1n2", "1 2",
+  "mcg with OVERCODES",    "mcg", "q1n1 q1n2", "subtotal=\"OVERCODE 1\"1,2,3,subtotal='OTHERS'othernm",
+  "mcg with OVERCODES 2",  "mcg", "q1n1 q1n2", "subtotal=\"OVERCODE 1\"1,3",
 )
 mapping_file = list(Questions = dfq, Macro = list(ColVar = "age"))
 
