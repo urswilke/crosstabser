@@ -31,7 +31,7 @@ summarize_stats <- function(df, x, wt = NULL, stat_fun = "length", ..., .by) {
           ...
         )
       ),
-      .by = dplyr::all_of(.by)
+      .by = dplyr::any_of(.by)
     )
 
 

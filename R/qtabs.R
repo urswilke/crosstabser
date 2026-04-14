@@ -216,8 +216,7 @@ treat_categories.qtab_type_cat <- treat_categories.qtab_type_mcg <- function(qta
       unname() |>
       tibble::enframe() |>
       tidyr::unnest(value)
-    hi_val <- max(qtab$.__enclos_env__$private$get_row_labels())
-    df_rowvar_long_oc$rowval <- lookup$name[match(df_rowvar_long_oc$rowval, lookup$value)] + hi_val
+    df_rowvar_long_oc$rowval <- lookup$name[match(df_rowvar_long_oc$rowval, lookup$value)]
     df_rowvar_long_oc$overcode <- TRUE
     qtab$d$df_rowvar_long$overcode <- FALSE
     qtab$d$df_rowvar_long <- rbind(

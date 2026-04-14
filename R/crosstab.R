@@ -425,7 +425,7 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
     summarize_stats(
       NULL,
       wt = qtab$p$Weight[[1]],
-      .by = c("rowvar", "rowval", "colvar", "colval")
+      .by = c("rowvar", "rowval", "colvar", "colval", "overcode")
     )
 
   detail_freqs <- all_counts[!all_counts$rowval %in% qtab$p[["Unguelt"]],]

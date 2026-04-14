@@ -201,10 +201,11 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
     overcodes <- qtab$p$overcodes
     if (!is.null(overcodes)) {
       label_vec <- c()
-      hi_val <- max(qtab$.__enclos_env__$private$get_row_labels())
+      is_overcode <- c()
       for (i in seq_along(overcodes)) {
-        label_vec <- c(label_vec, (i + hi_val) |> purrr::set_names(overcodes[i] |> names()))
+        label_vec <- c(label_vec, i |> purrr::set_names(overcodes[i] |> names()))
         label_vec <- c(label_vec, vallabs[vallabs %in% overcodes[[i]]])
+        is_overcode <- c(is_overcode, TRUE, rep(FALSE, length(overcodes[[i]])))
       }
       all_valid_vals <- label_vec
     } else {
@@ -217,13 +218,16 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
     all_valid_vals <- c("None valid" = 12345678987)
   }
 
-  if (qtab$p$RvEmp %||% FALSE) {
-    all_valid_vals <- all_valid_vals[all_valid_vals %in% occuring_vals]
-  }
-
   vallab_table <- all_valid_vals |>
     tibble::enframe("vallab", "val") |>
     dplyr::mutate(vallab = ifelse(vallab == "" | is.numeric(vallab), as.character(val), vallab))
+  if (!is.null(qtab$p$overcodes)) {
+    vallab_table$overcode <- is_overcode
+  }
+  if (qtab$p$RvEmp %||% FALSE) {
+    vallab_table <- vallab_table[vallab_table$val %in% occuring_vals]
+  }
+
   n_vals <- nrow(vallab_table)
 
   vallab_table <- vallab_table[rep(seq_len(n_vals), each = 2),]
