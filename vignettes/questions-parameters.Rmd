@@ -127,6 +127,13 @@ The arguments `Type` and `RowVar` need to be specified for all crosstabs:
         Under the overcode row `"OVERCODE 2"`, it will list the rows with the values 3 & 4. 
         The optional overcode `"OTHERS"` will list all the remaining valid codes. 
         For `mcg`, this counts maximally once per respondent multiple occurring codes of one overcode.
+    - For `Type = mdg`:
+    
+        - `"q2_1 q2_2:OVERCODE 1,q2_3 q2_4:OVERCODE 2"`:
+        This will add rows with overcodes.
+        Under the first overcode row `"OVERCODE 1"`, it will list the rows of the variables `q2_1` & `q2_2`.
+        Under the overcode row `"OVERCODE 2"`, it will list the rows of the variables `q2_3` & `q2_4`.
+        
 -	`Sort`: Possibility to resort the columns showing the categories in the table alphanumerically or by share;\
   Examples:
     -	Descending by frequency of items: `ORDER=D KEY=COUNT`
