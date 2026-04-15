@@ -157,8 +157,8 @@ add_global_options <- function(params, mapping) {
   }
   res$Unwgt <- global_options$Unwgt
   # - quick fix - TODO: find cleaner way for mdg...:
-  if (length(res$Unguelt) == 0 && params$Type != "mdg") {
-    res$Unguelt <- global_options$Unguelt
+  if (length(res[["Unguelt"]]) == 0 && params$Type != "mdg") {
+    res[["Unguelt"]] <- global_options[["Unguelt"]]
   }
   res$ColVar <- global_options$ColVar
   res
