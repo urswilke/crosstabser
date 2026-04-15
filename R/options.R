@@ -187,13 +187,6 @@ set_qtab_params.default <- function(params, mapping) {
     params$Mult <- TRUE
   }
 
-  if (!is.null(params$Categories)) {
-    params$Categories <- params$Categories |>
-      split_cell() |>
-      _[[1]] |>
-      as.numeric()
-  }
-
   params$case_distinguisher <- ifelse(params$Mult, "i", "row")
   params$rowvars_string <- paste(params$l_selvar$valid %||% params$rowvars_qtab, collapse = ", ")
   # TODO: tell Wolf: Here we could also use ColVar defined in the Questions sheet...:
@@ -385,4 +378,3 @@ process_metr_mac <- function(params, mapping, questions_column = "MetrMac") {
   df_stat_funs$percentile_string <- NULL
   df_stat_funs
 }
-

@@ -117,9 +117,23 @@ The arguments `Type` and `RowVar` need to be specified for all crosstabs:
 ### Other arguments
 <!-- TODO: discuss with Wolf and fully implement-->
 -	`RvEmp`: If set to `"EXCLUDE"` Rows of values in the resulting tables with 0 counts will be removed.
--	`Categories`: For `Type = mcg` & `cat`; 
-  space-separated numeric values; 
-  if specified only rows with these values will be shown in the valid details of the table.
+-	`Categories`: 
+    - For `Type = mcg` & `cat`, 
+    there are two different possibilities to use this parameter:
+  
+        1. Space-separated numeric values: Only rows with these values will be shown in the valid details of the table.
+        2. A string of the form `"subtotal='OVERCODE 1'1,2,subtotal='OVERCODE 2'3,4,subtotal='OTHERS'othernm"`: This will add rows with overcodes. 
+        Under the first overcode row `"OVERCODE 1"`, it will list the rows with the values 1 & 2. 
+        Under the overcode row `"OVERCODE 2"`, it will list the rows with the values 3 & 4. 
+        The optional overcode `"OTHERS"` will list all the remaining valid codes. 
+        For `mcg`, this counts maximally once per respondent multiple occurring codes of one overcode.
+    - For `Type = mdg`:
+    
+        - `"q2_1 q2_2:OVERCODE 1,q2_3 q2_4:OVERCODE 2"`:
+        This will add rows with overcodes.
+        Under the first overcode row `"OVERCODE 1"`, it will list the rows of the variables `q2_1` & `q2_2`.
+        Under the overcode row `"OVERCODE 2"`, it will list the rows of the variables `q2_3` & `q2_4`.
+        
 -	`Sort`: Possibility to resort the columns showing the categories in the table alphanumerically or by share;\
   Examples:
     -	Descending by frequency of items: `ORDER=D KEY=COUNT`

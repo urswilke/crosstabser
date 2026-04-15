@@ -300,6 +300,9 @@ calc_stats_rows.qtab_type_mcg <- function(qtab) {
   invalid_vals <- qtab$p[["Unguelt"]]
 
   df_long <- qtab$d$long_data
+  if (!is.null(qtab$p$overcodes)) {
+    df_long <- df_long[!df_long$overcode,]
+  }
   df_long_valid <- df_long[!(df_long$rowval %in% invalid_vals) & df_long$val_to_count,]
   group_variables <- c("colvar", "colval")
   total <- df_long |>

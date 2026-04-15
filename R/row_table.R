@@ -175,13 +175,7 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   occuring_vals <- qtab$d$long_data$rowval |> unique()
   invalid_vals <- qtab$p[["Unguelt"]]
 
-  # For cat or if the first mcg variable contains all value labels,
-  # this would be sufficient:
-  # vallabs <- attr(qtab$m$ditw$ct$dat_tab[[qtab$p$rowvars_qtab[1]]], "labels")
-  vallabs <- qtab$m$ditw$ct$dat_tab[qtab$p$rowvars_qtab] |>
-    lapply(\(x) attr(x, "labels")) |>
-    purrr::reduce(c)
-  vallabs <- vallabs[!duplicated(vallabs)]
+  vallabs <- qtab$.__enclos_env__$private$get_row_labels()
 
   # the following is equivalent to (but faster with base R):
   # vallab_table <- vallabs |>
@@ -204,7 +198,19 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
     sort(decreasing = do_sort)
 
   if (!is.null(qtab$p$Categories)) {
-    all_valid_vals <- all_valid_vals[all_valid_vals %in% qtab$p$Categories]
+    overcodes <- qtab$p$overcodes
+    if (!is.null(overcodes)) {
+      label_vec <- c()
+      hi_val <- max(qtab$.__enclos_env__$private$get_row_labels())
+      for (i in seq_along(overcodes)) {
+        label_vec <- c(label_vec, (i + hi_val) |> purrr::set_names(overcodes[i] |> names()))
+        label_vec <- c(label_vec, vallabs[vallabs %in% overcodes[[i]]])
+      }
+      all_valid_vals <- label_vec
+    } else {
+      all_valid_vals <- all_valid_vals[all_valid_vals %in% qtab$p$Categories]
+    }
+
   }
 
   if (length(all_valid_vals) == 0) {
@@ -253,10 +259,32 @@ row_table_body.qtab_type_mdg <- function(qtab) {
       no_varlab_idx[no_varlab_idx] |> names() |> paste(collapse = ", ")
     )
   }
-  label_table <- data.frame(
-    var = rowvars,
-    label = unlist(l_varlabs, use.names = FALSE)
-  ) |>
+
+  overcodes <- qtab$p$overcodes
+  if (is.null(overcodes)) {
+    label_table <- data.frame(
+      var = rowvars,
+      label = unlist(l_varlabs, use.names = FALSE)
+    )
+  } else {
+    label_table <- matrix(
+      nrow = (overcodes |> unlist() |> length()) + overcodes |> length(),
+      ncol = 2
+    ) |> as.data.frame()
+    names(label_table) <- c("var", "label")
+    r = 1L
+    for (i in seq_along(overcodes)) {
+      label_table[r,]$label <- overcodes[i] |> names()
+      label_table[r,]$var <- paste0("overcode_", i)
+      n <- length(overcodes[[i]])
+      label_table[(r + 1):(r + n),]$var <- overcodes[[i]]
+      label_table[(r + 1):(r + n),]$label <- qtab$m$dat_mod[overcodes[[i]]] |> purrr::map_chr(\(x) attr(x, "label", exact = TRUE))
+      r <- r + n + 1
+    }
+
+  }
+
+  label_table <- label_table |>
     dplyr::mutate(label = dplyr::coalesce(label, var))
   rowvars_valid <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab
   if (qtab$p$MdgMissValid) {
@@ -289,7 +317,13 @@ row_table_body.qtab_type_mdg <- function(qtab) {
   ) |> rep(n_vals)
   row_table$RowContent <- "Detail"
   row_table$row_type <- c("detail_freqs_valid", "detail_perc_valid") |> rep(n_vals)
-  row_table$RowVariable <- rowvars_valid |> rep(each = 2)
+
+  # TODO: discuss with Wolf, if we should:
+  #  - also have an othernm option like for mcg?
+  #  - if yes, allow the simultaneous use of `Categories` & `MdgMissValid`?
+  #    ...then we need to refactor the code (which we should do anyway :)
+  rowvar <- if(!is.null(overcodes)) {label_table$var} else {rowvars_valid |> rep(each = 2)}
+  row_table$RowVariable <- rowvar
   row_table
 }
 
@@ -494,7 +528,7 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
     # => perhaps better store that in an additional field in Qtab...(?)
     occuring_vals <- qtab$d$long_data$lowest_choice |> unique()
   }
-  vallabs <- attr(qtab$m$ditw$ct$dat_tab[[qtab$p$rowvars_qtab[1]]], "labels")
+  vallabs <- qtab$.__enclos_env__$private$get_row_labels()
 
   occuring_invalid_vals <- intersect(invalid_vals, occuring_vals)
 
