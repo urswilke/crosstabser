@@ -259,10 +259,32 @@ row_table_body.qtab_type_mdg <- function(qtab) {
       no_varlab_idx[no_varlab_idx] |> names() |> paste(collapse = ", ")
     )
   }
-  label_table <- data.frame(
-    var = rowvars,
-    label = unlist(l_varlabs, use.names = FALSE)
-  ) |>
+
+  overcodes <- qtab$p$overcodes
+  if (is.null(overcodes)) {
+    label_table <- data.frame(
+      var = rowvars,
+      label = unlist(l_varlabs, use.names = FALSE)
+    )
+  } else {
+    label_table <- matrix(
+      nrow = (overcodes |> unlist() |> length()) + overcodes |> length(),
+      ncol = 2
+    ) |> as.data.frame()
+    names(label_table) <- c("var", "label")
+    r = 1L
+    for (i in seq_along(overcodes)) {
+      label_table[r,]$label <- overcodes[i] |> names()
+      label_table[r,]$var <- paste0("overcode_", i)
+      n <- length(overcodes[[i]])
+      label_table[(r + 1):(r + n),]$var <- overcodes[[i]]
+      label_table[(r + 1):(r + n),]$label <- qtab$m$dat_mod[overcodes[[i]]] |> purrr::map_chr(\(x) attr(x, "label", exact = TRUE))
+      r <- r + n + 1
+    }
+
+  }
+
+  label_table <- label_table |>
     dplyr::mutate(label = dplyr::coalesce(label, var))
   rowvars_valid <- qtab$p$l_selvar$valid %||% qtab$p$rowvars_valid_qtab
   if (qtab$p$MdgMissValid) {
@@ -295,7 +317,13 @@ row_table_body.qtab_type_mdg <- function(qtab) {
   ) |> rep(n_vals)
   row_table$RowContent <- "Detail"
   row_table$row_type <- c("detail_freqs_valid", "detail_perc_valid") |> rep(n_vals)
-  row_table$RowVariable <- rowvars_valid |> rep(each = 2)
+
+  # TODO: discuss with Wolf, if we should:
+  #  - also have an othernm option like for mcg?
+  #  - if yes, allow the simultaneous use of `Categories` & `MdgMissValid`?
+  #    ...then we need to refactor the code (which we should do anyway :)
+  rowvar <- if(!is.null(overcodes)) {label_table$var} else {rowvars_valid |> rep(each = 2)}
+  row_table$RowVariable <- rowvar
   row_table
 }
 

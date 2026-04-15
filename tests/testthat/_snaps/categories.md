@@ -72,4 +72,27 @@
                            in %    100   100   100   100
       
       
+      $`6`
+      $`6`[[1]]
+      # mdg with OVERCODES
+                                 TOTAL age   ----- -----
+                                       18-39 40-59 60+  
+      TOTAL                abs       5     1     2     2
+      Sum of valid answe…  abs       9     2     5     2
+      OVERCODE 1           abs       5     1     2     2
+                           in %    100   100   100   100
+      option 1             abs       3     1     2     0
+                           in %     60   100   100     0
+      option 2             abs       3     1     0     2
+                           in %     60   100     0   100
+      OVERCODE 2           abs       2     0     2     0
+                           in %     40     0   100     0
+      option 3             abs       1     0     1     0
+                           in %     20     0    50     0
+      option 4             abs       2     0     2     0
+                           in %     40     0   100     0
+      VALID CASES          abs       5     1     2     2
+                           in %    100   100   100   100
+      
+      
 

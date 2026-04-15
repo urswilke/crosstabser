@@ -226,7 +226,6 @@ treat_categories.qtab_type_cat <- treat_categories.qtab_type_mcg <- function(qta
     )
   }
 }
-
 extract_overcode_data_mcg <- function(qtab) {
   l <- qtab$p$Categories |>
     stringr::str_extract_all("subtotal=(['\"]).*?\\1(\\d+(,\\d+)*|othernm)") |>
@@ -245,4 +244,43 @@ extract_overcode_data_mcg <- function(qtab) {
     list()
   names(codes) <- overcodes
   codes
+}
+
+treat_categories.qtab_type_mdg <- function(qtab) {
+  cats <- qtab$p$Categories
+  if (is.null(cats)) {
+    return()
+  }
+  l_cats <- cats |>
+    strsplit(",") |>
+    _[[1]] |>
+    strsplit(":")
+  l_cats <- l_cats |>
+    purrr::map_chr(\(x) x[1]) |>
+    strsplit(" +") |>
+    purrr::set_names(l_cats |> purrr::map_chr(\(x) x[2]))
+  cat_var_names <- unlist(l_cats, use.names = FALSE)
+  var_names_in_data <- cat_var_names %in% names(qtab$m$dat_mod)
+  if (any(!var_names_in_data)) {
+    stop(
+      "There are variable names defined in 'Categories' that aren't in the data:\n",
+      cat_var_names[!var_names_in_data] |> paste(collapse = ", ")
+    )
+  }
+
+  qtab$p$overcodes <- l_cats
+
+  df_rowvar_long_oc <- qtab$d$df_rowvar_long
+  lookup <- l_cats |>
+    unname() |>
+    tibble::enframe() |>
+    tidyr::unnest(value)
+  lookup$name <- paste0("overcode_", lookup$name)
+  df_rowvar_long_oc$rowvar <- lookup$name[match(df_rowvar_long_oc$rowvar, lookup$value)]
+  df_rowvar_long_oc$overcode <- TRUE
+  qtab$d$df_rowvar_long$overcode <- FALSE
+  qtab$d$df_rowvar_long <- rbind(
+    qtab$d$df_rowvar_long,
+    df_rowvar_long_oc |> unique()
+  )
 }
