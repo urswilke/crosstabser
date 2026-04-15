@@ -1,7 +1,7 @@
 # Create an Excel mapping file based on a labelled dataframe
 
 This function first calls
-[`datadaptor::create_mapping_workbook()`](https://urswilke.gitlab.io/datadaptor/reference/create_mapping_workbook.html).
+[`datadaptor::create_mapping_workbook()`](https://urswilke.codeberg.page/datadaptor/reference/create_mapping_workbook.html).
 Additionally to the sheets "Variables", "Label", "Verbatims" & "Free",
 it will insert 2 more sheets "Macro" & "Questions". The Excel workbook
 is then written to the file `mapping_file`. Please refer to

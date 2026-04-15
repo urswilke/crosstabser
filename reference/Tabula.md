@@ -5,7 +5,7 @@ the Questions sheet of the Excel mapping file.
 
 ## Super class
 
-[`datadaptor::Mapping`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html)
+[`datadaptor::Mapping`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html)
 -\> `Tabula`
 
 ## Public fields
@@ -13,17 +13,17 @@ the Questions sheet of the Excel mapping file.
 - `dat_mod`:
 
   `dat_mod` modified data field of the super-class
-  [`datadaptor::Mapping`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html).
+  [`datadaptor::Mapping`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html).
 
 - `mapping_file`:
 
   `mapping_file` file path field of the super-class
-  [`datadaptor::Mapping`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html).
+  [`datadaptor::Mapping`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html).
 
 - `dat`:
 
   `dat` input data field of the super-class
-  [`datadaptor::Mapping`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html).
+  [`datadaptor::Mapping`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html).
   If this is specified, `dat_mod` will be ignored, and instead generated
   with `datadaptor::Mapping$modify_data()`
 
@@ -60,10 +60,10 @@ the Questions sheet of the Excel mapping file.
 
 Inherited methods
 
-- [`datadaptor::Mapping$modify_data()`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html#method-modify_data)
-- [`datadaptor::Mapping$process_sheet_commands()`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html#method-process_sheet_commands)
-- [`datadaptor::Mapping$read_data()`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html#method-read_data)
-- [`datadaptor::Mapping$save()`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html#method-save)
+- [`datadaptor::Mapping$modify_data()`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-modify_data)
+- [`datadaptor::Mapping$process_sheet_commands()`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-process_sheet_commands)
+- [`datadaptor::Mapping$read_data()`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-read_data)
+- [`datadaptor::Mapping$save()`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-save)
 
 ------------------------------------------------------------------------
 
@@ -87,12 +87,12 @@ Initialize a Tabula object
 - `dat_mod`:
 
   `dat_mod` modified data field of the super-class
-  [`datadaptor::Mapping`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html).
+  [`datadaptor::Mapping`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html).
 
 - `mapping_file`:
 
   `mapping_file` file path field of the super-class
-  [`datadaptor::Mapping`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html).
+  [`datadaptor::Mapping`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html).
 
 - `row`:
 
@@ -104,7 +104,7 @@ Initialize a Tabula object
 - `dat`:
 
   `dat` input data field of the super-class
-  [`datadaptor::Mapping`](https://urswilke.gitlab.io/datadaptor/reference/Mapping.html).
+  [`datadaptor::Mapping`](https://urswilke.codeberg.page/datadaptor/reference/Mapping.html).
   If this is specified, `dat_mod` will be ignored, and instead generated
   with `datadaptor::Mapping$modify_data()`
 

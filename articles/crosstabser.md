@@ -27,7 +27,7 @@ latter defines the commands to modify the data (optional; using
 datadaptor functionalities), and those to calculate crosstabs.
 
 We’ll use the
-[`datadaptor::fruit_survey`](https://urswilke.gitlab.io/datadaptor/reference/fruit_survey.html)
+[`datadaptor::fruit_survey`](https://urswilke.codeberg.page/datadaptor/reference/fruit_survey.html)
 toy data set
 
 ``` r
