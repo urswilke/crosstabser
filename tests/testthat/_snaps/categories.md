@@ -135,4 +135,71 @@
                            in %    100   100   100   100
       
       
+      $`8`
+      $`8`[[1]]
+      # mcg with OVERCODES & filter
+                                 TOTAL age   ----- -----
+                                       18-39 40-59 60+  
+      TOTAL                abs     3       1     2     0
+      Sum of valid answe…  abs     5       1     4     0
+      OVERCODE 1           abs     3       1     2     0
+                           in %  100     100   100     0
+      ch1                  abs     1       0     1     0
+                           in %   33.3     0    50     0
+      ch2                  abs     2       1     1     0
+                           in %   66.7   100    50     0
+      ch3                  abs     2       0     2     0
+                           in %   66.7     0   100     0
+      OTHERS               abs     0       0     0     0
+                           in %    0       0     0     0
+      ch4                  abs     0       0     0     0
+                           in %    0       0     0     0
+      VALID CASES          abs     3       1     2     0
+                           in %  100     100   100     0
+      
+      
+      $`9`
+      $`9`[[1]]
+      # mcg with OVERCODES & SelVar code 0
+                                 TOTAL age   ----- -----
+                                       18-39 40-59 60+  
+      TOTAL                abs       2     0     0     2
+      Sum of valid answe…  abs       3     0     0     3
+      OVERCODE 1           abs       2     0     0     2
+                           in %    100     0     0   100
+      ch1                  abs       1     0     0     1
+                           in %     50     0     0    50
+      ch2                  abs       1     0     0     1
+                           in %     50     0     0    50
+      ch3                  abs       1     0     0     1
+                           in %     50     0     0    50
+      OTHERS               abs       0     0     0     0
+                           in %      0     0     0     0
+      ch4                  abs       0     0     0     0
+                           in %      0     0     0     0
+      VALID CASES          abs       2     0     0     2
+                           in %    100     0     0   100
+      
+      $`9`[[2]]
+      # mcg with OVERCODES & SelVar code 1
+                                 TOTAL age   ----- -----
+                                       18-39 40-59 60+  
+      TOTAL                abs     3       1     2     0
+      Sum of valid answe…  abs     5       1     4     0
+      OVERCODE 1           abs     3       1     2     0
+                           in %  100     100   100     0
+      ch1                  abs     1       0     1     0
+                           in %   33.3     0    50     0
+      ch2                  abs     2       1     1     0
+                           in %   66.7   100    50     0
+      ch3                  abs     2       0     2     0
+                           in %   66.7     0   100     0
+      OTHERS               abs     0       0     0     0
+                           in %    0       0     0     0
+      ch4                  abs     0       0     0     0
+                           in %    0       0     0     0
+      VALID CASES          abs     3       1     2     0
+                           in %  100     100   100     0
+      
+      
 
