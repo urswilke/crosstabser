@@ -202,4 +202,21 @@
                            in %  100     100   100     0
       
       
+      $`10`
+      $`10`[[1]]
+      # mcg w duplicate row labels
+                                 TOTAL age   ----- -----
+                                       18-39 40-59 60+  
+      TOTAL                abs       5     1     2     2
+      Sum of valid answe…  abs       5     1     2     2
+      OVERCODE 1           abs       3     0     2     1
+                           in %     60     0   100    50
+      ch1&2                abs       1     0     1     0
+                           in %     20     0    50     0
+      ch3                  abs       2     0     1     1
+                           in %     40     0    50    50
+      VALID CASES          abs       5     1     2     2
+                           in %    100   100   100   100
+      
+      
 

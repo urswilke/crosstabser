@@ -6,6 +6,8 @@ df <- tibble::tibble(
   q2_3 = c(0, 0, 0, 0, 1) |> haven::labelled(label = "option 3"),
   q2_4 = c(1, 0, 0, 0, 1) |> haven::labelled(label = "option 4"),
   age  = c(2, 1, 3, 3, 2) |> haven::labelled(c("18-39" = 1, "40-59" = 2, "60+" = 3), label = "age"),
+  q1dupl = c(1, 2, 3, 2, 3) |> haven::labelled(c("ch1&2"=1, ch3=3)),
+  q2dupl = c(1, 2, 3, 2, 3) |> haven::labelled(c("ch1&2"=2)),
 )
 
 dfq <- tibble::tribble(
@@ -18,6 +20,7 @@ dfq <- tibble::tribble(
   "mdg with OVERCODES",          "mdg", "q2_1 q2_2 q2_3 q2_4", "q2_1 q2_2:OVERCODE 1,q2_3 q2_4:OVERCODE 2", NA, NA, NA, NA,
   "mcg with OVERCODES & filter", "mcg", "q1n1 q1n2", "subtotal=\"OVERCODE 1\"1,2,3,subtotal='OTHERS'othernm", NA, NA, NA, "q2_1 == 1",
   "mcg with OVERCODES & SelVar", "mcg", "q1n1 q1n2", "subtotal=\"OVERCODE 1\"1,2,3,subtotal='OTHERS'othernm", "q2_1", "0 1", NA, NA,
+  "mcg w duplicate row labels",  "mcg", "q1dupl q2dupl",       "subtotal=\"OVERCODE 1\"1,3,subtotal='OTHERS'othernm", NA, NA, "EXCLUDE", NA,
 )
 mapping_file = list(Questions = dfq, Macro = list(ColVar = "age"))
 
