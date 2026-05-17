@@ -215,6 +215,10 @@
                            in %     20     0    50     0
       ch3                  abs       2     0     1     1
                            in %     40     0    50    50
+      OTHERS               abs       2     1     0     1
+                           in %     40   100     0    50
+      ch1&2                abs       2     1     0     1
+                           in %     40   100     0    50
       VALID CASES          abs       5     1     2     2
                            in %    100   100   100   100
       

@@ -78,7 +78,11 @@ Qtab <- R6::R6Class("Qtab",
       vallabs <- self$m$ditw$ct$dat_tab[self$p$rowvars_qtab] |>
         lapply(\(x) attr(x, "labels")) |>
         purrr::reduce(c)
-      return(vallabs[unique(names(vallabs))])
+      res <- vallabs |>
+        tibble::enframe() |>
+        dplyr::distinct() |>
+        tibble::deframe()
+      return(res)
     }
   )
 )
