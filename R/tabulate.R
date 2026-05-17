@@ -108,11 +108,17 @@ prep_data <- function(
 }
 
 get_row_filter_lgl <- function(qtab) {
-  if (length(qtab$p$Filter) == 0) {
+  n_filters <- length(qtab$p$Filter)
+  if (n_filters == 0) {
     return(TRUE)
   }
+  n_rowvars <- length(qtab$p$rowvars_qtab)
   filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
-  row_lgls <- filter_exprs |> purrr::map(\(e) rlang::eval_tidy(e, qtab$m$ditw$ct$dat_tab))
+  row_lgls <- filter_exprs |>
+    purrr::map(\(e) rlang::eval_tidy(e, qtab$m$ditw$ct$dat_tab))
+  if (n_rowvars > n_filters) {
+    row_lgls <- row_lgls |> lapply(\(x) x |> rep(each = n_rowvars))
+  }
   row_lgls
 }
 selvar_eq_selval <- function(selvar, selval) {
@@ -152,7 +158,11 @@ pivot_rowvar_data.default <- function(qtab) {
   # probably it would be best to refactor everything
   n_rowvars <- names(raw_data) |> stringr::str_count("^rowvar_") |> sum()
 
-  filter_filter <- get_row_filter_lgl(qtab) |> as.data.frame() |> t() |> as.vector()
+  filter_filter <- get_row_filter_lgl(qtab) |>
+    as.data.frame() |>
+    t() |>
+    as.vector()
+
   selvar_filter <- if (length(qtab$p$SelVar) == 0) {
     TRUE
   } else {
