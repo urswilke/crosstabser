@@ -12,66 +12,68 @@ this will generate a list of \code{Qrow} objects in its \verb{$qrows} field.
 # see `?Tabula`
 }
 \section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{p}}{parameters extracted from \code{df_qrow}}
+  \if{html}{\out{<div class="r6-fields">}}
+  \describe{
+    \item{\code{p}}{parameters extracted from \code{df_qrow}}
 
-\item{\code{m}}{\code{Tabula} object}
+    \item{\code{m}}{\code{Tabula} object}
 
-\item{\code{qtabs}}{list of \code{Qtabs} objects}
+    \item{\code{qtabs}}{list of \code{Qtabs} objects}
 
-\item{\code{log}}{log entries}
+    \item{\code{log}}{log entries}
 
-\item{\code{ditw}}{This is the "dust in the wind" list object field
+    \item{\code{ditw}}{This is the "dust in the wind" list object field
 that stores data that didn't make it into their own field.
 For developers only!
 For reproducible code you should NEVER rely on this field
 as it might be subject to change without any warning.}
-}
-\if{html}{\out{</div>}}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-Qrow-new}{\code{Qrow$new()}}
-\item \href{#method-Qrow-clone}{\code{Qrow$clone()}}
-}
+  \itemize{
+    \item \href{#method-Qrow-initialize}{\code{Qrow$new()}}
+    \item \href{#method-Qrow-clone}{\code{Qrow$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qrow-new"></a>}}
-\if{latex}{\out{\hypertarget{method-Qrow-new}{}}}
-\subsection{Method \code{new()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qrow$new(df_qrow, mapping, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-Qrow-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-Qrow-initialize}{}}}
+\subsection{\code{Qrow$new()}}{
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Qrow$new(df_qrow, mapping, ...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{df_qrow}}{row of the Questions dataframe}
+      \item{\code{mapping}}{\code{Tabula} object}
+      \item{\code{...}}{Not used at the moment.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{df_qrow}}{row of the Questions dataframe}
-
-\item{\code{mapping}}{\code{Tabula} object}
-
-\item{\code{...}}{Not used at the moment.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Qrow-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-Qrow-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qrow$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{Qrow$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Qrow$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

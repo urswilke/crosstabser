@@ -17,58 +17,60 @@ themselves each containing a list of \code{Qtab} objects in their \verb{$qtabs} 
 # see `?Tabula`
 }
 \section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{p}}{parameters}
+  \if{html}{\out{<div class="r6-fields">}}
+  \describe{
+    \item{\code{p}}{parameters}
 
-\item{\code{d}}{data}
+    \item{\code{d}}{data}
 
-\item{\code{m}}{\code{Tabula} object}
-}
-\if{html}{\out{</div>}}
+    \item{\code{m}}{\code{Tabula} object}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-Qtab-new}{\code{Qtab$new()}}
-\item \href{#method-Qtab-clone}{\code{Qtab$clone()}}
-}
+  \itemize{
+    \item \href{#method-Qtab-initialize}{\code{Qtab$new()}}
+    \item \href{#method-Qtab-clone}{\code{Qtab$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Qtab-new"></a>}}
-\if{latex}{\out{\hypertarget{method-Qtab-new}{}}}
-\subsection{Method \code{new()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qtab$new(params, mapping, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-Qtab-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-Qtab-initialize}{}}}
+\subsection{\code{Qtab$new()}}{
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Qtab$new(params, mapping, ...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{params}}{Parameters from \code{Qrow} object}
+      \item{\code{mapping}}{\code{Tabula} object}
+      \item{\code{...}}{Not used at the moment.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{params}}{Parameters from \code{Qrow} object}
-
-\item{\code{mapping}}{\code{Tabula} object}
-
-\item{\code{...}}{Not used at the moment.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Qtab-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-Qtab-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Qtab$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{Qtab$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Qtab$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

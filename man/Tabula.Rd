@@ -34,158 +34,156 @@ m$qrows[[1]]$qtabs |> print()
 \code{\link[datadaptor:Mapping]{datadaptor::Mapping}} -> \code{Tabula}
 }
 \section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{dat_mod}}{\code{dat_mod} modified data field of the super-class \code{datadaptor::Mapping}.}
+  \if{html}{\out{<div class="r6-fields">}}
+  \describe{
+    \item{\code{dat_mod}}{\code{dat_mod} modified data field of the super-class \code{datadaptor::Mapping}.}
 
-\item{\code{mapping_file}}{\code{mapping_file} file path field of the super-class \code{datadaptor::Mapping}.}
+    \item{\code{mapping_file}}{\code{mapping_file} file path field of the super-class \code{datadaptor::Mapping}.}
 
-\item{\code{dat}}{\code{dat} input data field of the super-class \code{datadaptor::Mapping}.
+    \item{\code{dat}}{\code{dat} input data field of the super-class \code{datadaptor::Mapping}.
 If this is specified, \code{dat_mod} will be ignored,
 and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
-\item{\code{qrows}}{A \code{list()} of \code{Qrow} objects}
+    \item{\code{qrows}}{A \code{list()} of \code{Qrow} objects}
 
-\item{\code{ditw}}{This is the "dust in the wind" list object field
+    \item{\code{ditw}}{This is the "dust in the wind" list object field
 that stores data that didn't make it into their own field.
 For developers only!
 For reproducible code you should NEVER rely on this field
 as it might be subject to change without any warning.
 This overwrites the \code{datadaptor::Mapping$ditw} field;
 the list field additionally contains the \code{ct} element.}
-}
-\if{html}{\out{</div>}}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-Tabula-new}{\code{Tabula$new()}}
-\item \href{#method-Tabula-set_options}{\code{Tabula$set_options()}}
-\item \href{#method-Tabula-calc_crosstabs}{\code{Tabula$calc_crosstabs()}}
-\item \href{#method-Tabula-save_html_app}{\code{Tabula$save_html_app()}}
-\item \href{#method-Tabula-get_crosstabs_data}{\code{Tabula$get_crosstabs_data()}}
-\item \href{#method-Tabula-print}{\code{Tabula$print()}}
-\item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
+  \itemize{
+    \item \href{#method-Tabula-initialize}{\code{Tabula$new()}}
+    \item \href{#method-Tabula-set_options}{\code{Tabula$set_options()}}
+    \item \href{#method-Tabula-calc_crosstabs}{\code{Tabula$calc_crosstabs()}}
+    \item \href{#method-Tabula-save_html_app}{\code{Tabula$save_html_app()}}
+    \item \href{#method-Tabula-get_crosstabs_data}{\code{Tabula$get_crosstabs_data()}}
+    \item \href{#method-Tabula-print}{\code{Tabula$print()}}
+    \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
+  }
 }
-}
-\if{html}{\out{
-<details open><summary>Inherited methods</summary>
+\if{html}{\out{<details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="modify_data"><a href='../../datadaptor/html/Mapping.html#method-Mapping-modify_data'><code>datadaptor::Mapping$modify_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="process_sheet_commands"><a href='../../datadaptor/html/Mapping.html#method-Mapping-process_sheet_commands'><code>datadaptor::Mapping$process_sheet_commands()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="read_data"><a href='../../datadaptor/html/Mapping.html#method-Mapping-read_data'><code>datadaptor::Mapping$read_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="save"><a href='../../datadaptor/html/Mapping.html#method-Mapping-save'><code>datadaptor::Mapping$save()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="modify_data"><a href='../../datadaptor/html/Mapping.html#method-Mapping-modify_data'><code>datadaptor::Mapping$modify_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="process_sheet_commands"><a href='../../datadaptor/html/Mapping.html#method-Mapping-process_sheet_commands'><code>datadaptor::Mapping$process_sheet_commands()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="read_data"><a href='../../datadaptor/html/Mapping.html#method-Mapping-read_data'><code>datadaptor::Mapping$read_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="save"><a href='../../datadaptor/html/Mapping.html#method-Mapping-save'><code>datadaptor::Mapping$save()</code></a></span></li>
 </ul>
-</details>
-}}
+</details>}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Tabula-new"></a>}}
-\if{latex}{\out{\hypertarget{method-Tabula-new}{}}}
-\subsection{Method \code{new()}}{
-Initialize a Tabula object
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$new(
+\if{html}{\out{<a id="method-Tabula-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-initialize}{}}}
+\subsection{\code{Tabula$new()}}{
+  Initialize a Tabula object
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Tabula$new(
   dat_mod = NULL,
   mapping_file = NULL,
   row = NULL,
   dat = NULL,
   tabulate = TRUE,
   ...
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{dat_mod}}{\code{dat_mod} modified data field of the super-class \code{datadaptor::Mapping}.}
-
-\item{\code{mapping_file}}{\code{mapping_file} file path field of the super-class \code{datadaptor::Mapping}.}
-
-\item{\code{row}}{Numeric vector with the row numbers in the Questions sheet,
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{dat_mod}}{\code{dat_mod} modified data field of the super-class \code{datadaptor::Mapping}.}
+      \item{\code{mapping_file}}{\code{mapping_file} file path field of the super-class \code{datadaptor::Mapping}.}
+      \item{\code{row}}{Numeric vector with the row numbers in the Questions sheet,
 where crosstabs should be calculated, when calling \code{Tabula$calc_crosstabs()}.
 Or \code{NULL} (the default) resulting in the selection of all row numbers
 where \code{Type} is specified.}
-
-\item{\code{dat}}{\code{dat} input data field of the super-class \code{datadaptor::Mapping}.
+      \item{\code{dat}}{\code{dat} input data field of the super-class \code{datadaptor::Mapping}.
 If this is specified, \code{dat_mod} will be ignored,
 and instead generated with \code{datadaptor::Mapping$modify_data()}}
-
-\item{\code{tabulate}}{Logical, whether to call the \code{Tabula$calc_crosstabs()}
+      \item{\code{tabulate}}{Logical, whether to call the \code{Tabula$calc_crosstabs()}
 method when initializing (defaults to \code{TRUE}).}
+      \item{\code{...}}{Arguments passed to \code{Tabula$set_options()}}
+    }
+    \if{html}{\out{</div>}}
+  }
+}
 
-\item{\code{...}}{Arguments passed to \code{Tabula$set_options()}}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-set_options"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-set_options}{}}}
-\subsection{Method \code{set_options()}}{
-Set \code{Tabula} options.
+\subsection{\code{Tabula$set_options()}}{
+  Set \code{Tabula} options.
 This overwrites \code{datadaptor::Mapping$set_options()}
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$set_options(...)}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Tabula$set_options(...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{...}}{Arguments passed to \code{get_tabula_options()}.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{...}}{Arguments passed to \code{get_tabula_options()}.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-calc_crosstabs"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-calc_crosstabs}{}}}
-\subsection{Method \code{calc_crosstabs()}}{
-Calculate the crosstabs
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$calc_crosstabs(row = NULL)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{row}}{Numeric vector with the row numbers in the Questions sheet,
+\subsection{\code{Tabula$calc_crosstabs()}}{
+  Calculate the crosstabs
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Tabula$calc_crosstabs(row = NULL)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{row}}{Numeric vector with the row numbers in the Questions sheet,
 where crosstabs should be calculated, when calling \code{Tabula$calc_crosstabs()}.
 Or \code{NULL} (the default) resulting in the selection of all row numbers
 where \code{Type} is specified.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-save_html_app"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-save_html_app}{}}}
-\subsection{Method \code{save_html_app()}}{
-Write a table_charter app html file of the crosstab data
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$save_html_app(
+\subsection{\code{Tabula$save_html_app()}}{
+  Write a table_charter app html file of the crosstab data
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Tabula$save_html_app(
   template_file =
     "https://gitlab.com/urswilke/table_charter/-/raw/main/example_dashboard.html",
   output_file = "dashboard.html",
   project_data = NULL
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{template_file}}{Path to the template file (see description).}
-
-\item{\code{output_file}}{File path to the table_charter app html file.}
-
-\item{\code{project_data}}{Either a \code{list()} object to modify the default:
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{template_file}}{Path to the template file (see description).}
+      \item{\code{output_file}}{File path to the table_charter app html file.}
+      \item{\code{project_data}}{Either a \code{list()} object to modify the default:
 \code{list(logo_base64 = "", logo_url = "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg", title = "Dashboard", date = Sys.Date())}, or \code{NULL} (the default).
 If \code{NULL}, nothing is done.
 The fields will modify the elements in the header of the dashboard.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Details}{
-This needs a valid html \code{template_file}, i.e. one of:
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Details}{
+    This needs a valid html \code{template_file}, i.e. one of:
 \itemize{
 \item The file
 \href{https://gitlab.com/urswilke/table_charter/-/blob/main/example_dashboard.html}{example_dashboard.html}
@@ -202,62 +200,68 @@ on your machine.
 }
 and then using the template file created in the \verb{dist/} sub-directory.
 }
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-get_crosstabs_data"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-get_crosstabs_data}{}}}
-\subsection{Method \code{get_crosstabs_data()}}{
-Return the crosstabs data of the \code{Tabula} object
+\subsection{\code{Tabula$get_crosstabs_data()}}{
+  Return the crosstabs data of the \code{Tabula} object
 
 This method returns a list of dataframes
 containing all the crosstabs information.
 Thus it's not chainable.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$get_crosstabs_data()}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Tabula$get_crosstabs_data()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A list of dataframes with the data of the crosstabs;
+see \code{vignette("data-format")}.
+  }
 }
 
-\subsection{Returns}{
-A list of dataframes with the data of the crosstabs;
-see \code{vignette("data-format")}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-print"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-print}{}}}
-\subsection{Method \code{print()}}{
-Print the crosstabs of the \code{Tabula} object
+\subsection{\code{Tabula$print()}}{
+  Print the crosstabs of the \code{Tabula} object
 
 This method is called under the hood, if you \code{print()} a \code{Tabula} object.
 This will call the print method of all \code{Qrow} elements in the \code{Tabula$qrows} field.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$print(...)}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Tabula$print(...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{...}}{Not used for now.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{...}}{Not used for now.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Tabula-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-Tabula-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Tabula$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{Tabula$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Tabula$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }
