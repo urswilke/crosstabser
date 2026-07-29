@@ -59,6 +59,16 @@ get_raw_data.default <- function(qtab) {
     }) |>
       dplyr::bind_rows()
   }
+
+  # The TOTAL row in crosstabs should only count the cases
+  # where not all the variables are NA:
+  is_empty_case <-
+    (
+      (!is.na(dat |> dplyr::select(-dplyr::any_of(c("row", "selvar"))))) |>
+        rowSums()
+    ) == 0
+  dat <- dat[!is_empty_case, ]
+
   # for TOTAL column:
   dat$"colvar_DC#TOTAL" <- 1
   dat$i <- seq_len(nrow(dat))
@@ -119,7 +129,7 @@ get_row_filter_lgl <- function(qtab) {
   if (n_rowvars > n_filters) {
     row_lgls <- row_lgls |> lapply(\(x) x |> rep(each = n_rowvars))
   }
-  row_lgls
+  row_lgls[!is.na(row_lgls)]
 }
 selvar_eq_selval <- function(selvar, selval) {
   if (!is.na(as.numeric(selval) |> suppressWarnings())) {
