@@ -78,8 +78,6 @@
                                        18-39 40+  
       TOTAL                abs     3       2     1
       Sum of valid answe…  abs     6       3     3
-      0                    abs     0       0     0
-                           in %    0       0     0
       ch1                  abs     0       0     0
                            in %    0       0     0
       ch2                  abs     2       1     1
