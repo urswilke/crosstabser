@@ -7,6 +7,7 @@ df <- tibble::tibble(
   q1n2 = c(2,-2, 4) |> haven::labelled(c(ch1=1, ch2=2, ch3 = 3, ch4=4)),
   q1n3 = c(3,-2,-2) |> haven::labelled(c(ch1=1, ch2=2, ch3 = 3, ch4=4)),
   q1n4 = c(4,-2,-2) |> haven::labelled(c(ch1=1, ch2=2, ch3 = 3, ch4=4)),
+  q1n5 = c(0, 2, 3) |> haven::labelled(c(ch1=1, ch2=2, ch3 = 3, ch4=4)),
   age = c(2, 1, 1) |> haven::labelled(c("18-39" = 1, "40+" = 2), label = "age"),
   gew = c(0.5, 1.2, 0.4)
 )
@@ -17,6 +18,7 @@ dfq <- tibble::tribble(
   "mcg with invalids & exclusive",     "mcg", "q1n1 q1n2 q1n3 q1n4", "3, 4, -2",  "1",
   "mdg with invalids",                 "mdg", "q1_1 q1_2",           "q1_3 q1_4", NA,
   "mdg with invalids & exclusive",     "mdg", "q1_1 q1_2",           "q1_3 q1_4", "q1_1",
+  "mcg with non-labelled non-exclusively occurring value",     "mcg", "q1n5 q1n2 q1n3 q1n4", NA,  "0 1",
 )
 mapping_file = list(Questions = dfq, Macro = list(ColVar = "age"))
 m_rm_invalids <- Tabula$new(
