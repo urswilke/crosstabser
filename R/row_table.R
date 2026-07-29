@@ -172,7 +172,8 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
     return(NULL)
   }
-  occuring_vals <- qtab$d$long_data$rowval |> unique()
+  df_rowvar_long <- qtab$d$df_rowvar_long
+  occuring_vals <- df_rowvar_long$rowval |> unique()
   invalid_vals <- qtab$p[["Unguelt"]]
 
   vallabs <- qtab$.__enclos_env__$private$get_row_labels()
