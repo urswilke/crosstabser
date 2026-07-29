@@ -64,7 +64,7 @@ get_raw_data.default <- function(qtab) {
   # where not all the variables are NA:
   is_empty_case <-
     (
-      (!is.na(dat |> dplyr::select(-dplyr::any_of(c("row", "selvar"))))) |>
+      (!is.na(dat |> dplyr::select(matches("^rowvar_")))) |>
         rowSums()
     ) == 0
   dat <- dat[!is_empty_case, ]
