@@ -19,6 +19,7 @@ dfq <- tibble::tribble(
   "mdg with invalids",                 "mdg", "q1_1 q1_2",           "q1_3 q1_4", NA,
   "mdg with invalids & exclusive",     "mdg", "q1_1 q1_2",           "q1_3 q1_4", "q1_1",
   "mcg with non-labelled non-exclusively occurring value",     "mcg", "q1n5 q1n2 q1n3 q1n4", NA,  "0 1",
+  "mcg with 1 non-labelled non-exclusively occurring and 1 labelled non-occurring value",     "mcg", "q1n5 q1n2 q1n3 q1n4", NA,  "0",
 )
 mapping_file = list(Questions = dfq, Macro = list(ColVar = "age"))
 m_rm_invalids <- Tabula$new(

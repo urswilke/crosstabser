@@ -90,6 +90,26 @@
                            in %  100     100   100
       
       
+      $`7`
+      $`7`[[1]]
+      # mcg with 1 non-labelled non-exclusively occurring and 1 labelled
+      #   non-occurring value
+                                 TOTAL age   -----
+                                       18-39 40+  
+      TOTAL                abs     3       2     1
+      Sum of valid answe…  abs     6       3     3
+      ch1                  abs     0       0     0
+                           in %    0       0     0
+      ch2                  abs     2       1     1
+                           in %   66.7    50   100
+      ch3                  abs     2       1     1
+                           in %   66.7    50   100
+      ch4                  abs     2       1     1
+                           in %   66.7    50   100
+      VALID CASES          abs     3       2     1
+                           in %  100     100   100
+      
+      
 
 # a table is reproduced with a global filter
 
