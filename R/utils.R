@@ -76,3 +76,5 @@ add_exclusive_info <- function(df_rows_long, exclusives, choice_col) {
   res$lowest_index <- NULL
   res
 }
+
+line_break <- if (Sys.info()[['sysname']] == "Windows") "\r\n" else "\n"

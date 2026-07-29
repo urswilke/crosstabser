@@ -84,7 +84,7 @@ row_table_beginning <- function(qtab) {
   RowBegin$RowTitle3 <- ""
   RowBegin$RowTitle2 <- ""
   RowBegin$RowTitle1 <- NA_character_
-  RowBegin$RowTitle1[1] <- paste(qtab$p$Title, collapse = "\n")
+  RowBegin$RowTitle1[1] <- qtab$p$Title |> paste(collapse = line_break)
   RowBegin$RowWeighted <- ""
   RowBegin$RowAbsPercent <- ""
   RowBegin$RowVariable <- NA_character_
