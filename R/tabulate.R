@@ -36,7 +36,8 @@ get_raw_data.default <- function(qtab) {
       rowvars = rowvars,
       new_rowvars = rv(rowvars),
       colvars_named = colvars_named,
-      weightvar = weightvar
+      weightvar = weightvar,
+      NULL
     )
   } else {
     # treat selvar:
@@ -44,18 +45,14 @@ get_raw_data.default <- function(qtab) {
     dat <- seq_along(qtab$p$SelVar) |> lapply(\(i) {
       rowvars <- c(qtab$p$l_selvar$rowvars[[i]], qtab$p$l_selvar$rowvars_inv[[i]])
       new_rowvars <- rv(c(qtab$p$l_selvar$valid, qtab$p$l_selvar$invalid))
-      selvar_name <- qtab$p$SelVar[i]
-      selval <- qtab$p$SelVal
-      res <- prep_data(
+      prep_data(
         qtab,
         rowvars = rowvars,
         new_rowvars = new_rowvars,
         colvars_named = colvars_named,
-        weightvar = weightvar
+        weightvar = weightvar,
+        selvar = qtab$p$SelVar[i] |> purrr::set_names("selvar")
       )
-      res$selvar = selvar_name
-      res$selval = selval
-      res
     }) |>
       dplyr::bind_rows()
   }
@@ -79,7 +76,8 @@ prep_data <- function(
     rowvars,
     new_rowvars,
     colvars_named,
-    weightvar
+    weightvar,
+    selvar
 ) {
   rowvars_named <- rowvars |> purrr::set_names(new_rowvars)
   if (!is.null(weightvar)) {
@@ -90,7 +88,9 @@ prep_data <- function(
     c(row = "row"),
     rowvars_named,
     colvars_named,
-    weightvar
+    weightvar,
+    qtab$p$filter_vars,
+    selvar
   )
 
   # same as:
@@ -125,7 +125,7 @@ get_row_filter_lgl <- function(qtab) {
   n_rowvars <- length(qtab$p$rowvars_qtab)
   filter_exprs <- rlang::parse_exprs(qtab$p$Filter)
   row_lgls <- filter_exprs |>
-    purrr::map(\(e) rlang::eval_tidy(e, qtab$m$ditw$ct$dat_tab))
+    purrr::map(\(e) rlang::eval_tidy(e, qtab$d$raw_data))
   if (n_rowvars > n_filters) {
     row_lgls <- row_lgls |> lapply(\(x) x |> rep(each = n_rowvars))
   }
@@ -176,12 +176,10 @@ pivot_rowvar_data.default <- function(qtab) {
   selvar_filter <- if (length(qtab$p$SelVar) == 0) {
     TRUE
   } else {
-    qtab$p$SelVar |> lapply(
-      \(x) selvar_eq_selval(
-        qtab$m$ditw$ct$dat_tab[[x]],
-        qtab$p$SelVal
-      )
-    ) |> unlist() |>
+    selvar_eq_selval(
+      qtab$d$raw_data$selvar,
+      qtab$p$SelVal
+    ) |>
       rep(each = n_rowvars)
   }
   res <- res[filter_filter & selvar_filter,]

@@ -187,6 +187,9 @@ set_qtab_params.default <- function(params, mapping) {
     params$Mult <- TRUE
   }
 
+  params$filter_vars <- params$Filter |>
+    extract_var_names()
+
   params$case_distinguisher <- ifelse(params$Mult, "i", "row")
   params$rowvars_string <- paste(params$l_selvar$valid %||% params$rowvars_qtab, collapse = ", ")
   # TODO: tell Wolf: Here we could also use ColVar defined in the Questions sheet...:

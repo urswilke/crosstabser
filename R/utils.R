@@ -78,3 +78,18 @@ add_exclusive_info <- function(df_rows_long, exclusives, choice_col) {
 }
 
 line_break <- if (Sys.info()[['sysname']] == "Windows") "\r\n" else "\n"
+
+extract_var_names <- function(x) {
+  if (length(x) == 0) {
+    return(c())
+  }
+  x |>
+    # without keep.source = TRUE, the tests were passing in the console but not in the rstudio build pane...:
+    # https://forum.posit.co/t/getparsedata-returns-null-when-published-in-a-shiny-app-to-rstudio-connect/41353/5
+    parse(text = _, keep.source = TRUE) |>
+    getParseData() |>
+    dplyr::filter(token == "SYMBOL") |>
+    dplyr::pull(text) |>
+    unique() |>
+    purrr::set_names()
+}
