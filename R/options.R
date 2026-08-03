@@ -283,7 +283,9 @@ set_qtab_params.qtab_params_mw <- function(params, mapping) {
 }
 set_qtab_params.qtab_params_cat <- function(params, mapping) {
   params$rowvars_qtab <- get_rowvars_cat(params)
-  params$Filter <- params$Filter[params$i_cat]
+  i_filter <- ifelse(length(params$Filter) > 1, params$i_cat, 1)
+  params$Filter <- params$Filter[i_filter]
+
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()
     params$l_selvar$rowvars <- get_rowvars_cat(params)

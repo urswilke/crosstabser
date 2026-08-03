@@ -12,6 +12,7 @@ dfq <- tibble::tribble(
   "mw with multi-filter & SelVar", "mw",  "q2_1 q2_2", "q1_{[1|2]} > 3 & q1_{[1|2]} <= 5",           "q0",     "1 2",
   "mw with multi-filter",          "mw",  "q2_1 q2_2", "q1_{[1|2]} > 3 & q1_{[1|2]} <= 5 & q0 == 1", NA,       NA,
   "mw with {rowvar}-filter",       "mw",  "q2_1 q2_2", "{rowvar} <= 3",                              NA,       NA,
+  "mw with single filter",         "cat", "q2_1 q2_2", "q0 == 1",                                    NA,       NA,
 )
 mapping_file = list(Questions = dfq, Macro = list(ColVar = "age"))
 

@@ -109,4 +109,38 @@
                            in %  100       0   100   100
       
       
+      $`5`
+      $`5`[[1]]
+      # mw with single filter q2 scale var 1
+                                 TOTAL age   ----- -----
+                                       18-39 40-59 60+  
+      TOTAL                abs       4     1     2     1
+      1                    abs       1     0     1     0
+                           in %     25     0    50     0
+      2                    abs       1     1     0     0
+                           in %     25   100     0     0
+      4                    abs       1     0     1     0
+                           in %     25     0    50     0
+      5                    abs       1     0     0     1
+                           in %     25     0     0   100
+      VALID CASES          abs       4     1     2     1
+                           in %    100   100   100   100
+      
+      $`5`[[2]]
+      # mw with single filter q2 scale var 2
+                                 TOTAL age   ----- -----
+                                       18-39 40-59 60+  
+      TOTAL                abs       4     1     2     1
+      1                    abs       1     0     1     0
+                           in %     25     0    50     0
+      2                    abs       1     0     0     1
+                           in %     25     0     0   100
+      4                    abs       1     0     1     0
+                           in %     25     0    50     0
+      5                    abs       1     1     0     0
+                           in %     25   100     0     0
+      VALID CASES          abs       4     1     2     1
+                           in %    100   100   100   100
+      
+      
 
