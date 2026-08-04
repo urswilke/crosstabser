@@ -144,3 +144,21 @@
       
       
 
+# mw tables with SelVar containing NA & RepOV are reproduced
+
+    Code
+      m
+    Output
+      $`2`
+      $`2`[[1]]
+      # mw with SelVar containing NA & RepOV selval1 TOP2 overview
+                                 TOTAL age   ----- -----
+                                       18-39 40-59 60+  
+      VALID CASES (at le…  abs     3       1     1     1
+      q2 scale var 1       TOP2   66.7   100   100     0
+                           VALI…   3       1     1     1
+      q2 scale var 2       TOP2   33.3     0     0   100
+                           VALI…   3       1     1     1
+      
+      
+

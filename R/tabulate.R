@@ -180,6 +180,7 @@ pivot_rowvar_data.default <- function(qtab) {
       qtab$d$raw_data$selvar,
       qtab$p$SelVal
     ) |>
+      datadaptor::is_true_vec() |>
       rep(each = n_rowvars)
   }
   res <- res[filter_filter & selvar_filter,]

@@ -1,5 +1,6 @@
 df <- tibble::tibble(
   q0   = c(1, 1, 1, 2, 1) |> haven::labelled(c("selval1" = 1, "selval2" = 2)),
+  q0NA = c(1, 1, 1, 2, NA) |> haven::labelled(c("selval1" = 1, "selval2" = 2)),
   q1_1 = c(1, 2, 3, 4, 5) |> haven::labelled(label = "q1 scale var 1"),
   q1_2 = c(4, 5, 4, 2, 3) |> haven::labelled(label = "q1 scale var 2"),
   q2_1 = c(1, 2, 5, 3, 4) |> haven::labelled(label = "q2 scale var 1"),
@@ -47,3 +48,18 @@ testthat::expect_error(
     verbose = TRUE,
   )
 )
+
+dfq <- tibble::tribble(
+  ~Title,                                  ~Type, ~RowVar,     ~SelVar, ~SelVal, ~RepOV,                              ~Freq, ~MW,
+  "mw with SelVar containing NA & RepOV",  "mw",  "q2_1 q2_2", "q0NA",  "1",     "TOP2:(1 THRU 2=100)  (1 THRU 5=0)", "0",   "0",
+)
+mapping_file = list(Questions = dfq, Macro = list(ColVar = "age"))
+
+m <- Tabula$new(
+  df,
+  mapping_file,
+  verbose = TRUE,
+)
+test_that("mw tables with SelVar containing NA & RepOV are reproduced", {
+  testthat::expect_snapshot(m)
+})
