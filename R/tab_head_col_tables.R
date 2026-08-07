@@ -45,7 +45,9 @@ gen_head_table <- function(mapping) {
   res[seq_len(length(header_vars)) + 2,]$HeadTitle <- header_varlabs
   res[nrow(res) + 1,]$HeadName  <- "DC#EMPTY"
   res[nrow(res) + 1,]$HeadName  <- "DC#TITLE"
-  res$HeadNo <- seq_len(nrow(res))
+
+  res$HeadNo <- dplyr::consecutive_id(res$HeadTitle)
+  res$HeadNo[nrow(res)] <- res$HeadNo[nrow(res)] + 1L
   res
 }
 
@@ -57,10 +59,10 @@ gen_col_table <- function(mapping) {
   ColBegin$ColTitle2 = ""
   ColBegin$ColVariable = "DC#ROWHEADER"
 
-  ColEnd <- data.frame(HeadNo = c(nrow(head_table) + -1:0))
+  ColEnd <- data.frame(ColVariable = c("DC#EMPTY", "DC#TITLE"))
   ColEnd$ColTitle1 = ""
   ColEnd$ColTitle2 = ""
-  ColEnd$ColVariable = c("DC#EMPTY", "DC#TITLE")
+
 
   value_col_table0 <- tibble::tibble(
     ColNo = integer(),
@@ -108,6 +110,8 @@ gen_col_table <- function(mapping) {
       colvar_headers |> tidyr::unnest(c(ColValue, ColTitle2))
     )
   }
+  ColEnd$HeadNo <- max(value_col_table1$HeadNo) + 1:2
+
   value_col_table1 <- dplyr::bind_rows(
     value_col_table1,
     ColEnd,
