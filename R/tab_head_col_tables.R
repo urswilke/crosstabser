@@ -48,7 +48,7 @@ gen_head_table <- function(mapping) {
 
   res$HeadNo <- dplyr::consecutive_id(res$HeadTitle)
   res$HeadNo[nrow(res)] <- res$HeadNo[nrow(res)] + 1L
-  res
+  res |> dplyr::distinct(HeadNo, .keep_all = TRUE)
 }
 
 gen_col_table <- function(mapping) {

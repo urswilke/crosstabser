@@ -204,3 +204,131 @@
       10  1e+09    10      5                           DC#TITLE       NA
       
 
+---
+
+    Code
+      withr::with_options(list(pillar.print_max = Inf, width = 1000), print(m$
+        get_crosstabs_data()))
+    Output
+      $tab_table
+      # A tibble: 1 x 15
+           BookNo QuestNo TabName      QuestLine TabNo TabType TabTitle          TabTitle1         TabTitle2         TabTitle3         TabCaption SelVal repov_name TabCount TabRowTypes
+            <dbl> <chr>   <chr>            <dbl> <int> <chr>   <chr>             <chr>             <chr>             <chr>             <chr>      <chr>  <chr>         <int>       <int>
+      1 999999999 _row_2  MDG#_row_2@1         2     1 MDG     mdg with no entry mdg with no entry mdg with no entry mdg with no entry <NA>       <NA>   <NA>             24          NA
+      
+      $val_table
+      # A tibble: 60 x 6
+            BookNo QuestNo TabNo RowNo ColNo Value
+             <dbl> <chr>   <int> <int> <int> <dbl>
+       1 999999999 _row_2      1     4     4   3  
+       2 999999999 _row_2      1     4     5   2  
+       3 999999999 _row_2      1     4     6   1  
+       4 999999999 _row_2      1     5     4   2.1
+       5 999999999 _row_2      1     5     5   1.6
+       6 999999999 _row_2      1     5     6   0.5
+       7 999999999 _row_2      1     6     4   3  
+       8 999999999 _row_2      1     6     5   1  
+       9 999999999 _row_2      1     6     6   2  
+      10 999999999 _row_2      1     7     4   2.2
+      11 999999999 _row_2      1     7     5   1.2
+      12 999999999 _row_2      1     7     6   1  
+      13 999999999 _row_2      1     8     4   1  
+      14 999999999 _row_2      1     8     5   0  
+      15 999999999 _row_2      1     8     6   1  
+      16 999999999 _row_2      1     9     4   0.5
+      17 999999999 _row_2      1     9     5   0  
+      18 999999999 _row_2      1     9     6   0.5
+      19 999999999 _row_2      1    10     4  50  
+      20 999999999 _row_2      1    10     5   0  
+      21 999999999 _row_2      1    10     6 100  
+      22 999999999 _row_2      1    11     4  29.4
+      23 999999999 _row_2      1    11     5   0  
+      24 999999999 _row_2      1    11     6 100  
+      25 999999999 _row_2      1    12     4   2  
+      26 999999999 _row_2      1    12     5   1  
+      27 999999999 _row_2      1    12     6   1  
+      28 999999999 _row_2      1    13     4   1.7
+      29 999999999 _row_2      1    13     5   1.2
+      30 999999999 _row_2      1    13     6   0.5
+      31 999999999 _row_2      1    14     4 100  
+      32 999999999 _row_2      1    14     5 100  
+      33 999999999 _row_2      1    14     6 100  
+      34 999999999 _row_2      1    15     4 100  
+      35 999999999 _row_2      1    15     5 100  
+      36 999999999 _row_2      1    15     6 100  
+      37 999999999 _row_2      1    16     4   2  
+      38 999999999 _row_2      1    16     5   1  
+      39 999999999 _row_2      1    16     6   1  
+      40 999999999 _row_2      1    17     4   1.7
+      41 999999999 _row_2      1    17     5   1.2
+      42 999999999 _row_2      1    17     6   0.5
+      43 999999999 _row_2      1    18     4  66.7
+      44 999999999 _row_2      1    18     5  50  
+      45 999999999 _row_2      1    18     6 100  
+      46 999999999 _row_2      1    19     4  81.0
+      47 999999999 _row_2      1    19     5  75  
+      48 999999999 _row_2      1    19     6 100  
+      49 999999999 _row_2      1    20     4   1  
+      50 999999999 _row_2      1    20     5   1  
+      51 999999999 _row_2      1    20     6   0  
+      52 999999999 _row_2      1    21     4   0.4
+      53 999999999 _row_2      1    21     5   0.4
+      54 999999999 _row_2      1    21     6   0  
+      55 999999999 _row_2      1    22     4  33.3
+      56 999999999 _row_2      1    22     5  50  
+      57 999999999 _row_2      1    22     6   0  
+      58 999999999 _row_2      1    23     4  19.0
+      59 999999999 _row_2      1    23     5  25  
+      60 999999999 _row_2      1    23     6   0  
+      
+      $row_table
+      # A tibble: 24 x 18
+            BookNo RowNo RowContent RowAbsPercent RowWeighted  TabNo RowTitle1                              RowTitle2                              RowTitle3 RowFormat RowDecimals RowVariable RowValue row_type             QuestNo RowTypeS                   RowType RowContentDetail
+             <dbl> <int> <chr>      <chr>         <chr>        <int> <chr>                                  <chr>                                  <chr>     <chr>           <int> <chr>          <dbl> <chr>                <chr>   <chr>                        <int> <chr>           
+       1 999999999     1 Title      ""            ""               1 "mdg with no entry"                    ""                                     ""        <NA>               NA <NA>              NA <NA>                 _row_2  Title                            1 ""              
+       2 999999999     2 Header     ""            ""               1  <NA>                                  ""                                     ""        <NA>               NA <NA>              NA <NA>                 _row_2  Header                           2 ""              
+       3 999999999     3 Header     ""            ""               1  <NA>                                  ""                                     ""        <NA>               NA <NA>              NA <NA>                 _row_2  Header                           2 ""              
+       4 999999999     4 Total      "Abs"         "Unweighted"     1 "TOTAL"                                "TOTAL"                                "abs"     <NA>                0 q1_1, q1_2         1 total                _row_2  Total|AbsUnweighted        2097408 ""              
+       5 999999999     5 Total      "Abs"         "Weighted"       1 "TOTAL"                                "TOTAL"                                "absW"    <NA>                0 q1_1, q1_2         1 total                _row_2  Total|AbsWeighted          1048832 ""              
+       6 999999999     6 SumOfValid "Abs"         "Unweighted"     1 "Sum of valid answers"                 "Sum of valid answers"                 "abs"     <NA>                0 q1_1, q1_2         1 sum_of_valid         _row_2  SumOfValid|AbsUnweighted   2101248 ""              
+       7 999999999     7 SumOfValid "Abs"         "Weighted"       1 "Sum of valid answers"                 "Sum of valid answers"                 "absW"    <NA>                0 q1_1, q1_2         1 sum_of_valid         _row_2  SumOfValid|AbsWeighted     1052672 ""              
+       8 999999999     8 Detail     "Abs"         "Unweighted"     1 "Choice 1"                             "Choice 1"                             "abs"     <NA>                0 q1_1               1 detail_freqs_valid   _row_2  Detail|AbsUnweighted       2097168 ""              
+       9 999999999     9 Detail     "Abs"         "Weighted"       1 "Choice 1"                             "Choice 1"                             "absW"    <NA>                0 q1_1               1 detail_freqs_valid   _row_2  Detail|AbsWeighted         1048592 ""              
+      10 999999999    10 Detail     "Percent"     "Unweighted"     1 "Choice 1"                             "Choice 1"                             "in %"    <NA>                1 q1_1               1 detail_perc_valid    _row_2  Detail|PercentUnweighted  33554448 ""              
+      11 999999999    11 Detail     "Percent"     "Weighted"       1 "Choice 1"                             "Choice 1"                             "in %W"   <NA>                1 q1_1               1 detail_perc_valid    _row_2  Detail|PercentWeighted    16777232 ""              
+      12 999999999    12 Detail     "Abs"         "Unweighted"     1 "Choice 2"                             "Choice 2"                             "abs"     <NA>                0 q1_2               1 detail_freqs_valid   _row_2  Detail|AbsUnweighted       2097168 ""              
+      13 999999999    13 Detail     "Abs"         "Weighted"       1 "Choice 2"                             "Choice 2"                             "absW"    <NA>                0 q1_2               1 detail_freqs_valid   _row_2  Detail|AbsWeighted         1048592 ""              
+      14 999999999    14 Detail     "Percent"     "Unweighted"     1 "Choice 2"                             "Choice 2"                             "in %"    <NA>                1 q1_2               1 detail_perc_valid    _row_2  Detail|PercentUnweighted  33554448 ""              
+      15 999999999    15 Detail     "Percent"     "Weighted"       1 "Choice 2"                             "Choice 2"                             "in %W"   <NA>                1 q1_2               1 detail_perc_valid    _row_2  Detail|PercentWeighted    16777232 ""              
+      16 999999999    16 Valid      "Abs"         "Unweighted"     1 "VALID CASES"                          "VALID CASES"                          "abs"     <NA>                0 q1_1, q1_2         1 n_valid_freqs        _row_2  Valid|AbsUnweighted        2097664 ""              
+      17 999999999    17 Valid      "Abs"         "Weighted"       1 "VALID CASES"                          "VALID CASES"                          "absW"    <NA>                0 q1_1, q1_2         1 n_valid_freqs        _row_2  Valid|AbsWeighted          1049088 ""              
+      18 999999999    18 Valid      "Percent"     "Unweighted"     1 "VALID CASES"                          "VALID CASES"                          "in %"    <NA>                1 q1_1, q1_2         1 n_valid_perc         _row_2  Valid|PercentUnweighted   33554944 ""              
+      19 999999999    19 Valid      "Percent"     "Weighted"       1 "VALID CASES"                          "VALID CASES"                          "in %W"   <NA>                1 q1_1, q1_2         1 n_valid_perc         _row_2  Valid|PercentWeighted     16777728 ""              
+      20 999999999    20 Missing    "Abs"         "Unweighted"     1 "No entry in the respective variables" "No entry in the respective variables" "abs"     <NA>                0 q1_1, q1_2         1 detail_freqs_invalid _row_2  Missing|AbsUnweighted      2098176 ""              
+      21 999999999    21 Missing    "Abs"         "Weighted"       1 "No entry in the respective variables" "No entry in the respective variables" "absW"    <NA>                0 q1_1, q1_2         1 detail_freqs_invalid _row_2  Missing|AbsWeighted        1049600 ""              
+      22 999999999    22 Missing    "Percent"     "Unweighted"     1 "No entry in the respective variables" "No entry in the respective variables" "in %"    <NA>                1 q1_1, q1_2         1 detail_perc_invalid  _row_2  Missing|PercentUnweighted 33555456 ""              
+      23 999999999    23 Missing    "Percent"     "Weighted"       1 "No entry in the respective variables" "No entry in the respective variables" "in %W"   <NA>                1 q1_1, q1_2         1 detail_perc_invalid  _row_2  Missing|PercentWeighted   16778240 ""              
+      24 999999999    24 Empty      ""            ""               1 ""                                     ""                                     ""        <NA>               NA <NA>              NA <NA>                 _row_2  Empty                            4 ""              
+      
+      $head_table
+      # A tibble: 5 x 5
+           BookNo HeadNo HeadName     HeadTitle HeadCount
+            <dbl>  <int> <chr>        <chr>         <int>
+      1 999999999      1 DC#ROWHEADER <NA>              3
+      2 999999999      2 DC#TOTAL     TOTAL             1
+      3 999999999      3 age@1        age               2
+      4 999999999      4 DC#EMPTY     <NA>              1
+      5 999999999      5 DC#TITLE     <NA>              1
+      
+      $col_table_all
+        BookNo ColNo HeadNo ColTitle1 ColTitle2  ColVariable ColValue
+      1  1e+09     1      1                     DC#ROWHEADER       NA
+      2  1e+09     2      1                     DC#ROWHEADER       NA
+      3  1e+09     3      1                     DC#ROWHEADER       NA
+      4  1e+09     4      2     TOTAL               DC#TOTAL        1
+      5  1e+09     5      3       age     18-39          age        1
+      6  1e+09     6      3       age       40+          age        2
+      7  1e+09     7      4                         DC#EMPTY       NA
+      8  1e+09     8      5                         DC#TITLE       NA
+      
+
