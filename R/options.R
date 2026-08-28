@@ -98,6 +98,7 @@ get_tabula_options.list <- function(
     V_BookNo = book_no
   )
 }
+#' @export
 get_tabula_options.google <- function(tabula, ...) {
   # TODO: google spreadsheets...
   stop("Not yet implemented for google sheets.")
@@ -180,6 +181,7 @@ set_qtab_params <- function(params, mapping) {
   UseMethod("set_qtab_params")
 }
 
+#' @export
 set_qtab_params.default <- function(params, mapping) {
   if (is.null(params$Mult) || !params$Mult %in% c("TRUE", "1")) {
     params$Mult <- FALSE
@@ -219,6 +221,7 @@ set_qtab_params.default <- function(params, mapping) {
   params |>
     add_global_options(mapping)
 }
+#' @export
 set_qtab_params.qtab_params_mdg <- function(params, mapping) {
   params$MdgVal <- params$MdgVal %||% "1"
   if (is.null(params$MdgMissValid) || !params$MdgMissValid %in% c("TRUE", "1")) {
@@ -262,6 +265,7 @@ concat_selvar_rowvars <- function(rowvar, selvar) {
     unlist(use.names = FALSE)
 }
 
+#' @export
 set_qtab_params.qtab_params_mw <- function(params, mapping) {
   params$rowvars_qtab <- params$RowVar
   if (!is.null(params$SelVar)) {
@@ -281,6 +285,7 @@ set_qtab_params.qtab_params_mw <- function(params, mapping) {
 
   NextMethod()
 }
+#' @export
 set_qtab_params.qtab_params_cat <- function(params, mapping) {
   params$rowvars_qtab <- get_rowvars_cat(params)
   i_filter <- ifelse(length(params$Filter) > 1, params$i_cat, 1)
@@ -305,6 +310,7 @@ get_rowvars_cat <- function(params) {
   }
   params$RowVar[((i_cat - 1) * nsel + 1):(i_cat * nsel)]
 }
+#' @export
 set_qtab_params.qtab_params_mcg <- function(params, mapping) {
   params$Exclusive <- as.numeric(params$Exclusive)
   params$rowvars_qtab <- params$RowVar
