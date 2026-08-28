@@ -180,6 +180,6 @@ apply_fun_weighted.ct_max <- function(f, w, x, na.rm = TRUE, ...) {
   max(x, na.rm = na.rm, ...) |> dplyr::na_if(-Inf)
 }
 #' @export
-apply_fun_weighted.ct_percentile <- function(f, w, x, probs, na.rm = TRUE, ...) {
+apply_fun_weighted.ct_percentile <- function(f, w, x, na.rm = TRUE, probs, ...) {
   Hmisc::wtd.quantile(x, w, probs = probs)
 }
