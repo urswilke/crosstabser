@@ -66,10 +66,15 @@ Qrow <- R6::R6Class(
   ),
   private = list(
     prep_tab_row_val = function() {
-      self$ditw$ct$crosstabs <- prep_tab_row_val_(self)
-      prepare_row_table_tb(self)
-      prepare_tab_table_tb(self)
-      prepare_val_table_tb(self)
+      # i believe this needs to be changed to pulling the information from the qtabs
+      row_table <- self$qtabs |> purrr::map_dfr(\(x) x$d$row_table_tb)
+      tab_table <- self$qtabs |> purrr::map_dfr(\(x) x$d$tab_table_tb)
+      val_table <- self$qtabs |> purrr::map_dfr(\(x) x$d$val_table_tb)
+      self$ditw$ct$crosstabs$data <- tibble::lst(
+        row_table,
+        tab_table,
+        val_table,
+      )
       invisible(self)
     }
   )

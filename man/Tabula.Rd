@@ -46,6 +46,9 @@ and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
     \item{\code{qrows}}{A \code{list()} of \code{Qrow} objects}
 
+    \item{\code{qtabs}}{A \code{data.frame()} of all the information of the \code{Qtab} objects.
+Each row contains the information of one qtab.}
+
     \item{\code{ditw}}{This is the "dust in the wind" list object field
 that stores data that didn't make it into their own field.
 For developers only!

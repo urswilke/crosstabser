@@ -42,6 +42,8 @@ doc_project_data <- 'Either a `list()` object to modify the default:
 #' @field mapping_file `r doc_mapping_file`
 #' @field dat `r doc_dat`
 #' @field qrows A `list()` of `Qrow` objects
+#' @field qtabs A `data.frame()` of all the information of the `Qtab` objects.
+#'   Each row contains the information of one qtab.
 #' @field ditw This is the "dust in the wind" list object field
 #'   that stores data that didn't make it into their own field.
 #'   For developers only!
@@ -82,6 +84,7 @@ Tabula <- R6::R6Class(
     dat = NULL,
     dat_mod = NULL,
     qrows = list(),
+    qtabs = NULL,
     ditw = list(da = NULL, ct = NULL),
     #' @description Initialize a Tabula object
     #'
@@ -217,12 +220,22 @@ Tabula <- R6::R6Class(
       )
     },
     prepare_5_tables = function() {
-      l <- self$qrows |>
-        lapply(\(x) x$.__enclos_env__$private$prep_tab_row_val()) |>
-        lapply(\(x) x$ditw$ct$crosstabs$data)
-      self$ditw$ct$crosstabs$data$tab_table <- l |> lapply(\(x) x$tab_table) |> dplyr::bind_rows()
-      self$ditw$ct$crosstabs$data$val_table <- l |> lapply(\(x) x$val_table) |> dplyr::bind_rows()
-      self$ditw$ct$crosstabs$data$row_table <- l |> lapply(\(x) x$row_table) |> dplyr::bind_rows()
+      qtabs <- tibble::tibble(qrow = self$qrows) |>
+        dplyr::mutate(qtab = qrow |> purrr::map("qtabs")) |>
+        tidyr::unnest(qtab) |>
+        dplyr::mutate(
+          p = qtab |> purrr::map("p"),
+          d = qtab |> purrr::map("d"),
+          .before = 1
+        ) |>
+        tidyr::unnest_wider(d) |>
+        dplyr::mutate(p = p |> purrr::map(unclass)) |>
+        tidyr::unnest_wider(p)
+      self$qtabs <- qtabs
+
+      self$ditw$ct$crosstabs$data$tab_table <- self$qtabs$tab_table_tb |> dplyr::bind_rows()
+      self$ditw$ct$crosstabs$data$val_table <- self$qtabs$val_table_tb |> dplyr::bind_rows()
+      self$ditw$ct$crosstabs$data$row_table <- self$qtabs$row_table_tb |> dplyr::bind_rows()
       private$prepare_head_col_tables()
       invisible(self)
     },
