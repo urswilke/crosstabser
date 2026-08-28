@@ -20,6 +20,8 @@ Description: An R package to use commands in Excel files
 License: AGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+Depends:
+    R (>= 4.3.0)
 Imports: 
     openxlsx2,
     R6,
