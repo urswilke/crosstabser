@@ -76,6 +76,7 @@ merge_same_title_cells <- function(head_table) {
   head_table$HeadNoOrig <- head_table$HeadNo
   N <- nrow(head_table)
   res <- head_table[-N,] |>
+    dplyr::distinct(HeadNo, .keep_all = TRUE) |>
     dplyr::group_by(
       HeadNo = dplyr::consecutive_id(HeadTitle),
       HeadTitle = HeadTitle |> forcats::as_factor()
