@@ -78,42 +78,52 @@ S7::method(
 apply_fun_unweighted <- function(f, x, na.rm = TRUE, ...) {
   UseMethod("apply_fun_unweighted")
 }
+#' @export
 apply_fun_unweighted.ct_length <- function(f, x, na.rm = TRUE, ...) {
   length(x)
 }
+#' @export
 apply_fun_unweighted.ct_mean <- function(f, x, na.rm = TRUE, ...) {
   res <- mean(x, na.rm = na.rm, ...)
   if (is.nan(res)) res <- NA_real_
   res
 }
+#' @export
 apply_fun_unweighted.ct_median <- function(f, x, na.rm = TRUE, ...) {
   stats::median(x, na.rm = na.rm, ...)
 }
+#' @export
 apply_fun_unweighted.ct_sum <- function(f, x, na.rm = TRUE, ...) {
   if (all(is.na(x))) return(NA_real_)
   sum(x, na.rm = na.rm, ...)
 }
+#' @export
 apply_fun_unweighted.ct_min <- function(f, x, na.rm = TRUE, ...) {
   min(x, na.rm = na.rm, ...) |> dplyr::na_if(Inf)
 }
+#' @export
 apply_fun_unweighted.ct_max <- function(f, x, na.rm = TRUE, ...) {
   max(x, na.rm = na.rm, ...) |> dplyr::na_if(-Inf)
 }
+#' @export
 apply_fun_unweighted.ct_se <- function(f, x, na.rm = TRUE, ...) {
   if (na.rm) {
     x <- x[!is.na(x)]
   }
   stats::sd(x) / sqrt(length(x))
 }
+#' @export
 apply_fun_unweighted.ct_percentile <- function(f, x, na.rm = TRUE, ...) {
   stats::quantile(x, na.rm = na.rm, type = 2, ...)
 }
 apply_fun_weighted <- function(f, w, x, na.rm = TRUE, ...) {
   UseMethod("apply_fun_weighted")
 }
+#' @export
 apply_fun_weighted.ct_length <- function(f, w, x, na.rm = TRUE, ...) {
   sum(w, na.rm = na.rm)
 }
+#' @export
 apply_fun_weighted.ct_mean <- function(f, w, x, na.rm = TRUE, ...) {
   if (na.rm) {
     obs <- !is.na(x) & !is.na(w)
@@ -125,9 +135,11 @@ apply_fun_weighted.ct_mean <- function(f, w, x, na.rm = TRUE, ...) {
   }
   stats::weighted.mean(x, w, na.rm = na.rm)
 }
+#' @export
 apply_fun_weighted.ct_median <- function(f, w, x, na.rm = TRUE, ties = "mean", ...) {
   matrixStats::weightedMedian(x, w, na.rm = na.rm, ties = ties)
 }
+#' @export
 apply_fun_weighted.ct_sum <- function(f, w, x, na.rm = TRUE, ...) {
   if (na.rm) {
     obs <- !is.na(x) & !is.na(w)
@@ -139,6 +151,7 @@ apply_fun_weighted.ct_sum <- function(f, w, x, na.rm = TRUE, ...) {
   }
   sum(x * w, na.rm = na.rm)
 }
+#' @export
 apply_fun_weighted.ct_se <- function(f, w, x, na.rm = TRUE, ...) {
   # see here: https://stackoverflow.com/a/60235611
   if (na.rm) {
@@ -158,12 +171,15 @@ apply_fun_weighted.ct_se <- function(f, w, x, na.rm = TRUE, ...) {
       sum(w / sum(w) ^ 2)
   )
 }
+#' @export
 apply_fun_weighted.ct_min <- function(f, w, x, na.rm = TRUE, ...) {
   min(x, na.rm = na.rm, ...) |> dplyr::na_if(Inf)
 }
+#' @export
 apply_fun_weighted.ct_max <- function(f, w, x, na.rm = TRUE, ...) {
   max(x, na.rm = na.rm, ...) |> dplyr::na_if(-Inf)
 }
-apply_fun_weighted.ct_percentile <- function(f, w, x, probs, na.rm = TRUE, ...) {
+#' @export
+apply_fun_weighted.ct_percentile <- function(f, w, x, na.rm = TRUE, probs, ...) {
   Hmisc::wtd.quantile(x, w, probs = probs)
 }

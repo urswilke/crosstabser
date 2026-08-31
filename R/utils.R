@@ -1,3 +1,16 @@
+utils::globalVariables(c(
+  ".data", "BookNo", "ColNo", "ColTitle1", "ColTitle2", "ColValue",
+  "ColVariable", "Exclusive", "HeadCount", "HeadName", "HeadNo", "HeadTitle",
+  "QuestNo", "RowAbsPercent", "RowContent", "RowNo", "RowTitle3", "RowTypeS",
+  "RowValue", "RowVar", "RowVariable", "RowWeighted", "RvEmp", "SelVal",
+  "SelVar", "TabNo", "TabTitle1", "TabTitle2", "TabType", "Title", "Type",
+  "Unguelt", "UngueltMW", "Value", "all_of", "colval", "colvar", "decimals",
+  "fun", "further_args", "header_vars_numerated", "index", "l",
+  "label", "lowest_index", "matches", "percentile_string", "qtab", "repov_name",
+  "row_title", "rowval", "rowvar", "shortcut", "text", "token", "val", "vallab",
+  "value", "var"
+))
+
 split_cell <- function(x, sep = "[,; ]+") {
   x |>
     stringr::str_squish() |>
@@ -87,7 +100,7 @@ extract_var_names <- function(x) {
     # without keep.source = TRUE, the tests were passing in the console but not in the rstudio build pane...:
     # https://forum.posit.co/t/getparsedata-returns-null-when-published-in-a-shiny-app-to-rstudio-connect/41353/5
     parse(text = _, keep.source = TRUE) |>
-    getParseData() |>
+    utils::getParseData() |>
     dplyr::filter(token == "SYMBOL") |>
     dplyr::pull(text) |>
     unique() |>

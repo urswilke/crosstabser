@@ -2,6 +2,7 @@ read_qsheet_raw <- function(mapping, row) {
   UseMethod("read_qsheet_raw", mapping$mapping_file)
 }
 
+#' @export
 read_qsheet_raw.excel <- function(mapping, row) {
   do_all <- is.null(row)
   # filter row indices specified, otherwise all...
@@ -26,6 +27,7 @@ read_qsheet_raw.excel <- function(mapping, row) {
 
   res0[stringr::str_subset(names(res0), "^Col[A-Z]$", negate = TRUE)]
 }
+#' @export
 read_qsheet_raw.list <- function(mapping, row) {
   df_questions <- dplyr::bind_rows(
     # HACK to complement all columns that are currently in the Questions sheet...
@@ -39,6 +41,7 @@ read_qsheet_raw.list <- function(mapping, row) {
       dplyr::mutate(row = dplyr::row_number() + 1, .before = 1) |>
       tidyr::drop_na("Type")
 }
+#' @export
 read_qsheet_raw.google <- function(mapping, row) {
   # TODO: google spreadsheets...
   stop("Not yet implemented for google sheets.")

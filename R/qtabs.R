@@ -162,9 +162,11 @@ post_process <- function(qtab) {
 order_by_counts <- function(qtab) {
   UseMethod("order_by_counts")
 }
+#' @export
 order_by_counts.default <- function(qtab) {
   warning("Not yet implemented for this qtab type")
 }
+#' @export
 order_by_counts.qtab_type_mcg <- function(qtab) {
   # TODO: tell Wolf that only valid values are sorted...
   # TODO: find out if that alse works for other table types than mcg:
@@ -192,9 +194,11 @@ set_row_content_to_filter <- function(qtab) {
 treat_categories <- function(qtab) {
   UseMethod("treat_categories")
 }
+#' @export
 treat_categories.default <- function(qtab) {
   NULL
 }
+#' @export
 treat_categories.qtab_type_cat <- treat_categories.qtab_type_mcg <- function(qtab) {
   cats <- qtab$p$Categories
   if (is.null(cats)) {
@@ -250,6 +254,7 @@ extract_overcode_data_mcg <- function(qtab) {
   codes
 }
 
+#' @export
 treat_categories.qtab_type_mdg <- function(qtab) {
   cats <- qtab$p$Categories
   if (is.null(cats)) {
