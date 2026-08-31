@@ -28,13 +28,13 @@ field, themselves each containing a list of `Qtab` objects in their
 
 ### Public methods
 
-- [`Qtab$new()`](#method-Qtab-new)
+- [`Qtab$new()`](#method-Qtab-initialize)
 
 - [`Qtab$clone()`](#method-Qtab-clone)
 
 ------------------------------------------------------------------------
 
-### Method `new()`
+### `Qtab$new()`
 
 #### Usage
 
@@ -56,7 +56,7 @@ field, themselves each containing a list of `Qtab` objects in their
 
 ------------------------------------------------------------------------
 
-### Method `clone()`
+### `Qtab$clone()`
 
 The objects of this class are cloneable with this method.
 

@@ -21,44 +21,21 @@ product).
 
 You can install crosstabser from codeberg with:
 
-``` r
-
-devtools::install_git("https://codeberg.org/urswilke/crosstabser")
-```
+`devtools``::`[`install_git`](https://devtools.r-lib.org/reference/install-deprecated.html)`(``"https://codeberg.org/urswilke/crosstabser"``)`
 
 Otherwise, you can also install crosstabser from github or gitlab with:
 
-``` r
-
-devtools::install_github("urswilke/crosstabser")
-devtools::install_gitlab("urswilke/crosstabser")
-```
+`devtools``::`[`install_github`](https://devtools.r-lib.org/reference/install-deprecated.html)`(``"urswilke/crosstabser"``)`` ``devtools``::`[`install_gitlab`](https://devtools.r-lib.org/reference/install-deprecated.html)`(``"urswilke/crosstabser"``)`
 
 ## Minimal example
 
 First we’ll load the package.
 
-``` r
-
-library(crosstabser)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`crosstabser`](https://urswilke.codeberg.page/crosstabser)`)`
 
 Now, suppose you have survey data `df`.
 
-``` r
-
-df <- tibble::tibble(
-  q1 = c(1, 2, 1) |> haven::labelled(c(Yes = 1, No = 2), label = "Super important question"),
-  age = c(2, 1, 1) |> haven::labelled(c("18-39" = 1, "40+" = 2), label = "age")
-)
-df
-#> # A tibble: 3 × 2
-#>   q1        age      
-#>   <dbl+lbl> <dbl+lbl>
-#> 1 1 [Yes]   2 [40+]  
-#> 2 2 [No]    1 [18-39]
-#> 3 1 [Yes]   1 [18-39]
-```
+`df`` ``<-`` ``tibble``::`[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)`(`` `` q1 ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``, ``2``, ``1``)`` ``|>`` ``haven``::`[`labelled`](https://haven.tidyverse.org/reference/labelled.html)`(`[`c`](https://rdrr.io/r/base/c.html)`(``Yes ``=`` ``1``, No ``=`` ``2``)``, label ``=`` ``"Super important question"``)``,`` `` age ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``2``, ``1``, ``1``)`` ``|>`` ``haven``::`[`labelled`](https://haven.tidyverse.org/reference/labelled.html)`(`[`c`](https://rdrr.io/r/base/c.html)`(``"18-39"`` ``=`` ``1``, ``"40+"`` ``=`` ``2``)``, label ``=`` ``"age"``)`` ``)`` ``df`` ``#> # A tibble: 3 × 2`` ``#> q1 age `` ``#> <dbl+lbl> <dbl+lbl>`` ``#> 1 1 [Yes] 2 [40+] `` ``#> 2 2 [No] 1 [18-39]`` ``#> 3 1 [Yes] 1 [18-39]`
 
 The data consists of 3 cases with the answers Yes & No stored in the
 variable `q1` and the age category stored in the variable `age`.
@@ -69,43 +46,11 @@ as those in the sub-populations of the variable `age`.
 
 crosstabser allows this if you define a mapping object like this:
 
-``` r
-
-(mapping_file = list(
-  Questions = data.frame(
-    Type  = "cat",
-    RowVar = "q1",
-    Title = "The crosstab's title"
-  ),
-  Macro = list(ColVar = "age")
-))
-#> $Questions
-#>   Type RowVar                Title
-#> 1  cat     q1 The crosstab's title
-#> 
-#> $Macro
-#> $Macro$ColVar
-#> [1] "age"
-```
+`(``mapping_file`` ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` Questions ``=`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`` `` Type ``=`` ``"cat"``,`` `` RowVar ``=`` ``"q1"``,`` `` Title ``=`` ``"The crosstab's title"`` `` ``)``,`` `` Macro ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ColVar ``=`` ``"age"``)`` ``)``)`` ``#> $Questions`` ``#> Type RowVar Title`` ``#> 1 cat q1 The crosstab's title`` ``#> `` ``#> $Macro`` ``#> $Macro$ColVar`` ``#> [1] "age"`
 
 This is how you can calculate crosstabs and print them to the console:
 
-``` r
-
-Tabula$new(df, mapping_file)
-#> $`2`
-#> $`2`[[1]]
-#> # The crosstab's title
-#>                            TOTAL age   -----
-#>                                  18-39 40+  
-#> TOTAL                abs     3       2     1
-#> Yes                  abs     2       1     1
-#>                      in %   66.7    50   100
-#> No                   abs     1       1     0
-#>                      in %   33.3    50     0
-#> VALID CASES          abs     3       2     1
-#>                      in %  100     100   100
-```
+[`Tabula`](https://urswilke.codeberg.page/crosstabser/reference/Tabula.md)`$``new``(``df``, ``mapping_file``)`` ``` #> $`2` ``` ``` #> $`2`[[1]] ``` ``#> # The crosstab's title`` ``#> TOTAL age -----`` ``#> 18-39 40+ `` ``#> TOTAL abs 3 2 1`` ``#> Yes abs 2 1 1`` ``#> in % 66.7 50 100`` ``#> No abs 1 1 0`` ``#> in % 33.3 50 0`` ``#> VALID CASES abs 3 2 1`` ``#> in % 100 100 100`
 
 Please refer to
 [`vignette("crosstabser")`](https://urswilke.codeberg.page/crosstabser/articles/crosstabser.md)

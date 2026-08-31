@@ -33,13 +33,13 @@ field.
 
 ### Public methods
 
-- [`Qrow$new()`](#method-Qrow-new)
+- [`Qrow$new()`](#method-Qrow-initialize)
 
 - [`Qrow$clone()`](#method-Qrow-clone)
 
 ------------------------------------------------------------------------
 
-### Method `new()`
+### `Qrow$new()`
 
 #### Usage
 
@@ -61,7 +61,7 @@ field.
 
 ------------------------------------------------------------------------
 
-### Method `clone()`
+### `Qrow$clone()`
 
 The objects of this class are cloneable with this method.
 

@@ -44,7 +44,7 @@ the Questions sheet of the Excel mapping file.
 
 ### Public methods
 
-- [`Tabula$new()`](#method-Tabula-new)
+- [`Tabula$new()`](#method-Tabula-initialize)
 
 - [`Tabula$set_options()`](#method-Tabula-set_options)
 
@@ -67,7 +67,7 @@ Inherited methods
 
 ------------------------------------------------------------------------
 
-### Method `new()`
+### `Tabula$new()`
 
 Initialize a Tabula object
 
@@ -119,7 +119,7 @@ Initialize a Tabula object
 
 ------------------------------------------------------------------------
 
-### Method `set_options()`
+### `Tabula$set_options()`
 
 Set `Tabula` options. This overwrites
 `datadaptor::Mapping$set_options()`
@@ -137,7 +137,7 @@ Set `Tabula` options. This overwrites
 
 ------------------------------------------------------------------------
 
-### Method `calc_crosstabs()`
+### `Tabula$calc_crosstabs()`
 
 Calculate the crosstabs
 
@@ -156,7 +156,7 @@ Calculate the crosstabs
 
 ------------------------------------------------------------------------
 
-### Method `save_html_app()`
+### `Tabula$save_html_app()`
 
 Write a table_charter app html file of the crosstab data
 
@@ -209,14 +209,13 @@ This needs a valid html `template_file`, i.e. one of:
 - After installing, you can also generate a standalone html file
   (without the need to download javascript libraries) by running:
 
-
         npm run standalone-build
 
   and then using the template file created in the `dist/` sub-directory.
 
 ------------------------------------------------------------------------
 
-### Method `get_crosstabs_data()`
+### `Tabula$get_crosstabs_data()`
 
 Return the crosstabs data of the `Tabula` object
 
@@ -234,7 +233,7 @@ A list of dataframes with the data of the crosstabs; see
 
 ------------------------------------------------------------------------
 
-### Method [`print()`](https://rdrr.io/r/base/print.html)
+### `Tabula$print()`
 
 Print the crosstabs of the `Tabula` object
 
@@ -255,7 +254,7 @@ field.
 
 ------------------------------------------------------------------------
 
-### Method `clone()`
+### `Tabula$clone()`
 
 The objects of this class are cloneable with this method.
 

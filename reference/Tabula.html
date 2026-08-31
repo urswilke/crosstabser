@@ -62,21 +62,21 @@ specified on the Questions sheet of the Excel mapping file.</p>
 <dd><p><code>dat_mod</code> modified data field of the super-class <code><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html" class="external-link">datadaptor::Mapping</a></code>.</p></dd>
 
 
-<dt><code>mapping_file</code></dt>
+    <dt><code>mapping_file</code></dt>
 <dd><p><code>mapping_file</code> file path field of the super-class <code><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html" class="external-link">datadaptor::Mapping</a></code>.</p></dd>
 
 
-<dt><code>dat</code></dt>
+    <dt><code>dat</code></dt>
 <dd><p><code>dat</code> input data field of the super-class <code><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html" class="external-link">datadaptor::Mapping</a></code>.
 If this is specified, <code>dat_mod</code> will be ignored,
 and instead generated with <code>datadaptor::Mapping$modify_data()</code></p></dd>
 
 
-<dt><code>qrows</code></dt>
+    <dt><code>qrows</code></dt>
 <dd><p>A <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> of <code>Qrow</code> objects</p></dd>
 
 
-<dt><code>ditw</code></dt>
+    <dt><code>ditw</code></dt>
 <dd><p>This is the "dust in the wind" list object field
 that stores data that didn't make it into their own field.
 For developers only!
@@ -93,8 +93,7 @@ the list field additionally contains the <code>ct</code> element.</p></dd>
 
 <div class="section">
 <h3 id="public-methods">Public methods<a class="anchor" aria-label="anchor" href="#public-methods"></a></h3>
-
-<ul><li><p><a href="#method-Tabula-new"><code>Tabula$new()</code></a></p></li>
+<p></p><ul><li><p><a href="#method-Tabula-initialize"><code>Tabula$new()</code></a></p></li>
 <li><p><a href="#method-Tabula-set_options"><code>Tabula$set_options()</code></a></p></li>
 <li><p><a href="#method-Tabula-calc_crosstabs"><code>Tabula$calc_crosstabs()</code></a></p></li>
 <li><p><a href="#method-Tabula-save_html_app"><code>Tabula$save_html_app()</code></a></p></li>
@@ -102,11 +101,11 @@ the list field additionally contains the <code>ct</code> element.</p></dd>
 <li><p><a href="#method-Tabula-print"><code>Tabula$print()</code></a></p></li>
 <li><p><a href="#method-Tabula-clone"><code>Tabula$clone()</code></a></p></li>
 </ul></div><p><details open><summary>Inherited methods</summary><ul><li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="modify_data"><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-modify_data"><code>datadaptor::Mapping$modify_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="process_sheet_commands"><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-process_sheet_commands"><code>datadaptor::Mapping$process_sheet_commands()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="read_data"><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-read_data"><code>datadaptor::Mapping$read_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="save"><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-save"><code>datadaptor::Mapping$save()</code></a></span></li>
-</ul></details></p><hr><a id="method-Tabula-new"></a><div class="section">
-<h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
+  <li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="process_sheet_commands"><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-process_sheet_commands"><code>datadaptor::Mapping$process_sheet_commands()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="read_data"><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-read_data"><code>datadaptor::Mapping$read_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="datadaptor" data-topic="Mapping" data-id="save"><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html#method-save"><code>datadaptor::Mapping$save()</code></a></span></li>
+</ul></details></p><hr><a id="method-Tabula-initialize"></a><div class="section">
+<h3 id="tabula-new-"><code>Tabula$new()</code><a class="anchor" aria-label="anchor" href="#tabula-new-"></a></h3>
 <p>Initialize a Tabula object</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/Tabula.html">Tabula</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
@@ -117,52 +116,45 @@ the list field additionally contains the <code>ct</code> element.</p></dd>
 <span>  tabulate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>dat_mod</code></dt>
 <dd><p><code>dat_mod</code> modified data field of the super-class <code><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html" class="external-link">datadaptor::Mapping</a></code>.</p></dd>
 
-
-<dt><code>mapping_file</code></dt>
+      <dt><code>mapping_file</code></dt>
 <dd><p><code>mapping_file</code> file path field of the super-class <code><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html" class="external-link">datadaptor::Mapping</a></code>.</p></dd>
 
-
-<dt><code>row</code></dt>
+      <dt><code>row</code></dt>
 <dd><p>Numeric vector with the row numbers in the Questions sheet,
 where crosstabs should be calculated, when calling <code>Tabula$calc_crosstabs()</code>.
 Or <code>NULL</code> (the default) resulting in the selection of all row numbers
 where <code>Type</code> is specified.</p></dd>
 
-
-<dt><code>dat</code></dt>
+      <dt><code>dat</code></dt>
 <dd><p><code>dat</code> input data field of the super-class <code><a href="https://urswilke.codeberg.page/datadaptor/reference/Mapping.html" class="external-link">datadaptor::Mapping</a></code>.
 If this is specified, <code>dat_mod</code> will be ignored,
 and instead generated with <code>datadaptor::Mapping$modify_data()</code></p></dd>
 
-
-<dt><code>tabulate</code></dt>
+      <dt><code>tabulate</code></dt>
 <dd><p>Logical, whether to call the <code>Tabula$calc_crosstabs()</code>
 method when initializing (defaults to <code>TRUE</code>).</p></dd>
 
-
-<dt><code>...</code></dt>
+      <dt><code>...</code></dt>
 <dd><p>Arguments passed to <code>Tabula$set_options()</code></p></dd>
 
 
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-Tabula-set_options"></a><div class="section">
-<h3 id="method-set-options-">Method <code>set_options()</code><a class="anchor" aria-label="anchor" href="#method-set-options-"></a></h3>
+</div>
+
+<p></p><hr><a id="method-Tabula-set_options"></a><div class="section">
+<h3 id="tabula-set-options-"><code>Tabula$set_options()</code><a class="anchor" aria-label="anchor" href="#tabula-set-options-"></a></h3>
 <p>Set <code>Tabula</code> options.
 This overwrites <code>datadaptor::Mapping$set_options()</code></p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Tabula</span><span class="op">$</span><span class="fu">set_options</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>...</code></dt>
 <dd><p>Arguments passed to <code><a href="get_tabula_options.html">get_tabula_options()</a></code>.</p></dd>
@@ -171,14 +163,14 @@ This overwrites <code>datadaptor::Mapping$set_options()</code></p><div class="se
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-Tabula-calc_crosstabs"></a><div class="section">
-<h3 id="method-calc-crosstabs-">Method <code>calc_crosstabs()</code><a class="anchor" aria-label="anchor" href="#method-calc-crosstabs-"></a></h3>
+</div>
+
+<p></p><hr><a id="method-Tabula-calc_crosstabs"></a><div class="section">
+<h3 id="tabula-calc-crosstabs-"><code>Tabula$calc_crosstabs()</code><a class="anchor" aria-label="anchor" href="#tabula-calc-crosstabs-"></a></h3>
 <p>Calculate the crosstabs</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Tabula</span><span class="op">$</span><span class="fu">calc_crosstabs</span><span class="op">(</span>row <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>row</code></dt>
 <dd><p>Numeric vector with the row numbers in the Questions sheet,
@@ -190,8 +182,10 @@ where <code>Type</code> is specified.</p></dd>
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-Tabula-save_html_app"></a><div class="section">
-<h3 id="method-save-html-app-">Method <code>save_html_app()</code><a class="anchor" aria-label="anchor" href="#method-save-html-app-"></a></h3>
+</div>
+
+<p></p><hr><a id="method-Tabula-save_html_app"></a><div class="section">
+<h3 id="tabula-save-html-app-"><code>Tabula$save_html_app()</code><a class="anchor" aria-label="anchor" href="#tabula-save-html-app-"></a></h3>
 <p>Write a table_charter app html file of the crosstab data</p><div class="section">
 <h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Tabula</span><span class="op">$</span><span class="fu">save_html_app</span><span class="op">(</span></span>
@@ -200,19 +194,15 @@ where <code>Type</code> is specified.</p></dd>
 <span>  output_file <span class="op">=</span> <span class="st">"dashboard.html"</span>,</span>
 <span>  project_data <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>template_file</code></dt>
 <dd><p>Path to the template file (see description).</p></dd>
 
-
-<dt><code>output_file</code></dt>
+      <dt><code>output_file</code></dt>
 <dd><p>File path to the table_charter app html file.</p></dd>
 
-
-<dt><code>project_data</code></dt>
+      <dt><code>project_data</code></dt>
 <dd><p>Either a <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> object to modify the default:
 <code>list(logo_base64 = "", logo_url = "https://gitlab.com/urswilke/table_charter/-/raw/main/img/logo_small.svg", title = "Dashboard", date = Sys.Date())</code>, or <code>NULL</code> (the default).
 If <code>NULL</code>, nothing is done.
@@ -220,8 +210,7 @@ The fields will modify the elements in the header of the dashboard.</p></dd>
 
 
 </dl><p></p></div>
-</div>
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h4>
 <p>This needs a valid html <code>template_file</code>, i.e. one of:</p><ul><li><p>The file
 <a href="https://gitlab.com/urswilke/table_charter/-/blob/main/example_dashboard.html" class="external-link">example_dashboard.html</a>
@@ -235,35 +224,35 @@ on your machine.</p></li>
 (without the need to download javascript libraries) by running:</p><div class="sourceCode"><pre><code>
   npm run standalone-build
 </code></pre></div><p>and then using the template file created in the <code>dist/</code> sub-directory.</p></li>
-</ul></div>
+</ul><p></p>
+</div>
 
+</div>
 
-</div><p></p><hr><a id="method-Tabula-get_crosstabs_data"></a><div class="section">
-<h3 id="method-get-crosstabs-data-">Method <code>get_crosstabs_data()</code><a class="anchor" aria-label="anchor" href="#method-get-crosstabs-data-"></a></h3>
+<p></p><hr><a id="method-Tabula-get_crosstabs_data"></a><div class="section">
+<h3 id="tabula-get-crosstabs-data-"><code>Tabula$get_crosstabs_data()</code><a class="anchor" aria-label="anchor" href="#tabula-get-crosstabs-data-"></a></h3>
 <p>Return the crosstabs data of the <code>Tabula</code> object</p>
 <p>This method returns a list of dataframes
 containing all the crosstabs information.
 Thus it's not chainable.</p><div class="section">
 <h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Tabula</span><span class="op">$</span><span class="fu">get_crosstabs_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="returns">Returns<a class="anchor" aria-label="anchor" href="#returns"></a></h4>
 <p>A list of dataframes with the data of the crosstabs;
 see <code><a href="../articles/data-format.html">vignette("data-format")</a></code>.</p>
 </div>
 
-</div><p></p><hr><a id="method-Tabula-print"></a><div class="section">
-<h3 id="method-print-">Method <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code><a class="anchor" aria-label="anchor" href="#method-print-"></a></h3>
+</div>
+
+<p></p><hr><a id="method-Tabula-print"></a><div class="section">
+<h3 id="tabula-print-"><code>Tabula$print()</code><a class="anchor" aria-label="anchor" href="#tabula-print-"></a></h3>
 <p>Print the crosstabs of the <code>Tabula</code> object</p>
 <p>This method is called under the hood, if you <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> a <code>Tabula</code> object.
 This will call the print method of all <code>Qrow</code> elements in the <code>Tabula$qrows</code> field.</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Tabula</span><span class="op">$</span><span class="fu">print</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>...</code></dt>
 <dd><p>Not used for now.</p></dd>
@@ -272,14 +261,14 @@ This will call the print method of all <code>Qrow</code> elements in the <code>T
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-Tabula-clone"></a><div class="section">
-<h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
+</div>
+
+<p></p><hr><a id="method-Tabula-clone"></a><div class="section">
+<h3 id="tabula-clone-"><code>Tabula$clone()</code><a class="anchor" aria-label="anchor" href="#tabula-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Tabula</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
@@ -289,6 +278,7 @@ This will call the print method of all <code>Qrow</code> elements in the <code>T
 </div>
 
 </div>
+
 
     </div>
 
@@ -365,7 +355,7 @@ This will call the print method of all <code>Qrow</code> elements in the <code>T
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>
