@@ -45,8 +45,6 @@ prepare_head_col_tables_ <- function(tabula) {
   book_no <- tabula$opts$ct$V_BookNo
   col_table_all <- tabula$ditw$ct$db_tables$col_table_all
   head_table_orig <- tabula$ditw$ct$db_tables$head_table
-  # is_same_coltitle1 <- (head_table_orig$HeadTitle == dplyr::lag(head_table_orig$HeadTitle)) |>
-  #   datadaptor::is_true_vec()
   head_table <- head_table_orig |> dplyr::left_join(
     col_table_all |> dplyr::count(HeadNo, name = "HeadCount"),
     by = "HeadNo"
