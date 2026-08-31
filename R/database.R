@@ -43,17 +43,50 @@ add_book_no <- function(df, BookNo) {
 }
 prepare_head_col_tables_ <- function(tabula) {
   book_no <- tabula$opts$ct$V_BookNo
-  col_table_all <- tabula$ditw$ct$db_tables$col_table_all |>
-    add_book_no(book_no)
-  head_table <- tabula$ditw$ct$db_tables$head_table |> dplyr::left_join(
+  col_table_all <- tabula$ditw$ct$db_tables$col_table_all
+  head_table_orig <- tabula$ditw$ct$db_tables$head_table
+  head_table <- head_table_orig |> dplyr::left_join(
     col_table_all |> dplyr::count(HeadNo, name = "HeadCount"),
     by = "HeadNo"
   ) |>
+    merge_same_title_cells() |>
     add_book_no(book_no) |>
+    dplyr::mutate(HeadNo = as.integer(HeadNo))
+  tabula$ditw$ct$crosstabs$data$head_table <- head_table |>
     dplyr::select(BookNo, HeadNo, HeadName, HeadTitle, HeadCount)
-  tabula$ditw$ct$crosstabs$data$head_table <- head_table
+
+
+  col_table_all <- tabula$ditw$ct$db_tables$col_table_all |>
+    add_book_no(book_no) |>
+    dplyr::full_join(
+      head_table |>
+        dplyr::select(HeadNo = HeadNoOrig, HeadNoNeu = HeadNo),
+      by = "HeadNo"
+    ) |>
+    tidyr::fill(HeadNoNeu) |>
+    dplyr::select(-HeadNo) |>
+    dplyr::rename(HeadNo = HeadNoNeu)
   tabula$ditw$ct$crosstabs$data$col_table_all <- col_table_all |>
     dplyr::select(BookNo, ColNo, HeadNo, ColTitle1, ColTitle2, ColVariable, ColValue)
+}
+
+merge_same_title_cells <- function(head_table) {
+  head_table$HeadNoOrig <- head_table$HeadNo
+  N <- nrow(head_table)
+  res <- head_table[-N,] |>
+    dplyr::distinct(HeadNo, .keep_all = TRUE) |>
+    dplyr::group_by(
+      HeadNo = dplyr::consecutive_id(HeadTitle),
+      HeadTitle = HeadTitle |> forcats::as_factor()
+    ) |>
+    dplyr::summarise(
+      HeadName = HeadName[1],
+      HeadCount = sum(HeadCount),
+      HeadNoOrig = HeadNoOrig[1],
+      .groups = "drop"
+    )
+  res |>
+    dplyr::bind_rows(head_table[N,] |> dplyr::mutate(HeadNo = max(res$HeadNo) + 1))
 }
 
 prepare_tab_table_tb <- function(qrow) {
