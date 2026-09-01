@@ -231,7 +231,7 @@ set_qtab_params.qtab_params_mdg <- function(params, mapping) {
   }
 
   params$rowvars_valid_qtab <- params$RowVar
-  params$rowvars_qtab <- c(params$RowVar, params$Unguelt)
+  params$rowvars_qtab <- c(params[["RowVar"]], params[["Unguelt"]])
   # TODO: instead of refering to the elements in l_selvar later use helper methods to generate what's needed ?
   if (!is.null(params$SelVar)) {
     params$l_selvar <- list()

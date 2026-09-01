@@ -221,7 +221,7 @@ treat_categories.qtab_type_cat <- treat_categories.qtab_type_mcg <- function(qta
   if (tolower(cat_strings[n]) == "othernm") {
     occurring_valids <- qtab$d$df_rowvar_long$rowval |>
       unique() |>
-      setdiff(c(NA, qtab$p$Unguelt)) |>
+      setdiff(c(NA, qtab$p[["Unguelt"]])) |>
       sort()
     other_valids <- occurring_valids |> setdiff(occurring_vals)
     occurring_vals <- occurring_vals[-n] |> c(other_valids)
