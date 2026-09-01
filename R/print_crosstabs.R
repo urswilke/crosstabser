@@ -7,6 +7,7 @@
 #'
 #' @export
 print.Qtab = function(x, ...) {
+  x$.__enclos_env__$private$gen_wide_tab()
   x_formatted <- format(x)
   if (is.null(x_formatted)) {
     cat("No data\n")

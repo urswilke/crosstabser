@@ -55,7 +55,6 @@ Qtab <- R6::R6Class("Qtab",
   private = list(
     calc_qtab = function() {
       calc_qtab_(self)
-      private$gen_wide_tab()
       # TODO: move to its own method (in order to do it only when needed...)
       private$prepare_tab_table_tb()
       private$prepare_row_table_tb()
