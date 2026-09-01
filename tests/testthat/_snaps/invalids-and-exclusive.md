@@ -43,19 +43,19 @@
                                  TOTAL age   -----
                                        18-39 40+  
       TOTAL                abs     3       2     1
-      Sum of valid answe…  abs     4       2     2
+      Sum of valid answe…  abs     5       3     2
       0                    abs     1       0     1
-                           in %   50       0   100
+                           in %   33.3     0   100
       ch1                  abs     0       0     0
                            in %    0       0     0
-      ch2                  abs     0       0     0
-                           in %    0       0     0
+      ch2                  abs     1       1     0
+                           in %   33.3    50     0
       ch3                  abs     2       1     1
-                           in %  100     100   100
-      ch4                  abs     1       1     0
-                           in %   50     100     0
-      VALID CASES          abs     2       1     1
                            in %   66.7    50   100
+      ch4                  abs     1       1     0
+                           in %   33.3    50     0
+      VALID CASES          abs     3       2     1
+                           in %  100     100   100
       
       
       $`5`

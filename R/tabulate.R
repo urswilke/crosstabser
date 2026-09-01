@@ -193,7 +193,7 @@ pivot_rowvar_data.default <- function(qtab) {
       !duplicated(res[c("rowvar", "row")], fromLast = TRUE),
     ]
   }
-  res
+  res[!is.na(res$rowval),]
 }
 #' @export
 pivot_rowvar_data.qtab_type_mdg <- function(qtab) {
