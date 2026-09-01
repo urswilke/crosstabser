@@ -65,6 +65,16 @@ empty_qsheet <- function() {
   )
 }
 process_qrow_params <- function(df_qrow, mapping) {
+  unguelt_mw_interval <- df_qrow$UngueltMW |>
+    split_cell(",") |>
+    _[[1]] |>
+    stringr::str_subset("THRU") |>
+    split_cell(" *THRU *") |>
+    lapply(as.numeric) |>
+    list()
+  if (length(unguelt_mw_interval) == 0) {
+    unguelt_mw_interval <- NULL
+  }
   res <- df_qrow |>
     dplyr::mutate(
       Title = Title |> strsplit("' '"),
@@ -72,7 +82,12 @@ process_qrow_params <- function(df_qrow, mapping) {
       Unguelt = split_cell(Unguelt),
       Unguelt = purrr::map_if(Unguelt, Type %in% c("cat", "mcg", "mw"), as.numeric, .else = ~.x),
       Type = as.list(Type),
-      UngueltMW = split_cell(UngueltMW) |> lapply(as.numeric),
+      unguelt_mw_interval,
+      UngueltMW = split_cell(UngueltMW) |>
+        _[[1]] |>
+        stringr::str_subset("THRU", negate = TRUE) |>
+        as.numeric() |>
+        list(),
       SelVar = split_cell(SelVar),
       # HACK to also use CatRec syntax with "THRU" instead of the traditional "=":
       SelVal  = SelVal |> stringr::str_replace_all("(?<!(^|THRU))-", "THRU"),

@@ -69,6 +69,17 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
   }
   invalid_vals <- c(qtab$p[["Unguelt"]], qtab$p[["UngueltMW"]])
   long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
+  invalid_intervals <- qtab$p[["unguelt_mw_interval"]]
+  n <- invalid_intervals |> length()
+  if (n > 0) {
+    for (x in invalid_intervals) {
+      long_data <- long_data[!dplyr::between(
+        long_data$rowval,
+        x[1],
+        x[2]
+      ), ]
+    }
+  }
   if (nrow(long_data) == 0) {
     return()
   }
