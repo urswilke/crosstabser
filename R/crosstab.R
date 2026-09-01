@@ -23,9 +23,11 @@ rbind_table_numbers <- function(qtab) {
 calc_stat_fun <- function(qtab) {
   UseMethod("calc_stat_fun")
 }
+#' @export
 calc_stat_fun.default <- function(qtab) {
   NULL
 }
+#' @export
 calc_stat_fun.qtab_type_mw <- function(qtab) {
   invalid_vals <- c(qtab$p[["Unguelt"]], qtab$p[["UngueltMW"]])
   long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
@@ -60,12 +62,24 @@ add_missing_cases <- function(df, qtab) {
     RowStatFun = qtab$p$df_stat_funs$row_title,
   )
 }
+#' @export
 calc_stat_fun.qtab_type_cat <- function(qtab) {
   if (is.null(qtab$p$MetrMac)) {
     return(NULL)
   }
   invalid_vals <- c(qtab$p[["Unguelt"]], qtab$p[["UngueltMW"]])
   long_data <- qtab$d$long_data[!qtab$d$long_data$rowval %in% invalid_vals,]
+  invalid_intervals <- qtab$p[["unguelt_mw_interval"]]
+  n <- invalid_intervals |> length()
+  if (n > 0) {
+    for (x in invalid_intervals) {
+      long_data <- long_data[!dplyr::between(
+        long_data$rowval,
+        x[1],
+        x[2]
+      ), ]
+    }
+  }
   if (nrow(long_data) == 0) {
     return()
   }
@@ -97,6 +111,7 @@ calc_stat_fun.qtab_type_cat <- function(qtab) {
 calc_detail_freqs <- function(qtab) {
   UseMethod("calc_detail_freqs")
 }
+#' @export
 calc_detail_freqs.qtab_type_cat <- function(qtab) {
   long_data <- qtab$d$long_data[!is.na(qtab$d$long_data$rowval),]
   if (nrow(long_data) == 0) {
@@ -124,9 +139,11 @@ calc_detail_freqs.qtab_type_cat <- function(qtab) {
 calc_stats_rows <- function(qtab) {
   UseMethod("calc_stats_rows")
 }
+#' @export
 calc_stats_rows.default <- function(qtab) {
   NULL
 }
+#' @export
 calc_stats_rows.qtab_type_cat <- function(qtab) {
   weight <- qtab$p$Weight[[1]]
   group_variables <- c("colvar", "colval")
@@ -151,6 +168,7 @@ calc_stats_rows.qtab_type_cat <- function(qtab) {
   )
 }
 
+#' @export
 calc_detail_freqs.qtab_type_mdg <- function(qtab) {
   long_data <- qtab$d$long_data
   if (nrow(long_data) == 0) {
@@ -173,6 +191,7 @@ calc_detail_freqs.qtab_type_mdg <- function(qtab) {
   qtab$d$detail_freqs <- detail_freqs
   qtab$d$invalid_freqs <- invalid_freqs
 }
+#' @export
 calc_stats_rows.qtab_type_mdg <- function(qtab) {
   mdg_val <- qtab$p$MdgVal
 
@@ -248,6 +267,7 @@ calc_stats_rows.qtab_type_mdg <- function(qtab) {
   )
 }
 
+#' @export
 calc_stats_rows.qtab_type_mw <- function(qtab) {
   invalid_vals <- c(qtab$p[["Unguelt"]], NA)
 
@@ -296,6 +316,7 @@ any_valid <- function(rowval, invalid_vals) {
   !all(rowval %in% invalid_vals)
 }
 
+#' @export
 calc_stats_rows.qtab_type_mcg <- function(qtab) {
   invalid_vals <- qtab$p[["Unguelt"]]
 
@@ -334,10 +355,12 @@ calc_stats_rows.qtab_type_mcg <- function(qtab) {
 calc_catrec_freqs <- function(qtab) {
   UseMethod("calc_catrec_freqs")
 }
+#' @export
 calc_catrec_freqs.default <- function(qtab) {
   NULL
 }
 
+#' @export
 calc_catrec_freqs.qtab_type_cat <- function(qtab) {
   if (is.null(qtab$p$CatRec)) {
     return(NULL)
@@ -401,6 +424,7 @@ parse_catrec_sum_expr <- function(df_summary, catrec_sum_string) {
   df_user_expr
 }
 
+#' @export
 calc_detail_freqs.qtab_type_mw <- function(qtab) {
   weight <- qtab$p$Weight[[1]]
   # TODO: check all occurrences of qtab$p[["Unguelt"]] (a lot) if NA also has to be included!
@@ -416,6 +440,7 @@ calc_detail_freqs.qtab_type_mw <- function(qtab) {
 
   qtab$d$fun_valid <- res
 }
+#' @export
 calc_detail_freqs.qtab_type_mcg <- function(qtab) {
   weight <- qtab$p$Weight[[1]]
   long_data <- qtab$d$long_data
@@ -439,9 +464,11 @@ calc_detail_freqs.qtab_type_mcg <- function(qtab) {
 calc_percentages <- function(qtab) {
   UseMethod("calc_percentages")
 }
+#' @export
 calc_percentages.qtab_type_mw <- function(qtab) {
   NULL
 }
+#' @export
 calc_percentages.default <- function(qtab) {
   # TODO: put elements in empty tibbles from the beginning?...:
   detail_freqs <- qtab$d$detail_freqs %||% tibble::tibble()
@@ -453,9 +480,11 @@ calc_percentages.default <- function(qtab) {
 calc_invalid_percentages <- function(qtab) {
   UseMethod("calc_invalid_percentages")
 }
+#' @export
 calc_invalid_percentages.qtab_type_mw <- function(qtab) {
   NULL
 }
+#' @export
 calc_invalid_percentages.default <- function(qtab) {
   cts <- qtab$d$invalid_freqs
   tc <- qtab$d$stats_rows$total
@@ -481,9 +510,11 @@ calc_percentage_helper <- function(cts, divider_cts) {
 calc_valid_counts_percentages <- function(qtab) {
   UseMethod("calc_valid_counts_percentages")
 }
+#' @export
 calc_valid_counts_percentages.qtab_type_mw <- function(qtab) {
   NULL
 }
+#' @export
 calc_valid_counts_percentages.default <- function(qtab) {
   total_cts <- qtab$d$stats_rows$total
   valid_cts <- qtab$d$stats_rows$n_valid
@@ -508,9 +539,11 @@ calc_valid_counts_percentages.default <- function(qtab) {
 calc_no_entry_percentages <- function(qtab) {
   UseMethod("calc_no_entry_percentages")
 }
+#' @export
 calc_no_entry_percentages.default <- function(qtab) {
   NULL
 }
+#' @export
 calc_no_entry_percentages.qtab_type_mdg <- function(qtab) {
   if (is.null(qtab$d$stats_rows$no_entry)) {
     return(NULL)

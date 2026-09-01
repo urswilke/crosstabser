@@ -6,6 +6,7 @@ gen_col_tables <- function(mapping) {
 get_raw_data <- function(qtab) {
   UseMethod("get_raw_data")
 }
+#' @export
 get_raw_data.qtab_type_mdg <- function(qtab) {
   res <- get_raw_data.default(qtab)
   if (is.na(suppressWarnings(as.numeric(qtab$p$MdgVal)))) {
@@ -23,6 +24,7 @@ get_raw_data.qtab_type_mdg <- function(qtab) {
   }
   res
 }
+#' @export
 get_raw_data.default <- function(qtab) {
   colvars <- qtab$p$ColVar
   colvars_named <- colvars |> purrr::set_names(cv(colvars))
@@ -159,6 +161,7 @@ pivot_rows <- function(df) {
 pivot_rowvar_data <- function(qtab) {
   UseMethod("pivot_rowvar_data")
 }
+#' @export
 pivot_rowvar_data.default <- function(qtab) {
   raw_data <- qtab$d$raw_data
   res <- raw_data |>
@@ -190,8 +193,9 @@ pivot_rowvar_data.default <- function(qtab) {
       !duplicated(res[c("rowvar", "row")], fromLast = TRUE),
     ]
   }
-  res
+  res[!is.na(res$rowval),]
 }
+#' @export
 pivot_rowvar_data.qtab_type_mdg <- function(qtab) {
   res <- pivot_rowvar_data.default(qtab)
 
@@ -207,6 +211,7 @@ pivot_rowvar_data.qtab_type_mdg <- function(qtab) {
       "rowvar"
     )
 }
+#' @export
 pivot_rowvar_data.qtab_type_mcg <- function(qtab) {
   df_rows_long <- pivot_rowvar_data.default(qtab) |>
     # remove duplicated choices:
@@ -226,16 +231,19 @@ pivot_rowvar_data.qtab_type_mcg <- function(qtab) {
 now_do_colvar <- function(qtab) {
   UseMethod("now_do_colvar")
 }
+#' @export
 now_do_colvar.default <- function(qtab) {
   qtab$d$df_rowvar_long |>
     pivot_cols()
 }
+#' @export
 now_do_colvar.qtab_type_mcg <- function(qtab) {
   res <- now_do_colvar.default(qtab)
 
   res$rowvar <- qtab$p$rowvars_string
   res
 }
+#' @export
 now_do_colvar.qtab_type_mdg <- function(qtab) {
   qtab$d$long_data_all <- qtab$d$df_rowvar_long_with_invalids |>
     pivot_cols()

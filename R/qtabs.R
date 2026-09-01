@@ -65,7 +65,7 @@ Qtab <- R6::R6Class("Qtab",
     gen_long_tab = function() {
       self$d$row_table_values <- self$d$row_table |> rm_header_footer()
       self$d$long_tab <- self$d[
-        c("row_table_values", "col_table", "val_table", "head_table", "tab_table")
+        c("row_table_values", "col_table", "val_table", "tab_table")
       ] |>
         purrr::reduce(merge, all.x = TRUE) |>
         tibble::as_tibble()
@@ -175,9 +175,11 @@ post_process <- function(qtab) {
 order_by_counts <- function(qtab) {
   UseMethod("order_by_counts")
 }
+#' @export
 order_by_counts.default <- function(qtab) {
   warning("Not yet implemented for this qtab type")
 }
+#' @export
 order_by_counts.qtab_type_mcg <- function(qtab) {
   # TODO: tell Wolf that only valid values are sorted...
   # TODO: find out if that alse works for other table types than mcg:
@@ -205,19 +207,32 @@ set_row_content_to_filter <- function(qtab) {
 treat_categories <- function(qtab) {
   UseMethod("treat_categories")
 }
+#' @export
 treat_categories.default <- function(qtab) {
   NULL
 }
+#' @export
 treat_categories.qtab_type_cat <- treat_categories.qtab_type_mcg <- function(qtab) {
   cats <- qtab$p$Categories
   if (is.null(cats)) {
     return()
   }
-  occurring_vals <- cats |>
-    split_cell(" +") |>
-    _[[1]] |>
+  cat_strings <- cats |>
+    split_cell("[ ,]+") |>
+    _[[1]]
+  occurring_vals <- cat_strings |>
     as.numeric() |>
     suppressWarnings()
+
+  n <- length(cat_strings)
+  if (tolower(cat_strings[n]) == "othernm") {
+    occurring_valids <- qtab$d$df_rowvar_long$rowval |>
+      unique() |>
+      setdiff(c(NA, qtab$p$Unguelt)) |>
+      sort()
+    other_valids <- occurring_valids |> setdiff(occurring_vals)
+    occurring_vals <- occurring_vals[-n] |> c(other_valids)
+  }
 
   if (any(is.na(occurring_vals))) {
     qtab$p$overcodes <- extract_overcode_data_mcg(qtab)
@@ -263,6 +278,7 @@ extract_overcode_data_mcg <- function(qtab) {
   codes
 }
 
+#' @export
 treat_categories.qtab_type_mdg <- function(qtab) {
   cats <- qtab$p$Categories
   if (is.null(cats)) {

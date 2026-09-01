@@ -111,6 +111,7 @@ row_table_total_line <- function(qtab) {
   UseMethod("row_table_total_line")
 }
 
+#' @export
 row_table_total_line.default <- function(qtab) {
   row_table <- empty_row_table()
   total_row_text <- qtab$m$opts$ct$l_lexikon["cTabGesamt"]
@@ -120,6 +121,7 @@ row_table_total_line.default <- function(qtab) {
   row_table$row_type <- "total"
   row_table
 }
+#' @export
 row_table_total_line.qtab_type_mw <- function(qtab) {
   NULL
 }
@@ -128,9 +130,11 @@ row_table_valid_mw <- function(qtab) {
   UseMethod("row_table_valid_mw")
 }
 
+#' @export
 row_table_valid_mw.default <- function(qtab) {
   NULL
 }
+#' @export
 row_table_valid_mw.qtab_type_mw <- function(qtab) {
   row_table <- empty_row_table()
   valid_mw_text <- qtab$m$opts$ct$l_lexikon["cTabGesamtMW"]
@@ -146,6 +150,7 @@ row_table_valid_answers_line <- function(qtab) {
   UseMethod("row_table_valid_answers_line")
 }
 
+#' @export
 row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_type_mdg <- function(qtab) {
   row_table <- empty_row_table()
   valid_answers_row_text <- qtab$m$opts$ct$l_lexikon["cTabGesamtMFA"]
@@ -160,6 +165,7 @@ row_table_valid_answers_line.qtab_type_mcg <- row_table_valid_answers_line.qtab_
   row_table$row_type <- "sum_of_valid"
   row_table
 }
+#' @export
 row_table_valid_answers_line.qtab_type_cat <- row_table_valid_answers_line.qtab_type_mw <- function(qtab) {
   NULL
 }
@@ -167,6 +173,7 @@ row_table_valid_answers_line.qtab_type_cat <- row_table_valid_answers_line.qtab_
 row_table_body <- function(qtab) {
   UseMethod("row_table_body")
 }
+#' @export
 row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   # TODO: calc_detail_freqs.qtab_type_cat() & calc_percentages.default() could also be skipped
   if (!is.null(qtab$p$Einzelauspraegung) && qtab$p$Einzelauspraegung %in% c("0", "FALSE")) {
@@ -215,6 +222,9 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
       all_valid_vals <- label_vec
     } else {
       all_valid_vals <- all_valid_vals[all_valid_vals %in% qtab$p$Categories]
+      all_valid_vals <- all_valid_vals[
+        order(match(all_valid_vals, qtab$p$Categories))
+      ]
     }
 
   }
@@ -254,6 +264,7 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
   row_table
 }
 
+#' @export
 row_table_body.qtab_type_mdg <- function(qtab) {
   rowvars <- qtab$p$l_selvar$rowvars[[1]] %||% qtab$p$rowvars_valid_qtab
   l_varlabs <- qtab$m$ditw$ct$dat_tab[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
@@ -333,6 +344,7 @@ row_table_body.qtab_type_mdg <- function(qtab) {
   row_table
 }
 
+#' @export
 row_table_body.qtab_type_mw <- function(qtab) {
   rowvars <- qtab$p$l_selvar$rowvars[[1]] %||% qtab$p$rowvars_qtab
   l_varlabs <- qtab$m$ditw$ct$dat_tab[rowvars] |> purrr::map(\(x) attr(x, "label", exact = TRUE))
@@ -406,6 +418,7 @@ row_table_body.qtab_type_mw <- function(qtab) {
 row_table_valid_cases <- function(qtab) {
   UseMethod("row_table_valid_cases")
 }
+#' @export
 row_table_valid_cases.default <- function(qtab) {
   row_table <- empty_row_table()
   valid_cases_text <- qtab$m$opts$ct$l_lexikon[["cTabGueltig"]]
@@ -417,6 +430,7 @@ row_table_valid_cases.default <- function(qtab) {
   row_table$row_type <- c("n_valid_freqs", "n_valid_perc")
   row_table
 }
+#' @export
 row_table_valid_cases.qtab_type_mw <- function(qtab) {
   NULL
 }
@@ -424,9 +438,11 @@ row_table_valid_cases.qtab_type_mw <- function(qtab) {
 row_table_summary <- function(qtab) {
   UseMethod("row_table_summary")
 }
+#' @export
 row_table_summary.default <- function(qtab) {
   NULL
 }
+#' @export
 row_table_summary.qtab_type_cat <- function(qtab) {
   cat_rec_string <- qtab$p$CatRec
   if (is.null(cat_rec_string)) {
@@ -484,9 +500,11 @@ catlab_helper <- function(cat_lab_string, catrec_string) {
 row_table_stats <- function(qtab) {
   UseMethod("row_table_stats")
 }
+#' @export
 row_table_stats.default <- function(qtab) {
   NULL
 }
+#' @export
 row_table_stats.qtab_type_cat <- function(qtab) {
   if (is.null(qtab$p$MetrMac)) {
     return(NULL)
@@ -519,6 +537,7 @@ row_table_stats.qtab_type_cat <- function(qtab) {
 row_table_invalid_vals <- function(qtab) {
   UseMethod("row_table_invalid_vals")
 }
+#' @export
 row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- function(qtab) {
   occuring_vals <- qtab$d$tab_values$rowval |> unique()
   invalid_vals <- qtab$p[["Unguelt"]]
@@ -574,6 +593,7 @@ row_table_invalid_vals.qtab_type_mcg <- row_table_invalid_vals.qtab_type_cat <- 
 }
 
 # TODO: add lines with cTabNoEntry ("No entry in the respective variables") if present...!
+#' @export
 row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
   # TODO: clean up MESS by trying to hack multi selvar unguelt...:
   if (is.null(qtab$p[["Unguelt"]])) {
@@ -626,6 +646,7 @@ row_table_invalid_vals.qtab_type_mdg <- function(qtab) {
 
   row_table
 }
+#' @export
 row_table_invalid_vals.qtab_type_mw <- function(qtab) {
   NULL
 }
@@ -633,9 +654,11 @@ row_table_invalid_vals.qtab_type_mw <- function(qtab) {
 row_table_no_entry <- function(qtab) {
   UseMethod("row_table_no_entry")
 }
+#' @export
 row_table_no_entry.default <- function(qtab) {
   NULL
 }
+#' @export
 row_table_no_entry.qtab_type_mdg <- function(qtab) {
   if (nrow(qtab$d$stats_rows$no_entry) == 0) {
     return(NULL)
