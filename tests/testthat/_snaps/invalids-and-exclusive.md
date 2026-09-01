@@ -39,6 +39,27 @@
       
       $`4`
       $`4`[[1]]
+      # mcg with NA & exclusive
+                                 TOTAL age   -----
+                                       18-39 40+  
+      TOTAL                abs     3       2     1
+      Sum of valid answe…  abs     4       2     2
+      0                    abs     1       0     1
+                           in %   50       0   100
+      ch1                  abs     0       0     0
+                           in %    0       0     0
+      ch2                  abs     0       0     0
+                           in %    0       0     0
+      ch3                  abs     2       1     1
+                           in %  100     100   100
+      ch4                  abs     1       1     0
+                           in %   50     100     0
+      VALID CASES          abs     2       1     1
+                           in %   66.7    50   100
+      
+      
+      $`5`
+      $`5`[[1]]
       # mdg with invalids
                                  TOTAL age   -----
                                        18-39 40+  
@@ -54,8 +75,8 @@
                            in %   33.3    50     0
       
       
-      $`5`
-      $`5`[[1]]
+      $`6`
+      $`6`[[1]]
       # mdg with invalids & exclusive
                                  TOTAL age   -----
                                        18-39 40+  
@@ -71,8 +92,8 @@
                            in %   33.3    50     0
       
       
-      $`6`
-      $`6`[[1]]
+      $`7`
+      $`7`[[1]]
       # mcg with non-labelled non-exclusively occurring value
                                  TOTAL age   -----
                                        18-39 40+  
@@ -90,8 +111,8 @@
                            in %  100     100   100
       
       
-      $`7`
-      $`7`[[1]]
+      $`8`
+      $`8`[[1]]
       # mcg with 1 non-labelled non-exclusively occurring and 1 labelled
       #   non-occurring value
                                  TOTAL age   -----
