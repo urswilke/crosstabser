@@ -104,6 +104,7 @@ process_qrow_params <- function(df_qrow, mapping) {
 }
 
 parse_filter <- function(params) {
+  params$Filter <- params$Filter |> spss_to_r()
   if (stringr::str_detect(params$Filter, "\\{\\[.*\\]\\}")) {
     return(parse_multi_filter_strings(params$Filter))
   }
