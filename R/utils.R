@@ -8,7 +8,7 @@ utils::globalVariables(c(
   "fun", "further_args", "header_vars_numerated", "index", "l",
   "label", "lowest_index", "matches", "percentile_string", "qtab", "repov_name",
   "row_title", "rowval", "rowvar", "shortcut", "text", "token", "val", "vallab",
-  "value", "var"
+  "value", "var", "HeadNoNeu", "HeadNoOrig"
 ))
 
 split_cell <- function(x, sep = "[,; ]+") {
