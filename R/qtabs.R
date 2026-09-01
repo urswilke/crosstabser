@@ -56,9 +56,7 @@ Qtab <- R6::R6Class("Qtab",
     calc_qtab = function() {
       calc_qtab_(self)
       # TODO: move to its own method (in order to do it only when needed...)
-      private$prepare_tab_table_tb()
-      private$prepare_row_table_tb()
-      private$prepare_val_table_tb()
+      private$prepare_tab_row_val_table_tb()
       invisible(self)
     },
     gen_long_tab = function() {
@@ -87,13 +85,9 @@ Qtab <- R6::R6Class("Qtab",
         tibble::deframe()
       return(res)
     },
-    prepare_tab_table_tb = function() {
+    prepare_tab_row_val_table_tb = function() {
       self$d$tab_table_tb <- prepare_tab_table_tb_(self)
-    },
-    prepare_val_table_tb = function() {
       self$d$val_table_tb <- prepare_val_table_tb_(self)
-    },
-    prepare_row_table_tb = function() {
       self$d$row_table_tb <- prepare_row_table_tb_(self)
     }
   )
