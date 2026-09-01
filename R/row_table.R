@@ -222,6 +222,9 @@ row_table_body.qtab_type_mcg <- row_table_body.qtab_type_cat <- function(qtab) {
       all_valid_vals <- label_vec
     } else {
       all_valid_vals <- all_valid_vals[all_valid_vals %in% qtab$p$Categories]
+      all_valid_vals <- all_valid_vals[
+        order(match(all_valid_vals, qtab$p$Categories))
+      ]
     }
 
   }
