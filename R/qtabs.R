@@ -204,11 +204,22 @@ treat_categories.qtab_type_cat <- treat_categories.qtab_type_mcg <- function(qta
   if (is.null(cats)) {
     return()
   }
-  occurring_vals <- cats |>
-    split_cell(" +") |>
-    _[[1]] |>
+  cat_strings <- cats |>
+    split_cell("[ ,]+") |>
+    _[[1]]
+  occurring_vals <- cat_strings |>
     as.numeric() |>
     suppressWarnings()
+
+  n <- length(cat_strings)
+  if (tolower(cat_strings[n]) == "othernm") {
+    occurring_valids <- qtab$d$df_rowvar_long$rowval |>
+      unique() |>
+      setdiff(c(NA, qtab$p$Unguelt)) |>
+      sort()
+    other_valids <- occurring_valids |> setdiff(occurring_vals)
+    occurring_vals <- occurring_vals[-n] |> c(other_valids)
+  }
 
   if (any(is.na(occurring_vals))) {
     qtab$p$overcodes <- extract_overcode_data_mcg(qtab)
