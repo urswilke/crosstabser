@@ -40,7 +40,8 @@ Imports:
     vctrs,
     S7,
     xml2,
-    jsonlite
+    jsonlite,
+    forcats
 Remotes: git::https://codeberg.org/urswilke/datadaptor
 Suggests: 
     testthat (>= 3.0.0),
