@@ -220,6 +220,11 @@ Tabula <- R6::R6Class(
       )
     },
     prepare_5_tables = function() {
+      self$qrows |>
+        purrr::walk(
+          \(x) x$.__enclos_env__$private$prep_tab_row_val()
+        )
+
       qtabs <- tibble::tibble(qrow = self$qrows) |>
         dplyr::mutate(qtab = qrow |> purrr::map("qtabs")) |>
         tidyr::unnest(qtab) |>

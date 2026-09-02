@@ -66,6 +66,10 @@ Qrow <- R6::R6Class(
   ),
   private = list(
     prep_tab_row_val = function() {
+      self$qtabs |>
+        purrr::walk(
+          \(x) x$.__enclos_env__$private$prepare_tab_row_val_table_tb()
+        )
       # i believe this needs to be changed to pulling the information from the qtabs
       row_table <- self$qtabs |> purrr::map_dfr(\(x) x$d$row_table_tb)
       tab_table <- self$qtabs |> purrr::map_dfr(\(x) x$d$tab_table_tb)

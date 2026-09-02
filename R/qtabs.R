@@ -55,8 +55,6 @@ Qtab <- R6::R6Class("Qtab",
   private = list(
     calc_qtab = function() {
       calc_qtab_(self)
-      # TODO: move to its own method (in order to do it only when needed...)
-      private$prepare_tab_row_val_table_tb()
       invisible(self)
     },
     gen_long_tab = function() {
