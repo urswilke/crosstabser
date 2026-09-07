@@ -63,7 +63,7 @@ prepare_tab_table_tb_ <- function(qtab) {
       QuestNo,
       ifelse(!is.na(SelVal), paste0("_", SelVal), ""),
       "@",
-      dplyr::row_number()
+      ifelse(qtab$p$Type == "cat", qtab$p$i_cat, qtab$p$i_tab)
     ),
     .by = c("QuestNo", "TabType", "SelVal", "repov_name"),
     .after = "QuestNo"
