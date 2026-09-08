@@ -238,7 +238,7 @@ Tabula <- R6::R6Class(
         tidyr::unnest_wider(p)
       self$qtabs <- qtabs
 
-      self$ditw$ct$crosstabs$data$tab_table <- self$qtabs$tab_table_tb |> dplyr::bind_rows()
+      self$ditw$ct$crosstabs$data$tab_table <- self$qtabs$tab_table_tb
       self$ditw$ct$crosstabs$data$val_table <- self$qtabs$val_table_tb |> dplyr::bind_rows()
       self$ditw$ct$crosstabs$data$row_table <- self$qtabs$row_table_tb |> dplyr::bind_rows()
       private$prepare_head_col_tables()
