@@ -191,7 +191,20 @@ Tabula <- R6::R6Class(
     #'   This will call the print method of all `Qrow` elements in the `Tabula$qrows` field.
     #' @param ... Not used for now.
     print = function(...) {
-      self$qrows |> lapply(\(x) x$qtabs) |> print(...)
+      if (is.null(self$qtabs)) {
+        self$gen_qtabs()
+      }
+      qtabs <- self$qtabs
+      tab_names <- paste0(
+        qtabs$tab_table$QuestLine,
+        " - ",
+        qtabs$tab_table$QuestNo,
+        ": ",
+        qtabs$tab_table$TabNo
+      )
+      qtabs$qtab |>
+        purrr::set_names(tab_names) |>
+        print(...)
       invisible(self)
     },
     #' @description Generate the `qtabs` field of the `Tabula` object

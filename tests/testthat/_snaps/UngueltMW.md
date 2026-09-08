@@ -3,8 +3,7 @@
     Code
       m
     Output
-      $`2`
-      $`2`[[1]]
+      $`2 - _row_2: 1`
       # cat with invalids
                                  TOTAL age   ------
                                        18-39 40+   
@@ -32,9 +31,7 @@
       ch4                  abs    1     1      0   
                            in %  11.1  20      0   
       
-      
-      $`3`
-      $`3`[[1]]
+      $`3 - _row_3: 1`
       # cat with invalids & exclusive
                                  TOTAL age   -----
                                        18-39 40+  
@@ -62,9 +59,7 @@
       ch4                  abs     1     1       0
                            in %   11.1  20       0
       
-      
-      $`4`
-      $`4`[[1]]
+      $`4 - _row_4: 1`
       # cat with NA & exclusive
                                  TOTAL age   -----
                                        18-39 40+  
@@ -91,6 +86,5 @@
                            in %   11.1  20       0
       ch4                  abs     1     1       0
                            in %   11.1  20       0
-      
       
 

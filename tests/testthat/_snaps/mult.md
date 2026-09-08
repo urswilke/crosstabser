@@ -3,8 +3,7 @@
     Code
       m_selvar
     Output
-      $`2`
-      $`2`[[1]]
+      $`2 - _row_2: 1`
       # mdg without Mult sel2 & 3
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -19,9 +18,7 @@
       No entry in the re…  abs     1       0     0     1
                            in %   25       0     0    50
       
-      
-      $`3`
-      $`3`[[1]]
+      $`3 - _row_3: 1`
       # mdg with Mult sel2 & 3
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -36,9 +33,7 @@
       No entry in the re…  abs     2       0     0   2  
                            in %   28.6     0     0  66.7
       
-      
-      $`4`
-      $`4`[[1]]
+      $`4 - _row_4: 1`
       # mcg without Mult sel2 & 3
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -57,9 +52,7 @@
       -2                   abs     1       1     0     0
                            in %   25     100     0     0
       
-      
-      $`5`
-      $`5`[[1]]
+      $`5 - _row_5: 1`
       # mcg with Mult sel2 & 3
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -78,9 +71,7 @@
       -2                   abs     1       1     0   0  
                            in %   14.3    50     0   0  
       
-      
-      $`6`
-      $`6`[[1]]
+      $`6 - _row_6: 1`
       # mw without Mult sel1 & 2 Summary of means
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -90,7 +81,7 @@
       Choice 3 & 4         Mean    3.5     ·     4     3
                            VALI…   2       0     1     1
       
-      $`6`[[2]]
+      $`6 - _row_6: 2`
       # mw without Mult sel1 & 2 Choice 1 & 2
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -108,7 +99,7 @@
       -2                   abs       1     0     0     1
                            in %     20     0     0    50
       
-      $`6`[[3]]
+      $`6 - _row_6: 3`
       # mw without Mult sel1 & 2 Choice 3 & 4
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -126,9 +117,7 @@
       -2                   abs       2     0     1     1
                            in %     50     0    50    50
       
-      
-      $`7`
-      $`7`[[1]]
+      $`7 - _row_7: 1`
       # mw with Mult sel1 & 2 Summary of means
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -138,7 +127,7 @@
       Choice 3 & 4         Mean   2.75     ·  3.5      2
                            VALI…  4        0  2        2
       
-      $`7`[[2]]
+      $`7 - _row_7: 2`
       # mw with Mult sel1 & 2 Choice 1 & 2
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -156,7 +145,7 @@
       -2                   abs     1       0   0     1  
                            in %   14.3     0   0    33.3
       
-      $`7`[[3]]
+      $`7 - _row_7: 3`
       # mw with Mult sel1 & 2 Choice 3 & 4
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -173,6 +162,5 @@
                            in %   66.7     0  66.7  66.7
       -2                   abs     2       0   1     1  
                            in %   33.3     0  33.3  33.3
-      
       
 

@@ -3,8 +3,7 @@
     Code
       m_mdg_no_entry
     Output
-      $`2`
-      $`2`[[1]]
+      $`2 - _row_2: 1`
       # mdg with no entry
                                  TOTAL age   -----
                                        18-39 40+  
@@ -19,9 +18,7 @@
       No entry in the re…  abs     1       1     0
                            in %   33.3    50     0
       
-      
-      $`3`
-      $`3`[[1]]
+      $`3 - _row_3: 1`
       # mdg with MdgMissLab = FILTER
                                  TOTAL age   -----
                                        18-39 40+  
@@ -36,9 +33,7 @@
       FILTER               abs     1       1     0
                            in %   33.3    50     0
       
-      
-      $`4`
-      $`4`[[1]]
+      $`4 - _row_4: 1`
       # mdg with MdgMissLab = new_lab & MdgMissValid
                                  TOTAL age   -----
                                        18-39 40+  
@@ -52,6 +47,5 @@
                            in %   33.3    50     0
       VALID CASES          abs     3       2     1
                            in %  100     100   100
-      
       
 
