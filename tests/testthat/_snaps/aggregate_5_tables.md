@@ -374,3 +374,145 @@
       10  1e+09    10      5                                        DC#TITLE       NA
       
 
+# 5 tables' prints are reproduced after filtering qtabs
+
+    Code
+      withr::with_options(list(pillar.print_max = Inf, width = 1000), print(m$
+        get_crosstabs_data()))
+    Output
+      $tab_table
+      # A tibble: 3 x 15
+           BookNo QuestNo TabName      QuestLine TabNo TabType TabTitle                   TabTitle1 TabTitle2        TabTitle3        TabCaption SelVal repov_name TabCount TabRowTypes
+            <dbl> <chr>   <chr>            <dbl> <int> <chr>   <chr>                      <chr>     <chr>            <chr>            <chr>      <chr>  <chr>         <int>       <int>
+      1 999999999 _row_2  MW#_row_2@1          2     1 MW      "mw tab\nSummary of means" mw tab    Summary of means Summary of means <NA>       <NA>   <NA>             11          NA
+      2 999999999 _row_2  CAT#_row_2@1         2     2 CAT     "mw tab\nChoice 1"         mw tab    Choice 1         Choice 1         <NA>       <NA>   <NA>             11          NA
+      3 999999999 _row_2  CAT#_row_2@3         2     4 CAT     "mw tab\nChoice 3"         mw tab    Choice 3         Choice 3         <NA>       <NA>   <NA>             11          NA
+      
+      $val_table
+      # A tibble: 63 x 6
+            BookNo QuestNo TabNo RowNo ColNo   Value
+             <dbl> <chr>   <int> <int> <int>   <dbl>
+       1 999999999 _row_2      1     4     4   3    
+       2 999999999 _row_2      1     4     5   2    
+       3 999999999 _row_2      1     4     6   1    
+       4 999999999 _row_2      1     5     4   0.5  
+       5 999999999 _row_2      1     5     5   0    
+       6 999999999 _row_2      1     5     6   1    
+       7 999999999 _row_2      1     6     4   2    
+       8 999999999 _row_2      1     6     5   1    
+       9 999999999 _row_2      1     6     6   1    
+      10 999999999 _row_2      1     7     4  NA    
+      11 999999999 _row_2      1     7     5  NA    
+      12 999999999 _row_2      1     7     6  NA    
+      13 999999999 _row_2      1     8     4   0    
+      14 999999999 _row_2      1     8     5   0    
+      15 999999999 _row_2      1     8     6   0    
+      16 999999999 _row_2      1     9     4   0.667
+      17 999999999 _row_2      1     9     5   0.5  
+      18 999999999 _row_2      1     9     6   1    
+      19 999999999 _row_2      1    10     4   3    
+      20 999999999 _row_2      1    10     5   2    
+      21 999999999 _row_2      1    10     6   1    
+      22 999999999 _row_2      2     4     4   2    
+      23 999999999 _row_2      2     4     5   1    
+      24 999999999 _row_2      2     4     6   1    
+      25 999999999 _row_2      2     5     4   1    
+      26 999999999 _row_2      2     5     5   1    
+      27 999999999 _row_2      2     5     6   0    
+      28 999999999 _row_2      2     6     4  50    
+      29 999999999 _row_2      2     6     5 100    
+      30 999999999 _row_2      2     6     6   0    
+      31 999999999 _row_2      2     7     4   1    
+      32 999999999 _row_2      2     7     5   0    
+      33 999999999 _row_2      2     7     6   1    
+      34 999999999 _row_2      2     8     4  50    
+      35 999999999 _row_2      2     8     5   0    
+      36 999999999 _row_2      2     8     6 100    
+      37 999999999 _row_2      2     9     4   2    
+      38 999999999 _row_2      2     9     5   1    
+      39 999999999 _row_2      2     9     6   1    
+      40 999999999 _row_2      2    10     4 100    
+      41 999999999 _row_2      2    10     5 100    
+      42 999999999 _row_2      2    10     6 100    
+      43 999999999 _row_2      4     4     4   3    
+      44 999999999 _row_2      4     4     5   2    
+      45 999999999 _row_2      4     4     6   1    
+      46 999999999 _row_2      4     5     4   1    
+      47 999999999 _row_2      4     5     5   1    
+      48 999999999 _row_2      4     5     6   0    
+      49 999999999 _row_2      4     6     4  33.3  
+      50 999999999 _row_2      4     6     5  50    
+      51 999999999 _row_2      4     6     6   0    
+      52 999999999 _row_2      4     7     4   2    
+      53 999999999 _row_2      4     7     5   1    
+      54 999999999 _row_2      4     7     6   1    
+      55 999999999 _row_2      4     8     4  66.7  
+      56 999999999 _row_2      4     8     5  50    
+      57 999999999 _row_2      4     8     6 100    
+      58 999999999 _row_2      4     9     4   3    
+      59 999999999 _row_2      4     9     5   2    
+      60 999999999 _row_2      4     9     6   1    
+      61 999999999 _row_2      4    10     4 100    
+      62 999999999 _row_2      4    10     5 100    
+      63 999999999 _row_2      4    10     6 100    
+      
+      $row_table
+      # A tibble: 33 x 18
+            BookNo RowNo RowContent  RowAbsPercent RowWeighted  TabNo RowTitle1                           RowTitle2                           RowTitle3     RowFormat RowDecimals RowVariable      RowValue row_type           QuestNo RowTypeS                       RowType RowContentDetail
+             <dbl> <int> <chr>       <chr>         <chr>        <int> <chr>                               <chr>                               <chr>         <chr>           <int> <chr>               <dbl> <chr>              <chr>   <chr>                            <int> <chr>           
+       1 999999999     1 Title       ""            ""               1 "mw tab\r\nSummary of means"        ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Title                                1 ""              
+       2 999999999     2 Header      ""            ""               1  <NA>                               ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Header                               2 ""              
+       3 999999999     3 Header      ""            ""               1  <NA>                               ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Header                               2 ""              
+       4 999999999     4 Valid       "Abs"         "Unweighted"     1 "VALID CASES (at least one answer)" "VALID CASES (at least one answer)" "abs"         <NA>                0 q1_1, q1_2, q1_3        1 n_valid_mw         _row_2  Valid|AbsUnweighted            2097664 ""              
+       5 999999999     5 MStatistics "Percent"     "Unweighted"     1 "Choice 1"                          "Choice 1"                          "Mean"        <NA>                1 q1_1                   NA fun_stats          _row_2  MStatistics|PercentUnweighted 33619968 "Mean"          
+       6 999999999     6 MValid      "Abs"         "Unweighted"     1 "Choice 1"                          "Choice 1"                          "VALID CASES" <NA>                0 q1_1                   NA fun_valid          _row_2  MValid|AbsUnweighted           2228224 ""              
+       7 999999999     7 MStatistics "Percent"     "Unweighted"     1 "Choice 2"                          "Choice 2"                          "Mean"        <NA>                1 q1_2                   NA fun_stats          _row_2  MStatistics|PercentUnweighted 33619968 "Mean"          
+       8 999999999     8 MValid      "Abs"         "Unweighted"     1 "Choice 2"                          "Choice 2"                          "VALID CASES" <NA>                0 q1_2                   NA fun_valid          _row_2  MValid|AbsUnweighted           2228224 ""              
+       9 999999999     9 MStatistics "Percent"     "Unweighted"     1 "Choice 3"                          "Choice 3"                          "Mean"        <NA>                1 q1_3                   NA fun_stats          _row_2  MStatistics|PercentUnweighted 33619968 "Mean"          
+      10 999999999    10 MValid      "Abs"         "Unweighted"     1 "Choice 3"                          "Choice 3"                          "VALID CASES" <NA>                0 q1_3                   NA fun_valid          _row_2  MValid|AbsUnweighted           2228224 ""              
+      11 999999999    11 Empty       ""            ""               1 ""                                  ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Empty                                4 ""              
+      12 999999999     1 Title       ""            ""               2 "mw tab\r\nChoice 1"                ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Title                                1 ""              
+      13 999999999     2 Header      ""            ""               2  <NA>                               ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Header                               2 ""              
+      14 999999999     3 Header      ""            ""               2  <NA>                               ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Header                               2 ""              
+      15 999999999     4 Total       "Abs"         "Unweighted"     2 "TOTAL"                             "TOTAL"                             "abs"         <NA>                0 q1_1                    1 total              _row_2  Total|AbsUnweighted            2097408 ""              
+      16 999999999     5 Detail      "Abs"         "Unweighted"     2 "Unselected"                        "Unselected"                        "abs"         <NA>                0 q1_1                    0 detail_freqs_valid _row_2  Detail|AbsUnweighted           2097168 ""              
+      17 999999999     6 Detail      "Percent"     "Unweighted"     2 "Unselected"                        "Unselected"                        "in %"        <NA>                1 q1_1                    0 detail_perc_valid  _row_2  Detail|PercentUnweighted      33554448 ""              
+      18 999999999     7 Detail      "Abs"         "Unweighted"     2 "Selected"                          "Selected"                          "abs"         <NA>                0 q1_1                    1 detail_freqs_valid _row_2  Detail|AbsUnweighted           2097168 ""              
+      19 999999999     8 Detail      "Percent"     "Unweighted"     2 "Selected"                          "Selected"                          "in %"        <NA>                1 q1_1                    1 detail_perc_valid  _row_2  Detail|PercentUnweighted      33554448 ""              
+      20 999999999     9 Valid       "Abs"         "Unweighted"     2 "VALID CASES"                       "VALID CASES"                       "abs"         <NA>                0 q1_1                    1 n_valid_freqs      _row_2  Valid|AbsUnweighted            2097664 ""              
+      21 999999999    10 Valid       "Percent"     "Unweighted"     2 "VALID CASES"                       "VALID CASES"                       "in %"        <NA>                1 q1_1                    1 n_valid_perc       _row_2  Valid|PercentUnweighted       33554944 ""              
+      22 999999999    11 Empty       ""            ""               2 ""                                  ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Empty                                4 ""              
+      23 999999999     1 Title       ""            ""               4 "mw tab\r\nChoice 3"                ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Title                                1 ""              
+      24 999999999     2 Header      ""            ""               4  <NA>                               ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Header                               2 ""              
+      25 999999999     3 Header      ""            ""               4  <NA>                               ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Header                               2 ""              
+      26 999999999     4 Total       "Abs"         "Unweighted"     4 "TOTAL"                             "TOTAL"                             "abs"         <NA>                0 q1_3                    1 total              _row_2  Total|AbsUnweighted            2097408 ""              
+      27 999999999     5 Detail      "Abs"         "Unweighted"     4 "Unselected"                        "Unselected"                        "abs"         <NA>                0 q1_3                    0 detail_freqs_valid _row_2  Detail|AbsUnweighted           2097168 ""              
+      28 999999999     6 Detail      "Percent"     "Unweighted"     4 "Unselected"                        "Unselected"                        "in %"        <NA>                1 q1_3                    0 detail_perc_valid  _row_2  Detail|PercentUnweighted      33554448 ""              
+      29 999999999     7 Detail      "Abs"         "Unweighted"     4 "Selected"                          "Selected"                          "abs"         <NA>                0 q1_3                    1 detail_freqs_valid _row_2  Detail|AbsUnweighted           2097168 ""              
+      30 999999999     8 Detail      "Percent"     "Unweighted"     4 "Selected"                          "Selected"                          "in %"        <NA>                1 q1_3                    1 detail_perc_valid  _row_2  Detail|PercentUnweighted      33554448 ""              
+      31 999999999     9 Valid       "Abs"         "Unweighted"     4 "VALID CASES"                       "VALID CASES"                       "abs"         <NA>                0 q1_3                    1 n_valid_freqs      _row_2  Valid|AbsUnweighted            2097664 ""              
+      32 999999999    10 Valid       "Percent"     "Unweighted"     4 "VALID CASES"                       "VALID CASES"                       "in %"        <NA>                1 q1_3                    1 n_valid_perc       _row_2  Valid|PercentUnweighted       33554944 ""              
+      33 999999999    11 Empty       ""            ""               4 ""                                  ""                                  ""            <NA>               NA <NA>                   NA <NA>               _row_2  Empty                                4 ""              
+      
+      $head_table
+      # A tibble: 5 x 5
+           BookNo HeadNo HeadName     HeadTitle HeadCount
+            <dbl>  <int> <chr>        <chr>         <int>
+      1 999999999      1 DC#ROWHEADER <NA>              3
+      2 999999999      2 DC#TOTAL     TOTAL             1
+      3 999999999      3 age@1        age               2
+      4 999999999      4 DC#EMPTY     <NA>              1
+      5 999999999      5 DC#TITLE     <NA>              1
+      
+      $col_table_all
+        BookNo ColNo HeadNo ColTitle1 ColTitle2  ColVariable ColValue
+      1  1e+09     1      1                     DC#ROWHEADER       NA
+      2  1e+09     2      1                     DC#ROWHEADER       NA
+      3  1e+09     3      1                     DC#ROWHEADER       NA
+      4  1e+09     4      2     TOTAL               DC#TOTAL        1
+      5  1e+09     5      3       age     18-39          age        1
+      6  1e+09     6      3       age       40+          age        2
+      7  1e+09     7      4                         DC#EMPTY       NA
+      8  1e+09     8      5                         DC#TITLE       NA
+      
+
