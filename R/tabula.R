@@ -182,7 +182,7 @@ Tabula <- R6::R6Class(
     #' @return A list of dataframes with the data of the crosstabs;
     #'   see `vignette("data-format")`.
     get_crosstabs_data = function() {
-      private$prepare_5_tables()
+      self$prepare_db_tables()
       return(self$ditw$ct$crosstabs$data)
     },
     #' @description Print the crosstabs of the `Tabula` object
@@ -192,6 +192,39 @@ Tabula <- R6::R6Class(
     #' @param ... Not used for now.
     print = function(...) {
       self$qrows |> lapply(\(x) x$qtabs) |> print(...)
+      invisible(self)
+    },
+    #' @description Generate the `qtabs` field of the `Tabula` object
+    gen_qtabs = function() {
+      self$qrows |>
+        purrr::walk(
+          \(x) x$.__enclos_env__$private$prep_tab_row_val()
+        )
+
+      qtabs <- tibble::tibble(qrow = self$qrows) |>
+        dplyr::mutate(qtab = qrow |> purrr::map("qtabs")) |>
+        tidyr::unnest(qtab) |>
+        dplyr::mutate(
+          p = qtab |> purrr::map("p"),
+          d = qtab |> purrr::map("d"),
+          .before = 1
+        ) |>
+        tidyr::unnest_wider(d) |>
+        dplyr::mutate(p = p |> purrr::map(unclass)) |>
+        tidyr::unnest_wider(p)
+      self$qtabs <- qtabs
+      invisible(self)
+    },
+    #' @description Generate the tables that will be written to the database
+    prepare_db_tables = function() {
+      if (is.null(self$qtabs)) {
+        self$gen_qtabs()
+      }
+
+      self$ditw$ct$crosstabs$data$tab_table <- self$qtabs$tab_table_tb
+      self$ditw$ct$crosstabs$data$val_table <- self$qtabs$val_table_tb |> dplyr::bind_rows()
+      self$ditw$ct$crosstabs$data$row_table <- self$qtabs$row_table_tb |> dplyr::bind_rows()
+      private$prepare_head_col_tables()
       invisible(self)
     }
   ),
@@ -218,31 +251,6 @@ Tabula <- R6::R6Class(
         split(qsheet_raw, qsheet_raw$row),
         \(df) private$new_Qrow$new(df, self)
       )
-    },
-    prepare_5_tables = function() {
-      self$qrows |>
-        purrr::walk(
-          \(x) x$.__enclos_env__$private$prep_tab_row_val()
-        )
-
-      qtabs <- tibble::tibble(qrow = self$qrows) |>
-        dplyr::mutate(qtab = qrow |> purrr::map("qtabs")) |>
-        tidyr::unnest(qtab) |>
-        dplyr::mutate(
-          p = qtab |> purrr::map("p"),
-          d = qtab |> purrr::map("d"),
-          .before = 1
-        ) |>
-        tidyr::unnest_wider(d) |>
-        dplyr::mutate(p = p |> purrr::map(unclass)) |>
-        tidyr::unnest_wider(p)
-      self$qtabs <- qtabs
-
-      self$ditw$ct$crosstabs$data$tab_table <- self$qtabs$tab_table_tb
-      self$ditw$ct$crosstabs$data$val_table <- self$qtabs$val_table_tb |> dplyr::bind_rows()
-      self$ditw$ct$crosstabs$data$row_table <- self$qtabs$row_table_tb |> dplyr::bind_rows()
-      private$prepare_head_col_tables()
-      invisible(self)
     },
     glob_filter = NULL,
     filter_global = function() {
