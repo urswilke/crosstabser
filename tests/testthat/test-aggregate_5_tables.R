@@ -82,3 +82,11 @@ test_that("5 tables' prints are reproduced after filtering qtabs", {
     )
   )
 })
+test_that("Crosstabs prints are reproduced after filtering qtabs", {
+  testthat::expect_snapshot(
+    withr::with_options(
+      list(pillar.print_max = Inf, width = 1000),
+      print(m)
+    )
+  )
+})

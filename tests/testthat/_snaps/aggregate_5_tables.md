@@ -516,3 +516,45 @@
       8  1e+09     8      5                         DC#TITLE       NA
       
 
+# Crosstabs prints are reproduced after filtering qtabs
+
+    Code
+      withr::with_options(list(pillar.print_max = Inf, width = 1000), print(m))
+    Output
+      $`2 - _row_2: 1`
+      # mw tab Summary of means
+                                 TOTAL  age   -----
+                                        18-39 40+  
+      VALID CASES (at le…  abs    3       2       1
+      Choice 1             Mean   0.5     0       1
+                           VALI…  2       1       1
+      Choice 2             Mean   ·       ·       ·
+                           VALI…  0       0       0
+      Choice 3             Mean   0.667   0.5     1
+                           VALI…  3       2       1
+      
+      $`2 - _row_2: 2`
+      # mw tab Choice 1
+                                 TOTAL age   -----
+                                       18-39 40+  
+      TOTAL                abs       2     1     1
+      Unselected           abs       1     1     0
+                           in %     50   100     0
+      Selected             abs       1     0     1
+                           in %     50     0   100
+      VALID CASES          abs       2     1     1
+                           in %    100   100   100
+      
+      $`2 - _row_2: 4`
+      # mw tab Choice 3
+                                 TOTAL age   -----
+                                       18-39 40+  
+      TOTAL                abs     3       2     1
+      Unselected           abs     1       1     0
+                           in %   33.3    50     0
+      Selected             abs     2       1     1
+                           in %   66.7    50   100
+      VALID CASES          abs     3       2     1
+                           in %  100     100   100
+      
+
