@@ -44,6 +44,9 @@ doc_project_data <- 'Either a `list()` object to modify the default:
 #' @field qrows A `list()` of `Qrow` objects
 #' @field qtabs A `data.frame()` of all the information of the `Qtab` objects.
 #'   Each row contains the information of one qtab.
+#'   The field is initialized as `NULL`;
+#'   the `data.frame()` is generated
+#'   when calling the `Tabula$gen_qtabs()` method
 #' @field ditw This is the "dust in the wind" list object field
 #'   that stores data that didn't make it into their own field.
 #'   For developers only!
