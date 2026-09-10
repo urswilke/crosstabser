@@ -3,8 +3,7 @@
     Code
       m
     Output
-      $`2`
-      $`2`[[1]]
+      $`2 - _row_2: 1`
       # cat with 'Categories'
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -16,9 +15,7 @@
       VALID CASES          abs       5     1     2     2
                            in %    100   100   100   100
       
-      
-      $`3`
-      $`3`[[1]]
+      $`3 - _row_3: 1`
       # mcg with 'Categories'
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -31,9 +28,7 @@
       VALID CASES          abs       5     1     2     2
                            in %    100   100   100   100
       
-      
-      $`4`
-      $`4`[[1]]
+      $`4 - _row_4: 1`
       # mcg with OVERCODES
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -54,9 +49,7 @@
       VALID CASES          abs       5     1     2     2
                            in %    100   100   100   100
       
-      
-      $`5`
-      $`5`[[1]]
+      $`5 - _row_5: 1`
       # mcg with OVERCODES 2
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -71,9 +64,7 @@
       VALID CASES          abs       5     1     2     2
                            in %    100   100   100   100
       
-      
-      $`6`
-      $`6`[[1]]
+      $`6 - _row_6: 1`
       # mcg with OVERCODES & SelVar code 0
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -92,7 +83,7 @@
       VALID CASES          abs       2     0     0     2
                            in %    100     0     0   100
       
-      $`6`[[2]]
+      $`6 - _row_6: 2`
       # mcg with OVERCODES & SelVar code 1
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -111,9 +102,7 @@
       VALID CASES          abs     3       1     2     0
                            in %  100     100   100     0
       
-      
-      $`7`
-      $`7`[[1]]
+      $`7 - _row_7: 1`
       # mdg with OVERCODES
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -134,9 +123,7 @@
       VALID CASES          abs       5     1     2     2
                            in %    100   100   100   100
       
-      
-      $`8`
-      $`8`[[1]]
+      $`8 - _row_8: 1`
       # mcg with OVERCODES & filter
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -157,9 +144,7 @@
       VALID CASES          abs     3       1     2     0
                            in %  100     100   100     0
       
-      
-      $`9`
-      $`9`[[1]]
+      $`9 - _row_9: 1`
       # mcg with OVERCODES & SelVar code 0
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -180,7 +165,7 @@
       VALID CASES          abs       2     0     0     2
                            in %    100     0     0   100
       
-      $`9`[[2]]
+      $`9 - _row_9: 2`
       # mcg with OVERCODES & SelVar code 1
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -201,9 +186,7 @@
       VALID CASES          abs     3       1     2     0
                            in %  100     100   100     0
       
-      
-      $`10`
-      $`10`[[1]]
+      $`10 - _row_10: 1`
       # mcg w duplicate row labels
                                  TOTAL age   ----- -----
                                        18-39 40-59 60+  
@@ -221,6 +204,5 @@
                            in %     40   100     0    50
       VALID CASES          abs       5     1     2     2
                            in %    100   100   100   100
-      
       
 

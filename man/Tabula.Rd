@@ -46,6 +46,12 @@ and instead generated with \code{datadaptor::Mapping$modify_data()}}
 
     \item{\code{qrows}}{A \code{list()} of \code{Qrow} objects}
 
+    \item{\code{qtabs}}{A \code{data.frame()} of all the information of the \code{Qtab} objects.
+Each row contains the information of one qtab.
+The field is initialized as \code{NULL};
+the \code{data.frame()} is generated
+when calling the \code{Tabula$gen_qtabs()} method}
+
     \item{\code{ditw}}{This is the "dust in the wind" list object field
 that stores data that didn't make it into their own field.
 For developers only!
@@ -65,6 +71,8 @@ the list field additionally contains the \code{ct} element.}
     \item \href{#method-Tabula-save_html_app}{\code{Tabula$save_html_app()}}
     \item \href{#method-Tabula-get_crosstabs_data}{\code{Tabula$get_crosstabs_data()}}
     \item \href{#method-Tabula-print}{\code{Tabula$print()}}
+    \item \href{#method-Tabula-gen_qtabs}{\code{Tabula$gen_qtabs()}}
+    \item \href{#method-Tabula-prepare_db_tables}{\code{Tabula$prepare_db_tables()}}
     \item \href{#method-Tabula-clone}{\code{Tabula$clone()}}
   }
 }
@@ -241,6 +249,30 @@ This will call the print method of all \code{Qrow} elements in the \code{Tabula$
     \describe{
       \item{\code{...}}{Not used for now.}
     }
+    \if{html}{\out{</div>}}
+  }
+}
+
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-gen_qtabs"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-gen_qtabs}{}}}
+\subsection{\code{Tabula$gen_qtabs()}}{
+  Generate the \code{qtabs} field of the \code{Tabula} object
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Tabula$gen_qtabs()}
+    \if{html}{\out{</div>}}
+  }
+}
+
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Tabula-prepare_db_tables"></a>}}
+\if{latex}{\out{\hypertarget{method-Tabula-prepare_db_tables}{}}}
+\subsection{\code{Tabula$prepare_db_tables()}}{
+  Generate the tables that will be written to the database
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Tabula$prepare_db_tables()}
     \if{html}{\out{</div>}}
   }
 }

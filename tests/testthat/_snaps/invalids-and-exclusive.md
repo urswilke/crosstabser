@@ -3,8 +3,7 @@
     Code
       m_rm_invalids
     Output
-      $`2`
-      $`2`[[1]]
+      $`2 - _row_2: 1`
       # mcg with invalids
                                  TOTAL age   -----
                                        18-39 40+  
@@ -19,9 +18,7 @@
       ch3                  abs     1       1     0
                            in %   33.3    50     0
       
-      
-      $`3`
-      $`3`[[1]]
+      $`3 - _row_3: 1`
       # mcg with invalids & exclusive
                                  TOTAL age   -----
                                        18-39 40+  
@@ -36,9 +33,7 @@
       ch3                  abs     1       1     0
                            in %   33.3    50     0
       
-      
-      $`4`
-      $`4`[[1]]
+      $`4 - _row_4: 1`
       # mcg with NA & exclusive
                                  TOTAL age   -----
                                        18-39 40+  
@@ -57,9 +52,7 @@
       VALID CASES          abs     3       2     1
                            in %  100     100   100
       
-      
-      $`5`
-      $`5`[[1]]
+      $`5 - _row_5: 1`
       # mdg with invalids
                                  TOTAL age   -----
                                        18-39 40+  
@@ -74,9 +67,7 @@
       Choice 3             abs     1       1     0
                            in %   33.3    50     0
       
-      
-      $`6`
-      $`6`[[1]]
+      $`6 - _row_6: 1`
       # mdg with invalids & exclusive
                                  TOTAL age   -----
                                        18-39 40+  
@@ -91,9 +82,7 @@
       Choice 3             abs     1       1     0
                            in %   33.3    50     0
       
-      
-      $`7`
-      $`7`[[1]]
+      $`7 - _row_7: 1`
       # mcg with non-labelled non-exclusively occurring value
                                  TOTAL age   -----
                                        18-39 40+  
@@ -110,9 +99,7 @@
       VALID CASES          abs     3       2     1
                            in %  100     100   100
       
-      
-      $`8`
-      $`8`[[1]]
+      $`8 - _row_8: 1`
       # mcg with 1 non-labelled non-exclusively occurring and 1 labelled
       #   non-occurring value
                                  TOTAL age   -----
@@ -129,7 +116,6 @@
                            in %   66.7    50   100
       VALID CASES          abs     3       2     1
                            in %  100     100   100
-      
       
 
 # a table is reproduced with a global filter

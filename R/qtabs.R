@@ -55,7 +55,6 @@ Qtab <- R6::R6Class("Qtab",
   private = list(
     calc_qtab = function() {
       calc_qtab_(self)
-      private$gen_wide_tab()
       invisible(self)
     },
     gen_long_tab = function() {
@@ -83,6 +82,11 @@ Qtab <- R6::R6Class("Qtab",
         dplyr::distinct() |>
         tibble::deframe()
       return(res)
+    },
+    prepare_tab_row_val_table_tb = function() {
+      self$d$tab_table_tb <- prepare_tab_table_tb_(self)
+      self$d$val_table_tb <- prepare_val_table_tb_(self)
+      self$d$row_table_tb <- prepare_row_table_tb_(self)
     }
   )
 )
@@ -215,7 +219,7 @@ treat_categories.qtab_type_cat <- treat_categories.qtab_type_mcg <- function(qta
   if (tolower(cat_strings[n]) == "othernm") {
     occurring_valids <- qtab$d$df_rowvar_long$rowval |>
       unique() |>
-      setdiff(c(NA, qtab$p$Unguelt)) |>
+      setdiff(c(NA, qtab$p[["Unguelt"]])) |>
       sort()
     other_valids <- occurring_valids |> setdiff(occurring_vals)
     occurring_vals <- occurring_vals[-n] |> c(other_valids)

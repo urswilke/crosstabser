@@ -3,8 +3,7 @@
     Code
       tabsi
     Output
-      $`5`
-      $`5`[[1]]
+      $`5 - Q1_row_5: 1`
       # 1. Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?
                                  GESA… Regi… ----- ------ -----
                                        Asien Euro… Norda… Pazi…
@@ -22,9 +21,7 @@
       GÜLTIGE FÄLLE        abs   151    19    75    43     14  
                            in %  100   100   100   100    100  
       
-      
-      $`6`
-      $`6`[[1]]
+      $`6 - Q2: 1`
       # 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool durch?
       #   DC#SELVALLAB
                                  GESAMT Region ------ ------ ------
@@ -48,9 +45,7 @@
       GÜLTIGE FÄLLE        abs   151     19     75     43     14   
                            in %  100    100    100    100    100   
       
-      
-      $`7`
-      $`7`[[1]]
+      $`7 - Q3_1: 1`
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Mittelwertüberblick
                                  GESAMT  Region ------ ------ ------
@@ -71,9 +66,7 @@
       Weitere              Mitt…   2.05   0.526  1.2    3.72   3.57 
                            GÜLT… 151     19     75     43     14    
       
-      
-      $`8`
-      $`8`[[1]]
+      $`8 - Q3_2: 1`
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
                                  GESAMT   Region ------- ------- -----
                                           Asien  Europa  Nordam… Pazi…
@@ -88,9 +81,7 @@
       GÜLTIGE FÄLLE        abs     151      19     75      43     14  
                            in %    100     100    100     100    100  
       
-      
-      $`9`
-      $`9`[[1]]
+      $`9 - Q3_3: 1`
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Kundenzufriedenheit
                                  GESAMT Regi… ------ ------ -----
@@ -101,7 +92,7 @@
       GÜLTIGE FÄLLE        abs   151     19    75     43     14  
                            in %  100    100   100    100    100  
       
-      $`9`[[2]]
+      $`9 - Q3_3: 2`
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Marktvolumen
                                  GESAMT Region ------ ------ -----
@@ -112,9 +103,7 @@
       GÜLTIGE FÄLLE        abs   151     19     75     43     14  
                            in %  100    100    100    100    100  
       
-      
-      $`10`
-      $`10`[[1]]
+      $`10 - Q3_4: 1`
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Summary of Medians
                                  GESA… Regi… ----- ----- -----
@@ -125,7 +114,7 @@
       Marktvolumen         hi        0     0     0     0     0
                            how …   151    19    75    43    14
       
-      $`10`[[2]]
+      $`10 - Q3_4: 2`
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Kundenzufriedenheit
                                  GESAMT  Regi… ------ ------ ------
@@ -162,7 +151,7 @@
       GÜLTIGE FÄLLE        abs   132         0  75     43     14   
                            in %  100         0 100    100    100   
       
-      $`10`[[3]]
+      $`10 - Q3_4: 3`
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Marktvolumen
                                  GESAMT  Region ------ ------ ------
@@ -197,9 +186,7 @@
       GÜLTIGE FÄLLE        abs   151      19     75     43     14   
                            in %  100     100    100    100    100   
       
-      
-      $`11`
-      $`11`[[1]]
+      $`11 - Q3_5: 1`
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   Mittelwertüberblick gewichtet mit gew
                                  GESA… Regi… ----- ----- -----
@@ -210,9 +197,7 @@
       Marktvolumen         Mitt…  22.2  30.3  23.4  14.7  31.2
                            GÜLT… 151    15    71.5  47.5  17  
       
-      
-      $`12`
-      $`12`[[1]]
+      $`12 - Q3_6: 1`
       # 3. Wie verteilten sich die Studien prozentual auf die einzelnen Arten?
       #   gewichtet mit gew
                                  GESAMT   Regi… ------- ------- ------
@@ -228,9 +213,7 @@
       GÜLTIGE FÄLLE        abs⚖    151     15     71.5    47.5   17   
                            in %⚖   100    100    100     100    100   
       
-      
-      $`13`
-      $`13`[[1]]
+      $`13 - Q4: 1`
       # 4. Wie häufig haben Sie einen Tabellenband in den letzten 12 Monaten
       #   erstellen lassen?
                                       GESAMT  Regi… ------ ----- ------
@@ -252,9 +235,7 @@
       weiß nicht                abs     4      1     1      2      0   
                                 in %    2.65   5.26  1.33   4.65   0   
       
-      
-      $`14`
-      $`14`[[1]]
+      $`14 - Q5_1: 1`
       # 5. Was lief besonders gut in den Projekten?
                                  GESA… Regi… ----- ----- -----
                                        Asien Euro… Nord… Pazi…
@@ -277,9 +258,7 @@
       Keine Angabe         abs    69    7     34   21     7   
                            in %   45.7 36.8   45.3 48.8  50   
       
-      
-      $`15`
-      $`15`[[1]]
+      $`15 - Q5_2: 1`
       # 5. Was lief besonders gut in den Projekten?
                                  GESAMT Regi… ----- ----- -----
                                         Asien Euro… Nord… Pazi…
@@ -302,9 +281,7 @@
       Keine Angabe         abs    69     7    34    21      7  
                            in %   45.7  36.8  45.3  48.8   50  
       
-      
-      $`16`
-      $`16`[[1]]
+      $`16 - Q6_1: 1`
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein. TOP2-Übersicht
@@ -328,7 +305,7 @@
       Einhaltung von Zus…  TOP2   86.7 100    87.8  79.3  88.9
                            GÜLT…  90    11    41    29     9  
       
-      $`16`[[2]]
+      $`16 - Q6_1: 2`
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein. TOP1-Übersicht
@@ -352,9 +329,7 @@
       Einhaltung von Zus…  TOP1  63.3   54.5  73.2  48.3  77.8
                            GÜLT… 90     11    41    29     9  
       
-      
-      $`17`
-      $`17`[[1]]
+      $`17 - Q6_2: 1`
       # 6. Ich nenne Ihnen gleich einige generelle Merkmale, die bei quantitativen
       #   Forschungsprojekten eine Rolle spielen. Bitte stufen Sie die Wichtigkeit
       #   ein.
@@ -392,9 +367,7 @@
       FILTER                    abs    60      8    33    14      5  
                                 in %   39.7   42.1  44    32.6   35.7
       
-      
-      $`20`
-      $`20`[[1]]
+      $`20 - Q9_3: 1`
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Kundenzufriedenheit
                                       GESAMT  Regi… ----- ------ ------
                                               Asien Euro… Norda… Pazif…
@@ -434,7 +407,7 @@
       keine Angabe              abs     4      1     3      0      0   
                                 in %    2.65   5.26  4      0      0   
       
-      $`20`[[2]]
+      $`20 - Q9_3: 2`
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Marktvolumen
                                       GESA… Regi… ----- ------ -----
                                             Asien Euro… Norda… Pazi…
@@ -474,7 +447,7 @@
       keine Angabe              abs    1      0    1      0        0
                                 in %   1.37   0    2.63   0        0
       
-      $`20`[[3]]
+      $`20 - Q9_3: 3`
       # 9. Würden Sie das Tabellenbandtool weiterempfehlen? Sonstige
                                       GESA… Regi… ----- ----- -----
                                             Asien Euro… Nord… Pazi…
@@ -514,9 +487,7 @@
       keine Angabe              abs    4      1    2     1        0
                                 in %   9.30  14.3 11.1   7.69     0
       
-      
-      $`21`
-      $`21`[[1]]
+      $`21 - QNOT CHECKED: 2: 1`
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Kundenzufriedenheit
                                  GESAMT Regi… ----- ------ -----
@@ -534,7 +505,7 @@
       Kein Eintrag in de…  abs    16      3    8      3     2   
                            in %   10.6   15.8 10.7    6.98 14.3 
       
-      $`21`[[2]]
+      $`21 - QNOT CHECKED: 2: 2`
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Marktvolumen
                                  GESA… Regi… ----- ----- -----
@@ -552,7 +523,7 @@
       Kein Eintrag in de…  abs    50     3    26    18       3
                            in %   68.5  42.9  68.4  78.3    60
       
-      $`21`[[3]]
+      $`21 - QNOT CHECKED: 2: 3`
       # NOT CHECKED: 2. Welche Art von Studien führen Sie mit dem Tabellenbandtool
       #   durch? Sonstige
                                  GESA… Regi… ----- ----- -----
@@ -570,9 +541,7 @@
       Kein Eintrag in de…  abs    28     6    10     9       3
                            in %   65.1  85.7  55.6  69.2    60
       
-      
-      $`22`
-      $`22`[[1]]
+      $`22 - Qmulti selvar with unguelt: 2: 1`
       # multi selvar with unguelt: 2. Welche Art von Studien führen Sie mit dem
       #   Tabellenbandtool durch? Sonstige
                                  GESA… Regi… ----- ----- -----
@@ -588,9 +557,7 @@
       Kein Eintrag in de…  abs    31     6    11    10       4
                            in %   72.1  85.7  61.1  76.9    80
       
-      
-      $`23`
-      $`23`[[1]]
+      $`23 - Qtrigger invalid values: 2: 1`
       # trigger invalid values: 2. Welche Art von Studien führen Sie mit dem
       #   Tabellenbandtool durch?
                                  GESAMT Regi… ------ ------ ------
@@ -606,9 +573,7 @@
       Kundenzufriedenheit  abs   102     12    49     34      7   
                            in %   67.5   63.2  65.3   79.1   50   
       
-      
-      $`24`
-      $`24`[[1]]
+      $`24 - QNOT CHECKED: 5: 1`
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Kundenzufriedenheit
                                  GESAMT Regi… ----- ----- -----
                                         Asien Euro… Nord… Pazi…
@@ -631,7 +596,7 @@
       Keine Angabe         abs    69      7    34   21      7  
                            in %   45.7   36.8  45.3 48.8   50  
       
-      $`24`[[2]]
+      $`24 - QNOT CHECKED: 5: 2`
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Marktvolumen
                                  GESA… Regi… ----- ------ -----
                                        Asien Euro… Norda… Pazi…
@@ -654,7 +619,7 @@
       -2                   abs   50      5    24    18        3
                            in %  68.5   71.4  63.2  78.3     60
       
-      $`24`[[3]]
+      $`24 - QNOT CHECKED: 5: 3`
       # NOT CHECKED: 5. Was lief besonders gut in den Projekten? Sonstige
                                  GESA… Regi… ------ ----- -----
                                        Asien Europa Nord… Pazi…
@@ -677,9 +642,7 @@
       -2                   abs   28      4    14     7        3
                            in %  65.1   57.1  77.8  53.8     60
       
-      
-      $`25`
-      $`25`[[1]]
+      $`25 - Q7: 1`
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   TOP3-Übersicht
@@ -691,7 +654,7 @@
       Kurzfristige Anpas…  TOP3   71.2  66.7  71.4  71.4    75
                            GÜLT…  66     6    35    21       4
       
-      $`25`[[2]]
+      $`25 - Q7: 2`
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Mittelwertüberblick
@@ -703,7 +666,7 @@
       Kurzfristige Anpas…  Mitt…  8.02  8.67  8.09  7.62   8.5
                            GÜLT… 66     6    35    21      4  
       
-      $`25`[[3]]
+      $`25 - Q7: 3`
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Schnelle Umsetzung
@@ -743,7 +706,7 @@
       keine Angabe              abs    5       0      3      1      1   
                                 in %   6.85    0      7.89   4.35  20   
       
-      $`25`[[4]]
+      $`25 - Q7: 4`
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Marktvolumen
       #   Kurzfristige Anpassungen
@@ -783,7 +746,7 @@
       keine Angabe              abs    7      1      3      2      1    
                                 in %   9.59  14.3    7.89   8.70  20    
       
-      $`25`[[5]]
+      $`25 - Q7: 5`
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   TOP3-Übersicht
@@ -795,7 +758,7 @@
       Kurzfristige Anpas…  TOP3   57.1  57.1  46.2  72.7  50  
                            GÜLT…  35     7    13    11     4  
       
-      $`25`[[6]]
+      $`25 - Q7: 6`
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   Mittelwertüberblick
@@ -807,7 +770,7 @@
       Kurzfristige Anpas…  Mitt…  7.49  7.57  7     7.91  7.75
                            GÜLT… 35     7    13    11     4   
       
-      $`25`[[7]]
+      $`25 - Q7: 7`
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige Schnelle
       #   Umsetzung
@@ -847,7 +810,7 @@
       keine Angabe              abs    6       0      2      2      2   
                                 in %  14.0     0     11.1   15.4   40   
       
-      $`25`[[8]]
+      $`25 - Q7: 8`
       # 7. Für die abgefragten Studienarten: Wie zufrieden sind Sie mit dem
       #   Tabellenbandtool bezüglich der eben abgefragten Merkmale? Sonstige
       #   Kurzfristige Anpassungen
@@ -887,9 +850,7 @@
       keine Angabe              abs    8       0      5      2      1    
                                 in %  18.6     0     27.8   15.4   20    
       
-      
-      $`26`
-      $`26`[[1]]
+      $`26 - Q1_row_26: 1`
       # 1 (mit Filter). Wie viele Mitarbeiter beschäftigt Ihr Unternehmen?
                                  GESA… Regi… ----- ----- -----
                                        Asien Euro… Nord… Pazi…
@@ -907,15 +868,13 @@
       GÜLTIGE FÄLLE        abs    17       4   8     3       2
                            in %  100     100 100   100     100
       
-      
 
 # summaries of various stat_fun are reproduced
 
     Code
       m
     Output
-      $`2`
-      $`2`[[1]]
+      $`2 - _row_2: 1`
       # Summary of se
                                  TOTAL  hallo ----- hall… -----
                                         Yes   No    Yes   No   
@@ -930,9 +889,7 @@
                            VALI…  0       0     0       0     0
                            VALI…  0       0     0       0     0
       
-      
-      $`3`
-      $`3`[[1]]
+      $`3 - _row_3: 1`
       # Summary of median
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
@@ -947,9 +904,7 @@
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       
-      
-      $`4`
-      $`4`[[1]]
+      $`4 - _row_4: 1`
       # Summary of mean
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
@@ -964,14 +919,7 @@
                            VALI…  0      0     0       0     0
                            VALI…  0      0     0       0     0
       
-      
-      $`5`
-      $`5`[[1]]
-      NULL
-      
-      
-      $`6`
-      $`6`[[1]]
+      $`5 - _row_5: 1`
       # Summary of min
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
@@ -986,9 +934,7 @@
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       
-      
-      $`7`
-      $`7`[[1]]
+      $`6 - _row_6: 1`
       # Summary of max
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
@@ -1003,9 +949,7 @@
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       
-      
-      $`8`
-      $`8`[[1]]
+      $`7 - _row_7: 1`
       # Summary of sum
                                  TOTAL hallo ----- hall… -----
                                        Yes   No    Yes   No   
@@ -1020,15 +964,13 @@
                            VALI…   0     0     0       0     0
                            VALI…   0     0     0       0     0
       
-      
 
 # mean calculation is reproduced with UngueltMW set (cat & mw)
 
     Code
       m
     Output
-      $`2`
-      $`2`[[1]]
+      $`2 - _row_2: 1`
       # Summary of mean
                                  TOTAL hallo -----
                                        Yes   No   
@@ -1043,9 +985,7 @@
                            VALI…   0     0     0  
                            VALI…   0     0     0  
       
-      
-      $`3`
-      $`3`[[1]]
+      $`3 - _row_3: 1`
       # 
                                  TOTAL hallo -----
                                        Yes   No   
@@ -1065,6 +1005,5 @@
                            absW    2.1   0.9   1.2
                            in %  100   100   100  
                            in %W 100   100   100  
-      
       
 

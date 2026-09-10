@@ -3,8 +3,7 @@
     Code
       m
     Output
-      $`2`
-      $`2`[[1]]
+      $`2 - _row_2: 1`
       # mcg table
                                  TOTAL age   -----
                                        18-39 40+  
@@ -20,6 +19,5 @@
                            in %     50     0   100
       VALID CASES          abs       2     1     1
                            in %    100   100   100
-      
       
 

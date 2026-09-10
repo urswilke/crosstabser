@@ -65,7 +65,7 @@ empty_qsheet <- function() {
   )
 }
 process_qrow_params <- function(df_qrow, mapping) {
-  unguelt_mw_interval <- df_qrow$UngueltMW |>
+  unguelt_mw_interval <- df_qrow[["UngueltMW"]] |>
     split_cell(",") |>
     _[[1]] |>
     stringr::str_subset("THRU") |>
