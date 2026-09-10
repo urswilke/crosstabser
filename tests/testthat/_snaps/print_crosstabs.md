@@ -869,6 +869,102 @@
                            in %  100     100 100   100     100
       
 
+# summaries of various stat_fun are reproduced
+
+    Code
+      m
+    Output
+      $`2 - _row_2: 1`
+      # Summary of se
+                                 TOTAL  hallo ----- hall… -----
+                                        Yes   No    Yes   No   
+      VALID CASES (at le…  abs    3       2     1       0     0
+                           absW   2.1     0.9   1.2     0     0
+      hallo                Std.…  0.333   0     ·       ·     ·
+                           Std.…  0.472   ·     ·       ·     ·
+                           VALI…  3       2     1       0     0
+                           VALI…  2.1     0.9   1.2     0     0
+      hallo 2              Std.…  ·       ·     ·       ·     ·
+                           Std.…  ·       ·     ·       ·     ·
+                           VALI…  0       0     0       0     0
+                           VALI…  0       0     0       0     0
+      
+      $`3 - _row_3: 1`
+      # Summary of median
+                                 TOTAL hallo ----- hall… -----
+                                       Yes   No    Yes   No   
+      VALID CASES (at le…  abs     3     2     1       0     0
+                           absW    2.1   0.9   1.2     0     0
+      hallo                Medi…   1     1     2       ·     ·
+                           Medi…   2     1     2       ·     ·
+                           VALI…   3     2     1       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      hallo 2              Medi…   ·     ·     ·       ·     ·
+                           Medi…   ·     ·     ·       ·     ·
+                           VALI…   0     0     0       0     0
+                           VALI…   0     0     0       0     0
+      
+      $`4 - _row_4: 1`
+      # Summary of mean
+                                 TOTAL hallo ----- hall… -----
+                                       Yes   No    Yes   No   
+      VALID CASES (at le…  abs    3      2     1       0     0
+                           absW   2.1    0.9   1.2     0     0
+      hallo                Mean   1.33   1     2       ·     ·
+                           MeanW  1.57   1     2       ·     ·
+                           VALI…  3      2     1       0     0
+                           VALI…  2.1    0.9   1.2     0     0
+      hallo 2              Mean   ·      ·     ·       ·     ·
+                           MeanW  ·      ·     ·       ·     ·
+                           VALI…  0      0     0       0     0
+                           VALI…  0      0     0       0     0
+      
+      $`5 - _row_5: 1`
+      # Summary of min
+                                 TOTAL hallo ----- hall… -----
+                                       Yes   No    Yes   No   
+      VALID CASES (at le…  abs     3     2     1       0     0
+                           absW    2.1   0.9   1.2     0     0
+      hallo                Mini…   1     1     2       ·     ·
+                           Mini…   1     1     2       ·     ·
+                           VALI…   3     2     1       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      hallo 2              Mini…   ·     ·     ·       ·     ·
+                           Mini…   ·     ·     ·       ·     ·
+                           VALI…   0     0     0       0     0
+                           VALI…   0     0     0       0     0
+      
+      $`6 - _row_6: 1`
+      # Summary of max
+                                 TOTAL hallo ----- hall… -----
+                                       Yes   No    Yes   No   
+      VALID CASES (at le…  abs     3     2     1       0     0
+                           absW    2.1   0.9   1.2     0     0
+      hallo                Maxi…   2     1     2       ·     ·
+                           Maxi…   2     1     2       ·     ·
+                           VALI…   3     2     1       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      hallo 2              Maxi…   ·     ·     ·       ·     ·
+                           Maxi…   ·     ·     ·       ·     ·
+                           VALI…   0     0     0       0     0
+                           VALI…   0     0     0       0     0
+      
+      $`7 - _row_7: 1`
+      # Summary of sum
+                                 TOTAL hallo ----- hall… -----
+                                       Yes   No    Yes   No   
+      VALID CASES (at le…  abs     3     2     1       0     0
+                           absW    2.1   0.9   1.2     0     0
+      hallo                Sum     4     2     2       ·     ·
+                           SumW    3.3   0.9   2.4     ·     ·
+                           VALI…   3     2     1       0     0
+                           VALI…   2.1   0.9   1.2     0     0
+      hallo 2              Sum     ·     ·     ·       ·     ·
+                           SumW    ·     ·     ·       ·     ·
+                           VALI…   0     0     0       0     0
+                           VALI…   0     0     0       0     0
+      
+
 # mean calculation is reproduced with UngueltMW set (cat & mw)
 
     Code

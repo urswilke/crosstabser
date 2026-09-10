@@ -29,7 +29,7 @@ df <- tibble::tibble(
   gew = c(0.5, 1.2, 0.4)
 )
 
-f <- df_metr_mac$fun
+f <- df_metr_mac$fun |> setdiff("percentile")
 dfq <- data.frame(
   Type  = "mw",
   RowVar = "q1 q2",
