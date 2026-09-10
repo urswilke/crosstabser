@@ -31,6 +31,14 @@ the Questions sheet of the Excel mapping file.
 
   A [`list()`](https://rdrr.io/r/base/list.html) of `Qrow` objects
 
+- `qtabs`:
+
+  A [`data.frame()`](https://rdrr.io/r/base/data.frame.html) of all the
+  information of the `Qtab` objects. Each row contains the information
+  of one qtab. The field is initialized as `NULL`; the
+  [`data.frame()`](https://rdrr.io/r/base/data.frame.html) is generated
+  when calling the `Tabula$gen_qtabs()` method
+
 - `ditw`:
 
   This is the "dust in the wind" list object field that stores data that
@@ -55,6 +63,10 @@ the Questions sheet of the Excel mapping file.
 - [`Tabula$get_crosstabs_data()`](#method-Tabula-get_crosstabs_data)
 
 - [`Tabula$print()`](#method-Tabula-print)
+
+- [`Tabula$gen_qtabs()`](#method-Tabula-gen_qtabs)
+
+- [`Tabula$prepare_db_tables()`](#method-Tabula-prepare_db_tables)
 
 - [`Tabula$clone()`](#method-Tabula-clone)
 
@@ -254,6 +266,26 @@ field.
 
 ------------------------------------------------------------------------
 
+### `Tabula$gen_qtabs()`
+
+Generate the `qtabs` field of the `Tabula` object
+
+#### Usage
+
+    Tabula$gen_qtabs()
+
+------------------------------------------------------------------------
+
+### `Tabula$prepare_db_tables()`
+
+Generate the tables that will be written to the database
+
+#### Usage
+
+    Tabula$prepare_db_tables()
+
+------------------------------------------------------------------------
+
 ### `Tabula$clone()`
 
 The objects of this class are cloneable with this method.
@@ -285,8 +317,7 @@ mapping_file = list(
 )
 m <- Tabula$new(df, mapping_file)
 m
-#> $`2`
-#> $`2`[[1]]
+#> $`2 - _row_2: 1`
 #> # The crosstab's title
 #>                            TOTAL   age -----
 #>                                  18-39   40+
@@ -297,7 +328,6 @@ m
 #>                      in %   33.3    50     0
 #> VALID CASES          abs     3       2     1
 #>                      in %  100     100   100
-#> 
 #> 
 # The previous line prints the "Tabula" object.
 # Under the hood, a list of `Qrow` objects were generated.

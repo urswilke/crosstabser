@@ -84,7 +84,7 @@ Click here to see the full data.frame
 
 If we look at the crosstab
 
-`m`` ``` #> $`2` ``` ``` #> $`2`[[1]] ``` ``#> ``# The crosstab's title`` ``#> ``TOTAL`` ``age`` ``-----`` ``#> `` `` ``18-39`` ``40+`` ``#> ``TOTAL abs `` 3 2 1`` ``#> ``Yes abs `` `` 2 `` `` 1`` `` 1`` ``#> `` in % `` 66.7 50 100`` ``#> ``No abs `` `` 1 `` `` 1`` `` 0`` ``#> `` in % `` 33.3 50 0`` ``#> ``VALID CASES abs `` 3 2 1`` ``#> `` in % `` 100 100 100`
+`m`` ``` #> $`2 - _row_2: 1` ``` ``#> ``# The crosstab's title`` ``#> ``TOTAL`` ``age`` ``-----`` ``#> `` `` ``18-39`` ``40+`` ``#> ``TOTAL abs `` 3 2 1`` ``#> ``Yes abs `` `` 2 `` `` 1`` `` 1`` ``#> `` in % `` 66.7 50 100`` ``#> ``No abs `` `` 1 `` `` 1`` `` 0`` ``#> `` in % `` 33.3 50 0`` ``#> ``VALID CASES abs `` 3 2 1`` ``#> `` in % `` 100 100 100`
 
 and say we wanted to generated a color-coded raster of the percent
 values, we could do this like this:
