@@ -143,7 +143,7 @@ variables:
       image: woodpeckerci/plugin-codecov
       settings:
         files:
-          - coverage/tmp/cobertura.xml
+          - /woodpecker/tmp/cobertura.xml
         token:
           from_secret: CODECOV_TOKEN
 
