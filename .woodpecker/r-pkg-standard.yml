@@ -98,7 +98,6 @@ variables:
         - <<: *r_site_config
         - |
           R -q -s --no-save << "END"
-          pak::local_install_dev_deps()
           pak::pkg_install("rcmdcheck")
           rcmdcheck::rcmdcheck(
             args = c("--no-manual", "--as-cran", "--no-tests", "--timings"),
@@ -118,7 +117,6 @@ variables:
         - <<: *r_site_config
         - |
           R -q -s --no-save << "END"
-          pak::local_install_dev_deps()
           pak::pkg_install(c("covr", "xml2"))
 
           woodpecker_tmp <- normalizePath(Sys.getenv("WOODPECKER_TMP"), winslash = "/")
