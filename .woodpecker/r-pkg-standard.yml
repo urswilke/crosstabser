@@ -136,6 +136,16 @@ variables:
           echo '─ test results ────────────────────────────────────────────────────────────────'
           find '/woodpecker/tmp/package' -name 'testthat.Rout*' -exec cat '{}' \; || true
 
+  step_codecov: &codecov
+    - name: codecov
+      depends_on: [test]
+      image: woodpeckerci/plugin-codecov
+      settings:
+        files:
+          - coverage/tmp/cobertura.xml
+        token:
+          from_secret: CODECOV_TOKEN
+
   step_pkgdown: &pkgdown
     - name: pkgdown
       image: ${IMAGE}
@@ -204,6 +214,7 @@ steps:
   - <<: *setup
   - <<: *check
   - <<: *test
+  - <<: *codecov
   - <<: *pkgdown
   - <<: *deploy
 
