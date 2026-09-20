@@ -55,6 +55,7 @@ variables:
         cli.default_num_colors = 256,
         crayon.enabled = TRUE
       )
+      print(Sys.getenv("WOODPECKER_TMP"))
 
       local({
         tmp <- Sys.getenv("WOODPECKER_TMP")
