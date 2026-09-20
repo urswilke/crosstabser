@@ -6,7 +6,7 @@ matrix:
     - rocker/verse
 
 when:
-  - branch: "${CI_REPO_DEFAULT_BRANCH}"
+  # - branch: "${CI_REPO_DEFAULT_BRANCH}"
     event: push
   - event: pull_request
   - event: tag
