@@ -20,7 +20,7 @@ variables:
       image: ${IMAGE}
       pull: true
       commands:
-        - <<: *da_branch
+        - <<: *print_branch
 
 steps:
   - <<: *setup
