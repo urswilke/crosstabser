@@ -1,9 +1,3 @@
-# this workflow maintained at https://codeberg.org/r-codeberg/woodpecker-ci
-# please file bug reports and feature requests to help it improve!
-
-matrix:
-  IMAGE:
-    - rocker/verse
 
 when:
   - branch: "${CI_REPO_DEFAULT_BRANCH}"
@@ -11,16 +5,8 @@ when:
   - event: pull_request
   - event: tag
 
-variables:
-  print_branch: &print_branch
-    - echo $DA_BRANCH
-
-  step_setup: &setup
-    - name: setup
-      image: ${IMAGE}
-      pull: true
-      commands:
-        - <<: *print_branch
-
 steps:
-  - <<: *setup
+  - name: setup
+    image: debian
+    commands:
+      - echo $TARGET_BRANCH_VAR
